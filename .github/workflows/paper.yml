@@ -31,5 +31,12 @@ jobs:
       - name: Install LaTeX
         run: sudo apt-get update && sudo apt-get install -y latexmk poppler-utils qpdf texlive-latex-extra texlive-fonts-recommended
       - run: make paper
+      - name: Validate compiled PDFs
+        run: |
+          qpdf --check paper/main.pdf
+          qpdf --check paper/supplementary/supplementary.pdf
+          qpdf --check paper/extended_data/ED_Table1.pdf
       - name: Require deterministic tables and figures
-        run: git diff --exit-code -- paper/tables paper/figures paper/extended_data paper/supplementary_data figures/
+        # TeX embeds engine-specific font data in the standalone table PDF;
+        # compilation is checked above and its generated source remains exact.
+        run: git diff --exit-code -- paper/tables paper/figures paper/extended_data paper/supplementary_data figures/ ':(exclude)paper/extended_data/ED_Table1.pdf'
