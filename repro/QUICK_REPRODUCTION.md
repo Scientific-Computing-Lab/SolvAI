@@ -3,9 +3,9 @@
 This path uses frozen, hash-verified artifacts. It does not rerun quantum
 chemistry, molecular dynamics, PIMD or model training.
 
-Requirements: Linux, Python 3.11, Git LFS, `uv`, and a LaTeX installation with
-`latexmk`; allow approximately 3 GB for the Python environment and 400 MB for
-the repository and artifacts. A GPU is not required.
+Requirements: Linux, Python 3.11, Git LFS, `uv`, a LaTeX installation with
+`latexmk`, and `qpdf`; allow approximately 3 GB for the Python environment and
+400 MB for the repository and artifacts. A GPU is not required.
 
 ```bash
 git clone https://github.com/Scientific-Computing-Lab/SolvAI.git

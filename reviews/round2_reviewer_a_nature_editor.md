@@ -2,15 +2,15 @@
 
 ## Critical issues
 
-None remaining. The advance is now expressed as a reusable-supervision strategy,
-not a leaderboard claim.
+None.
 
 ## Important issues
 
-The small reference set may limit editorial breadth, but this is stated once and
-does not interrupt the story. The concrete response-data prescription makes the
-outlook testable.
+None unresolved. The paper presents one conceptual advance, demonstrates it
+with paired molecule-level and repeated-split evidence, then uses the
+multi-lambda result to identify a physical frontier.
 
 ## Optional polish
 
-Confirm author metadata before submission.
+Affiliations, correspondence, funding and declarations remain author-owned
+submission metadata and are correctly isolated from the scientific revision.

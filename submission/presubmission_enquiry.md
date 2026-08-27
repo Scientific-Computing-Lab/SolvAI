@@ -1,13 +1,15 @@
 # Presubmission enquiry
 
-**Proposed title:** Distilling solvation physics into AI for simulation-free
+**Proposed title:** Distilling solvation physics for simulation-free
 hydration free energies
 
-High-accuracy hydration calculations resolve coupled electronic, conformational
-and nuclear-quantum response through expensive molecular simulation. We ask
-whether that physics can instead be learned once and reused. SolvAI trains
-structure-to-response surrogates on strictly benchmark-disjoint physical
-calculations, then predicts hydration free energy from SMILES alone. On the
+High-accuracy hydration calculations resolve coupled electronic,
+conformational and nuclear-quantum response through expensive molecular
+simulation. We ask whether transferable solvation-response information can
+instead be learned once and reused. SolvAI trains structure-to-response
+surrogates on strictly benchmark-disjoint physical calculations, then predicts
+hydration free energy from SMILES alone. PIMD8 is the accuracy comparator, not
+a retained teacher. On the
 85-solute reference set introduced with ARROW, it improves a direct
 structure-only MAE from 0.239 to 0.197 kcal/mol and reaches the reconstructed
 ARROW/PIMD8 accuracy of 0.205 kcal/mol. Across five independent partitions the

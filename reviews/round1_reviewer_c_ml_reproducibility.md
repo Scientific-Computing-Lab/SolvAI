@@ -2,28 +2,29 @@
 
 ## Critical issues
 
-1. Teacher leakage must be audited at connectivity level, not only by raw
-   SMILES.
-2. Feature-block choice must be nested inside outer folds.
-3. The deployment refit on all 85 labels must not be confused with OOF scoring.
-4. The schematic must depict a model stack, not a fictitious monolithic
-   teacher–student network.
+- Clarify that the public deployment refit uses all 85 labels only after the
+  evaluation is frozen. It cannot be the source of any reported held-out
+  metric.
+- Make the two training stages explicit: response-surrogate supervision and
+  experimental endpoint supervision. A classic one-teacher/one-student diagram
+  would misrepresent the implementation.
 
 ## Important issues
 
-- Freeze every manuscript number from molecule-level outputs.
-- Hash all executable artifacts and test from raw SMILES.
-- Preserve seeds, split assignments, dependency versions and non-improving
-  ablations.
+- Publish exact feature counts, endpoint hyperparameters, D-MPNN settings,
+  teacher-source exclusions, repeat seeds and fold assignments.
+- Do not hide that 1,280 benchmark-disjoint experimental labels train the
+  endpoint.
+- Preserve candidate non-improving experiments in a machine-readable ledger.
 
 ## Optional polish
 
-- CI should fail on metric drift, artifact drift, leakage or LaTeX errors.
+- Keep “model stack” or “inference system” available as implementation terms;
+  do not call SolvAI one monolithic neural network.
 
 ## Revision made
 
-The release now has one metric module with numerical assertions, independent
-identity and runtime-schema audits, a nested-selection record, frozen repeat
-predictions, artifact SHA-256 values and end-to-end smoke tests. The paper states
-that deployment is a post-evaluation refit and never supplies its predictions as
-OOF evidence.
+Supplementary Methods now specify every teacher and endpoint stage. Four
+Supplementary Data packages contain the experiment ledger, predictions, fold
+assignments and teacher manifests. The main architecture shows both kinds of
+training supervision and a molecule-only deployment path.

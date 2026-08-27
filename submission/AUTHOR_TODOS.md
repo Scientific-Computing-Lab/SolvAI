@@ -13,5 +13,6 @@ require human confirmation and have deliberately not been inferred:
 - Acknowledgements of people or facilities not already named in source records.
 - ORCID identifiers.
 
-Resolve these items in `paper/main.tex`, `CITATION.cff` and the journal portal
-before submission.
+Resolve these items in the journal submission metadata, `CITATION.cff` and the
+declaration sections of `paper/main.tex` before submission. The reader-facing
+PDF deliberately contains no guessed affiliation or correspondence metadata.

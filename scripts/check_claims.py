@@ -28,6 +28,7 @@ SAFE_CONTEXT = (
     "not as",
     "no external",
     "not be read",
+    "not a claim",
     "should be described",
     "has not been established",
     "rather than",

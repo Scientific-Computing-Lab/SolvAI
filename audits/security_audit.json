@@ -1,5 +1,6 @@
 {
   "status": "PASS",
-  "files_scanned": 141,
+  "files_scanned": 163,
+  "git_history_scanned": true,
   "findings": []
 }

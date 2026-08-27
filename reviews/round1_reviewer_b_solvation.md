@@ -2,27 +2,30 @@
 
 ## Critical issues
 
-1. Distinguish SMD/COSMO-RS response labels, explicit-solvent alchemical labels
-   and PIMD. They are not interchangeable physical calculations.
-2. Do not imply that a three-point, 5-ps PIMD2 response is a converged free
-   energy.
-3. The ARROW/PIMD8 comparison must use the reconstructed same-set value and
-   must not reuse the ARROW-NN water-dimer error as a hydration result.
+- PIMD8 must not appear as a retained teacher. The final selected feature block
+  contains zero PIMD-trained coordinates. Figure 1 and the text now isolate
+  PIMD8 as an accuracy reference; the PIMD2/PIMD8 supervision experiments are
+  labelled non-retained ablations.
+- Endpoint experimental supervision must be visible. Figure 1 now shows the
+  experimental hydration labels entering endpoint training separately from
+  response-surrogate training.
 
 ## Important issues
 
-- State that response quantities at inference are surrogate predictions.
-- Describe $\mathrm{d}H/\mathrm{d}\lambda$ component errors in their exported
-  energy units and explain why integration failed.
-- Separate total PIMD work from ideal parallel wall time in runtime discussion.
+- Distinguish short PIMD2 response fingerprints from converged free energies.
+- State that direct response integration failed because component errors of
+  1.27–5.20 kcal mol−1 accumulate along the alchemical path.
+- Avoid putting SMD, conformer records and molecular identities on one common
+  count axis.
 
 ## Optional polish
 
-- Use “comparable to” or “PIMD8-level” rather than statistical equivalence.
+- Use “nuclear delocalization” before the abbreviation NQE.
+- Describe the published ARROW timing as total-work context because the
+  hardware differs from the released inference benchmark.
 
 ## Revision made
 
-The Methods now enumerate all 15 priors and their sources, identify PIMD8 as the
-comparator rather than a selected label, define the short PIMD2 calculations as
-response fingerprints, and state the published PIMD work protocol separately
-from SolvAI latency.
+The physical training/inference boundary, lambda-probe status and source units
+were corrected in the manuscript, Figure 1, Extended Data Figures 2 and 5, and
+Supplementary Methods.

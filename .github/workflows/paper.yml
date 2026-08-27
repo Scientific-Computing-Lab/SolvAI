@@ -29,7 +29,7 @@ jobs:
           enable-cache: true
       - run: uv sync --extra dev --locked
       - name: Install LaTeX
-        run: sudo apt-get update && sudo apt-get install -y latexmk texlive-latex-extra texlive-fonts-recommended
+        run: sudo apt-get update && sudo apt-get install -y latexmk poppler-utils qpdf texlive-latex-extra texlive-fonts-recommended
       - run: make paper
       - name: Require deterministic tables and figures
-        run: git diff --exit-code -- paper/tables figures/
+        run: git diff --exit-code -- paper/tables paper/figures paper/extended_data paper/supplementary_data figures/

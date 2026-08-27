@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import json
 import re
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -36,22 +37,64 @@ PATTERNS = {
 }
 
 
+def is_scannable(path: Path) -> bool:
+    return path.suffix.lower() in TEXT_SUFFIXES or path.name in {"Makefile", "LICENSE"}
+
+
+def matches(text: str, location: str) -> list[dict[str, str]]:
+    return [
+        {"type": name, "file": location}
+        for name, pattern in PATTERNS.items()
+        if pattern.search(text)
+    ]
+
+
+def scan_history() -> tuple[int, list[dict[str, str]]]:
+    """Inspect text blobs in all local revisions without echoing matched content."""
+
+    listing = subprocess.run(
+        ["git", "rev-list", "--objects", "--all"],
+        cwd=ROOT,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.splitlines()
+    findings: list[dict[str, str]] = []
+    seen: set[str] = set()
+    scanned = 0
+    for line in listing:
+        object_id, separator, name = line.partition(" ")
+        if not separator or object_id in seen or not is_scannable(Path(name)):
+            continue
+        seen.add(object_id)
+        blob = subprocess.run(
+            ["git", "cat-file", "-p", object_id],
+            cwd=ROOT,
+            check=True,
+            capture_output=True,
+        ).stdout
+        scanned += 1
+        findings.extend(matches(blob.decode(errors="ignore"), f"git:{object_id[:12]}:{name}"))
+    return scanned, findings
+
+
 def main() -> None:
     findings = []
     scanned = 0
     for path in ROOT.rglob("*"):
         if not path.is_file() or any(part in EXCLUDED_PARTS for part in path.parts):
             continue
-        if path.suffix.lower() not in TEXT_SUFFIXES and path.name not in {"Makefile", "LICENSE"}:
+        if not is_scannable(path):
             continue
         scanned += 1
         text = path.read_text(errors="ignore")
-        for name, pattern in PATTERNS.items():
-            if pattern.search(text):
-                findings.append({"type": name, "file": str(path.relative_to(ROOT))})
+        findings.extend(matches(text, str(path.relative_to(ROOT))))
+    _, history_findings = scan_history()
+    findings.extend(history_findings)
     report = {
         "status": "PASS" if not findings else "FAIL",
         "files_scanned": scanned,
+        "git_history_scanned": True,
         "findings": findings,
     }
     (ROOT / "audits/security_audit.json").write_text(json.dumps(report, indent=2) + "\n")

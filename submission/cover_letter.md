@@ -2,8 +2,8 @@
 
 Dear Editors,
 
-We submit “Distilling solvation physics into AI for simulation-free hydration
-free energies” for consideration as an Article in *Nature*.
+We submit “Distilling solvation physics for simulation-free hydration free
+energies” for consideration as an Article in *Nature*.
 
 Hydration free energy is a basic molecular quantity, but high accuracy can
 require explicit solvent and path-integral sampling for every new solute. We
@@ -20,10 +20,9 @@ coordinates and thereby be amortized across future molecules. The complete
 model, held-out predictions, leakage audit, provenance record, figure source
 and manuscript build are supplied in a reproducible public repository.
 
-The manuscript does not claim generic FreeSolv state of the art or robust
-sub-0.20 accuracy. It makes a direct, leakage-controlled comparison with the
-ARROW/PIMD8 reference chemistry and reports the harder family and scaffold
-tests.
+The direct comparison is made on the molecular reference set used to establish
+the ARROW/PIMD8 result. Independent split repeats and harder family and
+scaffold tests define its present generalization scope.
 
 Sincerely,
 

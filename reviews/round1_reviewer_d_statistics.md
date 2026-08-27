@@ -2,25 +2,29 @@
 
 ## Critical issues
 
-1. A single 0.197 estimate from 85 molecules cannot establish robust sub-0.20
-   population performance.
-2. The PIMD8 and SolvAI point estimates should not be called equivalent without
-   an equivalence design.
-3. Hard chemical splits must not be hidden behind random OOF.
+None after the repeated-split result was placed in the headline figure. The
+paper no longer treats 0.20 kcal mol−1 as a statistical decision boundary.
 
 ## Important issues
 
-- Report all five repeats, mean and sample standard deviation.
-- Use paired molecule resampling for method differences.
-- Present wide bootstrap intervals as a consequence of sample size and
-  heterogeneity, not as a model-selection device.
+- State the 0.197 result as a strict fixed-partition point estimate and report
+  the five-partition centre, 0.204 ± 0.005, in the same visual field.
+- The difference from PIMD8 is not resolved by paired resampling. Use
+  “PIMD8-level” rather than “better than PIMD8”.
+- Forty-two of 85 individual absolute errors decrease although the aggregate
+  MAE improves. Explain that the gain is magnitude-weighted rather than imply a
+  majority vote.
+- Small chemical families must display sample size and should not be precisely
+  ranked.
 
 ## Optional polish
 
-- Avoid treating 0.20 as a natural discontinuity.
+- Keep bootstrap intervals in Extended Data; the split-repeat points are more
+  immediately informative in the main figure.
 
 ## Revision made
 
-The manuscript reports 0.197 together with 0.204 ± 0.005 across repeats, uses
-“reaches PIMD8-level accuracy,” gives paired bootstrap intervals, reports family
-and scaffold MAEs near 0.24, and labels the 0.20 line as a visual reference.
+Figure 2 shows all repeat values without connecting them. Figure 4 and Extended
+Data Figure 6 show molecule-level family errors and n. The paired-bootstrap
+intervals and fixed-versus-nested intervals are consolidated in Extended Data
+Figure 7.

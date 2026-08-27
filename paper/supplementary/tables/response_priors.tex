@@ -1,0 +1,21 @@
+\begin{tabular}{rllllr}
+\toprule
+prior & prior\_name & physical\_meaning & source & model\_class & training\_size \\
+\midrule
+1 & combisolv\_qm\_teacher & COSMOtherm hydration response & CombiSolv-QM water & CHEMELEON-initialized D-MPNN & 3963 \\
+2 & abraham\_e\_teacher & excess molar refraction axis E & SoluteML Abraham & ExtraTrees & 8098 \\
+3 & abraham\_s\_teacher & dipolarity/polarizability axis S & SoluteML Abraham & ExtraTrees & 8098 \\
+4 & abraham\_a\_teacher & hydrogen-bond acidity axis A & SoluteML Abraham & ExtraTrees & 8098 \\
+5 & abraham\_b\_teacher & hydrogen-bond basicity axis B & SoluteML Abraham & ExtraTrees & 8098 \\
+6 & abraham\_l\_teacher & hexadecane-air partition axis L & SoluteML Abraham & ExtraTrees & 8098 \\
+7 & openff\_corrected\_teacher & explicit-water alchemical hydration response & OpenFF 2.3.0 ASFE & ExtraTrees & 520 \\
+8 & gbn2\_corrected\_teacher & implicit-solvent hydration response & GBn2 / GNNImplicitSolvent & ExtraTrees & 550 \\
+9 & molsolv\_smd\_teacher & SMD(water) solvation response & MolSolv & CHEMELEON-initialized D-MPNN & 350391 \\
+10 & confsolv\_gas\_conformer\_correction\_teacher & gas conformer free-energy correction & ConfSolv H2O & LightGBM & 39878 \\
+11 & confsolv\_solution\_conformer\_correction\_teacher & solution conformer free-energy correction & ConfSolv H2O & LightGBM & 39878 \\
+12 & confsolv\_hydration\_conformer\_correction\_teacher & hydration conformer correction & ConfSolv H2O & LightGBM & 39878 \\
+13 & confsolv\_water\_gsolv\_std\_teacher & dispersion of conformer solvation energies & ConfSolv H2O & LightGBM & 39878 \\
+14 & confsolv\_water\_response\_mean\_teacher & mean conformer solvent response & ConfSolv H2O & LightGBM & 39878 \\
+15 & confsolv\_water\_response\_std\_teacher & dispersion of conformer solvent response & ConfSolv H2O & LightGBM & 39878 \\
+\bottomrule
+\end{tabular}

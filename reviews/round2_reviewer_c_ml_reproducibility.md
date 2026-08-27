@@ -2,15 +2,17 @@
 
 ## Critical issues
 
-None remaining. Frozen OOF predictions, nested selection, source exclusion,
-artifact hashes and inference-only dependencies are separated coherently.
+None.
 
 ## Important issues
 
-CombiSolv-QM source rows must remain outside Git because redistribution terms
-are not explicit. The checkpoint, hash, DOI and opt-in download path preserve
-the maximum reproducibility compatible with that constraint.
+None unresolved. The evaluation artifact, deployment refit, teacher labels and
+endpoint labels are now explicitly separated. Exact split assignments,
+molecule predictions, experiment ledger, teacher manifests and artifact hashes
+are distributed in machine-readable form.
 
 ## Optional polish
 
-Keep Git LFS enabled for the model binaries and processed CC BY tables.
+The current subprocess-based D-MPNN inference could be engineered for lower
+single-query latency without changing weights, but this is not required for the
+scientific release and the measured latency is reported honestly.

@@ -83,7 +83,7 @@ def main() -> None:
             doi = (
                 "10.1016/j.cej.2021.129307"
                 if args.source == "combisolv-qm"
-                else "10.1038/s42004-022-00790-3"
+                else "10.1039/D2DD00107A"
             )
             raise SystemExit(f"Review DOI {doi} and rerun with --accept-source-terms.")
         if args.source == "combisolv-qm":

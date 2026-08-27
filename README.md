@@ -4,7 +4,7 @@
 hydration free energies directly from structure—without molecular simulation at
 inference.**
 
-![SolvAI architecture](figures/main/figure_1_concept.svg)
+![SolvAI concept](paper/figures/main/fig1_concept.svg)
 
 Expensive quantum chemistry and molecular simulation normally resolve solvent
 response separately for every molecule. SolvAI instead learns structure-to-
@@ -73,9 +73,12 @@ physics calculations or training. See
 [QUICK_REPRODUCTION.md](repro/QUICK_REPRODUCTION.md) and
 [FULL_REPRODUCTION.md](repro/FULL_REPRODUCTION.md) for the two scopes.
 
-The compiled manuscript is [paper/main.pdf](paper/main.pdf), with
-[Supplementary Information](paper/supplementary.pdf). Machine-readable paper
-metrics are in [results/paper_metrics.json](results/paper_metrics.json).
+The compiled [main manuscript](paper/main.pdf) and
+[Supplementary Information](paper/supplementary/supplementary.pdf) follow the
+Nature submission separation: Extended Data are standalone files in
+`paper/extended_data/`, not figures embedded in the Supplementary Information.
+Machine-readable paper metrics are in
+[results/paper_metrics.json](results/paper_metrics.json).
 
 ## Scientific safeguards
 

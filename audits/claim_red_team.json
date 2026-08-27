@@ -3,27 +3,6 @@
   "findings": [
     {
       "claim": "robust_sub_threshold",
-      "file": "paper/main.tex",
-      "line": 95,
-      "text": "A single OOF partition is not population truth for 85 molecules. With the feature block fixed, five independent five-fold partitions gave MAEs of 0.207, 0.198, 0.209, 0.206 and 0.199 kcal mol$^{-1}$, a mean of \\RepeatMean{} $\\pm$ \\RepeatSD{} kcal mol$^{-1}$ (Fig.~\\ref{fig:robustness}a). Repeating nested feature selection gave \\NestedRepeatMean{} $\\pm$ \\NestedRepeatSD{} kcal mol$^{-1}$. SolvAI therefore reaches a strict sub-0.20 point estimate and centers near the PIMD8 result across repeats, but robust sub-0.20 generalization has not been established.",
-      "disposition": "explicit limitation/negation"
-    },
-    {
-      "claim": "state_of_the_art",
-      "file": "paper/main.tex",
-      "line": 99,
-      "text": "The primary reference set is small, and method development occurred in its context. The frozen result should not be read as a universal hydration benchmark or as a generic FreeSolv state-of-the-art claim. It is a controlled AI-versus-PIMD comparison on the exact molecular set used to establish the ARROW/PIMD8 result. Within that scope, aligned response priors remove most of the gap between direct structure learning and high-fidelity simulation while preserving a one-SMILES deployment interface.",
-      "disposition": "explicit limitation/negation"
-    },
-    {
-      "claim": "universal",
-      "file": "paper/main.tex",
-      "line": 99,
-      "text": "The primary reference set is small, and method development occurred in its context. The frozen result should not be read as a universal hydration benchmark or as a generic FreeSolv state-of-the-art claim. It is a controlled AI-versus-PIMD comparison on the exact molecular set used to establish the ARROW/PIMD8 result. Within that scope, aligned response priors remove most of the gap between direct structure learning and high-fidelity simulation while preserving a one-SMILES deployment interface.",
-      "disposition": "explicit limitation/negation"
-    },
-    {
-      "claim": "robust_sub_threshold",
       "file": "README.md",
       "line": 30,
       "text": "robust sub-0.20 generalization is not claimed. Family and scaffold holdouts are",

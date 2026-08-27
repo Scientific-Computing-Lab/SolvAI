@@ -2,15 +2,16 @@
 
 ## Critical issues
 
-None remaining. The manuscript cleanly distinguishes continuum, alchemical and
-path-integral calculations and does not claim that sparse probes are converged
-free energies.
+None.
 
 ## Important issues
 
-The journal version should retain the exact ARROW supplementary-protocol citation
-next to any compute comparison.
+None unresolved. PIMD8 is consistently a comparator; the short PIMD2
+calculations are described as non-converged response fingerprints; and
+training-time physical targets are distinguished from structure-derived
+surrogate values at inference.
 
 ## Optional polish
 
-No additional physics calculation is warranted for this release.
+The future matched-response dataset is appropriately framed as future work and
+was not generated during publication revision.

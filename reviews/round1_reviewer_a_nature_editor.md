@@ -2,30 +2,28 @@
 
 ## Critical issues
 
-1. The broad advance must precede model details. The initial framing risked
-   reading as a small benchmark improvement. Lead with the change in how
-   simulation is used: reusable training supervision instead of per-query
-   computation.
-2. The title and abstract must not imply that the selected artifact directly
-   uses PIMD labels. It does not; it reaches the PIMD8 reference accuracy using
-   other solvent-response teachers.
+None after the conceptual rewrite. The opening and Figure 1 now establish a
+broad proposition—physical computation as reusable supervision—before naming
+datasets or reporting a benchmark number.
 
 ## Important issues
 
-- Keep the 85-solute scope visible without calling it a community-standard
-  benchmark.
-- Treat the 0.197 result and 0.204 repeat mean together.
-- Reduce the main narrative to aligned response, headline result, transfer and
-  frontier; move campaign history to Supplementary Information.
+- The earlier five-figure sequence exposed campaign history. The revised four
+  figures now answer concept, evidence, transfer mechanism and frontier.
+- Dataset bookkeeping should remain out of the main display sequence. It has
+  been moved to Extended Data Figure 2 and concise main-text context.
+- The result must be presented as PIMD8-level accuracy, not a universal
+  threshold crossing. The repeated-split evidence now appears beside the
+  headline estimate.
 
 ## Optional polish
 
-- Make Figure 1 readable before its caption.
-- End with the reusable-supervision concept, not a performance slogan.
+- Keep dataset acronyms out of the bold opening paragraph.
+- Preserve the short final paragraph; it carries the broader implication
+  without repeating the numerical result.
 
 ## Revision made
 
-The abstract and opening now lead with amortized physical supervision. The text
-states that zero PIMD8 labels are present in the selected artifact, reports the
-five-repeat mean beside the headline point estimate, and limits the principal
-claim to the ARROW reference chemistry.
+The main text was reorganized into five short conceptual sections, the abstract
+heading was removed, and validation detail was consolidated into one scope
+paragraph and Methods.
