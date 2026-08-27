@@ -1,0 +1,26 @@
+name: frozen reproducibility
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "data/**"
+      - "models/**"
+      - "results/**"
+      - "solv_ai/**"
+      - "scripts/**"
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - run: uv sync --extra dev --locked
+      - run: make verify
+      - name: Require deterministic generated artifacts
+        run: git diff --exit-code -- results/paper_metrics.json results/paper_metrics.csv reports/PAPER_FREEZE.md audits/
