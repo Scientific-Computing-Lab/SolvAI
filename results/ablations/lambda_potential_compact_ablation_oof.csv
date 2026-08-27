@@ -1,0 +1,3 @@
+method,regime,n,mae
+expanded repeated/curated; legacy + Abraham + lambda potential compact,random_oof,85,0.21125271691876732
+expanded repeated/curated; lambda-aware implicit response compact,random_oof,85,0.3034557113165264

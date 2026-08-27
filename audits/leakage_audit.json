@@ -1,0 +1,114 @@
+{
+  "status": "PASS",
+  "identity_policy": "Independent RDKit canonical isomeric SMILES, full InChIKey, and first InChIKey connectivity block; connectivity overlap is disallowed.",
+  "benchmark_molecules": 85,
+  "sources": [
+    {
+      "rows": 5075,
+      "unique_canonical_smiles": 5075,
+      "exact_smiles_overlap": 0,
+      "full_inchikey_overlap": 0,
+      "connectivity_overlap": 0,
+      "stereochemical_alias_overlap": 0,
+      "stored_full_identity_symmetric_difference": 0,
+      "stored_connectivity_symmetric_difference": 0,
+      "verification_mode": "frozen clean-room audit; source not redistributed",
+      "source": "Expanded public hydration"
+    },
+    {
+      "rows": 1147,
+      "unique_canonical_smiles": 1147,
+      "exact_smiles_overlap": 0,
+      "full_inchikey_overlap": 0,
+      "connectivity_overlap": 0,
+      "stereochemical_alias_overlap": 0,
+      "stored_full_identity_symmetric_difference": 0,
+      "stored_connectivity_symmetric_difference": 0,
+      "verification_mode": "frozen clean-room audit; source not redistributed",
+      "source": "Legacy public hydration"
+    },
+    {
+      "rows": 3963,
+      "unique_canonical_smiles": 3963,
+      "exact_smiles_overlap": 0,
+      "full_inchikey_overlap": 0,
+      "connectivity_overlap": 0,
+      "stereochemical_alias_overlap": 0,
+      "stored_full_identity_symmetric_difference": 0,
+      "stored_connectivity_symmetric_difference": 0,
+      "verification_mode": "frozen clean-room audit; source not redistributed",
+      "source": "CombiSolv-QM water"
+    },
+    {
+      "source": "SoluteML Abraham",
+      "rows": 8098,
+      "unique_canonical_smiles": 8098,
+      "exact_smiles_overlap": 0,
+      "full_inchikey_overlap": 0,
+      "connectivity_overlap": 0,
+      "stereochemical_alias_overlap": 0,
+      "stored_full_identity_symmetric_difference": 0,
+      "stored_connectivity_symmetric_difference": 0,
+      "verification_mode": "independent release-time recanonicalization"
+    },
+    {
+      "source": "OpenFF explicit alchemical",
+      "rows": 520,
+      "unique_canonical_smiles": 520,
+      "exact_smiles_overlap": 0,
+      "full_inchikey_overlap": 0,
+      "connectivity_overlap": 0,
+      "stereochemical_alias_overlap": 0,
+      "stored_full_identity_symmetric_difference": 0,
+      "stored_connectivity_symmetric_difference": 0,
+      "verification_mode": "independent release-time recanonicalization"
+    },
+    {
+      "source": "GBn2 implicit-solvent",
+      "rows": 550,
+      "unique_canonical_smiles": 550,
+      "exact_smiles_overlap": 0,
+      "full_inchikey_overlap": 0,
+      "connectivity_overlap": 0,
+      "stereochemical_alias_overlap": 0,
+      "stored_full_identity_symmetric_difference": 0,
+      "stored_connectivity_symmetric_difference": 0,
+      "verification_mode": "independent release-time recanonicalization"
+    },
+    {
+      "source": "MolSolv SMD(water)",
+      "rows": 350391,
+      "unique_canonical_smiles": 350391,
+      "exact_smiles_overlap": 0,
+      "full_inchikey_overlap": 0,
+      "connectivity_overlap": 0,
+      "stereochemical_alias_overlap": 0,
+      "stored_full_identity_symmetric_difference": 0,
+      "stored_connectivity_symmetric_difference": 0,
+      "verification_mode": "independent release-time recanonicalization"
+    },
+    {
+      "source": "ConfSolv water response",
+      "rows": 39878,
+      "unique_canonical_smiles": 39878,
+      "exact_smiles_overlap": 0,
+      "full_inchikey_overlap": 0,
+      "connectivity_overlap": 0,
+      "stereochemical_alias_overlap": 0,
+      "stored_full_identity_symmetric_difference": 0,
+      "stored_connectivity_symmetric_difference": 0,
+      "verification_mode": "independent release-time recanonicalization"
+    }
+  ],
+  "all_supervised_external_connectivity_overlaps_zero": true,
+  "artifact": {
+    "input": "SMILES only",
+    "descriptor_features": 2265,
+    "predicted_physics_response_features": 15,
+    "total_features": 2280,
+    "ensemble_members": 3,
+    "forbidden_feature_count": 0,
+    "forbidden_runtime_data_references": [],
+    "simulation_at_inference": false
+  }
+}

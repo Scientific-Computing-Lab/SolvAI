@@ -1,0 +1,35 @@
+{
+  "source_records_after_benchmark_exclusion": 550,
+  "benchmark_connectivity_overlap": 0,
+  "targets": {
+    "gbn2_alchemical_dg": {
+      "n_source": 550,
+      "selected_min_samples_leaf": 1,
+      "oof_mae": 0.6685301536568218
+    },
+    "neural_implicit_dg": {
+      "n_source": 534,
+      "selected_min_samples_leaf": 2,
+      "oof_mae": 2.0276936226591746
+    },
+    "gbn2_exp_residual": {
+      "n_source": 550,
+      "selected_min_samples_leaf": 2,
+      "oof_mae": 0.6257831178139851
+    },
+    "neural_implicit_exp_residual": {
+      "n_source": 534,
+      "selected_min_samples_leaf": 2,
+      "oof_mae": 1.819846926029963
+    },
+    "neural_minus_gbn2": {
+      "n_source": 534,
+      "selected_min_samples_leaf": 2,
+      "oof_mae": 1.7127854729072811
+    }
+  },
+  "student_inputs": "RDKit descriptors and Morgan radius-2 fingerprint",
+  "inference_simulation": false,
+  "source": "data/external/repos/mlimplicitsolvent-RAW",
+  "note": "GBn2 and 280k-frame learned-solvent simulation outputs are training-only"
+}

@@ -1,0 +1,37 @@
+{
+  "source": "Zenodo 5792296 Solvation_data-1.0.0",
+  "hydration_rows_after_benchmark_exclusion": 5075,
+  "expanded_hydration_rows": 5075,
+  "new_hydration_connectivities": 3928,
+  "abraham_rows_after_benchmark_exclusion": 8098,
+  "benchmark_connectivity_overlap": 0,
+  "abraham_targets": {
+    "abraham_e": {
+      "n_source": 7898,
+      "selected_min_samples_leaf": 2,
+      "oof_mae": 0.0564605353596902
+    },
+    "abraham_s": {
+      "n_source": 7409,
+      "selected_min_samples_leaf": 2,
+      "oof_mae": 0.10535103250494014
+    },
+    "abraham_a": {
+      "n_source": 7903,
+      "selected_min_samples_leaf": 2,
+      "oof_mae": 0.03539035506031465
+    },
+    "abraham_b": {
+      "n_source": 7153,
+      "selected_min_samples_leaf": 2,
+      "oof_mae": 0.05774987133894872
+    },
+    "abraham_l": {
+      "n_source": 6788,
+      "selected_min_samples_leaf": 2,
+      "oof_mae": 0.23954081743693698
+    }
+  },
+  "standard_state": "1 mol/L gas to 1 mol/L liquid at 298 K",
+  "inference_simulation": false
+}

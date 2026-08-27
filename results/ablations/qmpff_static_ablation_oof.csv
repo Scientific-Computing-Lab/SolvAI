@@ -1,0 +1,13 @@
+method,regime,n,mae
+expanded repeated/curated; legacy + Abraham + QMPFF typed structure,family_holdout,85,0.25867389774354227
+expanded repeated/curated; legacy + Abraham response,family_holdout,85,0.25901431291627786
+expanded repeated/curated; Abraham + QMPFF typed structure,family_holdout,85,0.3040907154632223
+expanded repeated/curated; QMPFF typed structure only,family_holdout,85,0.3453365633960991
+expanded repeated/curated; legacy + Abraham + QMPFF typed structure,random_oof,85,0.20880459932306272
+expanded repeated/curated; legacy + Abraham response,random_oof,85,0.21162708494657126
+expanded repeated/curated; Abraham + QMPFF typed structure,random_oof,85,0.25654536016962337
+expanded repeated/curated; QMPFF typed structure only,random_oof,85,0.2757461076875188
+expanded repeated/curated; legacy + Abraham response,scaffold_holdout,85,0.2527202829391019
+expanded repeated/curated; legacy + Abraham + QMPFF typed structure,scaffold_holdout,85,0.2533529871226272
+expanded repeated/curated; Abraham + QMPFF typed structure,scaffold_holdout,85,0.2933057675173774
+expanded repeated/curated; QMPFF typed structure only,scaffold_holdout,85,0.35176696546840963

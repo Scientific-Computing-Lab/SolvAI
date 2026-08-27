@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "role": "experimental hydration labels used to fit the public-label response teacher",
+  "redistributed": false,
+  "reason": "The merged tables contain CombiSolv-Exp publisher-supplement records without a standalone redistribution licence.",
+  "legacy_table": {
+    "processed_file": "public_hydration_nonbenchmark.parquet",
+    "rows": 1147,
+    "unique_connectivities": 1147,
+    "sources": {
+      "CombiSolv-Exp only": 588,
+      "CombiSolv-Exp and FreeSolv": 490,
+      "FreeSolv only": 69
+    },
+    "bytes": 147318,
+    "sha256": "f79d8826e7a94ff4b817f3200e1799cd0fbe0d2f6e94b3a3e1c57c130a8ab2d5"
+  },
+  "expanded_table": {
+    "processed_file": "expanded_public_hydration_nonbenchmark.parquet",
+    "rows": 5075,
+    "unique_connectivities": 5075,
+    "sources": {
+      "SoluteML dGsolvDB3": 3928,
+      "legacy merged public labels": 1147
+    },
+    "bytes": 504404,
+    "sha256": "603ed02b6be25d9a3057e321f2c6ea135b012666cfdb8a1b160e37f347951ec4"
+  },
+  "endpoint_selection": {
+    "rows": 1280,
+    "rule": "all legacy labels plus SoluteML entries with at least two source measurements",
+    "source_counts": {
+      "legacy merged public labels": 1147,
+      "SoluteML dGsolvDB3": 133
+    }
+  },
+  "sources": [
+    {
+      "name": "FreeSolv v0.52",
+      "url": "https://github.com/MobleyLab/FreeSolv",
+      "doi": "10.1021/acs.jced.7b00104"
+    },
+    {
+      "name": "CombiSolv-Exp",
+      "url": "https://github.com/su-group/SolvBERT",
+      "doi": "10.1038/s42004-022-00790-3"
+    },
+    {
+      "name": "SoluteML dGsolvDB3",
+      "url": "https://zenodo.org/records/5792296",
+      "doi": "10.1021/acs.jcim.1c01103"
+    }
+  ],
+  "reproduction_command": "python scripts/download_data.py soluteml && python scripts/download_data.py freesolv && python scripts/download_data.py combisolv-exp --accept-source-terms"
+}

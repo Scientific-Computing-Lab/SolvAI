@@ -1,0 +1,2 @@
+method,regime,count,mean,median,max
+D-MPNN molpile10m exp,random_oof,85,0.47255499458823524,0.3359084999999995,3.7205842

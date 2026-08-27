@@ -1,0 +1,8 @@
+method,simulation_at_inference,random_oof_mae,family_holdout_mae,scaffold_holdout_mae
+Classical ARROW,yes,0.784648235294118,--,--
+ARROW/PIMD8,yes,0.20483647058823526,--,--
+Previous structure-only,no,0.23860611898039202,--,--
+Narrow response,no,0.21361517318705275,--,--
++ SMD(water),no,0.2016070042016807,--,--
+SolvAI: + ConfSolv response,no,0.19704747409482312,0.240,0.241
+Nested feature selection,no,0.19930603930646335,--,--

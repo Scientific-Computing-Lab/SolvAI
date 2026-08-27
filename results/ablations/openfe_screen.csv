@@ -1,0 +1,2 @@
+method,regime,n,mae
+SMD response direct + ConfSolv response + OpenFE diagnostics,random_oof,85,0.20574519662309348

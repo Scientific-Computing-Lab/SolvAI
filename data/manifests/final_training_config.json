@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "system_name": "SolvAI",
+  "input": "canonical isomeric SMILES",
+  "structure_features": {
+    "rdkit_2d_descriptors": 217,
+    "morgan_radius": 2,
+    "morgan_bits": 2048
+  },
+  "response_features": [
+    "combisolv_qm_teacher",
+    "abraham_e_teacher",
+    "abraham_s_teacher",
+    "abraham_a_teacher",
+    "abraham_b_teacher",
+    "abraham_l_teacher",
+    "openff_corrected_teacher",
+    "gbn2_corrected_teacher",
+    "molsolv_smd_teacher",
+    "confsolv_gas_conformer_correction_teacher",
+    "confsolv_solution_conformer_correction_teacher",
+    "confsolv_hydration_conformer_correction_teacher",
+    "confsolv_water_gsolv_std_teacher",
+    "confsolv_water_response_mean_teacher",
+    "confsolv_water_response_std_teacher"
+  ],
+  "endpoint": {
+    "algorithm": "ExtraTreesRegressor",
+    "trees": 360,
+    "max_features": 0.7,
+    "min_samples_leaf": 2,
+    "seeds": [11, 29, 47],
+    "external_endpoint_weight": 1.0,
+    "arrow_outer_training_weight": 3.0
+  },
+  "evaluation": {
+    "random_folds": 5,
+    "repeat_split_seeds": [314159, 271828, 161803, 141421, 173205],
+    "bootstrap_seed": 20260827,
+    "bootstrap_replicates": 100000
+  },
+  "selected_pimd8_training_labels": 0,
+  "simulation_at_inference": false
+}

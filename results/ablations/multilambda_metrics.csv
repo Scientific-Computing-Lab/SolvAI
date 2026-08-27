@@ -1,0 +1,6 @@
+method,regime,n,mae
+Multi-lambda physics distillation A: structure/response baseline,random_oof,85,0.1959185120707542
+Multi-lambda physics distillation B2: +distilled PIMD2 lambda response,random_oof,85,0.2013553142753398
+Multi-lambda physics distillation B1: +distilled classical-NQE-PIMD hierarchy,random_oof,85,0.21474096889459485
+Multi-lambda physics distillation B: +full distilled physics hierarchy,random_oof,85,0.21900510432876846
+Multi-lambda physics distillation C: integrated predicted dH/dlambda (affine calibration),random_oof,85,1.5135628873460432

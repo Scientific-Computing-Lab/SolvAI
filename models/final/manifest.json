@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "model_files": {
+    "MODEL_CARD.md": {
+      "sha256": "3f80cffbc246f6bcde1eb104e0b1699b686b462a6b53f0a7cf59bb5821901ba2",
+      "bytes": 3637
+    },
+    "abraham_teacher.joblib": {
+      "sha256": "8c8a6365e7162dbe6ae445ce4004928ed86b2669d3e7a70d3d054f143ca97554",
+      "bytes": 87055391
+    },
+    "combisolv_qm.pt": {
+      "sha256": "a02e38a69450f67404909b46c6931ee5ba226460037c8caeadcf34cca3ed0690",
+      "bytes": 37452324
+    },
+    "confsolv_teacher.joblib": {
+      "sha256": "55a1d8b9ef8758f478c2f79b8dce17a04526a9ac39373382dc5ee44c2e115f25",
+      "bytes": 2297076
+    },
+    "head.joblib": {
+      "sha256": "1ba1449d65b053d7006dd4b47bd616ecb9ed027875f75ce47b4730b12d368d06",
+      "bytes": 29448366
+    },
+    "implicit_teacher.joblib": {
+      "sha256": "484d5e0c1efa759c8e7acbfcbbd87e218b93ae239e7f35303fe4cd7e310910f8",
+      "bytes": 36316890
+    },
+    "model_card.json": {
+      "sha256": "610f23c7aa3429a9b981166c9e7bf10d89b1797a8a1e9b43505543c7b30fdc6a",
+      "bytes": 1268
+    },
+    "molsolv_smd.pt": {
+      "sha256": "2b03d32e038b615518b1509ebc2a7c98b3aba2a3eb2d6564a6f95fd7aa9a41d8",
+      "bytes": 37226928
+    },
+    "openff_teacher.joblib": {
+      "sha256": "55b7d31a293dd61fe57f5505e015775d7d86f53dca69980d398843706d58bb9b",
+      "bytes": 48211661
+    }
+  },
+  "smoke_test": [
+    {
+      "smiles": "CCO",
+      "prediction_kcal_mol": -5.020248148148135,
+      "ensemble_spread_kcal_mol": 0.005696741644686393
+    },
+    {
+      "smiles": "c1ccccc1",
+      "prediction_kcal_mol": -0.8935755886243387,
+      "ensemble_spread_kcal_mol": 0.0069455350594913165
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+method,simulation_at_inference,random_oof_mae,repeat_mean_mae,family_mae,scaffold_mae,status
+ARROW/PIMD8,True,0.20483647058823526,,,,reference
+PIMD8 + nested ML residual,True,0.18682171894402116,,0.19644319866557736,0.20055713815126047,ceiling only
+Previous structure-only baseline,False,0.23860611898039194,,0.31698158379458463,0.3289238985826331,superseded
+Structure + narrow response,False,0.2136151731870528,0.2154517432067641,,,ablation
+Structure + SMD teacher,False,0.2016070042016807,0.2039553649948127,,,ablation
+Fixed SMD + ConfSolv student,False,0.197047474094823,0.2037514031149499,0.2395665848765437,0.2412820403309475,packaged candidate
+Nested SMD/ConfSolv selection,False,0.1993060393064633,0.208597264074593,,,selection-adjusted headline
+OpenFE diagnostics,False,0.2057451966230934,,,,one-seed new-information screen
+MLFF HFE hierarchy,False,0.2010876031746034,,,,one-seed new-information screen
+DES370K water response,False,0.2099278784936193,,,,one-seed new-information screen
+Multi-lambda physics distillation A: structure/response baseline,False,0.1959185120707542,,,,fixed multi-lambda ablation
+Multi-lambda physics distillation B2: +distilled PIMD2 lambda response,False,0.2013553142753398,,,,fixed multi-lambda ablation
+Multi-lambda physics distillation B1: +distilled classical-NQE-PIMD hierarchy,False,0.2147409688945948,,,,fixed multi-lambda ablation
+Multi-lambda physics distillation B: +full distilled physics hierarchy,False,0.2190051043287684,,,,fixed multi-lambda ablation
+Multi-lambda physics distillation C: integrated predicted dH/dlambda (affine calibration),False,1.5135628873460432,,,,fixed multi-lambda ablation

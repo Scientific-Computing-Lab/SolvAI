@@ -1,0 +1,47 @@
+{
+  "openff23_source_records_after_benchmark_exclusion": 520,
+  "ash_source_records_after_benchmark_exclusion": 48,
+  "benchmark_connectivity_overlap": 0,
+  "targets": {
+    "openff23_dg": {
+      "n_source": 520,
+      "selected_min_samples_leaf": 1,
+      "oof_mae": 0.617472193240592
+    },
+    "openff23_solvent_decoupling": {
+      "n_source": 520,
+      "selected_min_samples_leaf": 2,
+      "oof_mae": 9.060439506240574
+    },
+    "openff23_vacuum_decoupling": {
+      "n_source": 520,
+      "selected_min_samples_leaf": 1,
+      "oof_mae": 9.074380724865295
+    },
+    "openff23_exp_residual": {
+      "n_source": 520,
+      "selected_min_samples_leaf": 2,
+      "oof_mae": 0.5311645751163679
+    },
+    "openff23_minus_legacy_gaff": {
+      "n_source": 520,
+      "selected_min_samples_leaf": 1,
+      "oof_mae": 0.2503169537568182
+    },
+    "ash_consensus_dg": {
+      "n_source": 47,
+      "selected_min_samples_leaf": 1,
+      "oof_mae": 1.3611431678522232
+    },
+    "ash_method_spread": {
+      "n_source": 47,
+      "selected_min_samples_leaf": 1,
+      "oof_mae": 0.07694900034316218
+    }
+  },
+  "student_inputs": "RDKit descriptors and Morgan radius-2 fingerprint",
+  "inference_simulation": false,
+  "primary_source": "data/external/repos/alchemical-benchmark-resources/submissions/2026_03_17_openff-2.3.0_freesolv/get_results/output/computational_results.json.bz2",
+  "primary_source_license": "CC-BY-4.0",
+  "protocol": "OpenFF 2.3.0/NAGL/TIP3P; 14 lambda states; explicit-solvent ASFE"
+}

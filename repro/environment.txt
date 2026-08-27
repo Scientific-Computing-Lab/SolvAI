@@ -1,0 +1,7 @@
+SolvAI 1.0.0 release environment
+Python: 3.11
+Environment lock: ../uv.lock
+Package definition: ../pyproject.toml
+Inference: CPU supported; no simulation executable required
+Training: CUDA GPU recommended for Chemprop D-MPNN teachers
+Paper: latexmk with a TeX Live distribution

@@ -1,0 +1,2 @@
+method,regime,n,mae
+SMD response direct + ConfSolv response + MLFF HFE hierarchy,random_oof,85,0.20108760317460342

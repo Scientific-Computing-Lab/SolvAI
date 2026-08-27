@@ -1,0 +1,2 @@
+method,regime,n,mae
+SMD response direct + ConfSolv response + ConfSolv graph embedding,random_oof,85,0.21219326643324024

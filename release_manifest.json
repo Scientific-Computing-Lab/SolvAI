@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "files": {
+    "data/benchmark/arrow_solvation_master.parquet": {
+      "bytes": 41767,
+      "sha256": "2b7928f162d094e7ee10d197e66636ba4ae09b0f76d626136b79c0975d3b0310"
+    },
+    "data/manifests/endpoint_label_manifest.json": {
+      "bytes": 1859,
+      "sha256": "32bcef31ee13acb3be1a68f9f00d59a704fcfa5ee4c046ae8e9281ee2582952f"
+    },
+    "data/manifests/training_source_manifest.json": {
+      "bytes": 4342,
+      "sha256": "c8253a117c2268ecc3061d6cd5feb54989b52c35c1edd9806370ab2f4fa4acaa"
+    },
+    "results/paper_metrics.json": {
+      "bytes": 10627,
+      "sha256": "766142c9dfa884203996501954371c9ea86b92059db751042348262a50994f41"
+    },
+    "results/paper_metrics.csv": {
+      "bytes": 2763,
+      "sha256": "1f45fa11c84887d58f639b4313bca1df906ea67504df86481a8128b3ac87bfa0"
+    },
+    "results/predictions/headline_oof.parquet": {
+      "bytes": 25809,
+      "sha256": "07643a5bd2d096b3c3c0f8964a2f3c7d633774ae9d956f1677dc97150fef7460"
+    },
+    "results/predictions/hard_holdout_oof.parquet": {
+      "bytes": 21692,
+      "sha256": "eda1da96af86b3bce25315c58d68c333248c6930cc1633edbfbf3059ce76138e"
+    },
+    "results/robustness/repeated_oof.parquet": {
+      "bytes": 39381,
+      "sha256": "98a556b7b7cd60577e17ff88fad65feb5c5dbe80b5cf9337dc53099187b34fb3"
+    },
+    "audits/leakage_audit.json": {
+      "bytes": 4086,
+      "sha256": "70b0f5d93c9565449a0f6b009b99617a5051b6d9256bea1d329d1cbe218a18ec"
+    },
+    "audits/artifact_audit.json": {
+      "bytes": 349,
+      "sha256": "b76c35f5ca11894646742f0f17c0548ad6b4d1b12d2e468c048fefdef1a9a431"
+    },
+    "audits/claim_red_team.json": {
+      "bytes": 2372,
+      "sha256": "dbb6da18fcc32a2cff8800ec218a9a57efa47e4f766b999074f0e259108a7955"
+    },
+    "audits/security_audit.json": {
+      "bytes": 65,
+      "sha256": "054d2dd5bf43652182bbb9c6a783d10fed6c3ad05e8b0ee27552d035295ee4b2"
+    },
+    "models/final/manifest.json": {
+      "bytes": 1631,
+      "sha256": "0868d1a2b704246f725c1e07e24ba8c68a42024eeab4f0ce25a5b1ac6ef4829b"
+    },
+    "results/runtime/runtime_benchmark.json": {
+      "bytes": 2145,
+      "sha256": "3819a6475529f19e3e70a59e7f655446f772561ed29482da37c34b1dbfa999d1"
+    },
+    "paper/main.tex": {
+      "bytes": 25684,
+      "sha256": "b1a83bbe3a86878dfe4b3945f220a02286000a87c07576745c01eabb3e0f6543"
+    },
+    "paper/main.pdf": {
+      "bytes": 514841,
+      "sha256": "07f74972d729433f300f0e628cf6f4463b874867d6b37be8ad8157fa4ebeb0bb"
+    },
+    "paper/supplementary.tex": {
+      "bytes": 12172,
+      "sha256": "19bc5103331aed9acfe4d370f834c46d6c7c8d4128f9af38c6505544664df4e3"
+    },
+    "paper/supplementary.pdf": {
+      "bytes": 449246,
+      "sha256": "04d2d0278b104fd26b73ccee634375e6b60b750b4be1b4d97f8c68a62637cc2f"
+    }
+  }
+}

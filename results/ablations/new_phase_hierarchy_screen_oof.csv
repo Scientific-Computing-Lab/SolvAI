@@ -1,0 +1,6 @@
+method,regime,n,mae
+expanded repeated/curated; legacy + all response + SMD water,random_oof,85,0.20163688368347343
+expanded repeated/curated; legacy + all new response,random_oof,85,0.21233802986694658
+expanded repeated/curated; legacy + all response + phase-space dynamic,random_oof,85,0.2189401242880484
+expanded repeated/curated; legacy + all response + phase-space + G-NequIP,random_oof,85,0.22054313494397745
+expanded repeated/curated; legacy + all response + G-NequIP hierarchy,random_oof,85,0.2227629413748834

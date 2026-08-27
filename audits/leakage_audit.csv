@@ -1,0 +1,9 @@
+rows,unique_canonical_smiles,exact_smiles_overlap,full_inchikey_overlap,connectivity_overlap,stereochemical_alias_overlap,stored_full_identity_symmetric_difference,stored_connectivity_symmetric_difference,verification_mode,source
+5075,5075,0,0,0,0,0,0,frozen clean-room audit; source not redistributed,Expanded public hydration
+1147,1147,0,0,0,0,0,0,frozen clean-room audit; source not redistributed,Legacy public hydration
+3963,3963,0,0,0,0,0,0,frozen clean-room audit; source not redistributed,CombiSolv-QM water
+8098,8098,0,0,0,0,0,0,independent release-time recanonicalization,SoluteML Abraham
+520,520,0,0,0,0,0,0,independent release-time recanonicalization,OpenFF explicit alchemical
+550,550,0,0,0,0,0,0,independent release-time recanonicalization,GBn2 implicit-solvent
+350391,350391,0,0,0,0,0,0,independent release-time recanonicalization,MolSolv SMD(water)
+39878,39878,0,0,0,0,0,0,independent release-time recanonicalization,ConfSolv water response

@@ -1,0 +1,21 @@
+repeat,split_seed,method,n,mae
+0,314159,Nested selection,85,0.20569002701265718
+0,314159,narrow response without SMD,85,0.21419923030397353
+0,314159,narrow response + SMD water,85,0.20456209020645308
+0,314159,narrow response + SMD + ConfSolv response,85,0.20736603941798962
+1,271828,Nested selection,85,0.20667067267610748
+1,271828,narrow response without SMD,85,0.21185078420998
+1,271828,narrow response + SMD water,85,0.20100848286907336
+1,271828,narrow response + SMD + ConfSolv response,85,0.19786305614171606
+2,161803,Nested selection,85,0.2112740646021374
+2,161803,narrow response without SMD,85,0.22055180148874398
+2,161803,narrow response + SMD water,85,0.21108601022668333
+2,161803,narrow response + SMD + ConfSolv response,85,0.20850858511775106
+3,141421,Nested selection,85,0.20760740714545112
+3,141421,narrow response without SMD,85,0.22132643832088372
+3,141421,narrow response + SMD water,85,0.20652010797541248
+3,141421,narrow response + SMD + ConfSolv response,85,0.205951064228655
+4,173205,Nested selection,85,0.21174414893661175
+4,173205,narrow response without SMD,85,0.20933046171023953
+4,173205,narrow response + SMD water,85,0.1966001336964414
+4,173205,narrow response + SMD + ConfSolv response,85,0.199068270668638

@@ -1,0 +1,2 @@
+method,regime,n,mae
+SMD response direct + ConfSolv response + ConfSolv ffn embedding,random_oof,85,0.2154807450202304

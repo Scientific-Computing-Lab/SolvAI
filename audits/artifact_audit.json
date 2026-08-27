@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "files_verified": 9,
+  "smiles_only_predictions_verified": 2,
+  "simulation_at_inference": false,
+  "tolerance": 2e-06,
+  "input": "SMILES only",
+  "forbidden_inputs": [
+    "experimental hydration free energy",
+    "ARROW or PIMD free energy",
+    "trajectory or probe output",
+    "family, scaffold or fold metadata"
+  ]
+}
