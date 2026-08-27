@@ -8,6 +8,7 @@ import numpy as np
 import pytest
 
 from solv_ai import predict_smiles
+from solv_ai.cli import parse_smiles
 from solv_ai.features import canonicalize, descriptor_frame
 from solv_ai.paper_metrics import compute_paper_metrics
 
@@ -35,6 +36,11 @@ def test_invalid_smiles_is_rejected() -> None:
 def test_empty_inference_is_rejected() -> None:
     with pytest.raises(ValueError, match="At least one"):
         predict_smiles([])
+
+
+def test_cli_accepts_documented_predict_subcommand() -> None:
+    assert parse_smiles(["predict", "CCO"]) == ["CCO"]
+    assert parse_smiles(["CCO"]) == ["CCO"]
 
 
 def test_descriptor_schema_matches_artifact() -> None:

@@ -63,7 +63,7 @@
     },
     "paper/main.pdf": {
       "bytes": 514841,
-      "sha256": "07f74972d729433f300f0e628cf6f4463b874867d6b37be8ad8157fa4ebeb0bb"
+      "sha256": "481162fbcc293bee62faa5ce0c0484e0d58f9d92b384db574bbac6b697f95b11"
     },
     "paper/supplementary.tex": {
       "bytes": 12172,
@@ -71,7 +71,7 @@
     },
     "paper/supplementary.pdf": {
       "bytes": 449246,
-      "sha256": "04d2d0278b104fd26b73ccee634375e6b60b750b4be1b4d97f8c68a62637cc2f"
+      "sha256": "daf97f44676c2556da73c999469f8e88b0b8cdb9301cf6f6c2f65e01f37805d9"
     }
   }
 }
