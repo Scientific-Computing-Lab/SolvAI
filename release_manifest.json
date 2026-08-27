@@ -47,7 +47,7 @@
     },
     "audits/security_audit.json": {
       "bytes": 65,
-      "sha256": "054d2dd5bf43652182bbb9c6a783d10fed6c3ad05e8b0ee27552d035295ee4b2"
+      "sha256": "1a7c1c95aaaab879966859b2f7d4db7ad1e775327788b3fd68e1b64edb1e7013"
     },
     "models/final/manifest.json": {
       "bytes": 1631,
