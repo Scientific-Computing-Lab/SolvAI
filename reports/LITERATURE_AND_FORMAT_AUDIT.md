@@ -46,8 +46,9 @@ two-stage pattern for reactivity, DOI
 [10.1063/5.0079574](https://doi.org/10.1063/5.0079574).
 
 The revised manuscript therefore makes no priority claim for surrogate-predicted
-descriptors. It positions SolvAI's contribution as the construction and controlled
-test of a multi-source, property-proximal solvent-response layer. The complete map,
+descriptors. It positions SolvAI's contribution as the controlled demonstration that
+responses learned from calculated, empirical and corrected solvation sources provide
+reusable molecular supervision. The complete map,
 including ML-PCM, ImPerHam, 3D-RISM representations and systematic studies of when
 predicted physical descriptors help, is recorded in
 `reviews/NOVELTY_POSITIONING_AUDIT.md`.

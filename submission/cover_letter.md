@@ -9,8 +9,8 @@ High-accuracy solvation calculations repeatedly pay the cost of resolving solven
 response for each molecule. Prior work has shown that physical descriptors can enrich
 molecular learning, and that descriptors normally obtained from quantum calculations
 can themselves be predicted from structure. SolvAI advances this line of research by
-asking whether heterogeneous, property-proximal solvent responses from distinct
-physical formalisms can form a reusable intermediate layer. It predicts those
+asking whether complementary solvent responses learned from calculated, empirical and
+corrected sources can become reusable molecular supervision. It predicts those
 responses from structure and exposes them to a separately supervised experimental
 endpoint. A deployed prediction accepts a SMILES string and runs no molecular
 dynamics, path-integral dynamics or probe calculation.
@@ -26,14 +26,14 @@ entire supervised pool, and remains when no ARROW experimental labels are used f
 training. The final point estimate is comparable to the reconstructed ARROW/PIMD8
 error of 0.205 kcal mol⁻¹. PIMD is an accuracy comparator, not a retained teacher.
 
-The generic two-stage architecture has important precedents. The advance here is a
-controlled demonstration that a multi-source solvent-response layer carries
-complementary endpoint information, together with an experimentally defined boundary:
-compact, learnable responses transfer, whereas sparse high-fidelity alchemical
-responses currently do not because their structure-to-response errors remain too
-large. This distinction makes the study relevant beyond hydration prediction. It
-shows how physical calculations can become reusable molecular supervision, while
-establishing when that strategy is likely to succeed.
+Building on established two-stage architectures, the work provides a controlled
+demonstration that aligned solvent responses carry complementary endpoint information,
+together with an experimentally defined boundary: compact, learnable responses
+transfer, whereas sparse high-fidelity alchemical responses currently do not because
+their structure-to-response errors remain too large. This distinction makes the study
+relevant beyond hydration prediction. It shows how costly physical-response data can
+be converted into reusable molecular supervision, while establishing when that
+strategy is likely to succeed.
 
 The manuscript is accompanied by molecule-level predictions, the preregistration,
 identity and similarity audits, all negative controls, frozen artifacts, source code

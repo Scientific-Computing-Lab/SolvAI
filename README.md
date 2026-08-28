@@ -1,8 +1,8 @@
 # SolvAI
 
-**SolvAI learns reusable solvent-response coordinates from physical calculations and
-predicts hydration free energy directly from molecular structure—without running
-simulation at inference.**
+**SolvAI learns reusable solvent-response coordinates from calculated, empirical and
+corrected solvation data and predicts hydration free energy directly from molecular
+structure—without running simulation at inference.**
 
 ![SolvAI concept](paper/figures/main/fig1_concept.svg)
 

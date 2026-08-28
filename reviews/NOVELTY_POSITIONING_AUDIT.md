@@ -26,8 +26,8 @@ The novelty does **not** reside in direct hydration regression, using physical
 descriptors, computed-to-experimental transfer, or a generic two-stage
 descriptor-surrogate architecture. The supported contribution is:
 
-> SolvAI constructs a heterogeneous, property-proximal solvent-response layer from
-> distinct solvation formalisms and demonstrates, with matched and destructive
+> SolvAI constructs a solvent-response layer from calculated, empirical and corrected
+> solvation sources and demonstrates, with matched and destructive
 > controls, that this structure-predicted layer carries complementary information into
 > an experimentally supervised hydration model after all source calculations have
 > been removed from inference.
@@ -46,8 +46,8 @@ Three parts of that statement are experimentally isolated:
 
 ## Wording decisions
 
-- Retain: “heterogeneous solvent-response layer”, “structure-predicted response
-  priors”, “simulation-free inference”, “PIMD8-level accuracy”.
+- Retain: “structure-predicted response priors”, “reusable molecular supervision”,
+  “simulation-free inference”, “PIMD8-level accuracy”.
 - Avoid: “third arrangement”, “first two-stage hydration model”, “distils PIMD”,
   “new paradigm”, “physics descriptors are novel”, or “physical computation is absent
   from training”.

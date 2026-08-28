@@ -12,8 +12,8 @@ exist?
 computed-to-experimental transfer, solvent-conditioned representations evaluated with
 per-query physical calculations, and two-stage models that predict physical
 descriptors from structure. Those precedents remove any defensible architectural
-priority claim. They do not answer whether a response layer assembled across distinct
-solvation formalisms contributes molecule-aligned information beyond an otherwise
+priority claim. They do not answer whether responses learned across calculated,
+empirical and corrected solvation sources contribute molecule-aligned information beyond an otherwise
 identical experimentally supervised endpoint after all source calculations have been
 removed from inference.
 
@@ -48,7 +48,7 @@ benchmark well.
 
 The strongest supported statement is:
 
-> A heterogeneous layer of structure-predicted, property-proximal solvent responses
+> A complementary set of structure-predicted solvent responses
 > supplies complementary information to an experimentally supervised hydration model,
 > reaches the PIMD8 accuracy scale on the ARROW reference chemistry without per-query
 > physical calculation, and fails when the desired response cannot be inferred
