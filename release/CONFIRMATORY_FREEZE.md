@@ -20,6 +20,24 @@ which provides Python 3.11.15, RDKit 2026.03.5 and scikit-learn 1.7.2. This amen
 does not alter a dataset, feature block, split, model hyperparameter, metric or
 interpretation rule.
 
+## Amendment 2: preserve teacher split membership in exclusion sensitivity
+
+Added on 2026-08-28 after the first standardized-exclusion refit exposed an
+implementation confound and before the corrected refit was run. The first refit
+removed standardized-equivalent source rows *before* applying each teacher's
+seeded train/validation/test split. Because a seeded permutation depends on the
+number of rows, this reassigned many otherwise unchanged source molecules and
+therefore mixed identity exclusion with teacher split instability. Those outputs
+are quarantined as a diagnostic and are not the confirmatory sensitivity result.
+
+The valid sensitivity refit first reconstructs the original frozen source split
+and feature-selection state on the complete exact-connectivity-filtered source,
+then removes only the predeclared standardized-equivalent rows from their existing
+split. All retained molecules keep their original train/validation/test membership;
+all architectures, hyperparameters, seeds, early-stopping rules and downstream
+analyses remain unchanged. This correction isolates the intended intervention and
+does not depend on the observed endpoint errors.
+
 ## Scientific questions
 
 Phase 1 asks five primary questions.
