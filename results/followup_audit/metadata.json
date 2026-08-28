@@ -1,0 +1,11 @@
+{
+  "analysis_type": "descriptive analysis of frozen outputs; no model fitting or selection",
+  "primary_predictions": "results/confirmatory/standardized_exclusion_endpoint_predictions.parquet",
+  "bootstrap_seed": 20260828,
+  "outputs": [
+    "source_block_summary.csv",
+    "teacher_fidelity_summary.csv",
+    "hard_case_audit.csv",
+    "hard_case_group_summary.csv"
+  ]
+}

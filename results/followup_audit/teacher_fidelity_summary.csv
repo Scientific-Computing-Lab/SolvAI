@@ -1,0 +1,18 @@
+source,target,n_evaluation,mae,units,evaluation_protocol
+CombiSolv-QM,target_qm_water,395,0.7387349668794937,kcal mol-1,fixed held-out source test
+MolSolv SMD(water),target_smd_water,17520,0.7119434845734475,kcal mol-1,fixed held-out source test
+SoluteML Abraham,abraham_e,7898,0.0564605353596902,Abraham scale,source OOF
+SoluteML Abraham,abraham_s,7409,0.10535103250494014,Abraham scale,source OOF
+SoluteML Abraham,abraham_a,7903,0.03539035506031465,Abraham scale,source OOF
+SoluteML Abraham,abraham_b,7153,0.05774987133894872,Abraham scale,source OOF
+SoluteML Abraham,abraham_l,6788,0.23954081743693698,Abraham scale,source OOF
+OpenFF explicit-water,openff23_dg,520,0.617472193240592,kcal mol-1,source OOF
+OpenFF explicit-water,openff23_exp_residual,520,0.5311645751163679,kcal mol-1,source OOF
+GBn2 implicit-solvent,gbn2_alchemical_dg,550,0.6685301536568218,kcal mol-1,source OOF
+GBn2 implicit-solvent,gbn2_exp_residual,550,0.6257831178139851,kcal mol-1,source OOF
+ConfSolv H2O,confsolv_gas_conformer_correction,1785,0.24766315222125254,kcal mol-1,fixed source validation
+ConfSolv H2O,confsolv_solution_conformer_correction,1785,0.2667449107420691,kcal mol-1,fixed source validation
+ConfSolv H2O,confsolv_hydration_conformer_correction,1785,0.3544094126791672,kcal mol-1,fixed source validation
+ConfSolv H2O,confsolv_water_gsolv_std,1785,0.4475716630898987,kcal mol-1,fixed source validation
+ConfSolv H2O,confsolv_water_response_mean,1785,0.6883639876354816,kcal mol-1,fixed source validation
+ConfSolv H2O,confsolv_water_response_std,1785,0.44960239868574775,kcal mol-1,fixed source validation
