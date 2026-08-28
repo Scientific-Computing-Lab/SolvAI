@@ -31,23 +31,23 @@
 
 Hydration free energy reports how a molecule exchanges the gas phase for water, but
 accurate calculation can require explicit-solvent sampling and nuclear-quantum
-treatment for every new solute. We asked whether physical calculations could instead
-define reusable response coordinates that are learned from molecular structure.
-SolvAI first predicts 15 solvent-response priors learned from benchmark-disjoint
-quantum-continuum, alchemical, empirical and conformational data, then combines these
-priors with molecular fingerprints and descriptors in an experimentally supervised
-hydration model. A new prediction begins from a SMILES string and runs no molecular
-dynamics, path-integral dynamics or probe calculation. In a preregistered matched
-five-fold comparison on the 85 neutral solutes used to establish ARROW, response
-priors reduce mean absolute error from \MatchedMAE{} to \SolvAIMAE{} kcal mol$^{-1}$
-(paired change \SolvAIDelta{}; 95\% bootstrap interval \SolvAICILow{} to
-\SolvAICIHigh{}), close to the reconstructed ARROW/PIMD8 error of \PIMDMAE{} kcal
-mol$^{-1}$. Five complete split repeats give \RepeatMean{} $\pm$ \RepeatSD{} kcal
-mol$^{-1}$. Shuffling the priors abolishes the gain, whereas the advantage survives
-global scaffold, family, cluster and similarity exclusions. These results show that
-aligned physical responses can be amortized into structure-only molecular prediction,
-while identifying chemical extrapolation and high-fidelity response inference as the
-remaining limits.
+treatment for every new solute. Physical descriptors can enrich molecular learning,
+but are often computed anew for each query or derived from one physical model. We
+tested whether heterogeneous solvation calculations could instead define a reusable
+response layer learned from molecular structure. SolvAI predicts 15 solvent-response
+priors learned from benchmark-disjoint quantum-continuum, alchemical, empirical and
+conformational data. A separate experimentally supervised model combines these priors
+with molecular fingerprints and descriptors. At inference, a SMILES string produces a
+hydration free energy without molecular dynamics, path-integral dynamics or a probe
+calculation. In a preregistered matched five-fold comparison on the 85 neutral solutes
+used to establish ARROW, response priors reduce mean absolute error from \MatchedMAE{}
+to \SolvAIMAE{} kcal mol$^{-1}$, close to the reconstructed ARROW/PIMD8 error of
+\PIMDMAE{} kcal mol$^{-1}$. Five complete split repeats give \RepeatMean{} $\pm$
+\RepeatSD{} kcal mol$^{-1}$. Shuffling the priors abolishes the gain, whereas the
+advantage survives global scaffold, family, cluster and similarity exclusions. Thus,
+aligned solvent responses provide complementary information when amortized into
+structure-only prediction; chemical extrapolation and high-fidelity response
+inference remain the principal limits.
 
 \section*{Introduction}
 
@@ -72,31 +72,57 @@ Subsequent learned-potential work reproduced ARROW water-pair interactions and
 quantum corrections within simulation, showing that parts of this description are
 learnable while retaining trajectory-based inference.\cite{arrownn2023,nqe2024}
 
-Molecular machine learning usually takes a different route. A graph, fingerprint or
-three-dimensional structure is mapped directly to a thermodynamic endpoint. Models
-can be pretrained on quantum calculations or corrected across levels of theory, and
-transfer from computed to experimental solvation has proved useful.\cite{ramakrishnan2015,combisolv2021,noe2020,mldescriptors2023}
-Yet a direct endpoint model is not explicitly asked to reconstruct the physical
-responses that determine transfer into water. Conversely, a simulation surrogate
-often reproduces one expensive calculator and inherits its target and domain.
+Data-driven solvation models span several arrangements. Direct endpoint models map a
+graph, fingerprint or three-dimensional structure to a free energy, while
+$\Delta$-learning and multi-fidelity models transfer information between calculated
+and experimental targets.\cite{ramakrishnan2015,combisolv2021,rauer2020,noe2020}
+Graph models can also replace a particular implicit-solvent calculation by learning
+its output directly from molecular structure.\cite{ward2021}
+Physically inspired molecular descriptors can improve hydration prediction when they
+encode electrostatics, polarizability, accessible surface and conformational
+response.\cite{mldescriptors2023,fml2021} Other models retain physical computation at
+prediction time: hybrid alchemical/ML methods correct a simulated free energy,
+ML-PCM learns from continuum-model components, 3D-RISM outputs have served as
+hydration thermodynamic descriptors, and implicitly perturbed Hamiltonians represent
+a molecule through its response to real or hypothetical solvents.\cite{hybridfepml2020,mlpcm2021,rism2020,imperham2022}
+These studies show the value of solvent-conditioned representations, although an
+alchemical, continuum, integral-equation or ensemble calculation is still performed
+for a new molecule.
 
-Here we test a third arrangement. Physical calculations are used to define compact,
-reusable response coordinates. Structure-to-response models learn those coordinates
-across external data; a second model uses their predictions, together with molecular
-structure and experimental hydration labels, to learn the endpoint (Fig.~\ref{fig:concept}).
-The resulting system, SolvAI, still contains learned response models at inference, but
-their expensive source calculations are not rerun. PIMD-derived features were tested
-during development and were not retained. PIMD8 therefore serves as a demanding
-accuracy reference, not as a teacher of the final model.
+A complementary line of work learns the physical descriptor itself. The ml-QM-GNN
+architecture predicts quantum-chemical atom and bond descriptors before using them in
+a reactivity model.\cite{mlqmgnn2022} Broader evaluations find that such descriptors
+help most when they are relevant to the endpoint and can be recovered accurately,
+and that a surrogate's hidden representation can sometimes be more useful than its
+explicit predicted values.\cite{qmhelp2024,surrogatelatent2025} Most directly for
+hydration, physically inspired solute descriptors have been predicted from molecular
+graphs and passed to a second free-energy model, eliminating their per-query electronic
+structure calculation.\cite{twostagehfe2026} These developments establish the major
+architectural ingredients. They leave a distinct solvation question: can response
+information from multiple physical formalisms be consolidated into an explicit,
+structure-predictable layer that adds information beyond ordinary molecular features
+and experimental endpoint labels?
 
-The central test is not whether an elaborate model outperforms a weak baseline. We
-compare SolvAI with the same endpoint architecture, experimental labels, molecular
-representation, sample weights, folds and random seeds after removing only the 15
-predicted response priors. We further destroy molecule--response alignment by
-shuffling those priors, exclude related chemistry from the complete endpoint training
-pool, and remove all ARROW experimental labels. Together these controls ask whether
-predicted physical response contributes transferable information beyond ordinary
-structure regression.
+SolvAI tests this question using 15 property-proximal response coordinates drawn from
+quantum-continuum, alchemical, empirical and conformational sources. Independent
+structure-to-response models learn each coordinate across external data; a second
+model uses their predictions, together with molecular structure and experimental
+hydration labels, to learn the endpoint (Fig.~\ref{fig:concept}). Descriptor prediction
+is therefore the means to test a broader response-layer question: whether
+heterogeneous, property-proximal solvent information remains useful after its source
+calculations are removed. PIMD-derived features were tested during development and
+were not retained. PIMD8 is therefore a demanding accuracy reference, not a teacher
+of the final model.
+
+To isolate the response layer, we compare SolvAI with the same endpoint architecture,
+experimental labels, molecular representation, sample weights, folds and random
+seeds after removing only the 15 predicted priors. The layer reduces MAE from
+\MatchedMAE{} to \SolvAIMAE{} kcal mol$^{-1}$; the gain disappears when
+molecule--response alignment is destroyed by shuffling. It persists when related
+chemistry is excluded from the complete endpoint training pool and when all ARROW
+experimental labels are removed. Together these controls test whether predicted
+physical response contributes transferable information beyond ordinary structure
+regression.
 
 \begin{figure}[t]
   \centering
@@ -276,23 +302,35 @@ high-fidelity alchemical targets.
 
 \section*{Discussion}
 
-SolvAI changes which part of a physical calculation is amortized. It does not emulate
-one trajectory engine or inherit a single simulation value. Instead, several
-solvation calculations define a low-dimensional response vocabulary; structure
-surrogates reproduce that vocabulary; and an experimentally supervised endpoint
-learns how the predicted responses combine for hydration. The matched control and
-shuffled-prior experiment show that the benefit is not attributable to a larger
-feature matrix alone. Global separation and zero-ARROW transfer further show that it
-is not confined to close endpoint-labelled neighbours.
+SolvAI amortizes a heterogeneous layer of physical response rather than one trajectory
+engine or one calculated endpoint. Several solvation formalisms define a
+low-dimensional response vocabulary; structure surrogates reproduce that vocabulary;
+and an experimentally supervised endpoint learns how the predictions combine for
+hydration. The matched control and shuffled-prior experiment show that the benefit is
+not attributable to a larger feature matrix alone. Global separation and zero-ARROW
+transfer further show that it is not confined to close endpoint-labelled neighbours.
 
-This arrangement is related to knowledge distillation, $\Delta$-learning,
-multi-fidelity modelling and transfer learning from computed to experimental
-properties, but assigns the computed data a different role.\cite{hinton2015,ramakrishnan2015,combisolv2021} Rather than learning one
-correction from a low-fidelity scalar to a high-fidelity scalar, SolvAI predicts a set
-of heterogeneous response coordinates and exposes them to a separate endpoint model.
-The response vector can therefore combine information from methods that differ in
-scope, fidelity and coverage. The successful object is not ``simulation'' in the
-abstract; it is an aligned, learnable representation of solvent response.
+Predicted physical descriptors, $\Delta$-learning and computed-to-experimental
+transfer are important precedents for this design.\cite{mlqmgnn2022,ramakrishnan2015,combisolv2021,twostagehfe2026}
+SolvAI brings these ideas into an explicit response layer assembled from independently
+trained surrogates spanning distinct solvation approximations, then isolates the
+layer's contribution under matched and destructive controls. The two-stage pattern is
+established; the advance tested here is whether a multi-source, property-proximal
+solvent-response layer supplies distinct information after its originating
+calculations have been removed from inference.
+
+The transfer criteria are also consistent with systematic studies of quantum
+descriptors, which emphasize endpoint relevance and accurate inference.\cite{qmhelp2024}
+The present controls make a third empirical requirement explicit---non-redundancy
+with the deployed molecular representation---and test all three in a solvation
+setting. Recent work found that hidden surrogate representations can outperform
+explicit predicted descriptors in
+some small-data tasks.\cite{surrogatelatent2025} Here, by contrast, compact ConfSolv
+response summaries outperformed graph and feed-forward latent coordinates from the
+same source. The ordering is task-dependent: the useful representation depends on
+which physical information survives structure prediction and remains complementary
+to the endpoint features. The successful object is not ``simulation'' in the
+abstract, but an aligned, learnable representation of solvent response.
 
 The evidence also sets a clear boundary. The primary reference contains only 85
 neutral solutes, and the method was developed in its context. The confirmatory

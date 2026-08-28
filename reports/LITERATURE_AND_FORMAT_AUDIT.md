@@ -33,6 +33,25 @@ The manuscript makes no cross-protocol state-of-the-art claim. It distinguishes
 the ARROW 85-solute reference set from a community benchmark and describes the
 80/85 FreeSolv identity overlap only as an identity result, not label provenance.
 
+## Closest prior art and novelty boundary
+
+A second, focused audit on 28 August 2026 examined per-query solvent-conditioned
+representations, surrogate-predicted physical descriptors and two-stage hydration
+models. The closest architectural precedent is Jia *et al.*, *Chemistry--Methods*
+(2026), DOI
+[10.1002/cmtd.202500150](https://doi.org/10.1002/cmtd.202500150), which predicts 13
+physically inspired solute descriptors from a molecular graph before hydration
+regression. Stuyver and Coley's ml-QM-GNN previously established the same broad
+two-stage pattern for reactivity, DOI
+[10.1063/5.0079574](https://doi.org/10.1063/5.0079574).
+
+The revised manuscript therefore makes no priority claim for surrogate-predicted
+descriptors. It positions SolvAI's contribution as the construction and controlled
+test of a multi-source, property-proximal solvent-response layer. The complete map,
+including ML-PCM, ImPerHam, 3D-RISM representations and systematic studies of when
+predicted physical descriptors help, is recorded in
+`reviews/NOVELTY_POSITIONING_AUDIT.md`.
+
 ## Nature Communications submission format
 
 Current Nature Portfolio guidance was checked on 27 August 2026 and the manuscript

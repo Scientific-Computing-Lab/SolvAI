@@ -6,10 +6,13 @@ We submit “Structure-predicted solvent responses enable simulation-free hydrat
 free-energy prediction” for consideration as an Article in *Nature Communications*.
 
 High-accuracy solvation calculations repeatedly pay the cost of resolving solvent
-response for each molecule. We test a different use of physical computation: learn
-compact response coordinates from large external calculations, predict those
-coordinates from structure, and expose them to a separately supervised experimental
-endpoint. The resulting SolvAI system accepts a SMILES string and runs no molecular
+response for each molecule. Prior work has shown that physical descriptors can enrich
+molecular learning, and that descriptors normally obtained from quantum calculations
+can themselves be predicted from structure. SolvAI advances this line of research by
+asking whether heterogeneous, property-proximal solvent responses from distinct
+physical formalisms can form a reusable intermediate layer. It predicts those
+responses from structure and exposes them to a separately supervised experimental
+endpoint. A deployed prediction accepts a SMILES string and runs no molecular
 dynamics, path-integral dynamics or probe calculation.
 
 The paper’s central evidence is a preregistered matched comparison. With identical
@@ -23,12 +26,14 @@ entire supervised pool, and remains when no ARROW experimental labels are used f
 training. The final point estimate is comparable to the reconstructed ARROW/PIMD8
 error of 0.205 kcal mol⁻¹. PIMD is an accuracy comparator, not a retained teacher.
 
-The work also identifies the boundary of the idea. Compact, learnable solvent-response
-coordinates transfer; sparse high-fidelity alchemical responses currently do not,
-because their structure-to-response errors remain too large. We believe this
-distinction makes the study relevant beyond hydration prediction: it establishes a
-controlled route by which physical calculations can become reusable molecular
-supervision rather than per-query computation.
+The generic two-stage architecture has important precedents. The advance here is a
+controlled demonstration that a multi-source solvent-response layer carries
+complementary endpoint information, together with an experimentally defined boundary:
+compact, learnable responses transfer, whereas sparse high-fidelity alchemical
+responses currently do not because their structure-to-response errors remain too
+large. This distinction makes the study relevant beyond hydration prediction. It
+shows how physical calculations can become reusable molecular supervision, while
+establishing when that strategy is likely to succeed.
 
 The manuscript is accompanied by molecule-level predictions, the preregistration,
 identity and similarity audits, all negative controls, frozen artifacts, source code
