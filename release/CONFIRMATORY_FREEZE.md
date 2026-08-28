@@ -9,6 +9,17 @@ not be changed in response to the observed results. Corrections required by an
 implementation error will be documented as amendments, with the original text
 retained in Git history, before the corrected analysis is run.
 
+## Amendment 1: required execution environment
+
+Added on 2026-08-28 before any valid confirmatory result was produced. The first
+diagnostic invocation used the workstation base interpreter, which contains
+scikit-learn 1.6.1 rather than the frozen SolvAI environment. Its outputs were
+quarantined and are not confirmatory results. All analyses governed by this protocol
+must be invoked with `uv run` from the parent `Freecurve_AI_Solvation` environment,
+which provides Python 3.11.15, RDKit 2026.03.5 and scikit-learn 1.7.2. This amendment
+does not alter a dataset, feature block, split, model hyperparameter, metric or
+interpretation rule.
+
 ## Scientific questions
 
 Phase 1 asks five primary questions.
