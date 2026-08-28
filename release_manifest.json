@@ -170,16 +170,16 @@
       "sha256": "641e6c295dbafaca5686a969829bf90ace78a446af932641d64280b63ee3fe64"
     },
     "paper/extended_data/ED_Fig6_extrapolation.pdf": {
-      "bytes": 31616,
-      "sha256": "48de44dae207556e775484afab50cfd47c3ae4bc90fa2cfc18f736b2b7d3fb23"
+      "bytes": 31603,
+      "sha256": "45739c11293a16208099222cd73130943e55c8c2c32791740e686a1c24ceb599"
     },
     "paper/extended_data/ED_Table1.pdf": {
       "bytes": 32271,
       "sha256": "9b206a1e94c7c1974a9136b018b58436735804d2171846d7656f2c484cbbbe04"
     },
     "paper/review_combined.pdf": {
-      "bytes": 705874,
-      "sha256": "6d5bf45b42054721d4477e1830a206ed0269375386ef55855411048d75adc050"
+      "bytes": 705861,
+      "sha256": "23c1c207aec91b5f6b53c90a242f539dafdb4306160eca31916441c7b30bc09c"
     },
     "paper/supplementary_data/Supplementary_Data_1_experiment_ledger.csv": {
       "bytes": 5373,

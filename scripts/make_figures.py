@@ -819,11 +819,26 @@ def ed_fig5_lambda(metrics: dict) -> None:
 
 def ed_fig6_extrapolation(primary: pd.DataFrame, separation: pd.DataFrame) -> None:
     full = primary.loc[primary.method.eq("F_full_solvai")].copy()
-    families = full.groupby("functional_group_family").size().sort_values(ascending=False).index
+    family_counts = (
+        full.groupby("functional_group_family", sort=True)
+        .size()
+        .rename("count")
+        .reset_index()
+        .sort_values(
+            ["count", "functional_group_family"],
+            ascending=[False, True],
+            kind="mergesort",
+        )
+    )
+    families = family_counts["functional_group_family"].to_list()
     fig, axes = plt.subplots(1, 2, figsize=(7.2, 3.35), gridspec_kw={"width_ratios": [1.25, 1.0]})
     rng = np.random.default_rng(20260828)
     for position, family in enumerate(families):
-        values = full.loc[full.functional_group_family.eq(family), "absolute_error"].to_numpy()
+        values = (
+            full.loc[full.functional_group_family.eq(family)]
+            .sort_values("molecule_id", kind="mergesort")["absolute_error"]
+            .to_numpy()
+        )
         jitter = rng.uniform(-0.12, 0.12, len(values))
         axes[0].scatter(values, position + jitter, s=12, color=DEPLOY, alpha=0.8)
         axes[0].plot(
