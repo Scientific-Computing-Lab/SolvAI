@@ -9,8 +9,6 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
-from sklearn.model_selection import KFold
-
 from confirmatory_common import (
     REPEAT_SEEDS,
     SHUFFLE_SEEDS,
@@ -20,6 +18,7 @@ from confirmatory_common import (
     load_confirmatory_data,
     metric_record,
 )
+from sklearn.model_selection import KFold
 
 
 def folds_for(data, split_seed: int | None):
@@ -39,9 +38,7 @@ def predict_feature_set(data, benchmark_x, public_x, split_seed: int | None):
     prediction = np.full(len(data.benchmark), np.nan)
     fold_ids = np.full(len(data.benchmark), -1, dtype=int)
     for fold, train, test in folds_for(data, split_seed):
-        prediction[test] = fit_predict(
-            public_x, public_truth, benchmark_x, truth, train, test
-        )
+        prediction[test] = fit_predict(public_x, public_truth, benchmark_x, truth, train, test)
         fold_ids[test] = fold
     if not np.isfinite(prediction).all():
         raise AssertionError("Incomplete endpoint prediction")
@@ -56,18 +53,14 @@ def predict_shuffled(data, split_seed: int | None, permutation_seed: int, repeat
     for fold, train, test in folds_for(data, split_seed):
         rng = np.random.default_rng(permutation_seed + 1000 * repeat_index + fold)
         public_response = data.public_responses["full"][rng.permutation(len(data.public))]
-        train_response = data.benchmark_responses["full"][train][
-            rng.permutation(len(train))
-        ]
+        train_response = data.benchmark_responses["full"][train][rng.permutation(len(train))]
         test_response = data.benchmark_responses["full"][test][rng.permutation(len(test))]
         public_x = np.column_stack([data.public_structure, public_response])
         train_x = np.column_stack([data.benchmark_structure[train], train_response])
         test_x = np.column_stack([data.benchmark_structure[test], test_response])
         x_fit = np.vstack([public_x, train_x])
         y_fit = np.concatenate([public_truth, truth[train]])
-        weights = np.concatenate(
-            [np.ones(len(public_truth)), np.full(len(train), 3.0)]
-        )
+        weights = np.concatenate([np.ones(len(public_truth)), np.full(len(train), 3.0)])
         fold_predictions = []
         for model_seed in (11, 29, 47):
             model = endpoint_model(model_seed)
@@ -114,13 +107,22 @@ def main() -> None:
         type=Path,
         default=Path(__file__).resolve().parents[1],
     )
-    parser.add_argument(
-        "--mode", choices=("primary", "repeats", "shuffle", "all"), default="all"
-    )
+    parser.add_argument("--mode", choices=("primary", "repeats", "shuffle", "all"), default="all")
+    parser.add_argument("--standardized-exclusion", action="store_true")
     args = parser.parse_args()
     out = args.release_root / "results" / "confirmatory"
     out.mkdir(parents=True, exist_ok=True)
-    data = load_confirmatory_data(args.workspace_root)
+    teacher_overrides = None
+    prefix = "endpoint_"
+    if args.standardized_exclusion:
+        root = out / "teacher_refits"
+        teacher_overrides = {
+            "combisolv_qm": root / "combisolv_qm/teacher_predictions.parquet",
+            "molsolv_smd": root / "molsolv_smd/teacher_predictions.parquet",
+            "confsolv": root / "confsolv/teacher_predictions.parquet",
+        }
+        prefix = "standardized_exclusion_endpoint_"
+    data = load_confirmatory_data(args.workspace_root, teacher_overrides)
     prediction_rows = []
 
     if args.mode in {"primary", "all"}:
@@ -129,14 +131,14 @@ def main() -> None:
             prediction_rows.append(
                 rows_for(data, prediction, fold_ids, method, "primary", -1, None)
             )
-            print("primary", method, metric_record(data.benchmark.delta_g_exp, prediction), flush=True)
+            print(
+                "primary", method, metric_record(data.benchmark.delta_g_exp, prediction), flush=True
+            )
 
     if args.mode in {"repeats", "all"}:
         for repeat, split_seed in enumerate(REPEAT_SEEDS):
             for method, (benchmark_x, public_x) in data.feature_sets.items():
-                prediction, fold_ids = predict_feature_set(
-                    data, benchmark_x, public_x, split_seed
-                )
+                prediction, fold_ids = predict_feature_set(data, benchmark_x, public_x, split_seed)
                 prediction_rows.append(
                     rows_for(
                         data,
@@ -158,8 +160,7 @@ def main() -> None:
 
     if args.mode in {"shuffle", "all"}:
         partitions = [("primary", -1, None, 0)] + [
-            ("repeat", repeat, seed, repeat + 1)
-            for repeat, seed in enumerate(REPEAT_SEEDS)
+            ("repeat", repeat, seed, repeat + 1) for repeat, seed in enumerate(REPEAT_SEEDS)
         ]
         for partition, repeat, split_seed, repeat_index in partitions:
             for shuffle_seed in SHUFFLE_SEEDS:
@@ -189,7 +190,7 @@ def main() -> None:
 
     predictions = pd.concat(prediction_rows, ignore_index=True)
     suffix = args.mode
-    prediction_path = out / f"endpoint_{suffix}_predictions.parquet"
+    prediction_path = out / f"{prefix}{suffix}_predictions.parquet"
     predictions.to_parquet(prediction_path, index=False)
 
     metric_rows = []
@@ -200,7 +201,7 @@ def main() -> None:
         record["n"] = len(group)
         metric_rows.append(record)
     metrics = pd.DataFrame(metric_rows)
-    metrics.to_csv(out / f"endpoint_{suffix}_metrics.csv", index=False)
+    metrics.to_csv(out / f"{prefix}{suffix}_metrics.csv", index=False)
 
     comparison_rows = []
     for (partition, repeat, split_seed), group in predictions.groupby(
@@ -231,7 +232,7 @@ def main() -> None:
                 }
             )
     comparisons = pd.DataFrame(comparison_rows)
-    comparisons.to_csv(out / f"endpoint_{suffix}_paired_comparisons.csv", index=False)
+    comparisons.to_csv(out / f"{prefix}{suffix}_paired_comparisons.csv", index=False)
 
     metadata = {
         "mode": args.mode,
@@ -246,10 +247,9 @@ def main() -> None:
         "repeat_seeds": list(REPEAT_SEEDS),
         "shuffle_seeds": list(SHUFFLE_SEEDS),
         "prediction_file": prediction_path.name,
+        "standardized_exclusion_teachers": args.standardized_exclusion,
     }
-    (out / f"endpoint_{suffix}_metadata.json").write_text(
-        json.dumps(metadata, indent=2) + "\n"
-    )
+    (out / f"{prefix}{suffix}_metadata.json").write_text(json.dumps(metadata, indent=2) + "\n")
 
 
 if __name__ == "__main__":

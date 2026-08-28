@@ -33,15 +33,14 @@ The manuscript makes no cross-protocol state-of-the-art claim. It distinguishes
 the ARROW 85-solute reference set from a community benchmark and describes the
 80/85 FreeSolv identity overlap only as an identity result, not label provenance.
 
-## Nature submission format
+## Nature Communications submission format
 
-The current [Nature formatting guide](https://www.nature.com/nature/for-authors/formatting-guide)
-was checked on 27 August 2026. The release follows its practical submission
-recommendations: a summary paragraph under approximately 200 words, numbered
-references, line numbering, figures integrated with the text for review, a
-separate Methods section and separate Supplementary Information. The source uses
-a conservative standard LaTeX article class because no required public Nature
-class is needed for initial submission.
+Current Nature Portfolio guidance was checked on 27 August 2026 and the manuscript
+was subsequently rebuilt for *Nature Communications*. The release uses an explicit
+abstract, numbered references, line numbering, figures integrated with the review
+manuscript, a separate Methods section, standalone Extended Data and separate
+Supplementary Information. A conservative standard LaTeX class is used because no
+journal-specific class is required for initial submission.
 
 The journal-specific declarations still requiring author confirmation are
 isolated in `submission/AUTHOR_TODOS.md`.

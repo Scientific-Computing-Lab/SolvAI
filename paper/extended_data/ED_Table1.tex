@@ -1,13 +1,11 @@
 \begin{tabular}{lcccc}
 \toprule
-Method & Simulation at inference & Random OOF MAE & Family MAE & Scaffold MAE \\
+Method & Simulation at inference & Fixed OOF MAE & Global family MAE & Global scaffold MAE \\
 \midrule
 Classical ARROW & yes & 0.785 & — & — \\
 ARROW/PIMD8 & yes & 0.205 & — & — \\
-Previous structure-only & no & 0.239 & — & — \\
-Narrow response & no & 0.214 & — & — \\
-+ SMD(water) & no & 0.202 & — & — \\
-SolvAI & no & 0.197 & 0.240 & 0.241 \\
-Nested selection & no & 0.199 & — & — \\
+Matched structure-only & no & 0.303 & — & — \\
+SolvAI & no & 0.202 & 0.468 & 0.376 \\
+SolvAI, zero ARROW labels & no & 0.257 & — & — \\
 \bottomrule
 \end{tabular}

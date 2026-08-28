@@ -1,0 +1,89 @@
+{
+  "original_rows": 17851,
+  "rows_after_exclusion": 17829,
+  "exclusions": 22,
+  "targets": [
+    "confsolv_water_dg_ensemble",
+    "confsolv_water_gsolv_gas_lec",
+    "confsolv_water_gsolv_solution_lec",
+    "confsolv_water_gsolv_gas_weighted",
+    "confsolv_water_gsolv_solution_weighted",
+    "confsolv_gas_conformer_correction",
+    "confsolv_solution_conformer_correction",
+    "confsolv_hydration_conformer_correction",
+    "confsolv_water_gsolv_std",
+    "confsolv_water_response_mean",
+    "confsolv_water_response_std"
+  ],
+  "validation": {
+    "confsolv_water_dg_ensemble": {
+      "n_train": 16044,
+      "n_validation": 1785,
+      "mae_kcal_mol": 2.917213194812069,
+      "correlation": 0.542639957959514
+    },
+    "confsolv_water_gsolv_gas_lec": {
+      "n_train": 16044,
+      "n_validation": 1785,
+      "mae_kcal_mol": 2.8471603355217017,
+      "correlation": 0.5290402294160492
+    },
+    "confsolv_water_gsolv_solution_lec": {
+      "n_train": 16044,
+      "n_validation": 1785,
+      "mae_kcal_mol": 3.120790390583311,
+      "correlation": 0.5503680657013557
+    },
+    "confsolv_water_gsolv_gas_weighted": {
+      "n_train": 16044,
+      "n_validation": 1785,
+      "mae_kcal_mol": 2.845944471786367,
+      "correlation": 0.5326151313476752
+    },
+    "confsolv_water_gsolv_solution_weighted": {
+      "n_train": 16044,
+      "n_validation": 1785,
+      "mae_kcal_mol": 3.090034724623167,
+      "correlation": 0.5529469831172761
+    },
+    "confsolv_gas_conformer_correction": {
+      "n_train": 16044,
+      "n_validation": 1785,
+      "mae_kcal_mol": 0.24766315222125254,
+      "correlation": 0.6606974507577843
+    },
+    "confsolv_solution_conformer_correction": {
+      "n_train": 16044,
+      "n_validation": 1785,
+      "mae_kcal_mol": 0.2667449107420691,
+      "correlation": 0.6911516305579295
+    },
+    "confsolv_hydration_conformer_correction": {
+      "n_train": 16044,
+      "n_validation": 1785,
+      "mae_kcal_mol": 0.3544094126791672,
+      "correlation": 0.4254100517385294
+    },
+    "confsolv_water_gsolv_std": {
+      "n_train": 16044,
+      "n_validation": 1785,
+      "mae_kcal_mol": 0.4475716630898987,
+      "correlation": 0.6757082731858384
+    },
+    "confsolv_water_response_mean": {
+      "n_train": 16044,
+      "n_validation": 1785,
+      "mae_kcal_mol": 0.6883639876354816,
+      "correlation": 0.4634095965971564
+    },
+    "confsolv_water_response_std": {
+      "n_train": 16044,
+      "n_validation": 1785,
+      "mae_kcal_mol": 0.44960239868574775,
+      "correlation": 0.6727495121103975
+    }
+  },
+  "seed": 20260826,
+  "trees": 450,
+  "morgan_bits": 256
+}

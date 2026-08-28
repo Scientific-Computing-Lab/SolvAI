@@ -21,14 +21,18 @@ ED = ROOT / "paper/extended_data"
 
 def latex_escape(value: object) -> str:
     text = str(value)
-    for source, target in (("&", r"\&"), ("%", r"\%"), ("_", r"\_"), ("#", r"\#")):
+    for source, target in (
+        ("&", r"\&"),
+        ("%", r"\%"),
+        ("_", r"\_"),
+        ("#", r"\#"),
+    ):
         text = text.replace(source, target)
     return text
 
 
-def latex_table(frame: pd.DataFrame, path: Path, widths: str | None = None) -> None:
+def latex_table(frame: pd.DataFrame, path: Path, columns: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    columns = widths or ("l" * len(frame.columns))
     lines = [rf"\begin{{tabular}}{{{columns}}}", r"\toprule"]
     lines.append(" & ".join(latex_escape(c) for c in frame.columns) + r" \\")
     lines.append(r"\midrule")
@@ -41,44 +45,44 @@ def latex_table(frame: pd.DataFrame, path: Path, widths: str | None = None) -> N
 def workbook(path: Path, sheets: dict[str, pd.DataFrame]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with pd.ExcelWriter(path, engine="openpyxl") as writer:
-        frozen_time = datetime(2026, 8, 27, tzinfo=UTC)
+        frozen_time = datetime(2026, 8, 28, tzinfo=UTC)
         writer.book.properties.created = frozen_time
         writer.book.properties.modified = frozen_time
         for name, frame in sheets.items():
-            frame.to_excel(writer, sheet_name=name[:31], index=False)
-            ws = writer.book[name[:31]]
+            sheet = name[:31]
+            frame.to_excel(writer, sheet_name=sheet, index=False)
+            ws = writer.book[sheet]
             for cell in ws[1]:
                 cell.font = Font(bold=True, color="FFFFFF")
                 cell.fill = PatternFill("solid", fgColor="1769AA")
                 cell.alignment = Alignment(wrap_text=True)
             ws.freeze_panes = "A2"
             for column in ws.columns:
-                values = [str(c.value or "") for c in column[:1000]]
+                values = [str(cell.value or "") for cell in column[:1000]]
                 ws.column_dimensions[column[0].column_letter].width = min(
-                    60, max(10, max(map(len, values)) + 2)
+                    58, max(10, max(map(len, values)) + 2)
                 )
-    # OOXML is a ZIP container. Normalize both document properties and member
-    # timestamps so Supplementary Data files reproduce byte-for-byte in CI.
     normalized = path.with_name(f".{path.name}.normalized")
-    with ZipFile(path) as source, ZipFile(
-        normalized, "w", compression=ZIP_DEFLATED, compresslevel=9
-    ) as target:
+    with (
+        ZipFile(path) as source,
+        ZipFile(normalized, "w", compression=ZIP_DEFLATED, compresslevel=9) as target,
+    ):
         for name in sorted(source.namelist()):
             payload = source.read(name)
             if name == "docProps/core.xml":
                 text = payload.decode("utf-8")
                 text = re.sub(
                     r"(<dcterms:(?:created|modified)[^>]*>).*?(</dcterms:(?:created|modified)>)",
-                    r"\g<1>2026-08-27T00:00:00Z\g<2>",
+                    r"\g<1>2026-08-28T00:00:00Z\g<2>",
                     text,
                 )
                 payload = text.encode("utf-8")
-            source_info = source.getinfo(name)
-            info = ZipInfo(name, date_time=(2026, 8, 27, 0, 0, 0))
+            original = source.getinfo(name)
+            info = ZipInfo(name, date_time=(2026, 8, 28, 0, 0, 0))
             info.compress_type = ZIP_DEFLATED
-            info.external_attr = source_info.external_attr
-            info.internal_attr = source_info.internal_attr
-            info.create_system = source_info.create_system
+            info.external_attr = original.external_attr
+            info.internal_attr = original.internal_attr
+            info.create_system = original.create_system
             target.writestr(info, payload, compress_type=ZIP_DEFLATED, compresslevel=9)
     normalized.replace(path)
 
@@ -86,292 +90,302 @@ def workbook(path: Path, sheets: dict[str, pd.DataFrame]) -> None:
 def response_priors() -> pd.DataFrame:
     rows = [
         (
-            "combisolv_qm_teacher",
-            "COSMOtherm hydration response",
-            "CombiSolv-QM water",
+            1,
+            "combisolv_qm",
+            "COSMOtherm water response",
+            "CombiSolv-QM",
             "kcal mol-1",
-            "CHEMELEON-initialized D-MPNN",
-            3963,
-            "direct surrogate",
+            "CHEMELEON D-MPNN",
+            3959,
+            "direct",
         ),
         (
-            "abraham_e_teacher",
-            "excess molar refraction axis E",
-            "SoluteML Abraham",
+            2,
+            "abraham_e",
+            "excess molar refraction E",
+            "SoluteML",
             "Abraham scale",
             "ExtraTrees",
             8098,
-            "direct surrogate",
+            "direct",
         ),
         (
-            "abraham_s_teacher",
-            "dipolarity/polarizability axis S",
-            "SoluteML Abraham",
+            3,
+            "abraham_s",
+            "dipolarity/polarizability S",
+            "SoluteML",
             "Abraham scale",
             "ExtraTrees",
             8098,
-            "direct surrogate",
+            "direct",
         ),
         (
-            "abraham_a_teacher",
-            "hydrogen-bond acidity axis A",
-            "SoluteML Abraham",
+            4,
+            "abraham_a",
+            "hydrogen-bond acidity A",
+            "SoluteML",
             "Abraham scale",
             "ExtraTrees",
             8098,
-            "direct surrogate",
+            "direct",
         ),
         (
-            "abraham_b_teacher",
-            "hydrogen-bond basicity axis B",
-            "SoluteML Abraham",
+            5,
+            "abraham_b",
+            "hydrogen-bond basicity B",
+            "SoluteML",
             "Abraham scale",
             "ExtraTrees",
             8098,
-            "direct surrogate",
+            "direct",
         ),
         (
-            "abraham_l_teacher",
-            "hexadecane-air partition axis L",
-            "SoluteML Abraham",
+            6,
+            "abraham_l",
+            "hexadecane-air partition L",
+            "SoluteML",
             "Abraham scale",
             "ExtraTrees",
             8098,
-            "direct surrogate",
+            "direct",
         ),
         (
-            "openff_corrected_teacher",
-            "explicit-water alchemical hydration response",
+            7,
+            "openff_corrected",
+            "explicit-water alchemical response",
             "OpenFF 2.3.0 ASFE",
             "kcal mol-1",
             "ExtraTrees",
             520,
-            "predicted calculation + predicted experimental residual",
+            "prediction + residual",
         ),
         (
-            "gbn2_corrected_teacher",
+            8,
+            "gbn2_corrected",
             "implicit-solvent hydration response",
-            "GBn2 / GNNImplicitSolvent",
+            "GBn2",
             "kcal mol-1",
             "ExtraTrees",
             550,
-            "predicted GBn2 value + predicted experimental residual",
+            "prediction + residual",
         ),
         (
-            "molsolv_smd_teacher",
-            "SMD(water) solvation response",
+            9,
+            "smd_water",
+            "SMD water response",
             "MolSolv",
             "kcal mol-1",
-            "CHEMELEON-initialized D-MPNN",
-            350391,
-            "direct surrogate",
+            "CHEMELEON D-MPNN",
+            350359,
+            "direct",
         ),
         (
-            "confsolv_gas_conformer_correction_teacher",
-            "gas conformer free-energy correction",
+            10,
+            "conf_gas_corr",
+            "gas conformer correction",
             "ConfSolv H2O",
             "kcal mol-1",
             "LightGBM",
-            39878,
-            "direct surrogate",
+            17829,
+            "direct",
         ),
         (
-            "confsolv_solution_conformer_correction_teacher",
-            "solution conformer free-energy correction",
+            11,
+            "conf_solution_corr",
+            "solution conformer correction",
             "ConfSolv H2O",
             "kcal mol-1",
             "LightGBM",
-            39878,
-            "direct surrogate",
+            17829,
+            "direct",
         ),
         (
-            "confsolv_hydration_conformer_correction_teacher",
+            12,
+            "conf_hydration_corr",
             "hydration conformer correction",
             "ConfSolv H2O",
             "kcal mol-1",
             "LightGBM",
-            39878,
-            "direct surrogate",
+            17829,
+            "direct",
         ),
         (
-            "confsolv_water_gsolv_std_teacher",
-            "dispersion of conformer solvation energies",
+            13,
+            "conf_gsolv_sd",
+            "conformer solvation-energy spread",
             "ConfSolv H2O",
             "kcal mol-1",
             "LightGBM",
-            39878,
-            "direct surrogate",
+            17829,
+            "direct",
         ),
         (
-            "confsolv_water_response_mean_teacher",
+            14,
+            "conf_response_mean",
             "mean conformer solvent response",
             "ConfSolv H2O",
             "kcal mol-1",
             "LightGBM",
-            39878,
-            "direct surrogate",
+            17829,
+            "direct",
         ),
         (
-            "confsolv_water_response_std_teacher",
-            "dispersion of conformer solvent response",
+            15,
+            "conf_response_sd",
+            "conformer response spread",
             "ConfSolv H2O",
             "kcal mol-1",
             "LightGBM",
-            39878,
-            "direct surrogate",
+            17829,
+            "direct",
         ),
     ]
-    frame = pd.DataFrame(
-        rows,
-        columns=[
-            "prior_name",
-            "physical_meaning",
-            "source",
-            "target_units",
-            "model_class",
-            "training_size",
-            "transformation",
-        ],
-    )
-    frame.insert(0, "prior", range(1, 16))
-    frame["inference_computation"] = "structure-derived surrogate prediction; no simulation"
+    columns = [
+        "prior",
+        "name",
+        "physical meaning",
+        "source",
+        "units",
+        "surrogate",
+        "training rows",
+        "transformation",
+    ]
+    frame = pd.DataFrame(rows, columns=columns)
+    frame["inference"] = "structure surrogate; no simulation"
     return frame
+
+
+def endpoint_sources() -> pd.DataFrame:
+    return pd.DataFrame(
+        [
+            ("FreeSolv only", 69, "benchmark-disjoint connectivity"),
+            ("CombiSolv-Exp only", 588, "water records; benchmark-disjoint connectivity"),
+            ("FreeSolv + CombiSolv-Exp", 490, "one duplicate-resolved connectivity"),
+            ("SoluteML dGsolvDB3", 133, "at least two source measurements"),
+        ],
+        columns=["source group", "selected records", "selection rule"],
+    )
 
 
 def experiment_ledger(metrics: dict) -> pd.DataFrame:
     m = metrics["methods"]
-    a = metrics["alternative_supervision"]
-    ml = metrics["multilambda"]["method_mae_kcal_mol"]
     rows = [
         (
-            "Previous structure-only",
-            "Can molecular structure alone recover hydration free energy?",
-            "RDKit descriptors + Morgan",
-            "experimental hydration",
-            "ExtraTrees",
-            "structure only",
-            "five-fold random OOF",
-            "molecule-disjoint outer folds",
-            m["previous_structure_only"]["mae_kcal_mol"],
-            "baseline",
-            "superseded",
-            "results/predictions/headline_oof.parquet",
+            "Matched structure-only",
+            "Do response priors add information?",
+            "none",
+            "A",
+            "fixed five-fold OOF",
+            m["matched_structure_only"]["mae_kcal_mol"],
+            "matched control",
+            "results/confirmatory/standardized_exclusion_endpoint_predictions.parquet",
         ),
         (
-            "Narrow response",
-            "Do compact solvation-response coordinates improve the endpoint?",
-            "CombiSolv-QM, Abraham, OpenFF, GBn2",
-            "response priors + experimental hydration",
-            "surrogate stack + ExtraTrees",
-            "structure only",
-            "five-fold random OOF",
-            "external benchmark connectivity removed",
-            m["narrow_response"]["mae_kcal_mol"],
-            "improved",
-            "final-model component",
-            "results/predictions/headline_oof.parquet",
+            "Empirical/residual block",
+            "Do compact empirical axes and corrected responses help?",
+            "Abraham, OpenFF, GBn2",
+            "B",
+            "fixed five-fold OOF",
+            m["empirical_residual_block"]["mae_kcal_mol"],
+            "component",
+            "results/confirmatory/standardized_exclusion_endpoint_predictions.parquet",
         ),
         (
-            "SMD-water response",
-            "Does aligned water response close the remaining gap?",
-            "MolSolv SMD(water)",
-            "SMD response + experimental hydration",
-            "D-MPNN surrogate + ExtraTrees",
-            "structure only",
-            "five-fold random OOF",
-            "85 benchmark connectivities removed",
-            m["smd_water"]["mae_kcal_mol"],
-            "improved",
-            "final-model component",
-            "results/predictions/headline_oof.parquet",
+            "Computation core",
+            "Do raw computed responses help?",
+            "CombiSolv-QM, OpenFF, GBn2",
+            "C",
+            "fixed five-fold OOF",
+            m["computation_core_block"]["mae_kcal_mol"],
+            "component",
+            "results/confirmatory/standardized_exclusion_endpoint_predictions.parquet",
         ),
         (
-            "ConfSolv response hierarchy",
-            "Does conformational solvent response add transferable information?",
+            "SMD water",
+            "Does water-specific continuum response transfer?",
+            "MolSolv SMD",
+            "D",
+            "fixed five-fold OOF",
+            m["smd_water_block"]["mae_kcal_mol"],
+            "component",
+            "results/confirmatory/standardized_exclusion_endpoint_predictions.parquet",
+        ),
+        (
+            "ConfSolv",
+            "Do conformational response summaries transfer?",
             "ConfSolv H2O",
-            "six response summaries + experimental hydration",
-            "LightGBM surrogates + ExtraTrees",
-            "structure only",
-            "five-fold random OOF",
-            "13 benchmark connectivities removed",
-            m["smd_confsolv_fixed"]["mae_kcal_mol"],
-            "best fixed point estimate",
-            "final-model component",
-            "results/predictions/headline_oof.parquet",
+            "E",
+            "fixed five-fold OOF",
+            m["confsolv_block"]["mae_kcal_mol"],
+            "component",
+            "results/confirmatory/standardized_exclusion_endpoint_predictions.parquet",
         ),
         (
-            "Nested feature-block selection",
-            "Does feature-block selection preserve the result when nested?",
-            "all retained response blocks",
-            "experimental hydration",
-            "nested ExtraTrees",
-            "structure only",
-            "nested five-fold OOF",
-            "selection restricted to outer training data",
-            m["nested_selection"]["mae_kcal_mol"],
-            "PIMD8-level point estimate",
-            "evaluation only",
-            "results/predictions/headline_oof.parquet",
+            "Full SolvAI",
+            "Do aligned response priors improve the matched endpoint?",
+            "15 priors",
+            "F",
+            "fixed five-fold OOF",
+            m["full_solvai"]["mae_kcal_mol"],
+            "final model",
+            "results/confirmatory/standardized_exclusion_endpoint_predictions.parquet",
         ),
         (
-            "Family holdout",
-            "How does SolvAI transfer to an unseen functional family?",
-            "final SolvAI",
-            "experimental hydration",
-            "frozen stack",
-            "structure only",
-            "GroupKFold family holdout",
-            "families confined to one outer fold",
-            m["family_holdout"]["mae_kcal_mol"],
-            "harder chemical extrapolation",
+            "Shuffled priors",
+            "Does molecule-response alignment matter?",
+            "15 permuted priors",
+            "negative control",
+            "five permutations × six partitions",
+            None,
             "evaluation only",
-            "results/predictions/hard_holdout_oof.parquet",
+            "results/confirmatory/standardized_exclusion_endpoint_shuffle_predictions.parquet",
         ),
         (
-            "Scaffold holdout",
-            "How does SolvAI transfer to unseen scaffolds?",
-            "final SolvAI",
-            "experimental hydration",
-            "frozen stack",
-            "structure only",
-            "scaffold holdout",
-            "scaffolds confined to one outer fold",
-            m["scaffold_holdout"]["mae_kcal_mol"],
-            "harder chemical extrapolation",
+            "Zero-ARROW transfer",
+            "Do priors help without ARROW endpoint labels?",
+            "15 priors",
+            "transfer control",
+            "all 85 as test",
+            m["zero_arrow_full_solvai"]["mae_kcal_mol"],
             "evaluation only",
-            "results/predictions/hard_holdout_oof.parquet",
+            "results/confirmatory/standardized_exclusion_endpoint_predictions.parquet",
         ),
     ]
-    for key, value in a.items():
+    for regime, values in metrics["global_separation"].items():
         rows.append(
             (
-                key.replace("_", " "),
-                "Can this alternative physical representation improve transfer?",
-                key,
-                "experimental hydration",
-                "documented frozen screen",
-                "structure only",
-                "matched OOF screen",
-                "benchmark labels absent from held-out fit",
-                float(value),
-                "non-improving screen",
-                "not retained",
-                f"results/ablations/{key}.csv",
+                regime,
+                "Does the prior advantage survive global chemical separation?",
+                "15 priors",
+                "separation control",
+                regime,
+                values["F_full_solvai"]["mae_kcal_mol"],
+                "evaluation only",
+                "results/confirmatory/standardized_exclusion_global_separation_predictions.parquet",
             )
         )
-    for name, value in ml.items():
+    for name, value in metrics["alternative_supervision"].items():
+        rows.append(
+            (
+                name.replace("_", " "),
+                "Can an alternative physical representation improve transfer?",
+                name,
+                "exploratory",
+                "campaign OOF screen",
+                value,
+                "not retained",
+                "results/ablations/",
+            )
+        )
+    for name, value in metrics["multilambda"]["method_mae_kcal_mol"].items():
         rows.append(
             (
                 name,
-                "Can structure-derived lambda response improve the endpoint?",
-                "short PIMD2 lambda response",
-                "response hierarchy or integrated free energy",
-                "masked multi-task student",
-                "structure only",
-                "matched random OOF",
-                "held-out response labels absent",
-                float(value),
-                "response-surrogate bottleneck",
+                "Can predicted lambda response improve the endpoint?",
+                "PIMD2 response",
+                "exploratory",
+                "matched OOF",
+                value,
                 "not retained",
                 "results/ablations/multilambda_metrics.csv",
             )
@@ -381,56 +395,64 @@ def experiment_ledger(metrics: dict) -> pd.DataFrame:
         columns=[
             "experiment",
             "hypothesis",
-            "physical_source",
-            "target",
-            "model",
-            "inference_requirement",
-            "evaluation_regime",
-            "leakage_rule",
-            "mae_kcal_mol",
-            "result_interpretation",
-            "role_in_final_model",
-            "artifact_path",
+            "physical source",
+            "analysis ID",
+            "evaluation",
+            "MAE (kcal/mol)",
+            "role in final model",
+            "artifact",
         ],
     )
 
 
 def main() -> None:
     metrics = json.loads((ROOT / "results/paper_metrics.json").read_text())
-    methods, repeats = metrics["methods"], metrics["repeated_splits"]
-    required = {
-        "previous_structure_only": 0.23860611898039202,
-        "smd_confsolv_fixed": 0.19704747409482312,
-        "nested_selection": 0.19930603930646335,
+    methods = metrics["methods"]
+    expected = {
+        "matched_structure_only": 0.3033484655954973,
+        "full_solvai": 0.20223406721910991,
         "arrow_pimd8": 0.20483647058823526,
     }
-    for key, expected in required.items():
-        observed = methods[key]["mae_kcal_mol"]
-        if abs(observed - expected) > 1e-12:
-            raise AssertionError(f"Refusing to render stale metric {key}: {observed}")
-
+    for key, value in expected.items():
+        if abs(methods[key]["mae_kcal_mol"] - value) > 1e-12:
+            raise AssertionError(f"Refusing to render stale metric {key}")
     for folder in (TABLES, SI_TABLES, SUPP_DATA, ED):
         folder.mkdir(parents=True, exist_ok=True)
+
+    repeats = metrics["repeated_splits"]
+    global_results = metrics["global_separation"]
+    paired = pd.DataFrame(metrics["paired_confirmatory"])
+    primary_pair = paired.loc[paired.analysis.eq("primary_F_full_solvai")].iloc[0]
+    shuffle_pair = paired.loc[paired.analysis.eq("aligned_vs_mean_shuffle_primary_-1")].iloc[0]
     macros = {
-        "BenchmarkN": metrics["benchmark"]["molecules"],
+        "BenchmarkN": 85,
         "ClassicalMAE": f"{methods['classical_arrow']['mae_kcal_mol']:.3f}",
         "PIMDMAE": f"{methods['arrow_pimd8']['mae_kcal_mol']:.3f}",
-        "PreviousMAE": f"{methods['previous_structure_only']['mae_kcal_mol']:.3f}",
+        "MatchedMAE": f"{methods['matched_structure_only']['mae_kcal_mol']:.3f}",
+        "SolvAIMAE": f"{methods['full_solvai']['mae_kcal_mol']:.3f}",
+        "SolvAIDelta": f"{primary_pair.difference:.3f}",
+        "SolvAICILow": f"{primary_pair.ci_low_95:.3f}",
+        "SolvAICIHigh": f"{primary_pair.ci_high_95:.3f}",
+        "RepeatMean": f"{repeats['full_solvai']['mean_kcal_mol']:.3f}",
+        "RepeatSD": f"{repeats['full_solvai']['sd_kcal_mol']:.3f}",
+        "MatchedRepeatMean": f"{repeats['matched_structure_only']['mean_kcal_mol']:.3f}",
         "NarrowMAE": f"{methods['narrow_response']['mae_kcal_mol']:.3f}",
-        "SMDMAE": f"{methods['smd_water']['mae_kcal_mol']:.3f}",
-        "SolvAIMAE": f"{methods['smd_confsolv_fixed']['mae_kcal_mol']:.3f}",
-        "NestedMAE": f"{methods['nested_selection']['mae_kcal_mol']:.3f}",
-        "RepeatMean": f"{repeats['fixed']['mean_kcal_mol']:.3f}",
-        "RepeatSD": f"{repeats['fixed']['sd_kcal_mol']:.3f}",
-        "NestedRepeatMean": f"{repeats['nested']['mean_kcal_mol']:.3f}",
-        "NestedRepeatSD": f"{repeats['nested']['sd_kcal_mol']:.3f}",
-        "FamilyMAE": f"{methods['family_holdout']['mae_kcal_mol']:.3f}",
-        "ScaffoldMAE": f"{methods['scaffold_holdout']['mae_kcal_mol']:.3f}",
-        "MolSolvN": f"{metrics['data_counts']['molsolv_training_structures']:,}",
-        "ConfSolvN": f"{metrics['data_counts']['confsolv_training_connectivities']:,}",
+        "NarrowSMDMAE": f"{methods['narrow_plus_smd']['mae_kcal_mol']:.3f}",
+        "ShuffledMAE": f"{shuffle_pair.reference_mae:.3f}",
+        "FamilyMAE": f"{global_results['global_family']['F_full_solvai']['mae_kcal_mol']:.3f}",
+        "ScaffoldMAE": f"{global_results['global_scaffold']['F_full_solvai']['mae_kcal_mol']:.3f}",
+        "ClusterMAE": f"{global_results['global_butina_0_70']['F_full_solvai']['mae_kcal_mol']:.3f}",
+        "NNSeventyMatchedMAE": f"{global_results['global_nn_0.70']['A_structure_only']['mae_kcal_mol']:.3f}",
+        "NNSeventySolvAIMAE": f"{global_results['global_nn_0.70']['F_full_solvai']['mae_kcal_mol']:.3f}",
+        "FamilyMatchedMAE": f"{global_results['global_family']['A_structure_only']['mae_kcal_mol']:.3f}",
+        "ScaffoldMatchedMAE": f"{global_results['global_scaffold']['A_structure_only']['mae_kcal_mol']:.3f}",
+        "ZeroArrowMatchedMAE": f"{methods['zero_arrow_structure_only']['mae_kcal_mol']:.3f}",
+        "ZeroArrowMAE": f"{methods['zero_arrow_full_solvai']['mae_kcal_mol']:.3f}",
+        "MolSolvN": f"{metrics['data_counts']['molsolv_confirmatory_rows']:,}",
+        "ConfSolvN": f"{metrics['data_counts']['confsolv_confirmatory_rows']:,}",
     }
     (TABLES / "metrics_macros.tex").write_text(
-        "".join(f"\\newcommand{{\\{k}}}{{{v}}}\n" for k, v in macros.items())
+        "".join(f"\\newcommand{{\\{key}}}{{{value}}}\n" for key, value in macros.items())
     )
 
     comparison = pd.DataFrame(
@@ -438,110 +460,98 @@ def main() -> None:
             ("Classical ARROW", "yes", methods["classical_arrow"]["mae_kcal_mol"], "—", "—"),
             ("ARROW/PIMD8", "yes", methods["arrow_pimd8"]["mae_kcal_mol"], "—", "—"),
             (
-                "Previous structure-only",
+                "Matched structure-only",
                 "no",
-                methods["previous_structure_only"]["mae_kcal_mol"],
+                methods["matched_structure_only"]["mae_kcal_mol"],
                 "—",
                 "—",
             ),
-            ("Narrow response", "no", methods["narrow_response"]["mae_kcal_mol"], "—", "—"),
-            ("+ SMD(water)", "no", methods["smd_water"]["mae_kcal_mol"], "—", "—"),
             (
                 "SolvAI",
                 "no",
-                methods["smd_confsolv_fixed"]["mae_kcal_mol"],
-                methods["family_holdout"]["mae_kcal_mol"],
-                methods["scaffold_holdout"]["mae_kcal_mol"],
+                methods["full_solvai"]["mae_kcal_mol"],
+                global_results["global_family"]["F_full_solvai"]["mae_kcal_mol"],
+                global_results["global_scaffold"]["F_full_solvai"]["mae_kcal_mol"],
             ),
-            ("Nested selection", "no", methods["nested_selection"]["mae_kcal_mol"], "—", "—"),
+            (
+                "SolvAI, zero ARROW labels",
+                "no",
+                methods["zero_arrow_full_solvai"]["mae_kcal_mol"],
+                "—",
+                "—",
+            ),
         ],
         columns=[
             "Method",
             "Simulation at inference",
-            "Random OOF MAE",
-            "Family MAE",
-            "Scaffold MAE",
+            "Fixed OOF MAE",
+            "Global family MAE",
+            "Global scaffold MAE",
         ],
     )
     comparison.to_csv(TABLES / "main_comparison.csv", index=False)
-    comparison_fmt = comparison.copy()
-    for c in ["Random OOF MAE", "Family MAE", "Scaffold MAE"]:
-        comparison_fmt[c] = comparison_fmt[c].map(
-            lambda x: f"{x:.3f}" if isinstance(x, float) else x
+    comparison.to_csv(ROOT / "results/model_comparison.csv", index=False)
+    display = comparison.copy()
+    for column in display.columns[2:]:
+        display[column] = display[column].map(
+            lambda value: f"{value:.3f}" if isinstance(value, float) else value
         )
-    latex_table(comparison_fmt, TABLES / "main_comparison.tex", "lcccc")
+    latex_table(display, TABLES / "main_comparison.tex", "lcccc")
     comparison.to_csv(ED / "ED_Table1.csv", index=False)
-    latex_table(comparison_fmt, ED / "ED_Table1.tex", "lcccc")
+    latex_table(display, ED / "ED_Table1.tex", "lcccc")
 
     priors = response_priors()
-    priors.to_csv(SUPP_DATA / "Supplementary_Data_4_teacher_priors.csv", index=False)
-    latex_table(
-        priors[
-            ["prior", "prior_name", "physical_meaning", "source", "model_class", "training_size"]
-        ],
-        SI_TABLES / "response_priors.tex",
-        "rllllr",
-    )
-
-    sources = pd.read_csv(ROOT / "data/manifests/training_source_manifest.csv")
-    sources.to_csv(SUPP_DATA / "Supplementary_Data_4_teacher_sources.csv", index=False)
-    latex_table(
-        sources[
-            [
-                "source",
-                "scientific_role",
-                "original_records",
-                "filtered_records",
-                "benchmark_overlaps_removed",
-                "license",
-            ]
-        ].fillna("—"),
-        SI_TABLES / "source_provenance.tex",
-        "llllrr",
-    )
-
-    endpoint = pd.DataFrame(
+    endpoint = endpoint_sources()
+    source_summary = pd.DataFrame(
         [
-            ("FreeSolv only", 69, "legacy benchmark-disjoint merge", "experimental hydration"),
+            ("CombiSolv-QM", "unique structures", 3961, 2, 3959, "COSMOtherm water"),
+            ("MolSolv", "SMD calculations", 350391, 32, 350359, "SMD(water)"),
+            ("ConfSolv", "model-usable connectivities", 17851, 22, 17829, "conformer response"),
             (
-                "CombiSolv-Exp only",
-                588,
-                "legacy benchmark-disjoint merge",
-                "experimental solvation in water",
-            ),
-            (
-                "FreeSolv + CombiSolv-Exp identity",
-                490,
-                "one connectivity-level merged record",
-                "duplicate-resolved experimental hydration",
-            ),
-            (
-                "SoluteML dGsolvDB3",
-                133,
-                "at least two source measurements",
-                "consensus experimental hydration",
+                "Endpoint labels",
+                "experimental connectivities",
+                1280,
+                0,
+                1280,
+                "hydration free energy",
             ),
         ],
-        columns=["source_group", "selected_records", "selection_rule", "endpoint_target"],
+        columns=["source", "unit", "before standardized exclusion", "removed", "retained", "role"],
     )
-    endpoint.to_csv(SUPP_DATA / "Supplementary_Data_4_endpoint_sources.csv", index=False)
-    latex_table(endpoint, SI_TABLES / "endpoint_sources.tex", "lrlp{4.2cm}")
+    latex_table(priors, SI_TABLES / "response_priors.tex", "rlllllrrl")
+    latex_table(source_summary, SI_TABLES / "source_provenance.tex", "llrrrp{3.0cm}")
+    latex_table(endpoint, SI_TABLES / "endpoint_sources.tex", "lrl")
 
-    repeat_frame = pd.read_csv(ROOT / "results/robustness/repeated_metrics.csv")
-    repeat_selected = repeat_frame.loc[
-        repeat_frame.method.isin(["Nested selection", "narrow response + SMD + ConfSolv response"])
-    ].copy()
-    repeat_selected["mae"] = repeat_selected.mae.map(lambda x: f"{x:.5f}")
-    latex_table(repeat_selected, SI_TABLES / "repeat_values.tex", "rrlrr")
+    repeat_rows = []
+    repeat_metrics = pd.read_csv(
+        ROOT / "results/confirmatory/standardized_exclusion_endpoint_metrics.csv"
+    )
+    for row in repeat_metrics.loc[
+        repeat_metrics.partition.eq("standardized_exclusion_repeat")
+    ].itertuples():
+        repeat_rows.append((row.repeat, int(row.split_seed), row.method, f"{row.mae:.5f}"))
+    repeat_table = pd.DataFrame(repeat_rows, columns=["Repeat", "Split seed", "Method", "MAE"])
+    latex_table(repeat_table, SI_TABLES / "repeat_values.tex", "rrlr")
+
+    separation_table = pd.read_csv(
+        ROOT / "results/confirmatory/standardized_exclusion_global_separation_metrics.csv"
+    )
+    separation_table["mae"] = separation_table.mae.map(lambda value: f"{value:.3f}")
+    latex_table(
+        separation_table[["regime", "method", "n", "mae"]],
+        SI_TABLES / "global_separation.tex",
+        "llrr",
+    )
+
     family = pd.DataFrame(metrics["chemistry_family"])
-    family["mae_kcal_mol"] = family.mae_kcal_mol.map(lambda x: f"{x:.3f}")
+    family["mae_kcal_mol"] = family.mae_kcal_mol.map(lambda value: f"{value:.3f}")
     latex_table(family, SI_TABLES / "family_errors.tex", "lrr")
-
     manifest = json.loads((ROOT / "models/final/manifest.json").read_text())["model_files"]
-    artifacts = pd.DataFrame([{"file": k, **v} for k, v in manifest.items()])
+    artifacts = pd.DataFrame([{"file": key, **value} for key, value in manifest.items()])
     latex_table(artifacts, SI_TABLES / "artifact_manifest.tex", "lrl")
+
     runtime = json.loads((ROOT / "results/runtime/runtime_benchmark.json").read_text())
-    runtime_table = pd.DataFrame(
+    runtime_rows = pd.DataFrame(
         [
             ("cold single molecule", f"{runtime['single_molecule']['cold_seconds']:.3f} s"),
             (
@@ -551,21 +561,20 @@ def main() -> None:
             ("warm single molecule p95", f"{runtime['single_molecule']['warm_p95_seconds']:.3f} s"),
             ("batch 32 median", f"{runtime['batch']['median_seconds']:.3f} s"),
             ("batch 32 per molecule", f"{runtime['batch']['median_seconds_per_molecule']:.3f} s"),
-            (
-                "peak resident memory",
-                f"{runtime['single_molecule']['peak_rss_kib'] / 1024:.1f} MiB",
-            ),
         ],
-        columns=["measurement", "value"],
+        columns=["Measurement", "Value"],
     )
-    latex_table(runtime_table, SI_TABLES / "runtime.tex", "ll")
+    latex_table(runtime_rows, SI_TABLES / "runtime.tex", "ll")
 
     ledger = experiment_ledger(metrics)
     ledger.to_csv(SUPP_DATA / "Supplementary_Data_1_experiment_ledger.csv", index=False)
     workbook(SUPP_DATA / "Supplementary_Data_1_experiment_ledger.xlsx", {"experiments": ledger})
 
-    headline = pd.read_parquet(ROOT / "results/predictions/headline_oof.parquet")
-    base = headline[
+    predictions = pd.read_parquet(
+        ROOT / "results/confirmatory/standardized_exclusion_endpoint_predictions.parquet"
+    )
+    primary = predictions.loc[predictions.partition.eq("standardized_exclusion_primary")].copy()
+    base = primary[
         [
             "molecule_id",
             "molecule_name",
@@ -574,55 +583,52 @@ def main() -> None:
             "scaffold",
             "fold",
             "y_true",
-            "delta_g_pimd8",
-            "delta_g_classical_arrow",
         ]
     ].drop_duplicates("molecule_id")
-    wide = headline.pivot(index="molecule_id", columns="method", values="y_pred").reset_index()
-    molecule_predictions = base.merge(wide, on="molecule_id", validate="one_to_one")
+    benchmark = pd.read_parquet(ROOT / "data/benchmark/arrow_solvation_master.parquet")
+    benchmark = benchmark.loc[
+        benchmark.solvent.eq("water"), ["molecule_id", "delta_g_pimd8", "delta_g_classical_arrow"]
+    ]
+    wide = primary.pivot(index="molecule_id", columns="method", values="y_pred").reset_index()
+    molecule_predictions = base.merge(benchmark, on="molecule_id", validate="one_to_one").merge(
+        wide, on="molecule_id", validate="one_to_one"
+    )
     molecule_predictions.to_csv(
         SUPP_DATA / "Supplementary_Data_2_molecule_predictions.csv", index=False
     )
     workbook(
         SUPP_DATA / "Supplementary_Data_2_molecule_predictions.xlsx",
-        {"predictions": molecule_predictions},
+        {"primary predictions": molecule_predictions},
     )
 
-    benchmark = pd.read_parquet(ROOT / "data/benchmark/arrow_solvation_master.parquet")
-    benchmark = benchmark.loc[
-        benchmark.solvent.eq("water"),
-        [
-            "molecule_id",
-            "molecule_name",
-            "canonical_smiles",
-            "functional_group_family",
-            "scaffold",
-            "fold_random",
-            "fold_family",
-            "fold_scaffold",
-        ],
-    ]
-    repeated = pd.read_parquet(ROOT / "results/robustness/repeated_oof.parquet")
-    repeated = repeated.loc[
-        repeated.method.eq("narrow response + SMD + ConfSolv response"),
-        ["molecule_id", "repeat", "split_seed", "outer_fold"],
-    ]
-    repeat_wide = (
-        repeated.pivot(index="molecule_id", columns="repeat", values="outer_fold")
-        .add_prefix("repeat_fold_")
-        .reset_index()
+    assignments = pd.read_parquet(
+        ROOT / "results/confirmatory/standardized_exclusion_chemical_separation_assignments.parquet"
     )
-    assignments = benchmark.merge(repeat_wide, on="molecule_id", validate="one_to_one")
+    repeat_assignments = predictions.loc[
+        predictions.partition.eq("standardized_exclusion_repeat")
+        & predictions.method.eq("F_full_solvai"),
+        ["molecule_id", "repeat", "split_seed", "fold"],
+    ]
     assignments.to_csv(SUPP_DATA / "Supplementary_Data_3_split_assignments.csv", index=False)
     workbook(
-        SUPP_DATA / "Supplementary_Data_3_split_assignments.xlsx", {"assignments": assignments}
+        SUPP_DATA / "Supplementary_Data_3_split_assignments.xlsx",
+        {"chemical assignments": assignments, "repeat folds": repeat_assignments},
     )
 
+    audit_summary = pd.read_csv(ROOT / "audits/confirmatory/chemical_distance_summary.csv")
+    source_summary.to_csv(SUPP_DATA / "Supplementary_Data_4_teacher_sources.csv", index=False)
+    priors.to_csv(SUPP_DATA / "Supplementary_Data_4_teacher_priors.csv", index=False)
+    endpoint.to_csv(SUPP_DATA / "Supplementary_Data_4_endpoint_sources.csv", index=False)
     workbook(
         SUPP_DATA / "Supplementary_Data_4_teacher_manifests.xlsx",
-        {"response_priors": priors, "teacher_sources": sources, "endpoint_sources": endpoint},
+        {
+            "response priors": priors,
+            "teacher sources": source_summary,
+            "endpoint sources": endpoint,
+            "identity audit": audit_summary,
+        },
     )
-    print("Rendered manuscript tables and four machine-readable Supplementary Data packages.")
+    print("Rendered confirmatory manuscript tables and Supplementary Data.")
 
 
 if __name__ == "__main__":

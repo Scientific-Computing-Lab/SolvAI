@@ -1,0 +1,14 @@
+{
+  "original_rows": 3961,
+  "rows_after_exclusion": 3959,
+  "excluded_rows": 2,
+  "training_rows": 3168,
+  "validation_rows": 396,
+  "test_rows": 395,
+  "target": "target_qm_water",
+  "epochs_cap": 30,
+  "patience": 7,
+  "batch_size": 64,
+  "foundation": "CHEMELEON",
+  "pytorch_seed": 20260826
+}

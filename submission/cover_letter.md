@@ -2,27 +2,37 @@
 
 Dear Editors,
 
-We submit “Distilling solvation physics for simulation-free hydration free
-energies” for consideration as an Article in *Nature*.
+We submit “Structure-predicted solvent responses enable simulation-free hydration
+free-energy prediction” for consideration as an Article in *Nature Communications*.
 
-Hydration free energy is a basic molecular quantity, but high accuracy can
-require explicit solvent and path-integral sampling for every new solute. We
-show a different route: physical calculations are used once to define reusable
-solvent-response supervision, which is distilled into a system that accepts
-only molecular structure at inference. On the same 85-solute reference set used
-to establish the ARROW/PIMD8 result, SolvAI reaches a strict five-fold OOF MAE
-of 0.197 kcal/mol and a five-partition mean of 0.204 ± 0.005 kcal/mol, while
-running no MD, PIMD or probe calculation at deployment.
+High-accuracy solvation calculations repeatedly pay the cost of resolving solvent
+response for each molecule. We test a different use of physical computation: learn
+compact response coordinates from large external calculations, predict those
+coordinates from structure, and expose them to a separately supervised experimental
+endpoint. The resulting SolvAI system accepts a SMILES string and runs no molecular
+dynamics, path-integral dynamics or probe calculation.
 
-The conceptual advance extends beyond this particular thermodynamic endpoint.
-It suggests that expensive simulation can train transferable physical response
-coordinates and thereby be amortized across future molecules. The complete
-model, held-out predictions, leakage audit, provenance record, figure source
-and manuscript build are supplied in a reproducible public repository.
+The paper’s central evidence is a preregistered matched comparison. With identical
+experimental labels, molecular descriptors, endpoint architecture, weights, folds
+and seeds, adding 15 molecule-aligned response priors lowers five-fold out-of-fold MAE
+from 0.303 to 0.202 kcal mol⁻¹ on the 85-solute ARROW reference set (paired change
+−0.101; 95% bootstrap interval −0.215 to −0.020). The response advantage disappears
+when the priors are shuffled, persists across five complete partitions, survives
+family, scaffold, molecular-cluster and nearest-neighbour exclusions applied to the
+entire supervised pool, and remains when no ARROW experimental labels are used for
+training. The final point estimate is comparable to the reconstructed ARROW/PIMD8
+error of 0.205 kcal mol⁻¹. PIMD is an accuracy comparator, not a retained teacher.
 
-The direct comparison is made on the molecular reference set used to establish
-the ARROW/PIMD8 result. Independent split repeats and harder family and
-scaffold tests define its present generalization scope.
+The work also identifies the boundary of the idea. Compact, learnable solvent-response
+coordinates transfer; sparse high-fidelity alchemical responses currently do not,
+because their structure-to-response errors remain too large. We believe this
+distinction makes the study relevant beyond hydration prediction: it establishes a
+controlled route by which physical calculations can become reusable molecular
+supervision rather than per-query computation.
+
+The manuscript is accompanied by molecule-level predictions, the preregistration,
+identity and similarity audits, all negative controls, frozen artifacts, source code
+and a complete reproducibility package.
 
 Sincerely,
 

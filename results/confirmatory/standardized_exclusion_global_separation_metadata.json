@@ -1,0 +1,71 @@
+{
+  "family_rules": [
+    {
+      "name": "carboxylic_acid",
+      "smarts": "[CX3](=O)[OX2H1]"
+    },
+    {
+      "name": "amide",
+      "smarts": "[NX3][CX3](=O)"
+    },
+    {
+      "name": "ester",
+      "smarts": "[CX3](=O)[OX2][#6]"
+    },
+    {
+      "name": "aldehyde",
+      "smarts": "[CX3H1](=O)"
+    },
+    {
+      "name": "ketone",
+      "smarts": "[#6][CX3](=O)[#6]"
+    },
+    {
+      "name": "alcohol_or_phenol",
+      "smarts": "[OX2H1][#6]"
+    },
+    {
+      "name": "ether",
+      "smarts": "[#6][OD2][#6]"
+    },
+    {
+      "name": "amine",
+      "smarts": "[NX3;!$(N-C=O);!$(N-S=O)]"
+    },
+    {
+      "name": "thiol",
+      "smarts": "[SX2H1]"
+    },
+    {
+      "name": "sulfide_or_disulfide",
+      "smarts": "[#6][SX2,SX1][#6,S]"
+    }
+  ],
+  "family_precedence": [
+    "carboxylic_acid",
+    "amide",
+    "ester",
+    "aldehyde",
+    "ketone",
+    "alcohol_or_phenol",
+    "ether",
+    "amine",
+    "thiol",
+    "sulfide_or_disulfide",
+    "aromatic_heterocycle",
+    "carbocyclic_aromatic",
+    "alkene_or_diene",
+    "saturated_hydrocarbon",
+    "other"
+  ],
+  "butina_similarity": 0.7,
+  "nearest_neighbor_thresholds": [
+    0.5,
+    0.6,
+    0.7,
+    0.8
+  ],
+  "benchmark_rows": 85,
+  "public_rows": 1280,
+  "standardized_exclusion_teachers": true
+}

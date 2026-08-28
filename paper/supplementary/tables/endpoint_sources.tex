@@ -1,10 +1,10 @@
-\begin{tabular}{lrlp{4.2cm}}
+\begin{tabular}{lrl}
 \toprule
-source\_group & selected\_records & selection\_rule & endpoint\_target \\
+source group & selected records & selection rule \\
 \midrule
-FreeSolv only & 69 & legacy benchmark-disjoint merge & experimental hydration \\
-CombiSolv-Exp only & 588 & legacy benchmark-disjoint merge & experimental solvation in water \\
-FreeSolv + CombiSolv-Exp identity & 490 & one connectivity-level merged record & duplicate-resolved experimental hydration \\
-SoluteML dGsolvDB3 & 133 & at least two source measurements & consensus experimental hydration \\
+FreeSolv only & 69 & benchmark-disjoint connectivity \\
+CombiSolv-Exp only & 588 & water records; benchmark-disjoint connectivity \\
+FreeSolv + CombiSolv-Exp & 490 & one duplicate-resolved connectivity \\
+SoluteML dGsolvDB3 & 133 & at least two source measurements \\
 \bottomrule
 \end{tabular}

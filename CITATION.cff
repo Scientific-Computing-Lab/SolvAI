@@ -1,9 +1,9 @@
 cff-version: 1.2.0
 message: "If you use SolvAI, please cite the accompanying manuscript."
-title: "Distilling solvation physics for simulation-free hydration free energies"
+title: "Structure-predicted solvent responses enable simulation-free hydration free-energy prediction"
 type: software
 version: 1.0.0
-date-released: 2026-08-27
+date-released: 2026-08-28
 authors:
   - family-names: Oren
     given-names: Gal

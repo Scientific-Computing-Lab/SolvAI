@@ -2,35 +2,35 @@
   "schema_version": 1,
   "model_files": {
     "MODEL_CARD.md": {
-      "sha256": "3f80cffbc246f6bcde1eb104e0b1699b686b462a6b53f0a7cf59bb5821901ba2",
-      "bytes": 3637
+      "sha256": "dc46ac98f669ff923f05989eb9386e5fc3ecb790fdffcfc67e26d576dc0cee88",
+      "bytes": 1230
     },
     "abraham_teacher.joblib": {
       "sha256": "8c8a6365e7162dbe6ae445ce4004928ed86b2669d3e7a70d3d054f143ca97554",
       "bytes": 87055391
     },
     "combisolv_qm.pt": {
-      "sha256": "a02e38a69450f67404909b46c6931ee5ba226460037c8caeadcf34cca3ed0690",
+      "sha256": "2950be1232e2f868136e3388cf139e671d4196922ece0d3c7043d9dadece8b40",
       "bytes": 37452324
     },
     "confsolv_teacher.joblib": {
-      "sha256": "55a1d8b9ef8758f478c2f79b8dce17a04526a9ac39373382dc5ee44c2e115f25",
-      "bytes": 2297076
+      "sha256": "a71487e53d5085e897dad02e62e95562933bc47262145fbf44286aae04b70b0d",
+      "bytes": 5729365
     },
     "head.joblib": {
-      "sha256": "1ba1449d65b053d7006dd4b47bd616ecb9ed027875f75ce47b4730b12d368d06",
-      "bytes": 29448366
+      "sha256": "fdc88cbae31696f254d85eb427b3c53a4811f29b3290d605b4f1ea66ebb95790",
+      "bytes": 29424285
     },
     "implicit_teacher.joblib": {
       "sha256": "484d5e0c1efa759c8e7acbfcbbd87e218b93ae239e7f35303fe4cd7e310910f8",
       "bytes": 36316890
     },
     "model_card.json": {
-      "sha256": "610f23c7aa3429a9b981166c9e7bf10d89b1797a8a1e9b43505543c7b30fdc6a",
-      "bytes": 1268
+      "sha256": "6f9da531a67d0428822605d27f94530446a2105e9cb6ac73032cd6eaa870f9a6",
+      "bytes": 1449
     },
     "molsolv_smd.pt": {
-      "sha256": "2b03d32e038b615518b1509ebc2a7c98b3aba2a3eb2d6564a6f95fd7aa9a41d8",
+      "sha256": "35601030f030af72a9e6990bf8003df9d481858b27994b3fc70c81d605d130be",
       "bytes": 37226928
     },
     "openff_teacher.joblib": {
@@ -41,13 +41,13 @@
   "smoke_test": [
     {
       "smiles": "CCO",
-      "prediction_kcal_mol": -5.020248148148135,
-      "ensemble_spread_kcal_mol": 0.005696741644686393
+      "prediction_kcal_mol": -5.01256597222221,
+      "ensemble_spread_kcal_mol": 0.004713819174627826
     },
     {
       "smiles": "c1ccccc1",
-      "prediction_kcal_mol": -0.8935755886243387,
-      "ensemble_spread_kcal_mol": 0.0069455350594913165
+      "prediction_kcal_mol": -0.8935898148148143,
+      "ensemble_spread_kcal_mol": 0.002920977832246134
     }
   ]
 }

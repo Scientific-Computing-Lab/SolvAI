@@ -81,7 +81,16 @@ def scan_history() -> tuple[int, list[dict[str, str]]]:
 def main() -> None:
     findings = []
     scanned = 0
-    for path in ROOT.rglob("*"):
+    release_files = subprocess.run(
+        ["git", "ls-files", "--cached", "--others", "--exclude-standard", "-z"],
+        cwd=ROOT,
+        check=True,
+        capture_output=True,
+    ).stdout.split(b"\0")
+    for encoded in release_files:
+        if not encoded:
+            continue
+        path = ROOT / encoded.decode(errors="surrogateescape")
         if not path.is_file() or any(part in EXCLUDED_PARTS for part in path.parts):
             continue
         if not is_scannable(path):

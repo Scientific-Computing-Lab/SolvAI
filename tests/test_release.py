@@ -59,15 +59,18 @@ def test_artifact_contains_no_prohibited_feature() -> None:
 
 def test_smiles_only_smoke_predictions(smoke_prediction: tuple[np.ndarray, np.ndarray]) -> None:
     prediction, spread = smoke_prediction
-    np.testing.assert_allclose(prediction, [-5.020248, -0.893576], atol=2e-6, rtol=0)
-    np.testing.assert_allclose(spread, [0.005697, 0.006946], atol=2e-6, rtol=0)
+    manifest = json.loads((ROOT / "models/final/manifest.json").read_text())
+    expected_prediction = [row["prediction_kcal_mol"] for row in manifest["smoke_test"]]
+    expected_spread = [row["ensemble_spread_kcal_mol"] for row in manifest["smoke_test"]]
+    np.testing.assert_allclose(prediction, expected_prediction, atol=2e-6, rtol=0)
+    np.testing.assert_allclose(spread, expected_spread, atol=2e-6, rtol=0)
 
 
 def test_paper_metrics_recompute_without_drift() -> None:
     metrics, table = compute_paper_metrics(ROOT)
     assert metrics["benchmark"]["molecules"] == 85
-    assert metrics["methods"]["smd_confsolv_fixed"]["mae_kcal_mol"] == pytest.approx(
-        0.19704747409482312, abs=1e-12
+    assert metrics["methods"]["full_solvai"]["mae_kcal_mol"] == pytest.approx(
+        0.20223406721910991, abs=1e-12
     )
     assert not table.empty
 
@@ -77,3 +80,8 @@ def test_manifest_smoke_values_match_test() -> None:
     card = json.loads((ROOT / "models/final/model_card.json").read_text())
     assert [row["smiles"] for row in manifest["smoke_test"]] == ["CCO", "c1ccccc1"]
     assert card["inference_simulation"] is False
+    assert card["standardized_teacher_exclusions"] == {
+        "combisolv_qm": 2,
+        "molsolv_smd": 32,
+        "confsolv": 22,
+    }

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
   "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="457.2567pt" height="171.527533pt" viewBox="0 0 457.2567 171.527533" xmlns="http://www.w3.org/2000/svg" version="1.1">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1276.062545pt" height="210.582965pt" viewBox="0 0 1276.062545 210.582965" xmlns="http://www.w3.org/2000/svg" version="1.1">
  <metadata>
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-08-27</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -21,97 +20,123 @@
  </defs>
  <g id="figure_1">
   <g id="patch_1">
-   <path d="M 0 171.527533
-L 457.2567 171.527533
-L 457.2567 0
-L 0 0
+   <path d="M -0 210.582965
+L 1276.062545 210.582965
+L 1276.062545 0
+L -0 0
 z
 " style="fill: #ffffff"/>
   </g>
   <g id="axes_1">
    <g id="line2d_1">
-    <path d="M 59.0661 38.922253
-L 442.0773 38.922253
-" clip-path="url(#p477d600268)" style="fill: none; stroke: #18212b; stroke-width: 0.75; stroke-linecap: square"/>
+    <path d="M 791.430545 43.454906
+L 1156.666909 43.454906
+" clip-path="url(#pb2bf9d7a94)" style="fill: none; stroke: #d9dee2; stroke-width: 5; stroke-linecap: round"/>
    </g>
    <g id="line2d_2">
-    <path d="M 59.0661 77.841133
-L 442.0773 77.841133
-" clip-path="url(#p477d600268)" style="fill: none; stroke: #e7ebef; stroke-width: 0.8; stroke-linecap: square"/>
+    <path d="M 791.430545 43.454906
+L 803.118109 43.454906
+" clip-path="url(#pb2bf9d7a94)" style="fill: none; stroke: #b95c50; stroke-width: 5; stroke-linecap: round"/>
    </g>
    <g id="line2d_3">
-    <path d="M 59.0661 113.156413
-L 442.0773 113.156413
-" clip-path="url(#p477d600268)" style="fill: none; stroke: #e7ebef; stroke-width: 0.8; stroke-linecap: square"/>
+    <path d="M 791.430545 87.974906
+L 1156.666909 87.974906
+" clip-path="url(#pb2bf9d7a94)" style="fill: none; stroke: #d9dee2; stroke-width: 5; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_4">
+    <path d="M 791.430545 87.974906
+L 803.118109 87.974906
+" clip-path="url(#pb2bf9d7a94)" style="fill: none; stroke: #b95c50; stroke-width: 5; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_5">
+    <path d="M 791.430545 132.494906
+L 1156.666909 132.494906
+" clip-path="url(#pb2bf9d7a94)" style="fill: none; stroke: #d9dee2; stroke-width: 5; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_6">
+    <path d="M 791.430545 132.494906
+L 803.118109 132.494906
+" clip-path="url(#pb2bf9d7a94)" style="fill: none; stroke: #b95c50; stroke-width: 5; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_7">
+    <path d="M 791.430545 177.014906
+L 1156.666909 177.014906
+" clip-path="url(#pb2bf9d7a94)" style="fill: none; stroke: #d9dee2; stroke-width: 5; stroke-linecap: round"/>
+   </g>
+   <g id="line2d_8">
+    <path d="M 791.430545 177.014906
+L 803.118109 177.014906
+" clip-path="url(#pb2bf9d7a94)" style="fill: none; stroke: #b95c50; stroke-width: 5; stroke-linecap: round"/>
    </g>
    <g id="text_1">
-    <text style="font-weight: 700; font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start" x="7.2" y="14.417773" transform="rotate(-0 7.2 14.417773)">a</text>
+    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: start" x="2.52" y="7.838906" transform="rotate(-0 2.52 7.838906)">Source</text>
    </g>
    <g id="text_2">
-    <text style="font-weight: 700; font-size: 7.1px; font-family: 'DejaVu Sans'; text-anchor: start" x="59.0661" y="33.156493" transform="rotate(-0 59.0661 33.156493)">Source</text>
+    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: start" x="411.584727" y="7.838906" transform="rotate(-0 411.584727 7.838906)">Source-specific unit</text>
    </g>
    <g id="text_3">
-    <text style="font-weight: 700; font-size: 7.1px; font-family: 'DejaVu Sans'; text-anchor: start" x="122.9013" y="33.156493" transform="rotate(-0 122.9013 33.156493)">Source unit</text>
+    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: start" x="835.258909" y="7.838906" transform="rotate(-0 835.258909 7.838906)">Standardized-equivalent exclusion</text>
    </g>
    <g id="text_4">
-    <text style="font-weight: 700; font-size: 7.1px; font-family: 'DejaVu Sans'; text-anchor: start" x="222.6438" y="33.156493" transform="rotate(-0 222.6438 33.156493)">Reference-set relationship</text>
+    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: end" x="1273.542545" y="7.838906" transform="rotate(-0 1273.542545 7.838906)">Retained</text>
    </g>
    <g id="text_5">
-    <text style="font-weight: 700; font-size: 7.1px; font-family: 'DejaVu Sans'; text-anchor: start" x="350.3142" y="33.156493" transform="rotate(-0 350.3142 33.156493)">Training outcome</text>
+    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #17212b" x="2.52" y="43.454906" transform="rotate(-0 2.52 43.454906)">CombiSolv-QM</text>
    </g>
    <g id="text_6">
-    <text style="font-size: 6.25px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #18212b" x="59.0661" y="62.167633" transform="rotate(-0 59.0661 62.167633)">FreeSolv</text>
+    <text style="font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #68737d" x="411.584727" y="43.454906" transform="rotate(-0 411.584727 43.454906)">structures</text>
    </g>
    <g id="text_7">
-    <text style="font-size: 6.25px; font-family: 'DejaVu Sans'; fill: #18212b" transform="translate(122.9013 58.416778)">molecular</text>
-    <text style="font-size: 6.25px; font-family: 'DejaVu Sans'; fill: #18212b" transform="translate(122.9013 65.918487)">identities</text>
+    <text style="font-size: 6.2px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #b95c50" x="974.048727" y="33.437906" transform="rotate(-0 974.048727 33.437906)">2 removed from 3,961</text>
    </g>
    <g id="text_8">
-    <text style="font-size: 6.25px; font-family: 'DejaVu Sans'; fill: #18212b" transform="translate(222.6438 58.416778)">80 of 85 connectivity</text>
-    <text style="font-size: 6.25px; font-family: 'DejaVu Sans'; fill: #18212b" transform="translate(222.6438 65.918487)">matches</text>
+    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #14927d" x="1273.542545" y="43.454906" transform="rotate(-0 1273.542545 43.454906)">3,959</text>
    </g>
    <g id="text_9">
-    <text style="font-size: 6.25px; font-family: 'DejaVu Sans'; fill: #12866a" transform="translate(350.3142 58.416778)">provenance audit;</text>
-    <text style="font-size: 6.25px; font-family: 'DejaVu Sans'; fill: #12866a" transform="translate(350.3142 65.918487)">not an external test</text>
+    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #17212b" x="2.52" y="87.974906" transform="rotate(-0 2.52 87.974906)">MolSolv</text>
    </g>
    <g id="text_10">
-    <text style="font-size: 6.25px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #18212b" x="59.0661" y="97.482913" transform="rotate(-0 59.0661 97.482913)">MolSolv</text>
+    <text style="font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #68737d" x="411.584727" y="87.974906" transform="rotate(-0 411.584727 87.974906)">SMD calculations</text>
    </g>
    <g id="text_11">
-    <text style="font-size: 6.25px; font-family: 'DejaVu Sans'; fill: #18212b" transform="translate(122.9013 93.732058)">SMD conformer</text>
-    <text style="font-size: 6.25px; font-family: 'DejaVu Sans'; fill: #18212b" transform="translate(122.9013 101.233767)">calculations</text>
+    <text style="font-size: 6.2px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #b95c50" x="974.048727" y="77.957906" transform="rotate(-0 974.048727 77.957906)">32 removed from 350,391</text>
    </g>
    <g id="text_12">
-    <text style="font-size: 6.25px; font-family: 'DejaVu Sans'; fill: #18212b" transform="translate(222.6438 93.731814)">82 exact structures +</text>
-    <text style="font-size: 6.25px; font-family: 'DejaVu Sans'; fill: #18212b" transform="translate(222.6438 101.233523)">3 connectivity aliases removed</text>
+    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #14927d" x="1273.542545" y="87.974906" transform="rotate(-0 1273.542545 87.974906)">350,359</text>
    </g>
    <g id="text_13">
-    <text style="font-size: 6.25px; font-family: 'DejaVu Sans'; fill: #12866a" transform="translate(350.3142 93.731814)">350,391 structures</text>
-    <text style="font-size: 6.25px; font-family: 'DejaVu Sans'; fill: #12866a" transform="translate(350.3142 101.233523)">retained</text>
+    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #17212b" x="2.52" y="132.494906" transform="rotate(-0 2.52 132.494906)">ConfSolv</text>
    </g>
    <g id="text_14">
-    <text style="font-size: 6.25px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #18212b" x="59.0661" y="132.798193" transform="rotate(-0 59.0661 132.798193)">ConfSolv</text>
+    <text style="font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #68737d" x="411.584727" y="132.494906" transform="rotate(-0 411.584727 132.494906)">usable connectivities</text>
    </g>
    <g id="text_15">
-    <text style="font-size: 6.25px; font-family: 'DejaVu Sans'; fill: #18212b" transform="translate(122.9013 129.047338)">H₂O conformer</text>
-    <text style="font-size: 6.25px; font-family: 'DejaVu Sans'; fill: #18212b" transform="translate(122.9013 136.549047)">records</text>
+    <text style="font-size: 6.2px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #b95c50" x="974.048727" y="122.477906" transform="rotate(-0 974.048727 122.477906)">22 removed from 17,851</text>
    </g>
    <g id="text_16">
-    <text style="font-size: 6.25px; font-family: 'DejaVu Sans'; fill: #18212b" transform="translate(222.6438 129.047338)">13 connectivities</text>
-    <text style="font-size: 6.25px; font-family: 'DejaVu Sans'; fill: #18212b" transform="translate(222.6438 136.549047)">removed</text>
+    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #14927d" x="1273.542545" y="132.494906" transform="rotate(-0 1273.542545 132.494906)">17,829</text>
    </g>
    <g id="text_17">
-    <text style="font-size: 6.25px; font-family: 'DejaVu Sans'; fill: #12866a" transform="translate(350.3142 129.047338)">39,878 connectivities</text>
-    <text style="font-size: 6.25px; font-family: 'DejaVu Sans'; fill: #12866a" transform="translate(350.3142 136.549047)">retained</text>
+    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #17212b" x="2.52" y="177.014906" transform="rotate(-0 2.52 177.014906)">Endpoint labels</text>
    </g>
    <g id="text_18">
-    <text style="font-size: 6.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #4b5563" x="59.0661" y="158.561773" transform="rotate(-0 59.0661 158.561773)">Units are intentionally source-specific; unlike records are not plotted on a common scale.</text>
+    <text style="font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #68737d" x="411.584727" y="177.014906" transform="rotate(-0 411.584727 177.014906)">connectivities</text>
+   </g>
+   <g id="text_19">
+    <text style="font-size: 6.2px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #68737d" x="974.048727" y="166.997906" transform="rotate(-0 974.048727 166.997906)">0 removed from 1,280</text>
+   </g>
+   <g id="text_20">
+    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #14927d" x="1273.542545" y="177.014906" transform="rotate(-0 1273.542545 177.014906)">1,280</text>
+   </g>
+   <g id="text_21">
+    <text style="font-size: 6.2px; font-family: 'DejaVu Sans'; fill: #68737d" transform="translate(2.52 198.511211)">Source units are reported separately. Bar lengths are normalized within source,</text>
+    <text style="font-size: 6.2px; font-family: 'DejaVu Sans'; fill: #68737d" transform="translate(2.52 205.952906)">not compared across calculations, structures and connectivities.</text>
    </g>
   </g>
  </g>
  <defs>
-  <clipPath id="p477d600268">
-   <rect x="51.0867" y="20.183533" width="398.97" height="144.144"/>
+  <clipPath id="pb2bf9d7a94">
+   <rect x="773.168727" y="36.776906" width="401.76" height="146.916"/>
   </clipPath>
  </defs>
 </svg>

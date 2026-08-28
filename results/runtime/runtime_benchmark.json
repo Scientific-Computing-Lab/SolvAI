@@ -11,7 +11,7 @@
   "software": {
     "python": "3.11.15",
     "chemprop": "2.2.4",
-    "torch": "2.5.1+cu121",
+    "torch": "2.5.1+cu124",
     "rdkit": "2026.03.5",
     "numpy": "2.4.6",
     "pandas": "3.0.5",
@@ -20,29 +20,29 @@
     "joblib": "1.5.3"
   },
   "single_molecule": {
-    "cold_seconds": 17.659272830933332,
+    "cold_seconds": 15.311922369059175,
     "warm_runs_seconds": [
-      17.50682690704707,
-      17.64459134102799,
-      17.521908842027187,
-      17.46720330300741,
-      17.555719229974784
+      15.326824438991025,
+      15.294081947999075,
+      15.129473804030567,
+      15.303545041009784,
+      15.143913132022135
     ],
-    "warm_median_seconds": 17.521908842027187,
-    "warm_p95_seconds": 17.626816918817347,
-    "peak_rss_kib": 155408
+    "warm_median_seconds": 15.294081947999075,
+    "warm_p95_seconds": 15.322168559394777,
+    "peak_rss_kib": 154740
   },
   "batch": {
     "size": 32,
     "runs_seconds": [
-      17.911208495032042,
-      18.089923321967945,
-      17.897782942047343
+      15.83421961509157,
+      15.823713939986192,
+      15.749894134001806
     ],
-    "median_seconds": 17.911208495032042,
-    "p95_seconds": 18.072051839274355,
-    "median_seconds_per_molecule": 0.5597252654697513,
-    "molecules_per_second": 1.7865907824631546
+    "median_seconds": 15.823713939986192,
+    "p95_seconds": 15.833169047581032,
+    "median_seconds_per_molecule": 0.4944910606245685,
+    "molecules_per_second": 2.0222812496083282
   },
   "published_arrow_pimd8_reference": {
     "hardware": "NVIDIA GeForce RTX 2080 Ti + 2 CPU cores",
@@ -64,12 +64,12 @@
   },
   "derived_comparison": {
     "single_warm_total_work_speedup_range": [
-      49309.69609473439,
-      55473.40810657619
+      56492.43955522529,
+      63553.994499628454
     ],
     "batch_amortized_total_work_speedup_range": [
-      1543614.4360481657,
-      1736566.2405541863
+      1747250.9996615956,
+      1965657.3746192951
     ],
     "caveat": "The numerator is a published RTX 2080 Ti simulation estimate and the denominator is measured CPU inference on the release host; this compares total per-molecule work, not same-hardware kernel throughput."
   }

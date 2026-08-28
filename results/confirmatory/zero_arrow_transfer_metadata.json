@@ -1,0 +1,10 @@
+{
+  "benchmark_rows": 85,
+  "public_training_rows": 1280,
+  "arrow_training_labels": 0,
+  "model_seeds": [
+    11,
+    29,
+    47
+  ]
+}

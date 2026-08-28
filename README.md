@@ -1,39 +1,42 @@
 # SolvAI
 
-**SolvAI distils solvent-response physics into a molecular model that predicts
-hydration free energies directly from structure—without molecular simulation at
-inference.**
+**SolvAI learns reusable solvent-response coordinates from physical calculations and
+predicts hydration free energy directly from molecular structure—without running
+simulation at inference.**
 
 ![SolvAI concept](paper/figures/main/fig1_concept.svg)
 
-Expensive quantum chemistry and molecular simulation normally resolve solvent
-response separately for every molecule. SolvAI instead learns structure-to-
-response surrogates from benchmark-disjoint physical calculations, combines
-their predictions with molecular descriptors, and returns hydration free energy
-from a SMILES string. It runs no MD, PIMD, ARROW trajectory, probe or routing
-policy at deployment.
+The released system maps one SMILES string to one hydration free energy. Its response
+surrogates were trained on benchmark-disjoint quantum-continuum, alchemical,
+empirical and conformational data; the expensive source calculations are not rerun
+for a query. PIMD-derived features were tested but are not present in the final model.
 
-## Result
+## Confirmatory result
 
 On the 85-solute neutral-hydration reference set introduced with ARROW:
 
-| Method | Inference simulation? | MAE (kcal/mol) |
+| Method | Simulation at inference? | MAE (kcal/mol) |
 |---|---:|---:|
 | Classical ARROW | yes | 0.785 |
 | ARROW/PIMD8 | yes | 0.205 |
-| Previous structure-only model | no | 0.239 |
-| SolvAI, strict five-fold OOF | **no** | **0.197** |
-| SolvAI, five independent splits | **no** | **0.204 ± 0.005** |
+| Matched structure-only endpoint | no | 0.303 |
+| SolvAI, fixed five-fold OOF | **no** | **0.202** |
+| SolvAI, five complete partitions | **no** | **0.207 ± 0.004** |
+| SolvAI, no ARROW labels in training | **no** | **0.257** |
 
-The exact sub-0.20 point estimate is split-sensitive. The supported conclusion
-is that SolvAI reaches PIMD8-level accuracy on this molecular reference set;
-robust sub-0.20 generalization is not claimed. Family and scaffold holdouts are
-0.240 and 0.241 kcal/mol, respectively.
+The matched endpoint uses exactly the same experimental labels, descriptors,
+ExtraTrees architecture, weights, folds and seeds; only the 15 response priors are
+removed. The paired OOF improvement is −0.101 kcal/mol (95% bootstrap interval,
+−0.215 to −0.020). Shuffled priors do not improve the endpoint, and the advantage
+survives global family, scaffold, molecular-cluster and nearest-neighbour exclusions.
+
+The supported conclusion is PIMD8-level accuracy on this reference chemistry, not a
+general sub-0.20 claim. Global family and scaffold separation
+remain harder at 0.468 and 0.376 kcal/mol, respectively.
 
 ## Install and predict
 
-Prerequisites are Python 3.11 and [uv](https://docs.astral.sh/uv/). Git LFS is
-required when cloning the bundled model artifacts.
+Python 3.11, [uv](https://docs.astral.sh/uv/) and Git LFS are required.
 
 ```bash
 git lfs install
@@ -43,14 +46,14 @@ make setup
 uv run solvai predict 'CCO'
 ```
 
-Output columns are input SMILES, ensemble-mean hydration free energy and
-ensemble spread, all energy values in kcal/mol:
+The command returns the ensemble-mean hydration free energy and ensemble spread in
+kcal/mol:
 
 ```text
-CCO    -5.020248    0.005697
+CCO    -5.012566    0.004714
 ```
 
-Python API:
+The API is equally small:
 
 ```python
 from solv_ai import predict_smiles
@@ -61,52 +64,42 @@ prediction, spread = predict_smiles(["CCO", "c1ccccc1"])
 ## Reproduce the paper
 
 ```bash
-make test
-make verify
-make figures
-make paper
+make test && make verify && make figures && make paper
 ```
 
-This quick route uses frozen, hash-verified artifacts and recomputes every
-headline number from molecule-level held-out predictions. It does not rerun
-physics calculations or training. See
-[QUICK_REPRODUCTION.md](repro/QUICK_REPRODUCTION.md) and
-[FULL_REPRODUCTION.md](repro/FULL_REPRODUCTION.md) for the two scopes.
+This quick path uses frozen, hash-verified artifacts to recompute predictions,
+metrics, tables, figures and PDFs. It does not rerun physical calculations or model
+training. The preregistered confirmation protocol is in
+[`release/CONFIRMATORY_FREEZE.md`](release/CONFIRMATORY_FREEZE.md), with results in
+[`reports/CONFIRMATORY_ANALYSIS.md`](reports/CONFIRMATORY_ANALYSIS.md).
 
-The compiled [main manuscript](paper/main.pdf) and
-[Supplementary Information](paper/supplementary/supplementary.pdf) follow the
-Nature submission separation: Extended Data are standalone files in
-`paper/extended_data/`, not figures embedded in the Supplementary Information.
-Machine-readable paper metrics are in
-[results/paper_metrics.json](results/paper_metrics.json).
+The compiled [manuscript](paper/main.pdf),
+[Supplementary Information](paper/supplementary/supplementary.pdf), standalone
+Extended Data and machine-readable Supplementary Data are included. See
+[`repro/QUICK_REPRODUCTION.md`](repro/QUICK_REPRODUCTION.md),
+[`repro/FULL_REPRODUCTION.md`](repro/FULL_REPRODUCTION.md) and
+[`repro/DATA_PROVENANCE.md`](repro/DATA_PROVENANCE.md).
 
 ## Scientific safeguards
 
-- Every external supervised training connectivity is disjoint from ARROW-85.
-- Every accuracy value is held out; the all-data deployment refit is never used
-  to score the paper.
-- The final input schema contains no experimental, ARROW, PIMD, trajectory,
-  probe, family, scaffold or fold field.
-- The selected artifact uses no PIMD8 label. Sparse PIMD response supervision
-  was tested, did not improve OOF accuracy, and is reported as an ablation.
-- The software reproduces the frozen metric and artifact audits in CI.
-
-See the [leakage audit](audits/leakage_audit.md),
-[model card](models/final/MODEL_CARD.md) and
-[data provenance](repro/DATA_PROVENANCE.md).
+- Exact and standardized benchmark equivalents are absent from all supervised
+  external training sources used by the confirmatory model.
+- Every reported accuracy value is held out; the all-data deployment refit is never
+  used as evidence.
+- Shuffled-prior, global chemical-separation and zero-ARROW-label controls are
+  included molecule by molecule.
+- Inference requires no experimental target, family/scaffold label, MD, PIMD, ARROW
+  trajectory, probe or routing policy.
+- The released artifact contains no retained PIMD-trained feature.
 
 ## Repository map
 
-- `solv_ai/` — public inference, feature and audit code
-- `models/final/` — frozen response teachers and endpoint ensemble
-- `results/` — held-out predictions, metrics and ablations
-- `figures/` — source-generated main and Extended Data figures
-- `paper/` — manuscript and Supplementary Information
-- `repro/` — quick/full reproduction and provenance
-- `submission/` — editorial and availability documents
+- `solv_ai/` — SMILES-only inference and metric code
+- `models/final/` — standardized-exclusion response surrogates and endpoint ensemble
+- `results/confirmatory/` — preregistered predictions, comparisons and statistics
+- `audits/confirmatory/` — identity, similarity and refit audits
+- `paper/` — Nature Communications manuscript, Extended Data and Supplementary files
+- `repro/` — quick/full reproduction and data provenance
 
-## Citation and licence
-
-Citation metadata are provided in `CITATION.cff`. Source code is MIT licensed.
-External data and model inputs retain the terms listed in
-`repro/DATA_PROVENANCE.md`.
+Citation metadata are provided in `CITATION.cff`. Code is MIT licensed; external
+datasets retain the terms listed in the provenance record.

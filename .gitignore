@@ -31,3 +31,8 @@ paper/**/*.out
 paper/**/*.run.xml
 paper/**/*.synctex.gz
 paper/**/*.toc
+results/confirmatory/teacher_refits/*/input/
+results/confirmatory/teacher_refits/*/model/
+results/confirmatory/teacher_refits/*/benchmark_and_public_raw_predictions.csv
+results/confirmatory/teacher_refits/confsolv/lightgbm_models.joblib
+results/confirmatory/teacher_refits/*/train.log

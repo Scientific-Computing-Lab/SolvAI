@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "benchmark": {
     "name": "ARROW 85-solute neutral-hydration reference set",
     "molecules": 85,
@@ -17,195 +17,557 @@
       "mae_kcal_mol": 0.20483647058823526,
       "rmse_kcal_mol": 0.2796643809997977
     },
-    "pimd8_plus_nested_residual": {
+    "matched_structure_only": {
       "n": 85,
-      "mae_kcal_mol": 0.1868217189440212,
-      "rmse_kcal_mol": 0.25007520963557445
+      "mae_kcal_mol": 0.3033484655954973,
+      "rmse_kcal_mol": 0.5860682079014722,
+      "median_absolute_error_kcal_mol": 0.15915984347442524
     },
-    "previous_structure_only": {
+    "empirical_residual_block": {
       "n": 85,
-      "mae_kcal_mol": 0.23860611898039202,
-      "rmse_kcal_mol": 0.4037586123514205
+      "mae_kcal_mol": 0.24271149684355184,
+      "rmse_kcal_mol": 0.52232633152592,
+      "median_absolute_error_kcal_mol": 0.1192223985890668
+    },
+    "computation_core_block": {
+      "n": 85,
+      "mae_kcal_mol": 0.25267977086834753,
+      "rmse_kcal_mol": 0.42170326749315346,
+      "median_absolute_error_kcal_mol": 0.12869298500881632
+    },
+    "smd_water_block": {
+      "n": 85,
+      "mae_kcal_mol": 0.2531149568445899,
+      "rmse_kcal_mol": 0.39549377603030245,
+      "median_absolute_error_kcal_mol": 0.1398791556437402
+    },
+    "confsolv_block": {
+      "n": 85,
+      "mae_kcal_mol": 0.2989909179660747,
+      "rmse_kcal_mol": 0.5615235421471564,
+      "median_absolute_error_kcal_mol": 0.16317464726631226
+    },
+    "full_solvai": {
+      "n": 85,
+      "mae_kcal_mol": 0.20223406721910991,
+      "rmse_kcal_mol": 0.31764489263688783,
+      "median_absolute_error_kcal_mol": 0.1168803902116462
     },
     "narrow_response": {
       "n": 85,
-      "mae_kcal_mol": 0.21361517318705275,
-      "rmse_kcal_mol": 0.3484288162410284
+      "mae_kcal_mol": 0.21175834559601642,
+      "rmse_kcal_mol": 0.34559506842292576,
+      "median_absolute_error_kcal_mol": 0.11031338183422168
     },
-    "smd_water": {
+    "narrow_plus_smd": {
       "n": 85,
-      "mae_kcal_mol": 0.2016070042016807,
-      "rmse_kcal_mol": 0.32052049598930893
+      "mae_kcal_mol": 0.2065202326123045,
+      "rmse_kcal_mol": 0.3247721634400191,
+      "median_absolute_error_kcal_mol": 0.11640588183421707
     },
-    "smd_confsolv_fixed": {
+    "zero_arrow_structure_only": {
       "n": 85,
-      "mae_kcal_mol": 0.19704747409482312,
-      "rmse_kcal_mol": 0.3152032986266648
+      "mae_kcal_mol": 0.38482234658678305,
+      "rmse_kcal_mol": 0.6746143761610521,
+      "median_absolute_error_kcal_mol": 0.22200771604938185
     },
-    "nested_selection": {
+    "zero_arrow_full_solvai": {
       "n": 85,
-      "mae_kcal_mol": 0.19930603930646335,
-      "rmse_kcal_mol": 0.32030059078737716
-    },
-    "family_holdout": {
-      "n": 85,
-      "mae_kcal_mol": 0.23956658487654378,
-      "rmse_kcal_mol": 0.350718571395025
-    },
-    "scaffold_holdout": {
-      "n": 85,
-      "mae_kcal_mol": 0.2412820403309476,
-      "rmse_kcal_mol": 0.35903027442600544
+      "mae_kcal_mol": 0.25694059186637636,
+      "rmse_kcal_mol": 0.36624473566112103,
+      "median_absolute_error_kcal_mol": 0.1706203703703677
     }
   },
   "repeated_splits": {
-    "fixed": {
+    "matched_structure_only": {
       "values_kcal_mol": [
-        0.20736603941798956,
-        0.19786305614171612,
-        0.20850858511775108,
-        0.20595106422865495,
-        0.199068270668638
+        0.3177992605949793,
+        0.3105856474841784,
+        0.31308938179012363,
+        0.31601905095704874,
+        0.30727173273939234
       ],
-      "mean_kcal_mol": 0.20375140311494994,
-      "sd_kcal_mol": 0.004927962175510901,
-      "repeats_below_0_20": 2
+      "mean_kcal_mol": 0.31295301471314446,
+      "sd_kcal_mol": 0.004206740598072428,
+      "repeats_below_0_20": 0
     },
-    "nested": {
+    "full_solvai": {
       "values_kcal_mol": [
-        0.20569002701265712,
-        0.20667067267610748,
-        0.21127406460213732,
-        0.20760740714545112,
-        0.21174414893661175
+        0.20788201841217988,
+        0.2101023272486771,
+        0.2121702611188921,
+        0.20617718261489784,
+        0.2005325007262165
       ],
-      "mean_kcal_mol": 0.20859726407459295,
-      "sd_kcal_mol": 0.002748260535786524,
+      "mean_kcal_mol": 0.20737285802417266,
+      "sd_kcal_mol": 0.004442534486346242,
       "repeats_below_0_20": 0
     }
   },
-  "bootstrap": {
-    "fixed": {
-      "replicates": 100000,
-      "seed": 20260827,
-      "ci95_kcal_mol": [
-        0.14810050450215242,
-        0.2522556894392569
-      ],
-      "probability_mae_below_0_20": 0.55935
+  "global_separation": {
+    "global_butina_0_70": {
+      "A_structure_only": {
+        "n": 85,
+        "mae_kcal_mol": 0.34947328531745997,
+        "rmse_kcal_mol": 0.6023165977067343,
+        "median_absolute_error_kcal_mol": 0.20095903483245237
+      },
+      "F_full_solvai": {
+        "n": 85,
+        "mae_kcal_mol": 0.2157005113160082,
+        "rmse_kcal_mol": 0.3314888972050375,
+        "median_absolute_error_kcal_mol": 0.13827416181657792
+      }
     },
-    "nested": {
+    "global_family": {
+      "A_structure_only": {
+        "n": 85,
+        "mae_kcal_mol": 1.2619780647862848,
+        "rmse_kcal_mol": 1.679365064472215,
+        "median_absolute_error_kcal_mol": 0.9052450176366844
+      },
+      "F_full_solvai": {
+        "n": 85,
+        "mae_kcal_mol": 0.4677933152583255,
+        "rmse_kcal_mol": 0.702175419251768,
+        "median_absolute_error_kcal_mol": 0.29093485449735557
+      }
+    },
+    "global_nn_0.50": {
+      "A_structure_only": {
+        "n": 85,
+        "mae_kcal_mol": 0.3585356085148865,
+        "rmse_kcal_mol": 0.621580923619069,
+        "median_absolute_error_kcal_mol": 0.1942534598765444
+      },
+      "F_full_solvai": {
+        "n": 85,
+        "mae_kcal_mol": 0.2186971786544248,
+        "rmse_kcal_mol": 0.32580227852852894,
+        "median_absolute_error_kcal_mol": 0.15004585537918835
+      }
+    },
+    "global_nn_0.60": {
+      "A_structure_only": {
+        "n": 85,
+        "mae_kcal_mol": 0.34392641039267546,
+        "rmse_kcal_mol": 0.6077478574579445,
+        "median_absolute_error_kcal_mol": 0.21146252204584748
+      },
+      "F_full_solvai": {
+        "n": 85,
+        "mae_kcal_mol": 0.21139657261386036,
+        "rmse_kcal_mol": 0.3273532800635895,
+        "median_absolute_error_kcal_mol": 0.1224432319223987
+      }
+    },
+    "global_nn_0.70": {
+      "A_structure_only": {
+        "n": 85,
+        "mae_kcal_mol": 0.34315530811546774,
+        "rmse_kcal_mol": 0.597512238083392,
+        "median_absolute_error_kcal_mol": 0.1966628417107632
+      },
+      "F_full_solvai": {
+        "n": 85,
+        "mae_kcal_mol": 0.2109972548760245,
+        "rmse_kcal_mol": 0.3321249069125521,
+        "median_absolute_error_kcal_mol": 0.1357588412698414
+      }
+    },
+    "global_nn_0.80": {
+      "A_structure_only": {
+        "n": 85,
+        "mae_kcal_mol": 0.3393628828976028,
+        "rmse_kcal_mol": 0.6027907467219462,
+        "median_absolute_error_kcal_mol": 0.18728494863316092
+      },
+      "F_full_solvai": {
+        "n": 85,
+        "mae_kcal_mol": 0.20951534420323698,
+        "rmse_kcal_mol": 0.3268354547670861,
+        "median_absolute_error_kcal_mol": 0.12856478174603403
+      }
+    },
+    "global_scaffold": {
+      "A_structure_only": {
+        "n": 85,
+        "mae_kcal_mol": 0.7281063199424205,
+        "rmse_kcal_mol": 1.009936395997323,
+        "median_absolute_error_kcal_mol": 0.6335415123456807
+      },
+      "F_full_solvai": {
+        "n": 85,
+        "mae_kcal_mol": 0.3761935493360304,
+        "rmse_kcal_mol": 0.5074301057127315,
+        "median_absolute_error_kcal_mol": 0.2913821199294513
+      }
+    }
+  },
+  "paired_confirmatory": [
+    {
+      "analysis": "primary_B_empirical_residual",
+      "candidate": "B_empirical_residual",
+      "reference": "A_structure_only",
+      "candidate_mae": 0.2427114968435518,
+      "reference_mae": 0.3033484655954973,
+      "difference": -0.0606369687519453,
+      "ci_low_95": -0.1084640184502413,
+      "ci_high_95": -0.0216782973061918,
+      "probability_lower_error": 0.99977,
+      "fraction_molecules_improved": 0.6352941176470588,
+      "outcome": "positive",
+      "material": true
+    },
+    {
+      "analysis": "primary_C_computation_core",
+      "candidate": "C_computation_core",
+      "reference": "A_structure_only",
+      "candidate_mae": 0.2526797708683475,
+      "reference_mae": 0.3033484655954973,
+      "difference": -0.0506686947271497,
+      "ci_low_95": -0.1444176230479679,
+      "ci_high_95": 0.0293602506895816,
+      "probability_lower_error": 0.88354,
+      "fraction_molecules_improved": 0.5647058823529412,
+      "outcome": "neutral",
+      "material": true
+    },
+    {
+      "analysis": "primary_D_smd_water",
+      "candidate": "D_smd_water",
+      "reference": "A_structure_only",
+      "candidate_mae": 0.2531149568445899,
+      "reference_mae": 0.3033484655954973,
+      "difference": -0.0502335087509073,
+      "ci_low_95": -0.1284620940528062,
+      "ci_high_95": 0.0055941830973781,
+      "probability_lower_error": 0.9529,
+      "fraction_molecules_improved": 0.4705882352941176,
+      "outcome": "neutral",
+      "material": true
+    },
+    {
+      "analysis": "primary_E_confsolv",
+      "candidate": "E_confsolv",
+      "reference": "A_structure_only",
+      "candidate_mae": 0.2989909179660747,
+      "reference_mae": 0.3033484655954973,
+      "difference": -0.0043575476294225,
+      "ci_low_95": -0.0141727764261071,
+      "ci_high_95": 0.0044808407433992,
+      "probability_lower_error": 0.81882,
+      "fraction_molecules_improved": 0.5294117647058824,
+      "outcome": "neutral",
+      "material": false
+    },
+    {
+      "analysis": "primary_F_full_solvai",
+      "candidate": "F_full_solvai",
+      "reference": "A_structure_only",
+      "candidate_mae": 0.2022340672191099,
+      "reference_mae": 0.3033484655954973,
+      "difference": -0.1011143983763873,
+      "ci_low_95": -0.2150710408512936,
+      "ci_high_95": -0.0202764644898336,
+      "probability_lower_error": 0.99613,
+      "fraction_molecules_improved": 0.6235294117647059,
+      "outcome": "positive",
+      "material": true
+    },
+    {
+      "analysis": "primary_G_narrow_reference",
+      "candidate": "G_narrow_reference",
+      "reference": "A_structure_only",
+      "candidate_mae": 0.2117583455960164,
+      "reference_mae": 0.3033484655954973,
+      "difference": -0.0915901199994808,
+      "ci_low_95": -0.1829036169971601,
+      "ci_high_95": -0.0186901676308481,
+      "probability_lower_error": 0.99458,
+      "fraction_molecules_improved": 0.6588235294117647,
+      "outcome": "positive",
+      "material": true
+    },
+    {
+      "analysis": "primary_H_narrow_smd_reference",
+      "candidate": "H_narrow_smd_reference",
+      "reference": "A_structure_only",
+      "candidate_mae": 0.2065202326123045,
+      "reference_mae": 0.3033484655954973,
+      "difference": -0.0968282329831927,
+      "ci_low_95": -0.2086385564792761,
+      "ci_high_95": -0.0163585006969719,
+      "probability_lower_error": 0.99399,
+      "fraction_molecules_improved": 0.6,
+      "outcome": "positive",
+      "material": true
+    },
+    {
+      "analysis": "five_repeat_molecule_averaged",
+      "candidate": "F_full_solvai",
+      "reference": "A_structure_only",
+      "candidate_mae": 0.2073728580241726,
+      "reference_mae": 0.3129530147131444,
+      "difference": -0.1055801566889717,
+      "ci_low_95": -0.216305404977228,
+      "ci_high_95": -0.0271410688008864,
+      "probability_lower_error": 0.99834,
+      "fraction_molecules_improved": 0.611764705882353,
+      "outcome": "positive",
+      "material": true
+    },
+    {
+      "analysis": "aligned_vs_mean_shuffle_primary_-1",
+      "candidate": "F_full_solvai",
+      "reference": "mean_shuffled_full_priors",
+      "candidate_mae": 0.2022340672191099,
+      "reference_mae": 0.3063926423264856,
+      "difference": -0.1041585751073757,
+      "ci_low_95": -0.2137102079831409,
+      "ci_high_95": -0.0246911990559315,
+      "probability_lower_error": 0.99733,
+      "fraction_molecules_improved": 0.6235294117647059,
+      "outcome": "positive",
+      "material": true
+    },
+    {
+      "analysis": "aligned_vs_mean_shuffle_repeat_0",
+      "candidate": "F_full_solvai",
+      "reference": "mean_shuffled_full_priors",
+      "candidate_mae": 0.2078820184121798,
+      "reference_mae": 0.3174683795772384,
+      "difference": -0.1095863611650584,
+      "ci_low_95": -0.2191262072460968,
+      "ci_high_95": -0.0305248471686895,
+      "probability_lower_error": 0.99872,
+      "fraction_molecules_improved": 0.6941176470588235,
+      "outcome": "positive",
+      "material": true
+    },
+    {
+      "analysis": "aligned_vs_mean_shuffle_repeat_1",
+      "candidate": "F_full_solvai",
+      "reference": "mean_shuffled_full_priors",
+      "candidate_mae": 0.210102327248677,
+      "reference_mae": 0.3104753431642282,
+      "difference": -0.1003730159155511,
+      "ci_low_95": -0.2071777590896993,
+      "ci_high_95": -0.0233321403262921,
+      "probability_lower_error": 0.9975,
+      "fraction_molecules_improved": 0.6235294117647059,
+      "outcome": "positive",
+      "material": true
+    },
+    {
+      "analysis": "aligned_vs_mean_shuffle_repeat_2",
+      "candidate": "F_full_solvai",
+      "reference": "mean_shuffled_full_priors",
+      "candidate_mae": 0.2121702611188921,
+      "reference_mae": 0.3120617762200435,
+      "difference": -0.0998915151011514,
+      "ci_low_95": -0.2088948694935153,
+      "ci_high_95": -0.0245751281621279,
+      "probability_lower_error": 0.99819,
+      "fraction_molecules_improved": 0.6352941176470588,
+      "outcome": "positive",
+      "material": true
+    },
+    {
+      "analysis": "aligned_vs_mean_shuffle_repeat_3",
+      "candidate": "F_full_solvai",
+      "reference": "mean_shuffled_full_priors",
+      "candidate_mae": 0.2061771826148978,
+      "reference_mae": 0.3079828787804751,
+      "difference": -0.1018056961655772,
+      "ci_low_95": -0.2086956963264598,
+      "ci_high_95": -0.0248465965707017,
+      "probability_lower_error": 0.99768,
+      "fraction_molecules_improved": 0.6470588235294118,
+      "outcome": "positive",
+      "material": true
+    },
+    {
+      "analysis": "aligned_vs_mean_shuffle_repeat_4",
+      "candidate": "F_full_solvai",
+      "reference": "mean_shuffled_full_priors",
+      "candidate_mae": 0.2005325007262165,
+      "reference_mae": 0.3089481315141615,
+      "difference": -0.1084156307879449,
+      "ci_low_95": -0.221727227869255,
+      "ci_high_95": -0.0293247412912392,
+      "probability_lower_error": 0.99877,
+      "fraction_molecules_improved": 0.6352941176470588,
+      "outcome": "positive",
+      "material": true
+    },
+    {
+      "analysis": "zero_arrow_transfer",
+      "candidate": "F_full_solvai",
+      "reference": "A_structure_only",
+      "candidate_mae": 0.2569405918663763,
+      "reference_mae": 0.384822346586783,
+      "difference": -0.1278817547204067,
+      "ci_low_95": -0.2459894356617646,
+      "ci_high_95": -0.0373664869507992,
+      "probability_lower_error": 0.99914,
+      "fraction_molecules_improved": 0.6352941176470588,
+      "outcome": "positive",
+      "material": true
+    }
+  ],
+  "bootstrap": {
+    "full_solvai_mae": {
       "replicates": 100000,
       "seed": 20260828,
-      "ci95_kcal_mol": [
-        0.14921274871913537,
-        0.25583452852182553
+      "mean": 0.20223406721910991,
+      "ci95": [
+        0.15309764031992365,
+        0.25741703912101854
       ],
-      "probability_mae_below_0_20": 0.52366
+      "probability_below_zero": 0.0
     },
-    "fixed_vs_previous": {
-      "mean_mae_change_kcal_mol": -0.041558644885568846,
-      "ci95_kcal_mol": [
-        -0.07849818717896004,
-        -0.010929847546980866
+    "full_vs_matched": {
+      "replicates": 100000,
+      "seed": 20260829,
+      "mean": -0.10111439837638733,
+      "ci95": [
+        -0.21429662879538922,
+        -0.020381396542172543
       ],
-      "probability_candidate_better": 0.99754
+      "probability_below_zero": 0.99602
     },
-    "fixed_vs_pimd8": {
-      "mean_mae_change_kcal_mol": -0.007788996493412196,
-      "ci95_kcal_mol": [
-        -0.06398167328489737,
-        0.051057390973778365
+    "full_vs_pimd8": {
+      "replicates": 100000,
+      "seed": 20260830,
+      "mean": -0.0026024033691253597,
+      "ci95": [
+        -0.05989604747023829,
+        0.05681966300193217
       ],
-      "probability_candidate_better": 0.61026
+      "probability_below_zero": 0.5396
+    },
+    "full_vs_mean_shuffled": {
+      "replicates": 100000,
+      "seed": 20260831,
+      "mean": -0.10415857510737574,
+      "ci95": [
+        -0.21345611771743678,
+        -0.02472623782006647
+      ],
+      "probability_below_zero": 0.99717
     }
   },
   "chemistry_family": [
     {
       "family": "Acids",
       "n": 3,
-      "mae_kcal_mol": 0.25709560920047075
+      "mae_kcal_mol": 0.229814509847149
     },
     {
       "family": "Alcohols",
       "n": 13,
-      "mae_kcal_mol": 0.1797852377560709
+      "mae_kcal_mol": 0.19633346391263087
     },
     {
       "family": "Aldehydes",
       "n": 3,
-      "mae_kcal_mol": 0.12723276102292816
+      "mae_kcal_mol": 0.11667494194591461
     },
     {
       "family": "Alkanes",
       "n": 13,
-      "mae_kcal_mol": 0.230706224477683
+      "mae_kcal_mol": 0.2337451442646861
     },
     {
       "family": "Alkenes",
       "n": 5,
-      "mae_kcal_mol": 0.07442100921516767
+      "mae_kcal_mol": 0.08505586463844812
     },
     {
       "family": "Amides",
       "n": 4,
-      "mae_kcal_mol": 0.46735943562610305
+      "mae_kcal_mol": 0.4830242972883607
     },
     {
       "family": "Amines",
       "n": 5,
-      "mae_kcal_mol": 0.10720505070546756
+      "mae_kcal_mol": 0.13838554012345572
     },
     {
       "family": "Aromatics",
       "n": 13,
-      "mae_kcal_mol": 0.298647285578618
+      "mae_kcal_mol": 0.3132016865418524
     },
     {
       "family": "Esters",
       "n": 4,
-      "mae_kcal_mol": 0.06400977733686075
+      "mae_kcal_mol": 0.054817146164021446
     },
     {
       "family": "Ethers",
       "n": 4,
-      "mae_kcal_mol": 0.2669587011684308
+      "mae_kcal_mol": 0.2412925207231032
     },
     {
       "family": "Heterorings",
       "n": 5,
-      "mae_kcal_mol": 0.12158255952380959
+      "mae_kcal_mol": 0.12239019091711026
     },
     {
       "family": "Ketones",
       "n": 5,
-      "mae_kcal_mol": 0.15994637345679008
+      "mae_kcal_mol": 0.1603209634038798
     },
     {
       "family": "Sulfides",
       "n": 4,
-      "mae_kcal_mol": 0.12404947365520297
+      "mae_kcal_mol": 0.11479335372574923
     },
     {
       "family": "Thiols",
       "n": 4,
-      "mae_kcal_mol": 0.09299048754409178
+      "mae_kcal_mol": 0.09532786496913606
     }
   ],
+  "historical_campaign": {
+    "physics_mixture_comparator": {
+      "n": 85,
+      "mae_kcal_mol": 0.23860611898039202,
+      "rmse_kcal_mol": 0.4037586123514205,
+      "median_absolute_error_kcal_mol": 0.13057666666666812
+    },
+    "fixed_exact_connectivity_teachers": {
+      "n": 85,
+      "mae_kcal_mol": 0.19704747409482312,
+      "rmse_kcal_mol": 0.3152032986266648,
+      "median_absolute_error_kcal_mol": 0.10378097442680545
+    },
+    "nested_exact_connectivity_teachers": {
+      "n": 85,
+      "mae_kcal_mol": 0.19930603930646335,
+      "rmse_kcal_mol": 0.32030059078737716,
+      "median_absolute_error_kcal_mol": 0.10700655643739188
+    },
+    "arrow_only_family_holdout": {
+      "n": 85,
+      "mae_kcal_mol": 0.23956658487654378,
+      "rmse_kcal_mol": 0.350718571395025,
+      "median_absolute_error_kcal_mol": 0.15461866181658168
+    },
+    "arrow_only_scaffold_holdout": {
+      "n": 85,
+      "mae_kcal_mol": 0.2412820403309476,
+      "rmse_kcal_mol": 0.35903027442600544,
+      "median_absolute_error_kcal_mol": 0.16350511463844253
+    },
+    "note": "Historical campaign values are retained for provenance and are not the primary confirmatory evidence."
+  },
   "alternative_supervision": {
     "matched_one_seed_base": 0.1919131084189228,
     "openfe_diagnostics": 0.2057451966230934,
     "mlff_hierarchy": 0.2010876031746034,
-    "des370k_water_response": 0.2099278784936193,
-    "qmpff_typed_structure": 0.2088045993230627,
-    "gnnis_force_response": 0.207935233426704,
-    "lambda_aware_implicit": 0.2097411174291937,
-    "phase_space_dynamic": 0.2189401242880484,
-    "gnequip_hierarchy": 0.2227629413748834,
-    "confsolv_graph_embedding": 0.2121932664332402,
-    "confsolv_ffn_embedding": 0.2154807450202304,
-    "openfe_nqe_dpnn": 0.4750677222352941,
-    "molpile_dpnn": 0.4725549945882352
+    "des370k_water_response": 0.2099278784936193
   },
   "multilambda": {
     "teacher_counts": {
@@ -357,16 +719,17 @@
     ]
   },
   "data_counts": {
-    "molsolv_source_conformers": 1729545,
-    "molsolv_training_structures": 350391,
-    "molsolv_unique_connectivities": 348587,
-    "molsolv_benchmark_structure_matches_removed": 82,
+    "molsolv_source_calculations": 1729545,
+    "molsolv_exact_connectivity_filtered_structures": 350391,
+    "molsolv_confirmatory_rows": 350359,
     "confsolv_source_water_conformers": 5392567,
-    "confsolv_training_connectivities": 39878,
-    "confsolv_benchmark_connectivities_removed": 13,
-    "public_hydration_connectivities": 5075,
+    "confsolv_exact_connectivity_filtered_connectivities": 39878,
+    "confsolv_model_usable_rows": 17851,
+    "confsolv_confirmatory_rows": 17829,
+    "combisolv_confirmatory_rows": 3959,
     "endpoint_public_labels": 1280,
-    "arrow85_connectivities_also_in_freesolv": 80
+    "arrow85_connectivities_also_in_freesolv": 80,
+    "standardized_teacher_rows_removed": 56
   },
   "artifact": {
     "input": "SMILES only",
@@ -379,12 +742,14 @@
       11,
       29,
       47
-    ]
+    ],
+    "standardized_exclusion_artifact": true
   },
   "audit": {
     "assertions_passed": true,
-    "metric_tolerance": 1e-12,
+    "standardized_endpoint_matches": 0,
+    "standardized_teacher_rows_removed": 56,
     "bootstrap_replicates": 100000,
-    "bootstrap_seed": 20260827
+    "bootstrap_seed": 20260828
   }
 }

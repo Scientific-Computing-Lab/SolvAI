@@ -1,0 +1,14 @@
+{
+  "original_rows": 350391,
+  "rows_after_exclusion": 350359,
+  "excluded_rows": 32,
+  "training_rows": 315319,
+  "validation_rows": 17520,
+  "test_rows": 17520,
+  "target": "target_smd_water",
+  "epochs_cap": 25,
+  "patience": 6,
+  "batch_size": 256,
+  "foundation": "CHEMELEON",
+  "pytorch_seed": 20260826
+}

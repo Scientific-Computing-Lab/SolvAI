@@ -1,13 +1,5 @@
 {
   "status": "PASS",
-  "findings": [
-    {
-      "claim": "robust_sub_threshold",
-      "file": "README.md",
-      "line": 30,
-      "text": "robust sub-0.20 generalization is not claimed. Family and scaffold holdouts are",
-      "disposition": "explicit limitation/negation"
-    }
-  ],
+  "findings": [],
   "unreviewed": []
 }

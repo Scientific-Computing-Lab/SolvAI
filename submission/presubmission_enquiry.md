@@ -1,21 +1,19 @@
 # Presubmission enquiry
 
-**Proposed title:** Distilling solvation physics for simulation-free
-hydration free energies
+**Proposed title:** Structure-predicted solvent responses enable simulation-free
+hydration free-energy prediction
 
-High-accuracy hydration calculations resolve coupled electronic,
-conformational and nuclear-quantum response through expensive molecular
-simulation. We ask whether transferable solvation-response information can
-instead be learned once and reused. SolvAI trains structure-to-response
-surrogates on strictly benchmark-disjoint physical calculations, then predicts
-hydration free energy from SMILES alone. PIMD8 is the accuracy comparator, not
-a retained teacher. On the
-85-solute reference set introduced with ARROW, it improves a direct
-structure-only MAE from 0.239 to 0.197 kcal/mol and reaches the reconstructed
-ARROW/PIMD8 accuracy of 0.205 kcal/mol. Across five independent partitions the
-mean is 0.204 ± 0.005 kcal/mol. Mechanistic ablations show that aligned
-water-response supervision transfers, whereas several broader physical
-representations and sparse PIMD2 response curves do not. We believe the broad
-interest lies in the change of computational paradigm: simulation becomes a
-reusable source of physical supervision rather than a calculation required for
-every prediction.
+We ask whether costly physical calculations can define response coordinates that are
+learned once and reused across molecules. SolvAI predicts 15 solvent-response priors
+from structure and combines them with molecular descriptors in an experimentally
+supervised hydration endpoint. PIMD is not a retained teacher: it is the high-fidelity
+reference against which structure-only deployment is compared. In a preregistered,
+fully matched five-fold analysis on the 85-solute ARROW set, aligned response priors
+reduce MAE from 0.303 to 0.202 kcal mol⁻¹ (95% paired-bootstrap interval for the
+change, −0.215 to −0.020), comparable to ARROW/PIMD8 at 0.205 kcal mol⁻¹. Shuffled
+priors abolish the gain. The advantage persists when related endpoint-labelled
+chemistry is removed globally and when all ARROW experimental labels are withheld
+from training. Conversely, sparse high-fidelity response targets fail because they
+cannot yet be inferred accurately enough from structure. The work therefore provides
+both a positive demonstration and a mechanistic boundary for using physical
+calculation as reusable supervision rather than per-query computation.

@@ -1,21 +1,21 @@
-\begin{tabular}{rllllr}
+\begin{tabular}{rlllllrrl}
 \toprule
-prior & prior\_name & physical\_meaning & source & model\_class & training\_size \\
+prior & name & physical meaning & source & units & surrogate & training rows & transformation & inference \\
 \midrule
-1 & combisolv\_qm\_teacher & COSMOtherm hydration response & CombiSolv-QM water & CHEMELEON-initialized D-MPNN & 3963 \\
-2 & abraham\_e\_teacher & excess molar refraction axis E & SoluteML Abraham & ExtraTrees & 8098 \\
-3 & abraham\_s\_teacher & dipolarity/polarizability axis S & SoluteML Abraham & ExtraTrees & 8098 \\
-4 & abraham\_a\_teacher & hydrogen-bond acidity axis A & SoluteML Abraham & ExtraTrees & 8098 \\
-5 & abraham\_b\_teacher & hydrogen-bond basicity axis B & SoluteML Abraham & ExtraTrees & 8098 \\
-6 & abraham\_l\_teacher & hexadecane-air partition axis L & SoluteML Abraham & ExtraTrees & 8098 \\
-7 & openff\_corrected\_teacher & explicit-water alchemical hydration response & OpenFF 2.3.0 ASFE & ExtraTrees & 520 \\
-8 & gbn2\_corrected\_teacher & implicit-solvent hydration response & GBn2 / GNNImplicitSolvent & ExtraTrees & 550 \\
-9 & molsolv\_smd\_teacher & SMD(water) solvation response & MolSolv & CHEMELEON-initialized D-MPNN & 350391 \\
-10 & confsolv\_gas\_conformer\_correction\_teacher & gas conformer free-energy correction & ConfSolv H2O & LightGBM & 39878 \\
-11 & confsolv\_solution\_conformer\_correction\_teacher & solution conformer free-energy correction & ConfSolv H2O & LightGBM & 39878 \\
-12 & confsolv\_hydration\_conformer\_correction\_teacher & hydration conformer correction & ConfSolv H2O & LightGBM & 39878 \\
-13 & confsolv\_water\_gsolv\_std\_teacher & dispersion of conformer solvation energies & ConfSolv H2O & LightGBM & 39878 \\
-14 & confsolv\_water\_response\_mean\_teacher & mean conformer solvent response & ConfSolv H2O & LightGBM & 39878 \\
-15 & confsolv\_water\_response\_std\_teacher & dispersion of conformer solvent response & ConfSolv H2O & LightGBM & 39878 \\
+1 & combisolv\_qm & COSMOtherm water response & CombiSolv-QM & kcal mol-1 & CHEMELEON D-MPNN & 3959 & direct & structure surrogate; no simulation \\
+2 & abraham\_e & excess molar refraction E & SoluteML & Abraham scale & ExtraTrees & 8098 & direct & structure surrogate; no simulation \\
+3 & abraham\_s & dipolarity/polarizability S & SoluteML & Abraham scale & ExtraTrees & 8098 & direct & structure surrogate; no simulation \\
+4 & abraham\_a & hydrogen-bond acidity A & SoluteML & Abraham scale & ExtraTrees & 8098 & direct & structure surrogate; no simulation \\
+5 & abraham\_b & hydrogen-bond basicity B & SoluteML & Abraham scale & ExtraTrees & 8098 & direct & structure surrogate; no simulation \\
+6 & abraham\_l & hexadecane-air partition L & SoluteML & Abraham scale & ExtraTrees & 8098 & direct & structure surrogate; no simulation \\
+7 & openff\_corrected & explicit-water alchemical response & OpenFF 2.3.0 ASFE & kcal mol-1 & ExtraTrees & 520 & prediction + residual & structure surrogate; no simulation \\
+8 & gbn2\_corrected & implicit-solvent hydration response & GBn2 & kcal mol-1 & ExtraTrees & 550 & prediction + residual & structure surrogate; no simulation \\
+9 & smd\_water & SMD water response & MolSolv & kcal mol-1 & CHEMELEON D-MPNN & 350359 & direct & structure surrogate; no simulation \\
+10 & conf\_gas\_corr & gas conformer correction & ConfSolv H2O & kcal mol-1 & LightGBM & 17829 & direct & structure surrogate; no simulation \\
+11 & conf\_solution\_corr & solution conformer correction & ConfSolv H2O & kcal mol-1 & LightGBM & 17829 & direct & structure surrogate; no simulation \\
+12 & conf\_hydration\_corr & hydration conformer correction & ConfSolv H2O & kcal mol-1 & LightGBM & 17829 & direct & structure surrogate; no simulation \\
+13 & conf\_gsolv\_sd & conformer solvation-energy spread & ConfSolv H2O & kcal mol-1 & LightGBM & 17829 & direct & structure surrogate; no simulation \\
+14 & conf\_response\_mean & mean conformer solvent response & ConfSolv H2O & kcal mol-1 & LightGBM & 17829 & direct & structure surrogate; no simulation \\
+15 & conf\_response\_sd & conformer response spread & ConfSolv H2O & kcal mol-1 & LightGBM & 17829 & direct & structure surrogate; no simulation \\
 \bottomrule
 \end{tabular}

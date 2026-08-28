@@ -10,19 +10,25 @@
     "physics probe",
     "experimental label"
   ],
-  "selected_feature_block": "narrow response + SMD + ConfSolv response",
-  "nested_random_oof_mae": 0.1993060393064633,
-  "fixed_random_oof_mae": 0.197047474094823,
-  "fixed_family_holdout_mae": 0.2395665848765437,
-  "fixed_scaffold_holdout_mae": 0.2412820403309475,
-  "fixed_repeat_mean_mae": 0.20375140311494994,
-  "nested_repeat_mean_mae": 0.20859726407459295,
+  "selected_feature_block": "15 predicted solvation-response priors",
+  "confirmatory_fixed_oof_mae": 0.2022340672191099,
+  "matched_structure_only_oof_mae": 0.3033484655954973,
+  "five_repeat_mean_mae": 0.20737285802417263,
+  "five_repeat_sd_mae": 0.004442534486346201,
+  "zero_arrow_label_transfer_mae": 0.2569405918663762,
+  "global_family_mae": 0.4677933152583255,
+  "global_scaffold_mae": 0.3761935493360304,
   "robust_below_0_20": false,
   "scikit_learn_version": "1.7.2",
   "benchmark_labels_in_post_evaluation_refit": 85,
   "public_labels_in_refit": 1280,
   "pimd8_labels_in_selected_artifact": 0,
-  "pimd8_note": "85 benchmark PIMD8 labels were evaluated as training-only candidate supervision, but that block worsened OOF validation and was not selected.",
+  "pimd8_note": "PIMD-derived supervision was evaluated but not retained. ARROW/PIMD8 is an accuracy comparator, not an input to the released model.",
+  "standardized_teacher_exclusions": {
+    "combisolv_qm": 2,
+    "molsolv_smd": 32,
+    "confsolv": 22
+  },
   "teacher_artifacts": [
     "combisolv_qm.pt",
     "molsolv_smd.pt",
@@ -31,5 +37,5 @@
     "implicit_teacher.joblib",
     "confsolv_teacher.joblib"
   ],
-  "evaluation_predictions": "results/predictions/headline_oof.parquet"
+  "evaluation_predictions": "results/confirmatory/standardized_exclusion_endpoint_predictions.parquet"
 }

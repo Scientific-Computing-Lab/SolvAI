@@ -1,0 +1,2 @@
+candidate,baseline,mae_difference_vs_structure,ci_low_95,ci_high_95,probability_lower_error,fraction_molecules_improved,material,outcome
+F_full_solvai,A_structure_only,-0.13147277687000716,-0.24818870084422706,-0.04200491283133563,0.9994,0.6352941176470588,True,positive

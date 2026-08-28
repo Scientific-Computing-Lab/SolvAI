@@ -1,4 +1,10 @@
-# Structure-only ARROW/PIMD physics distillation: final report
+# Historical exploratory campaign report
+
+> **Superseded for publication.** This report records the pre-confirmatory campaign.
+> Its 0.19705 headline used exact-connectivity teacher exclusions only, and its
+> 0.23861 comparator was not the subsequently preregistered matched descriptor-only
+> endpoint. The corrected standardized-exclusion results are in
+> `reports/CONFIRMATORY_ANALYSIS.md` and `results/paper_metrics.json`.
 
 ## Decision
 

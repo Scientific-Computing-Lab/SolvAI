@@ -1,8 +1,11 @@
 # Independent SolvAI leakage and inference audit
 
-**Status: PASS.** Every supervised external training source used by the final model
-is disjoint from the 85-solute reference set at the InChIKey connectivity level.
-Canonical isomeric SMILES and full InChIKey comparisons also have zero overlap.
+**Status: PASS.** Exact-connectivity, fragment-parent, uncharged-parent and
+canonical-tautomer equivalence have been audited. The raw source audit found
+2 CombiSolv-QM, 32 MolSolv and 22 ConfSolv standardized equivalents; each was
+removed before the released teachers were refitted. Retained split membership
+was independently verified. The 1,280-label endpoint pool has zero standardized
+benchmark equivalent.
 
 | Source | Rows | Unique structures | SMILES overlap | Full-key overlap | Connectivity overlap | Verification |
 |---|---:|---:|---:|---:|---:|---|
@@ -14,6 +17,9 @@ Canonical isomeric SMILES and full InChIKey comparisons also have zero overlap.
 | GBn2 implicit-solvent | 550 | 550 | 0 | 0 | 0 | independent release-time recanonicalization |
 | MolSolv SMD(water) | 350,391 | 350,391 | 0 | 0 | 0 | independent release-time recanonicalization |
 | ConfSolv water response | 39,878 | 39,878 | 0 | 0 | 0 | independent release-time recanonicalization |
+
+Morgan-similarity-1 cases with different identities are enumerated rather than
+silently removed; global similarity-exclusion controls are reported separately.
 
 The released endpoint contains 2,265 deterministic RDKit/Morgan features and
 15 structure-predicted physical-response priors. Its schema contains no

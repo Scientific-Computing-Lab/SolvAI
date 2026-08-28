@@ -1,994 +1,908 @@
 #!/usr/bin/env python3
-"""Create the frozen Nature-style SolvAI figure set.
-
-All quantitative panels read release artifacts.  Conceptual panels describe
-the frozen model stack; they do not add or select scientific results.
-"""
+"""Create the Nature Communications figure set from frozen result tables."""
 
 from __future__ import annotations
 
 import json
-import shutil
-from datetime import UTC, datetime
 from pathlib import Path
 
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from matplotlib.patches import Arc, Circle, FancyArrowPatch
+from matplotlib.patches import Circle, FancyArrowPatch
 from rdkit import Chem
 from rdkit.Chem import AllChem
 
 ROOT = Path(__file__).resolve().parents[1]
-FIGURES = ROOT / "figures"
+MAIN = ROOT / "figures/main"
+ED = ROOT / "figures/extended_data"
 PAPER_MAIN = ROOT / "paper/figures/main"
 PAPER_ED = ROOT / "paper/extended_data"
 
-# Semantic, colour-blind-safe palette used throughout the paper.
-PHYSICS = "#D68C00"  # expensive training-time computation
-LEARNED = "#1769AA"  # structure-to-response learning
-DEPLOY = "#12866A"  # released SolvAI endpoint
-PIMD = "#B23A73"  # high-fidelity comparator only
-BASELINE = "#4B5563"
-MID = "#8A93A0"
-LIGHT = "#E7EBEF"
-INK = "#18212B"
-WATER_O = "#C43D3D"
-WATER_H = "#7A8793"
+INK = "#17212B"
+MID = "#68737D"
+GRID = "#D9DEE2"
+PHYSICS = "#D68C2E"
+PHYSICS_LIGHT = "#F4D9B4"
+LEARNED = "#2878B5"
+LEARNED_LIGHT = "#C8E0F1"
+DEPLOY = "#14927D"
+DEPLOY_LIGHT = "#BFE4DC"
+PIMD = "#B43B75"
+NEGATIVE = "#B95C50"
+
+mpl.rcParams.update(
+    {
+        "font.family": "DejaVu Sans",
+        "font.size": 7.0,
+        "axes.labelsize": 7.0,
+        "axes.titlesize": 8.0,
+        "axes.titleweight": "bold",
+        "xtick.labelsize": 6.2,
+        "ytick.labelsize": 6.2,
+        "axes.linewidth": 0.65,
+        "xtick.major.width": 0.55,
+        "ytick.major.width": 0.55,
+        "xtick.major.size": 2.5,
+        "ytick.major.size": 2.5,
+        "pdf.fonttype": 42,
+        "ps.fonttype": 42,
+        "svg.fonttype": "none",
+        "svg.hashsalt": "solvai-publication-release",
+        "savefig.dpi": 450,
+    }
+)
 
 
-def configure() -> None:
-    mpl.rcParams.update(
-        {
-            "font.family": "DejaVu Sans",
-            "font.size": 7.2,
-            "axes.titlesize": 8.4,
-            "axes.labelsize": 7.4,
-            "xtick.labelsize": 6.7,
-            "ytick.labelsize": 6.7,
-            "legend.fontsize": 6.5,
-            "axes.linewidth": 0.6,
-            "axes.spines.top": False,
-            "axes.spines.right": False,
-            "xtick.major.width": 0.6,
-            "ytick.major.width": 0.6,
-            "pdf.fonttype": 42,
-            "svg.fonttype": "none",
-            "svg.hashsalt": "solvai-nature-revision",
-        }
-    )
-
-
-def save(fig: plt.Figure, folder: Path, stem: str) -> None:
-    folder.mkdir(parents=True, exist_ok=True)
-    stamp = datetime(2026, 8, 27, tzinfo=UTC)
-    for suffix in ("pdf", "svg", "png"):
-        metadata = (
-            {"Creator": "SolvAI", "CreationDate": stamp, "ModDate": stamp}
-            if suffix == "pdf"
-            else {"Creator": "SolvAI", "Date": "2026-08-27"}
-            if suffix == "svg"
-            else {"Software": "SolvAI"}
-        )
-        fig.savefig(
-            folder / f"{stem}.{suffix}",
-            dpi=360 if suffix == "png" else None,
-            bbox_inches="tight",
-            facecolor="white",
-            metadata=metadata,
-        )
-        if suffix == "svg":
-            path = folder / f"{stem}.svg"
-            path.write_text("\n".join(line.rstrip() for line in path.read_text().splitlines()) + "\n")
-
-
-def save_main(fig: plt.Figure, stem: str) -> None:
-    save(fig, FIGURES / "main", stem)
-    for suffix in ("pdf", "svg", "png"):
-        PAPER_MAIN.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(FIGURES / "main" / f"{stem}.{suffix}", PAPER_MAIN / f"{stem}.{suffix}")
-    plt.close(fig)
-
-
-def save_ed(fig: plt.Figure, stem: str) -> None:
-    save(fig, FIGURES / "extended_data", stem)
-    for suffix in ("pdf", "svg", "png"):
-        PAPER_ED.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(FIGURES / "extended_data" / f"{stem}.{suffix}", PAPER_ED / f"{stem}.{suffix}")
-    plt.close(fig)
+def clean(ax: plt.Axes, *, grid: str | None = "y") -> None:
+    ax.spines[["top", "right"]].set_visible(False)
+    if grid:
+        ax.grid(axis=grid, color=GRID, lw=0.55, zorder=0)
+    ax.tick_params(color=MID, labelcolor=INK)
 
 
 def panel(ax: plt.Axes, label: str) -> None:
-    ax.text(-0.11, 1.04, label, transform=ax.transAxes, fontsize=9.5, weight="bold")
+    ax.text(
+        -0.13,
+        1.07,
+        label,
+        transform=ax.transAxes,
+        fontsize=9.5,
+        fontweight="bold",
+        va="top",
+    )
 
 
-def arrow(ax: plt.Axes, start: tuple[float, float], end: tuple[float, float], **kwargs) -> None:
+def save(fig: plt.Figure, name: str, *, extended: bool = False) -> None:
+    targets = (ED, PAPER_ED) if extended else (MAIN, PAPER_MAIN)
+    for directory in targets:
+        directory.mkdir(parents=True, exist_ok=True)
+        for suffix in ("pdf", "svg", "png"):
+            output = directory / f"{name}.{suffix}"
+            metadata = {
+                "pdf": {"CreationDate": None, "ModDate": None, "Creator": "SolvAI"},
+                "svg": {"Date": None, "Creator": "SolvAI"},
+                "png": {"Software": "SolvAI"},
+            }[suffix]
+            fig.savefig(
+                output,
+                bbox_inches="tight",
+                pad_inches=0.035,
+                dpi=450,
+                transparent=False,
+                metadata=metadata,
+            )
+            # Matplotlib writes path data with line-ending spaces. Normalizing
+            # generated SVG text keeps repository whitespace checks useful.
+            if suffix == "svg":
+                lines = output.read_text().splitlines()
+                output.write_text("\n".join(line.rstrip() for line in lines) + "\n")
+    plt.close(fig)
+
+
+def arrow(
+    ax: plt.Axes,
+    start: tuple[float, float],
+    end: tuple[float, float],
+    color: str = INK,
+    width: float = 1.0,
+) -> None:
     ax.add_patch(
         FancyArrowPatch(
             start,
             end,
             arrowstyle="-|>",
-            mutation_scale=9,
-            linewidth=kwargs.pop("linewidth", 0.9),
-            color=kwargs.pop("color", INK),
-            transform=ax.transAxes,
-            **kwargs,
+            mutation_scale=8,
+            lw=width,
+            color=color,
+            shrinkA=0,
+            shrinkB=0,
         )
     )
 
 
-def molecule(
-    ax: plt.Axes, smiles: str, centre: tuple[float, float], width: float, color=INK
+def draw_molecule(
+    ax: plt.Axes,
+    smiles: str,
+    centre: tuple[float, float],
+    scale: float,
+    *,
+    alpha: float = 1.0,
 ) -> None:
-    """Draw a compact 2-D molecular diagram directly on an axis."""
-    mol = Chem.MolFromSmiles(smiles)
-    if mol is None:
-        return
-    AllChem.Compute2DCoords(mol)
-    conf = mol.GetConformer()
-    xy = np.array(
-        [[conf.GetAtomPosition(i).x, conf.GetAtomPosition(i).y] for i in range(mol.GetNumAtoms())]
-    )
-    span = np.maximum(np.ptp(xy, axis=0), 1e-6)
-    scale = width / max(span)
-    xy = (xy - xy.mean(axis=0)) * scale + np.asarray(centre)
-    for bond in mol.GetBonds():
+    molecule = Chem.MolFromSmiles(smiles)
+    AllChem.Compute2DCoords(molecule)
+    coordinates = molecule.GetConformer().GetPositions()[:, :2]
+    span = np.ptp(coordinates, axis=0)
+    normalization = max(float(span.max()), 1.0)
+    coordinates = (coordinates - coordinates.mean(axis=0)) / normalization * scale
+    coordinates[:, 0] += centre[0]
+    coordinates[:, 1] += centre[1]
+    for bond in molecule.GetBonds():
         i, j = bond.GetBeginAtomIdx(), bond.GetEndAtomIdx()
-        p, q = xy[i], xy[j]
-        ax.plot([p[0], q[0]], [p[1], q[1]], color=color, lw=1.15, solid_capstyle="round")
-        if bond.GetBondTypeAsDouble() >= 2:
-            d = q - p
-            n = np.array([-d[1], d[0]]) / (np.linalg.norm(d) + 1e-9) * width * 0.025
-            ax.plot([p[0] + n[0], q[0] + n[0]], [p[1] + n[1], q[1] + n[1]], color=color, lw=0.55)
-    for i, atom in enumerate(mol.GetAtoms()):
+        ax.plot(
+            coordinates[[i, j], 0],
+            coordinates[[i, j], 1],
+            color=INK,
+            lw=1.25,
+            alpha=alpha,
+            solid_capstyle="round",
+            zorder=4,
+        )
+    atom_colors = {"O": NEGATIVE, "N": LEARNED, "S": PHYSICS, "Cl": DEPLOY}
+    for atom, (x, y) in zip(molecule.GetAtoms(), coordinates, strict=True):
         symbol = atom.GetSymbol()
         if symbol != "C":
-            atom_color = WATER_O if symbol == "O" else LEARNED if symbol == "N" else color
             ax.text(
-                xy[i, 0],
-                xy[i, 1],
+                x,
+                y,
                 symbol,
                 ha="center",
                 va="center",
-                color=atom_color,
-                fontsize=6.8,
+                fontsize=6.6,
+                color=atom_colors.get(symbol, INK),
                 weight="bold",
-                bbox={"facecolor": "white", "edgecolor": "none", "pad": 0.15},
+                alpha=alpha,
+                zorder=5,
             )
 
 
-def water(ax: plt.Axes, x: float, y: float, scale: float = 0.012, angle: float = 0.0) -> None:
-    c, s = np.cos(angle), np.sin(angle)
-    for sign in (-1, 1):
-        v = np.array([0.95 * scale, sign * 0.65 * scale])
-        v = np.array([c * v[0] - s * v[1], s * v[0] + c * v[1]])
-        ax.plot([x, x + v[0]], [y, y + v[1]], color=WATER_H, lw=0.65)
-        ax.add_patch(Circle((x + v[0], y + v[1]), 0.22 * scale, color=WATER_H, zorder=3))
-    ax.add_patch(Circle((x, y), 0.38 * scale, color=WATER_O, zorder=4))
+def draw_water(ax: plt.Axes, x: float, y: float, angle: float = 0.0) -> None:
+    angle = np.deg2rad(angle)
+    oxygen = np.array([x, y])
+    offsets = np.array([[-0.016, 0.019], [0.016, 0.019]])
+    rotation = np.array([[np.cos(angle), -np.sin(angle)], [np.sin(angle), np.cos(angle)]])
+    hydrogens = oxygen + offsets @ rotation.T
+    for hydrogen in hydrogens:
+        ax.plot(
+            [oxygen[0], hydrogen[0]],
+            [oxygen[1], hydrogen[1]],
+            color=MID,
+            lw=0.65,
+            zorder=1,
+        )
+        ax.add_patch(Circle(hydrogen, 0.006, color="#E9EEF1", ec=MID, lw=0.25))
+    ax.add_patch(Circle(oxygen, 0.010, color=NEGATIVE, ec="white", lw=0.3, zorder=2))
 
 
 def response_strip(ax: plt.Axes, x: float, y: float, width: float, height: float) -> None:
-    vals = np.array(
-        [0.10, 0.32, 0.24, 0.55, 0.46, 0.72, 0.65, 0.36, 0.83, 0.59, 0.44, 0.70, 0.53, 0.29, 0.76]
-    )
-    for i, value in enumerate(vals):
-        x0 = x + i * width / len(vals)
-        ax.plot([x0, x0], [y, y + height * value], color=LEARNED, lw=1.45, solid_capstyle="round")
-    ax.plot([x - 0.005, x + width], [y, y], color=BASELINE, lw=0.45)
+    values = np.array([0.35, 0.72, 0.48, 0.86, 0.58, 0.28, 0.67, 0.42])
+    for index, value in enumerate(values):
+        bar_x = x + width * index / len(values)
+        ax.plot(
+            [bar_x, bar_x],
+            [y, y + height * value],
+            color=LEARNED,
+            lw=2.0,
+            solid_capstyle="round",
+        )
 
 
-def load() -> tuple[dict, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
-    metrics = json.loads((ROOT / "results/paper_metrics.json").read_text())
-    headline = pd.read_parquet(ROOT / "results/predictions/headline_oof.parquet")
-    hard = pd.read_parquet(ROOT / "results/predictions/hard_holdout_oof.parquet")
-    repeats = pd.read_parquet(ROOT / "results/robustness/repeated_oof.parquet")
-    return metrics, headline, hard, repeats
-
-
-def method_frame(data: pd.DataFrame, name: str) -> pd.DataFrame:
-    result = data.loc[data["method"].eq(name)].sort_values("molecule_id").copy()
-    if len(result) != 85:
-        raise AssertionError(f"Expected 85 frozen predictions for {name}; found {len(result)}")
-    return result
-
-
-def fig1_concept(metrics: dict) -> None:
-    fig, ax = plt.subplots(figsize=(7.15, 3.65))
+def fig1_concept() -> None:
+    fig, ax = plt.subplots(figsize=(7.2, 3.65))
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1)
     ax.axis("off")
 
-    ax.text(0.02, 0.96, "TRAINING", color=PHYSICS, weight="bold", fontsize=7.5)
-    ax.text(0.75, 0.96, "DEPLOYMENT", color=DEPLOY, weight="bold", fontsize=7.5)
-    ax.plot([0.715, 0.715], [0.06, 0.94], color=LIGHT, lw=1.0)
-
-    # Stage A: physical response data, expressed as scientific objects.
-    ax.text(0.02, 0.885, "A  Learn reusable solvent response", fontsize=8.3, weight="bold")
-    molecule(ax, "CC(=O)NC", (0.085, 0.70), 0.12)
-    for k, (x, y) in enumerate(((0.035, 0.62), (0.055, 0.78), (0.11, 0.81), (0.145, 0.66))):
-        water(ax, x, y, 0.022, k * 0.8)
-    for radius in (0.055, 0.073):
-        ax.add_patch(
-            Arc(
-                (0.085, 0.70),
-                2 * radius,
-                1.35 * radius,
-                theta1=205,
-                theta2=345,
-                color=PHYSICS,
-                lw=0.75,
-            )
-        )
-    ax.text(0.085, 0.535, "polarization", ha="center", fontsize=6.2)
-
-    # Conformer ensemble.
-    molecule(ax, "CCCO", (0.225, 0.735), 0.09, color=BASELINE)
-    molecule(ax, "CCCO", (0.25, 0.67), 0.09, color=BASELINE)
-    molecule(ax, "CCCO", (0.205, 0.64), 0.09, color=BASELINE)
-    ax.text(0.225, 0.535, "conformer ensemble", ha="center", fontsize=6.2)
-
-    # Alchemical response mini-curve.
-    lam = np.linspace(0, 1, 80)
-    curve = 0.58 + 0.13 * lam + 0.045 * np.sin(np.pi * lam)
-    ax.plot(0.31 + 0.115 * lam, curve, color=PHYSICS, lw=1.4)
-    ax.plot([0.31, 0.31], [0.57, 0.76], color=BASELINE, lw=0.55)
-    ax.plot([0.31, 0.425], [0.57, 0.57], color=BASELINE, lw=0.55)
-    ax.text(0.368, 0.515, r"$\lambda$ response", ha="center", fontsize=6.2)
-
-    arrow(ax, (0.445, 0.69), (0.49, 0.69), color=PHYSICS)
-    # A compact surrogate representation rather than a generic AI icon.
-    molecule(ax, "CC(=O)NC", (0.515, 0.72), 0.075)
-    for x0, y0 in ((0.555, 0.66), (0.57, 0.72), (0.555, 0.78), (0.59, 0.69), (0.59, 0.75)):
-        ax.add_patch(Circle((x0, y0), 0.007, facecolor=LEARNED, edgecolor="white", lw=0.3))
-    ax.plot([0.535, 0.555], [0.72, 0.66], color=LEARNED, lw=0.55)
-    ax.plot([0.535, 0.555], [0.72, 0.78], color=LEARNED, lw=0.55)
-    ax.plot([0.555, 0.57, 0.59], [0.66, 0.72, 0.69], color=LEARNED, lw=0.55)
-    ax.plot([0.555, 0.57, 0.59], [0.78, 0.72, 0.75], color=LEARNED, lw=0.55)
-    arrow(ax, (0.605, 0.72), (0.63, 0.72), color=LEARNED)
-    response_strip(ax, 0.638, 0.655, 0.06, 0.12)
-    ax.text(0.60, 0.595, "response surrogates", ha="center", color=LEARNED, fontsize=6.4)
-    ax.text(0.668, 0.79, "15 priors", ha="center", color=LEARNED, fontsize=5.8)
-
-    ax.text(0.02, 0.40, "B  Learn the hydration endpoint", fontsize=8.3, weight="bold")
-    molecule(ax, "c1ccccc1O", (0.13, 0.23), 0.13)
-    ax.text(0.13, 0.105, "molecular structure", ha="center", fontsize=6.2)
-    response_strip(ax, 0.26, 0.18, 0.12, 0.11)
-    ax.text(0.32, 0.105, "predicted response priors", ha="center", fontsize=6.2, color=LEARNED)
-    arrow(ax, (0.18, 0.235), (0.41, 0.235), color=BASELINE)
-    arrow(ax, (0.385, 0.235), (0.425, 0.235), color=LEARNED)
-    # Endpoint learner is a set of nodes, not a labelled software box.
-    for i, y in enumerate((0.18, 0.235, 0.29)):
-        ax.add_patch(Circle((0.455, y), 0.008, facecolor=DEPLOY, edgecolor="white", lw=0.3))
-        ax.plot([0.425, 0.455], [0.235, y], color=DEPLOY, lw=0.55)
-        ax.plot([0.455, 0.49], [y, 0.235], color=DEPLOY, lw=0.55)
-    ax.add_patch(Circle((0.49, 0.235), 0.009, facecolor=DEPLOY, edgecolor="white", lw=0.3))
-    arrow(ax, (0.50, 0.235), (0.58, 0.235), color=DEPLOY)
     ax.text(
-        0.625,
-        0.235,
-        r"$\widehat{\Delta G}_{\rm hyd}$",
-        fontsize=12,
+        0.02,
+        0.96,
+        "TRAINING: physical response is generated once",
+        color=PHYSICS,
+        weight="bold",
+        fontsize=8,
+    )
+    ax.text(0.69, 0.96, "DEPLOYMENT", color=DEPLOY, weight="bold", fontsize=8)
+    ax.plot([0.655, 0.655], [0.06, 0.96], color=GRID, lw=0.8)
+
+    # Three physical response vignettes, without workflow boxes.
+    draw_molecule(ax, "CC(=O)NC", (0.105, 0.73), 0.10)
+    for x, y, angle in ((0.03, 0.80, 25), (0.17, 0.80, -25), (0.03, 0.65, 150), (0.18, 0.65, 210)):
+        draw_water(ax, x, y, angle)
+    ax.add_patch(Circle((0.105, 0.73), 0.115, fill=False, ec=PHYSICS, lw=0.8, ls=(0, (2, 2))))
+    ax.text(0.105, 0.56, "water response", ha="center", color=PHYSICS, fontsize=6.8)
+
+    for offset, alpha in ((-0.028, 0.35), (0.0, 0.65), (0.028, 1.0)):
+        draw_molecule(ax, "CCCO", (0.32 + offset, 0.73), 0.085, alpha=alpha)
+    ax.annotate(
+        "",
+        xy=(0.37, 0.79),
+        xytext=(0.27, 0.66),
+        arrowprops={"arrowstyle": "<->", "color": PHYSICS, "lw": 0.8},
+    )
+    ax.text(0.32, 0.56, "conformer response", ha="center", color=PHYSICS, fontsize=6.8)
+
+    lam = np.linspace(0.0, 1.0, 100)
+    response = 0.64 + 0.085 * np.sin(np.pi * lam) - 0.13 * lam
+    ax.plot(0.45 + 0.14 * lam, response, color=PHYSICS, lw=1.3)
+    ax.fill_between(0.45 + 0.14 * lam, 0.60, response, color=PHYSICS_LIGHT, alpha=0.75)
+    ax.text(0.45, 0.59, r"$\lambda=0$", ha="center", fontsize=5.8, color=MID)
+    ax.text(0.59, 0.59, r"$\lambda=1$", ha="center", fontsize=5.8, color=MID)
+    ax.text(0.52, 0.56, "alchemical response", ha="center", color=PHYSICS, fontsize=6.8)
+
+    ax.text(
+        0.31, 0.88, "external calculations and measurements", ha="center", color=MID, fontsize=6.3
+    )
+    arrow(ax, (0.31, 0.52), (0.31, 0.42), PHYSICS)
+    ax.text(
+        0.31,
+        0.445,
+        "structure → response surrogates",
+        ha="center",
+        color=LEARNED,
+        weight="bold",
+        fontsize=7.2,
+    )
+    response_strip(ax, 0.255, 0.31, 0.13, 0.08)
+    ax.text(0.32, 0.285, "15 predicted response priors", ha="center", color=LEARNED, fontsize=6.6)
+
+    draw_molecule(ax, "CCOC", (0.105, 0.25), 0.085)
+    ax.text(0.105, 0.14, "molecular structure", ha="center", fontsize=6.5)
+    arrow(ax, (0.17, 0.25), (0.235, 0.25), LEARNED)
+    arrow(ax, (0.39, 0.35), (0.44, 0.29), LEARNED)
+    ax.text(0.43, 0.36, "+", fontsize=11, weight="bold", color=MID)
+    ax.text(
+        0.53, 0.405, r"experimental $\Delta G_{\rm hyd}$", ha="center", color=PHYSICS, fontsize=6.5
+    )
+    arrow(ax, (0.53, 0.38), (0.53, 0.30), PHYSICS)
+    for y in (0.20, 0.25, 0.30):
+        ax.add_patch(Circle((0.48, y), 0.007, color=DEPLOY))
+        ax.plot([0.44, 0.48], [0.25, y], color=DEPLOY, lw=0.6)
+        ax.plot([0.48, 0.55], [y, 0.25], color=DEPLOY, lw=0.6)
+    ax.text(
+        0.50,
+        0.14,
+        "hydration endpoint model",
+        ha="center",
         color=DEPLOY,
         weight="bold",
-        va="center",
+        fontsize=6.8,
     )
-    ax.text(0.475, 0.13, "endpoint model", ha="center", fontsize=6.5, color=DEPLOY)
     ax.text(
-        0.455,
-        0.35,
-        r"experimental $\Delta G_{\rm hyd}$ labels",
+        0.31,
+        0.06,
+        "Stage 1: learn response coordinates        Stage 2: learn the endpoint",
         ha="center",
+        color=INK,
         fontsize=6.3,
-        color=PHYSICS,
     )
-    arrow(ax, (0.455, 0.335), (0.455, 0.305), color=PHYSICS)
 
-    # Deployment repeats the learned maps but accepts only a molecule.
-    molecule(ax, "CCOC", (0.805, 0.72), 0.12)
-    ax.text(0.805, 0.585, "new molecule", ha="center", fontsize=6.3)
-    arrow(ax, (0.805, 0.565), (0.805, 0.46), color=DEPLOY)
-    response_strip(ax, 0.77, 0.37, 0.075, 0.075)
-    ax.text(0.807, 0.335, "learned response", ha="center", color=LEARNED, fontsize=6.2)
-    arrow(ax, (0.805, 0.315), (0.805, 0.235), color=DEPLOY)
-    ax.text(0.805, 0.18, "SolvAI", ha="center", color=DEPLOY, fontsize=11, weight="bold")
-    arrow(ax, (0.845, 0.18), (0.90, 0.18), color=DEPLOY)
+    # Deployment side.
+    ax.text(0.74, 0.80, "CC(=O)NC", ha="center", family="monospace", fontsize=7.0, color=INK)
+    draw_molecule(ax, "CC(=O)NC", (0.82, 0.77), 0.095)
+    arrow(ax, (0.79, 0.69), (0.79, 0.57), DEPLOY)
+    response_strip(ax, 0.735, 0.48, 0.125, 0.075)
+    ax.text(0.80, 0.445, "structure-predicted response", ha="center", fontsize=6.3, color=LEARNED)
+    arrow(ax, (0.80, 0.425), (0.80, 0.32), DEPLOY)
+    ax.text(0.80, 0.27, "SolvAI", ha="center", color=DEPLOY, weight="bold", fontsize=12)
+    arrow(ax, (0.85, 0.27), (0.92, 0.27), DEPLOY)
     ax.text(
-        0.95,
-        0.18,
+        0.96,
+        0.27,
         r"$\Delta G_{\rm hyd}$",
         ha="center",
         va="center",
-        fontsize=10.5,
         color=DEPLOY,
         weight="bold",
+        fontsize=9,
     )
+    ax.text(0.82, 0.12, "SMILES only", ha="center", color=INK, fontsize=7, weight="bold")
+    ax.text(0.82, 0.07, "no MD · no PIMD · no probe", ha="center", color=MID, fontsize=6.3)
+    ax.plot([0.69, 0.96], [0.88, 0.88], color=PIMD, lw=0.8, ls=(0, (3, 2)))
     ax.text(
-        0.86,
-        0.08,
-        "structure only · no MD, PIMD or probe",
+        0.825,
+        0.895,
+        "PIMD8: high-fidelity accuracy reference—not a retained teacher",
         ha="center",
-        fontsize=6.3,
-        color=BASELINE,
+        color=PIMD,
+        fontsize=5.8,
     )
-
-    # Comparator is visually isolated: no arrow enters the model.
-    ax.plot([0.75, 0.965], [0.90, 0.90], color=PIMD, lw=1.0, ls=(0, (3, 2)))
-    ax.text(0.858, 0.915, "ARROW/PIMD8 accuracy reference", ha="center", fontsize=6.2, color=PIMD)
-    save_main(fig, "fig1_concept")
+    save(fig, "fig1_concept")
 
 
-def fig2_headline(metrics: dict, headline: pd.DataFrame, repeats: pd.DataFrame) -> None:
-    fig = plt.figure(figsize=(7.15, 3.25))
-    gs = fig.add_gridspec(1, 3, width_ratios=(0.9, 1.12, 1.0), wspace=0.40)
-    ax0, ax1, ax2 = [fig.add_subplot(gs[0, i]) for i in range(3)]
+def fig2_headline(
+    metrics: dict, primary: pd.DataFrame, repeats: pd.DataFrame, paired: pd.DataFrame
+) -> None:
+    fig = plt.figure(figsize=(7.2, 5.35))
+    grid = fig.add_gridspec(2, 2, hspace=0.50, wspace=0.38)
+    ax0, ax1, ax2, ax3 = [fig.add_subplot(grid[i, j]) for i in range(2) for j in range(2)]
 
     progression = [
-        ("Structure\nonly", metrics["methods"]["previous_structure_only"]["mae_kcal_mol"]),
-        ("Narrow\nresponses", metrics["methods"]["narrow_response"]["mae_kcal_mol"]),
-        ("+ SMD", metrics["methods"]["smd_water"]["mae_kcal_mol"]),
-        ("+ ConfSolv", metrics["methods"]["smd_confsolv_fixed"]["mae_kcal_mol"]),
+        ("Structure\nonly", metrics["methods"]["matched_structure_only"]["mae_kcal_mol"]),
+        ("+ compact\nresponse", metrics["methods"]["narrow_response"]["mae_kcal_mol"]),
+        ("+ SMD\nwater", metrics["methods"]["narrow_plus_smd"]["mae_kcal_mol"]),
+        ("+ conformer\nresponse", metrics["methods"]["full_solvai"]["mae_kcal_mol"]),
     ]
-    x = np.arange(4)
-    y = np.array([v for _, v in progression])
-    ax0.plot(x, y, color=LEARNED, lw=1.3, zorder=1)
+    x = np.arange(len(progression))
+    y = np.array([value for _, value in progression])
+    ax0.plot(x, y, color=LEARNED, lw=1.4, zorder=1)
     ax0.scatter(
-        x, y, s=38, c=[BASELINE, LEARNED, LEARNED, DEPLOY], edgecolor="white", lw=0.6, zorder=2
+        x, y, s=48, color=[MID, LEARNED, LEARNED, DEPLOY], edgecolor="white", lw=0.6, zorder=2
     )
-    for i, val in enumerate(y):
+    for position, value in zip(x, y, strict=True):
         ax0.text(
-            i,
-            val + 0.0035,
-            f"{val:.3f}",
+            position,
+            value + 0.006,
+            f"{value:.3f}",
             ha="center",
-            fontsize=6.5,
-            weight="bold" if i == 3 else "normal",
+            fontsize=6.7,
+            weight="bold" if position == 3 else "normal",
         )
-    ax0.axhline(
-        metrics["methods"]["arrow_pimd8"]["mae_kcal_mol"], color=PIMD, lw=1.0, ls=(0, (3, 2))
-    )
-    ax0.text(
-        3.03,
-        metrics["methods"]["arrow_pimd8"]["mae_kcal_mol"] + 0.002,
-        "PIMD8  0.205",
-        color=PIMD,
-        ha="right",
-        fontsize=6.2,
-    )
-    ax0.set_xticks(x, [t for t, _ in progression], fontsize=5.6)
-    ax0.set_xlim(-0.35, 3.35)
-    ax0.set_ylim(0.185, 0.25)
+    pimd = metrics["methods"]["arrow_pimd8"]["mae_kcal_mol"]
+    ax0.axhline(pimd, color=PIMD, ls=(0, (3, 2)), lw=1)
+    ax0.text(3.25, pimd + 0.002, "PIMD8  0.205", ha="right", color=PIMD, fontsize=6.3)
+    ax0.set_xticks(x, [label for label, _ in progression])
     ax0.set_ylabel(r"OOF MAE (kcal mol$^{-1}$)")
-    ax0.set_title("Aligned response closes the gap", loc="left", pad=8)
+    ax0.set_ylim(0.18, 0.325)
+    ax0.set_title("Response priors close the accuracy gap", loc="left")
+    clean(ax0)
     panel(ax0, "a")
 
-    baseline = method_frame(headline, "Fixed narrow response without SMD")
-    final = method_frame(headline, "Fixed narrow response + SMD + ConfSolv response")
-    if not np.array_equal(baseline.molecule_id.to_numpy(), final.molecule_id.to_numpy()):
-        raise AssertionError("Molecule order mismatch in paired panel")
-    xb, yf = baseline.absolute_error.to_numpy(), final.absolute_error.to_numpy()
-    improved = int(np.sum(yf < xb))
-    lim = max(xb.max(), yf.max()) * 1.04
+    baseline = primary.loc[primary.method.eq("A_structure_only")].sort_values("molecule_id")
+    full = primary.loc[primary.method.eq("F_full_solvai")].sort_values("molecule_id")
+    lim = max(baseline.absolute_error.max(), full.absolute_error.max()) * 1.05
+    improved = full.absolute_error.to_numpy() < baseline.absolute_error.to_numpy()
     ax1.plot([0, lim], [0, lim], color=MID, lw=0.8, ls="--")
-    delta = xb - yf
-    colors = np.where(delta > 0, DEPLOY, BASELINE)
-    ax1.scatter(xb, yf, c=colors, s=14, alpha=0.82, edgecolor="white", lw=0.25)
-    ax1.fill_between([0, lim], [0, lim], [0, 0], color=DEPLOY, alpha=0.045)
+    ax1.scatter(
+        baseline.absolute_error,
+        full.absolute_error,
+        c=np.where(improved, DEPLOY, MID),
+        s=17,
+        edgecolor="white",
+        lw=0.3,
+        alpha=0.9,
+    )
+    ax1.fill_between([0, lim], [0, lim], [0, 0], color=DEPLOY_LIGHT, alpha=0.35)
+    ax1.set(
+        xlim=(0, lim),
+        ylim=(0, lim),
+        xlabel="Structure-only absolute error",
+        ylabel="SolvAI absolute error",
+    )
+    ax1.set_aspect("equal", adjustable="box")
     ax1.text(
         0.97,
         0.06,
-        f"{improved}/85 lower error",
+        f"{int(improved.sum())}/85 lower error",
         transform=ax1.transAxes,
         ha="right",
         color=DEPLOY,
-        fontsize=6.4,
+        fontsize=6.5,
     )
-    ax1.set_xlim(0, lim)
-    ax1.set_ylim(0, lim)
-    ax1.set_aspect("equal", adjustable="box")
-    ax1.set_xlabel("Structure-only absolute error")
-    ax1.set_ylabel("SolvAI absolute error")
-    ax1.set_title("Improvement across molecules", loc="left", pad=8)
+    ax1.set_title("The gain is resolved molecule by molecule", loc="left")
+    clean(ax1, grid=None)
     panel(ax1, "b")
 
-    fixed_name = "narrow response + SMD + ConfSolv response"
-    repeat_values = repeats.groupby(["repeat", "method"], as_index=False).absolute_error.mean()
-    fixed = (
-        repeat_values.loc[repeat_values.method.eq(fixed_name)]
-        .sort_values("repeat")
-        .absolute_error.to_numpy()
-    )
-    nested = (
-        repeat_values.loc[repeat_values.method.eq("Nested selection")]
-        .sort_values("repeat")
-        .absolute_error.to_numpy()
-    )
-    for pos, values, color in ((0, fixed, DEPLOY), (1, nested, LEARNED)):
-        jitter = np.linspace(-0.055, 0.055, len(values))
-        ax2.scatter(pos + jitter, values, s=22, color=color, edgecolor="white", lw=0.4, zorder=3)
+    block_order = [
+        ("Empirical +\ncorrected", "primary_B_empirical_residual"),
+        ("Computation\ncore", "primary_C_computation_core"),
+        ("SMD water", "primary_D_smd_water"),
+        ("ConfSolv", "primary_E_confsolv"),
+        ("Full\nSolvAI", "primary_F_full_solvai"),
+    ]
+    block = paired.set_index("analysis")
+    for position, (label, key) in enumerate(block_order):
+        row = block.loc[key]
+        color = DEPLOY if key.endswith("F_full_solvai") else LEARNED
         ax2.errorbar(
-            pos,
-            values.mean(),
-            yerr=values.std(ddof=1),
-            fmt="_",
-            markersize=12,
-            color=INK,
+            row.difference,
+            position,
+            xerr=[[row.difference - row.ci_low_95], [row.ci_high_95 - row.difference]],
+            fmt="o",
+            color=color,
+            ecolor=color,
+            capsize=2.5,
+            ms=4.5,
             lw=1.0,
-            capsize=3,
-            zorder=4,
         )
-        ax2.text(
-            pos,
-            0.2182,
-            f"{values.mean():.3f} ± {values.std(ddof=1):.3f}",
-            ha="center",
-            fontsize=6.1,
-        )
-    ax2.axhline(
-        metrics["methods"]["arrow_pimd8"]["mae_kcal_mol"], color=PIMD, lw=1.0, ls=(0, (3, 2))
+    ax2.axvline(0, color=MID, lw=0.8)
+    ax2.set_yticks(range(len(block_order)), [label for label, _ in block_order])
+    ax2.invert_yaxis()
+    ax2.set_xlabel(r"ΔMAE vs structure-only (kcal mol$^{-1}$)")
+    ax2.set_title("Predeclared source blocks", loc="left")
+    clean(ax2, grid="x")
+    panel(ax2, "c")
+
+    repeat_metrics = (
+        repeats.groupby(["repeat", "method"], as_index=False)
+        .absolute_error.mean()
+        .rename(columns={"absolute_error": "mae"})
     )
+    a = repeat_metrics.loc[repeat_metrics.method.eq("A_structure_only")].sort_values("repeat")
+    f = repeat_metrics.loc[repeat_metrics.method.eq("F_full_solvai")].sort_values("repeat")
+    for index in range(5):
+        ax3.plot([0, 1], [a.mae.iloc[index], f.mae.iloc[index]], color=GRID, lw=0.8, zorder=1)
+    ax3.scatter(np.zeros(5), a.mae, color=MID, s=27, edgecolor="white", lw=0.4, zorder=2)
+    ax3.scatter(np.ones(5), f.mae, color=DEPLOY, s=27, edgecolor="white", lw=0.4, zorder=2)
+    ax3.errorbar(
+        [0, 1],
+        [a.mae.mean(), f.mae.mean()],
+        yerr=[a.mae.std(ddof=1), f.mae.std(ddof=1)],
+        fmt="_",
+        color=INK,
+        ms=14,
+        capsize=3,
+        lw=1.0,
+        zorder=3,
+    )
+    ax3.axhline(pimd, color=PIMD, ls=(0, (3, 2)), lw=1)
+    ax3.set_xticks([0, 1], ["Structure\nonly", "SolvAI"])
+    ax3.set_xlim(-0.35, 1.35)
+    ax3.set_ylim(0.18, 0.33)
+    ax3.set_ylabel(r"OOF MAE (kcal mol$^{-1}$)")
+    ax3.text(1.32, pimd + 0.002, "PIMD8", ha="right", color=PIMD, fontsize=6.2)
+    ax3.set_title("Five complete split repeats", loc="left")
+    clean(ax3)
+    panel(ax3, "d")
+    save(fig, "fig2_headline")
+
+
+def fig3_transfer(metrics: dict, separation: pd.DataFrame, zero: pd.DataFrame) -> None:
+    fig = plt.figure(figsize=(7.2, 3.25))
+    grid = fig.add_gridspec(1, 3, width_ratios=(1.05, 1.0, 1.0), wspace=0.45)
+    ax0, ax1, ax2 = [fig.add_subplot(grid[0, index]) for index in range(3)]
+
+    regimes = ["global_butina_0_70", "global_scaffold", "global_family"]
+    labels = ["Molecular\nclusters", "Scaffolds", "Functional\nfamilies"]
+    for y, regime in enumerate(regimes):
+        values = separation.loc[separation.regime.eq(regime)].set_index("method").mae
+        ax0.plot([values["F_full_solvai"], values["A_structure_only"]], [y, y], color=GRID, lw=2)
+        ax0.scatter(
+            values["A_structure_only"],
+            y,
+            color=MID,
+            s=29,
+            zorder=2,
+            label="Structure only" if y == 0 else None,
+        )
+        ax0.scatter(
+            values["F_full_solvai"],
+            y,
+            color=DEPLOY,
+            s=29,
+            zorder=2,
+            label="SolvAI" if y == 0 else None,
+        )
+    ax0.set_yticks(range(3), labels)
+    ax0.invert_yaxis()
+    ax0.set_xlabel(r"MAE (kcal mol$^{-1}$)")
+    ax0.set_title("Globally separated chemistry", loc="left")
+    ax0.legend(frameon=False, fontsize=6.1, loc="lower right")
+    clean(ax0, grid="x")
+    panel(ax0, "a")
+
+    thresholds = [0.5, 0.6, 0.7, 0.8]
+    for method, label, color in (
+        ("A_structure_only", "Structure only", MID),
+        ("F_full_solvai", "SolvAI", DEPLOY),
+    ):
+        values = [
+            separation.loc[
+                separation.regime.eq(f"global_nn_{threshold:.2f}") & separation.method.eq(method),
+                "mae",
+            ].iloc[0]
+            for threshold in thresholds
+        ]
+        ax1.plot(thresholds, values, marker="o", ms=4, lw=1.2, color=color, label=label)
+    ax1.set_xlabel("Maximum allowed train–test similarity")
+    ax1.set_ylabel(r"MAE (kcal mol$^{-1}$)")
+    ax1.set_xticks(thresholds)
+    ax1.set_ylim(0.18, 0.39)
+    ax1.set_title("Nearest-neighbour exclusion", loc="left")
+    ax1.legend(frameon=False, fontsize=6.1)
+    clean(ax1)
+    panel(ax1, "b")
+
+    baseline = zero.loc[zero.method.eq("A_structure_only")].sort_values("molecule_id")
+    full = zero.loc[zero.method.eq("F_full_solvai")].sort_values("molecule_id")
+    differences = full.absolute_error.to_numpy() - baseline.absolute_error.to_numpy()
+    ordered = np.sort(differences)
+    ax2.axhline(0, color=MID, lw=0.8)
+    ax2.scatter(
+        np.arange(1, 86), ordered, s=12, c=np.where(ordered < 0, DEPLOY, MID), edgecolor="none"
+    )
+    ax2.axhline(differences.mean(), color=DEPLOY, lw=1.2, ls=(0, (3, 2)))
     ax2.text(
-        1.32,
-        metrics["methods"]["arrow_pimd8"]["mae_kcal_mol"] + 0.0007,
-        "PIMD8",
+        84,
+        differences.mean() - 0.025,
+        f"mean {differences.mean():.3f}",
         ha="right",
-        color=PIMD,
+        color=DEPLOY,
         fontsize=6.2,
     )
-    ax2.set_xticks([0, 1], ["Fixed\nmodel", "Nested\nselection"])
-    ax2.set_xlim(-0.45, 1.45)
-    ax2.set_ylim(0.193, 0.2205)
-    ax2.set_ylabel(r"Repeat OOF MAE (kcal mol$^{-1}$)")
-    ax2.set_title("Performance across five splits", loc="left", pad=8)
+    ax2.set_xlabel("Molecules ranked by paired change")
+    ax2.set_ylabel(r"SolvAI − structure-only error (kcal mol$^{-1}$)")
+    ax2.set_title("No ARROW labels in training", loc="left")
+    clean(ax2)
     panel(ax2, "c")
-    save_main(fig, "fig2_headline")
+    save(fig, "fig3_transfer")
 
 
-def fig3_transfer(metrics: dict) -> None:
-    fig = plt.figure(figsize=(7.15, 3.35))
-    gs = fig.add_gridspec(1, 3, width_ratios=(0.95, 1.12, 1.15), wspace=0.42)
-    ax0, ax1, ax2 = [fig.add_subplot(gs[0, i]) for i in range(3)]
+def fig4_frontier(metrics: dict) -> None:
+    fig = plt.figure(figsize=(7.2, 3.35))
+    grid = fig.add_gridspec(1, 3, width_ratios=(1.0, 1.05, 1.0), wspace=0.62)
+    ax0, ax1, ax2 = [fig.add_subplot(grid[0, index]) for index in range(3)]
 
-    matched = [
-        ("Compact response\nsummaries", 0.1919131084),
-        ("Graph latent\nrepresentation", 0.2121928374),
-        ("FFN latent\nrepresentation", 0.2154806851),
-    ]
-    yy = np.arange(3)[::-1]
-    vals = np.array([x[1] for x in matched])
-    ax0.hlines(yy, 0.188, vals, color=LIGHT, lw=3)
-    ax0.scatter(vals, yy, s=34, color=[DEPLOY, MID, MID], zorder=3, edgecolor="white", lw=0.5)
-    for y0, val in zip(yy, vals):
-        ax0.text(val + 0.001, y0, f"{val:.3f}", va="center", fontsize=6.4)
-    ax0.set_yticks(yy, [x[0] for x in matched])
-    ax0.set_xlim(0.188, 0.222)
-    ax0.set_xlabel(r"Matched OOF MAE (kcal mol$^{-1}$)")
-    ax0.set_title("Compact summaries\ntransfer best", loc="left", pad=5)
-    ax0.text(
-        0.0,
-        -0.28,
-        "Matched one-seed representation screen",
-        transform=ax0.transAxes,
-        fontsize=5.9,
-        color=BASELINE,
+    representation = pd.DataFrame(
+        [
+            ("Compact response\nsummaries", 0.1919131084),
+            ("+ graph latent", 0.2121932664),
+            ("+ feed-forward\nlatent", 0.2154807450),
+        ],
+        columns=["representation", "mae"],
     )
+    ax0.barh(
+        np.arange(3), representation.mae, color=[DEPLOY, LEARNED_LIGHT, LEARNED_LIGHT], height=0.56
+    )
+    ax0.set_yticks(np.arange(3), representation.representation)
+    ax0.invert_yaxis()
+    ax0.set_xlim(0.18, 0.225)
+    ax0.set_xlabel(r"Exploratory OOF MAE (kcal mol$^{-1}$)")
+    ax0.set_title("Compact coordinates transfer", loc="left", fontsize=7.4)
+    for y, value in enumerate(representation.mae):
+        ax0.text(value + 0.001, y, f"{value:.3f}", va="center", fontsize=6.2)
+    clean(ax0, grid="x")
     panel(ax0, "a")
 
     response = pd.DataFrame(metrics["multilambda"]["response_head_metrics"])
-    if {"lambda", "component", "mae"}.issubset(response.columns):
-        for component, color, marker in (
-            ("total", LEARNED, "o"),
-            ("electrostatic", PHYSICS, "s"),
-            ("vdw", BASELINE, "^"),
-        ):
-            component_key = {
-                "total": "lig_slv__dhdl_mean",
-                "electrostatic": "lig_slv__dhdl_coul_mean",
-                "vdw": "lig_slv__dhdl_vdw_mean",
-            }[component]
-            block = response.loc[response.component.eq(component_key)].sort_values("lambda")
-            if len(block):
-                ax1.plot(
-                    block["lambda"],
-                    block.mae,
-                    marker=marker,
-                    color=color,
-                    label=component.capitalize(),
-                    lw=1.1,
-                    ms=4,
-                )
-    else:
-        lambdas = np.array([0.1, 0.5, 0.9])
-        for values, color, marker, label in (
-            ([3.565, 2.350, 3.481], LEARNED, "o", "Total"),
-            ([4.119, 4.028, 3.917], PHYSICS, "s", "Electrostatic"),
-            ([5.199, 3.524, 1.275], BASELINE, "^", "van der Waals"),
-        ):
-            ax1.plot(lambdas, values, marker=marker, color=color, label=label, lw=1.1, ms=4)
-    ax1.set_xticks([0.1, 0.5, 0.9])
-    ax1.set_xlabel(r"Coupling coordinate $\lambda$")
-    ax1.set_ylabel(r"Structure→response MAE (kcal mol$^{-1}$)")
-    ax1.set_ylim(0, 5.7)
-    ax1.legend(frameon=False, loc="lower left", ncol=1, handlelength=1.4)
-    ax1.set_title("High-fidelity response\nis harder", loc="left", pad=5)
-    panel(ax1, "b")
-
-    endpoint = [
-        ("Baseline", 0.1959185),
-        ("+ PIMD2", 0.2013553),
-        ("+ hierarchy", 0.2147410),
-        ("+ both", 0.2190051),
+    response = response.loc[~response.component.eq("lig__dhdl_pol_mean")].copy()
+    response["component"] = response.component.map(
+        {
+            "lig_slv__dhdl_mean": "total",
+            "lig_slv__dhdl_coul_mean": "electrostatic",
+            "lig_slv__dhdl_vdw_mean": "van der Waals",
+        }
+    )
+    pivot = response.pivot(index="component", columns="lambda", values="mae").loc[
+        ["total", "electrostatic", "van der Waals"]
     ]
-    xv = np.arange(4)
-    vv = np.array([x[1] for x in endpoint])
-    ax2.vlines(xv, 0.192, vv, color=LIGHT, lw=3)
-    ax2.scatter(xv, vv, s=32, c=[DEPLOY, LEARNED, MID, MID], edgecolor="white", lw=0.5, zorder=3)
-    for x0, val in zip(xv, vv):
-        ax2.text(x0, val + 0.0018, f"{val:.3f}", ha="center", fontsize=6.2)
-    ax2.set_xticks(xv, [x[0] for x in endpoint], rotation=28, ha="right", fontsize=5.8)
-    ax2.set_xlim(-0.45, 3.45)
-    ax2.set_ylim(0.192, 0.225)
-    ax2.set_ylabel(r"Endpoint OOF MAE (kcal mol$^{-1}$)")
-    ax2.set_title("Response error\npropagates", loc="left", pad=5)
-    ax2.text(
-        0.99,
-        0.05,
-        "Direct curve integration\nMAE = 1.51 kcal mol⁻¹",
-        transform=ax2.transAxes,
-        ha="right",
-        va="bottom",
-        fontsize=6.2,
-        color=BASELINE,
-    )
-    panel(ax2, "c")
-    save_main(fig, "fig3_transfer")
-
-
-def fig4_frontier(metrics: dict, headline: pd.DataFrame, hard: pd.DataFrame) -> None:
-    fig = plt.figure(figsize=(7.15, 3.7))
-    gs = fig.add_gridspec(1, 3, width_ratios=(0.67, 1.45, 0.95), wspace=0.58)
-    ax0, ax1, ax2 = [fig.add_subplot(gs[0, i]) for i in range(3)]
-
-    regimes = [
-        ("Random\nOOF", metrics["methods"]["smd_confsolv_fixed"]["mae_kcal_mol"], DEPLOY),
-        ("Family\nholdout", metrics["methods"]["family_holdout"]["mae_kcal_mol"], LEARNED),
-        ("Scaffold\nholdout", metrics["methods"]["scaffold_holdout"]["mae_kcal_mol"], LEARNED),
-    ]
-    xv = np.arange(3)
-    values = [x[1] for x in regimes]
-    ax0.vlines(xv, 0.18, values, color=LIGHT, lw=4)
-    ax0.scatter(xv, values, s=36, c=[x[2] for x in regimes], edgecolor="white", lw=0.5, zorder=3)
-    for x0, val in zip(xv, values):
-        ax0.text(x0, val + 0.004, f"{val:.3f}", ha="center", fontsize=6.4)
-    ax0.axhline(
-        metrics["methods"]["arrow_pimd8"]["mae_kcal_mol"], color=PIMD, lw=0.9, ls=(0, (3, 2))
-    )
-    ax0.set_xticks(xv, [x[0] for x in regimes])
-    ax0.set_ylim(0.18, 0.262)
-    ax0.set_ylabel(r"MAE (kcal mol$^{-1}$)")
-    ax0.set_title("Extrapolation\nremains harder", loc="left", pad=5)
-    panel(ax0, "a")
-
-    final = method_frame(headline, "Fixed narrow response + SMD + ConfSolv response")
-    order = (
-        final.groupby("functional_group_family")
-        .absolute_error.mean()
-        .sort_values(ascending=True)
-        .index.tolist()
-    )
-    rng = np.random.default_rng(7)
-    for yi, family in enumerate(order):
-        values_f = final.loc[final.functional_group_family.eq(family), "absolute_error"].to_numpy()
-        jitter = rng.uniform(-0.13, 0.13, len(values_f))
-        mean_f = values_f.mean()
-        color = (
-            PHYSICS if family in {"Amides", "Aromatics", "Ethers", "Acids", "Alkanes"} else LEARNED
-        )
-        ax1.scatter(values_f, yi + jitter, s=11, color=color, alpha=0.72, edgecolor="white", lw=0.2)
-        ax1.plot([mean_f, mean_f], [yi - 0.22, yi + 0.22], color=INK, lw=1.1)
-    counts = final.functional_group_family.value_counts()
-    ax1.set_yticks(np.arange(len(order)), [f"{f}  n={counts[f]}" for f in order], fontsize=5.6)
-    ax1.set_xlabel(r"Molecule-level absolute error (kcal mol$^{-1}$)")
-    ax1.set_title("Error is chemically\nstructured", loc="left", pad=5)
-    panel(ax1, "b")
-
-    ax2.axis("off")
-    panel(ax2, "c")
-    ax2.text(
-        0.0,
-        0.96,
-        "The next response dataset",
-        transform=ax2.transAxes,
-        fontsize=8.4,
-        weight="bold",
-        va="top",
-    )
-    ax2.text(
-        0.0,
-        0.84,
-        "250–500 protocol-matched molecules",
-        transform=ax2.transAxes,
-        fontsize=7.0,
-        color=PHYSICS,
-        weight="bold",
-    )
-    lambdas = np.linspace(0, 1, 100)
-    for offset, color, label in (
-        (0.0, PHYSICS, "electrostatic"),
-        (-0.07, BASELINE, "dispersion / repulsion"),
-        (0.07, PIMD, "classical ↔ PIMD8"),
-    ):
-        curve = 0.53 + offset + 0.14 * lambdas + 0.025 * np.sin(np.pi * lambdas)
-        ax2.plot(
-            0.05 + 0.80 * lambdas, curve, color=color, lw=1.1, transform=ax2.transAxes, label=label
-        )
-    ax2.plot([0.05, 0.05], [0.43, 0.76], color=INK, lw=0.55, transform=ax2.transAxes)
-    ax2.plot([0.05, 0.85], [0.43, 0.43], color=INK, lw=0.55, transform=ax2.transAxes)
-    ax2.text(
-        0.45, 0.38, r"full $\lambda$ response", transform=ax2.transAxes, ha="center", fontsize=6.2
-    )
-    ax2.legend(
-        frameon=False,
-        loc="lower center",
-        bbox_to_anchor=(0.47, 0.13),
-        fontsize=5.8,
-        handlelength=1.2,
-    )
-    ax2.text(
-        0.0,
-        0.05,
-        "Focused chemistry: amides · aromatics\nethers · acids · alkanes",
-        transform=ax2.transAxes,
-        fontsize=6.4,
-        color=BASELINE,
-    )
-    save_main(fig, "fig4_frontier")
-
-
-def ed1_residuals(headline: pd.DataFrame) -> None:
-    final = method_frame(headline, "Fixed narrow response + SMD + ConfSolv response")
-    base = method_frame(headline, "Fixed narrow response without SMD")
-    fig, axes = plt.subplots(1, 3, figsize=(7.15, 2.55), gridspec_kw={"wspace": 0.36})
-    ax0, ax1, ax2 = axes
-    lo = min(final.y_true.min(), final.y_pred.min()) - 0.3
-    hi = max(final.y_true.max(), final.y_pred.max()) + 0.3
-    ax0.plot([lo, hi], [lo, hi], color=MID, lw=0.8, ls="--")
-    ax0.scatter(
-        final.y_true, final.y_pred, s=13, color=DEPLOY, alpha=0.8, edgecolor="white", lw=0.25
-    )
-    ax0.set_xlim(lo, hi)
-    ax0.set_ylim(lo, hi)
-    ax0.set_aspect("equal", adjustable="box")
-    ax0.set_xlabel(r"Experimental $\Delta G_{hyd}$")
-    ax0.set_ylabel(r"OOF prediction (kcal mol$^{-1}$)")
-    ax0.set_title("Structure-only prediction", loc="left")
-    panel(ax0, "a")
-
-    ax1.axhline(0, color=MID, lw=0.7)
-    ax1.scatter(
-        final.y_true, final.residual, s=13, color=DEPLOY, alpha=0.8, edgecolor="white", lw=0.25
-    )
-    ax1.set_xlabel(r"Experimental $\Delta G_{hyd}$")
-    ax1.set_ylabel(r"Residual (kcal mol$^{-1}$)")
-    ax1.set_title("Residuals across hydration", loc="left")
-    panel(ax1, "b")
-
-    rank = np.argsort(final.absolute_error.to_numpy())
-    ax2.scatter(
-        np.arange(85),
-        base.absolute_error.to_numpy()[rank],
-        s=9,
-        color=BASELINE,
-        alpha=0.65,
-        label="Structure only",
-    )
-    ax2.scatter(
-        np.arange(85),
-        final.absolute_error.to_numpy()[rank],
-        s=9,
-        color=DEPLOY,
-        alpha=0.8,
-        label="SolvAI",
-    )
-    ax2.set_yscale("log")
-    ax2.set_xlabel("Molecules ranked by SolvAI error")
-    ax2.set_ylabel(r"Absolute error (kcal mol$^{-1}$)")
-    ax2.legend(frameon=False)
-    ax2.set_title("Molecule-level error spectrum", loc="left")
-    panel(ax2, "c")
-    save_ed(fig, "ED_Fig1_residuals")
-
-
-def ed2_provenance(metrics: dict) -> None:
-    fig, ax = plt.subplots(figsize=(7.15, 2.6))
-    ax.axis("off")
-    panel(ax, "a")
-    columns = [
-        (0.02, "Source"),
-        (0.18, "Source unit"),
-        (0.43, "Reference-set relationship"),
-        (0.75, "Training outcome"),
-    ]
-    for x, label in columns:
-        ax.text(x, 0.91, label, transform=ax.transAxes, fontsize=7.1, weight="bold")
-    ax.plot([0.02, 0.98], [0.87, 0.87], color=INK, lw=0.75, transform=ax.transAxes)
-    rows = [
-        (
-            "FreeSolv",
-            "molecular\nidentities",
-            "80 of 85 connectivity\nmatches",
-            "provenance audit;\nnot an external test",
-        ),
-        (
-            "MolSolv",
-            "SMD conformer\ncalculations",
-            "82 exact structures +\n3 connectivity aliases removed",
-            "350,391 structures\nretained",
-        ),
-        (
-            "ConfSolv",
-            "H₂O conformer\nrecords",
-            "13 connectivities\nremoved",
-            "39,878 connectivities\nretained",
-        ),
-    ]
-    for i, row in enumerate(rows):
-        y = 0.72 - i * 0.245
-        for (x, _), text in zip(columns, row):
-            ax.text(
-                x,
-                y,
-                text,
-                transform=ax.transAxes,
-                fontsize=6.25,
+    image = ax1.imshow(pivot.to_numpy(), cmap="YlOrBr", vmin=0, vmax=5.5, aspect="auto")
+    for row in range(pivot.shape[0]):
+        for column in range(pivot.shape[1]):
+            ax1.text(
+                column,
+                row,
+                f"{pivot.iloc[row, column]:.2f}",
+                ha="center",
                 va="center",
-                color=INK if x != 0.75 else DEPLOY,
+                fontsize=6.2,
+                color=INK,
             )
-        if i < len(rows) - 1:
-            ax.plot([0.02, 0.98], [y - 0.12, y - 0.12], color=LIGHT, lw=0.8, transform=ax.transAxes)
-    ax.text(
-        0.02,
-        0.04,
-        "Units are intentionally source-specific; unlike records are not plotted on a common scale.",
-        transform=ax.transAxes,
-        fontsize=6.2,
-        color=BASELINE,
-    )
-    save_ed(fig, "ED_Fig2_provenance")
+    ax1.set_xticks(range(3), [r"$\lambda=0.1$", r"$0.5$", r"$0.9$"])
+    ax1.set_yticks(range(3), pivot.index)
+    ax1.set_title("Response error", loc="left", fontsize=7.4)
+    colorbar = fig.colorbar(image, ax=ax1, fraction=0.046, pad=0.03)
+    colorbar.ax.set_title("MAE", fontsize=5.8, pad=2)
+    colorbar.ax.tick_params(labelsize=5.8)
+    panel(ax1, "b")
 
-
-def ed3_alternatives(metrics: dict) -> None:
-    alternatives = metrics["alternative_supervision"]
-    rows = [
-        (k, v["mae"] if isinstance(v, dict) else v)
-        for k, v in alternatives.items()
-        if isinstance(v, (dict, float, int))
+    lambda_metrics = metrics["multilambda"]["method_mae_kcal_mol"]
+    downstream = [
+        (
+            "Base",
+            lambda_metrics["Multi-lambda physics distillation A: structure/response baseline"],
+        ),
+        (
+            "+ PIMD2",
+            lambda_metrics[
+                "Multi-lambda physics distillation B2: +distilled PIMD2 lambda response"
+            ],
+        ),
+        (
+            "+ hierarchy",
+            lambda_metrics[
+                "Multi-lambda physics distillation B1: +distilled classical-NQE-PIMD hierarchy"
+            ],
+        ),
+        (
+            "+ both",
+            lambda_metrics[
+                "Multi-lambda physics distillation B: +full distilled physics hierarchy"
+            ],
+        ),
     ]
-    rows = [(k, float(v)) for k, v in rows if np.isfinite(v)]
-    rows.sort(key=lambda z: z[1])
-    fig, ax = plt.subplots(figsize=(7.15, 3.7))
-    labels = [x[0].replace("_", " ") for x in rows]
-    values = np.array([x[1] for x in rows])
-    y = np.arange(len(rows))[::-1]
-    colors = [DEPLOY if "matched" in label and "baseline" in label else MID for label in labels]
-    ax.hlines(y, min(0.185, values.min() - 0.003), values, color=LIGHT, lw=2.5)
-    ax.scatter(values, y, s=23, color=colors, edgecolor="white", lw=0.4, zorder=3)
-    for yi, value in zip(y, values):
-        ax.text(value + 0.002, yi, f"{value:.3f}", va="center", fontsize=6.0)
-    ax.set_yticks(y, labels)
-    ax.set_xlabel(r"Frozen-screen OOF MAE (kcal mol$^{-1}$)")
-    ax.set_title("Alternative routes to physics-informed prediction", loc="left")
-    fig.subplots_adjust(bottom=0.20)
-    ax.text(
-        0.99,
-        -0.17,
-        "Screens use their documented matched evaluation regimes; values are not a new model search.",
-        transform=ax.transAxes,
-        ha="right",
-        fontsize=5.9,
-        color=BASELINE,
-    )
-    panel(ax, "a")
-    save_ed(fig, "ED_Fig3_alternatives")
+    x = np.arange(len(downstream))
+    values = [value for _, value in downstream]
+    ax2.bar(x, values, color=[DEPLOY, PHYSICS_LIGHT, PHYSICS_LIGHT, NEGATIVE], width=0.62)
+    ax2.set_xticks(x, [label for label, _ in downstream], rotation=24, ha="right")
+    ax2.set_ylabel(r"OOF MAE (kcal mol$^{-1}$)")
+    ax2.set_ylim(0.18, 0.23)
+    for position, value in zip(x, values, strict=True):
+        ax2.text(position, value + 0.0013, f"{value:.3f}", ha="center", fontsize=6.1)
+    ax2.set_title("Endpoint effect", loc="left", fontsize=7.4)
+    clean(ax2)
+    panel(ax2, "c")
+    save(fig, "fig4_frontier")
 
 
-def ed4_selective() -> None:
-    data = pd.read_csv(ROOT / "results/ablations/selective_compute_pareto.csv")
-    data = data.loc[data.regime.eq("random_oof")]
-    fig, ax = plt.subplots(figsize=(5.8, 3.3))
-    choices = [
-        ("Oracle selective PIMD", PIMD, "o"),
-        ("Nested learned selective PIMD", LEARNED, "s"),
-        ("Zero-simulation fast model", BASELINE, "^"),
+def ed_fig1_residuals(primary: pd.DataFrame) -> None:
+    full = primary.loc[primary.method.eq("F_full_solvai")].sort_values("molecule_id")
+    baseline = primary.loc[primary.method.eq("A_structure_only")].sort_values("molecule_id")
+    fig, axes = plt.subplots(1, 3, figsize=(7.2, 2.5))
+    ax0, ax1, ax2 = axes
+    limits = [
+        min(full.y_true.min(), full.y_pred.min()) - 0.4,
+        max(full.y_true.max(), full.y_pred.max()) + 0.4,
     ]
-    for name, color, marker in choices:
-        block = data.loc[data.policy.eq(name)].sort_values("full_pimd_fraction")
-        if len(block):
-            ax.plot(
-                100 * block.full_pimd_fraction,
-                block.mae,
-                marker=marker,
-                ms=4,
-                color=color,
-                lw=1.0,
-                label=name,
-            )
-    ax.axhline(0.20, color=MID, lw=0.7, ls="--")
-    ax.set_xlabel("Molecules routed to full PIMD8 (%)")
-    ax.set_ylabel(r"OOF MAE (kcal mol$^{-1}$)")
-    ax.legend(frameon=False, loc="best")
-    ax.set_title("Simulation-assisted accuracy–cost reference", loc="left")
-    ax.text(
-        0.99,
-        0.98,
-        "NON-DEPLOYABLE ALTERNATIVE",
-        transform=ax.transAxes,
-        ha="right",
-        va="top",
-        color=PIMD,
-        weight="bold",
-        fontsize=6.4,
+    ax0.plot(limits, limits, color=MID, ls="--", lw=0.8)
+    ax0.scatter(full.y_true, full.y_pred, s=15, color=DEPLOY, edgecolor="white", lw=0.3)
+    ax0.set(
+        xlabel=r"Experimental $\Delta G_{\rm hyd}$",
+        ylabel=r"OOF prediction",
+        xlim=limits,
+        ylim=limits,
     )
-    panel(ax, "a")
-    save_ed(fig, "ED_Fig4_selective_pimd")
-
-
-def ed5_lambda() -> None:
-    fig, axes = plt.subplots(1, 3, figsize=(7.15, 2.6), gridspec_kw={"wspace": 0.38})
-    lambdas = np.array([0.1, 0.5, 0.9])
-    for values, color, marker, label in (
-        ([3.565, 2.350, 3.481], LEARNED, "o", "Total"),
-        ([4.119, 4.028, 3.917], PHYSICS, "s", "Electrostatic"),
-        ([5.199, 3.524, 1.275], BASELINE, "^", "van der Waals"),
-    ):
-        axes[0].plot(lambdas, values, marker=marker, color=color, label=label, lw=1.0, ms=4)
-    axes[0].set_xticks(lambdas)
-    axes[0].set_xlabel(r"$\lambda$")
-    axes[0].set_ylabel(r"Response MAE (kcal mol$^{-1}$)")
-    axes[0].legend(frameon=False)
-    axes[0].set_title("Structure→response error", loc="left")
-    panel(axes[0], "a")
-
-    labels = ["Baseline", "+ PIMD2", "+ hierarchy", "+ both"]
-    vals = [0.1959185, 0.2013553, 0.2147410, 0.2190051]
-    axes[1].bar(np.arange(4), vals, color=[DEPLOY, LEARNED, MID, MID], width=0.66)
-    axes[1].set_ylim(0.19, 0.225)
-    axes[1].set_xticks(np.arange(4), labels, rotation=32, ha="right", fontsize=5.7)
-    axes[1].set_ylabel(r"Endpoint MAE (kcal mol$^{-1}$)")
-    axes[1].set_title("Matched endpoint consequence", loc="left")
-    panel(axes[1], "b")
-
-    axes[2].bar([0], [1.5135629], color=BASELINE, width=0.45)
-    axes[2].scatter([0], [1.5135629], color=INK, s=16, zorder=3)
-    axes[2].set_xticks([0], ["Integrated predicted\nresponse curve"])
-    axes[2].set_ylim(0, 1.65)
-    axes[2].set_ylabel(r"MAE (kcal mol$^{-1}$)")
-    axes[2].set_title("Direct integration", loc="left")
-    axes[2].text(0, 1.56, "1.51", ha="center", fontsize=6.4)
-    panel(axes[2], "c")
-    save_ed(fig, "ED_Fig5_lambda_response")
-
-
-def ed6_extrapolation(headline: pd.DataFrame, hard: pd.DataFrame) -> None:
-    final = method_frame(headline, "Fixed narrow response + SMD + ConfSolv response")
-    family = hard.loc[hard.regime.eq("family_holdout")].copy()
-    scaffold = hard.loc[hard.regime.eq("scaffold_holdout")].copy()
-    fig = plt.figure(figsize=(7.15, 3.35))
-    gs = fig.add_gridspec(1, 3, width_ratios=(0.62, 1.30, 0.92), wspace=0.68)
-    axes = [fig.add_subplot(gs[0, i]) for i in range(3)]
-    summary = [
-        final.absolute_error.mean(),
-        family.absolute_error.mean(),
-        scaffold.absolute_error.mean(),
-    ]
-    axes[0].scatter(
-        range(3), summary, s=35, c=[DEPLOY, LEARNED, LEARNED], edgecolor="white", lw=0.5
+    ax0.set_aspect("equal", adjustable="box")
+    clean(ax0, grid=None)
+    panel(ax0, "a")
+    ax1.axhline(0, color=MID, lw=0.8)
+    ax1.scatter(
+        full.y_true, full.y_pred - full.y_true, s=15, color=DEPLOY, edgecolor="white", lw=0.3
     )
-    for i, v in enumerate(summary):
-        axes[0].text(i, v + 0.004, f"{v:.3f}", ha="center", fontsize=6.3)
-    axes[0].set_xticks(range(3), ["Random", "Family", "Scaffold"])
-    axes[0].set_ylim(0.18, 0.26)
-    axes[0].set_ylabel(r"MAE (kcal mol$^{-1}$)")
-    axes[0].set_title("Validation regime", loc="left", x=0.10)
-    panel(axes[0], "a")
+    ax1.set(xlabel=r"Experimental $\Delta G_{\rm hyd}$", ylabel="Prediction residual")
+    clean(ax1)
+    panel(ax1, "b")
+    delta = full.absolute_error.to_numpy() - baseline.absolute_error.to_numpy()
+    ax2.hist(delta, bins=np.linspace(delta.min(), delta.max(), 17), color=DEPLOY, alpha=0.85)
+    ax2.axvline(0, color=MID, lw=0.8)
+    ax2.axvline(delta.mean(), color=INK, lw=1.1, ls=(0, (3, 2)))
+    ax2.set(xlabel="Paired absolute-error change", ylabel="Molecules")
+    clean(ax2)
+    panel(ax2, "c")
+    save(fig, "ED_Fig1_residuals", extended=True)
 
-    fam = pd.concat(
+
+def ed_fig2_provenance() -> None:
+    source = pd.DataFrame(
         [
-            final.assign(validation="Random OOF"),
-            family.assign(validation="Family holdout"),
-        ]
+            ("CombiSolv-QM", "structures", 3961, 2, 3959),
+            ("MolSolv", "SMD calculations", 350391, 32, 350359),
+            ("ConfSolv", "usable connectivities", 17851, 22, 17829),
+            ("Endpoint labels", "connectivities", 1280, 0, 1280),
+        ],
+        columns=["source", "unit", "before", "removed", "retained"],
     )
-    means = fam.groupby(["functional_group_family", "validation"]).absolute_error.mean().unstack()
-    means = means.sort_values("Family holdout")
-    yy = np.arange(len(means))
-    axes[1].scatter(means["Random OOF"], yy, color=DEPLOY, s=15, label="Random OOF")
-    axes[1].scatter(means["Family holdout"], yy, color=LEARNED, s=15, label="Family holdout")
-    for i in yy:
-        axes[1].plot(means.iloc[i].values, [i, i], color=LIGHT, lw=1.3, zorder=0)
-    counts = final.functional_group_family.value_counts()
-    axes[1].set_yticks(yy, [f"{f}  n={counts[f]}" for f in means.index], fontsize=5.4)
-    axes[1].set_xlabel(r"Family MAE (kcal mol$^{-1}$)")
-    axes[1].legend(frameon=False, loc="lower right", fontsize=5.6)
-    axes[1].set_title("Chemical-family transfer", loc="left")
-    panel(axes[1], "b")
-
-    axes[2].scatter(
-        scaffold.y_true,
-        scaffold.absolute_error,
-        s=12,
-        color=LEARNED,
-        alpha=0.75,
-        edgecolor="white",
-        lw=0.25,
-    )
-    axes[2].set_xlabel(r"Experimental $\Delta G_{hyd}$")
-    axes[2].set_ylabel(r"Scaffold-holdout absolute error")
-    axes[2].set_title("Scaffold-level residuals", loc="left")
-    panel(axes[2], "c")
-    save_ed(fig, "ED_Fig6_extrapolation")
-
-
-def ed7_statistics(metrics: dict) -> None:
-    fig, axes = plt.subplots(1, 2, figsize=(6.5, 2.8), gridspec_kw={"wspace": 0.42})
-    ci = metrics["bootstrap"]
-    items = [
-        (
-            "Fixed OOF",
-            metrics["methods"]["smd_confsolv_fixed"]["mae_kcal_mol"],
-            ci["fixed"]["ci95_kcal_mol"][0],
-            ci["fixed"]["ci95_kcal_mol"][1],
-            DEPLOY,
-        ),
-        (
-            "Nested OOF",
-            metrics["methods"]["nested_selection"]["mae_kcal_mol"],
-            ci["nested"]["ci95_kcal_mol"][0],
-            ci["nested"]["ci95_kcal_mol"][1],
-            LEARNED,
-        ),
-    ]
-    for i, (_, mean, low, high, color) in enumerate(items):
-        axes[0].errorbar(
-            mean, i, xerr=[[mean - low], [high - mean]], fmt="o", color=color, capsize=3, ms=4
+    fig, ax = plt.subplots(figsize=(7.2, 2.65))
+    ax.axis("off")
+    y_positions = np.linspace(0.78, 0.18, len(source))
+    ax.text(0.03, 0.94, "Source", weight="bold")
+    ax.text(0.31, 0.94, "Source-specific unit", weight="bold")
+    ax.text(0.60, 0.94, "Standardized-equivalent exclusion", weight="bold")
+    ax.text(0.90, 0.94, "Retained", weight="bold", ha="right")
+    for row, y in zip(source.itertuples(), y_positions, strict=True):
+        ax.text(0.03, y, row.source, weight="bold", color=INK)
+        ax.text(0.31, y, row.unit, color=MID)
+        ax.plot([0.57, 0.82], [y, y], color=GRID, lw=5, solid_capstyle="round")
+        width = max(0.008, 0.25 * row.removed / max(row.before, 1))
+        ax.plot([0.57, 0.57 + width], [y, y], color=NEGATIVE, lw=5, solid_capstyle="round")
+        ax.text(
+            0.695,
+            y + 0.045,
+            f"{row.removed:,} removed from {row.before:,}",
+            ha="center",
+            fontsize=6.2,
+            color=NEGATIVE if row.removed else MID,
         )
-    axes[0].set_yticks(range(len(items)), [x[0] for x in items])
-    axes[0].set_xlabel(r"MAE with molecule bootstrap 95% CI")
-    axes[0].set_title("Sampling uncertainty", loc="left")
+        ax.text(0.90, y, f"{row.retained:,}", ha="right", color=DEPLOY, weight="bold")
+    ax.text(
+        0.03,
+        0.05,
+        "Source units are reported separately. Bar lengths are normalized within source,\nnot compared across calculations, structures and connectivities.",
+        color=MID,
+        fontsize=6.2,
+    )
+    save(fig, "ED_Fig2_provenance", extended=True)
+
+
+def ed_fig3_alternatives(metrics: dict) -> None:
+    alternatives = {
+        "OpenFE diagnostics": metrics["alternative_supervision"]["openfe_diagnostics"],
+        "MLFF hierarchy": metrics["alternative_supervision"]["mlff_hierarchy"],
+        "DES370K response": metrics["alternative_supervision"]["des370k_water_response"],
+        "ConfSolv graph latent": 0.2121932664,
+        "ConfSolv FFN latent": 0.2154807450,
+        "PIMD2 lambda response": metrics["multilambda"]["method_mae_kcal_mol"][
+            "Multi-lambda physics distillation B2: +distilled PIMD2 lambda response"
+        ],
+        "Classical/NQE/PIMD": metrics["multilambda"]["method_mae_kcal_mol"][
+            "Multi-lambda physics distillation B1: +distilled classical-NQE-PIMD hierarchy"
+        ],
+    }
+    frame = pd.Series(alternatives).sort_values()
+    fig, ax = plt.subplots(figsize=(6.2, 3.15))
+    ax.scatter(frame.values, np.arange(len(frame)), color=LEARNED, s=28)
+    ax.axvline(
+        metrics["multilambda"]["method_mae_kcal_mol"][
+            "Multi-lambda physics distillation A: structure/response baseline"
+        ],
+        color=DEPLOY,
+        lw=1.0,
+        ls=(0, (3, 2)),
+        label="matched campaign base",
+    )
+    ax.set_yticks(np.arange(len(frame)), frame.index)
+    ax.invert_yaxis()
+    ax.set_xlabel(r"Exploratory OOF MAE (kcal mol$^{-1}$)")
+    ax.legend(frameon=False, fontsize=6.2)
+    clean(ax, grid="x")
+    save(fig, "ED_Fig3_alternatives", extended=True)
+
+
+def ed_fig4_selective() -> None:
+    frontier = pd.read_csv(ROOT / "results/ablations/selective_compute_pareto.csv")
+    frontier = frontier.loc[
+        frontier.regime.eq("random_oof")
+        & frontier.policy.isin(["Oracle selective PIMD", "Nested learned selective PIMD"])
+    ]
+    fig, ax = plt.subplots(figsize=(5.4, 3.0))
+    for label, group in frontier.groupby("policy"):
+        if "oracle" in label.lower():
+            color, style = MID, "--"
+        else:
+            color, style = LEARNED, "-"
+        group = group.sort_values("full_pimd_fraction")
+        ax.plot(
+            group["full_pimd_fraction"] * 100,
+            group["mae"],
+            marker="o",
+            ms=3.5,
+            lw=1.0,
+            ls=style,
+            color=color,
+            label=label,
+        )
+    ax.set(xlabel="Full PIMD8 fallback (%)", ylabel=r"MAE (kcal mol$^{-1}$)")
+    ax.set_title("Simulation-assisted reference (not SolvAI)", loc="left")
+    ax.legend(frameon=False, fontsize=5.7)
+    clean(ax)
+    save(fig, "ED_Fig4_selective_pimd", extended=True)
+
+
+def ed_fig5_lambda(metrics: dict) -> None:
+    response = pd.DataFrame(metrics["multilambda"]["response_head_metrics"])
+    response = response.loc[~response.component.eq("lig__dhdl_pol_mean")].copy()
+    components = ["lig_slv__dhdl_mean", "lig_slv__dhdl_coul_mean", "lig_slv__dhdl_vdw_mean"]
+    labels = ["total", "electrostatic", "van der Waals"]
+    fig, axes = plt.subplots(1, 2, figsize=(7.2, 2.75), gridspec_kw={"width_ratios": [1.3, 1.0]})
+    for component, label, color in zip(components, labels, [INK, LEARNED, PHYSICS], strict=True):
+        group = response.loc[response.component.eq(component)].sort_values("lambda")
+        axes[0].plot(
+            group["lambda"], group.mae, marker="o", ms=4, lw=1.15, color=color, label=label
+        )
+    axes[0].set(xlabel=r"Coupling coordinate $\lambda$", ylabel=r"Response MAE (kcal mol$^{-1}$)")
+    axes[0].legend(frameon=False, fontsize=6.2)
+    clean(axes[0])
     panel(axes[0], "a")
-
-    comps = [
-        ("SolvAI − structure only", metrics["bootstrap"]["fixed_vs_previous"], DEPLOY),
-        ("SolvAI − PIMD8", metrics["bootstrap"]["fixed_vs_pimd8"], PIMD),
-    ]
-    for i, (label, value, color) in enumerate(comps):
-        mean = value["mean_mae_change_kcal_mol"]
-        low, high = value["ci95_kcal_mol"]
-        axes[1].errorbar(
-            mean, i, xerr=[[mean - low], [high - mean]], fmt="o", color=color, capsize=3, ms=4
-        )
-    axes[1].axvline(0, color=MID, lw=0.8, ls="--")
-    axes[1].set_yticks(range(2), [x[0] for x in comps])
-    axes[1].set_xlabel(r"Paired MAE difference (kcal mol$^{-1}$)")
-    axes[1].set_title("Paired molecule resampling", loc="left")
+    values = metrics["multilambda"]["method_mae_kcal_mol"]
+    names = ["base", "+ PIMD2", "+ hierarchy", "+ both", "integrated curve"]
+    vals = [values[key] for key in values]
+    axes[1].bar(np.arange(4), vals[:4], color=[DEPLOY, PHYSICS_LIGHT, PHYSICS_LIGHT, NEGATIVE])
+    axes[1].set_xticks(np.arange(4), names[:4], rotation=25, ha="right")
+    axes[1].set_ylabel(r"Endpoint OOF MAE (kcal mol$^{-1}$)")
+    twin = axes[1].twinx()
+    twin.scatter([3.8], [vals[4]], marker="D", color=NEGATIVE, s=28)
+    twin.set_ylim(0, 1.7)
+    twin.set_ylabel("Integrated-curve MAE", color=NEGATIVE)
+    axes[1].text(
+        3.8,
+        0.07,
+        f"{vals[4]:.2f}",
+        transform=twin.get_xaxis_transform(),
+        ha="center",
+        color=NEGATIVE,
+        fontsize=6.2,
+    )
+    clean(axes[1])
     panel(axes[1], "b")
-    save_ed(fig, "ED_Fig7_statistics")
+    save(fig, "ED_Fig5_lambda_response", extended=True)
+
+
+def ed_fig6_extrapolation(primary: pd.DataFrame, separation: pd.DataFrame) -> None:
+    full = primary.loc[primary.method.eq("F_full_solvai")].copy()
+    families = full.groupby("functional_group_family").size().sort_values(ascending=False).index
+    fig, axes = plt.subplots(1, 2, figsize=(7.2, 3.35), gridspec_kw={"width_ratios": [1.25, 1.0]})
+    rng = np.random.default_rng(20260828)
+    for position, family in enumerate(families):
+        values = full.loc[full.functional_group_family.eq(family), "absolute_error"].to_numpy()
+        jitter = rng.uniform(-0.12, 0.12, len(values))
+        axes[0].scatter(values, position + jitter, s=12, color=DEPLOY, alpha=0.8)
+        axes[0].plot(
+            [values.mean(), values.mean()], [position - 0.18, position + 0.18], color=INK, lw=1
+        )
+    axes[0].set_yticks(
+        np.arange(len(families)),
+        [
+            f"{family} (n={len(full.loc[full.functional_group_family.eq(family)])})"
+            for family in families
+        ],
+    )
+    axes[0].invert_yaxis()
+    axes[0].set_xlabel("Absolute OOF error")
+    clean(axes[0], grid="x")
+    panel(axes[0], "a")
+    regimes = ["global_nn_0.70", "global_butina_0_70", "global_scaffold", "global_family"]
+    labels = ["NN ≤ 0.70", "clusters", "scaffolds", "families"]
+    label_offsets = [-10, 10, 0, 0]
+    for position, (regime, label) in enumerate(zip(regimes, labels, strict=True)):
+        group = separation.loc[separation.regime.eq(regime)].set_index("method")
+        axes[1].plot(
+            [0, 1],
+            [group.loc["A_structure_only", "mae"], group.loc["F_full_solvai", "mae"]],
+            color=GRID,
+            lw=1,
+        )
+        axes[1].scatter([0], [group.loc["A_structure_only", "mae"]], color=MID, s=23)
+        axes[1].scatter([1], [group.loc["F_full_solvai", "mae"]], color=DEPLOY, s=23)
+        axes[1].annotate(
+            label,
+            (1, group.loc["F_full_solvai", "mae"]),
+            xytext=(8, label_offsets[position]),
+            textcoords="offset points",
+            va="center",
+            fontsize=6.1,
+        )
+    axes[1].set_xticks([0, 1], ["Structure only", "SolvAI"])
+    axes[1].set_xlim(-0.25, 1.55)
+    axes[1].set_ylabel(r"MAE (kcal mol$^{-1}$)")
+    clean(axes[1])
+    panel(axes[1], "b")
+    save(fig, "ED_Fig6_extrapolation", extended=True)
 
 
 def main() -> None:
-    configure()
-    metrics, headline, hard, repeats = load()
-    fig1_concept(metrics)
-    fig2_headline(metrics, headline, repeats)
-    fig3_transfer(metrics)
-    fig4_frontier(metrics, headline, hard)
-    ed1_residuals(headline)
-    ed2_provenance(metrics)
-    ed3_alternatives(metrics)
-    ed4_selective()
-    ed5_lambda()
-    ed6_extrapolation(headline, hard)
-    ed7_statistics(metrics)
-    print("Generated 4 main figures and 7 Extended Data figures from frozen artifacts.")
+    metrics = json.loads((ROOT / "results/paper_metrics.json").read_text())
+    endpoint = pd.read_parquet(
+        ROOT / "results/confirmatory/standardized_exclusion_endpoint_predictions.parquet"
+    )
+    primary = endpoint.loc[endpoint.partition.eq("standardized_exclusion_primary")]
+    repeats = endpoint.loc[endpoint.partition.eq("standardized_exclusion_repeat")]
+    zero = endpoint.loc[endpoint.partition.eq("standardized_exclusion_zero_arrow")]
+    paired = pd.read_csv(ROOT / "results/confirmatory/confirmatory_paired_comparisons.csv")
+    separation = pd.read_csv(
+        ROOT / "results/confirmatory/standardized_exclusion_global_separation_metrics.csv"
+    )
+
+    fig1_concept()
+    fig2_headline(metrics, primary, repeats, paired)
+    fig3_transfer(metrics, separation, zero)
+    fig4_frontier(metrics)
+    ed_fig1_residuals(primary)
+    ed_fig2_provenance()
+    ed_fig3_alternatives(metrics)
+    ed_fig4_selective()
+    ed_fig5_lambda(metrics)
+    ed_fig6_extrapolation(primary, separation)
+
+    obsolete = [
+        "ED_Fig7_statistics",
+    ]
+    for stem in obsolete:
+        for directory in (ED, PAPER_ED):
+            for suffix in ("pdf", "svg", "png"):
+                path = directory / f"{stem}.{suffix}"
+                if path.exists():
+                    path.unlink()
+    print("Rendered four main and six Extended Data figures from frozen results.")
 
 
 if __name__ == "__main__":

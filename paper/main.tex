@@ -1,5 +1,5 @@
 \documentclass[10pt]{article}
-\usepackage[a4paper,margin=2.05cm]{geometry}
+\usepackage[a4paper,margin=2.0cm]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{microtype}
@@ -19,7 +19,7 @@
 \setlength{\parindent}{1.2em}
 \setlength{\parskip}{0pt}
 
-\title{Distilling solvation physics for simulation-free hydration free energies}
+\title{Structure-predicted solvent responses enable simulation-free hydration free-energy prediction}
 \author{Gal Oren and Michael Levitt}
 \date{}
 
@@ -27,158 +27,461 @@
 \linenumbers
 \maketitle
 
-\noindent\textbf{Hydration free energy connects molecular structure to partitioning, recognition and chemical reactivity, yet its accurate calculation can require extensive sampling of explicit water and, at the highest precision, nuclear quantum effects. Such calculations repeatedly pay to resolve related solvent responses for every new molecule. Here we ask whether that physical information can instead be learned once and reused. SolvAI learns structure-to-response surrogates from benchmark-disjoint quantum-continuum, conformational, alchemical and empirical solvation data, then combines their predictions with molecular structure to estimate hydration free energy. Deployment begins with a SMILES string and requires no molecular dynamics, path-integral simulation or probe calculation. On the 85-solute neutral-hydration reference set introduced with ARROW, response distillation reduces strict five-fold out-of-fold mean absolute error from \PreviousMAE{} to \SolvAIMAE{} kcal mol$^{-1}$, reaching the reconstructed ARROW/PIMD8 value of \PIMDMAE{} kcal mol$^{-1}$. Across five independent partitions, the fixed model gives \RepeatMean{} $\pm$ \RepeatSD{} kcal mol$^{-1}$. Water-specific response supervision supplies the decisive gain. Molecular simulation can therefore contribute not only a per-molecule answer, but reusable physical coordinates that become structure-derived priors in a deployable model.}
+\section*{Abstract}
 
-\section*{Physics that can be reused}
+Hydration free energy reports how a molecule exchanges the gas phase for water, but
+accurate calculation can require explicit-solvent sampling and nuclear-quantum
+treatment for every new solute. We asked whether physical calculations could instead
+define reusable response coordinates that are learned from molecular structure.
+SolvAI first predicts 15 solvent-response priors learned from benchmark-disjoint
+quantum-continuum, alchemical, empirical and conformational data, then combines these
+priors with molecular fingerprints and descriptors in an experimentally supervised
+hydration model. A new prediction begins from a SMILES string and runs no molecular
+dynamics, path-integral dynamics or probe calculation. In a preregistered matched
+five-fold comparison on the 85 neutral solutes used to establish ARROW, response
+priors reduce mean absolute error from \MatchedMAE{} to \SolvAIMAE{} kcal mol$^{-1}$
+(paired change \SolvAIDelta{}; 95\% bootstrap interval \SolvAICILow{} to
+\SolvAICIHigh{}), close to the reconstructed ARROW/PIMD8 error of \PIMDMAE{} kcal
+mol$^{-1}$. Five complete split repeats give \RepeatMean{} $\pm$ \RepeatSD{} kcal
+mol$^{-1}$. Shuffling the priors abolishes the gain, whereas the advantage survives
+global scaffold, family, cluster and similarity exclusions. These results show that
+aligned physical responses can be amortized into structure-only molecular prediction,
+while identifying chemical extrapolation and high-fidelity response inference as the
+remaining limits.
 
-Hydration free energy measures the reversible work of transferring a molecule from the gas phase into water. The scalar result hides a coupled molecular response: electronic polarization, dispersion and repulsion change as water approaches; conformers are reweighted; hydrogen-bond networks reorganize; and light nuclei can delocalize. Explicit-solvent alchemical calculations resolve these effects through sampling along a coupling path, while path-integral molecular dynamics (PIMD) adds nuclear delocalization.\cite{mbar2008,nqereview2018} Accuracy is obtained by representing more of this response, but the computational cost is paid anew for each solute.
+\section*{Introduction}
 
-ARROW made this trade-off unusually clear. On a chemically diverse set of 85 neutral solutes, our exact reconstruction gives a mean absolute error (MAE) of \ClassicalMAE{} kcal mol$^{-1}$ for classical ARROW and \PIMDMAE{} kcal mol$^{-1}$ for its eight-bead PIMD calculation.\cite{arrow2022} Neural corrections can reproduce highly accurate intermolecular interactions and selected nuclear-quantum contributions,\cite{arrownn2023,nqe2024} suggesting that the information resolved by physical calculation is learnable. The usual goal is to accelerate the calculation itself. We instead asked whether its transferable parts could become training targets for a model that never invokes simulation after deployment.
+Hydration free energy is the reversible work of transferring a molecule from the gas
+phase into water. It connects molecular structure to partitioning, binding and
+reactivity, and is a stringent test of how a model balances electrostatics,
+polarization, dispersion, repulsion and solvent reorganization. Experimental values
+are available for many small neutral compounds, notably through FreeSolv, but
+predicting them with comparable precision remains difficult.\cite{freesolv2014,freesolv2017}
 
-SolvAI separates this idea into two learning stages (Fig.~\ref{fig:concept}). First, molecular structure is mapped to a small set of physical response coordinates learned from independent computational datasets. Second, these predicted responses are combined with ordinary molecular descriptors and experimental hydration labels to learn the endpoint. For a new molecule, both stages are evaluated from structure alone. PIMD8 is not a retained teacher in the final model; it is the high-fidelity reference against which the resulting accuracy is compared.
+Physical simulation approaches the problem by resolving the solvent response. In an
+alchemical calculation the solute--water interaction is varied along a coupling path,
+and the resulting ensemble averages are integrated or combined statistically.\cite{mbar2008}
+More detailed Hamiltonians improve the intermolecular interaction; path-integral
+molecular dynamics (PIMD) can additionally represent nuclear delocalization.\cite{nqereview2018}
+These ingredients can be accurate, but they demand repeated sampling for each new
+molecule. The ARROW study made this accuracy--cost relation unusually sharp: on 85
+neutral solutes, classical ARROW has an exactly reconstructed mean absolute error
+(MAE) of \ClassicalMAE{} kcal mol$^{-1}$, whereas eight-bead PIMD reduces it to
+\PIMDMAE{} kcal mol$^{-1}$.\cite{arrow2022}
+Subsequent learned-potential work reproduced ARROW water-pair interactions and
+quantum corrections within simulation, showing that parts of this description are
+learnable while retaining trajectory-based inference.\cite{arrownn2023,nqe2024}
+
+Molecular machine learning usually takes a different route. A graph, fingerprint or
+three-dimensional structure is mapped directly to a thermodynamic endpoint. Models
+can be pretrained on quantum calculations or corrected across levels of theory, and
+transfer from computed to experimental solvation has proved useful.\cite{ramakrishnan2015,combisolv2021,noe2020,mldescriptors2023}
+Yet a direct endpoint model is not explicitly asked to reconstruct the physical
+responses that determine transfer into water. Conversely, a simulation surrogate
+often reproduces one expensive calculator and inherits its target and domain.
+
+Here we test a third arrangement. Physical calculations are used to define compact,
+reusable response coordinates. Structure-to-response models learn those coordinates
+across external data; a second model uses their predictions, together with molecular
+structure and experimental hydration labels, to learn the endpoint (Fig.~\ref{fig:concept}).
+The resulting system, SolvAI, still contains learned response models at inference, but
+their expensive source calculations are not rerun. PIMD-derived features were tested
+during development and were not retained. PIMD8 therefore serves as a demanding
+accuracy reference, not as a teacher of the final model.
+
+The central test is not whether an elaborate model outperforms a weak baseline. We
+compare SolvAI with the same endpoint architecture, experimental labels, molecular
+representation, sample weights, folds and random seeds after removing only the 15
+predicted response priors. We further destroy molecule--response alignment by
+shuffling those priors, exclude related chemistry from the complete endpoint training
+pool, and remove all ARROW experimental labels. Together these controls ask whether
+predicted physical response contributes transferable information beyond ordinary
+structure regression.
 
 \begin{figure}[t]
   \centering
   \includegraphics[width=\textwidth]{fig1_concept.pdf}
-  \caption{\textbf{Solvation physics becomes reusable supervision.} \textbf{a}, Training-time calculations resolve complementary response coordinates, including water polarization, conformational reweighting and alchemical response. Structure-to-response surrogates compress these calculations into 15 predicted priors. \textbf{b}, A hydration endpoint model is trained from molecular structure, predicted response priors and experimental hydration labels. At deployment, a new molecule passes through the frozen surrogates and endpoint model using structure only. ARROW/PIMD8 is shown separately as the accuracy reference; it is not an input or a retained teacher.}
+  \caption{\textbf{Physical response becomes reusable molecular supervision.}
+  External calculations and measurements describe complementary aspects of transfer
+  into water, including continuum response, conformational reweighting and alchemical
+  interaction response. In stage 1, structure-to-response surrogates learn 15 compact
+  coordinates. In stage 2, their predictions and molecular descriptors are fitted to
+  experimental hydration free energies. Deployment repeats only the learned mappings:
+  a SMILES string produces a hydration free energy without MD, PIMD or a probe
+  calculation. ARROW/PIMD8 is shown separately as an accuracy reference and is not a
+  retained teacher.}
   \label{fig:concept}
 \end{figure}
 
-\section*{Distilling solvent response}
+\section*{Results}
 
-The final response vector contains 15 coordinates chosen before confirmatory evaluation. A COSMOtherm water response came from CombiSolv-QM; five Abraham axes describe polarizability, hydrogen-bonding and partition response; corrected explicit-alchemical and implicit-solvent quantities provide two complementary hydration estimates; one SMD(water) coordinate encodes quantum-continuum response; and six ConfSolv coordinates summarize gas- and solution-phase conformer reweighting and the distribution of water response.\cite{combisolv2021,soluteml2022,smd2009,openff2021,gnnis2024,cosmo1995} Each coordinate is predicted by a structure surrogate. None is calculated for the query molecule.
+\subsection*{Reusable solvent-response priors}
 
-The two largest successful sources supplied both scale and alignment to water. MolSolv contains 1,729,545 M06-2X/6-31G* SMD(water) calculations; a deterministic, chemistry-agnostic filter retained \MolSolvN{} structures for surrogate learning.\cite{molsolv2022} ConfSolv contains 5,392,567 H$_2$O conformer records; aggregation produced six targets for \ConfSolvN{} neutral molecular connectivities.\cite{confsolv2023} These source units are different and are not treated as comparable counts. Their source-specific filtering and physical targets are shown in Extended Data Fig.~2 and Supplementary Tables~1--3.
+The final response vector spans distinct approximations to solvation. One coordinate
+describes COSMOtherm water response from CombiSolv-QM; five Abraham axes encode
+polarizability, hydrogen-bonding and partition response; two coordinates are
+residual-corrected explicit- and implicit-solvent predictions; one represents
+SMD(water); and six summarize conformer reweighting and the distribution of water
+response in ConfSolv.\cite{cosmo1995,combisolv2021,soluteml2022,openff2021,gnnis2024,smd2009,confsolv2023}
+Every coordinate is generated by a surrogate from structure. The endpoint receives a
+2,048-bit Morgan fingerprint, 217 RDKit descriptors and these 15 predictions.
 
-All supervised external sources were screened against the 85 reference connectivities before fitting. Identity was compared by canonical isomeric SMILES, full InChIKey and the first InChIKey connectivity block; a match at the connectivity level was sufficient for exclusion. The resulting teacher sets contain no benchmark connectivity. Eighty of the 85 identities also occur in FreeSolv,\cite{freesolv2014,freesolv2017} an identity relationship reported for provenance rather than used as an external evaluation (Extended Data Fig.~2). Public experimental endpoint labels were subjected to the same exclusion. The released audit records every source and confirms zero retained overlap.
+The response sources differ deliberately in scale and physical resolution. MolSolv
+contributed 1,729,545 SMD(water) calculations, of which \MolSolvN{} structures
+remained in the confirmatory teacher after quality and identity filtering.\cite{molsolv2022}
+ConfSolv contributed 5,392,567 water conformer records; aggregation, target
+availability and standardized-identity filtering left \ConfSolvN{} structures for
+the response model. These counts are not placed on a common axis because one source
+counts calculations and the other conformer records. Complete definitions appear in
+Supplementary Table~1 and source-specific provenance in Extended Data Fig.~2.
 
-\section*{Closing the simulation gap}
+An expanded identity audit changed the original release analysis. Exact connectivity
+had already been removed from every supervised external source, but conservative
+fragment, uncharging and canonical-tautomer standardization found 2 equivalent
+CombiSolv-QM records, 32 MolSolv records and 22 ConfSolv records. We removed them,
+refitted the three affected teachers while preserving all remaining source split
+memberships, and repeated every endpoint control reported below. The 1,280-label
+experimental endpoint pool contained no exact or standardized benchmark identity.
+This corrected analysis is the sole source of the main numerical results.
 
-The change from direct molecular prediction to response distillation was progressive (Fig.~\ref{fig:headline}a). Molecular descriptors and fingerprints alone gave an OOF MAE of \PreviousMAE{} kcal mol$^{-1}$. A narrow block of general solvation responses reduced this to \NarrowMAE{} kcal mol$^{-1}$. Adding the SMD(water) surrogate lowered the error to \SMDMAE{} kcal mol$^{-1}$, and conformer-resolved ConfSolv summaries reached \SolvAIMAE{} kcal mol$^{-1}$. Water-specific supervision closed most of the remaining gap in two steps.
+\subsection*{A matched test of physical information}
 
-The improvement is visible at molecule level rather than arising from a changed metric or an in-sample fit (Fig.~\ref{fig:headline}b and Extended Data Fig.~1). A paired molecule bootstrap estimates the MAE change relative to the earlier structure-only model as $-0.042$ kcal mol$^{-1}$ (95\% interval, $-0.078$ to $-0.011$). The difference from PIMD8 is unresolved ($-0.008$ kcal mol$^{-1}$; 95\% interval, $-0.064$ to 0.051). SolvAI therefore reaches PIMD8-level accuracy on the same molecular set; the data do not establish superiority over PIMD8.
+Removing only the predicted responses from the frozen endpoint gives an OOF MAE of
+\MatchedMAE{} kcal mol$^{-1}$ (Fig.~\ref{fig:headline}a). Adding the compact response
+block lowers the error to \NarrowMAE{}; adding SMD(water) gives \NarrowSMDMAE{}; and the complete stack
+reaches \SolvAIMAE{} kcal mol$^{-1}$. The last value lies on the same accuracy scale as
+ARROW/PIMD8 (\PIMDMAE{} kcal mol$^{-1}$), although the paired comparison does not
+establish superiority over PIMD8.
 
-Feature-block choice was then nested inside the five outer folds. The resulting MAE was \NestedMAE{} kcal mol$^{-1}$, close to the frozen fixed-block estimate. Five independent five-fold partitions placed the fixed model at \RepeatMean{} $\pm$ \RepeatSD{} kcal mol$^{-1}$ and nested selection at \NestedRepeatMean{} $\pm$ \NestedRepeatSD{} kcal mol$^{-1}$ (Fig.~\ref{fig:headline}c). The 0.197 kcal mol$^{-1}$ partition is thus a strict held-out point estimate; repeated performance centres near 0.204 kcal mol$^{-1}$ rather than uniformly below 0.20.
+The response advantage is resolved at molecule level. Full SolvAI improves the
+absolute error for 53 of 85 solutes and reduces MAE by \SolvAIDelta{} kcal mol$^{-1}$
+relative to the matched endpoint (95\% paired-bootstrap interval,
+\SolvAICILow{} to \SolvAICIHigh{}; Fig.~\ref{fig:headline}b). The empirical and
+residual-corrected block is independently positive. Computation-derived, SMD and
+ConfSolv blocks are weaker in isolation, but their complete combination is positive
+(Fig.~\ref{fig:headline}c). This is evidence of complementary response information,
+not an additive decomposition of hydration free energy.
+
+Arbitrary additional columns do not reproduce the result. Across five independent
+permutations of the 15-column block, the fixed-partition mean is \ShuffledMAE{} kcal mol$^{-1}$,
+close to the 0.303 matched control and far from aligned SolvAI. The paired difference
+between aligned and mean-shuffled priors is $-0.104$ kcal mol$^{-1}$ (95\% interval,
+$-0.214$ to $-0.025$). Alignment between a molecule and its predicted response is
+therefore necessary for the observed gain.
+
+Partition choice changes the absolute point estimate but not the controlled
+advantage. Across five complete five-fold partitions, matched structure-only
+prediction gives \MatchedRepeatMean{} kcal mol$^{-1}$ on average, whereas SolvAI gives
+\RepeatMean{} $\pm$ \RepeatSD{} kcal mol$^{-1}$; SolvAI is better in all five
+partitions (Fig.~\ref{fig:headline}d). The appropriate headline is PIMD8-level
+accuracy on this reference chemistry, not uniformly sub-0.20 performance.
 
 \begin{figure}[t]
   \centering
   \includegraphics[width=\textwidth]{fig2_headline.pdf}
-  \caption{\textbf{Aligned water response closes the gap to path-integral simulation.} \textbf{a}, Strict five-fold OOF progression for the same fixed endpoint protocol. The magenta line is the reconstructed ARROW/PIMD8 MAE on the same 85 solutes. \textbf{b}, Paired molecule-level absolute error for the earlier structure-only model and SolvAI; points below the diagonal improve. Although 42 of 85 individual errors decrease, larger corrections produce the lower aggregate MAE. \textbf{c}, Complete OOF MAEs for five independent partitions with the response block fixed or selected inside nested validation. Points are independent split repeats; black bars show mean $\pm$ sample s.d.}
+  \caption{\textbf{Molecule-aligned response priors improve a matched hydration
+  endpoint.} \textbf{a}, Predeclared fixed-partition progression. Each endpoint uses
+  the same experimental labels, descriptors, architecture, weights, folds and seeds;
+  only the response block changes. The dashed magenta line marks ARROW/PIMD8 on the
+  same 85 solutes. \textbf{b}, Paired absolute errors for the matched structure-only
+  endpoint and full SolvAI. Shading marks lower SolvAI error. \textbf{c}, MAE change
+  for predeclared response blocks relative to structure only; bars are 95\%
+  molecule-bootstrap intervals. \textbf{d}, Paired results for five complete split
+  repeats. Thin lines join methods within the same partition; black marks show mean
+  $\pm$ sample s.d.}
   \label{fig:headline}
 \end{figure}
 
-\section*{When physics transfers}
+\subsection*{Transfer beyond nearby labels}
 
-The gain was not a generic consequence of adding physical features. Compact ConfSolv response summaries transferred better than graph or feed-forward latent embeddings trained on the same source (Fig.~\ref{fig:transfer}a). Broader screens of force-field hierarchies, interaction energies, learned implicit response and three-dimensional representations also failed to improve the matched endpoint (Extended Data Fig.~3). These comparisons do not rank the underlying physical methods. They measure whether a physical quantity can itself be reconstructed from structure with enough precision to help hydration prediction.
+Random molecular folds can leave close chemical neighbours in the external endpoint
+pool. We therefore applied each separation rule to all endpoint-supervised molecules,
+not only the 85 reference solutes. For each outer test partition, public and ARROW
+training rows in the held-out family, scaffold or molecular cluster were removed.
+A complementary analysis excluded every training row at or above a prescribed Morgan
+similarity to any test molecule.
 
-Short PIMD2 calculations at coupling values $\lambda=0.1$, 0.5 and 0.9 provided a direct test of that condition. Structure-only response heads captured broad trends, but component MAEs ranged from 1.27 to 5.20 kcal mol$^{-1}$ (Fig.~\ref{fig:transfer}b). Adding the predicted response raised matched endpoint MAE from 0.196 to 0.201 kcal mol$^{-1}$; a classical--NQE--PIMD hierarchy reached 0.215 kcal mol$^{-1}$, and combining both reached 0.219 kcal mol$^{-1}$ (Fig.~\ref{fig:transfer}c). Direct integration of the predicted response curve gave 1.51 kcal mol$^{-1}$ (Extended Data Fig.~5).
+The response-prior advantage survives all predeclared regimes (Fig.~\ref{fig:transfer}).
+At a maximum allowed train--test similarity of 0.70, MAE falls from
+\NNSeventyMatchedMAE{} to \NNSeventySolvAIMAE{} kcal
+mol$^{-1}$; cluster separation lowers it from 0.349 to \ClusterMAE{}. Scaffold and
+functional-family separation are much harder, but the same comparison favours SolvAI:
+\ScaffoldMatchedMAE{} to \ScaffoldMAE{} and \FamilyMatchedMAE{} to \FamilyMAE{},
+respectively. Every paired 95\%
+bootstrap interval lies below zero. Response priors therefore retain value away from
+nearby endpoint labels, even where absolute endpoint accuracy is not yet sufficient.
 
-The mechanistic conclusion is simple. Physical supervision helps only when the relevant response is learnable from the deployed input. SMD water response and conformer-distribution summaries were available across tens to hundreds of thousands of benchmark-disjoint structures and could be compressed into useful priors. Sparse high-fidelity response labels remained too difficult to infer at the precision required by the endpoint. PIMD2 and PIMD8 supervision were therefore evaluated but not retained.
+We next removed all 85 ARROW experimental labels from endpoint training. Using only
+the same 1,280 external labels, the matched structure model gives
+\ZeroArrowMatchedMAE{} kcal mol$^{-1}$
+and SolvAI gives \ZeroArrowMAE{} kcal mol$^{-1}$ (paired change $-0.128$; 95\%
+interval, $-0.246$ to $-0.037$). This transport test is not an independent external
+benchmark—the method was developed in the context of ARROW chemistry—but it shows
+that response priors retain value without fold-local adaptation to the reference set.
 
 \begin{figure}[t]
   \centering
   \includegraphics[width=\textwidth]{fig3_transfer.pdf}
-  \caption{\textbf{Transfer depends on structure-to-response accuracy.} \textbf{a}, In a matched one-seed representation screen, six compact ConfSolv response summaries outperform graph and feed-forward latent coordinates from the same source. \textbf{b}, OOF error for structure-predicted PIMD2 total, electrostatic and van der Waals $\mathrm{d}H/\mathrm{d}\lambda$ responses. \textbf{c}, Downstream endpoint error for the matched baseline, predicted PIMD2 response, predicted fidelity hierarchy and their combination. Direct integration is reported separately because its error lies on a different scale. None of the PIMD-derived blocks is present in final SolvAI.}
+  \caption{\textbf{The response-prior advantage survives chemical separation.}
+  \textbf{a}, Matched MAEs after removing every endpoint training label in the held-out
+  molecular cluster, scaffold or functional family. \textbf{b}, Sensitivity exclusion
+  removes every training row at or above the indicated maximum Morgan similarity to a
+  test molecule. \textbf{c}, Molecule-level change in absolute error when no ARROW
+  experimental label is used for training; negative values favour SolvAI. All
+  response teachers use the standardized-equivalent exclusions described in Methods.}
   \label{fig:transfer}
 \end{figure}
 
-\section*{The present frontier}
+\subsection*{What makes physics transferable}
 
-The interpolation result does not remove the problem of chemical extrapolation. Holding out complete functional-group families gives an MAE of \FamilyMAE{} kcal mol$^{-1}$; scaffold holdout gives \ScaffoldMAE{} kcal mol$^{-1}$ (Fig.~\ref{fig:frontier}a and Extended Data Fig.~6). Random-OOF errors are largest for amides, aromatics, ethers, acids and alkanes, although several families contain only three to five solutes and should be read as diagnostic examples rather than population rankings (Fig.~\ref{fig:frontier}b). Molecule-bootstrap and paired-resampling results are reported in Extended Data Fig.~7.
+The benefit is not a generic consequence of adding physically motivated outputs.
+Compact ConfSolv response summaries transfer better than graph or feed-forward latent
+representations trained on the same source (Fig.~\ref{fig:frontier}a). Other candidate
+signals—including additional force-field diagnostics, pair-interaction data and
+learned implicit-solvent hierarchies—were non-improving in matched campaign screens
+(Extended Data Fig.~3). These results do not rank the underlying physical methods.
+They test whether each representation can be inferred from structure accurately
+enough, and with sufficiently non-redundant information, to improve the endpoint.
 
-The primary reference comprises only 85 molecules, and method development occurred in its context. The result is therefore a direct comparison on the molecular set used to establish ARROW/PIMD8 accuracy, not an across-dataset FreeSolv ranking. The complete method comparison, including the non-deployable simulation-assisted branch, appears in Extended Data Table~1 and Extended Data Fig.~4.
+Short PIMD2 calculations at coupling values $\lambda=0.1$, 0.5 and 0.9 make this
+constraint explicit. Structure-only heads captured broad response trends, but
+component MAEs ranged from 1.27 to 5.20 kcal mol$^{-1}$
+(Fig.~\ref{fig:frontier}b). Adding the predicted PIMD2 response worsened the matched
+campaign endpoint from 0.196 to 0.201 kcal mol$^{-1}$; a predicted
+classical--NQE--PIMD hierarchy reached 0.215, and their combination 0.219
+(Fig.~\ref{fig:frontier}c). Direct integration of the predicted response curve yielded
+1.51 kcal mol$^{-1}$ (Extended Data Fig.~5). No PIMD-derived coordinate is present in
+the final model.
 
-The response experiment points to a specific next dataset rather than a larger generic model. Approximately 250--500 protocol-matched molecules, with deliberate coverage of the five high-error families, should report full $\lambda$-resolved $\mathrm{d}H/\mathrm{d}\lambda$, electrostatic, polarization and dispersion/repulsion components, and paired classical and PIMD8 values (Fig.~\ref{fig:frontier}c). Such data would test whether high-fidelity response itself can become a reliable structure-derived prior.
-
-SolvAI changes the computational role assigned to molecular simulation. A physical calculation need not be repeated for every prediction to remain useful. It can define transferable response coordinates, train structure surrogates and reveal exactly where structural inference breaks down. Rather than being invoked per query, expensive solvation physics can become reusable supervision for deployable molecular models.
+The experiments suggest a three-part transfer condition. A response must be relevant
+to the endpoint, learnable from the deployed molecular representation, and
+non-redundant with the other priors. Broad physical fidelity alone does not guarantee
+useful distillation. Here, compact solvent-response coordinates learned from much
+larger external sources satisfy that condition more effectively than sparse,
+high-fidelity alchemical targets.
 
 \begin{figure}[t]
   \centering
   \includegraphics[width=\textwidth]{fig4_frontier.pdf}
-  \caption{\textbf{Chemical extrapolation and response prediction define the frontier.} \textbf{a}, Random OOF, family-held-out and scaffold-held-out MAE for the fixed SolvAI stack; the dashed magenta line marks the PIMD8 reference. \textbf{b}, Molecule-level random-OOF absolute errors by chemical family. Vertical ticks give family means; sample sizes are displayed and five current high-error families are highlighted. \textbf{c}, The next informative training set is a protocol-matched, component-resolved alchemical response collection with paired classical and PIMD8 values, focused on underrepresented chemistry.}
+  \caption{\textbf{Transfer is limited by structure-to-response accuracy.}
+  \textbf{a}, Exploratory matched screen comparing compact ConfSolv summaries with
+  graph and feed-forward latent coordinates from the same source. \textbf{b}, OOF
+  error of structure-predicted PIMD2 total, electrostatic and van der Waals
+  $\mathrm{d}H/\mathrm{d}\lambda$ responses. Values are kcal mol$^{-1}$.
+  \textbf{c}, Consequence of adding those predicted high-fidelity responses to the
+  matched campaign endpoint. These analyses explain a bottleneck; none of the
+  PIMD-derived blocks is retained in SolvAI.}
   \label{fig:frontier}
 \end{figure}
+
+\section*{Discussion}
+
+SolvAI changes which part of a physical calculation is amortized. It does not emulate
+one trajectory engine or inherit a single simulation value. Instead, several
+solvation calculations define a low-dimensional response vocabulary; structure
+surrogates reproduce that vocabulary; and an experimentally supervised endpoint
+learns how the predicted responses combine for hydration. The matched control and
+shuffled-prior experiment show that the benefit is not attributable to a larger
+feature matrix alone. Global separation and zero-ARROW transfer further show that it
+is not confined to close endpoint-labelled neighbours.
+
+This arrangement is related to knowledge distillation, $\Delta$-learning,
+multi-fidelity modelling and transfer learning from computed to experimental
+properties, but assigns the computed data a different role.\cite{hinton2015,ramakrishnan2015,combisolv2021} Rather than learning one
+correction from a low-fidelity scalar to a high-fidelity scalar, SolvAI predicts a set
+of heterogeneous response coordinates and exposes them to a separate endpoint model.
+The response vector can therefore combine information from methods that differ in
+scope, fidelity and coverage. The successful object is not ``simulation'' in the
+abstract; it is an aligned, learnable representation of solvent response.
+
+The evidence also sets a clear boundary. The primary reference contains only 85
+neutral solutes, and the method was developed in its context. The confirmatory
+five-partition mean is 0.207 kcal mol$^{-1}$, so the evidence supports an accuracy
+scale rather than a threshold claim. Absolute error
+rises to 0.376 and 0.468 kcal mol$^{-1}$ when all endpoint labels sharing the test
+scaffolds or functional families are removed. The frozen model is not validated for
+ions, salts, biomacromolecules or substantially larger chemical space. Nor is this a
+generic FreeSolv ranking: 80 of the 85 reference identities occur in FreeSolv, and
+FreeSolv-related records contribute to endpoint training only after benchmark
+identity exclusion.
+
+The negative high-fidelity result is informative. To distil alchemical response
+directly, the model needs enough protocol-matched examples to predict component
+curves at substantially better than the present 1.27--5.20 kcal mol$^{-1}$. A focused
+set of roughly 250--500 molecules spanning amides, aromatics, ethers, acids and
+alkanes, with complete $\lambda$-resolved total, electrostatic, polarization and
+dispersion/repulsion response and paired classical/PIMD values, would test that next
+step. It is a more specific requirement than simply collecting more endpoint labels.
+
+The broader opportunity is to treat costly computation as scientific supervision
+with a lifetime beyond one query. Once a useful response is represented across enough
+chemistry, its information can be predicted from structure and reused at negligible
+marginal simulation cost. Hydration provides a demanding demonstration because the
+accuracy reference includes explicit solvent and nuclear quantum effects. The same
+principle may apply wherever physical computation exposes transferable response
+coordinates that a deployed model can learn.
 
 \FloatBarrier
 \section*{Methods}
 
-\subsection*{Reference set}
+\subsection*{Reference set and targets}
 
-The primary evaluation uses the 85 neutral organic solutes reported in the ARROW hydration analysis at 298 K.\cite{arrow2022} The target is experimental hydration free energy in kcal mol$^{-1}$. One water condition was retained per molecular identity. The released table records canonical structure, source identifiers, experimental uncertainty where available, classical ARROW, PIMD4 and PIMD8 values, chemical-family annotation, scaffold and all validation assignments. The exact reconstructed PIMD8 MAE is \PIMDMAE{} kcal mol$^{-1}$; the original article reports approximately 0.20 kcal mol$^{-1}$.
+The primary evaluation uses the 85 neutral organic solutes reported in the ARROW
+hydration analysis at 298 K.\cite{arrow2022} One water condition was retained per
+connectivity. The released benchmark table contains canonical structure,
+experimental hydration free energy, experimental uncertainty where available,
+classical ARROW, PIMD4 and PIMD8 values, and all fold assignments. The exact
+reconstructed PIMD8 MAE is \PIMDMAE{} kcal mol$^{-1}$; the source article reports
+approximately 0.20 kcal mol$^{-1}$.
 
-\subsection*{Identity exclusion}
+\subsection*{Endpoint labels and features}
 
-RDKit 2026.03.5\cite{rdkit2026} was used to parse each molecule and generate canonical isomeric SMILES and an InChIKey. External supervised sources were compared against the reference by canonical SMILES, full InChIKey and the 14-character connectivity block. Any connectivity match was removed before a teacher or endpoint model was fitted. For solvent-conditioned collections, the exclusion was applied across solvents. Invalid, disconnected, charged or unresolved rows were removed according to the frozen source manifests. A release audit independently repeats canonicalization and verifies zero retained overlap for every source used by SolvAI. Detailed source counts are given in Extended Data Fig.~2 and Supplementary Table~2.
-
-\subsection*{Molecular representation}
-
-The endpoint uses 2,265 deterministic structure features: a 2,048-bit radius-2 Morgan fingerprint and 217 RDKit two-dimensional descriptors. The frozen preprocessing replaces non-finite values using training-derived handling. No optimized three-dimensional conformer, trajectory or ARROW parameterization is required.
+The external endpoint pool contains 1,280 neutral, benchmark-disjoint experimental
+hydration labels: 1,147 connectivity-resolved records from a FreeSolv/CombiSolv-Exp
+merge and 133 SoluteML dGsolvDB3 records supported by at least two source
+measurements.\cite{freesolv2017,combisolvexp2022,soluteml2022} Each endpoint input has a
+2,048-bit radius-2 Morgan fingerprint and 217 RDKit two-dimensional descriptors.
+Non-finite values are handled by a median imputer fitted inside each endpoint fit.
 
 \subsection*{Response surrogates}
 
-The 15 priors are generated by six frozen teacher artifacts (Supplementary Table~1). Two directed message-passing neural networks (D-MPNNs) predict the CombiSolv-QM COSMOtherm and MolSolv SMD(water) targets.\cite{chemprop2019} The former begins from a CHEMELEON foundation checkpoint and also receives RDKit descriptors; the latter begins from the same checkpoint and uses the molecular graph. Five Abraham targets and the OpenFF and GBn2 response pairs use extremely randomized trees.\cite{extratrees2006} Six selected ConfSolv targets use gradient-boosted trees. Corrected OpenFF and GBn2 coordinates are each the sum of a predicted physical value and a separately predicted experimental residual. The response vector contains only surrogate predictions at inference.
+Fifteen response coordinates are generated by six artifact families (Supplementary
+Table~1). CHEMELEON-initialized D-MPNNs predict CombiSolv-QM/COSMOtherm and
+MolSolv SMD(water) targets.\cite{chemprop2019} ExtraTrees models predict five Abraham
+axes and the physical and residual components of corrected OpenFF and GBn2 responses.
+LightGBM models predict six ConfSolv conformer and response-distribution summaries.
+The latter are derived from the H$_2$O subset of ConfSolv. The final coordinate list,
+target units, source sizes, transformations and inference calculations are given in
+Supplementary Table~1. PIMD-derived targets are absent from this list.
 
-The final selected stack contains no PIMD-trained coordinate. PIMD2 response and PIMD8/classical hierarchy heads were trained only as predefined candidate ablations and were excluded after non-improving held-out results. PIMD8 is used in the paper as an independent high-fidelity reference.
+The endpoint is an ensemble of three \texttt{ExtraTreesRegressor} pipelines,\cite{extratrees2006} each
+with 360 trees, maximum feature fraction 0.7, minimum leaf size 2, no bootstrap and
+random seeds 11, 29 and 47. Predictions are averaged. Public endpoint rows have
+sample weight 1 and available ARROW outer-training rows weight 3. The matched
+structure-only model is identical except that the 15 response columns are removed.
 
-\subsection*{Endpoint supervision}
+\subsection*{Identity standardization}
 
-The endpoint training pool combines 1,280 benchmark-disjoint public experimental hydration labels with the reference molecules available in each outer-training fold. The public set comprises 1,147 rows from a connectivity-resolved FreeSolv/CombiSolv-Exp merge and 133 SoluteML dGsolvDB3 rows supported by at least two source measurements.\cite{freesolv2017,combisolvexp2022,soluteml2022} External rows have sample weight one and outer-training reference rows weight three. The public deployment artifact was refitted after evaluation on the 1,280 external labels and all 85 reference labels; none of its refit predictions is used as held-out evidence.
+RDKit 2026.03.5 was used to generate canonical isomeric SMILES, full InChIKeys and
+connectivity blocks.\cite{rdkit2026} The confirmatory audit additionally applied
+MolStandardize cleanup, largest-fragment selection, uncharging and canonical tautomer
+enumeration. Exact and standardized benchmark equivalents were removed from every
+supervised external source. The audit found no such match in the endpoint pool. It
+identified 2 CombiSolv-QM, 32 MolSolv and 22 ConfSolv source records beyond the
+original exact-connectivity exclusion. The affected teachers were refitted with all
+remaining molecules held in their original train, validation or test split. Full pair
+lists, identifiers and split-verification hashes are released.
 
-The hydration model is an ensemble of three \texttt{ExtraTreesRegressor} instances with 360 trees, maximum feature fraction 0.7, minimum leaf size 2 and seeds 11, 29 and 47. It receives the 2,265 structure features and 15 predicted response priors. Ensemble predictions are averaged. The complete source, teacher and endpoint specifications are provided in Supplementary Methods.
+\subsection*{Confirmatory evaluation}
 
-\subsection*{Evaluation}
+The analysis protocol was committed before valid confirmatory model fitting. The
+primary partition is the existing five-fold assignment on the 85 molecules. Five
+complete shuffled K-fold partitions use seeds 314159, 271828, 161803, 141421 and
+173205. In each outer fold, all 1,280 external labels and the available ARROW
+outer-training labels are fitted; the test target is absent. Feature blocks,
+ExtraTrees hyperparameters, sample weights and model seeds are identical across all
+comparisons.
 
-Random OOF evaluation uses five frozen molecule-level folds. For every reference molecule, the endpoint excludes its experimental label. Externally trained teachers never contain its connectivity. The fixed-block result evaluates the response representation selected during the completed campaign; the nested procedure selects among narrow response, SMD and ConfSolv blocks using inner-OOF predictions from each outer-training partition. Five independent complete five-fold repetitions use seeds 314159, 271828, 161803, 141421 and 173205. Grouped folds hold out functional-group families; scaffold folds use the frozen scaffold grouping. Exact assignments are provided as Supplementary Data~3.
+For the negative control, the 15 response columns are permuted as one block, thereby
+preserving their joint distribution while destroying molecule alignment. Public,
+outer-training and outer-test response rows are permuted separately within each fold.
+Five permutation seeds (88001--88005) are evaluated for the fixed partition and each
+of the five repeats.
+
+\subsection*{Chemical separation}
+
+Separation is applied to the complete endpoint-supervised pool. Functional families
+are assigned by a deterministic SMARTS precedence; five outer folds are formed by
+group. Bemis--Murcko scaffolds are canonicalized, with acyclic structures grouped by
+primary family. Taylor--Butina clusters use radius-2, 2,048-bit Morgan fingerprints
+at Tanimoto similarity 0.70. For each outer test fold, every public or ARROW training
+row sharing a held-out group is removed. A separate nearest-neighbour analysis removes
+every training row with similarity at or above 0.50, 0.60, 0.70 or 0.80 to any test
+molecule. No threshold was selected by performance. Exact SMARTS, assignments,
+training counts and maximum retained similarities are released as Supplementary
+Data~3.
+
+\subsection*{Zero-ARROW transfer}
+
+The frozen endpoint configuration was fitted once to the 1,280 external experimental
+labels without any ARROW experimental value. Both matched structure-only and full
+response-prior models then predicted all 85 ARROW molecules. This analysis measures
+transport without reference-set endpoint adaptation; it is not described as an
+independent external test because model development used the reference chemistry.
 
 \subsection*{Statistics}
 
-MAE is the primary endpoint; RMSE is retained in the machine-readable metric file. Percentile intervals were calculated from 100,000 molecule-level bootstrap resamples with seed 20260827. Paired comparisons resampled molecule-wise error differences, preserving predictions on the same solute. Repeated-split variation is reported as mean $\pm$ sample s.d. across five complete partitions. No inferential test was used to declare a 0.20-kcal mol$^{-1}$ threshold crossing.
+MAE in kcal mol$^{-1}$ is primary. RMSE, median absolute error and the fraction of
+molecules improved are secondary. All comparisons are paired by molecule.
+Ninety-five per cent percentile intervals use 100,000 molecule bootstrap resamples
+with seed 20260828. For repeated partitions, each molecule's absolute error is first
+averaged across repeats before resampling. A predeclared comparison is positive when
+the complete paired interval for candidate-minus-control MAE is below zero, negative
+when above zero and neutral otherwise; an absolute difference of at least 0.010 kcal
+mol$^{-1}$ is additionally termed material. No multiplicity correction or
+post-result feature selection is used.
 
-\subsection*{Lambda-response test}
+\subsection*{Deployment artifact}
 
-Short, training-only PIMD2 calculations were available at $\lambda=0.1$, 0.5 and 0.9 for 72, 74 and 73 molecules, respectively; 72 had complete three-point curves. Each run used 5 ps at one coupling state and was interpreted as a response fingerprint, not a converged free energy. Total, Coulomb and van der Waals $\mathrm{d}H/\mathrm{d}\lambda$ targets were predicted with all held-out molecule response labels excluded. The frozen experiment compared the matched endpoint alone, the predicted response, a classical--NQE--PIMD hierarchy, their combination, and affine-calibrated integration. Full protocols and results appear in Supplementary Methods and Extended Data Fig.~5.
-
-\subsection*{Runtime and release audit}
-
-The packaged artifact was measured from SMILES input to hydration output on an Intel Core i7-4930K CPU; the installed RTX 3090 was not used. After one warm-up, five single-molecule calls gave a median of 17.522 s and p95 of 17.627 s. Three batches of 32 molecules gave a median of 17.911 s, or 0.560 s per molecule. The current implementation starts separate response-model processes, so single-query latency is an engineering property rather than a minimum scientific cost. Published ARROW/PIMD8 timings used an RTX 2080 Ti and 15 one-nanosecond windows, corresponding to 240--270 serial GPU-hours;\cite{arrow2022} because hardware differs, we report this only as a total-work context, not a same-device speed benchmark.
-
-The release audit verifies artifact SHA-256 values, runs ethanol and benzene smoke predictions from SMILES, searches the runtime schema for prohibited target and simulation fields, and reruns the connectivity exclusions. The repository contains exact environments, prediction tables, metric reconstruction, figures and manuscript source.
+After evaluation was frozen, the response teachers were fitted with standardized
+benchmark equivalents removed and the endpoint was refitted on the 1,280 public plus
+85 ARROW labels. This all-data artifact is used only for deployment, never for paper
+accuracy. Inference canonicalizes a SMILES string, computes descriptors, evaluates
+the six frozen response-surrogate artifacts and averages three endpoint regressors.
+It does not read an experimental value, family label, scaffold, fold identifier,
+trajectory or PIMD result. Software versions, hashes and a SMILES-only smoke test are
+reported in Supplementary Methods and Tables~6--7.
 
 \section*{Data availability}
 
-The reference table, held-out predictions, validation assignments, derived metrics and redistributable processed teacher tables are included in the SolvAI repository. Source URLs, versions, licences, checksums, filtering and reproduction commands are recorded in \path{repro/DATA_PROVENANCE.md}. Third-party data without explicit redistribution terms must be obtained from their original provider.
+All benchmark records, held-out predictions, split assignments, audit tables and
+derived source manifests required to reproduce the paper are provided in the SolvAI
+repository. Large third-party datasets are not redistributed where their size or
+licence makes that inappropriate; immutable URLs or DOIs, hashes, licences and exact
+preprocessing instructions are supplied in \texttt{repro/DATA\_PROVENANCE.md}.
 
 \section*{Code availability}
 
-Inference, audits, frozen metric reconstruction, figure generation and manuscript source are available at \url{https://github.com/Scientific-Computing-Lab/SolvAI}. The released command accepts a SMILES string and starts no simulation software.
+Source code, the packaged inference artifacts, confirmatory analysis scripts, figure
+generation, manuscript source and a locked environment are available at
+\url{https://github.com/Scientific-Computing-Lab/SolvAI}. A frozen-artifact path
+reproduces predictions, metrics, figures and PDFs without rerunning physical
+calculations.
 
 \bibliographystyle{unsrtnat}
 \bibliography{references}
 
 \clearpage
-\section*{Extended Data legends}
+\section*{Extended Data figure legends}
 
-\noindent\textbf{Extended Data Fig. 1 | Molecular predictions and residual diagnostics.} \textbf{a}, Experimental and strict OOF SolvAI hydration free energies; the diagonal denotes equality. \textbf{b}, Signed residual against experimental hydration free energy. \textbf{c}, Absolute errors for the previous structure-only model and SolvAI, ordered by SolvAI error. The logarithmic scale exposes small and large residuals simultaneously.
+\paragraph{Extended Data Fig. 1 | Molecule-level prediction and residuals.}
+\textbf{a}, Confirmatory SolvAI OOF prediction against experiment. \textbf{b}, Signed
+residual against experimental hydration free energy. \textbf{c}, Distribution of the
+paired absolute-error change relative to the matched structure-only endpoint.
 
-\medskip
-\noindent\textbf{Extended Data Fig. 2 | Source-specific provenance and identity exclusion.} Each row retains its native source unit. FreeSolv overlap describes the identity relationship of the reference set and does not define an external test. MolSolv and ConfSolv rows report benchmark matches removed before teacher fitting and the final source-specific training counts. Unlike identities, calculations and conformer records are not placed on a common quantitative axis.
+\paragraph{Extended Data Fig. 2 | Source-specific provenance and standardized
+identity exclusion.} Counts are shown in their native source units and normalized
+only within source. The audit removed standardized benchmark equivalents before the
+confirmatory teacher refits; no endpoint experimental label was removed.
 
-\medskip
-\noindent\textbf{Extended Data Fig. 3 | Alternative routes to physics-informed hydration prediction.} Frozen OOF screens of candidate physical supervision and representations. Values follow their documented matched regimes and compare transfer utility rather than the intrinsic accuracy of the source calculation. The matched one-seed base is the reference for these screens. Full experiment definitions are provided as Supplementary Data~1.
+\paragraph{Extended Data Fig. 3 | Alternative physical-supervision routes.}
+Exploratory fixed screens of additional diagnostic, latent and hierarchy features.
+The dashed line is the matched campaign response base for those screens. These
+experiments were not used to select the confirmatory controls.
 
-\medskip
-\noindent\textbf{Extended Data Fig. 4 | Simulation-assisted accuracy--cost reference.} Oracle and nested learned routing under the original random-OOF analysis. These policies require PIMD8 for selected test molecules and are not part of SolvAI or any structure-only headline result. The panel is retained as a non-deployable scientific reference.
+\paragraph{Extended Data Fig. 4 | Simulation-assisted reference.}
+Accuracy--compute curves for selective PIMD policies from the discontinued
+simulation-assisted branch. They are reported for context and are not part of
+SolvAI, whose deployed path never routes to simulation.
 
-\medskip
-\noindent\textbf{Extended Data Fig. 5 | Multi-$\lambda$ response distillation.} \textbf{a}, Structure-to-response MAE for total, electrostatic and van der Waals components at three coupling values. \textbf{b}, Matched endpoint error for the baseline and three predicted-physics additions. \textbf{c}, Direct integration of the predicted response, shown on its own scale. Prediction error in the physical response, rather than endpoint capacity, is the limiting step.
+\paragraph{Extended Data Fig. 5 | Multi-$\lambda$ response experiment.}
+\textbf{a}, OOF response-head error at three coupling states. \textbf{b}, Matched
+endpoint consequences and the separately scaled error obtained by direct integration
+of the predicted curve.
 
-\medskip
-\noindent\textbf{Extended Data Fig. 6 | Chemical extrapolation.} \textbf{a}, Random, family and scaffold holdout MAE. \textbf{b}, Random-OOF and family-holdout MAE for each annotated family; sample sizes are shown. \textbf{c}, Scaffold-holdout absolute error across the hydration range. Small family groups are diagnostic and are not interpreted as precise population rankings.
-
-\medskip
-\noindent\textbf{Extended Data Fig. 7 | Bootstrap and paired uncertainty.} \textbf{a}, Fixed and nested OOF point estimates with molecule-bootstrap 95\% intervals. \textbf{b}, Paired molecule-bootstrap MAE differences relative to the previous structure-only model and PIMD8; zero denotes equal point performance.
-
-\medskip
-\noindent\textbf{Extended Data Table 1 | Final model and evaluation comparison.} Mean absolute errors are in kcal mol$^{-1}$. Dashes denote evaluations not defined for that frozen artifact. Only rows with no simulation at inference satisfy the SolvAI deployment definition.
+\paragraph{Extended Data Fig. 6 | Molecular and chemical-separation errors.}
+\textbf{a}, Individual fixed-partition SolvAI errors grouped by diagnostic chemical
+family; ticks show family means and labels give sample sizes. \textbf{b}, Matched
+structure-only and SolvAI errors under four global separation regimes.
 
 \end{document}

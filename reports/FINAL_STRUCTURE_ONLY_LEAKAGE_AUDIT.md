@@ -1,4 +1,8 @@
-# Final structure-only leakage audit
+# Historical exact-connectivity leakage audit
+
+> **Superseded for publication.** This audit predates the confirmatory fragment,
+> uncharging and tautomer-equivalence checks. See `audits/confirmatory/` and
+> `reports/CONFIRMATORY_ANALYSIS.md` for the expanded audit and corrected refits.
 
 ## Verdict
 

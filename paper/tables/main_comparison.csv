@@ -1,8 +1,6 @@
-Method,Simulation at inference,Random OOF MAE,Family MAE,Scaffold MAE
+Method,Simulation at inference,Fixed OOF MAE,Global family MAE,Global scaffold MAE
 Classical ARROW,yes,0.784648235294118,—,—
 ARROW/PIMD8,yes,0.20483647058823526,—,—
-Previous structure-only,no,0.23860611898039202,—,—
-Narrow response,no,0.21361517318705275,—,—
-+ SMD(water),no,0.2016070042016807,—,—
-SolvAI,no,0.19704747409482312,0.23956658487654378,0.2412820403309476
-Nested selection,no,0.19930603930646335,—,—
+Matched structure-only,no,0.3033484655954973,—,—
+SolvAI,no,0.20223406721910991,0.4677933152583255,0.3761935493360304
+"SolvAI, zero ARROW labels",no,0.25694059186637636,—,—

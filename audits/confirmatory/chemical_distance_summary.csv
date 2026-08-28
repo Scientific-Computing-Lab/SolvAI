@@ -1,0 +1,8 @@
+source,source_rows,unique_smiles_audited,parse_failures,full_inchi_key_matches,connectivity_matches,fragment_parent_matches,uncharged_parent_matches,canonical_tautomer_matches,rows_sharing_benchmark_scaffold,maximum_similarity,median_of_benchmark_max_similarity
+endpoint_experimental,1280,1280,0,0,0,0,0,0,439,1.0,0.5384615384615384
+combisolv_qm,3963,3963,0,0,0,0,0,2,874,1.0,0.5625
+abraham,8098,8098,0,0,0,0,0,0,3000,1.0,0.6
+openff,520,520,0,0,0,0,0,0,190,1.0,0.45454545454545453
+gbn2,550,550,0,0,0,0,0,0,206,1.0,0.45454545454545453
+molsolv_smd,350391,350391,2,0,0,0,0,32,51943,1.0,0.5789473684210527
+confsolv,39878,39878,0,0,0,13,22,22,7008,1.0,0.5

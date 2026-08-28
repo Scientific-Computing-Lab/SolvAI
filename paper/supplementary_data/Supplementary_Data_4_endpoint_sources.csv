@@ -1,5 +1,5 @@
-source_group,selected_records,selection_rule,endpoint_target
-FreeSolv only,69,legacy benchmark-disjoint merge,experimental hydration
-CombiSolv-Exp only,588,legacy benchmark-disjoint merge,experimental solvation in water
-FreeSolv + CombiSolv-Exp identity,490,one connectivity-level merged record,duplicate-resolved experimental hydration
-SoluteML dGsolvDB3,133,at least two source measurements,consensus experimental hydration
+source group,selected records,selection rule
+FreeSolv only,69,benchmark-disjoint connectivity
+CombiSolv-Exp only,588,water records; benchmark-disjoint connectivity
+FreeSolv + CombiSolv-Exp,490,one duplicate-resolved connectivity
+SoluteML dGsolvDB3,133,at least two source measurements

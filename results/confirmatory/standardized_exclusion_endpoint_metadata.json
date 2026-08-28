@@ -1,0 +1,24 @@
+{
+  "teacher_overrides": {
+    "combisolv_qm": "results/confirmatory/teacher_refits/combisolv_qm/teacher_predictions.parquet",
+    "molsolv_smd": "results/confirmatory/teacher_refits/molsolv_smd/teacher_predictions.parquet",
+    "confsolv": "results/confirmatory/teacher_refits/confsolv/teacher_predictions.parquet"
+  },
+  "model_seeds": [
+    11,
+    29,
+    47
+  ],
+  "repeat_seeds": [
+    314159,
+    271828,
+    161803,
+    141421,
+    173205
+  ],
+  "standardized_exclusions": {
+    "combisolv_qm": 2,
+    "molsolv_smd": 32,
+    "confsolv": 22
+  }
+}

@@ -1,4 +1,4 @@
-# Nature editorial and visual calibration
+# Nature Portfolio editorial and visual calibration
 
 Checked 27 August 2026 against current Nature guidance and three recent
 research articles selected for their combination of molecular science,
@@ -34,10 +34,10 @@ method or evidence standard as SolvAI.
 - Extended Data preserve methodological and diagnostic depth without
   duplicating main panels.
 
-## Current Nature requirements applied
+## Nature Communications implementation
 
-- The opening is a fully referenced bold summary paragraph of 150–200 words,
-  with no “Abstract” heading.
+- The revised submission uses a concise explicit abstract appropriate to Nature
+  Communications.
 - Main-text subheadings remain below 40 characters.
 - The main article uses four display figures and superscript numeric citations.
 - Extended Data are separate page-compatible files, at no more than 180 mm by

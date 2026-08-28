@@ -27,7 +27,7 @@ manuscript and Supplementary Information.
 Expected ethanol output (prediction and ensemble spread, kcal/mol):
 
 ```text
-CCO    -5.020248    0.005697
+CCO    -5.012566    0.004714
 ```
 
 Small floating-point differences are accepted only within the

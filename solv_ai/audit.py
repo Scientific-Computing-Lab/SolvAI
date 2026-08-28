@@ -188,6 +188,23 @@ def run_leakage_audit(root: Path = ROOT) -> tuple[dict[str, Any], pd.DataFrame]:
             f"Inference code references evaluation data: {forbidden_runtime_paths}"
         )
 
+    confirmatory_dir = root / "audits/confirmatory"
+    chemical_audit = json.loads((confirmatory_dir / "chemical_distance_audit.json").read_text())
+    refit_audit = json.loads(
+        (confirmatory_dir / "standardized_exclusion_refit_verification.json").read_text()
+    )
+    exclusions = pd.read_csv(confirmatory_dir / "standardized_exclusion_records.csv")
+    expected_exclusions = {"combisolv_qm": 2, "molsolv_smd": 32, "confsolv": 22}
+    observed_exclusions = exclusions.groupby("source").size().to_dict()
+    if observed_exclusions != expected_exclusions:
+        raise AssertionError(f"Unexpected standardized exclusions: {observed_exclusions}")
+    if refit_audit["status"] != "passed":
+        raise AssertionError("Standardized-exclusion teacher refit verification failed")
+    if not chemical_audit["exact_identity_clean"]:
+        raise AssertionError("Exact identity firewall failed in confirmatory audit")
+    if chemical_audit["standardized_identity_clean"]:
+        raise AssertionError("Raw-source audit unexpectedly contains no declared exclusions")
+
     report = {
         "status": "PASS",
         "identity_policy": (
@@ -197,6 +214,13 @@ def run_leakage_audit(root: Path = ROOT) -> tuple[dict[str, Any], pd.DataFrame]:
         "benchmark_molecules": 85,
         "sources": rows,
         "all_supervised_external_connectivity_overlaps_zero": True,
+        "confirmatory_standardized_equivalence": {
+            "raw_sources_required_refit": True,
+            "excluded_from_final_teacher_training": expected_exclusions,
+            "refit_verification": "PASS",
+            "endpoint_standardized_matches": 0,
+            "similarity_1_nonidentical_cases_audited": True,
+        },
         "artifact": {
             "input": "SMILES only",
             "descriptor_features": len(head["descriptor_columns"]),
@@ -220,9 +244,12 @@ def write_leakage_audit(root: Path = ROOT) -> dict[str, Any]:
     lines = [
         "# Independent SolvAI leakage and inference audit",
         "",
-        "**Status: PASS.** Every supervised external training source used by the final model",
-        "is disjoint from the 85-solute reference set at the InChIKey connectivity level.",
-        "Canonical isomeric SMILES and full InChIKey comparisons also have zero overlap.",
+        "**Status: PASS.** Exact-connectivity, fragment-parent, uncharged-parent and",
+        "canonical-tautomer equivalence have been audited. The raw source audit found",
+        "2 CombiSolv-QM, 32 MolSolv and 22 ConfSolv standardized equivalents; each was",
+        "removed before the released teachers were refitted. Retained split membership",
+        "was independently verified. The 1,280-label endpoint pool has zero standardized",
+        "benchmark equivalent.",
         "",
         "| Source | Rows | Unique structures | SMILES overlap | Full-key overlap | Connectivity overlap | Verification |",
         "|---|---:|---:|---:|---:|---:|---|",
@@ -235,6 +262,9 @@ def write_leakage_audit(root: Path = ROOT) -> dict[str, Any]:
         )
     lines.extend(
         [
+            "",
+            "Morgan-similarity-1 cases with different identities are enumerated rather than",
+            "silently removed; global similarity-exclusion controls are reported separately.",
             "",
             "The released endpoint contains 2,265 deterministic RDKit/Morgan features and",
             "15 structure-predicted physical-response priors. Its schema contains no",

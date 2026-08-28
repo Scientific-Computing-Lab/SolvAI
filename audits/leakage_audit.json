@@ -101,6 +101,17 @@
     }
   ],
   "all_supervised_external_connectivity_overlaps_zero": true,
+  "confirmatory_standardized_equivalence": {
+    "raw_sources_required_refit": true,
+    "excluded_from_final_teacher_training": {
+      "combisolv_qm": 2,
+      "molsolv_smd": 32,
+      "confsolv": 22
+    },
+    "refit_verification": "PASS",
+    "endpoint_standardized_matches": 0,
+    "similarity_1_nonidentical_cases_audited": true
+  },
   "artifact": {
     "input": "SMILES only",
     "descriptor_features": 2265,

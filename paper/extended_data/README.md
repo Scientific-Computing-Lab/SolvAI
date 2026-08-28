@@ -1,6 +1,6 @@
 # Extended Data submission files
 
-Extended Data Figures 1–7 and Extended Data Table 1 are standalone display
+Extended Data Figures 1–6 and Extended Data Table 1 are standalone display
 items. Their legends appear at the end of `paper/main.tex`, as required by the
 current Nature submission guidance. They are not embedded in the Supplementary
 Information PDF.

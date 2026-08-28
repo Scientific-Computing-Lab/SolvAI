@@ -11,11 +11,12 @@ The full workflow comprises:
 1. download each source at the version in `DATA_PROVENANCE.md`;
 2. validate its published checksum and licence;
 3. canonicalize solutes with RDKit;
-4. remove all ARROW-85 connectivity matches before supervised fitting;
+4. remove exact and standardized ARROW-85 equivalents before supervised fitting;
 5. build the MolSolv, ConfSolv, CombiSolv-QM, Abraham, OpenFF and implicit
    response teachers;
-6. generate fold-local response predictions;
-7. fit fixed and nested endpoint models;
+6. preserve each retained molecule's frozen teacher split membership and refit the
+   affected response teachers;
+7. generate response predictions and fit the preregistered confirmatory endpoints;
 8. refit the frozen deployment artifact only after evaluation.
 
 The exact final-stage training sources are preserved under `training/`; the full
@@ -58,8 +59,8 @@ are included for quick reproduction.
 
 ## Frozen evaluation
 
-The definitive metric input is `results/predictions/headline_oof.parquet`, not
-predictions from the all-data deployment refit. Repeat, hard-holdout and
-alternative-supervision files are under `results/robustness` and
-`results/ablations`. `solv_ai.paper_metrics` is the only module authorized to
-write manuscript metrics.
+The definitive inputs are the molecule-level files under `results/confirmatory/`,
+not predictions from the all-data deployment refit. Historical campaign files under
+`results/predictions`, `results/robustness` and `results/ablations` are retained for
+provenance and are labelled as such. `solv_ai.paper_metrics` is the only module
+authorized to write manuscript metrics.

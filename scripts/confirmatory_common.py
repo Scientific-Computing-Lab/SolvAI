@@ -13,7 +13,6 @@ from sklearn.impute import SimpleImputer
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.pipeline import make_pipeline
 
-
 MODEL_SEEDS = (11, 29, 47)
 REPEAT_SEEDS = (314159, 271828, 161803, 141421, 173205)
 SHUFFLE_SEEDS = (88001, 88002, 88003, 88004, 88005)
@@ -40,7 +39,9 @@ def _align(table: pd.DataFrame, ids: pd.Series, columns: list[str]) -> np.ndarra
     return values
 
 
-def load_confirmatory_data(workspace_root: Path) -> ConfirmatoryData:
+def load_confirmatory_data(
+    workspace_root: Path, teacher_overrides: dict[str, Path] | None = None
+) -> ConfirmatoryData:
     processed = workspace_root / "data" / "processed"
     benchmark = pd.read_parquet(processed / "arrow_solvation_master.parquet")
     benchmark = (
@@ -51,9 +52,7 @@ def load_confirmatory_data(workspace_root: Path) -> ConfirmatoryData:
     if len(benchmark) != 85:
         raise AssertionError(f"Expected 85 benchmark rows, found {len(benchmark)}")
 
-    public_all = pd.read_parquet(
-        processed / "expanded_public_hydration_nonbenchmark.parquet"
-    )
+    public_all = pd.read_parquet(processed / "expanded_public_hydration_nonbenchmark.parquet")
     old_public = pd.read_parquet(processed / "public_hydration_nonbenchmark.parquet")
     old_keys = set(old_public.inchi_connectivity_key.astype(str))
     source_mask = (
@@ -78,33 +77,24 @@ def load_confirmatory_data(workspace_root: Path) -> ConfirmatoryData:
         raise AssertionError("Public structure-feature order changed")
     public_features = public_features_all.loc[source_mask].reset_index(drop=True)
     descriptor_columns = [
-        column
-        for column in benchmark_features
-        if column.startswith(("rdkit__", "morgan2__"))
+        column for column in benchmark_features if column.startswith(("rdkit__", "morgan2__"))
     ]
     if len(descriptor_columns) != 2265:
-        raise AssertionError(
-            f"Expected 2,265 structure columns, found {len(descriptor_columns)}"
-        )
-    benchmark_structure = benchmark_features[descriptor_columns].to_numpy(
-        dtype=np.float32
-    )
+        raise AssertionError(f"Expected 2,265 structure columns, found {len(descriptor_columns)}")
+    benchmark_structure = benchmark_features[descriptor_columns].to_numpy(dtype=np.float32)
     public_structure = public_features[descriptor_columns].to_numpy(dtype=np.float32)
 
-    qm = pd.read_parquet(processed / "combisolv_qm_teacher_predictions.parquet")
-    abraham = pd.read_parquet(
-        processed / "soluteml_abraham_teacher_predictions.parquet"
-    )
-    openff = pd.read_parquet(
-        processed / "openff_alchemical_teacher_predictions.parquet"
-    )
-    implicit = pd.read_parquet(
-        processed / "implicit_solvent_teacher_predictions.parquet"
-    )
-    smd = pd.read_parquet(processed / "molsolv_smd_teacher_predictions.parquet")
-    confsolv = pd.read_parquet(
-        processed / "confsolv_water_teacher_predictions.parquet"
-    )
+    teacher_overrides = teacher_overrides or {}
+
+    def teacher_table(name: str, default_name: str) -> pd.DataFrame:
+        return pd.read_parquet(teacher_overrides.get(name, processed / default_name))
+
+    qm = teacher_table("combisolv_qm", "combisolv_qm_teacher_predictions.parquet")
+    abraham = pd.read_parquet(processed / "soluteml_abraham_teacher_predictions.parquet")
+    openff = pd.read_parquet(processed / "openff_alchemical_teacher_predictions.parquet")
+    implicit = pd.read_parquet(processed / "implicit_solvent_teacher_predictions.parquet")
+    smd = teacher_table("molsolv_smd", "molsolv_smd_teacher_predictions.parquet")
+    confsolv = teacher_table("confsolv", "confsolv_water_teacher_predictions.parquet")
 
     qcols = ["combisolv_qm_teacher"]
     acols = [f"abraham_{name}_teacher" for name in "esabl"]
@@ -129,18 +119,16 @@ def load_confirmatory_data(workspace_root: Path) -> ConfirmatoryData:
         confsolv_values = _align(confsolv, ids, ccols)
         openff_corrected = openff_values.sum(axis=1, keepdims=True)
         gbn2_corrected = implicit_values.sum(axis=1, keepdims=True)
-        empirical = np.column_stack(
-            [abraham_values, openff_corrected, gbn2_corrected]
-        ).astype(np.float32)
+        empirical = np.column_stack([abraham_values, openff_corrected, gbn2_corrected]).astype(
+            np.float32
+        )
         computation_core = np.column_stack(
             [qm_values, openff_values[:, [0]], implicit_values[:, [0]]]
         ).astype(np.float32)
         narrow = np.column_stack(
             [qm_values, abraham_values, openff_corrected, gbn2_corrected]
         ).astype(np.float32)
-        full = np.column_stack(
-            [narrow, smd_values, confsolv_values]
-        ).astype(np.float32)
+        full = np.column_stack([narrow, smd_values, confsolv_values]).astype(np.float32)
         return {
             "empirical_residual": empirical,
             "computation_core": computation_core,
@@ -153,9 +141,7 @@ def load_confirmatory_data(workspace_root: Path) -> ConfirmatoryData:
 
     benchmark_responses = response_parts(benchmark.molecule_id)
     public_responses_all = response_parts(public_all.molecule_id)
-    public_responses = {
-        name: values[source_mask] for name, values in public_responses_all.items()
-    }
+    public_responses = {name: values[source_mask] for name, values in public_responses_all.items()}
 
     def add(base: np.ndarray, response: np.ndarray | None) -> np.ndarray:
         return base if response is None else np.column_stack([base, response])
@@ -235,9 +221,7 @@ def fit_predict(
 ) -> np.ndarray:
     x_fit = np.vstack([public_x, benchmark_x[train_indices]])
     y_fit = np.concatenate([public_y, benchmark_y[train_indices]])
-    weights = np.concatenate(
-        [np.ones(len(public_y)), np.full(len(train_indices), 3.0)]
-    )
+    weights = np.concatenate([np.ones(len(public_y)), np.full(len(train_indices), 3.0)])
     predictions = []
     for seed in MODEL_SEEDS:
         model = endpoint_model(seed)

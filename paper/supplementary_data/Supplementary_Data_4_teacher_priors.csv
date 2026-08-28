@@ -1,16 +1,16 @@
-prior,prior_name,physical_meaning,source,target_units,model_class,training_size,transformation,inference_computation
-1,combisolv_qm_teacher,COSMOtherm hydration response,CombiSolv-QM water,kcal mol-1,CHEMELEON-initialized D-MPNN,3963,direct surrogate,structure-derived surrogate prediction; no simulation
-2,abraham_e_teacher,excess molar refraction axis E,SoluteML Abraham,Abraham scale,ExtraTrees,8098,direct surrogate,structure-derived surrogate prediction; no simulation
-3,abraham_s_teacher,dipolarity/polarizability axis S,SoluteML Abraham,Abraham scale,ExtraTrees,8098,direct surrogate,structure-derived surrogate prediction; no simulation
-4,abraham_a_teacher,hydrogen-bond acidity axis A,SoluteML Abraham,Abraham scale,ExtraTrees,8098,direct surrogate,structure-derived surrogate prediction; no simulation
-5,abraham_b_teacher,hydrogen-bond basicity axis B,SoluteML Abraham,Abraham scale,ExtraTrees,8098,direct surrogate,structure-derived surrogate prediction; no simulation
-6,abraham_l_teacher,hexadecane-air partition axis L,SoluteML Abraham,Abraham scale,ExtraTrees,8098,direct surrogate,structure-derived surrogate prediction; no simulation
-7,openff_corrected_teacher,explicit-water alchemical hydration response,OpenFF 2.3.0 ASFE,kcal mol-1,ExtraTrees,520,predicted calculation + predicted experimental residual,structure-derived surrogate prediction; no simulation
-8,gbn2_corrected_teacher,implicit-solvent hydration response,GBn2 / GNNImplicitSolvent,kcal mol-1,ExtraTrees,550,predicted GBn2 value + predicted experimental residual,structure-derived surrogate prediction; no simulation
-9,molsolv_smd_teacher,SMD(water) solvation response,MolSolv,kcal mol-1,CHEMELEON-initialized D-MPNN,350391,direct surrogate,structure-derived surrogate prediction; no simulation
-10,confsolv_gas_conformer_correction_teacher,gas conformer free-energy correction,ConfSolv H2O,kcal mol-1,LightGBM,39878,direct surrogate,structure-derived surrogate prediction; no simulation
-11,confsolv_solution_conformer_correction_teacher,solution conformer free-energy correction,ConfSolv H2O,kcal mol-1,LightGBM,39878,direct surrogate,structure-derived surrogate prediction; no simulation
-12,confsolv_hydration_conformer_correction_teacher,hydration conformer correction,ConfSolv H2O,kcal mol-1,LightGBM,39878,direct surrogate,structure-derived surrogate prediction; no simulation
-13,confsolv_water_gsolv_std_teacher,dispersion of conformer solvation energies,ConfSolv H2O,kcal mol-1,LightGBM,39878,direct surrogate,structure-derived surrogate prediction; no simulation
-14,confsolv_water_response_mean_teacher,mean conformer solvent response,ConfSolv H2O,kcal mol-1,LightGBM,39878,direct surrogate,structure-derived surrogate prediction; no simulation
-15,confsolv_water_response_std_teacher,dispersion of conformer solvent response,ConfSolv H2O,kcal mol-1,LightGBM,39878,direct surrogate,structure-derived surrogate prediction; no simulation
+prior,name,physical meaning,source,units,surrogate,training rows,transformation,inference
+1,combisolv_qm,COSMOtherm water response,CombiSolv-QM,kcal mol-1,CHEMELEON D-MPNN,3959,direct,structure surrogate; no simulation
+2,abraham_e,excess molar refraction E,SoluteML,Abraham scale,ExtraTrees,8098,direct,structure surrogate; no simulation
+3,abraham_s,dipolarity/polarizability S,SoluteML,Abraham scale,ExtraTrees,8098,direct,structure surrogate; no simulation
+4,abraham_a,hydrogen-bond acidity A,SoluteML,Abraham scale,ExtraTrees,8098,direct,structure surrogate; no simulation
+5,abraham_b,hydrogen-bond basicity B,SoluteML,Abraham scale,ExtraTrees,8098,direct,structure surrogate; no simulation
+6,abraham_l,hexadecane-air partition L,SoluteML,Abraham scale,ExtraTrees,8098,direct,structure surrogate; no simulation
+7,openff_corrected,explicit-water alchemical response,OpenFF 2.3.0 ASFE,kcal mol-1,ExtraTrees,520,prediction + residual,structure surrogate; no simulation
+8,gbn2_corrected,implicit-solvent hydration response,GBn2,kcal mol-1,ExtraTrees,550,prediction + residual,structure surrogate; no simulation
+9,smd_water,SMD water response,MolSolv,kcal mol-1,CHEMELEON D-MPNN,350359,direct,structure surrogate; no simulation
+10,conf_gas_corr,gas conformer correction,ConfSolv H2O,kcal mol-1,LightGBM,17829,direct,structure surrogate; no simulation
+11,conf_solution_corr,solution conformer correction,ConfSolv H2O,kcal mol-1,LightGBM,17829,direct,structure surrogate; no simulation
+12,conf_hydration_corr,hydration conformer correction,ConfSolv H2O,kcal mol-1,LightGBM,17829,direct,structure surrogate; no simulation
+13,conf_gsolv_sd,conformer solvation-energy spread,ConfSolv H2O,kcal mol-1,LightGBM,17829,direct,structure surrogate; no simulation
+14,conf_response_mean,mean conformer solvent response,ConfSolv H2O,kcal mol-1,LightGBM,17829,direct,structure surrogate; no simulation
+15,conf_response_sd,conformer response spread,ConfSolv H2O,kcal mol-1,LightGBM,17829,direct,structure surrogate; no simulation

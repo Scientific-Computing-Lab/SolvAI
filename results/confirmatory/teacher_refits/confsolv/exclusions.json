@@ -1,0 +1,27 @@
+{
+  "count": 22,
+  "smiles": [
+    "CC(=O)O.CC(=O)O.CC(=O)O.[Lu]",
+    "CC(=O)O.[Ni]",
+    "CC(=O)[O-].CC(=O)[O-].CC(=O)[O-].[La+3]",
+    "CC(=O)[O-].CC(=O)[O-].[Be+2]",
+    "CC(=O)[O-].[Ag+]",
+    "CC(C)[CH2][Al]([I])[CH2]C(C)C",
+    "CC(O)CO.CCCCO",
+    "CC.Cc1ccc(O)cc1.O=CO",
+    "CCCC(=O)[O-].[Na+]",
+    "CC[O-].[Na+]",
+    "CN.CN.O=C([O-])C(=O)[O-].[Fe+2]",
+    "C[CH2][Al]([Cl])[CH2]C.C[CH2][Al]([Cl])[Cl]",
+    "C[CH2][Al]([I])[CH2]C",
+    "Cc1ccc([O-])cc1.[Na+]",
+    "[Al+3].[CH2-]C.[CH2-]C.[CH2-]C",
+    "[Bi+3].[OH-].[O]=[Cr](=[O])([O-])[O-]",
+    "[CH2-]C.[Cu].[K+]",
+    "[CH3][Al]([CH3])[I]",
+    "[CH3][Al]([I])[I]",
+    "[Cu+2].[Li].[c-]1ccccc1.[c-]1ccccc1",
+    "[Na+].[OH-]",
+    "[O]=[Cr](=[O])([OH])[OH]"
+  ]
+}
