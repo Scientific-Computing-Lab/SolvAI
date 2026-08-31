@@ -4,8 +4,6 @@
 from __future__ import annotations
 
 import shutil
-import subprocess
-import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -14,6 +12,23 @@ EXPORTS = PENPOT / "exports"
 MAIN = ROOT / "figures" / "main"
 PAPER = ROOT / "paper" / "figures" / "main"
 ALTERNATIVES = ROOT / "figures" / "alternatives"
+
+
+def verify_frozen_exports() -> None:
+    """Require portable, already-normalized Penpot exports.
+
+    Normalization is an explicit authoring step because PDF/PNG renderers can
+    produce byte-level differences across platforms.  Paper reproduction copies
+    the frozen exports verbatim instead of rerendering them in CI.
+    """
+    for svg_path in sorted(EXPORTS.glob("fig1_variant_*.svg")):
+        svg = svg_path.read_text(encoding="utf-8")
+        if 'width="180mm"' not in svg or 'height="112mm"' not in svg:
+            raise RuntimeError(
+                f"Penpot export is not normalized to publication size: {svg_path}"
+            )
+        if "http://localhost:9001" in svg:
+            raise RuntimeError(f"Unresolved local Penpot URL in {svg_path}")
 
 
 def copy_triplet(stem: str, destination: Path) -> None:
@@ -26,7 +41,7 @@ def copy_triplet(stem: str, destination: Path) -> None:
 
 
 def main() -> None:
-    subprocess.run([sys.executable, str(PENPOT / "normalize_exports.py")], check=True)
+    verify_frozen_exports()
 
     selected = "fig1_variant_C_balanced"
     copy_triplet(selected, MAIN)
