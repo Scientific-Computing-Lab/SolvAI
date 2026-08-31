@@ -1,0 +1,925 @@
+candidate_id,candidate_name,candidate_smiles,source,match_type,match_value,source_row,source_smiles,source_connectivity_key
+ALVPFGSHPUPROW,dipropyl disulfide,CCCSSCCC,teacher_combisolv_qm,full_inchi_key,ALVPFGSHPUPROW-UHFFFAOYSA-N,2698,CCCSSCCC,ALVPFGSHPUPROW
+ALVPFGSHPUPROW,dipropyl disulfide,CCCSSCCC,teacher_combisolv_qm,connectivity_key,ALVPFGSHPUPROW,2698,CCCSSCCC,ALVPFGSHPUPROW
+ALVPFGSHPUPROW,dipropyl disulfide,CCCSSCCC,teacher_combisolv_qm,fragment_parent_key,ALVPFGSHPUPROW,2698,CCCSSCCC,ALVPFGSHPUPROW
+ALVPFGSHPUPROW,dipropyl disulfide,CCCSSCCC,teacher_combisolv_qm,uncharged_parent_key,ALVPFGSHPUPROW,2698,CCCSSCCC,ALVPFGSHPUPROW
+ALVPFGSHPUPROW,dipropyl disulfide,CCCSSCCC,teacher_combisolv_qm,canonical_tautomer_key,ALVPFGSHPUPROW,2698,CCCSSCCC,ALVPFGSHPUPROW
+DPCILIMHENXHQX,2-ethyl-3-methoxypyrazine,CCc1nccnc1OC,teacher_combisolv_qm,full_inchi_key,DPCILIMHENXHQX-UHFFFAOYSA-N,3647,CCc1nccnc1OC,DPCILIMHENXHQX
+DPCILIMHENXHQX,2-ethyl-3-methoxypyrazine,CCc1nccnc1OC,teacher_combisolv_qm,connectivity_key,DPCILIMHENXHQX,3647,CCc1nccnc1OC,DPCILIMHENXHQX
+DPCILIMHENXHQX,2-ethyl-3-methoxypyrazine,CCc1nccnc1OC,teacher_combisolv_qm,fragment_parent_key,DPCILIMHENXHQX,3647,CCc1nccnc1OC,DPCILIMHENXHQX
+DPCILIMHENXHQX,2-ethyl-3-methoxypyrazine,CCc1nccnc1OC,teacher_combisolv_qm,uncharged_parent_key,DPCILIMHENXHQX,3647,CCc1nccnc1OC,DPCILIMHENXHQX
+DPCILIMHENXHQX,2-ethyl-3-methoxypyrazine,CCc1nccnc1OC,teacher_combisolv_qm,canonical_tautomer_key,DPCILIMHENXHQX,3647,CCc1nccnc1OC,DPCILIMHENXHQX
+FALCMQXTWHPRIH,"2,3-dichloropropene",C=C(Cl)CCl,teacher_combisolv_qm,full_inchi_key,FALCMQXTWHPRIH-UHFFFAOYSA-N,2170,C=C(Cl)CCl,FALCMQXTWHPRIH
+FALCMQXTWHPRIH,"2,3-dichloropropene",C=C(Cl)CCl,teacher_combisolv_qm,connectivity_key,FALCMQXTWHPRIH,2170,C=C(Cl)CCl,FALCMQXTWHPRIH
+FALCMQXTWHPRIH,"2,3-dichloropropene",C=C(Cl)CCl,teacher_combisolv_qm,fragment_parent_key,FALCMQXTWHPRIH,2170,C=C(Cl)CCl,FALCMQXTWHPRIH
+FALCMQXTWHPRIH,"2,3-dichloropropene",C=C(Cl)CCl,teacher_combisolv_qm,uncharged_parent_key,FALCMQXTWHPRIH,2170,C=C(Cl)CCl,FALCMQXTWHPRIH
+FALCMQXTWHPRIH,"2,3-dichloropropene",C=C(Cl)CCl,teacher_combisolv_qm,canonical_tautomer_key,FALCMQXTWHPRIH,2170,C=C(Cl)CCl,FALCMQXTWHPRIH
+FUNUTBJJKQIVSY,"2,4-dichloro-1-methylbenzene",Cc1ccc(Cl)cc1Cl,teacher_combisolv_qm,full_inchi_key,FUNUTBJJKQIVSY-UHFFFAOYSA-N,1666,Cc1ccc(Cl)cc1Cl,FUNUTBJJKQIVSY
+FUNUTBJJKQIVSY,"2,4-dichloro-1-methylbenzene",Cc1ccc(Cl)cc1Cl,teacher_combisolv_qm,connectivity_key,FUNUTBJJKQIVSY,1666,Cc1ccc(Cl)cc1Cl,FUNUTBJJKQIVSY
+FUNUTBJJKQIVSY,"2,4-dichloro-1-methylbenzene",Cc1ccc(Cl)cc1Cl,teacher_combisolv_qm,fragment_parent_key,FUNUTBJJKQIVSY,1666,Cc1ccc(Cl)cc1Cl,FUNUTBJJKQIVSY
+FUNUTBJJKQIVSY,"2,4-dichloro-1-methylbenzene",Cc1ccc(Cl)cc1Cl,teacher_combisolv_qm,uncharged_parent_key,FUNUTBJJKQIVSY,1666,Cc1ccc(Cl)cc1Cl,FUNUTBJJKQIVSY
+FUNUTBJJKQIVSY,"2,4-dichloro-1-methylbenzene",Cc1ccc(Cl)cc1Cl,teacher_combisolv_qm,canonical_tautomer_key,FUNUTBJJKQIVSY,1666,Cc1ccc(Cl)cc1Cl,FUNUTBJJKQIVSY
+GAPFWGOSHOCNBM,2-propyl nitrate,CC(C)O[N+](=O)[O-],teacher_combisolv_qm,full_inchi_key,GAPFWGOSHOCNBM-UHFFFAOYSA-N,95,CC(C)O[N+](=O)[O-],GAPFWGOSHOCNBM
+GAPFWGOSHOCNBM,2-propyl nitrate,CC(C)O[N+](=O)[O-],teacher_combisolv_qm,connectivity_key,GAPFWGOSHOCNBM,95,CC(C)O[N+](=O)[O-],GAPFWGOSHOCNBM
+GAPFWGOSHOCNBM,2-propyl nitrate,CC(C)O[N+](=O)[O-],teacher_combisolv_qm,fragment_parent_key,GAPFWGOSHOCNBM,95,CC(C)O[N+](=O)[O-],GAPFWGOSHOCNBM
+GAPFWGOSHOCNBM,2-propyl nitrate,CC(C)O[N+](=O)[O-],teacher_combisolv_qm,uncharged_parent_key,GAPFWGOSHOCNBM,95,CC(C)O[N+](=O)[O-],GAPFWGOSHOCNBM
+GAPFWGOSHOCNBM,2-propyl nitrate,CC(C)O[N+](=O)[O-],teacher_combisolv_qm,canonical_tautomer_key,GAPFWGOSHOCNBM,95,CC(C)O[N+](=O)[O-],GAPFWGOSHOCNBM
+IDJOCJAIQSKSOP,"2,2-dichloroethanol",OCC(Cl)Cl,teacher_combisolv_qm,full_inchi_key,IDJOCJAIQSKSOP-UHFFFAOYSA-N,3392,OCC(Cl)Cl,IDJOCJAIQSKSOP
+IDJOCJAIQSKSOP,"2,2-dichloroethanol",OCC(Cl)Cl,teacher_combisolv_qm,connectivity_key,IDJOCJAIQSKSOP,3392,OCC(Cl)Cl,IDJOCJAIQSKSOP
+IDJOCJAIQSKSOP,"2,2-dichloroethanol",OCC(Cl)Cl,teacher_combisolv_qm,fragment_parent_key,IDJOCJAIQSKSOP,3392,OCC(Cl)Cl,IDJOCJAIQSKSOP
+IDJOCJAIQSKSOP,"2,2-dichloroethanol",OCC(Cl)Cl,teacher_combisolv_qm,uncharged_parent_key,IDJOCJAIQSKSOP,3392,OCC(Cl)Cl,IDJOCJAIQSKSOP
+IDJOCJAIQSKSOP,"2,2-dichloroethanol",OCC(Cl)Cl,teacher_combisolv_qm,canonical_tautomer_key,IDJOCJAIQSKSOP,3392,OCC(Cl)Cl,IDJOCJAIQSKSOP
+ISAVYTVYFVQUDY,"4-(1,1,3,3-tetramethylbutyl)-phenol",CC(C)(C)CC(C)(C)c1ccc(O)cc1,teacher_combisolv_qm,full_inchi_key,ISAVYTVYFVQUDY-UHFFFAOYSA-N,418,CC(C)(C)CC(C)(C)c1ccc(O)cc1,ISAVYTVYFVQUDY
+ISAVYTVYFVQUDY,"4-(1,1,3,3-tetramethylbutyl)-phenol",CC(C)(C)CC(C)(C)c1ccc(O)cc1,teacher_combisolv_qm,connectivity_key,ISAVYTVYFVQUDY,418,CC(C)(C)CC(C)(C)c1ccc(O)cc1,ISAVYTVYFVQUDY
+ISAVYTVYFVQUDY,"4-(1,1,3,3-tetramethylbutyl)-phenol",CC(C)(C)CC(C)(C)c1ccc(O)cc1,teacher_combisolv_qm,fragment_parent_key,ISAVYTVYFVQUDY,418,CC(C)(C)CC(C)(C)c1ccc(O)cc1,ISAVYTVYFVQUDY
+ISAVYTVYFVQUDY,"4-(1,1,3,3-tetramethylbutyl)-phenol",CC(C)(C)CC(C)(C)c1ccc(O)cc1,teacher_combisolv_qm,uncharged_parent_key,ISAVYTVYFVQUDY,418,CC(C)(C)CC(C)(C)c1ccc(O)cc1,ISAVYTVYFVQUDY
+ISAVYTVYFVQUDY,"4-(1,1,3,3-tetramethylbutyl)-phenol",CC(C)(C)CC(C)(C)c1ccc(O)cc1,teacher_combisolv_qm,canonical_tautomer_key,ISAVYTVYFVQUDY,418,CC(C)(C)CC(C)(C)c1ccc(O)cc1,ISAVYTVYFVQUDY
+IYRWEQXVUNLMAY,carbonyl fluoride,O=C(F)F,teacher_combisolv_qm,full_inchi_key,IYRWEQXVUNLMAY-UHFFFAOYSA-N,378,O=C(F)F,IYRWEQXVUNLMAY
+IYRWEQXVUNLMAY,carbonyl fluoride,O=C(F)F,teacher_combisolv_qm,connectivity_key,IYRWEQXVUNLMAY,378,O=C(F)F,IYRWEQXVUNLMAY
+IYRWEQXVUNLMAY,carbonyl fluoride,O=C(F)F,teacher_combisolv_qm,fragment_parent_key,IYRWEQXVUNLMAY,378,O=C(F)F,IYRWEQXVUNLMAY
+IYRWEQXVUNLMAY,carbonyl fluoride,O=C(F)F,teacher_combisolv_qm,uncharged_parent_key,IYRWEQXVUNLMAY,378,O=C(F)F,IYRWEQXVUNLMAY
+IYRWEQXVUNLMAY,carbonyl fluoride,O=C(F)F,teacher_combisolv_qm,canonical_tautomer_key,IYRWEQXVUNLMAY,378,O=C(F)F,IYRWEQXVUNLMAY
+JZBCTZLGKSYRSF,"2-ethyl-3,5-dimethylpyrazine",CCc1ncc(C)nc1C,teacher_combisolv_qm,full_inchi_key,JZBCTZLGKSYRSF-UHFFFAOYSA-N,288,CCc1ncc(C)nc1C,JZBCTZLGKSYRSF
+JZBCTZLGKSYRSF,"2-ethyl-3,5-dimethylpyrazine",CCc1ncc(C)nc1C,teacher_combisolv_qm,connectivity_key,JZBCTZLGKSYRSF,288,CCc1ncc(C)nc1C,JZBCTZLGKSYRSF
+JZBCTZLGKSYRSF,"2-ethyl-3,5-dimethylpyrazine",CCc1ncc(C)nc1C,teacher_combisolv_qm,fragment_parent_key,JZBCTZLGKSYRSF,288,CCc1ncc(C)nc1C,JZBCTZLGKSYRSF
+JZBCTZLGKSYRSF,"2-ethyl-3,5-dimethylpyrazine",CCc1ncc(C)nc1C,teacher_combisolv_qm,uncharged_parent_key,JZBCTZLGKSYRSF,288,CCc1ncc(C)nc1C,JZBCTZLGKSYRSF
+JZBCTZLGKSYRSF,"2-ethyl-3,5-dimethylpyrazine",CCc1ncc(C)nc1C,teacher_combisolv_qm,canonical_tautomer_key,JZBCTZLGKSYRSF,288,CCc1ncc(C)nc1C,JZBCTZLGKSYRSF
+KSMVNVHUTQZITP,"2,3,7,8-tetrachlorodibenzofuran",Clc1cc2oc3cc(Cl)c(Cl)cc3c2cc1Cl,teacher_combisolv_qm,full_inchi_key,KSMVNVHUTQZITP-UHFFFAOYSA-N,2476,Clc1cc2oc3cc(Cl)c(Cl)cc3c2cc1Cl,KSMVNVHUTQZITP
+KSMVNVHUTQZITP,"2,3,7,8-tetrachlorodibenzofuran",Clc1cc2oc3cc(Cl)c(Cl)cc3c2cc1Cl,teacher_combisolv_qm,connectivity_key,KSMVNVHUTQZITP,2476,Clc1cc2oc3cc(Cl)c(Cl)cc3c2cc1Cl,KSMVNVHUTQZITP
+KSMVNVHUTQZITP,"2,3,7,8-tetrachlorodibenzofuran",Clc1cc2oc3cc(Cl)c(Cl)cc3c2cc1Cl,teacher_combisolv_qm,fragment_parent_key,KSMVNVHUTQZITP,2476,Clc1cc2oc3cc(Cl)c(Cl)cc3c2cc1Cl,KSMVNVHUTQZITP
+KSMVNVHUTQZITP,"2,3,7,8-tetrachlorodibenzofuran",Clc1cc2oc3cc(Cl)c(Cl)cc3c2cc1Cl,teacher_combisolv_qm,uncharged_parent_key,KSMVNVHUTQZITP,2476,Clc1cc2oc3cc(Cl)c(Cl)cc3c2cc1Cl,KSMVNVHUTQZITP
+KSMVNVHUTQZITP,"2,3,7,8-tetrachlorodibenzofuran",Clc1cc2oc3cc(Cl)c(Cl)cc3c2cc1Cl,teacher_combisolv_qm,canonical_tautomer_key,KSMVNVHUTQZITP,2476,Clc1cc2oc3cc(Cl)c(Cl)cc3c2cc1Cl,KSMVNVHUTQZITP
+OEBRKCOSUFCWJD,"dimethyl-2,2-dichlorovinyl phosphate",COP(=O)(OC)OC=C(Cl)Cl,teacher_combisolv_qm,full_inchi_key,OEBRKCOSUFCWJD-UHFFFAOYSA-N,2451,COP(=O)(OC)OC=C(Cl)Cl,OEBRKCOSUFCWJD
+OEBRKCOSUFCWJD,"dimethyl-2,2-dichlorovinyl phosphate",COP(=O)(OC)OC=C(Cl)Cl,teacher_combisolv_qm,connectivity_key,OEBRKCOSUFCWJD,2451,COP(=O)(OC)OC=C(Cl)Cl,OEBRKCOSUFCWJD
+OEBRKCOSUFCWJD,"dimethyl-2,2-dichlorovinyl phosphate",COP(=O)(OC)OC=C(Cl)Cl,teacher_combisolv_qm,fragment_parent_key,OEBRKCOSUFCWJD,2451,COP(=O)(OC)OC=C(Cl)Cl,OEBRKCOSUFCWJD
+OEBRKCOSUFCWJD,"dimethyl-2,2-dichlorovinyl phosphate",COP(=O)(OC)OC=C(Cl)Cl,teacher_combisolv_qm,uncharged_parent_key,OEBRKCOSUFCWJD,2451,COP(=O)(OC)OC=C(Cl)Cl,OEBRKCOSUFCWJD
+OEBRKCOSUFCWJD,"dimethyl-2,2-dichlorovinyl phosphate",COP(=O)(OC)OC=C(Cl)Cl,teacher_combisolv_qm,canonical_tautomer_key,OEBRKCOSUFCWJD,2451,COP(=O)(OC)OC=C(Cl)Cl,OEBRKCOSUFCWJD
+OJYLAHXKWMRDGS,zingerone,COc1cc(CCC(C)=O)ccc1O,teacher_combisolv_qm,full_inchi_key,OJYLAHXKWMRDGS-UHFFFAOYSA-N,1359,COc1cc(CCC(C)=O)ccc1O,OJYLAHXKWMRDGS
+OJYLAHXKWMRDGS,zingerone,COc1cc(CCC(C)=O)ccc1O,teacher_combisolv_qm,connectivity_key,OJYLAHXKWMRDGS,1359,COc1cc(CCC(C)=O)ccc1O,OJYLAHXKWMRDGS
+OJYLAHXKWMRDGS,zingerone,COc1cc(CCC(C)=O)ccc1O,teacher_combisolv_qm,fragment_parent_key,OJYLAHXKWMRDGS,1359,COc1cc(CCC(C)=O)ccc1O,OJYLAHXKWMRDGS
+OJYLAHXKWMRDGS,zingerone,COc1cc(CCC(C)=O)ccc1O,teacher_combisolv_qm,uncharged_parent_key,OJYLAHXKWMRDGS,1359,COc1cc(CCC(C)=O)ccc1O,OJYLAHXKWMRDGS
+OJYLAHXKWMRDGS,zingerone,COc1cc(CCC(C)=O)ccc1O,teacher_combisolv_qm,canonical_tautomer_key,OJYLAHXKWMRDGS,1359,COc1cc(CCC(C)=O)ccc1O,OJYLAHXKWMRDGS
+OWIKHYCFFJSOEH,isocyanic acid,N=C=O,teacher_combisolv_qm,canonical_tautomer_key,OWIKHYCFFJSOEH,1867,N#CO,XLJMAIOERFSOGZ
+PSINWXIDJYEXLO,"2,3-diethyl-5-methylpyrazine",CCc1ncc(C)nc1CC,teacher_combisolv_qm,full_inchi_key,PSINWXIDJYEXLO-UHFFFAOYSA-N,416,CCc1ncc(C)nc1CC,PSINWXIDJYEXLO
+PSINWXIDJYEXLO,"2,3-diethyl-5-methylpyrazine",CCc1ncc(C)nc1CC,teacher_combisolv_qm,connectivity_key,PSINWXIDJYEXLO,416,CCc1ncc(C)nc1CC,PSINWXIDJYEXLO
+PSINWXIDJYEXLO,"2,3-diethyl-5-methylpyrazine",CCc1ncc(C)nc1CC,teacher_combisolv_qm,fragment_parent_key,PSINWXIDJYEXLO,416,CCc1ncc(C)nc1CC,PSINWXIDJYEXLO
+PSINWXIDJYEXLO,"2,3-diethyl-5-methylpyrazine",CCc1ncc(C)nc1CC,teacher_combisolv_qm,uncharged_parent_key,PSINWXIDJYEXLO,416,CCc1ncc(C)nc1CC,PSINWXIDJYEXLO
+PSINWXIDJYEXLO,"2,3-diethyl-5-methylpyrazine",CCc1ncc(C)nc1CC,teacher_combisolv_qm,canonical_tautomer_key,PSINWXIDJYEXLO,416,CCc1ncc(C)nc1CC,PSINWXIDJYEXLO
+QUGUFLJIAFISSW,"1,4-difluorobenzene",Fc1ccc(F)cc1,teacher_combisolv_qm,full_inchi_key,QUGUFLJIAFISSW-UHFFFAOYSA-N,1889,Fc1ccc(F)cc1,QUGUFLJIAFISSW
+QUGUFLJIAFISSW,"1,4-difluorobenzene",Fc1ccc(F)cc1,teacher_combisolv_qm,connectivity_key,QUGUFLJIAFISSW,1889,Fc1ccc(F)cc1,QUGUFLJIAFISSW
+QUGUFLJIAFISSW,"1,4-difluorobenzene",Fc1ccc(F)cc1,teacher_combisolv_qm,fragment_parent_key,QUGUFLJIAFISSW,1889,Fc1ccc(F)cc1,QUGUFLJIAFISSW
+QUGUFLJIAFISSW,"1,4-difluorobenzene",Fc1ccc(F)cc1,teacher_combisolv_qm,uncharged_parent_key,QUGUFLJIAFISSW,1889,Fc1ccc(F)cc1,QUGUFLJIAFISSW
+QUGUFLJIAFISSW,"1,4-difluorobenzene",Fc1ccc(F)cc1,teacher_combisolv_qm,canonical_tautomer_key,QUGUFLJIAFISSW,1889,Fc1ccc(F)cc1,QUGUFLJIAFISSW
+RFFOTVCVTJUTAD,1-methyl-4-(1-methylethyl)-7-oxabicyclo[2.2.1]heptane,CC(C)C12CCC(C)(CC1)O2,teacher_combisolv_qm,full_inchi_key,RFFOTVCVTJUTAD-UHFFFAOYSA-N,3163,CC(C)C12CCC(C)(CC1)O2,RFFOTVCVTJUTAD
+RFFOTVCVTJUTAD,1-methyl-4-(1-methylethyl)-7-oxabicyclo[2.2.1]heptane,CC(C)C12CCC(C)(CC1)O2,teacher_combisolv_qm,connectivity_key,RFFOTVCVTJUTAD,3163,CC(C)C12CCC(C)(CC1)O2,RFFOTVCVTJUTAD
+RFFOTVCVTJUTAD,1-methyl-4-(1-methylethyl)-7-oxabicyclo[2.2.1]heptane,CC(C)C12CCC(C)(CC1)O2,teacher_combisolv_qm,fragment_parent_key,RFFOTVCVTJUTAD,3163,CC(C)C12CCC(C)(CC1)O2,RFFOTVCVTJUTAD
+RFFOTVCVTJUTAD,1-methyl-4-(1-methylethyl)-7-oxabicyclo[2.2.1]heptane,CC(C)C12CCC(C)(CC1)O2,teacher_combisolv_qm,uncharged_parent_key,RFFOTVCVTJUTAD,3163,CC(C)C12CCC(C)(CC1)O2,RFFOTVCVTJUTAD
+RFFOTVCVTJUTAD,1-methyl-4-(1-methylethyl)-7-oxabicyclo[2.2.1]heptane,CC(C)C12CCC(C)(CC1)O2,teacher_combisolv_qm,canonical_tautomer_key,RFFOTVCVTJUTAD,3163,CC(C)C12CCC(C)(CC1)O2,RFFOTVCVTJUTAD
+RUPAXCPQAAOIPB,"(1,1-dimethylethyl)-methanoate",CC(C)(C)OC=O,teacher_combisolv_qm,full_inchi_key,RUPAXCPQAAOIPB-UHFFFAOYSA-N,3164,CC(C)(C)OC=O,RUPAXCPQAAOIPB
+RUPAXCPQAAOIPB,"(1,1-dimethylethyl)-methanoate",CC(C)(C)OC=O,teacher_combisolv_qm,connectivity_key,RUPAXCPQAAOIPB,3164,CC(C)(C)OC=O,RUPAXCPQAAOIPB
+RUPAXCPQAAOIPB,"(1,1-dimethylethyl)-methanoate",CC(C)(C)OC=O,teacher_combisolv_qm,fragment_parent_key,RUPAXCPQAAOIPB,3164,CC(C)(C)OC=O,RUPAXCPQAAOIPB
+RUPAXCPQAAOIPB,"(1,1-dimethylethyl)-methanoate",CC(C)(C)OC=O,teacher_combisolv_qm,uncharged_parent_key,RUPAXCPQAAOIPB,3164,CC(C)(C)OC=O,RUPAXCPQAAOIPB
+RUPAXCPQAAOIPB,"(1,1-dimethylethyl)-methanoate",CC(C)(C)OC=O,teacher_combisolv_qm,canonical_tautomer_key,RUPAXCPQAAOIPB,3164,CC(C)(C)OC=O,RUPAXCPQAAOIPB
+VVJKKWFAADXIJK,2-propen-1-amine,C=CCN,teacher_combisolv_qm,full_inchi_key,VVJKKWFAADXIJK-UHFFFAOYSA-N,622,C=CCN,VVJKKWFAADXIJK
+VVJKKWFAADXIJK,2-propen-1-amine,C=CCN,teacher_combisolv_qm,connectivity_key,VVJKKWFAADXIJK,622,C=CCN,VVJKKWFAADXIJK
+VVJKKWFAADXIJK,2-propen-1-amine,C=CCN,teacher_combisolv_qm,fragment_parent_key,VVJKKWFAADXIJK,622,C=CCN,VVJKKWFAADXIJK
+VVJKKWFAADXIJK,2-propen-1-amine,C=CCN,teacher_combisolv_qm,uncharged_parent_key,VVJKKWFAADXIJK,622,C=CCN,VVJKKWFAADXIJK
+VVJKKWFAADXIJK,2-propen-1-amine,C=CCN,teacher_combisolv_qm,canonical_tautomer_key,VVJKKWFAADXIJK,622,C=CCN,VVJKKWFAADXIJK
+WNYADZVDBIBLJJ,N-nitrosopyrrolidine,O=NN1CCCC1,teacher_combisolv_qm,full_inchi_key,WNYADZVDBIBLJJ-UHFFFAOYSA-N,684,O=NN1CCCC1,WNYADZVDBIBLJJ
+WNYADZVDBIBLJJ,N-nitrosopyrrolidine,O=NN1CCCC1,teacher_combisolv_qm,connectivity_key,WNYADZVDBIBLJJ,684,O=NN1CCCC1,WNYADZVDBIBLJJ
+WNYADZVDBIBLJJ,N-nitrosopyrrolidine,O=NN1CCCC1,teacher_combisolv_qm,fragment_parent_key,WNYADZVDBIBLJJ,684,O=NN1CCCC1,WNYADZVDBIBLJJ
+WNYADZVDBIBLJJ,N-nitrosopyrrolidine,O=NN1CCCC1,teacher_combisolv_qm,uncharged_parent_key,WNYADZVDBIBLJJ,684,O=NN1CCCC1,WNYADZVDBIBLJJ
+WNYADZVDBIBLJJ,N-nitrosopyrrolidine,O=NN1CCCC1,teacher_combisolv_qm,canonical_tautomer_key,WNYADZVDBIBLJJ,684,O=NN1CCCC1,WNYADZVDBIBLJJ
+WUOACPNHFRMFPN,2-(4-methyl-3-cyclohexen-1-yl)-2-propanol,CC1=CCC(C(C)(C)O)CC1,teacher_combisolv_qm,full_inchi_key,WUOACPNHFRMFPN-UHFFFAOYSA-N,698,CC1=CCC(C(C)(C)O)CC1,WUOACPNHFRMFPN
+WUOACPNHFRMFPN,2-(4-methyl-3-cyclohexen-1-yl)-2-propanol,CC1=CCC(C(C)(C)O)CC1,teacher_combisolv_qm,connectivity_key,WUOACPNHFRMFPN,698,CC1=CCC(C(C)(C)O)CC1,WUOACPNHFRMFPN
+WUOACPNHFRMFPN,2-(4-methyl-3-cyclohexen-1-yl)-2-propanol,CC1=CCC(C(C)(C)O)CC1,teacher_combisolv_qm,fragment_parent_key,WUOACPNHFRMFPN,698,CC1=CCC(C(C)(C)O)CC1,WUOACPNHFRMFPN
+WUOACPNHFRMFPN,2-(4-methyl-3-cyclohexen-1-yl)-2-propanol,CC1=CCC(C(C)(C)O)CC1,teacher_combisolv_qm,uncharged_parent_key,WUOACPNHFRMFPN,698,CC1=CCC(C(C)(C)O)CC1,WUOACPNHFRMFPN
+WUOACPNHFRMFPN,2-(4-methyl-3-cyclohexen-1-yl)-2-propanol,CC1=CCC(C(C)(C)O)CC1,teacher_combisolv_qm,canonical_tautomer_key,WUOACPNHFRMFPN,698,CC1=CCC(C(C)(C)O)CC1,WUOACPNHFRMFPN
+YORCIIVHUBAYBQ,3-bromo-1-propyne,C#CCBr,teacher_combisolv_qm,full_inchi_key,YORCIIVHUBAYBQ-UHFFFAOYSA-N,5,C#CCBr,YORCIIVHUBAYBQ
+YORCIIVHUBAYBQ,3-bromo-1-propyne,C#CCBr,teacher_combisolv_qm,connectivity_key,YORCIIVHUBAYBQ,5,C#CCBr,YORCIIVHUBAYBQ
+YORCIIVHUBAYBQ,3-bromo-1-propyne,C#CCBr,teacher_combisolv_qm,fragment_parent_key,YORCIIVHUBAYBQ,5,C#CCBr,YORCIIVHUBAYBQ
+YORCIIVHUBAYBQ,3-bromo-1-propyne,C#CCBr,teacher_combisolv_qm,uncharged_parent_key,YORCIIVHUBAYBQ,5,C#CCBr,YORCIIVHUBAYBQ
+YORCIIVHUBAYBQ,3-bromo-1-propyne,C#CCBr,teacher_combisolv_qm,canonical_tautomer_key,YORCIIVHUBAYBQ,5,C#CCBr,YORCIIVHUBAYBQ
+YRGAYAGBVIXNAQ,1-chloro-4-methoxybenzene,COc1ccc(Cl)cc1,teacher_combisolv_qm,full_inchi_key,YRGAYAGBVIXNAQ-UHFFFAOYSA-N,2676,COc1ccc(Cl)cc1,YRGAYAGBVIXNAQ
+YRGAYAGBVIXNAQ,1-chloro-4-methoxybenzene,COc1ccc(Cl)cc1,teacher_combisolv_qm,connectivity_key,YRGAYAGBVIXNAQ,2676,COc1ccc(Cl)cc1,YRGAYAGBVIXNAQ
+YRGAYAGBVIXNAQ,1-chloro-4-methoxybenzene,COc1ccc(Cl)cc1,teacher_combisolv_qm,fragment_parent_key,YRGAYAGBVIXNAQ,2676,COc1ccc(Cl)cc1,YRGAYAGBVIXNAQ
+YRGAYAGBVIXNAQ,1-chloro-4-methoxybenzene,COc1ccc(Cl)cc1,teacher_combisolv_qm,uncharged_parent_key,YRGAYAGBVIXNAQ,2676,COc1ccc(Cl)cc1,YRGAYAGBVIXNAQ
+YRGAYAGBVIXNAQ,1-chloro-4-methoxybenzene,COc1ccc(Cl)cc1,teacher_combisolv_qm,canonical_tautomer_key,YRGAYAGBVIXNAQ,2676,COc1ccc(Cl)cc1,YRGAYAGBVIXNAQ
+YXWWHNCQZBVZPV,2′-methylacetophenone,CC(=O)c1ccccc1C,teacher_combisolv_qm,full_inchi_key,YXWWHNCQZBVZPV-UHFFFAOYSA-N,3482,CC(=O)c1ccccc1C,YXWWHNCQZBVZPV
+YXWWHNCQZBVZPV,2′-methylacetophenone,CC(=O)c1ccccc1C,teacher_combisolv_qm,connectivity_key,YXWWHNCQZBVZPV,3482,CC(=O)c1ccccc1C,YXWWHNCQZBVZPV
+YXWWHNCQZBVZPV,2′-methylacetophenone,CC(=O)c1ccccc1C,teacher_combisolv_qm,fragment_parent_key,YXWWHNCQZBVZPV,3482,CC(=O)c1ccccc1C,YXWWHNCQZBVZPV
+YXWWHNCQZBVZPV,2′-methylacetophenone,CC(=O)c1ccccc1C,teacher_combisolv_qm,uncharged_parent_key,YXWWHNCQZBVZPV,3482,CC(=O)c1ccccc1C,YXWWHNCQZBVZPV
+YXWWHNCQZBVZPV,2′-methylacetophenone,CC(=O)c1ccccc1C,teacher_combisolv_qm,canonical_tautomer_key,YXWWHNCQZBVZPV,3482,CC(=O)c1ccccc1C,YXWWHNCQZBVZPV
+YYZUSRORWSJGET,ethyl octanoate,CCCCCCCC(=O)OCC,teacher_combisolv_qm,full_inchi_key,YYZUSRORWSJGET-UHFFFAOYSA-N,1553,CCCCCCCC(=O)OCC,YYZUSRORWSJGET
+YYZUSRORWSJGET,ethyl octanoate,CCCCCCCC(=O)OCC,teacher_combisolv_qm,connectivity_key,YYZUSRORWSJGET,1553,CCCCCCCC(=O)OCC,YYZUSRORWSJGET
+YYZUSRORWSJGET,ethyl octanoate,CCCCCCCC(=O)OCC,teacher_combisolv_qm,fragment_parent_key,YYZUSRORWSJGET,1553,CCCCCCCC(=O)OCC,YYZUSRORWSJGET
+YYZUSRORWSJGET,ethyl octanoate,CCCCCCCC(=O)OCC,teacher_combisolv_qm,uncharged_parent_key,YYZUSRORWSJGET,1553,CCCCCCCC(=O)OCC,YYZUSRORWSJGET
+YYZUSRORWSJGET,ethyl octanoate,CCCCCCCC(=O)OCC,teacher_combisolv_qm,canonical_tautomer_key,YYZUSRORWSJGET,1553,CCCCCCCC(=O)OCC,YYZUSRORWSJGET
+ZOASGOXWEHUTKZ,methyl propyl sulfide,CCCSC,teacher_combisolv_qm,full_inchi_key,ZOASGOXWEHUTKZ-UHFFFAOYSA-N,1754,CCCSC,ZOASGOXWEHUTKZ
+ZOASGOXWEHUTKZ,methyl propyl sulfide,CCCSC,teacher_combisolv_qm,connectivity_key,ZOASGOXWEHUTKZ,1754,CCCSC,ZOASGOXWEHUTKZ
+ZOASGOXWEHUTKZ,methyl propyl sulfide,CCCSC,teacher_combisolv_qm,fragment_parent_key,ZOASGOXWEHUTKZ,1754,CCCSC,ZOASGOXWEHUTKZ
+ZOASGOXWEHUTKZ,methyl propyl sulfide,CCCSC,teacher_combisolv_qm,uncharged_parent_key,ZOASGOXWEHUTKZ,1754,CCCSC,ZOASGOXWEHUTKZ
+ZOASGOXWEHUTKZ,methyl propyl sulfide,CCCSC,teacher_combisolv_qm,canonical_tautomer_key,ZOASGOXWEHUTKZ,1754,CCCSC,ZOASGOXWEHUTKZ
+AAUJSCRITBXDJH,"1,2,6-trichloronaphthalene",Clc1ccc2c(Cl)c(Cl)ccc2c1,teacher_abraham,full_inchi_key,AAUJSCRITBXDJH-UHFFFAOYSA-N,12,Clc1ccc2c(Cl)c(Cl)ccc2c1,AAUJSCRITBXDJH
+AAUJSCRITBXDJH,"1,2,6-trichloronaphthalene",Clc1ccc2c(Cl)c(Cl)ccc2c1,teacher_abraham,connectivity_key,AAUJSCRITBXDJH,12,Clc1ccc2c(Cl)c(Cl)ccc2c1,AAUJSCRITBXDJH
+AAUJSCRITBXDJH,"1,2,6-trichloronaphthalene",Clc1ccc2c(Cl)c(Cl)ccc2c1,teacher_abraham,fragment_parent_key,AAUJSCRITBXDJH,12,Clc1ccc2c(Cl)c(Cl)ccc2c1,AAUJSCRITBXDJH
+AAUJSCRITBXDJH,"1,2,6-trichloronaphthalene",Clc1ccc2c(Cl)c(Cl)ccc2c1,teacher_abraham,uncharged_parent_key,AAUJSCRITBXDJH,12,Clc1ccc2c(Cl)c(Cl)ccc2c1,AAUJSCRITBXDJH
+AAUJSCRITBXDJH,"1,2,6-trichloronaphthalene",Clc1ccc2c(Cl)c(Cl)ccc2c1,teacher_abraham,canonical_tautomer_key,AAUJSCRITBXDJH,12,Clc1ccc2c(Cl)c(Cl)ccc2c1,AAUJSCRITBXDJH
+ALVPFGSHPUPROW,dipropyl disulfide,CCCSSCCC,teacher_abraham,full_inchi_key,ALVPFGSHPUPROW-UHFFFAOYSA-N,161,CCCSSCCC,ALVPFGSHPUPROW
+ALVPFGSHPUPROW,dipropyl disulfide,CCCSSCCC,teacher_abraham,connectivity_key,ALVPFGSHPUPROW,161,CCCSSCCC,ALVPFGSHPUPROW
+ALVPFGSHPUPROW,dipropyl disulfide,CCCSSCCC,teacher_abraham,fragment_parent_key,ALVPFGSHPUPROW,161,CCCSSCCC,ALVPFGSHPUPROW
+ALVPFGSHPUPROW,dipropyl disulfide,CCCSSCCC,teacher_abraham,uncharged_parent_key,ALVPFGSHPUPROW,161,CCCSSCCC,ALVPFGSHPUPROW
+ALVPFGSHPUPROW,dipropyl disulfide,CCCSSCCC,teacher_abraham,canonical_tautomer_key,ALVPFGSHPUPROW,161,CCCSSCCC,ALVPFGSHPUPROW
+BAOLNVSMVTYGDA,"1,2,3,4,6-pentachloronaphthalene",Clc1ccc2c(Cl)c(Cl)c(Cl)c(Cl)c2c1,teacher_abraham,full_inchi_key,BAOLNVSMVTYGDA-UHFFFAOYSA-N,326,Clc1ccc2c(Cl)c(Cl)c(Cl)c(Cl)c2c1,BAOLNVSMVTYGDA
+BAOLNVSMVTYGDA,"1,2,3,4,6-pentachloronaphthalene",Clc1ccc2c(Cl)c(Cl)c(Cl)c(Cl)c2c1,teacher_abraham,connectivity_key,BAOLNVSMVTYGDA,326,Clc1ccc2c(Cl)c(Cl)c(Cl)c(Cl)c2c1,BAOLNVSMVTYGDA
+BAOLNVSMVTYGDA,"1,2,3,4,6-pentachloronaphthalene",Clc1ccc2c(Cl)c(Cl)c(Cl)c(Cl)c2c1,teacher_abraham,fragment_parent_key,BAOLNVSMVTYGDA,326,Clc1ccc2c(Cl)c(Cl)c(Cl)c(Cl)c2c1,BAOLNVSMVTYGDA
+BAOLNVSMVTYGDA,"1,2,3,4,6-pentachloronaphthalene",Clc1ccc2c(Cl)c(Cl)c(Cl)c(Cl)c2c1,teacher_abraham,uncharged_parent_key,BAOLNVSMVTYGDA,326,Clc1ccc2c(Cl)c(Cl)c(Cl)c(Cl)c2c1,BAOLNVSMVTYGDA
+BAOLNVSMVTYGDA,"1,2,3,4,6-pentachloronaphthalene",Clc1ccc2c(Cl)c(Cl)c(Cl)c(Cl)c2c1,teacher_abraham,canonical_tautomer_key,BAOLNVSMVTYGDA,326,Clc1ccc2c(Cl)c(Cl)c(Cl)c(Cl)c2c1,BAOLNVSMVTYGDA
+BAYUSCHCCGXLAY,3′-methoxyacetophenone,COc1cccc(C(C)=O)c1,teacher_abraham,full_inchi_key,BAYUSCHCCGXLAY-UHFFFAOYSA-N,336,COc1cccc(C(C)=O)c1,BAYUSCHCCGXLAY
+BAYUSCHCCGXLAY,3′-methoxyacetophenone,COc1cccc(C(C)=O)c1,teacher_abraham,connectivity_key,BAYUSCHCCGXLAY,336,COc1cccc(C(C)=O)c1,BAYUSCHCCGXLAY
+BAYUSCHCCGXLAY,3′-methoxyacetophenone,COc1cccc(C(C)=O)c1,teacher_abraham,fragment_parent_key,BAYUSCHCCGXLAY,336,COc1cccc(C(C)=O)c1,BAYUSCHCCGXLAY
+BAYUSCHCCGXLAY,3′-methoxyacetophenone,COc1cccc(C(C)=O)c1,teacher_abraham,uncharged_parent_key,BAYUSCHCCGXLAY,336,COc1cccc(C(C)=O)c1,BAYUSCHCCGXLAY
+BAYUSCHCCGXLAY,3′-methoxyacetophenone,COc1cccc(C(C)=O)c1,teacher_abraham,canonical_tautomer_key,BAYUSCHCCGXLAY,336,COc1cccc(C(C)=O)c1,BAYUSCHCCGXLAY
+BBABSCYTNHOKOG,pentachloromethoxybenzene,COc1c(Cl)c(Cl)c(Cl)c(Cl)c1Cl,teacher_abraham,full_inchi_key,BBABSCYTNHOKOG-UHFFFAOYSA-N,340,COc1c(Cl)c(Cl)c(Cl)c(Cl)c1Cl,BBABSCYTNHOKOG
+BBABSCYTNHOKOG,pentachloromethoxybenzene,COc1c(Cl)c(Cl)c(Cl)c(Cl)c1Cl,teacher_abraham,connectivity_key,BBABSCYTNHOKOG,340,COc1c(Cl)c(Cl)c(Cl)c(Cl)c1Cl,BBABSCYTNHOKOG
+BBABSCYTNHOKOG,pentachloromethoxybenzene,COc1c(Cl)c(Cl)c(Cl)c(Cl)c1Cl,teacher_abraham,fragment_parent_key,BBABSCYTNHOKOG,340,COc1c(Cl)c(Cl)c(Cl)c(Cl)c1Cl,BBABSCYTNHOKOG
+BBABSCYTNHOKOG,pentachloromethoxybenzene,COc1c(Cl)c(Cl)c(Cl)c(Cl)c1Cl,teacher_abraham,uncharged_parent_key,BBABSCYTNHOKOG,340,COc1c(Cl)c(Cl)c(Cl)c(Cl)c1Cl,BBABSCYTNHOKOG
+BBABSCYTNHOKOG,pentachloromethoxybenzene,COc1c(Cl)c(Cl)c(Cl)c(Cl)c1Cl,teacher_abraham,canonical_tautomer_key,BBABSCYTNHOKOG,340,COc1c(Cl)c(Cl)c(Cl)c(Cl)c1Cl,BBABSCYTNHOKOG
+BDFAOUQQXJIZDG,2-methyl-1-propanethiol,CC(C)CS,teacher_abraham,full_inchi_key,BDFAOUQQXJIZDG-UHFFFAOYSA-N,372,CC(C)CS,BDFAOUQQXJIZDG
+BDFAOUQQXJIZDG,2-methyl-1-propanethiol,CC(C)CS,teacher_abraham,connectivity_key,BDFAOUQQXJIZDG,372,CC(C)CS,BDFAOUQQXJIZDG
+BDFAOUQQXJIZDG,2-methyl-1-propanethiol,CC(C)CS,teacher_abraham,fragment_parent_key,BDFAOUQQXJIZDG,372,CC(C)CS,BDFAOUQQXJIZDG
+BDFAOUQQXJIZDG,2-methyl-1-propanethiol,CC(C)CS,teacher_abraham,uncharged_parent_key,BDFAOUQQXJIZDG,372,CC(C)CS,BDFAOUQQXJIZDG
+BDFAOUQQXJIZDG,2-methyl-1-propanethiol,CC(C)CS,teacher_abraham,canonical_tautomer_key,BDFAOUQQXJIZDG,372,CC(C)CS,BDFAOUQQXJIZDG
+BIVDISPRSYAHQQ,"1,2,4,5-tetrachloronaphthalene",Clc1cc(Cl)c2c(Cl)cccc2c1Cl,teacher_abraham,full_inchi_key,BIVDISPRSYAHQQ-UHFFFAOYSA-N,439,Clc1cc(Cl)c2c(Cl)cccc2c1Cl,BIVDISPRSYAHQQ
+BIVDISPRSYAHQQ,"1,2,4,5-tetrachloronaphthalene",Clc1cc(Cl)c2c(Cl)cccc2c1Cl,teacher_abraham,connectivity_key,BIVDISPRSYAHQQ,439,Clc1cc(Cl)c2c(Cl)cccc2c1Cl,BIVDISPRSYAHQQ
+BIVDISPRSYAHQQ,"1,2,4,5-tetrachloronaphthalene",Clc1cc(Cl)c2c(Cl)cccc2c1Cl,teacher_abraham,fragment_parent_key,BIVDISPRSYAHQQ,439,Clc1cc(Cl)c2c(Cl)cccc2c1Cl,BIVDISPRSYAHQQ
+BIVDISPRSYAHQQ,"1,2,4,5-tetrachloronaphthalene",Clc1cc(Cl)c2c(Cl)cccc2c1Cl,teacher_abraham,uncharged_parent_key,BIVDISPRSYAHQQ,439,Clc1cc(Cl)c2c(Cl)cccc2c1Cl,BIVDISPRSYAHQQ
+BIVDISPRSYAHQQ,"1,2,4,5-tetrachloronaphthalene",Clc1cc(Cl)c2c(Cl)cccc2c1Cl,teacher_abraham,canonical_tautomer_key,BIVDISPRSYAHQQ,439,Clc1cc(Cl)c2c(Cl)cccc2c1Cl,BIVDISPRSYAHQQ
+BRLQWZUYTZBJKN,(chloromethyl)-oxirane,ClCC1CO1,teacher_abraham,full_inchi_key,BRLQWZUYTZBJKN-UHFFFAOYSA-N,565,ClCC1CO1,BRLQWZUYTZBJKN
+BRLQWZUYTZBJKN,(chloromethyl)-oxirane,ClCC1CO1,teacher_abraham,connectivity_key,BRLQWZUYTZBJKN,565,ClCC1CO1,BRLQWZUYTZBJKN
+BRLQWZUYTZBJKN,(chloromethyl)-oxirane,ClCC1CO1,teacher_abraham,fragment_parent_key,BRLQWZUYTZBJKN,565,ClCC1CO1,BRLQWZUYTZBJKN
+BRLQWZUYTZBJKN,(chloromethyl)-oxirane,ClCC1CO1,teacher_abraham,uncharged_parent_key,BRLQWZUYTZBJKN,565,ClCC1CO1,BRLQWZUYTZBJKN
+BRLQWZUYTZBJKN,(chloromethyl)-oxirane,ClCC1CO1,teacher_abraham,canonical_tautomer_key,BRLQWZUYTZBJKN,565,ClCC1CO1,BRLQWZUYTZBJKN
+BYGQBDHUGHBGMD,2-methylbutanal,CCC(C)C=O,teacher_abraham,full_inchi_key,BYGQBDHUGHBGMD-UHFFFAOYSA-N,650,CCC(C)C=O,BYGQBDHUGHBGMD
+BYGQBDHUGHBGMD,2-methylbutanal,CCC(C)C=O,teacher_abraham,connectivity_key,BYGQBDHUGHBGMD,650,CCC(C)C=O,BYGQBDHUGHBGMD
+BYGQBDHUGHBGMD,2-methylbutanal,CCC(C)C=O,teacher_abraham,fragment_parent_key,BYGQBDHUGHBGMD,650,CCC(C)C=O,BYGQBDHUGHBGMD
+BYGQBDHUGHBGMD,2-methylbutanal,CCC(C)C=O,teacher_abraham,uncharged_parent_key,BYGQBDHUGHBGMD,650,CCC(C)C=O,BYGQBDHUGHBGMD
+BYGQBDHUGHBGMD,2-methylbutanal,CCC(C)C=O,teacher_abraham,canonical_tautomer_key,BYGQBDHUGHBGMD,650,CCC(C)C=O,BYGQBDHUGHBGMD
+CICQUFBZCADHHX,"1,5-dichloro-2-methoxybenzene",COc1ccc(Cl)cc1Cl,teacher_abraham,full_inchi_key,CICQUFBZCADHHX-UHFFFAOYSA-N,784,COc1ccc(Cl)cc1Cl,CICQUFBZCADHHX
+CICQUFBZCADHHX,"1,5-dichloro-2-methoxybenzene",COc1ccc(Cl)cc1Cl,teacher_abraham,connectivity_key,CICQUFBZCADHHX,784,COc1ccc(Cl)cc1Cl,CICQUFBZCADHHX
+CICQUFBZCADHHX,"1,5-dichloro-2-methoxybenzene",COc1ccc(Cl)cc1Cl,teacher_abraham,fragment_parent_key,CICQUFBZCADHHX,784,COc1ccc(Cl)cc1Cl,CICQUFBZCADHHX
+CICQUFBZCADHHX,"1,5-dichloro-2-methoxybenzene",COc1ccc(Cl)cc1Cl,teacher_abraham,uncharged_parent_key,CICQUFBZCADHHX,784,COc1ccc(Cl)cc1Cl,CICQUFBZCADHHX
+CICQUFBZCADHHX,"1,5-dichloro-2-methoxybenzene",COc1ccc(Cl)cc1Cl,teacher_abraham,canonical_tautomer_key,CICQUFBZCADHHX,784,COc1ccc(Cl)cc1Cl,CICQUFBZCADHHX
+CTLMCQOGOWNFHA,"1,2,3,4,5,6-hexachloronaphthalene",Clc1ccc2c(Cl)c(Cl)c(Cl)c(Cl)c2c1Cl,teacher_abraham,full_inchi_key,CTLMCQOGOWNFHA-UHFFFAOYSA-N,907,Clc1ccc2c(Cl)c(Cl)c(Cl)c(Cl)c2c1Cl,CTLMCQOGOWNFHA
+CTLMCQOGOWNFHA,"1,2,3,4,5,6-hexachloronaphthalene",Clc1ccc2c(Cl)c(Cl)c(Cl)c(Cl)c2c1Cl,teacher_abraham,connectivity_key,CTLMCQOGOWNFHA,907,Clc1ccc2c(Cl)c(Cl)c(Cl)c(Cl)c2c1Cl,CTLMCQOGOWNFHA
+CTLMCQOGOWNFHA,"1,2,3,4,5,6-hexachloronaphthalene",Clc1ccc2c(Cl)c(Cl)c(Cl)c(Cl)c2c1Cl,teacher_abraham,fragment_parent_key,CTLMCQOGOWNFHA,907,Clc1ccc2c(Cl)c(Cl)c(Cl)c(Cl)c2c1Cl,CTLMCQOGOWNFHA
+CTLMCQOGOWNFHA,"1,2,3,4,5,6-hexachloronaphthalene",Clc1ccc2c(Cl)c(Cl)c(Cl)c(Cl)c2c1Cl,teacher_abraham,uncharged_parent_key,CTLMCQOGOWNFHA,907,Clc1ccc2c(Cl)c(Cl)c(Cl)c(Cl)c2c1Cl,CTLMCQOGOWNFHA
+CTLMCQOGOWNFHA,"1,2,3,4,5,6-hexachloronaphthalene",Clc1ccc2c(Cl)c(Cl)c(Cl)c(Cl)c2c1Cl,teacher_abraham,canonical_tautomer_key,CTLMCQOGOWNFHA,907,Clc1ccc2c(Cl)c(Cl)c(Cl)c(Cl)c2c1Cl,CTLMCQOGOWNFHA
+DKEGCUDAFWNSSO,"1,8-dibromooctane",BrCCCCCCCCBr,teacher_abraham,full_inchi_key,DKEGCUDAFWNSSO-UHFFFAOYSA-N,1134,BrCCCCCCCCBr,DKEGCUDAFWNSSO
+DKEGCUDAFWNSSO,"1,8-dibromooctane",BrCCCCCCCCBr,teacher_abraham,connectivity_key,DKEGCUDAFWNSSO,1134,BrCCCCCCCCBr,DKEGCUDAFWNSSO
+DKEGCUDAFWNSSO,"1,8-dibromooctane",BrCCCCCCCCBr,teacher_abraham,fragment_parent_key,DKEGCUDAFWNSSO,1134,BrCCCCCCCCBr,DKEGCUDAFWNSSO
+DKEGCUDAFWNSSO,"1,8-dibromooctane",BrCCCCCCCCBr,teacher_abraham,uncharged_parent_key,DKEGCUDAFWNSSO,1134,BrCCCCCCCCBr,DKEGCUDAFWNSSO
+DKEGCUDAFWNSSO,"1,8-dibromooctane",BrCCCCCCCCBr,teacher_abraham,canonical_tautomer_key,DKEGCUDAFWNSSO,1134,BrCCCCCCCCBr,DKEGCUDAFWNSSO
+DWPLEOPKBWNPQV,2′-methoxyacetophenone,COc1ccccc1C(C)=O,teacher_abraham,full_inchi_key,DWPLEOPKBWNPQV-UHFFFAOYSA-N,1286,COc1ccccc1C(C)=O,DWPLEOPKBWNPQV
+DWPLEOPKBWNPQV,2′-methoxyacetophenone,COc1ccccc1C(C)=O,teacher_abraham,connectivity_key,DWPLEOPKBWNPQV,1286,COc1ccccc1C(C)=O,DWPLEOPKBWNPQV
+DWPLEOPKBWNPQV,2′-methoxyacetophenone,COc1ccccc1C(C)=O,teacher_abraham,fragment_parent_key,DWPLEOPKBWNPQV,1286,COc1ccccc1C(C)=O,DWPLEOPKBWNPQV
+DWPLEOPKBWNPQV,2′-methoxyacetophenone,COc1ccccc1C(C)=O,teacher_abraham,uncharged_parent_key,DWPLEOPKBWNPQV,1286,COc1ccccc1C(C)=O,DWPLEOPKBWNPQV
+DWPLEOPKBWNPQV,2′-methoxyacetophenone,COc1ccccc1C(C)=O,teacher_abraham,canonical_tautomer_key,DWPLEOPKBWNPQV,1286,COc1ccccc1C(C)=O,DWPLEOPKBWNPQV
+DZHZYPCCEISGSQ,"1,3,5-trichloronaphthalene",Clc1cc(Cl)c2cccc(Cl)c2c1,teacher_abraham,full_inchi_key,DZHZYPCCEISGSQ-UHFFFAOYSA-N,1315,Clc1cc(Cl)c2cccc(Cl)c2c1,DZHZYPCCEISGSQ
+DZHZYPCCEISGSQ,"1,3,5-trichloronaphthalene",Clc1cc(Cl)c2cccc(Cl)c2c1,teacher_abraham,connectivity_key,DZHZYPCCEISGSQ,1315,Clc1cc(Cl)c2cccc(Cl)c2c1,DZHZYPCCEISGSQ
+DZHZYPCCEISGSQ,"1,3,5-trichloronaphthalene",Clc1cc(Cl)c2cccc(Cl)c2c1,teacher_abraham,fragment_parent_key,DZHZYPCCEISGSQ,1315,Clc1cc(Cl)c2cccc(Cl)c2c1,DZHZYPCCEISGSQ
+DZHZYPCCEISGSQ,"1,3,5-trichloronaphthalene",Clc1cc(Cl)c2cccc(Cl)c2c1,teacher_abraham,uncharged_parent_key,DZHZYPCCEISGSQ,1315,Clc1cc(Cl)c2cccc(Cl)c2c1,DZHZYPCCEISGSQ
+DZHZYPCCEISGSQ,"1,3,5-trichloronaphthalene",Clc1cc(Cl)c2cccc(Cl)c2c1,teacher_abraham,canonical_tautomer_key,DZHZYPCCEISGSQ,1315,Clc1cc(Cl)c2cccc(Cl)c2c1,DZHZYPCCEISGSQ
+FEIKEVSWLMYFFF,"1,2,4,5,8-pentachloronaphthalene",Clc1cc(Cl)c2c(Cl)ccc(Cl)c2c1Cl,teacher_abraham,full_inchi_key,FEIKEVSWLMYFFF-UHFFFAOYSA-N,1374,Clc1cc(Cl)c2c(Cl)ccc(Cl)c2c1Cl,FEIKEVSWLMYFFF
+FEIKEVSWLMYFFF,"1,2,4,5,8-pentachloronaphthalene",Clc1cc(Cl)c2c(Cl)ccc(Cl)c2c1Cl,teacher_abraham,connectivity_key,FEIKEVSWLMYFFF,1374,Clc1cc(Cl)c2c(Cl)ccc(Cl)c2c1Cl,FEIKEVSWLMYFFF
+FEIKEVSWLMYFFF,"1,2,4,5,8-pentachloronaphthalene",Clc1cc(Cl)c2c(Cl)ccc(Cl)c2c1Cl,teacher_abraham,fragment_parent_key,FEIKEVSWLMYFFF,1374,Clc1cc(Cl)c2c(Cl)ccc(Cl)c2c1Cl,FEIKEVSWLMYFFF
+FEIKEVSWLMYFFF,"1,2,4,5,8-pentachloronaphthalene",Clc1cc(Cl)c2c(Cl)ccc(Cl)c2c1Cl,teacher_abraham,uncharged_parent_key,FEIKEVSWLMYFFF,1374,Clc1cc(Cl)c2c(Cl)ccc(Cl)c2c1Cl,FEIKEVSWLMYFFF
+FEIKEVSWLMYFFF,"1,2,4,5,8-pentachloronaphthalene",Clc1cc(Cl)c2c(Cl)ccc(Cl)c2c1Cl,teacher_abraham,canonical_tautomer_key,FEIKEVSWLMYFFF,1374,Clc1cc(Cl)c2c(Cl)ccc(Cl)c2c1Cl,FEIKEVSWLMYFFF
+FHUDAMLDXFJHJE,"1,1,1-trifluoro-2-propanone",CC(=O)C(F)(F)F,teacher_abraham,full_inchi_key,FHUDAMLDXFJHJE-UHFFFAOYSA-N,1422,CC(=O)C(F)(F)F,FHUDAMLDXFJHJE
+FHUDAMLDXFJHJE,"1,1,1-trifluoro-2-propanone",CC(=O)C(F)(F)F,teacher_abraham,connectivity_key,FHUDAMLDXFJHJE,1422,CC(=O)C(F)(F)F,FHUDAMLDXFJHJE
+FHUDAMLDXFJHJE,"1,1,1-trifluoro-2-propanone",CC(=O)C(F)(F)F,teacher_abraham,fragment_parent_key,FHUDAMLDXFJHJE,1422,CC(=O)C(F)(F)F,FHUDAMLDXFJHJE
+FHUDAMLDXFJHJE,"1,1,1-trifluoro-2-propanone",CC(=O)C(F)(F)F,teacher_abraham,uncharged_parent_key,FHUDAMLDXFJHJE,1422,CC(=O)C(F)(F)F,FHUDAMLDXFJHJE
+FHUDAMLDXFJHJE,"1,1,1-trifluoro-2-propanone",CC(=O)C(F)(F)F,teacher_abraham,canonical_tautomer_key,FHUDAMLDXFJHJE,1422,CC(=O)C(F)(F)F,FHUDAMLDXFJHJE
+FLXYIZWPNQYPIT,"1,1,2,2-tetrahydroperfluoro dodecanol",OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,teacher_abraham,full_inchi_key,FLXYIZWPNQYPIT-UHFFFAOYSA-N,1464,OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,FLXYIZWPNQYPIT
+FLXYIZWPNQYPIT,"1,1,2,2-tetrahydroperfluoro dodecanol",OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,teacher_abraham,connectivity_key,FLXYIZWPNQYPIT,1464,OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,FLXYIZWPNQYPIT
+FLXYIZWPNQYPIT,"1,1,2,2-tetrahydroperfluoro dodecanol",OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,teacher_abraham,fragment_parent_key,FLXYIZWPNQYPIT,1464,OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,FLXYIZWPNQYPIT
+FLXYIZWPNQYPIT,"1,1,2,2-tetrahydroperfluoro dodecanol",OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,teacher_abraham,uncharged_parent_key,FLXYIZWPNQYPIT,1464,OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,FLXYIZWPNQYPIT
+FLXYIZWPNQYPIT,"1,1,2,2-tetrahydroperfluoro dodecanol",OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,teacher_abraham,canonical_tautomer_key,FLXYIZWPNQYPIT,1464,OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,FLXYIZWPNQYPIT
+FMWLUWPQPKEARP,bromodichloromethane,ClC(Cl)Br,teacher_abraham,full_inchi_key,FMWLUWPQPKEARP-UHFFFAOYSA-N,1476,ClC(Cl)Br,FMWLUWPQPKEARP
+FMWLUWPQPKEARP,bromodichloromethane,ClC(Cl)Br,teacher_abraham,connectivity_key,FMWLUWPQPKEARP,1476,ClC(Cl)Br,FMWLUWPQPKEARP
+FMWLUWPQPKEARP,bromodichloromethane,ClC(Cl)Br,teacher_abraham,fragment_parent_key,FMWLUWPQPKEARP,1476,ClC(Cl)Br,FMWLUWPQPKEARP
+FMWLUWPQPKEARP,bromodichloromethane,ClC(Cl)Br,teacher_abraham,uncharged_parent_key,FMWLUWPQPKEARP,1476,ClC(Cl)Br,FMWLUWPQPKEARP
+FMWLUWPQPKEARP,bromodichloromethane,ClC(Cl)Br,teacher_abraham,canonical_tautomer_key,FMWLUWPQPKEARP,1476,ClC(Cl)Br,FMWLUWPQPKEARP
+FRQUNVLMWIYOLV,"1,2,3-trichloro-4-methoxybenzene",COc1ccc(Cl)c(Cl)c1Cl,teacher_abraham,full_inchi_key,FRQUNVLMWIYOLV-UHFFFAOYSA-N,1527,COc1ccc(Cl)c(Cl)c1Cl,FRQUNVLMWIYOLV
+FRQUNVLMWIYOLV,"1,2,3-trichloro-4-methoxybenzene",COc1ccc(Cl)c(Cl)c1Cl,teacher_abraham,connectivity_key,FRQUNVLMWIYOLV,1527,COc1ccc(Cl)c(Cl)c1Cl,FRQUNVLMWIYOLV
+FRQUNVLMWIYOLV,"1,2,3-trichloro-4-methoxybenzene",COc1ccc(Cl)c(Cl)c1Cl,teacher_abraham,fragment_parent_key,FRQUNVLMWIYOLV,1527,COc1ccc(Cl)c(Cl)c1Cl,FRQUNVLMWIYOLV
+FRQUNVLMWIYOLV,"1,2,3-trichloro-4-methoxybenzene",COc1ccc(Cl)c(Cl)c1Cl,teacher_abraham,uncharged_parent_key,FRQUNVLMWIYOLV,1527,COc1ccc(Cl)c(Cl)c1Cl,FRQUNVLMWIYOLV
+FRQUNVLMWIYOLV,"1,2,3-trichloro-4-methoxybenzene",COc1ccc(Cl)c(Cl)c1Cl,teacher_abraham,canonical_tautomer_key,FRQUNVLMWIYOLV,1527,COc1ccc(Cl)c(Cl)c1Cl,FRQUNVLMWIYOLV
+FSPSELPMWGWDRY,3′-methylacetophenone,CC(=O)c1cccc(C)c1,teacher_abraham,full_inchi_key,FSPSELPMWGWDRY-UHFFFAOYSA-N,1532,CC(=O)c1cccc(C)c1,FSPSELPMWGWDRY
+FSPSELPMWGWDRY,3′-methylacetophenone,CC(=O)c1cccc(C)c1,teacher_abraham,connectivity_key,FSPSELPMWGWDRY,1532,CC(=O)c1cccc(C)c1,FSPSELPMWGWDRY
+FSPSELPMWGWDRY,3′-methylacetophenone,CC(=O)c1cccc(C)c1,teacher_abraham,fragment_parent_key,FSPSELPMWGWDRY,1532,CC(=O)c1cccc(C)c1,FSPSELPMWGWDRY
+FSPSELPMWGWDRY,3′-methylacetophenone,CC(=O)c1cccc(C)c1,teacher_abraham,uncharged_parent_key,FSPSELPMWGWDRY,1532,CC(=O)c1cccc(C)c1,FSPSELPMWGWDRY
+FSPSELPMWGWDRY,3′-methylacetophenone,CC(=O)c1cccc(C)c1,teacher_abraham,canonical_tautomer_key,FSPSELPMWGWDRY,1532,CC(=O)c1cccc(C)c1,FSPSELPMWGWDRY
+FUNUTBJJKQIVSY,"2,4-dichloro-1-methylbenzene",Cc1ccc(Cl)cc1Cl,teacher_abraham,full_inchi_key,FUNUTBJJKQIVSY-UHFFFAOYSA-N,1559,Cc1ccc(Cl)cc1Cl,FUNUTBJJKQIVSY
+FUNUTBJJKQIVSY,"2,4-dichloro-1-methylbenzene",Cc1ccc(Cl)cc1Cl,teacher_abraham,connectivity_key,FUNUTBJJKQIVSY,1559,Cc1ccc(Cl)cc1Cl,FUNUTBJJKQIVSY
+FUNUTBJJKQIVSY,"2,4-dichloro-1-methylbenzene",Cc1ccc(Cl)cc1Cl,teacher_abraham,fragment_parent_key,FUNUTBJJKQIVSY,1559,Cc1ccc(Cl)cc1Cl,FUNUTBJJKQIVSY
+FUNUTBJJKQIVSY,"2,4-dichloro-1-methylbenzene",Cc1ccc(Cl)cc1Cl,teacher_abraham,uncharged_parent_key,FUNUTBJJKQIVSY,1559,Cc1ccc(Cl)cc1Cl,FUNUTBJJKQIVSY
+FUNUTBJJKQIVSY,"2,4-dichloro-1-methylbenzene",Cc1ccc(Cl)cc1Cl,teacher_abraham,canonical_tautomer_key,FUNUTBJJKQIVSY,1559,Cc1ccc(Cl)cc1Cl,FUNUTBJJKQIVSY
+GAPFWGOSHOCNBM,2-propyl nitrate,CC(C)O[N+](=O)[O-],teacher_abraham,full_inchi_key,GAPFWGOSHOCNBM-UHFFFAOYSA-N,1622,CC(C)O[N+](=O)[O-],GAPFWGOSHOCNBM
+GAPFWGOSHOCNBM,2-propyl nitrate,CC(C)O[N+](=O)[O-],teacher_abraham,connectivity_key,GAPFWGOSHOCNBM,1622,CC(C)O[N+](=O)[O-],GAPFWGOSHOCNBM
+GAPFWGOSHOCNBM,2-propyl nitrate,CC(C)O[N+](=O)[O-],teacher_abraham,fragment_parent_key,GAPFWGOSHOCNBM,1622,CC(C)O[N+](=O)[O-],GAPFWGOSHOCNBM
+GAPFWGOSHOCNBM,2-propyl nitrate,CC(C)O[N+](=O)[O-],teacher_abraham,uncharged_parent_key,GAPFWGOSHOCNBM,1622,CC(C)O[N+](=O)[O-],GAPFWGOSHOCNBM
+GAPFWGOSHOCNBM,2-propyl nitrate,CC(C)O[N+](=O)[O-],teacher_abraham,canonical_tautomer_key,GAPFWGOSHOCNBM,1622,CC(C)O[N+](=O)[O-],GAPFWGOSHOCNBM
+GGDYAKVUZMZKRV,2-fluoroethanol,OCCF,teacher_abraham,full_inchi_key,GGDYAKVUZMZKRV-UHFFFAOYSA-N,1695,OCCF,GGDYAKVUZMZKRV
+GGDYAKVUZMZKRV,2-fluoroethanol,OCCF,teacher_abraham,connectivity_key,GGDYAKVUZMZKRV,1695,OCCF,GGDYAKVUZMZKRV
+GGDYAKVUZMZKRV,2-fluoroethanol,OCCF,teacher_abraham,fragment_parent_key,GGDYAKVUZMZKRV,1695,OCCF,GGDYAKVUZMZKRV
+GGDYAKVUZMZKRV,2-fluoroethanol,OCCF,teacher_abraham,uncharged_parent_key,GGDYAKVUZMZKRV,1695,OCCF,GGDYAKVUZMZKRV
+GGDYAKVUZMZKRV,2-fluoroethanol,OCCF,teacher_abraham,canonical_tautomer_key,GGDYAKVUZMZKRV,1695,OCCF,GGDYAKVUZMZKRV
+GUCFBWGWRCILHN,"1,2,3-trichloro-5-methoxybenzene",COc1cc(Cl)c(Cl)c(Cl)c1,teacher_abraham,full_inchi_key,GUCFBWGWRCILHN-UHFFFAOYSA-N,1882,COc1cc(Cl)c(Cl)c(Cl)c1,GUCFBWGWRCILHN
+GUCFBWGWRCILHN,"1,2,3-trichloro-5-methoxybenzene",COc1cc(Cl)c(Cl)c(Cl)c1,teacher_abraham,connectivity_key,GUCFBWGWRCILHN,1882,COc1cc(Cl)c(Cl)c(Cl)c1,GUCFBWGWRCILHN
+GUCFBWGWRCILHN,"1,2,3-trichloro-5-methoxybenzene",COc1cc(Cl)c(Cl)c(Cl)c1,teacher_abraham,fragment_parent_key,GUCFBWGWRCILHN,1882,COc1cc(Cl)c(Cl)c(Cl)c1,GUCFBWGWRCILHN
+GUCFBWGWRCILHN,"1,2,3-trichloro-5-methoxybenzene",COc1cc(Cl)c(Cl)c(Cl)c1,teacher_abraham,uncharged_parent_key,GUCFBWGWRCILHN,1882,COc1cc(Cl)c(Cl)c(Cl)c1,GUCFBWGWRCILHN
+GUCFBWGWRCILHN,"1,2,3-trichloro-5-methoxybenzene",COc1cc(Cl)c(Cl)c(Cl)c1,teacher_abraham,canonical_tautomer_key,GUCFBWGWRCILHN,1882,COc1cc(Cl)c(Cl)c(Cl)c1,GUCFBWGWRCILHN
+GVYLCNUFSHDAAW,mirex,ClC1(Cl)C2(Cl)C3(Cl)C4(Cl)C(Cl)(Cl)C5(Cl)C3(Cl)C1(Cl)C5(Cl)C24Cl,teacher_abraham,full_inchi_key,GVYLCNUFSHDAAW-UHFFFAOYSA-N,1911,ClC1(Cl)C2(Cl)C3(Cl)C4(Cl)C(Cl)(Cl)C5(Cl)C3(Cl)C1(Cl)C5(Cl)C24Cl,GVYLCNUFSHDAAW
+GVYLCNUFSHDAAW,mirex,ClC1(Cl)C2(Cl)C3(Cl)C4(Cl)C(Cl)(Cl)C5(Cl)C3(Cl)C1(Cl)C5(Cl)C24Cl,teacher_abraham,connectivity_key,GVYLCNUFSHDAAW,1911,ClC1(Cl)C2(Cl)C3(Cl)C4(Cl)C(Cl)(Cl)C5(Cl)C3(Cl)C1(Cl)C5(Cl)C24Cl,GVYLCNUFSHDAAW
+GVYLCNUFSHDAAW,mirex,ClC1(Cl)C2(Cl)C3(Cl)C4(Cl)C(Cl)(Cl)C5(Cl)C3(Cl)C1(Cl)C5(Cl)C24Cl,teacher_abraham,fragment_parent_key,GVYLCNUFSHDAAW,1911,ClC1(Cl)C2(Cl)C3(Cl)C4(Cl)C(Cl)(Cl)C5(Cl)C3(Cl)C1(Cl)C5(Cl)C24Cl,GVYLCNUFSHDAAW
+GVYLCNUFSHDAAW,mirex,ClC1(Cl)C2(Cl)C3(Cl)C4(Cl)C(Cl)(Cl)C5(Cl)C3(Cl)C1(Cl)C5(Cl)C24Cl,teacher_abraham,uncharged_parent_key,GVYLCNUFSHDAAW,1911,ClC1(Cl)C2(Cl)C3(Cl)C4(Cl)C(Cl)(Cl)C5(Cl)C3(Cl)C1(Cl)C5(Cl)C24Cl,GVYLCNUFSHDAAW
+GVYLCNUFSHDAAW,mirex,ClC1(Cl)C2(Cl)C3(Cl)C4(Cl)C(Cl)(Cl)C5(Cl)C3(Cl)C1(Cl)C5(Cl)C24Cl,teacher_abraham,canonical_tautomer_key,GVYLCNUFSHDAAW,1911,ClC1(Cl)C2(Cl)C3(Cl)C4(Cl)C(Cl)(Cl)C5(Cl)C3(Cl)C1(Cl)C5(Cl)C24Cl,GVYLCNUFSHDAAW
+GWQOOADXMVQEFT,"2,5-dimethylthiophene",Cc1ccc(C)s1,teacher_abraham,full_inchi_key,GWQOOADXMVQEFT-UHFFFAOYSA-N,1919,Cc1ccc(C)s1,GWQOOADXMVQEFT
+GWQOOADXMVQEFT,"2,5-dimethylthiophene",Cc1ccc(C)s1,teacher_abraham,connectivity_key,GWQOOADXMVQEFT,1919,Cc1ccc(C)s1,GWQOOADXMVQEFT
+GWQOOADXMVQEFT,"2,5-dimethylthiophene",Cc1ccc(C)s1,teacher_abraham,fragment_parent_key,GWQOOADXMVQEFT,1919,Cc1ccc(C)s1,GWQOOADXMVQEFT
+GWQOOADXMVQEFT,"2,5-dimethylthiophene",Cc1ccc(C)s1,teacher_abraham,uncharged_parent_key,GWQOOADXMVQEFT,1919,Cc1ccc(C)s1,GWQOOADXMVQEFT
+GWQOOADXMVQEFT,"2,5-dimethylthiophene",Cc1ccc(C)s1,teacher_abraham,canonical_tautomer_key,GWQOOADXMVQEFT,1919,Cc1ccc(C)s1,GWQOOADXMVQEFT
+HCRBXQFHJMCTLF,ethyl 2-methylbutanoate,CCOC(=O)C(C)CC,teacher_abraham,full_inchi_key,HCRBXQFHJMCTLF-UHFFFAOYSA-N,2008,CCOC(=O)C(C)CC,HCRBXQFHJMCTLF
+HCRBXQFHJMCTLF,ethyl 2-methylbutanoate,CCOC(=O)C(C)CC,teacher_abraham,connectivity_key,HCRBXQFHJMCTLF,2008,CCOC(=O)C(C)CC,HCRBXQFHJMCTLF
+HCRBXQFHJMCTLF,ethyl 2-methylbutanoate,CCOC(=O)C(C)CC,teacher_abraham,fragment_parent_key,HCRBXQFHJMCTLF,2008,CCOC(=O)C(C)CC,HCRBXQFHJMCTLF
+HCRBXQFHJMCTLF,ethyl 2-methylbutanoate,CCOC(=O)C(C)CC,teacher_abraham,uncharged_parent_key,HCRBXQFHJMCTLF,2008,CCOC(=O)C(C)CC,HCRBXQFHJMCTLF
+HCRBXQFHJMCTLF,ethyl 2-methylbutanoate,CCOC(=O)C(C)CC,teacher_abraham,canonical_tautomer_key,HCRBXQFHJMCTLF,2008,CCOC(=O)C(C)CC,HCRBXQFHJMCTLF
+HFEASCCDHUVYKU,"1,2-dichloro-3-methoxybenzene",COc1cccc(Cl)c1Cl,teacher_abraham,full_inchi_key,HFEASCCDHUVYKU-UHFFFAOYSA-N,2048,COc1cccc(Cl)c1Cl,HFEASCCDHUVYKU
+HFEASCCDHUVYKU,"1,2-dichloro-3-methoxybenzene",COc1cccc(Cl)c1Cl,teacher_abraham,connectivity_key,HFEASCCDHUVYKU,2048,COc1cccc(Cl)c1Cl,HFEASCCDHUVYKU
+HFEASCCDHUVYKU,"1,2-dichloro-3-methoxybenzene",COc1cccc(Cl)c1Cl,teacher_abraham,fragment_parent_key,HFEASCCDHUVYKU,2048,COc1cccc(Cl)c1Cl,HFEASCCDHUVYKU
+HFEASCCDHUVYKU,"1,2-dichloro-3-methoxybenzene",COc1cccc(Cl)c1Cl,teacher_abraham,uncharged_parent_key,HFEASCCDHUVYKU,2048,COc1cccc(Cl)c1Cl,HFEASCCDHUVYKU
+HFEASCCDHUVYKU,"1,2-dichloro-3-methoxybenzene",COc1cccc(Cl)c1Cl,teacher_abraham,canonical_tautomer_key,HFEASCCDHUVYKU,2048,COc1cccc(Cl)c1Cl,HFEASCCDHUVYKU
+HFVMLYAGWXSTQI,5$\alpha$-androst-16-en-4-one,C[C@]12CCC(=O)C[C@@H]1CC[C@@H]1[C@@H]2CC[C@]2(C)C=CC[C@@H]12,teacher_abraham,full_inchi_key,HFVMLYAGWXSTQI-QYXZOKGRSA-N,2056,C[C@]12CCC(=O)C[C@@H]1CC[C@@H]1[C@@H]2CC[C@]2(C)C=CC[C@@H]12,HFVMLYAGWXSTQI
+HFVMLYAGWXSTQI,5$\alpha$-androst-16-en-4-one,C[C@]12CCC(=O)C[C@@H]1CC[C@@H]1[C@@H]2CC[C@]2(C)C=CC[C@@H]12,teacher_abraham,connectivity_key,HFVMLYAGWXSTQI,2056,C[C@]12CCC(=O)C[C@@H]1CC[C@@H]1[C@@H]2CC[C@]2(C)C=CC[C@@H]12,HFVMLYAGWXSTQI
+HFVMLYAGWXSTQI,5$\alpha$-androst-16-en-4-one,C[C@]12CCC(=O)C[C@@H]1CC[C@@H]1[C@@H]2CC[C@]2(C)C=CC[C@@H]12,teacher_abraham,fragment_parent_key,HFVMLYAGWXSTQI,2056,C[C@]12CCC(=O)C[C@@H]1CC[C@@H]1[C@@H]2CC[C@]2(C)C=CC[C@@H]12,HFVMLYAGWXSTQI
+HFVMLYAGWXSTQI,5$\alpha$-androst-16-en-4-one,C[C@]12CCC(=O)C[C@@H]1CC[C@@H]1[C@@H]2CC[C@]2(C)C=CC[C@@H]12,teacher_abraham,uncharged_parent_key,HFVMLYAGWXSTQI,2056,C[C@]12CCC(=O)C[C@@H]1CC[C@@H]1[C@@H]2CC[C@]2(C)C=CC[C@@H]12,HFVMLYAGWXSTQI
+HFVMLYAGWXSTQI,5$\alpha$-androst-16-en-4-one,C[C@]12CCC(=O)C[C@@H]1CC[C@@H]1[C@@H]2CC[C@]2(C)C=CC[C@@H]12,teacher_abraham,canonical_tautomer_key,HFVMLYAGWXSTQI,2056,C[C@]12CCC(=O)C[C@@H]1CC[C@@H]1[C@@H]2CC[C@]2(C)C=CC[C@@H]12,HFVMLYAGWXSTQI
+HGSDQSUMXKHGTH,"1,2,4,6,8-pentachloronaphthalene",Clc1cc(Cl)c2c(Cl)c(Cl)cc(Cl)c2c1,teacher_abraham,full_inchi_key,HGSDQSUMXKHGTH-UHFFFAOYSA-N,2065,Clc1cc(Cl)c2c(Cl)c(Cl)cc(Cl)c2c1,HGSDQSUMXKHGTH
+HGSDQSUMXKHGTH,"1,2,4,6,8-pentachloronaphthalene",Clc1cc(Cl)c2c(Cl)c(Cl)cc(Cl)c2c1,teacher_abraham,connectivity_key,HGSDQSUMXKHGTH,2065,Clc1cc(Cl)c2c(Cl)c(Cl)cc(Cl)c2c1,HGSDQSUMXKHGTH
+HGSDQSUMXKHGTH,"1,2,4,6,8-pentachloronaphthalene",Clc1cc(Cl)c2c(Cl)c(Cl)cc(Cl)c2c1,teacher_abraham,fragment_parent_key,HGSDQSUMXKHGTH,2065,Clc1cc(Cl)c2c(Cl)c(Cl)cc(Cl)c2c1,HGSDQSUMXKHGTH
+HGSDQSUMXKHGTH,"1,2,4,6,8-pentachloronaphthalene",Clc1cc(Cl)c2c(Cl)c(Cl)cc(Cl)c2c1,teacher_abraham,uncharged_parent_key,HGSDQSUMXKHGTH,2065,Clc1cc(Cl)c2c(Cl)c(Cl)cc(Cl)c2c1,HGSDQSUMXKHGTH
+HGSDQSUMXKHGTH,"1,2,4,6,8-pentachloronaphthalene",Clc1cc(Cl)c2c(Cl)c(Cl)cc(Cl)c2c1,teacher_abraham,canonical_tautomer_key,HGSDQSUMXKHGTH,2065,Clc1cc(Cl)c2c(Cl)c(Cl)cc(Cl)c2c1,HGSDQSUMXKHGTH
+HSNWZBCBUUSSQD,1-pentyl nitrate,CCCCCO[N+](=O)[O-],teacher_abraham,full_inchi_key,HSNWZBCBUUSSQD-UHFFFAOYSA-N,2218,CCCCCO[N+](=O)[O-],HSNWZBCBUUSSQD
+HSNWZBCBUUSSQD,1-pentyl nitrate,CCCCCO[N+](=O)[O-],teacher_abraham,connectivity_key,HSNWZBCBUUSSQD,2218,CCCCCO[N+](=O)[O-],HSNWZBCBUUSSQD
+HSNWZBCBUUSSQD,1-pentyl nitrate,CCCCCO[N+](=O)[O-],teacher_abraham,fragment_parent_key,HSNWZBCBUUSSQD,2218,CCCCCO[N+](=O)[O-],HSNWZBCBUUSSQD
+HSNWZBCBUUSSQD,1-pentyl nitrate,CCCCCO[N+](=O)[O-],teacher_abraham,uncharged_parent_key,HSNWZBCBUUSSQD,2218,CCCCCO[N+](=O)[O-],HSNWZBCBUUSSQD
+HSNWZBCBUUSSQD,1-pentyl nitrate,CCCCCO[N+](=O)[O-],teacher_abraham,canonical_tautomer_key,HSNWZBCBUUSSQD,2218,CCCCCO[N+](=O)[O-],HSNWZBCBUUSSQD
+HTDQSWDEWGSAMN,1-bromo-2-methoxybenzene,COc1ccccc1Br,teacher_abraham,full_inchi_key,HTDQSWDEWGSAMN-UHFFFAOYSA-N,2227,COc1ccccc1Br,HTDQSWDEWGSAMN
+HTDQSWDEWGSAMN,1-bromo-2-methoxybenzene,COc1ccccc1Br,teacher_abraham,connectivity_key,HTDQSWDEWGSAMN,2227,COc1ccccc1Br,HTDQSWDEWGSAMN
+HTDQSWDEWGSAMN,1-bromo-2-methoxybenzene,COc1ccccc1Br,teacher_abraham,fragment_parent_key,HTDQSWDEWGSAMN,2227,COc1ccccc1Br,HTDQSWDEWGSAMN
+HTDQSWDEWGSAMN,1-bromo-2-methoxybenzene,COc1ccccc1Br,teacher_abraham,uncharged_parent_key,HTDQSWDEWGSAMN,2227,COc1ccccc1Br,HTDQSWDEWGSAMN
+HTDQSWDEWGSAMN,1-bromo-2-methoxybenzene,COc1ccccc1Br,teacher_abraham,canonical_tautomer_key,HTDQSWDEWGSAMN,2227,COc1ccccc1Br,HTDQSWDEWGSAMN
+HVYRFNJXZVEGFK,"1,2,3,5,8-pentachloronaphthalene",Clc1cc2c(Cl)ccc(Cl)c2c(Cl)c1Cl,teacher_abraham,full_inchi_key,HVYRFNJXZVEGFK-UHFFFAOYSA-N,2266,Clc1cc2c(Cl)ccc(Cl)c2c(Cl)c1Cl,HVYRFNJXZVEGFK
+HVYRFNJXZVEGFK,"1,2,3,5,8-pentachloronaphthalene",Clc1cc2c(Cl)ccc(Cl)c2c(Cl)c1Cl,teacher_abraham,connectivity_key,HVYRFNJXZVEGFK,2266,Clc1cc2c(Cl)ccc(Cl)c2c(Cl)c1Cl,HVYRFNJXZVEGFK
+HVYRFNJXZVEGFK,"1,2,3,5,8-pentachloronaphthalene",Clc1cc2c(Cl)ccc(Cl)c2c(Cl)c1Cl,teacher_abraham,fragment_parent_key,HVYRFNJXZVEGFK,2266,Clc1cc2c(Cl)ccc(Cl)c2c(Cl)c1Cl,HVYRFNJXZVEGFK
+HVYRFNJXZVEGFK,"1,2,3,5,8-pentachloronaphthalene",Clc1cc2c(Cl)ccc(Cl)c2c(Cl)c1Cl,teacher_abraham,uncharged_parent_key,HVYRFNJXZVEGFK,2266,Clc1cc2c(Cl)ccc(Cl)c2c(Cl)c1Cl,HVYRFNJXZVEGFK
+HVYRFNJXZVEGFK,"1,2,3,5,8-pentachloronaphthalene",Clc1cc2c(Cl)ccc(Cl)c2c(Cl)c1Cl,teacher_abraham,canonical_tautomer_key,HVYRFNJXZVEGFK,2266,Clc1cc2c(Cl)ccc(Cl)c2c(Cl)c1Cl,HVYRFNJXZVEGFK
+IDJOCJAIQSKSOP,"2,2-dichloroethanol",OCC(Cl)Cl,teacher_abraham,full_inchi_key,IDJOCJAIQSKSOP-UHFFFAOYSA-N,2357,OCC(Cl)Cl,IDJOCJAIQSKSOP
+IDJOCJAIQSKSOP,"2,2-dichloroethanol",OCC(Cl)Cl,teacher_abraham,connectivity_key,IDJOCJAIQSKSOP,2357,OCC(Cl)Cl,IDJOCJAIQSKSOP
+IDJOCJAIQSKSOP,"2,2-dichloroethanol",OCC(Cl)Cl,teacher_abraham,fragment_parent_key,IDJOCJAIQSKSOP,2357,OCC(Cl)Cl,IDJOCJAIQSKSOP
+IDJOCJAIQSKSOP,"2,2-dichloroethanol",OCC(Cl)Cl,teacher_abraham,uncharged_parent_key,IDJOCJAIQSKSOP,2357,OCC(Cl)Cl,IDJOCJAIQSKSOP
+IDJOCJAIQSKSOP,"2,2-dichloroethanol",OCC(Cl)Cl,teacher_abraham,canonical_tautomer_key,IDJOCJAIQSKSOP,2357,OCC(Cl)Cl,IDJOCJAIQSKSOP
+ILHIHKRJJMKBEE,ethyl hydroperoxide,CCOO,teacher_abraham,full_inchi_key,ILHIHKRJJMKBEE-UHFFFAOYSA-N,2455,CCOO,ILHIHKRJJMKBEE
+ILHIHKRJJMKBEE,ethyl hydroperoxide,CCOO,teacher_abraham,connectivity_key,ILHIHKRJJMKBEE,2455,CCOO,ILHIHKRJJMKBEE
+ILHIHKRJJMKBEE,ethyl hydroperoxide,CCOO,teacher_abraham,fragment_parent_key,ILHIHKRJJMKBEE,2455,CCOO,ILHIHKRJJMKBEE
+ILHIHKRJJMKBEE,ethyl hydroperoxide,CCOO,teacher_abraham,uncharged_parent_key,ILHIHKRJJMKBEE,2455,CCOO,ILHIHKRJJMKBEE
+ILHIHKRJJMKBEE,ethyl hydroperoxide,CCOO,teacher_abraham,canonical_tautomer_key,ILHIHKRJJMKBEE,2455,CCOO,ILHIHKRJJMKBEE
+ITXDBGLYYSJNPK,"1,2,3,5-tetrachloro-4-methoxybenzene",COc1c(Cl)cc(Cl)c(Cl)c1Cl,teacher_abraham,full_inchi_key,ITXDBGLYYSJNPK-UHFFFAOYSA-N,2568,COc1c(Cl)cc(Cl)c(Cl)c1Cl,ITXDBGLYYSJNPK
+ITXDBGLYYSJNPK,"1,2,3,5-tetrachloro-4-methoxybenzene",COc1c(Cl)cc(Cl)c(Cl)c1Cl,teacher_abraham,connectivity_key,ITXDBGLYYSJNPK,2568,COc1c(Cl)cc(Cl)c(Cl)c1Cl,ITXDBGLYYSJNPK
+ITXDBGLYYSJNPK,"1,2,3,5-tetrachloro-4-methoxybenzene",COc1c(Cl)cc(Cl)c(Cl)c1Cl,teacher_abraham,fragment_parent_key,ITXDBGLYYSJNPK,2568,COc1c(Cl)cc(Cl)c(Cl)c1Cl,ITXDBGLYYSJNPK
+ITXDBGLYYSJNPK,"1,2,3,5-tetrachloro-4-methoxybenzene",COc1c(Cl)cc(Cl)c(Cl)c1Cl,teacher_abraham,uncharged_parent_key,ITXDBGLYYSJNPK,2568,COc1c(Cl)cc(Cl)c(Cl)c1Cl,ITXDBGLYYSJNPK
+ITXDBGLYYSJNPK,"1,2,3,5-tetrachloro-4-methoxybenzene",COc1c(Cl)cc(Cl)c(Cl)c1Cl,teacher_abraham,canonical_tautomer_key,ITXDBGLYYSJNPK,2568,COc1c(Cl)cc(Cl)c(Cl)c1Cl,ITXDBGLYYSJNPK
+JCMNMOBHVPONLD,"1H,1H,2H,2H-perfluorohexan-1-ol",OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)F,teacher_abraham,full_inchi_key,JCMNMOBHVPONLD-UHFFFAOYSA-N,2669,OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)F,JCMNMOBHVPONLD
+JCMNMOBHVPONLD,"1H,1H,2H,2H-perfluorohexan-1-ol",OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)F,teacher_abraham,connectivity_key,JCMNMOBHVPONLD,2669,OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)F,JCMNMOBHVPONLD
+JCMNMOBHVPONLD,"1H,1H,2H,2H-perfluorohexan-1-ol",OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)F,teacher_abraham,fragment_parent_key,JCMNMOBHVPONLD,2669,OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)F,JCMNMOBHVPONLD
+JCMNMOBHVPONLD,"1H,1H,2H,2H-perfluorohexan-1-ol",OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)F,teacher_abraham,uncharged_parent_key,JCMNMOBHVPONLD,2669,OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)F,JCMNMOBHVPONLD
+JCMNMOBHVPONLD,"1H,1H,2H,2H-perfluorohexan-1-ol",OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)F,teacher_abraham,canonical_tautomer_key,JCMNMOBHVPONLD,2669,OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)F,JCMNMOBHVPONLD
+JJUBFBTUBACDHW,"1H,1H,2H,2H-perfluorodecan-1-ol",OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,teacher_abraham,full_inchi_key,JJUBFBTUBACDHW-UHFFFAOYSA-N,2753,OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,JJUBFBTUBACDHW
+JJUBFBTUBACDHW,"1H,1H,2H,2H-perfluorodecan-1-ol",OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,teacher_abraham,connectivity_key,JJUBFBTUBACDHW,2753,OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,JJUBFBTUBACDHW
+JJUBFBTUBACDHW,"1H,1H,2H,2H-perfluorodecan-1-ol",OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,teacher_abraham,fragment_parent_key,JJUBFBTUBACDHW,2753,OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,JJUBFBTUBACDHW
+JJUBFBTUBACDHW,"1H,1H,2H,2H-perfluorodecan-1-ol",OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,teacher_abraham,uncharged_parent_key,JJUBFBTUBACDHW,2753,OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,JJUBFBTUBACDHW
+JJUBFBTUBACDHW,"1H,1H,2H,2H-perfluorodecan-1-ol",OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,teacher_abraham,canonical_tautomer_key,JJUBFBTUBACDHW,2753,OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,JJUBFBTUBACDHW
+JPQLLIUTUFJWMH,"1,2,3,5,7,8-hexachloronaphthalene",Clc1cc2c(Cl)cc(Cl)c(Cl)c2c(Cl)c1Cl,teacher_abraham,full_inchi_key,JPQLLIUTUFJWMH-UHFFFAOYSA-N,2830,Clc1cc2c(Cl)cc(Cl)c(Cl)c2c(Cl)c1Cl,JPQLLIUTUFJWMH
+JPQLLIUTUFJWMH,"1,2,3,5,7,8-hexachloronaphthalene",Clc1cc2c(Cl)cc(Cl)c(Cl)c2c(Cl)c1Cl,teacher_abraham,connectivity_key,JPQLLIUTUFJWMH,2830,Clc1cc2c(Cl)cc(Cl)c(Cl)c2c(Cl)c1Cl,JPQLLIUTUFJWMH
+JPQLLIUTUFJWMH,"1,2,3,5,7,8-hexachloronaphthalene",Clc1cc2c(Cl)cc(Cl)c(Cl)c2c(Cl)c1Cl,teacher_abraham,fragment_parent_key,JPQLLIUTUFJWMH,2830,Clc1cc2c(Cl)cc(Cl)c(Cl)c2c(Cl)c1Cl,JPQLLIUTUFJWMH
+JPQLLIUTUFJWMH,"1,2,3,5,7,8-hexachloronaphthalene",Clc1cc2c(Cl)cc(Cl)c(Cl)c2c(Cl)c1Cl,teacher_abraham,uncharged_parent_key,JPQLLIUTUFJWMH,2830,Clc1cc2c(Cl)cc(Cl)c(Cl)c2c(Cl)c1Cl,JPQLLIUTUFJWMH
+JPQLLIUTUFJWMH,"1,2,3,5,7,8-hexachloronaphthalene",Clc1cc2c(Cl)cc(Cl)c(Cl)c2c(Cl)c1Cl,teacher_abraham,canonical_tautomer_key,JPQLLIUTUFJWMH,2830,Clc1cc2c(Cl)cc(Cl)c(Cl)c2c(Cl)c1Cl,JPQLLIUTUFJWMH
+JZBCTZLGKSYRSF,"2-ethyl-3,5-dimethylpyrazine",CCc1ncc(C)nc1C,teacher_abraham,full_inchi_key,JZBCTZLGKSYRSF-UHFFFAOYSA-N,2953,CCc1ncc(C)nc1C,JZBCTZLGKSYRSF
+JZBCTZLGKSYRSF,"2-ethyl-3,5-dimethylpyrazine",CCc1ncc(C)nc1C,teacher_abraham,connectivity_key,JZBCTZLGKSYRSF,2953,CCc1ncc(C)nc1C,JZBCTZLGKSYRSF
+JZBCTZLGKSYRSF,"2-ethyl-3,5-dimethylpyrazine",CCc1ncc(C)nc1C,teacher_abraham,fragment_parent_key,JZBCTZLGKSYRSF,2953,CCc1ncc(C)nc1C,JZBCTZLGKSYRSF
+JZBCTZLGKSYRSF,"2-ethyl-3,5-dimethylpyrazine",CCc1ncc(C)nc1C,teacher_abraham,uncharged_parent_key,JZBCTZLGKSYRSF,2953,CCc1ncc(C)nc1C,JZBCTZLGKSYRSF
+JZBCTZLGKSYRSF,"2-ethyl-3,5-dimethylpyrazine",CCc1ncc(C)nc1C,teacher_abraham,canonical_tautomer_key,JZBCTZLGKSYRSF,2953,CCc1ncc(C)nc1C,JZBCTZLGKSYRSF
+KPOZENRUJCHWOA,"1,2,4,5,6-pentachloronaphthalene",Clc1cc(Cl)c2c(Cl)c(Cl)ccc2c1Cl,teacher_abraham,full_inchi_key,KPOZENRUJCHWOA-UHFFFAOYSA-N,3154,Clc1cc(Cl)c2c(Cl)c(Cl)ccc2c1Cl,KPOZENRUJCHWOA
+KPOZENRUJCHWOA,"1,2,4,5,6-pentachloronaphthalene",Clc1cc(Cl)c2c(Cl)c(Cl)ccc2c1Cl,teacher_abraham,connectivity_key,KPOZENRUJCHWOA,3154,Clc1cc(Cl)c2c(Cl)c(Cl)ccc2c1Cl,KPOZENRUJCHWOA
+KPOZENRUJCHWOA,"1,2,4,5,6-pentachloronaphthalene",Clc1cc(Cl)c2c(Cl)c(Cl)ccc2c1Cl,teacher_abraham,fragment_parent_key,KPOZENRUJCHWOA,3154,Clc1cc(Cl)c2c(Cl)c(Cl)ccc2c1Cl,KPOZENRUJCHWOA
+KPOZENRUJCHWOA,"1,2,4,5,6-pentachloronaphthalene",Clc1cc(Cl)c2c(Cl)c(Cl)ccc2c1Cl,teacher_abraham,uncharged_parent_key,KPOZENRUJCHWOA,3154,Clc1cc(Cl)c2c(Cl)c(Cl)ccc2c1Cl,KPOZENRUJCHWOA
+KPOZENRUJCHWOA,"1,2,4,5,6-pentachloronaphthalene",Clc1cc(Cl)c2c(Cl)c(Cl)ccc2c1Cl,teacher_abraham,canonical_tautomer_key,KPOZENRUJCHWOA,3154,Clc1cc(Cl)c2c(Cl)c(Cl)ccc2c1Cl,KPOZENRUJCHWOA
+KZLMCDNAVVJKPX,"1,3-dichloro-2-methoxybenzene",COc1c(Cl)cccc1Cl,teacher_abraham,full_inchi_key,KZLMCDNAVVJKPX-UHFFFAOYSA-N,3285,COc1c(Cl)cccc1Cl,KZLMCDNAVVJKPX
+KZLMCDNAVVJKPX,"1,3-dichloro-2-methoxybenzene",COc1c(Cl)cccc1Cl,teacher_abraham,connectivity_key,KZLMCDNAVVJKPX,3285,COc1c(Cl)cccc1Cl,KZLMCDNAVVJKPX
+KZLMCDNAVVJKPX,"1,3-dichloro-2-methoxybenzene",COc1c(Cl)cccc1Cl,teacher_abraham,fragment_parent_key,KZLMCDNAVVJKPX,3285,COc1c(Cl)cccc1Cl,KZLMCDNAVVJKPX
+KZLMCDNAVVJKPX,"1,3-dichloro-2-methoxybenzene",COc1c(Cl)cccc1Cl,teacher_abraham,uncharged_parent_key,KZLMCDNAVVJKPX,3285,COc1c(Cl)cccc1Cl,KZLMCDNAVVJKPX
+KZLMCDNAVVJKPX,"1,3-dichloro-2-methoxybenzene",COc1c(Cl)cccc1Cl,teacher_abraham,canonical_tautomer_key,KZLMCDNAVVJKPX,3285,COc1c(Cl)cccc1Cl,KZLMCDNAVVJKPX
+LBCOXKFWBDTJTF,"1,2,4,7,8-pentachloronaphthalene",Clc1ccc2c(Cl)cc(Cl)c(Cl)c2c1Cl,teacher_abraham,full_inchi_key,LBCOXKFWBDTJTF-UHFFFAOYSA-N,3311,Clc1ccc2c(Cl)cc(Cl)c(Cl)c2c1Cl,LBCOXKFWBDTJTF
+LBCOXKFWBDTJTF,"1,2,4,7,8-pentachloronaphthalene",Clc1ccc2c(Cl)cc(Cl)c(Cl)c2c1Cl,teacher_abraham,connectivity_key,LBCOXKFWBDTJTF,3311,Clc1ccc2c(Cl)cc(Cl)c(Cl)c2c1Cl,LBCOXKFWBDTJTF
+LBCOXKFWBDTJTF,"1,2,4,7,8-pentachloronaphthalene",Clc1ccc2c(Cl)cc(Cl)c(Cl)c2c1Cl,teacher_abraham,fragment_parent_key,LBCOXKFWBDTJTF,3311,Clc1ccc2c(Cl)cc(Cl)c(Cl)c2c1Cl,LBCOXKFWBDTJTF
+LBCOXKFWBDTJTF,"1,2,4,7,8-pentachloronaphthalene",Clc1ccc2c(Cl)cc(Cl)c(Cl)c2c1Cl,teacher_abraham,uncharged_parent_key,LBCOXKFWBDTJTF,3311,Clc1ccc2c(Cl)cc(Cl)c(Cl)c2c1Cl,LBCOXKFWBDTJTF
+LBCOXKFWBDTJTF,"1,2,4,7,8-pentachloronaphthalene",Clc1ccc2c(Cl)cc(Cl)c(Cl)c2c1Cl,teacher_abraham,canonical_tautomer_key,LBCOXKFWBDTJTF,3311,Clc1ccc2c(Cl)cc(Cl)c(Cl)c2c1Cl,LBCOXKFWBDTJTF
+LITCKAVLJAKHOE,"1,4,5,8-tetrachloronaphthalene",Clc1ccc(Cl)c2c(Cl)ccc(Cl)c12,teacher_abraham,full_inchi_key,LITCKAVLJAKHOE-UHFFFAOYSA-N,3400,Clc1ccc(Cl)c2c(Cl)ccc(Cl)c12,LITCKAVLJAKHOE
+LITCKAVLJAKHOE,"1,4,5,8-tetrachloronaphthalene",Clc1ccc(Cl)c2c(Cl)ccc(Cl)c12,teacher_abraham,connectivity_key,LITCKAVLJAKHOE,3400,Clc1ccc(Cl)c2c(Cl)ccc(Cl)c12,LITCKAVLJAKHOE
+LITCKAVLJAKHOE,"1,4,5,8-tetrachloronaphthalene",Clc1ccc(Cl)c2c(Cl)ccc(Cl)c12,teacher_abraham,fragment_parent_key,LITCKAVLJAKHOE,3400,Clc1ccc(Cl)c2c(Cl)ccc(Cl)c12,LITCKAVLJAKHOE
+LITCKAVLJAKHOE,"1,4,5,8-tetrachloronaphthalene",Clc1ccc(Cl)c2c(Cl)ccc(Cl)c12,teacher_abraham,uncharged_parent_key,LITCKAVLJAKHOE,3400,Clc1ccc(Cl)c2c(Cl)ccc(Cl)c12,LITCKAVLJAKHOE
+LITCKAVLJAKHOE,"1,4,5,8-tetrachloronaphthalene",Clc1ccc(Cl)c2c(Cl)ccc(Cl)c12,teacher_abraham,canonical_tautomer_key,LITCKAVLJAKHOE,3400,Clc1ccc(Cl)c2c(Cl)ccc(Cl)c12,LITCKAVLJAKHOE
+MEUKEBNAABNAEX,methyl hydroperoxide,COO,teacher_abraham,full_inchi_key,MEUKEBNAABNAEX-UHFFFAOYSA-N,3724,COO,MEUKEBNAABNAEX
+MEUKEBNAABNAEX,methyl hydroperoxide,COO,teacher_abraham,connectivity_key,MEUKEBNAABNAEX,3724,COO,MEUKEBNAABNAEX
+MEUKEBNAABNAEX,methyl hydroperoxide,COO,teacher_abraham,fragment_parent_key,MEUKEBNAABNAEX,3724,COO,MEUKEBNAABNAEX
+MEUKEBNAABNAEX,methyl hydroperoxide,COO,teacher_abraham,uncharged_parent_key,MEUKEBNAABNAEX,3724,COO,MEUKEBNAABNAEX
+MEUKEBNAABNAEX,methyl hydroperoxide,COO,teacher_abraham,canonical_tautomer_key,MEUKEBNAABNAEX,3724,COO,MEUKEBNAABNAEX
+MMHZKSMAFILONG,"1,2,5-trichloronaphthalene",Clc1ccc2c(Cl)cccc2c1Cl,teacher_abraham,full_inchi_key,MMHZKSMAFILONG-UHFFFAOYSA-N,3797,Clc1ccc2c(Cl)cccc2c1Cl,MMHZKSMAFILONG
+MMHZKSMAFILONG,"1,2,5-trichloronaphthalene",Clc1ccc2c(Cl)cccc2c1Cl,teacher_abraham,connectivity_key,MMHZKSMAFILONG,3797,Clc1ccc2c(Cl)cccc2c1Cl,MMHZKSMAFILONG
+MMHZKSMAFILONG,"1,2,5-trichloronaphthalene",Clc1ccc2c(Cl)cccc2c1Cl,teacher_abraham,fragment_parent_key,MMHZKSMAFILONG,3797,Clc1ccc2c(Cl)cccc2c1Cl,MMHZKSMAFILONG
+MMHZKSMAFILONG,"1,2,5-trichloronaphthalene",Clc1ccc2c(Cl)cccc2c1Cl,teacher_abraham,uncharged_parent_key,MMHZKSMAFILONG,3797,Clc1ccc2c(Cl)cccc2c1Cl,MMHZKSMAFILONG
+MMHZKSMAFILONG,"1,2,5-trichloronaphthalene",Clc1ccc2c(Cl)cccc2c1Cl,teacher_abraham,canonical_tautomer_key,MMHZKSMAFILONG,3797,Clc1ccc2c(Cl)cccc2c1Cl,MMHZKSMAFILONG
+NDZIBNJHNBUHKW,"1,2,3,4,5,6,7-heptachloronaphthalene",Clc1cc2c(Cl)c(Cl)c(Cl)c(Cl)c2c(Cl)c1Cl,teacher_abraham,full_inchi_key,NDZIBNJHNBUHKW-UHFFFAOYSA-N,4002,Clc1cc2c(Cl)c(Cl)c(Cl)c(Cl)c2c(Cl)c1Cl,NDZIBNJHNBUHKW
+NDZIBNJHNBUHKW,"1,2,3,4,5,6,7-heptachloronaphthalene",Clc1cc2c(Cl)c(Cl)c(Cl)c(Cl)c2c(Cl)c1Cl,teacher_abraham,connectivity_key,NDZIBNJHNBUHKW,4002,Clc1cc2c(Cl)c(Cl)c(Cl)c(Cl)c2c(Cl)c1Cl,NDZIBNJHNBUHKW
+NDZIBNJHNBUHKW,"1,2,3,4,5,6,7-heptachloronaphthalene",Clc1cc2c(Cl)c(Cl)c(Cl)c(Cl)c2c(Cl)c1Cl,teacher_abraham,fragment_parent_key,NDZIBNJHNBUHKW,4002,Clc1cc2c(Cl)c(Cl)c(Cl)c(Cl)c2c(Cl)c1Cl,NDZIBNJHNBUHKW
+NDZIBNJHNBUHKW,"1,2,3,4,5,6,7-heptachloronaphthalene",Clc1cc2c(Cl)c(Cl)c(Cl)c(Cl)c2c(Cl)c1Cl,teacher_abraham,uncharged_parent_key,NDZIBNJHNBUHKW,4002,Clc1cc2c(Cl)c(Cl)c(Cl)c(Cl)c2c(Cl)c1Cl,NDZIBNJHNBUHKW
+NDZIBNJHNBUHKW,"1,2,3,4,5,6,7-heptachloronaphthalene",Clc1cc2c(Cl)c(Cl)c(Cl)c(Cl)c2c(Cl)c1Cl,teacher_abraham,canonical_tautomer_key,NDZIBNJHNBUHKW,4002,Clc1cc2c(Cl)c(Cl)c(Cl)c(Cl)c2c(Cl)c1Cl,NDZIBNJHNBUHKW
+NMRPBPVERJPACX,3-octanol,CCCCCC(O)CC,teacher_abraham,full_inchi_key,NMRPBPVERJPACX-UHFFFAOYSA-N,4119,CCCCCC(O)CC,NMRPBPVERJPACX
+NMRPBPVERJPACX,3-octanol,CCCCCC(O)CC,teacher_abraham,connectivity_key,NMRPBPVERJPACX,4119,CCCCCC(O)CC,NMRPBPVERJPACX
+NMRPBPVERJPACX,3-octanol,CCCCCC(O)CC,teacher_abraham,fragment_parent_key,NMRPBPVERJPACX,4119,CCCCCC(O)CC,NMRPBPVERJPACX
+NMRPBPVERJPACX,3-octanol,CCCCCC(O)CC,teacher_abraham,uncharged_parent_key,NMRPBPVERJPACX,4119,CCCCCC(O)CC,NMRPBPVERJPACX
+NMRPBPVERJPACX,3-octanol,CCCCCC(O)CC,teacher_abraham,canonical_tautomer_key,NMRPBPVERJPACX,4119,CCCCCC(O)CC,NMRPBPVERJPACX
+ONUFSRWQCKNVSL,decafluorobiphenyl,Fc1c(F)c(F)c(-c2c(F)c(F)c(F)c(F)c2F)c(F)c1F,teacher_abraham,full_inchi_key,ONUFSRWQCKNVSL-UHFFFAOYSA-N,4450,Fc1c(F)c(F)c(-c2c(F)c(F)c(F)c(F)c2F)c(F)c1F,ONUFSRWQCKNVSL
+ONUFSRWQCKNVSL,decafluorobiphenyl,Fc1c(F)c(F)c(-c2c(F)c(F)c(F)c(F)c2F)c(F)c1F,teacher_abraham,connectivity_key,ONUFSRWQCKNVSL,4450,Fc1c(F)c(F)c(-c2c(F)c(F)c(F)c(F)c2F)c(F)c1F,ONUFSRWQCKNVSL
+ONUFSRWQCKNVSL,decafluorobiphenyl,Fc1c(F)c(F)c(-c2c(F)c(F)c(F)c(F)c2F)c(F)c1F,teacher_abraham,fragment_parent_key,ONUFSRWQCKNVSL,4450,Fc1c(F)c(F)c(-c2c(F)c(F)c(F)c(F)c2F)c(F)c1F,ONUFSRWQCKNVSL
+ONUFSRWQCKNVSL,decafluorobiphenyl,Fc1c(F)c(F)c(-c2c(F)c(F)c(F)c(F)c2F)c(F)c1F,teacher_abraham,uncharged_parent_key,ONUFSRWQCKNVSL,4450,Fc1c(F)c(F)c(-c2c(F)c(F)c(F)c(F)c2F)c(F)c1F,ONUFSRWQCKNVSL
+ONUFSRWQCKNVSL,decafluorobiphenyl,Fc1c(F)c(F)c(-c2c(F)c(F)c(F)c(F)c2F)c(F)c1F,teacher_abraham,canonical_tautomer_key,ONUFSRWQCKNVSL,4450,Fc1c(F)c(F)c(-c2c(F)c(F)c(F)c(F)c2F)c(F)c1F,ONUFSRWQCKNVSL
+OTFNCXLUCRUNCH,"1,2,4-trichloro-3-methoxybenzene",COc1c(Cl)ccc(Cl)c1Cl,teacher_abraham,full_inchi_key,OTFNCXLUCRUNCH-UHFFFAOYSA-N,4512,COc1c(Cl)ccc(Cl)c1Cl,OTFNCXLUCRUNCH
+OTFNCXLUCRUNCH,"1,2,4-trichloro-3-methoxybenzene",COc1c(Cl)ccc(Cl)c1Cl,teacher_abraham,connectivity_key,OTFNCXLUCRUNCH,4512,COc1c(Cl)ccc(Cl)c1Cl,OTFNCXLUCRUNCH
+OTFNCXLUCRUNCH,"1,2,4-trichloro-3-methoxybenzene",COc1c(Cl)ccc(Cl)c1Cl,teacher_abraham,fragment_parent_key,OTFNCXLUCRUNCH,4512,COc1c(Cl)ccc(Cl)c1Cl,OTFNCXLUCRUNCH
+OTFNCXLUCRUNCH,"1,2,4-trichloro-3-methoxybenzene",COc1c(Cl)ccc(Cl)c1Cl,teacher_abraham,uncharged_parent_key,OTFNCXLUCRUNCH,4512,COc1c(Cl)ccc(Cl)c1Cl,OTFNCXLUCRUNCH
+OTFNCXLUCRUNCH,"1,2,4-trichloro-3-methoxybenzene",COc1c(Cl)ccc(Cl)c1Cl,teacher_abraham,canonical_tautomer_key,OTFNCXLUCRUNCH,4512,COc1c(Cl)ccc(Cl)c1Cl,OTFNCXLUCRUNCH
+OTTCXKPQKOLSJN,"1,3,5,7-tetrachloronaphthalene",Clc1cc(Cl)c2cc(Cl)cc(Cl)c2c1,teacher_abraham,full_inchi_key,OTTCXKPQKOLSJN-UHFFFAOYSA-N,4517,Clc1cc(Cl)c2cc(Cl)cc(Cl)c2c1,OTTCXKPQKOLSJN
+OTTCXKPQKOLSJN,"1,3,5,7-tetrachloronaphthalene",Clc1cc(Cl)c2cc(Cl)cc(Cl)c2c1,teacher_abraham,connectivity_key,OTTCXKPQKOLSJN,4517,Clc1cc(Cl)c2cc(Cl)cc(Cl)c2c1,OTTCXKPQKOLSJN
+OTTCXKPQKOLSJN,"1,3,5,7-tetrachloronaphthalene",Clc1cc(Cl)c2cc(Cl)cc(Cl)c2c1,teacher_abraham,fragment_parent_key,OTTCXKPQKOLSJN,4517,Clc1cc(Cl)c2cc(Cl)cc(Cl)c2c1,OTTCXKPQKOLSJN
+OTTCXKPQKOLSJN,"1,3,5,7-tetrachloronaphthalene",Clc1cc(Cl)c2cc(Cl)cc(Cl)c2c1,teacher_abraham,uncharged_parent_key,OTTCXKPQKOLSJN,4517,Clc1cc(Cl)c2cc(Cl)cc(Cl)c2c1,OTTCXKPQKOLSJN
+OTTCXKPQKOLSJN,"1,3,5,7-tetrachloronaphthalene",Clc1cc(Cl)c2cc(Cl)cc(Cl)c2c1,teacher_abraham,canonical_tautomer_key,OTTCXKPQKOLSJN,4517,Clc1cc(Cl)c2cc(Cl)cc(Cl)c2c1,OTTCXKPQKOLSJN
+PGCDNPCENWGYMA,"1,2,3,4,5,8-hexachloronaphthalene",Clc1c(Cl)c(Cl)c2c(Cl)ccc(Cl)c2c1Cl,teacher_abraham,full_inchi_key,PGCDNPCENWGYMA-UHFFFAOYSA-N,4662,Clc1c(Cl)c(Cl)c2c(Cl)ccc(Cl)c2c1Cl,PGCDNPCENWGYMA
+PGCDNPCENWGYMA,"1,2,3,4,5,8-hexachloronaphthalene",Clc1c(Cl)c(Cl)c2c(Cl)ccc(Cl)c2c1Cl,teacher_abraham,connectivity_key,PGCDNPCENWGYMA,4662,Clc1c(Cl)c(Cl)c2c(Cl)ccc(Cl)c2c1Cl,PGCDNPCENWGYMA
+PGCDNPCENWGYMA,"1,2,3,4,5,8-hexachloronaphthalene",Clc1c(Cl)c(Cl)c2c(Cl)ccc(Cl)c2c1Cl,teacher_abraham,fragment_parent_key,PGCDNPCENWGYMA,4662,Clc1c(Cl)c(Cl)c2c(Cl)ccc(Cl)c2c1Cl,PGCDNPCENWGYMA
+PGCDNPCENWGYMA,"1,2,3,4,5,8-hexachloronaphthalene",Clc1c(Cl)c(Cl)c2c(Cl)ccc(Cl)c2c1Cl,teacher_abraham,uncharged_parent_key,PGCDNPCENWGYMA,4662,Clc1c(Cl)c(Cl)c2c(Cl)ccc(Cl)c2c1Cl,PGCDNPCENWGYMA
+PGCDNPCENWGYMA,"1,2,3,4,5,8-hexachloronaphthalene",Clc1c(Cl)c(Cl)c2c(Cl)ccc(Cl)c2c1Cl,teacher_abraham,canonical_tautomer_key,PGCDNPCENWGYMA,4662,Clc1c(Cl)c(Cl)c2c(Cl)ccc(Cl)c2c1Cl,PGCDNPCENWGYMA
+PLDWAJLZAAHOGG,1-bromo-3-methoxybenzene,COc1cccc(Br)c1,teacher_abraham,full_inchi_key,PLDWAJLZAAHOGG-UHFFFAOYSA-N,4736,COc1cccc(Br)c1,PLDWAJLZAAHOGG
+PLDWAJLZAAHOGG,1-bromo-3-methoxybenzene,COc1cccc(Br)c1,teacher_abraham,connectivity_key,PLDWAJLZAAHOGG,4736,COc1cccc(Br)c1,PLDWAJLZAAHOGG
+PLDWAJLZAAHOGG,1-bromo-3-methoxybenzene,COc1cccc(Br)c1,teacher_abraham,fragment_parent_key,PLDWAJLZAAHOGG,4736,COc1cccc(Br)c1,PLDWAJLZAAHOGG
+PLDWAJLZAAHOGG,1-bromo-3-methoxybenzene,COc1cccc(Br)c1,teacher_abraham,uncharged_parent_key,PLDWAJLZAAHOGG,4736,COc1cccc(Br)c1,PLDWAJLZAAHOGG
+PLDWAJLZAAHOGG,1-bromo-3-methoxybenzene,COc1cccc(Br)c1,teacher_abraham,canonical_tautomer_key,PLDWAJLZAAHOGG,4736,COc1cccc(Br)c1,PLDWAJLZAAHOGG
+PPXUHEORWJQRHJ,ethyl 3-methylbutanoate,CCOC(=O)CC(C)C,teacher_abraham,full_inchi_key,PPXUHEORWJQRHJ-UHFFFAOYSA-N,4795,CCOC(=O)CC(C)C,PPXUHEORWJQRHJ
+PPXUHEORWJQRHJ,ethyl 3-methylbutanoate,CCOC(=O)CC(C)C,teacher_abraham,connectivity_key,PPXUHEORWJQRHJ,4795,CCOC(=O)CC(C)C,PPXUHEORWJQRHJ
+PPXUHEORWJQRHJ,ethyl 3-methylbutanoate,CCOC(=O)CC(C)C,teacher_abraham,fragment_parent_key,PPXUHEORWJQRHJ,4795,CCOC(=O)CC(C)C,PPXUHEORWJQRHJ
+PPXUHEORWJQRHJ,ethyl 3-methylbutanoate,CCOC(=O)CC(C)C,teacher_abraham,uncharged_parent_key,PPXUHEORWJQRHJ,4795,CCOC(=O)CC(C)C,PPXUHEORWJQRHJ
+PPXUHEORWJQRHJ,ethyl 3-methylbutanoate,CCOC(=O)CC(C)C,teacher_abraham,canonical_tautomer_key,PPXUHEORWJQRHJ,4795,CCOC(=O)CC(C)C,PPXUHEORWJQRHJ
+PSINWXIDJYEXLO,"2,3-diethyl-5-methylpyrazine",CCc1ncc(C)nc1CC,teacher_abraham,full_inchi_key,PSINWXIDJYEXLO-UHFFFAOYSA-N,4824,CCc1ncc(C)nc1CC,PSINWXIDJYEXLO
+PSINWXIDJYEXLO,"2,3-diethyl-5-methylpyrazine",CCc1ncc(C)nc1CC,teacher_abraham,connectivity_key,PSINWXIDJYEXLO,4824,CCc1ncc(C)nc1CC,PSINWXIDJYEXLO
+PSINWXIDJYEXLO,"2,3-diethyl-5-methylpyrazine",CCc1ncc(C)nc1CC,teacher_abraham,fragment_parent_key,PSINWXIDJYEXLO,4824,CCc1ncc(C)nc1CC,PSINWXIDJYEXLO
+PSINWXIDJYEXLO,"2,3-diethyl-5-methylpyrazine",CCc1ncc(C)nc1CC,teacher_abraham,uncharged_parent_key,PSINWXIDJYEXLO,4824,CCc1ncc(C)nc1CC,PSINWXIDJYEXLO
+PSINWXIDJYEXLO,"2,3-diethyl-5-methylpyrazine",CCc1ncc(C)nc1CC,teacher_abraham,canonical_tautomer_key,PSINWXIDJYEXLO,4824,CCc1ncc(C)nc1CC,PSINWXIDJYEXLO
+PVFOMCVHYWHZJE,trichloroacetylchloride,O=C(Cl)C(Cl)(Cl)Cl,teacher_abraham,full_inchi_key,PVFOMCVHYWHZJE-UHFFFAOYSA-N,4861,O=C(Cl)C(Cl)(Cl)Cl,PVFOMCVHYWHZJE
+PVFOMCVHYWHZJE,trichloroacetylchloride,O=C(Cl)C(Cl)(Cl)Cl,teacher_abraham,connectivity_key,PVFOMCVHYWHZJE,4861,O=C(Cl)C(Cl)(Cl)Cl,PVFOMCVHYWHZJE
+PVFOMCVHYWHZJE,trichloroacetylchloride,O=C(Cl)C(Cl)(Cl)Cl,teacher_abraham,fragment_parent_key,PVFOMCVHYWHZJE,4861,O=C(Cl)C(Cl)(Cl)Cl,PVFOMCVHYWHZJE
+PVFOMCVHYWHZJE,trichloroacetylchloride,O=C(Cl)C(Cl)(Cl)Cl,teacher_abraham,uncharged_parent_key,PVFOMCVHYWHZJE,4861,O=C(Cl)C(Cl)(Cl)Cl,PVFOMCVHYWHZJE
+PVFOMCVHYWHZJE,trichloroacetylchloride,O=C(Cl)C(Cl)(Cl)Cl,teacher_abraham,canonical_tautomer_key,PVFOMCVHYWHZJE,4861,O=C(Cl)C(Cl)(Cl)Cl,PVFOMCVHYWHZJE
+QGRPVMLBTFGQDQ,1-chloro-2-methoxybenzene,COc1ccccc1Cl,teacher_abraham,full_inchi_key,QGRPVMLBTFGQDQ-UHFFFAOYSA-N,5015,COc1ccccc1Cl,QGRPVMLBTFGQDQ
+QGRPVMLBTFGQDQ,1-chloro-2-methoxybenzene,COc1ccccc1Cl,teacher_abraham,connectivity_key,QGRPVMLBTFGQDQ,5015,COc1ccccc1Cl,QGRPVMLBTFGQDQ
+QGRPVMLBTFGQDQ,1-chloro-2-methoxybenzene,COc1ccccc1Cl,teacher_abraham,fragment_parent_key,QGRPVMLBTFGQDQ,5015,COc1ccccc1Cl,QGRPVMLBTFGQDQ
+QGRPVMLBTFGQDQ,1-chloro-2-methoxybenzene,COc1ccccc1Cl,teacher_abraham,uncharged_parent_key,QGRPVMLBTFGQDQ,5015,COc1ccccc1Cl,QGRPVMLBTFGQDQ
+QGRPVMLBTFGQDQ,1-chloro-2-methoxybenzene,COc1ccccc1Cl,teacher_abraham,canonical_tautomer_key,QGRPVMLBTFGQDQ,5015,COc1ccccc1Cl,QGRPVMLBTFGQDQ
+QJPJQTDYNZXKQF,1-bromo-4-methoxybenzene,COc1ccc(Br)cc1,teacher_abraham,full_inchi_key,QJPJQTDYNZXKQF-UHFFFAOYSA-N,5057,COc1ccc(Br)cc1,QJPJQTDYNZXKQF
+QJPJQTDYNZXKQF,1-bromo-4-methoxybenzene,COc1ccc(Br)cc1,teacher_abraham,connectivity_key,QJPJQTDYNZXKQF,5057,COc1ccc(Br)cc1,QJPJQTDYNZXKQF
+QJPJQTDYNZXKQF,1-bromo-4-methoxybenzene,COc1ccc(Br)cc1,teacher_abraham,fragment_parent_key,QJPJQTDYNZXKQF,5057,COc1ccc(Br)cc1,QJPJQTDYNZXKQF
+QJPJQTDYNZXKQF,1-bromo-4-methoxybenzene,COc1ccc(Br)cc1,teacher_abraham,uncharged_parent_key,QJPJQTDYNZXKQF,5057,COc1ccc(Br)cc1,QJPJQTDYNZXKQF
+QJPJQTDYNZXKQF,1-bromo-4-methoxybenzene,COc1ccc(Br)cc1,teacher_abraham,canonical_tautomer_key,QJPJQTDYNZXKQF,5057,COc1ccc(Br)cc1,QJPJQTDYNZXKQF
+QKMNFFSBZRGHDJ,"1,4-dichloro-2-methoxybenzene",COc1cc(Cl)ccc1Cl,teacher_abraham,full_inchi_key,QKMNFFSBZRGHDJ-UHFFFAOYSA-N,5067,COc1cc(Cl)ccc1Cl,QKMNFFSBZRGHDJ
+QKMNFFSBZRGHDJ,"1,4-dichloro-2-methoxybenzene",COc1cc(Cl)ccc1Cl,teacher_abraham,connectivity_key,QKMNFFSBZRGHDJ,5067,COc1cc(Cl)ccc1Cl,QKMNFFSBZRGHDJ
+QKMNFFSBZRGHDJ,"1,4-dichloro-2-methoxybenzene",COc1cc(Cl)ccc1Cl,teacher_abraham,fragment_parent_key,QKMNFFSBZRGHDJ,5067,COc1cc(Cl)ccc1Cl,QKMNFFSBZRGHDJ
+QKMNFFSBZRGHDJ,"1,4-dichloro-2-methoxybenzene",COc1cc(Cl)ccc1Cl,teacher_abraham,uncharged_parent_key,QKMNFFSBZRGHDJ,5067,COc1cc(Cl)ccc1Cl,QKMNFFSBZRGHDJ
+QKMNFFSBZRGHDJ,"1,4-dichloro-2-methoxybenzene",COc1cc(Cl)ccc1Cl,teacher_abraham,canonical_tautomer_key,QKMNFFSBZRGHDJ,5067,COc1cc(Cl)ccc1Cl,QKMNFFSBZRGHDJ
+QUGUFLJIAFISSW,"1,4-difluorobenzene",Fc1ccc(F)cc1,teacher_abraham,full_inchi_key,QUGUFLJIAFISSW-UHFFFAOYSA-N,5181,Fc1ccc(F)cc1,QUGUFLJIAFISSW
+QUGUFLJIAFISSW,"1,4-difluorobenzene",Fc1ccc(F)cc1,teacher_abraham,connectivity_key,QUGUFLJIAFISSW,5181,Fc1ccc(F)cc1,QUGUFLJIAFISSW
+QUGUFLJIAFISSW,"1,4-difluorobenzene",Fc1ccc(F)cc1,teacher_abraham,fragment_parent_key,QUGUFLJIAFISSW,5181,Fc1ccc(F)cc1,QUGUFLJIAFISSW
+QUGUFLJIAFISSW,"1,4-difluorobenzene",Fc1ccc(F)cc1,teacher_abraham,uncharged_parent_key,QUGUFLJIAFISSW,5181,Fc1ccc(F)cc1,QUGUFLJIAFISSW
+QUGUFLJIAFISSW,"1,4-difluorobenzene",Fc1ccc(F)cc1,teacher_abraham,canonical_tautomer_key,QUGUFLJIAFISSW,5181,Fc1ccc(F)cc1,QUGUFLJIAFISSW
+QYEGXUUXWMKHHS,"1,2,3,4,5,6,8-heptachloronaphthalene",Clc1cc(Cl)c2c(Cl)c(Cl)c(Cl)c(Cl)c2c1Cl,teacher_abraham,full_inchi_key,QYEGXUUXWMKHHS-UHFFFAOYSA-N,5233,Clc1cc(Cl)c2c(Cl)c(Cl)c(Cl)c(Cl)c2c1Cl,QYEGXUUXWMKHHS
+QYEGXUUXWMKHHS,"1,2,3,4,5,6,8-heptachloronaphthalene",Clc1cc(Cl)c2c(Cl)c(Cl)c(Cl)c(Cl)c2c1Cl,teacher_abraham,connectivity_key,QYEGXUUXWMKHHS,5233,Clc1cc(Cl)c2c(Cl)c(Cl)c(Cl)c(Cl)c2c1Cl,QYEGXUUXWMKHHS
+QYEGXUUXWMKHHS,"1,2,3,4,5,6,8-heptachloronaphthalene",Clc1cc(Cl)c2c(Cl)c(Cl)c(Cl)c(Cl)c2c1Cl,teacher_abraham,fragment_parent_key,QYEGXUUXWMKHHS,5233,Clc1cc(Cl)c2c(Cl)c(Cl)c(Cl)c(Cl)c2c1Cl,QYEGXUUXWMKHHS
+QYEGXUUXWMKHHS,"1,2,3,4,5,6,8-heptachloronaphthalene",Clc1cc(Cl)c2c(Cl)c(Cl)c(Cl)c(Cl)c2c1Cl,teacher_abraham,uncharged_parent_key,QYEGXUUXWMKHHS,5233,Clc1cc(Cl)c2c(Cl)c(Cl)c(Cl)c(Cl)c2c1Cl,QYEGXUUXWMKHHS
+QYEGXUUXWMKHHS,"1,2,3,4,5,6,8-heptachloronaphthalene",Clc1cc(Cl)c2c(Cl)c(Cl)c(Cl)c(Cl)c2c1Cl,teacher_abraham,canonical_tautomer_key,QYEGXUUXWMKHHS,5233,Clc1cc(Cl)c2c(Cl)c(Cl)c(Cl)c(Cl)c2c1Cl,QYEGXUUXWMKHHS
+RGXWDWUGBIJHDO,ethyl decanoate,CCCCCCCCCC(=O)OCC,teacher_abraham,full_inchi_key,RGXWDWUGBIJHDO-UHFFFAOYSA-N,5351,CCCCCCCCCC(=O)OCC,RGXWDWUGBIJHDO
+RGXWDWUGBIJHDO,ethyl decanoate,CCCCCCCCCC(=O)OCC,teacher_abraham,connectivity_key,RGXWDWUGBIJHDO,5351,CCCCCCCCCC(=O)OCC,RGXWDWUGBIJHDO
+RGXWDWUGBIJHDO,ethyl decanoate,CCCCCCCCCC(=O)OCC,teacher_abraham,fragment_parent_key,RGXWDWUGBIJHDO,5351,CCCCCCCCCC(=O)OCC,RGXWDWUGBIJHDO
+RGXWDWUGBIJHDO,ethyl decanoate,CCCCCCCCCC(=O)OCC,teacher_abraham,uncharged_parent_key,RGXWDWUGBIJHDO,5351,CCCCCCCCCC(=O)OCC,RGXWDWUGBIJHDO
+RGXWDWUGBIJHDO,ethyl decanoate,CCCCCCCCCC(=O)OCC,teacher_abraham,canonical_tautomer_key,RGXWDWUGBIJHDO,5351,CCCCCCCCCC(=O)OCC,RGXWDWUGBIJHDO
+RHLVCLIPMVJYKS,3-octanone,CCCCCC(=O)CC,teacher_abraham,full_inchi_key,RHLVCLIPMVJYKS-UHFFFAOYSA-N,5361,CCCCCC(=O)CC,RHLVCLIPMVJYKS
+RHLVCLIPMVJYKS,3-octanone,CCCCCC(=O)CC,teacher_abraham,connectivity_key,RHLVCLIPMVJYKS,5361,CCCCCC(=O)CC,RHLVCLIPMVJYKS
+RHLVCLIPMVJYKS,3-octanone,CCCCCC(=O)CC,teacher_abraham,fragment_parent_key,RHLVCLIPMVJYKS,5361,CCCCCC(=O)CC,RHLVCLIPMVJYKS
+RHLVCLIPMVJYKS,3-octanone,CCCCCC(=O)CC,teacher_abraham,uncharged_parent_key,RHLVCLIPMVJYKS,5361,CCCCCC(=O)CC,RHLVCLIPMVJYKS
+RHLVCLIPMVJYKS,3-octanone,CCCCCC(=O)CC,teacher_abraham,canonical_tautomer_key,RHLVCLIPMVJYKS,5361,CCCCCC(=O)CC,RHLVCLIPMVJYKS
+RTNLUFLDZOAXIC,octachloronaphthalene,Clc1c(Cl)c(Cl)c2c(Cl)c(Cl)c(Cl)c(Cl)c2c1Cl,teacher_abraham,full_inchi_key,RTNLUFLDZOAXIC-UHFFFAOYSA-N,5529,Clc1c(Cl)c(Cl)c2c(Cl)c(Cl)c(Cl)c(Cl)c2c1Cl,RTNLUFLDZOAXIC
+RTNLUFLDZOAXIC,octachloronaphthalene,Clc1c(Cl)c(Cl)c2c(Cl)c(Cl)c(Cl)c(Cl)c2c1Cl,teacher_abraham,connectivity_key,RTNLUFLDZOAXIC,5529,Clc1c(Cl)c(Cl)c2c(Cl)c(Cl)c(Cl)c(Cl)c2c1Cl,RTNLUFLDZOAXIC
+RTNLUFLDZOAXIC,octachloronaphthalene,Clc1c(Cl)c(Cl)c2c(Cl)c(Cl)c(Cl)c(Cl)c2c1Cl,teacher_abraham,fragment_parent_key,RTNLUFLDZOAXIC,5529,Clc1c(Cl)c(Cl)c2c(Cl)c(Cl)c(Cl)c(Cl)c2c1Cl,RTNLUFLDZOAXIC
+RTNLUFLDZOAXIC,octachloronaphthalene,Clc1c(Cl)c(Cl)c2c(Cl)c(Cl)c(Cl)c(Cl)c2c1Cl,teacher_abraham,uncharged_parent_key,RTNLUFLDZOAXIC,5529,Clc1c(Cl)c(Cl)c2c(Cl)c(Cl)c(Cl)c(Cl)c2c1Cl,RTNLUFLDZOAXIC
+RTNLUFLDZOAXIC,octachloronaphthalene,Clc1c(Cl)c(Cl)c2c(Cl)c(Cl)c(Cl)c(Cl)c2c1Cl,teacher_abraham,canonical_tautomer_key,RTNLUFLDZOAXIC,5529,Clc1c(Cl)c(Cl)c2c(Cl)c(Cl)c(Cl)c(Cl)c2c1Cl,RTNLUFLDZOAXIC
+RUPAXCPQAAOIPB,"(1,1-dimethylethyl)-methanoate",CC(C)(C)OC=O,teacher_abraham,full_inchi_key,RUPAXCPQAAOIPB-UHFFFAOYSA-N,5543,CC(C)(C)OC=O,RUPAXCPQAAOIPB
+RUPAXCPQAAOIPB,"(1,1-dimethylethyl)-methanoate",CC(C)(C)OC=O,teacher_abraham,connectivity_key,RUPAXCPQAAOIPB,5543,CC(C)(C)OC=O,RUPAXCPQAAOIPB
+RUPAXCPQAAOIPB,"(1,1-dimethylethyl)-methanoate",CC(C)(C)OC=O,teacher_abraham,fragment_parent_key,RUPAXCPQAAOIPB,5543,CC(C)(C)OC=O,RUPAXCPQAAOIPB
+RUPAXCPQAAOIPB,"(1,1-dimethylethyl)-methanoate",CC(C)(C)OC=O,teacher_abraham,uncharged_parent_key,RUPAXCPQAAOIPB,5543,CC(C)(C)OC=O,RUPAXCPQAAOIPB
+RUPAXCPQAAOIPB,"(1,1-dimethylethyl)-methanoate",CC(C)(C)OC=O,teacher_abraham,canonical_tautomer_key,RUPAXCPQAAOIPB,5543,CC(C)(C)OC=O,RUPAXCPQAAOIPB
+SSNXYMVLSOMJLU,"1,3-dichloro-5-methoxybenzene",COc1cc(Cl)cc(Cl)c1,teacher_abraham,full_inchi_key,SSNXYMVLSOMJLU-UHFFFAOYSA-N,5828,COc1cc(Cl)cc(Cl)c1,SSNXYMVLSOMJLU
+SSNXYMVLSOMJLU,"1,3-dichloro-5-methoxybenzene",COc1cc(Cl)cc(Cl)c1,teacher_abraham,connectivity_key,SSNXYMVLSOMJLU,5828,COc1cc(Cl)cc(Cl)c1,SSNXYMVLSOMJLU
+SSNXYMVLSOMJLU,"1,3-dichloro-5-methoxybenzene",COc1cc(Cl)cc(Cl)c1,teacher_abraham,fragment_parent_key,SSNXYMVLSOMJLU,5828,COc1cc(Cl)cc(Cl)c1,SSNXYMVLSOMJLU
+SSNXYMVLSOMJLU,"1,3-dichloro-5-methoxybenzene",COc1cc(Cl)cc(Cl)c1,teacher_abraham,uncharged_parent_key,SSNXYMVLSOMJLU,5828,COc1cc(Cl)cc(Cl)c1,SSNXYMVLSOMJLU
+SSNXYMVLSOMJLU,"1,3-dichloro-5-methoxybenzene",COc1cc(Cl)cc(Cl)c1,teacher_abraham,canonical_tautomer_key,SSNXYMVLSOMJLU,5828,COc1cc(Cl)cc(Cl)c1,SSNXYMVLSOMJLU
+STNJBCKSHOAVAJ,2-methylpropenal,C=C(C)C=O,teacher_abraham,full_inchi_key,STNJBCKSHOAVAJ-UHFFFAOYSA-N,5841,C=C(C)C=O,STNJBCKSHOAVAJ
+STNJBCKSHOAVAJ,2-methylpropenal,C=C(C)C=O,teacher_abraham,connectivity_key,STNJBCKSHOAVAJ,5841,C=C(C)C=O,STNJBCKSHOAVAJ
+STNJBCKSHOAVAJ,2-methylpropenal,C=C(C)C=O,teacher_abraham,fragment_parent_key,STNJBCKSHOAVAJ,5841,C=C(C)C=O,STNJBCKSHOAVAJ
+STNJBCKSHOAVAJ,2-methylpropenal,C=C(C)C=O,teacher_abraham,uncharged_parent_key,STNJBCKSHOAVAJ,5841,C=C(C)C=O,STNJBCKSHOAVAJ
+STNJBCKSHOAVAJ,2-methylpropenal,C=C(C)C=O,teacher_abraham,canonical_tautomer_key,STNJBCKSHOAVAJ,5841,C=C(C)C=O,STNJBCKSHOAVAJ
+SXKBHOQOOGRFJF,"1,2,4-trichloro-5-methoxybenzene",COc1cc(Cl)c(Cl)cc1Cl,teacher_abraham,full_inchi_key,SXKBHOQOOGRFJF-UHFFFAOYSA-N,5901,COc1cc(Cl)c(Cl)cc1Cl,SXKBHOQOOGRFJF
+SXKBHOQOOGRFJF,"1,2,4-trichloro-5-methoxybenzene",COc1cc(Cl)c(Cl)cc1Cl,teacher_abraham,connectivity_key,SXKBHOQOOGRFJF,5901,COc1cc(Cl)c(Cl)cc1Cl,SXKBHOQOOGRFJF
+SXKBHOQOOGRFJF,"1,2,4-trichloro-5-methoxybenzene",COc1cc(Cl)c(Cl)cc1Cl,teacher_abraham,fragment_parent_key,SXKBHOQOOGRFJF,5901,COc1cc(Cl)c(Cl)cc1Cl,SXKBHOQOOGRFJF
+SXKBHOQOOGRFJF,"1,2,4-trichloro-5-methoxybenzene",COc1cc(Cl)c(Cl)cc1Cl,teacher_abraham,uncharged_parent_key,SXKBHOQOOGRFJF,5901,COc1cc(Cl)c(Cl)cc1Cl,SXKBHOQOOGRFJF
+SXKBHOQOOGRFJF,"1,2,4-trichloro-5-methoxybenzene",COc1cc(Cl)c(Cl)cc1Cl,teacher_abraham,canonical_tautomer_key,SXKBHOQOOGRFJF,5901,COc1cc(Cl)c(Cl)cc1Cl,SXKBHOQOOGRFJF
+UBJVUCKUDDKUJF,"3,3'-thiobis-1-propene",C=CCSCC=C,teacher_abraham,full_inchi_key,UBJVUCKUDDKUJF-UHFFFAOYSA-N,6040,C=CCSCC=C,UBJVUCKUDDKUJF
+UBJVUCKUDDKUJF,"3,3'-thiobis-1-propene",C=CCSCC=C,teacher_abraham,connectivity_key,UBJVUCKUDDKUJF,6040,C=CCSCC=C,UBJVUCKUDDKUJF
+UBJVUCKUDDKUJF,"3,3'-thiobis-1-propene",C=CCSCC=C,teacher_abraham,fragment_parent_key,UBJVUCKUDDKUJF,6040,C=CCSCC=C,UBJVUCKUDDKUJF
+UBJVUCKUDDKUJF,"3,3'-thiobis-1-propene",C=CCSCC=C,teacher_abraham,uncharged_parent_key,UBJVUCKUDDKUJF,6040,C=CCSCC=C,UBJVUCKUDDKUJF
+UBJVUCKUDDKUJF,"3,3'-thiobis-1-propene",C=CCSCC=C,teacher_abraham,canonical_tautomer_key,UBJVUCKUDDKUJF,6040,C=CCSCC=C,UBJVUCKUDDKUJF
+UHEPJGULSIKKTP,6-methyl-5-hepten-2-one,CC(=O)CCC=C(C)C,teacher_abraham,full_inchi_key,UHEPJGULSIKKTP-UHFFFAOYSA-N,6105,CC(=O)CCC=C(C)C,UHEPJGULSIKKTP
+UHEPJGULSIKKTP,6-methyl-5-hepten-2-one,CC(=O)CCC=C(C)C,teacher_abraham,connectivity_key,UHEPJGULSIKKTP,6105,CC(=O)CCC=C(C)C,UHEPJGULSIKKTP
+UHEPJGULSIKKTP,6-methyl-5-hepten-2-one,CC(=O)CCC=C(C)C,teacher_abraham,fragment_parent_key,UHEPJGULSIKKTP,6105,CC(=O)CCC=C(C)C,UHEPJGULSIKKTP
+UHEPJGULSIKKTP,6-methyl-5-hepten-2-one,CC(=O)CCC=C(C)C,teacher_abraham,uncharged_parent_key,UHEPJGULSIKKTP,6105,CC(=O)CCC=C(C)C,UHEPJGULSIKKTP
+UHEPJGULSIKKTP,6-methyl-5-hepten-2-one,CC(=O)CCC=C(C)C,teacher_abraham,canonical_tautomer_key,UHEPJGULSIKKTP,6105,CC(=O)CCC=C(C)C,UHEPJGULSIKKTP
+UIHCLUNTQKBZGK,3-methyl-2-pentanone,CCC(C)C(C)=O,teacher_abraham,full_inchi_key,UIHCLUNTQKBZGK-UHFFFAOYSA-N,6115,CCC(C)C(C)=O,UIHCLUNTQKBZGK
+UIHCLUNTQKBZGK,3-methyl-2-pentanone,CCC(C)C(C)=O,teacher_abraham,connectivity_key,UIHCLUNTQKBZGK,6115,CCC(C)C(C)=O,UIHCLUNTQKBZGK
+UIHCLUNTQKBZGK,3-methyl-2-pentanone,CCC(C)C(C)=O,teacher_abraham,fragment_parent_key,UIHCLUNTQKBZGK,6115,CCC(C)C(C)=O,UIHCLUNTQKBZGK
+UIHCLUNTQKBZGK,3-methyl-2-pentanone,CCC(C)C(C)=O,teacher_abraham,uncharged_parent_key,UIHCLUNTQKBZGK,6115,CCC(C)C(C)=O,UIHCLUNTQKBZGK
+UIHCLUNTQKBZGK,3-methyl-2-pentanone,CCC(C)C(C)=O,teacher_abraham,canonical_tautomer_key,UIHCLUNTQKBZGK,6115,CCC(C)C(C)=O,UIHCLUNTQKBZGK
+UJIGKESMIPTWJH,"1,3-dichloro-1,1,2,2,3-pentafluoro-propane",FC(Cl)C(F)(F)C(F)(F)Cl,teacher_abraham,full_inchi_key,UJIGKESMIPTWJH-UHFFFAOYSA-N,6131,FC(Cl)C(F)(F)C(F)(F)Cl,UJIGKESMIPTWJH
+UJIGKESMIPTWJH,"1,3-dichloro-1,1,2,2,3-pentafluoro-propane",FC(Cl)C(F)(F)C(F)(F)Cl,teacher_abraham,connectivity_key,UJIGKESMIPTWJH,6131,FC(Cl)C(F)(F)C(F)(F)Cl,UJIGKESMIPTWJH
+UJIGKESMIPTWJH,"1,3-dichloro-1,1,2,2,3-pentafluoro-propane",FC(Cl)C(F)(F)C(F)(F)Cl,teacher_abraham,fragment_parent_key,UJIGKESMIPTWJH,6131,FC(Cl)C(F)(F)C(F)(F)Cl,UJIGKESMIPTWJH
+UJIGKESMIPTWJH,"1,3-dichloro-1,1,2,2,3-pentafluoro-propane",FC(Cl)C(F)(F)C(F)(F)Cl,teacher_abraham,uncharged_parent_key,UJIGKESMIPTWJH,6131,FC(Cl)C(F)(F)C(F)(F)Cl,UJIGKESMIPTWJH
+UJIGKESMIPTWJH,"1,3-dichloro-1,1,2,2,3-pentafluoro-propane",FC(Cl)C(F)(F)C(F)(F)Cl,teacher_abraham,canonical_tautomer_key,UJIGKESMIPTWJH,6131,FC(Cl)C(F)(F)C(F)(F)Cl,UJIGKESMIPTWJH
+UXFSPRAGHGMRSQ,2-isobutyl-3-methoxypyrazine,COc1nccnc1CC(C)C,teacher_abraham,full_inchi_key,UXFSPRAGHGMRSQ-UHFFFAOYSA-N,6304,COc1nccnc1CC(C)C,UXFSPRAGHGMRSQ
+UXFSPRAGHGMRSQ,2-isobutyl-3-methoxypyrazine,COc1nccnc1CC(C)C,teacher_abraham,connectivity_key,UXFSPRAGHGMRSQ,6304,COc1nccnc1CC(C)C,UXFSPRAGHGMRSQ
+UXFSPRAGHGMRSQ,2-isobutyl-3-methoxypyrazine,COc1nccnc1CC(C)C,teacher_abraham,fragment_parent_key,UXFSPRAGHGMRSQ,6304,COc1nccnc1CC(C)C,UXFSPRAGHGMRSQ
+UXFSPRAGHGMRSQ,2-isobutyl-3-methoxypyrazine,COc1nccnc1CC(C)C,teacher_abraham,uncharged_parent_key,UXFSPRAGHGMRSQ,6304,COc1nccnc1CC(C)C,UXFSPRAGHGMRSQ
+UXFSPRAGHGMRSQ,2-isobutyl-3-methoxypyrazine,COc1nccnc1CC(C)C,teacher_abraham,canonical_tautomer_key,UXFSPRAGHGMRSQ,6304,COc1nccnc1CC(C)C,UXFSPRAGHGMRSQ
+UZYYBZNZSSNYSA,"2,3,6-trichloromethylbenzene",Cc1c(Cl)ccc(Cl)c1Cl,teacher_abraham,full_inchi_key,UZYYBZNZSSNYSA-UHFFFAOYSA-N,6335,Cc1c(Cl)ccc(Cl)c1Cl,UZYYBZNZSSNYSA
+UZYYBZNZSSNYSA,"2,3,6-trichloromethylbenzene",Cc1c(Cl)ccc(Cl)c1Cl,teacher_abraham,connectivity_key,UZYYBZNZSSNYSA,6335,Cc1c(Cl)ccc(Cl)c1Cl,UZYYBZNZSSNYSA
+UZYYBZNZSSNYSA,"2,3,6-trichloromethylbenzene",Cc1c(Cl)ccc(Cl)c1Cl,teacher_abraham,fragment_parent_key,UZYYBZNZSSNYSA,6335,Cc1c(Cl)ccc(Cl)c1Cl,UZYYBZNZSSNYSA
+UZYYBZNZSSNYSA,"2,3,6-trichloromethylbenzene",Cc1c(Cl)ccc(Cl)c1Cl,teacher_abraham,uncharged_parent_key,UZYYBZNZSSNYSA,6335,Cc1c(Cl)ccc(Cl)c1Cl,UZYYBZNZSSNYSA
+UZYYBZNZSSNYSA,"2,3,6-trichloromethylbenzene",Cc1c(Cl)ccc(Cl)c1Cl,teacher_abraham,canonical_tautomer_key,UZYYBZNZSSNYSA,6335,Cc1c(Cl)ccc(Cl)c1Cl,UZYYBZNZSSNYSA
+VISJRVXHPNMYRH,"1,2-dichloro-4-methoxybenzene",COc1ccc(Cl)c(Cl)c1,teacher_abraham,full_inchi_key,VISJRVXHPNMYRH-UHFFFAOYSA-N,6462,COc1ccc(Cl)c(Cl)c1,VISJRVXHPNMYRH
+VISJRVXHPNMYRH,"1,2-dichloro-4-methoxybenzene",COc1ccc(Cl)c(Cl)c1,teacher_abraham,connectivity_key,VISJRVXHPNMYRH,6462,COc1ccc(Cl)c(Cl)c1,VISJRVXHPNMYRH
+VISJRVXHPNMYRH,"1,2-dichloro-4-methoxybenzene",COc1ccc(Cl)c(Cl)c1,teacher_abraham,fragment_parent_key,VISJRVXHPNMYRH,6462,COc1ccc(Cl)c(Cl)c1,VISJRVXHPNMYRH
+VISJRVXHPNMYRH,"1,2-dichloro-4-methoxybenzene",COc1ccc(Cl)c(Cl)c1,teacher_abraham,uncharged_parent_key,VISJRVXHPNMYRH,6462,COc1ccc(Cl)c(Cl)c1,VISJRVXHPNMYRH
+VISJRVXHPNMYRH,"1,2-dichloro-4-methoxybenzene",COc1ccc(Cl)c(Cl)c1,teacher_abraham,canonical_tautomer_key,VISJRVXHPNMYRH,6462,COc1ccc(Cl)c(Cl)c1,VISJRVXHPNMYRH
+VJZRCIYSYVGDMU,"1,4,6,7-tetrachloronaphthalene",Clc1cc2c(Cl)ccc(Cl)c2cc1Cl,teacher_abraham,full_inchi_key,VJZRCIYSYVGDMU-UHFFFAOYSA-N,6474,Clc1cc2c(Cl)ccc(Cl)c2cc1Cl,VJZRCIYSYVGDMU
+VJZRCIYSYVGDMU,"1,4,6,7-tetrachloronaphthalene",Clc1cc2c(Cl)ccc(Cl)c2cc1Cl,teacher_abraham,connectivity_key,VJZRCIYSYVGDMU,6474,Clc1cc2c(Cl)ccc(Cl)c2cc1Cl,VJZRCIYSYVGDMU
+VJZRCIYSYVGDMU,"1,4,6,7-tetrachloronaphthalene",Clc1cc2c(Cl)ccc(Cl)c2cc1Cl,teacher_abraham,fragment_parent_key,VJZRCIYSYVGDMU,6474,Clc1cc2c(Cl)ccc(Cl)c2cc1Cl,VJZRCIYSYVGDMU
+VJZRCIYSYVGDMU,"1,4,6,7-tetrachloronaphthalene",Clc1cc2c(Cl)ccc(Cl)c2cc1Cl,teacher_abraham,uncharged_parent_key,VJZRCIYSYVGDMU,6474,Clc1cc2c(Cl)ccc(Cl)c2cc1Cl,VJZRCIYSYVGDMU
+VJZRCIYSYVGDMU,"1,4,6,7-tetrachloronaphthalene",Clc1cc2c(Cl)ccc(Cl)c2cc1Cl,teacher_abraham,canonical_tautomer_key,VJZRCIYSYVGDMU,6474,Clc1cc2c(Cl)ccc(Cl)c2cc1Cl,VJZRCIYSYVGDMU
+VQSNXLCFFHGXTI,"1,4,5-trichloronaphthalene",Clc1ccc(Cl)c2c(Cl)cccc12,teacher_abraham,full_inchi_key,VQSNXLCFFHGXTI-UHFFFAOYSA-N,6572,Clc1ccc(Cl)c2c(Cl)cccc12,VQSNXLCFFHGXTI
+VQSNXLCFFHGXTI,"1,4,5-trichloronaphthalene",Clc1ccc(Cl)c2c(Cl)cccc12,teacher_abraham,connectivity_key,VQSNXLCFFHGXTI,6572,Clc1ccc(Cl)c2c(Cl)cccc12,VQSNXLCFFHGXTI
+VQSNXLCFFHGXTI,"1,4,5-trichloronaphthalene",Clc1ccc(Cl)c2c(Cl)cccc12,teacher_abraham,fragment_parent_key,VQSNXLCFFHGXTI,6572,Clc1ccc(Cl)c2c(Cl)cccc12,VQSNXLCFFHGXTI
+VQSNXLCFFHGXTI,"1,4,5-trichloronaphthalene",Clc1ccc(Cl)c2c(Cl)cccc12,teacher_abraham,uncharged_parent_key,VQSNXLCFFHGXTI,6572,Clc1ccc(Cl)c2c(Cl)cccc12,VQSNXLCFFHGXTI
+VQSNXLCFFHGXTI,"1,4,5-trichloronaphthalene",Clc1ccc(Cl)c2c(Cl)cccc12,teacher_abraham,canonical_tautomer_key,VQSNXLCFFHGXTI,6572,Clc1ccc(Cl)c2c(Cl)cccc12,VQSNXLCFFHGXTI
+VVJKKWFAADXIJK,2-propen-1-amine,C=CCN,teacher_abraham,full_inchi_key,VVJKKWFAADXIJK-UHFFFAOYSA-N,6620,C=CCN,VVJKKWFAADXIJK
+VVJKKWFAADXIJK,2-propen-1-amine,C=CCN,teacher_abraham,connectivity_key,VVJKKWFAADXIJK,6620,C=CCN,VVJKKWFAADXIJK
+VVJKKWFAADXIJK,2-propen-1-amine,C=CCN,teacher_abraham,fragment_parent_key,VVJKKWFAADXIJK,6620,C=CCN,VVJKKWFAADXIJK
+VVJKKWFAADXIJK,2-propen-1-amine,C=CCN,teacher_abraham,uncharged_parent_key,VVJKKWFAADXIJK,6620,C=CCN,VVJKKWFAADXIJK
+VVJKKWFAADXIJK,2-propen-1-amine,C=CCN,teacher_abraham,canonical_tautomer_key,VVJKKWFAADXIJK,6620,C=CCN,VVJKKWFAADXIJK
+WCVOGSZTONGSQY,"1,3,5-trichloro-2-methoxybenzene",COc1c(Cl)cc(Cl)cc1Cl,teacher_abraham,full_inchi_key,WCVOGSZTONGSQY-UHFFFAOYSA-N,6707,COc1c(Cl)cc(Cl)cc1Cl,WCVOGSZTONGSQY
+WCVOGSZTONGSQY,"1,3,5-trichloro-2-methoxybenzene",COc1c(Cl)cc(Cl)cc1Cl,teacher_abraham,connectivity_key,WCVOGSZTONGSQY,6707,COc1c(Cl)cc(Cl)cc1Cl,WCVOGSZTONGSQY
+WCVOGSZTONGSQY,"1,3,5-trichloro-2-methoxybenzene",COc1c(Cl)cc(Cl)cc1Cl,teacher_abraham,fragment_parent_key,WCVOGSZTONGSQY,6707,COc1c(Cl)cc(Cl)cc1Cl,WCVOGSZTONGSQY
+WCVOGSZTONGSQY,"1,3,5-trichloro-2-methoxybenzene",COc1c(Cl)cc(Cl)cc1Cl,teacher_abraham,uncharged_parent_key,WCVOGSZTONGSQY,6707,COc1c(Cl)cc(Cl)cc1Cl,WCVOGSZTONGSQY
+WCVOGSZTONGSQY,"1,3,5-trichloro-2-methoxybenzene",COc1c(Cl)cc(Cl)cc1Cl,teacher_abraham,canonical_tautomer_key,WCVOGSZTONGSQY,6707,COc1c(Cl)cc(Cl)cc1Cl,WCVOGSZTONGSQY
+WMMFIDNWZNCBCT,"1,2,4,5-tetrachloro-3-methoxybenzene",COc1c(Cl)c(Cl)cc(Cl)c1Cl,teacher_abraham,full_inchi_key,WMMFIDNWZNCBCT-UHFFFAOYSA-N,6868,COc1c(Cl)c(Cl)cc(Cl)c1Cl,WMMFIDNWZNCBCT
+WMMFIDNWZNCBCT,"1,2,4,5-tetrachloro-3-methoxybenzene",COc1c(Cl)c(Cl)cc(Cl)c1Cl,teacher_abraham,connectivity_key,WMMFIDNWZNCBCT,6868,COc1c(Cl)c(Cl)cc(Cl)c1Cl,WMMFIDNWZNCBCT
+WMMFIDNWZNCBCT,"1,2,4,5-tetrachloro-3-methoxybenzene",COc1c(Cl)c(Cl)cc(Cl)c1Cl,teacher_abraham,fragment_parent_key,WMMFIDNWZNCBCT,6868,COc1c(Cl)c(Cl)cc(Cl)c1Cl,WMMFIDNWZNCBCT
+WMMFIDNWZNCBCT,"1,2,4,5-tetrachloro-3-methoxybenzene",COc1c(Cl)c(Cl)cc(Cl)c1Cl,teacher_abraham,uncharged_parent_key,WMMFIDNWZNCBCT,6868,COc1c(Cl)c(Cl)cc(Cl)c1Cl,WMMFIDNWZNCBCT
+WMMFIDNWZNCBCT,"1,2,4,5-tetrachloro-3-methoxybenzene",COc1c(Cl)c(Cl)cc(Cl)c1Cl,teacher_abraham,canonical_tautomer_key,WMMFIDNWZNCBCT,6868,COc1c(Cl)c(Cl)cc(Cl)c1Cl,WMMFIDNWZNCBCT
+WNYADZVDBIBLJJ,N-nitrosopyrrolidine,O=NN1CCCC1,teacher_abraham,full_inchi_key,WNYADZVDBIBLJJ-UHFFFAOYSA-N,6890,O=NN1CCCC1,WNYADZVDBIBLJJ
+WNYADZVDBIBLJJ,N-nitrosopyrrolidine,O=NN1CCCC1,teacher_abraham,connectivity_key,WNYADZVDBIBLJJ,6890,O=NN1CCCC1,WNYADZVDBIBLJJ
+WNYADZVDBIBLJJ,N-nitrosopyrrolidine,O=NN1CCCC1,teacher_abraham,fragment_parent_key,WNYADZVDBIBLJJ,6890,O=NN1CCCC1,WNYADZVDBIBLJJ
+WNYADZVDBIBLJJ,N-nitrosopyrrolidine,O=NN1CCCC1,teacher_abraham,uncharged_parent_key,WNYADZVDBIBLJJ,6890,O=NN1CCCC1,WNYADZVDBIBLJJ
+WNYADZVDBIBLJJ,N-nitrosopyrrolidine,O=NN1CCCC1,teacher_abraham,canonical_tautomer_key,WNYADZVDBIBLJJ,6890,O=NN1CCCC1,WNYADZVDBIBLJJ
+WUOACPNHFRMFPN,2-(4-methyl-3-cyclohexen-1-yl)-2-propanol,CC1=CCC(C(C)(C)O)CC1,teacher_abraham,full_inchi_key,WUOACPNHFRMFPN-UHFFFAOYSA-N,6968,CC1=CCC(C(C)(C)O)CC1,WUOACPNHFRMFPN
+WUOACPNHFRMFPN,2-(4-methyl-3-cyclohexen-1-yl)-2-propanol,CC1=CCC(C(C)(C)O)CC1,teacher_abraham,connectivity_key,WUOACPNHFRMFPN,6968,CC1=CCC(C(C)(C)O)CC1,WUOACPNHFRMFPN
+WUOACPNHFRMFPN,2-(4-methyl-3-cyclohexen-1-yl)-2-propanol,CC1=CCC(C(C)(C)O)CC1,teacher_abraham,fragment_parent_key,WUOACPNHFRMFPN,6968,CC1=CCC(C(C)(C)O)CC1,WUOACPNHFRMFPN
+WUOACPNHFRMFPN,2-(4-methyl-3-cyclohexen-1-yl)-2-propanol,CC1=CCC(C(C)(C)O)CC1,teacher_abraham,uncharged_parent_key,WUOACPNHFRMFPN,6968,CC1=CCC(C(C)(C)O)CC1,WUOACPNHFRMFPN
+WUOACPNHFRMFPN,2-(4-methyl-3-cyclohexen-1-yl)-2-propanol,CC1=CCC(C(C)(C)O)CC1,teacher_abraham,canonical_tautomer_key,WUOACPNHFRMFPN,6968,CC1=CCC(C(C)(C)O)CC1,WUOACPNHFRMFPN
+WYLDWCYZCFRVRH,"1,2,4,5,7-pentachloronaphthalene",Clc1cc(Cl)c2c(Cl)cc(Cl)c(Cl)c2c1,teacher_abraham,full_inchi_key,WYLDWCYZCFRVRH-UHFFFAOYSA-N,7019,Clc1cc(Cl)c2c(Cl)cc(Cl)c(Cl)c2c1,WYLDWCYZCFRVRH
+WYLDWCYZCFRVRH,"1,2,4,5,7-pentachloronaphthalene",Clc1cc(Cl)c2c(Cl)cc(Cl)c(Cl)c2c1,teacher_abraham,connectivity_key,WYLDWCYZCFRVRH,7019,Clc1cc(Cl)c2c(Cl)cc(Cl)c(Cl)c2c1,WYLDWCYZCFRVRH
+WYLDWCYZCFRVRH,"1,2,4,5,7-pentachloronaphthalene",Clc1cc(Cl)c2c(Cl)cc(Cl)c(Cl)c2c1,teacher_abraham,fragment_parent_key,WYLDWCYZCFRVRH,7019,Clc1cc(Cl)c2c(Cl)cc(Cl)c(Cl)c2c1,WYLDWCYZCFRVRH
+WYLDWCYZCFRVRH,"1,2,4,5,7-pentachloronaphthalene",Clc1cc(Cl)c2c(Cl)cc(Cl)c(Cl)c2c1,teacher_abraham,uncharged_parent_key,WYLDWCYZCFRVRH,7019,Clc1cc(Cl)c2c(Cl)cc(Cl)c(Cl)c2c1,WYLDWCYZCFRVRH
+WYLDWCYZCFRVRH,"1,2,4,5,7-pentachloronaphthalene",Clc1cc(Cl)c2c(Cl)cc(Cl)c(Cl)c2c1,teacher_abraham,canonical_tautomer_key,WYLDWCYZCFRVRH,7019,Clc1cc(Cl)c2c(Cl)cc(Cl)c(Cl)c2c1,WYLDWCYZCFRVRH
+YGHRJJRRZDOVPD,3-methylbutanal,CC(C)CC=O,teacher_abraham,full_inchi_key,YGHRJJRRZDOVPD-UHFFFAOYSA-N,7512,CC(C)CC=O,YGHRJJRRZDOVPD
+YGHRJJRRZDOVPD,3-methylbutanal,CC(C)CC=O,teacher_abraham,connectivity_key,YGHRJJRRZDOVPD,7512,CC(C)CC=O,YGHRJJRRZDOVPD
+YGHRJJRRZDOVPD,3-methylbutanal,CC(C)CC=O,teacher_abraham,fragment_parent_key,YGHRJJRRZDOVPD,7512,CC(C)CC=O,YGHRJJRRZDOVPD
+YGHRJJRRZDOVPD,3-methylbutanal,CC(C)CC=O,teacher_abraham,uncharged_parent_key,YGHRJJRRZDOVPD,7512,CC(C)CC=O,YGHRJJRRZDOVPD
+YGHRJJRRZDOVPD,3-methylbutanal,CC(C)CC=O,teacher_abraham,canonical_tautomer_key,YGHRJJRRZDOVPD,7512,CC(C)CC=O,YGHRJJRRZDOVPD
+YORCIIVHUBAYBQ,3-bromo-1-propyne,C#CCBr,teacher_abraham,full_inchi_key,YORCIIVHUBAYBQ-UHFFFAOYSA-N,7620,C#CCBr,YORCIIVHUBAYBQ
+YORCIIVHUBAYBQ,3-bromo-1-propyne,C#CCBr,teacher_abraham,connectivity_key,YORCIIVHUBAYBQ,7620,C#CCBr,YORCIIVHUBAYBQ
+YORCIIVHUBAYBQ,3-bromo-1-propyne,C#CCBr,teacher_abraham,fragment_parent_key,YORCIIVHUBAYBQ,7620,C#CCBr,YORCIIVHUBAYBQ
+YORCIIVHUBAYBQ,3-bromo-1-propyne,C#CCBr,teacher_abraham,uncharged_parent_key,YORCIIVHUBAYBQ,7620,C#CCBr,YORCIIVHUBAYBQ
+YORCIIVHUBAYBQ,3-bromo-1-propyne,C#CCBr,teacher_abraham,canonical_tautomer_key,YORCIIVHUBAYBQ,7620,C#CCBr,YORCIIVHUBAYBQ
+YRGAYAGBVIXNAQ,1-chloro-4-methoxybenzene,COc1ccc(Cl)cc1,teacher_abraham,full_inchi_key,YRGAYAGBVIXNAQ-UHFFFAOYSA-N,7645,COc1ccc(Cl)cc1,YRGAYAGBVIXNAQ
+YRGAYAGBVIXNAQ,1-chloro-4-methoxybenzene,COc1ccc(Cl)cc1,teacher_abraham,connectivity_key,YRGAYAGBVIXNAQ,7645,COc1ccc(Cl)cc1,YRGAYAGBVIXNAQ
+YRGAYAGBVIXNAQ,1-chloro-4-methoxybenzene,COc1ccc(Cl)cc1,teacher_abraham,fragment_parent_key,YRGAYAGBVIXNAQ,7645,COc1ccc(Cl)cc1,YRGAYAGBVIXNAQ
+YRGAYAGBVIXNAQ,1-chloro-4-methoxybenzene,COc1ccc(Cl)cc1,teacher_abraham,uncharged_parent_key,YRGAYAGBVIXNAQ,7645,COc1ccc(Cl)cc1,YRGAYAGBVIXNAQ
+YRGAYAGBVIXNAQ,1-chloro-4-methoxybenzene,COc1ccc(Cl)cc1,teacher_abraham,canonical_tautomer_key,YRGAYAGBVIXNAQ,7645,COc1ccc(Cl)cc1,YRGAYAGBVIXNAQ
+YUKILTJWFRTXGB,1-chloro-3-methoxybenzene,COc1cccc(Cl)c1,teacher_abraham,full_inchi_key,YUKILTJWFRTXGB-UHFFFAOYSA-N,7679,COc1cccc(Cl)c1,YUKILTJWFRTXGB
+YUKILTJWFRTXGB,1-chloro-3-methoxybenzene,COc1cccc(Cl)c1,teacher_abraham,connectivity_key,YUKILTJWFRTXGB,7679,COc1cccc(Cl)c1,YUKILTJWFRTXGB
+YUKILTJWFRTXGB,1-chloro-3-methoxybenzene,COc1cccc(Cl)c1,teacher_abraham,fragment_parent_key,YUKILTJWFRTXGB,7679,COc1cccc(Cl)c1,YUKILTJWFRTXGB
+YUKILTJWFRTXGB,1-chloro-3-methoxybenzene,COc1cccc(Cl)c1,teacher_abraham,uncharged_parent_key,YUKILTJWFRTXGB,7679,COc1cccc(Cl)c1,YUKILTJWFRTXGB
+YUKILTJWFRTXGB,1-chloro-3-methoxybenzene,COc1cccc(Cl)c1,teacher_abraham,canonical_tautomer_key,YUKILTJWFRTXGB,7679,COc1cccc(Cl)c1,YUKILTJWFRTXGB
+YXWWHNCQZBVZPV,2′-methylacetophenone,CC(=O)c1ccccc1C,teacher_abraham,full_inchi_key,YXWWHNCQZBVZPV-UHFFFAOYSA-N,7721,CC(=O)c1ccccc1C,YXWWHNCQZBVZPV
+YXWWHNCQZBVZPV,2′-methylacetophenone,CC(=O)c1ccccc1C,teacher_abraham,connectivity_key,YXWWHNCQZBVZPV,7721,CC(=O)c1ccccc1C,YXWWHNCQZBVZPV
+YXWWHNCQZBVZPV,2′-methylacetophenone,CC(=O)c1ccccc1C,teacher_abraham,fragment_parent_key,YXWWHNCQZBVZPV,7721,CC(=O)c1ccccc1C,YXWWHNCQZBVZPV
+YXWWHNCQZBVZPV,2′-methylacetophenone,CC(=O)c1ccccc1C,teacher_abraham,uncharged_parent_key,YXWWHNCQZBVZPV,7721,CC(=O)c1ccccc1C,YXWWHNCQZBVZPV
+YXWWHNCQZBVZPV,2′-methylacetophenone,CC(=O)c1ccccc1C,teacher_abraham,canonical_tautomer_key,YXWWHNCQZBVZPV,7721,CC(=O)c1ccccc1C,YXWWHNCQZBVZPV
+YYZUSRORWSJGET,ethyl octanoate,CCCCCCCC(=O)OCC,teacher_abraham,full_inchi_key,YYZUSRORWSJGET-UHFFFAOYSA-N,7737,CCCCCCCC(=O)OCC,YYZUSRORWSJGET
+YYZUSRORWSJGET,ethyl octanoate,CCCCCCCC(=O)OCC,teacher_abraham,connectivity_key,YYZUSRORWSJGET,7737,CCCCCCCC(=O)OCC,YYZUSRORWSJGET
+YYZUSRORWSJGET,ethyl octanoate,CCCCCCCC(=O)OCC,teacher_abraham,fragment_parent_key,YYZUSRORWSJGET,7737,CCCCCCCC(=O)OCC,YYZUSRORWSJGET
+YYZUSRORWSJGET,ethyl octanoate,CCCCCCCC(=O)OCC,teacher_abraham,uncharged_parent_key,YYZUSRORWSJGET,7737,CCCCCCCC(=O)OCC,YYZUSRORWSJGET
+YYZUSRORWSJGET,ethyl octanoate,CCCCCCCC(=O)OCC,teacher_abraham,canonical_tautomer_key,YYZUSRORWSJGET,7737,CCCCCCCC(=O)OCC,YYZUSRORWSJGET
+ZLIBICFPKPWGIZ,pyrimethanil,Cc1cc(C)nc(Nc2ccccc2)n1,teacher_abraham,full_inchi_key,ZLIBICFPKPWGIZ-UHFFFAOYSA-N,7905,Cc1cc(C)nc(Nc2ccccc2)n1,ZLIBICFPKPWGIZ
+ZLIBICFPKPWGIZ,pyrimethanil,Cc1cc(C)nc(Nc2ccccc2)n1,teacher_abraham,connectivity_key,ZLIBICFPKPWGIZ,7905,Cc1cc(C)nc(Nc2ccccc2)n1,ZLIBICFPKPWGIZ
+ZLIBICFPKPWGIZ,pyrimethanil,Cc1cc(C)nc(Nc2ccccc2)n1,teacher_abraham,fragment_parent_key,ZLIBICFPKPWGIZ,7905,Cc1cc(C)nc(Nc2ccccc2)n1,ZLIBICFPKPWGIZ
+ZLIBICFPKPWGIZ,pyrimethanil,Cc1cc(C)nc(Nc2ccccc2)n1,teacher_abraham,uncharged_parent_key,ZLIBICFPKPWGIZ,7905,Cc1cc(C)nc(Nc2ccccc2)n1,ZLIBICFPKPWGIZ
+ZLIBICFPKPWGIZ,pyrimethanil,Cc1cc(C)nc(Nc2ccccc2)n1,teacher_abraham,canonical_tautomer_key,ZLIBICFPKPWGIZ,7905,Cc1cc(C)nc(Nc2ccccc2)n1,ZLIBICFPKPWGIZ
+ZNOLGFHPUIJIMJ,fenitrothion,COP(=S)(OC)Oc1ccc([N+](=O)[O-])c(C)c1,teacher_abraham,full_inchi_key,ZNOLGFHPUIJIMJ-UHFFFAOYSA-N,7929,COP(=S)(OC)Oc1ccc([N+](=O)[O-])c(C)c1,ZNOLGFHPUIJIMJ
+ZNOLGFHPUIJIMJ,fenitrothion,COP(=S)(OC)Oc1ccc([N+](=O)[O-])c(C)c1,teacher_abraham,connectivity_key,ZNOLGFHPUIJIMJ,7929,COP(=S)(OC)Oc1ccc([N+](=O)[O-])c(C)c1,ZNOLGFHPUIJIMJ
+ZNOLGFHPUIJIMJ,fenitrothion,COP(=S)(OC)Oc1ccc([N+](=O)[O-])c(C)c1,teacher_abraham,fragment_parent_key,ZNOLGFHPUIJIMJ,7929,COP(=S)(OC)Oc1ccc([N+](=O)[O-])c(C)c1,ZNOLGFHPUIJIMJ
+ZNOLGFHPUIJIMJ,fenitrothion,COP(=S)(OC)Oc1ccc([N+](=O)[O-])c(C)c1,teacher_abraham,uncharged_parent_key,ZNOLGFHPUIJIMJ,7929,COP(=S)(OC)Oc1ccc([N+](=O)[O-])c(C)c1,ZNOLGFHPUIJIMJ
+ZNOLGFHPUIJIMJ,fenitrothion,COP(=S)(OC)Oc1ccc([N+](=O)[O-])c(C)c1,teacher_abraham,canonical_tautomer_key,ZNOLGFHPUIJIMJ,7929,COP(=S)(OC)Oc1ccc([N+](=O)[O-])c(C)c1,ZNOLGFHPUIJIMJ
+ZOASGOXWEHUTKZ,methyl propyl sulfide,CCCSC,teacher_abraham,full_inchi_key,ZOASGOXWEHUTKZ-UHFFFAOYSA-N,7935,CCCSC,ZOASGOXWEHUTKZ
+ZOASGOXWEHUTKZ,methyl propyl sulfide,CCCSC,teacher_abraham,connectivity_key,ZOASGOXWEHUTKZ,7935,CCCSC,ZOASGOXWEHUTKZ
+ZOASGOXWEHUTKZ,methyl propyl sulfide,CCCSC,teacher_abraham,fragment_parent_key,ZOASGOXWEHUTKZ,7935,CCCSC,ZOASGOXWEHUTKZ
+ZOASGOXWEHUTKZ,methyl propyl sulfide,CCCSC,teacher_abraham,uncharged_parent_key,ZOASGOXWEHUTKZ,7935,CCCSC,ZOASGOXWEHUTKZ
+ZOASGOXWEHUTKZ,methyl propyl sulfide,CCCSC,teacher_abraham,canonical_tautomer_key,ZOASGOXWEHUTKZ,7935,CCCSC,ZOASGOXWEHUTKZ
+BDFAOUQQXJIZDG,2-methyl-1-propanethiol,CC(C)CS,teacher_molsolv_smd,full_inchi_key,BDFAOUQQXJIZDG-UHFFFAOYSA-N,60013,CC(C)CS,BDFAOUQQXJIZDG
+BDFAOUQQXJIZDG,2-methyl-1-propanethiol,CC(C)CS,teacher_molsolv_smd,connectivity_key,BDFAOUQQXJIZDG,60013,CC(C)CS,BDFAOUQQXJIZDG
+BDFAOUQQXJIZDG,2-methyl-1-propanethiol,CC(C)CS,teacher_molsolv_smd,fragment_parent_key,BDFAOUQQXJIZDG,60013,CC(C)CS,BDFAOUQQXJIZDG
+BDFAOUQQXJIZDG,2-methyl-1-propanethiol,CC(C)CS,teacher_molsolv_smd,uncharged_parent_key,BDFAOUQQXJIZDG,60013,CC(C)CS,BDFAOUQQXJIZDG
+BDFAOUQQXJIZDG,2-methyl-1-propanethiol,CC(C)CS,teacher_molsolv_smd,canonical_tautomer_key,BDFAOUQQXJIZDG,60013,CC(C)CS,BDFAOUQQXJIZDG
+BRLQWZUYTZBJKN,(chloromethyl)-oxirane,ClCC1CO1,teacher_molsolv_smd,full_inchi_key,BRLQWZUYTZBJKN-UHFFFAOYSA-N,220758,ClCC1CO1,BRLQWZUYTZBJKN
+BRLQWZUYTZBJKN,(chloromethyl)-oxirane,ClCC1CO1,teacher_molsolv_smd,connectivity_key,BRLQWZUYTZBJKN,220758,ClCC1CO1,BRLQWZUYTZBJKN
+BRLQWZUYTZBJKN,(chloromethyl)-oxirane,ClCC1CO1,teacher_molsolv_smd,fragment_parent_key,BRLQWZUYTZBJKN,220758,ClCC1CO1,BRLQWZUYTZBJKN
+BRLQWZUYTZBJKN,(chloromethyl)-oxirane,ClCC1CO1,teacher_molsolv_smd,uncharged_parent_key,BRLQWZUYTZBJKN,220758,ClCC1CO1,BRLQWZUYTZBJKN
+BRLQWZUYTZBJKN,(chloromethyl)-oxirane,ClCC1CO1,teacher_molsolv_smd,canonical_tautomer_key,BRLQWZUYTZBJKN,220758,ClCC1CO1,BRLQWZUYTZBJKN
+BYGQBDHUGHBGMD,2-methylbutanal,CCC(C)C=O,teacher_molsolv_smd,full_inchi_key,BYGQBDHUGHBGMD-UHFFFAOYSA-N,111552,CCC(C)C=O,BYGQBDHUGHBGMD
+BYGQBDHUGHBGMD,2-methylbutanal,CCC(C)C=O,teacher_molsolv_smd,connectivity_key,BYGQBDHUGHBGMD,111552,CCC(C)C=O,BYGQBDHUGHBGMD
+BYGQBDHUGHBGMD,2-methylbutanal,CCC(C)C=O,teacher_molsolv_smd,fragment_parent_key,BYGQBDHUGHBGMD,111552,CCC(C)C=O,BYGQBDHUGHBGMD
+BYGQBDHUGHBGMD,2-methylbutanal,CCC(C)C=O,teacher_molsolv_smd,uncharged_parent_key,BYGQBDHUGHBGMD,111552,CCC(C)C=O,BYGQBDHUGHBGMD
+BYGQBDHUGHBGMD,2-methylbutanal,CCC(C)C=O,teacher_molsolv_smd,canonical_tautomer_key,BYGQBDHUGHBGMD,111246,CCC(C)=CO,RLOISEUPMPOJMI
+BYGQBDHUGHBGMD,2-methylbutanal,CCC(C)C=O,teacher_molsolv_smd,canonical_tautomer_key,BYGQBDHUGHBGMD,111552,CCC(C)C=O,BYGQBDHUGHBGMD
+CAFROQYMUICGNO,"2,2,2-trifluoroethyl methanoate",O=COCC(F)(F)F,teacher_molsolv_smd,full_inchi_key,CAFROQYMUICGNO-UHFFFAOYSA-N,299196,O=COCC(F)(F)F,CAFROQYMUICGNO
+CAFROQYMUICGNO,"2,2,2-trifluoroethyl methanoate",O=COCC(F)(F)F,teacher_molsolv_smd,connectivity_key,CAFROQYMUICGNO,299196,O=COCC(F)(F)F,CAFROQYMUICGNO
+CAFROQYMUICGNO,"2,2,2-trifluoroethyl methanoate",O=COCC(F)(F)F,teacher_molsolv_smd,fragment_parent_key,CAFROQYMUICGNO,299196,O=COCC(F)(F)F,CAFROQYMUICGNO
+CAFROQYMUICGNO,"2,2,2-trifluoroethyl methanoate",O=COCC(F)(F)F,teacher_molsolv_smd,uncharged_parent_key,CAFROQYMUICGNO,299196,O=COCC(F)(F)F,CAFROQYMUICGNO
+CAFROQYMUICGNO,"2,2,2-trifluoroethyl methanoate",O=COCC(F)(F)F,teacher_molsolv_smd,canonical_tautomer_key,CAFROQYMUICGNO,299196,O=COCC(F)(F)F,CAFROQYMUICGNO
+CICQUFBZCADHHX,"1,5-dichloro-2-methoxybenzene",COc1ccc(Cl)cc1Cl,teacher_molsolv_smd,full_inchi_key,CICQUFBZCADHHX-UHFFFAOYSA-N,179615,COc1ccc(Cl)cc1Cl,CICQUFBZCADHHX
+CICQUFBZCADHHX,"1,5-dichloro-2-methoxybenzene",COc1ccc(Cl)cc1Cl,teacher_molsolv_smd,connectivity_key,CICQUFBZCADHHX,179615,COc1ccc(Cl)cc1Cl,CICQUFBZCADHHX
+CICQUFBZCADHHX,"1,5-dichloro-2-methoxybenzene",COc1ccc(Cl)cc1Cl,teacher_molsolv_smd,fragment_parent_key,CICQUFBZCADHHX,179615,COc1ccc(Cl)cc1Cl,CICQUFBZCADHHX
+CICQUFBZCADHHX,"1,5-dichloro-2-methoxybenzene",COc1ccc(Cl)cc1Cl,teacher_molsolv_smd,uncharged_parent_key,CICQUFBZCADHHX,179615,COc1ccc(Cl)cc1Cl,CICQUFBZCADHHX
+CICQUFBZCADHHX,"1,5-dichloro-2-methoxybenzene",COc1ccc(Cl)cc1Cl,teacher_molsolv_smd,canonical_tautomer_key,CICQUFBZCADHHX,179615,COc1ccc(Cl)cc1Cl,CICQUFBZCADHHX
+DPCILIMHENXHQX,2-ethyl-3-methoxypyrazine,CCc1nccnc1OC,teacher_molsolv_smd,full_inchi_key,DPCILIMHENXHQX-UHFFFAOYSA-N,144349,CCc1nccnc1OC,DPCILIMHENXHQX
+DPCILIMHENXHQX,2-ethyl-3-methoxypyrazine,CCc1nccnc1OC,teacher_molsolv_smd,connectivity_key,DPCILIMHENXHQX,144349,CCc1nccnc1OC,DPCILIMHENXHQX
+DPCILIMHENXHQX,2-ethyl-3-methoxypyrazine,CCc1nccnc1OC,teacher_molsolv_smd,fragment_parent_key,DPCILIMHENXHQX,144349,CCc1nccnc1OC,DPCILIMHENXHQX
+DPCILIMHENXHQX,2-ethyl-3-methoxypyrazine,CCc1nccnc1OC,teacher_molsolv_smd,uncharged_parent_key,DPCILIMHENXHQX,144349,CCc1nccnc1OC,DPCILIMHENXHQX
+DPCILIMHENXHQX,2-ethyl-3-methoxypyrazine,CCc1nccnc1OC,teacher_molsolv_smd,canonical_tautomer_key,DPCILIMHENXHQX,144349,CCc1nccnc1OC,DPCILIMHENXHQX
+DWEYPOWXNBAIDU,"N,N-dichloromethylamine",CN(Cl)Cl,teacher_molsolv_smd,full_inchi_key,DWEYPOWXNBAIDU-UHFFFAOYSA-N,149949,CN(Cl)Cl,DWEYPOWXNBAIDU
+DWEYPOWXNBAIDU,"N,N-dichloromethylamine",CN(Cl)Cl,teacher_molsolv_smd,connectivity_key,DWEYPOWXNBAIDU,149949,CN(Cl)Cl,DWEYPOWXNBAIDU
+DWEYPOWXNBAIDU,"N,N-dichloromethylamine",CN(Cl)Cl,teacher_molsolv_smd,fragment_parent_key,DWEYPOWXNBAIDU,149949,CN(Cl)Cl,DWEYPOWXNBAIDU
+DWEYPOWXNBAIDU,"N,N-dichloromethylamine",CN(Cl)Cl,teacher_molsolv_smd,uncharged_parent_key,DWEYPOWXNBAIDU,149949,CN(Cl)Cl,DWEYPOWXNBAIDU
+DWEYPOWXNBAIDU,"N,N-dichloromethylamine",CN(Cl)Cl,teacher_molsolv_smd,canonical_tautomer_key,DWEYPOWXNBAIDU,149949,CN(Cl)Cl,DWEYPOWXNBAIDU
+FALCMQXTWHPRIH,"2,3-dichloropropene",C=C(Cl)CCl,teacher_molsolv_smd,full_inchi_key,FALCMQXTWHPRIH-UHFFFAOYSA-N,19415,C=C(Cl)CCl,FALCMQXTWHPRIH
+FALCMQXTWHPRIH,"2,3-dichloropropene",C=C(Cl)CCl,teacher_molsolv_smd,connectivity_key,FALCMQXTWHPRIH,19415,C=C(Cl)CCl,FALCMQXTWHPRIH
+FALCMQXTWHPRIH,"2,3-dichloropropene",C=C(Cl)CCl,teacher_molsolv_smd,fragment_parent_key,FALCMQXTWHPRIH,19415,C=C(Cl)CCl,FALCMQXTWHPRIH
+FALCMQXTWHPRIH,"2,3-dichloropropene",C=C(Cl)CCl,teacher_molsolv_smd,uncharged_parent_key,FALCMQXTWHPRIH,19415,C=C(Cl)CCl,FALCMQXTWHPRIH
+FALCMQXTWHPRIH,"2,3-dichloropropene",C=C(Cl)CCl,teacher_molsolv_smd,canonical_tautomer_key,FALCMQXTWHPRIH,19415,C=C(Cl)CCl,FALCMQXTWHPRIH
+FHUDAMLDXFJHJE,"1,1,1-trifluoro-2-propanone",CC(=O)C(F)(F)F,teacher_molsolv_smd,full_inchi_key,FHUDAMLDXFJHJE-UHFFFAOYSA-N,43542,CC(=O)C(F)(F)F,FHUDAMLDXFJHJE
+FHUDAMLDXFJHJE,"1,1,1-trifluoro-2-propanone",CC(=O)C(F)(F)F,teacher_molsolv_smd,connectivity_key,FHUDAMLDXFJHJE,43542,CC(=O)C(F)(F)F,FHUDAMLDXFJHJE
+FHUDAMLDXFJHJE,"1,1,1-trifluoro-2-propanone",CC(=O)C(F)(F)F,teacher_molsolv_smd,fragment_parent_key,FHUDAMLDXFJHJE,43542,CC(=O)C(F)(F)F,FHUDAMLDXFJHJE
+FHUDAMLDXFJHJE,"1,1,1-trifluoro-2-propanone",CC(=O)C(F)(F)F,teacher_molsolv_smd,uncharged_parent_key,FHUDAMLDXFJHJE,43542,CC(=O)C(F)(F)F,FHUDAMLDXFJHJE
+FHUDAMLDXFJHJE,"1,1,1-trifluoro-2-propanone",CC(=O)C(F)(F)F,teacher_molsolv_smd,canonical_tautomer_key,FHUDAMLDXFJHJE,20103,C=C(O)C(F)(F)F,CRCZPRHYWDKNBB
+FHUDAMLDXFJHJE,"1,1,1-trifluoro-2-propanone",CC(=O)C(F)(F)F,teacher_molsolv_smd,canonical_tautomer_key,FHUDAMLDXFJHJE,43542,CC(=O)C(F)(F)F,FHUDAMLDXFJHJE
+FMGGHNGKHRCJLL,"$\alpha$,$\alpha$-dichloro-$o$-xylene",ClCc1ccccc1CCl,teacher_molsolv_smd,full_inchi_key,FMGGHNGKHRCJLL-UHFFFAOYSA-N,221796,ClCc1ccccc1CCl,FMGGHNGKHRCJLL
+FMGGHNGKHRCJLL,"$\alpha$,$\alpha$-dichloro-$o$-xylene",ClCc1ccccc1CCl,teacher_molsolv_smd,connectivity_key,FMGGHNGKHRCJLL,221796,ClCc1ccccc1CCl,FMGGHNGKHRCJLL
+FMGGHNGKHRCJLL,"$\alpha$,$\alpha$-dichloro-$o$-xylene",ClCc1ccccc1CCl,teacher_molsolv_smd,fragment_parent_key,FMGGHNGKHRCJLL,221796,ClCc1ccccc1CCl,FMGGHNGKHRCJLL
+FMGGHNGKHRCJLL,"$\alpha$,$\alpha$-dichloro-$o$-xylene",ClCc1ccccc1CCl,teacher_molsolv_smd,uncharged_parent_key,FMGGHNGKHRCJLL,221796,ClCc1ccccc1CCl,FMGGHNGKHRCJLL
+FMGGHNGKHRCJLL,"$\alpha$,$\alpha$-dichloro-$o$-xylene",ClCc1ccccc1CCl,teacher_molsolv_smd,canonical_tautomer_key,FMGGHNGKHRCJLL,221796,ClCc1ccccc1CCl,FMGGHNGKHRCJLL
+FSPSELPMWGWDRY,3′-methylacetophenone,CC(=O)c1cccc(C)c1,teacher_molsolv_smd,full_inchi_key,FSPSELPMWGWDRY-UHFFFAOYSA-N,49853,CC(=O)c1cccc(C)c1,FSPSELPMWGWDRY
+FSPSELPMWGWDRY,3′-methylacetophenone,CC(=O)c1cccc(C)c1,teacher_molsolv_smd,connectivity_key,FSPSELPMWGWDRY,49853,CC(=O)c1cccc(C)c1,FSPSELPMWGWDRY
+FSPSELPMWGWDRY,3′-methylacetophenone,CC(=O)c1cccc(C)c1,teacher_molsolv_smd,fragment_parent_key,FSPSELPMWGWDRY,49853,CC(=O)c1cccc(C)c1,FSPSELPMWGWDRY
+FSPSELPMWGWDRY,3′-methylacetophenone,CC(=O)c1cccc(C)c1,teacher_molsolv_smd,uncharged_parent_key,FSPSELPMWGWDRY,49853,CC(=O)c1cccc(C)c1,FSPSELPMWGWDRY
+FSPSELPMWGWDRY,3′-methylacetophenone,CC(=O)c1cccc(C)c1,teacher_molsolv_smd,canonical_tautomer_key,FSPSELPMWGWDRY,20342,C=C(O)c1cccc(C)c1,FSDMPDNJBJOLIZ
+FSPSELPMWGWDRY,3′-methylacetophenone,CC(=O)c1cccc(C)c1,teacher_molsolv_smd,canonical_tautomer_key,FSPSELPMWGWDRY,49853,CC(=O)c1cccc(C)c1,FSPSELPMWGWDRY
+FUNUTBJJKQIVSY,"2,4-dichloro-1-methylbenzene",Cc1ccc(Cl)cc1Cl,teacher_molsolv_smd,full_inchi_key,FUNUTBJJKQIVSY-UHFFFAOYSA-N,200806,Cc1ccc(Cl)cc1Cl,FUNUTBJJKQIVSY
+FUNUTBJJKQIVSY,"2,4-dichloro-1-methylbenzene",Cc1ccc(Cl)cc1Cl,teacher_molsolv_smd,connectivity_key,FUNUTBJJKQIVSY,200806,Cc1ccc(Cl)cc1Cl,FUNUTBJJKQIVSY
+FUNUTBJJKQIVSY,"2,4-dichloro-1-methylbenzene",Cc1ccc(Cl)cc1Cl,teacher_molsolv_smd,fragment_parent_key,FUNUTBJJKQIVSY,200806,Cc1ccc(Cl)cc1Cl,FUNUTBJJKQIVSY
+FUNUTBJJKQIVSY,"2,4-dichloro-1-methylbenzene",Cc1ccc(Cl)cc1Cl,teacher_molsolv_smd,uncharged_parent_key,FUNUTBJJKQIVSY,200806,Cc1ccc(Cl)cc1Cl,FUNUTBJJKQIVSY
+FUNUTBJJKQIVSY,"2,4-dichloro-1-methylbenzene",Cc1ccc(Cl)cc1Cl,teacher_molsolv_smd,canonical_tautomer_key,FUNUTBJJKQIVSY,200806,Cc1ccc(Cl)cc1Cl,FUNUTBJJKQIVSY
+GAPFWGOSHOCNBM,2-propyl nitrate,CC(C)O[N+](=O)[O-],teacher_molsolv_smd,full_inchi_key,GAPFWGOSHOCNBM-UHFFFAOYSA-N,61900,CC(C)O[N+](=O)[O-],GAPFWGOSHOCNBM
+GAPFWGOSHOCNBM,2-propyl nitrate,CC(C)O[N+](=O)[O-],teacher_molsolv_smd,connectivity_key,GAPFWGOSHOCNBM,61900,CC(C)O[N+](=O)[O-],GAPFWGOSHOCNBM
+GAPFWGOSHOCNBM,2-propyl nitrate,CC(C)O[N+](=O)[O-],teacher_molsolv_smd,fragment_parent_key,GAPFWGOSHOCNBM,61900,CC(C)O[N+](=O)[O-],GAPFWGOSHOCNBM
+GAPFWGOSHOCNBM,2-propyl nitrate,CC(C)O[N+](=O)[O-],teacher_molsolv_smd,uncharged_parent_key,GAPFWGOSHOCNBM,61900,CC(C)O[N+](=O)[O-],GAPFWGOSHOCNBM
+GAPFWGOSHOCNBM,2-propyl nitrate,CC(C)O[N+](=O)[O-],teacher_molsolv_smd,canonical_tautomer_key,GAPFWGOSHOCNBM,61900,CC(C)O[N+](=O)[O-],GAPFWGOSHOCNBM
+GGDYAKVUZMZKRV,2-fluoroethanol,OCCF,teacher_molsolv_smd,full_inchi_key,GGDYAKVUZMZKRV-UHFFFAOYSA-N,319401,OCCF,GGDYAKVUZMZKRV
+GGDYAKVUZMZKRV,2-fluoroethanol,OCCF,teacher_molsolv_smd,connectivity_key,GGDYAKVUZMZKRV,319401,OCCF,GGDYAKVUZMZKRV
+GGDYAKVUZMZKRV,2-fluoroethanol,OCCF,teacher_molsolv_smd,fragment_parent_key,GGDYAKVUZMZKRV,319401,OCCF,GGDYAKVUZMZKRV
+GGDYAKVUZMZKRV,2-fluoroethanol,OCCF,teacher_molsolv_smd,uncharged_parent_key,GGDYAKVUZMZKRV,319401,OCCF,GGDYAKVUZMZKRV
+GGDYAKVUZMZKRV,2-fluoroethanol,OCCF,teacher_molsolv_smd,canonical_tautomer_key,GGDYAKVUZMZKRV,319401,OCCF,GGDYAKVUZMZKRV
+GWQOOADXMVQEFT,"2,5-dimethylthiophene",Cc1ccc(C)s1,teacher_molsolv_smd,full_inchi_key,GWQOOADXMVQEFT-UHFFFAOYSA-N,199436,Cc1ccc(C)s1,GWQOOADXMVQEFT
+GWQOOADXMVQEFT,"2,5-dimethylthiophene",Cc1ccc(C)s1,teacher_molsolv_smd,connectivity_key,GWQOOADXMVQEFT,199436,Cc1ccc(C)s1,GWQOOADXMVQEFT
+GWQOOADXMVQEFT,"2,5-dimethylthiophene",Cc1ccc(C)s1,teacher_molsolv_smd,fragment_parent_key,GWQOOADXMVQEFT,199436,Cc1ccc(C)s1,GWQOOADXMVQEFT
+GWQOOADXMVQEFT,"2,5-dimethylthiophene",Cc1ccc(C)s1,teacher_molsolv_smd,uncharged_parent_key,GWQOOADXMVQEFT,199436,Cc1ccc(C)s1,GWQOOADXMVQEFT
+GWQOOADXMVQEFT,"2,5-dimethylthiophene",Cc1ccc(C)s1,teacher_molsolv_smd,canonical_tautomer_key,GWQOOADXMVQEFT,199436,Cc1ccc(C)s1,GWQOOADXMVQEFT
+HFEASCCDHUVYKU,"1,2-dichloro-3-methoxybenzene",COc1cccc(Cl)c1Cl,teacher_molsolv_smd,full_inchi_key,HFEASCCDHUVYKU-UHFFFAOYSA-N,181385,COc1cccc(Cl)c1Cl,HFEASCCDHUVYKU
+HFEASCCDHUVYKU,"1,2-dichloro-3-methoxybenzene",COc1cccc(Cl)c1Cl,teacher_molsolv_smd,connectivity_key,HFEASCCDHUVYKU,181385,COc1cccc(Cl)c1Cl,HFEASCCDHUVYKU
+HFEASCCDHUVYKU,"1,2-dichloro-3-methoxybenzene",COc1cccc(Cl)c1Cl,teacher_molsolv_smd,fragment_parent_key,HFEASCCDHUVYKU,181385,COc1cccc(Cl)c1Cl,HFEASCCDHUVYKU
+HFEASCCDHUVYKU,"1,2-dichloro-3-methoxybenzene",COc1cccc(Cl)c1Cl,teacher_molsolv_smd,uncharged_parent_key,HFEASCCDHUVYKU,181385,COc1cccc(Cl)c1Cl,HFEASCCDHUVYKU
+HFEASCCDHUVYKU,"1,2-dichloro-3-methoxybenzene",COc1cccc(Cl)c1Cl,teacher_molsolv_smd,canonical_tautomer_key,HFEASCCDHUVYKU,181385,COc1cccc(Cl)c1Cl,HFEASCCDHUVYKU
+HGCMMKIIGJXXMW,2-nitrooxy-1-propanol,CC(CO)O[N+](=O)[O-],teacher_molsolv_smd,full_inchi_key,HGCMMKIIGJXXMW-UHFFFAOYSA-N,65497,CC(CO)O[N+](=O)[O-],HGCMMKIIGJXXMW
+HGCMMKIIGJXXMW,2-nitrooxy-1-propanol,CC(CO)O[N+](=O)[O-],teacher_molsolv_smd,connectivity_key,HGCMMKIIGJXXMW,65497,CC(CO)O[N+](=O)[O-],HGCMMKIIGJXXMW
+HGCMMKIIGJXXMW,2-nitrooxy-1-propanol,CC(CO)O[N+](=O)[O-],teacher_molsolv_smd,fragment_parent_key,HGCMMKIIGJXXMW,65497,CC(CO)O[N+](=O)[O-],HGCMMKIIGJXXMW
+HGCMMKIIGJXXMW,2-nitrooxy-1-propanol,CC(CO)O[N+](=O)[O-],teacher_molsolv_smd,uncharged_parent_key,HGCMMKIIGJXXMW,65497,CC(CO)O[N+](=O)[O-],HGCMMKIIGJXXMW
+HGCMMKIIGJXXMW,2-nitrooxy-1-propanol,CC(CO)O[N+](=O)[O-],teacher_molsolv_smd,canonical_tautomer_key,HGCMMKIIGJXXMW,65497,CC(CO)O[N+](=O)[O-],HGCMMKIIGJXXMW
+HHLFWLYXYJOTON,oxoethanoic acid,O=CC(=O)O,teacher_molsolv_smd,full_inchi_key,HHLFWLYXYJOTON-UHFFFAOYSA-N,295637,O=CC(=O)O,HHLFWLYXYJOTON
+HHLFWLYXYJOTON,oxoethanoic acid,O=CC(=O)O,teacher_molsolv_smd,connectivity_key,HHLFWLYXYJOTON,295637,O=CC(=O)O,HHLFWLYXYJOTON
+HHLFWLYXYJOTON,oxoethanoic acid,O=CC(=O)O,teacher_molsolv_smd,fragment_parent_key,HHLFWLYXYJOTON,295637,O=CC(=O)O,HHLFWLYXYJOTON
+HHLFWLYXYJOTON,oxoethanoic acid,O=CC(=O)O,teacher_molsolv_smd,uncharged_parent_key,HHLFWLYXYJOTON,295637,O=CC(=O)O,HHLFWLYXYJOTON
+HHLFWLYXYJOTON,oxoethanoic acid,O=CC(=O)O,teacher_molsolv_smd,canonical_tautomer_key,HHLFWLYXYJOTON,295637,O=CC(=O)O,HHLFWLYXYJOTON
+IDJOCJAIQSKSOP,"2,2-dichloroethanol",OCC(Cl)Cl,teacher_molsolv_smd,full_inchi_key,IDJOCJAIQSKSOP-UHFFFAOYSA-N,316423,OCC(Cl)Cl,IDJOCJAIQSKSOP
+IDJOCJAIQSKSOP,"2,2-dichloroethanol",OCC(Cl)Cl,teacher_molsolv_smd,connectivity_key,IDJOCJAIQSKSOP,316423,OCC(Cl)Cl,IDJOCJAIQSKSOP
+IDJOCJAIQSKSOP,"2,2-dichloroethanol",OCC(Cl)Cl,teacher_molsolv_smd,fragment_parent_key,IDJOCJAIQSKSOP,316423,OCC(Cl)Cl,IDJOCJAIQSKSOP
+IDJOCJAIQSKSOP,"2,2-dichloroethanol",OCC(Cl)Cl,teacher_molsolv_smd,uncharged_parent_key,IDJOCJAIQSKSOP,316423,OCC(Cl)Cl,IDJOCJAIQSKSOP
+IDJOCJAIQSKSOP,"2,2-dichloroethanol",OCC(Cl)Cl,teacher_molsolv_smd,canonical_tautomer_key,IDJOCJAIQSKSOP,316423,OCC(Cl)Cl,IDJOCJAIQSKSOP
+ITXDBGLYYSJNPK,"1,2,3,5-tetrachloro-4-methoxybenzene",COc1c(Cl)cc(Cl)c(Cl)c1Cl,teacher_molsolv_smd,full_inchi_key,ITXDBGLYYSJNPK-UHFFFAOYSA-N,176898,COc1c(Cl)cc(Cl)c(Cl)c1Cl,ITXDBGLYYSJNPK
+ITXDBGLYYSJNPK,"1,2,3,5-tetrachloro-4-methoxybenzene",COc1c(Cl)cc(Cl)c(Cl)c1Cl,teacher_molsolv_smd,connectivity_key,ITXDBGLYYSJNPK,176898,COc1c(Cl)cc(Cl)c(Cl)c1Cl,ITXDBGLYYSJNPK
+ITXDBGLYYSJNPK,"1,2,3,5-tetrachloro-4-methoxybenzene",COc1c(Cl)cc(Cl)c(Cl)c1Cl,teacher_molsolv_smd,fragment_parent_key,ITXDBGLYYSJNPK,176898,COc1c(Cl)cc(Cl)c(Cl)c1Cl,ITXDBGLYYSJNPK
+ITXDBGLYYSJNPK,"1,2,3,5-tetrachloro-4-methoxybenzene",COc1c(Cl)cc(Cl)c(Cl)c1Cl,teacher_molsolv_smd,uncharged_parent_key,ITXDBGLYYSJNPK,176898,COc1c(Cl)cc(Cl)c(Cl)c1Cl,ITXDBGLYYSJNPK
+ITXDBGLYYSJNPK,"1,2,3,5-tetrachloro-4-methoxybenzene",COc1c(Cl)cc(Cl)c(Cl)c1Cl,teacher_molsolv_smd,canonical_tautomer_key,ITXDBGLYYSJNPK,176898,COc1c(Cl)cc(Cl)c(Cl)c1Cl,ITXDBGLYYSJNPK
+JLJXMZMKMRQOLN,bis-(hydroxymethyl)-peroxide,OCOOCO,teacher_molsolv_smd,full_inchi_key,JLJXMZMKMRQOLN-UHFFFAOYSA-N,320436,OCOOCO,JLJXMZMKMRQOLN
+JLJXMZMKMRQOLN,bis-(hydroxymethyl)-peroxide,OCOOCO,teacher_molsolv_smd,connectivity_key,JLJXMZMKMRQOLN,320436,OCOOCO,JLJXMZMKMRQOLN
+JLJXMZMKMRQOLN,bis-(hydroxymethyl)-peroxide,OCOOCO,teacher_molsolv_smd,fragment_parent_key,JLJXMZMKMRQOLN,320436,OCOOCO,JLJXMZMKMRQOLN
+JLJXMZMKMRQOLN,bis-(hydroxymethyl)-peroxide,OCOOCO,teacher_molsolv_smd,uncharged_parent_key,JLJXMZMKMRQOLN,320436,OCOOCO,JLJXMZMKMRQOLN
+JLJXMZMKMRQOLN,bis-(hydroxymethyl)-peroxide,OCOOCO,teacher_molsolv_smd,canonical_tautomer_key,JLJXMZMKMRQOLN,320436,OCOOCO,JLJXMZMKMRQOLN
+JZBCTZLGKSYRSF,"2-ethyl-3,5-dimethylpyrazine",CCc1ncc(C)nc1C,teacher_molsolv_smd,full_inchi_key,JZBCTZLGKSYRSF-UHFFFAOYSA-N,144108,CCc1ncc(C)nc1C,JZBCTZLGKSYRSF
+JZBCTZLGKSYRSF,"2-ethyl-3,5-dimethylpyrazine",CCc1ncc(C)nc1C,teacher_molsolv_smd,connectivity_key,JZBCTZLGKSYRSF,144108,CCc1ncc(C)nc1C,JZBCTZLGKSYRSF
+JZBCTZLGKSYRSF,"2-ethyl-3,5-dimethylpyrazine",CCc1ncc(C)nc1C,teacher_molsolv_smd,fragment_parent_key,JZBCTZLGKSYRSF,144108,CCc1ncc(C)nc1C,JZBCTZLGKSYRSF
+JZBCTZLGKSYRSF,"2-ethyl-3,5-dimethylpyrazine",CCc1ncc(C)nc1C,teacher_molsolv_smd,uncharged_parent_key,JZBCTZLGKSYRSF,144108,CCc1ncc(C)nc1C,JZBCTZLGKSYRSF
+JZBCTZLGKSYRSF,"2-ethyl-3,5-dimethylpyrazine",CCc1ncc(C)nc1C,teacher_molsolv_smd,canonical_tautomer_key,JZBCTZLGKSYRSF,144108,CCc1ncc(C)nc1C,JZBCTZLGKSYRSF
+KZLMCDNAVVJKPX,"1,3-dichloro-2-methoxybenzene",COc1c(Cl)cccc1Cl,teacher_molsolv_smd,full_inchi_key,KZLMCDNAVVJKPX-UHFFFAOYSA-N,176913,COc1c(Cl)cccc1Cl,KZLMCDNAVVJKPX
+KZLMCDNAVVJKPX,"1,3-dichloro-2-methoxybenzene",COc1c(Cl)cccc1Cl,teacher_molsolv_smd,connectivity_key,KZLMCDNAVVJKPX,176913,COc1c(Cl)cccc1Cl,KZLMCDNAVVJKPX
+KZLMCDNAVVJKPX,"1,3-dichloro-2-methoxybenzene",COc1c(Cl)cccc1Cl,teacher_molsolv_smd,fragment_parent_key,KZLMCDNAVVJKPX,176913,COc1c(Cl)cccc1Cl,KZLMCDNAVVJKPX
+KZLMCDNAVVJKPX,"1,3-dichloro-2-methoxybenzene",COc1c(Cl)cccc1Cl,teacher_molsolv_smd,uncharged_parent_key,KZLMCDNAVVJKPX,176913,COc1c(Cl)cccc1Cl,KZLMCDNAVVJKPX
+KZLMCDNAVVJKPX,"1,3-dichloro-2-methoxybenzene",COc1c(Cl)cccc1Cl,teacher_molsolv_smd,canonical_tautomer_key,KZLMCDNAVVJKPX,176913,COc1c(Cl)cccc1Cl,KZLMCDNAVVJKPX
+MEUKEBNAABNAEX,methyl hydroperoxide,COO,teacher_molsolv_smd,full_inchi_key,MEUKEBNAABNAEX-UHFFFAOYSA-N,176539,COO,MEUKEBNAABNAEX
+MEUKEBNAABNAEX,methyl hydroperoxide,COO,teacher_molsolv_smd,connectivity_key,MEUKEBNAABNAEX,176539,COO,MEUKEBNAABNAEX
+MEUKEBNAABNAEX,methyl hydroperoxide,COO,teacher_molsolv_smd,fragment_parent_key,MEUKEBNAABNAEX,176539,COO,MEUKEBNAABNAEX
+MEUKEBNAABNAEX,methyl hydroperoxide,COO,teacher_molsolv_smd,uncharged_parent_key,MEUKEBNAABNAEX,176539,COO,MEUKEBNAABNAEX
+MEUKEBNAABNAEX,methyl hydroperoxide,COO,teacher_molsolv_smd,canonical_tautomer_key,MEUKEBNAABNAEX,176539,COO,MEUKEBNAABNAEX
+MSWVMWGCNZQPIA,1-fluoro-2-propanone,CC(=O)CF,teacher_molsolv_smd,full_inchi_key,MSWVMWGCNZQPIA-UHFFFAOYSA-N,46006,CC(=O)CF,MSWVMWGCNZQPIA
+MSWVMWGCNZQPIA,1-fluoro-2-propanone,CC(=O)CF,teacher_molsolv_smd,connectivity_key,MSWVMWGCNZQPIA,46006,CC(=O)CF,MSWVMWGCNZQPIA
+MSWVMWGCNZQPIA,1-fluoro-2-propanone,CC(=O)CF,teacher_molsolv_smd,fragment_parent_key,MSWVMWGCNZQPIA,46006,CC(=O)CF,MSWVMWGCNZQPIA
+MSWVMWGCNZQPIA,1-fluoro-2-propanone,CC(=O)CF,teacher_molsolv_smd,uncharged_parent_key,MSWVMWGCNZQPIA,46006,CC(=O)CF,MSWVMWGCNZQPIA
+MSWVMWGCNZQPIA,1-fluoro-2-propanone,CC(=O)CF,teacher_molsolv_smd,canonical_tautomer_key,MSWVMWGCNZQPIA,46006,CC(=O)CF,MSWVMWGCNZQPIA
+NEZWFWIACBUQMN,hydroxymethyl hydroperoxide,OCOO,teacher_molsolv_smd,full_inchi_key,NEZWFWIACBUQMN-UHFFFAOYSA-N,320434,OCOO,NEZWFWIACBUQMN
+NEZWFWIACBUQMN,hydroxymethyl hydroperoxide,OCOO,teacher_molsolv_smd,connectivity_key,NEZWFWIACBUQMN,320434,OCOO,NEZWFWIACBUQMN
+NEZWFWIACBUQMN,hydroxymethyl hydroperoxide,OCOO,teacher_molsolv_smd,fragment_parent_key,NEZWFWIACBUQMN,320434,OCOO,NEZWFWIACBUQMN
+NEZWFWIACBUQMN,hydroxymethyl hydroperoxide,OCOO,teacher_molsolv_smd,uncharged_parent_key,NEZWFWIACBUQMN,320434,OCOO,NEZWFWIACBUQMN
+NEZWFWIACBUQMN,hydroxymethyl hydroperoxide,OCOO,teacher_molsolv_smd,canonical_tautomer_key,NEZWFWIACBUQMN,320434,OCOO,NEZWFWIACBUQMN
+OMDFJTSKBNDDRM,1-nitrooxy-2-propanol,CC(O)CO[N+](=O)[O-],teacher_molsolv_smd,full_inchi_key,OMDFJTSKBNDDRM-UHFFFAOYSA-N,71871,CC(O)CO[N+](=O)[O-],OMDFJTSKBNDDRM
+OMDFJTSKBNDDRM,1-nitrooxy-2-propanol,CC(O)CO[N+](=O)[O-],teacher_molsolv_smd,connectivity_key,OMDFJTSKBNDDRM,71871,CC(O)CO[N+](=O)[O-],OMDFJTSKBNDDRM
+OMDFJTSKBNDDRM,1-nitrooxy-2-propanol,CC(O)CO[N+](=O)[O-],teacher_molsolv_smd,fragment_parent_key,OMDFJTSKBNDDRM,71871,CC(O)CO[N+](=O)[O-],OMDFJTSKBNDDRM
+OMDFJTSKBNDDRM,1-nitrooxy-2-propanol,CC(O)CO[N+](=O)[O-],teacher_molsolv_smd,uncharged_parent_key,OMDFJTSKBNDDRM,71871,CC(O)CO[N+](=O)[O-],OMDFJTSKBNDDRM
+OMDFJTSKBNDDRM,1-nitrooxy-2-propanol,CC(O)CO[N+](=O)[O-],teacher_molsolv_smd,canonical_tautomer_key,OMDFJTSKBNDDRM,71871,CC(O)CO[N+](=O)[O-],OMDFJTSKBNDDRM
+OWIKHYCFFJSOEH,isocyanic acid,N=C=O,teacher_molsolv_smd,full_inchi_key,OWIKHYCFFJSOEH-UHFFFAOYSA-N,245172,N=C=O,OWIKHYCFFJSOEH
+OWIKHYCFFJSOEH,isocyanic acid,N=C=O,teacher_molsolv_smd,connectivity_key,OWIKHYCFFJSOEH,245172,N=C=O,OWIKHYCFFJSOEH
+OWIKHYCFFJSOEH,isocyanic acid,N=C=O,teacher_molsolv_smd,fragment_parent_key,OWIKHYCFFJSOEH,245172,N=C=O,OWIKHYCFFJSOEH
+OWIKHYCFFJSOEH,isocyanic acid,N=C=O,teacher_molsolv_smd,uncharged_parent_key,OWIKHYCFFJSOEH,245172,N=C=O,OWIKHYCFFJSOEH
+OWIKHYCFFJSOEH,isocyanic acid,N=C=O,teacher_molsolv_smd,canonical_tautomer_key,OWIKHYCFFJSOEH,240956,N#CO,XLJMAIOERFSOGZ
+OWIKHYCFFJSOEH,isocyanic acid,N=C=O,teacher_molsolv_smd,canonical_tautomer_key,OWIKHYCFFJSOEH,245172,N=C=O,OWIKHYCFFJSOEH
+POIARNZEYGURDG,($E$)-$\beta$-damascenone,C/C=C/C(=O)C1=C(C)C=CCC1(C)C,teacher_molsolv_smd,canonical_tautomer_key,POIARNZEYGURDG,31415,C=CCC(=O)C1C(=C)C=CCC1(C)C,IOYSHHUNEQZBOB
+PVFOMCVHYWHZJE,trichloroacetylchloride,O=C(Cl)C(Cl)(Cl)Cl,teacher_molsolv_smd,full_inchi_key,PVFOMCVHYWHZJE-UHFFFAOYSA-N,271903,O=C(Cl)C(Cl)(Cl)Cl,PVFOMCVHYWHZJE
+PVFOMCVHYWHZJE,trichloroacetylchloride,O=C(Cl)C(Cl)(Cl)Cl,teacher_molsolv_smd,connectivity_key,PVFOMCVHYWHZJE,271903,O=C(Cl)C(Cl)(Cl)Cl,PVFOMCVHYWHZJE
+PVFOMCVHYWHZJE,trichloroacetylchloride,O=C(Cl)C(Cl)(Cl)Cl,teacher_molsolv_smd,fragment_parent_key,PVFOMCVHYWHZJE,271903,O=C(Cl)C(Cl)(Cl)Cl,PVFOMCVHYWHZJE
+PVFOMCVHYWHZJE,trichloroacetylchloride,O=C(Cl)C(Cl)(Cl)Cl,teacher_molsolv_smd,uncharged_parent_key,PVFOMCVHYWHZJE,271903,O=C(Cl)C(Cl)(Cl)Cl,PVFOMCVHYWHZJE
+PVFOMCVHYWHZJE,trichloroacetylchloride,O=C(Cl)C(Cl)(Cl)Cl,teacher_molsolv_smd,canonical_tautomer_key,PVFOMCVHYWHZJE,271903,O=C(Cl)C(Cl)(Cl)Cl,PVFOMCVHYWHZJE
+QGRPVMLBTFGQDQ,1-chloro-2-methoxybenzene,COc1ccccc1Cl,teacher_molsolv_smd,full_inchi_key,QGRPVMLBTFGQDQ-UHFFFAOYSA-N,182147,COc1ccccc1Cl,QGRPVMLBTFGQDQ
+QGRPVMLBTFGQDQ,1-chloro-2-methoxybenzene,COc1ccccc1Cl,teacher_molsolv_smd,connectivity_key,QGRPVMLBTFGQDQ,182147,COc1ccccc1Cl,QGRPVMLBTFGQDQ
+QGRPVMLBTFGQDQ,1-chloro-2-methoxybenzene,COc1ccccc1Cl,teacher_molsolv_smd,fragment_parent_key,QGRPVMLBTFGQDQ,182147,COc1ccccc1Cl,QGRPVMLBTFGQDQ
+QGRPVMLBTFGQDQ,1-chloro-2-methoxybenzene,COc1ccccc1Cl,teacher_molsolv_smd,uncharged_parent_key,QGRPVMLBTFGQDQ,182147,COc1ccccc1Cl,QGRPVMLBTFGQDQ
+QGRPVMLBTFGQDQ,1-chloro-2-methoxybenzene,COc1ccccc1Cl,teacher_molsolv_smd,canonical_tautomer_key,QGRPVMLBTFGQDQ,182147,COc1ccccc1Cl,QGRPVMLBTFGQDQ
+QKMNFFSBZRGHDJ,"1,4-dichloro-2-methoxybenzene",COc1cc(Cl)ccc1Cl,teacher_molsolv_smd,full_inchi_key,QKMNFFSBZRGHDJ-UHFFFAOYSA-N,177676,COc1cc(Cl)ccc1Cl,QKMNFFSBZRGHDJ
+QKMNFFSBZRGHDJ,"1,4-dichloro-2-methoxybenzene",COc1cc(Cl)ccc1Cl,teacher_molsolv_smd,connectivity_key,QKMNFFSBZRGHDJ,177676,COc1cc(Cl)ccc1Cl,QKMNFFSBZRGHDJ
+QKMNFFSBZRGHDJ,"1,4-dichloro-2-methoxybenzene",COc1cc(Cl)ccc1Cl,teacher_molsolv_smd,fragment_parent_key,QKMNFFSBZRGHDJ,177676,COc1cc(Cl)ccc1Cl,QKMNFFSBZRGHDJ
+QKMNFFSBZRGHDJ,"1,4-dichloro-2-methoxybenzene",COc1cc(Cl)ccc1Cl,teacher_molsolv_smd,uncharged_parent_key,QKMNFFSBZRGHDJ,177676,COc1cc(Cl)ccc1Cl,QKMNFFSBZRGHDJ
+QKMNFFSBZRGHDJ,"1,4-dichloro-2-methoxybenzene",COc1cc(Cl)ccc1Cl,teacher_molsolv_smd,canonical_tautomer_key,QKMNFFSBZRGHDJ,177676,COc1cc(Cl)ccc1Cl,QKMNFFSBZRGHDJ
+QUGUFLJIAFISSW,"1,4-difluorobenzene",Fc1ccc(F)cc1,teacher_molsolv_smd,full_inchi_key,QUGUFLJIAFISSW-UHFFFAOYSA-N,233387,Fc1ccc(F)cc1,QUGUFLJIAFISSW
+QUGUFLJIAFISSW,"1,4-difluorobenzene",Fc1ccc(F)cc1,teacher_molsolv_smd,connectivity_key,QUGUFLJIAFISSW,233387,Fc1ccc(F)cc1,QUGUFLJIAFISSW
+QUGUFLJIAFISSW,"1,4-difluorobenzene",Fc1ccc(F)cc1,teacher_molsolv_smd,fragment_parent_key,QUGUFLJIAFISSW,233387,Fc1ccc(F)cc1,QUGUFLJIAFISSW
+QUGUFLJIAFISSW,"1,4-difluorobenzene",Fc1ccc(F)cc1,teacher_molsolv_smd,uncharged_parent_key,QUGUFLJIAFISSW,233387,Fc1ccc(F)cc1,QUGUFLJIAFISSW
+QUGUFLJIAFISSW,"1,4-difluorobenzene",Fc1ccc(F)cc1,teacher_molsolv_smd,canonical_tautomer_key,QUGUFLJIAFISSW,233387,Fc1ccc(F)cc1,QUGUFLJIAFISSW
+RUPAXCPQAAOIPB,"(1,1-dimethylethyl)-methanoate",CC(C)(C)OC=O,teacher_molsolv_smd,full_inchi_key,RUPAXCPQAAOIPB-UHFFFAOYSA-N,53568,CC(C)(C)OC=O,RUPAXCPQAAOIPB
+RUPAXCPQAAOIPB,"(1,1-dimethylethyl)-methanoate",CC(C)(C)OC=O,teacher_molsolv_smd,connectivity_key,RUPAXCPQAAOIPB,53568,CC(C)(C)OC=O,RUPAXCPQAAOIPB
+RUPAXCPQAAOIPB,"(1,1-dimethylethyl)-methanoate",CC(C)(C)OC=O,teacher_molsolv_smd,fragment_parent_key,RUPAXCPQAAOIPB,53568,CC(C)(C)OC=O,RUPAXCPQAAOIPB
+RUPAXCPQAAOIPB,"(1,1-dimethylethyl)-methanoate",CC(C)(C)OC=O,teacher_molsolv_smd,uncharged_parent_key,RUPAXCPQAAOIPB,53568,CC(C)(C)OC=O,RUPAXCPQAAOIPB
+RUPAXCPQAAOIPB,"(1,1-dimethylethyl)-methanoate",CC(C)(C)OC=O,teacher_molsolv_smd,canonical_tautomer_key,RUPAXCPQAAOIPB,53568,CC(C)(C)OC=O,RUPAXCPQAAOIPB
+SSNXYMVLSOMJLU,"1,3-dichloro-5-methoxybenzene",COc1cc(Cl)cc(Cl)c1,teacher_molsolv_smd,full_inchi_key,SSNXYMVLSOMJLU-UHFFFAOYSA-N,177647,COc1cc(Cl)cc(Cl)c1,SSNXYMVLSOMJLU
+SSNXYMVLSOMJLU,"1,3-dichloro-5-methoxybenzene",COc1cc(Cl)cc(Cl)c1,teacher_molsolv_smd,connectivity_key,SSNXYMVLSOMJLU,177647,COc1cc(Cl)cc(Cl)c1,SSNXYMVLSOMJLU
+SSNXYMVLSOMJLU,"1,3-dichloro-5-methoxybenzene",COc1cc(Cl)cc(Cl)c1,teacher_molsolv_smd,fragment_parent_key,SSNXYMVLSOMJLU,177647,COc1cc(Cl)cc(Cl)c1,SSNXYMVLSOMJLU
+SSNXYMVLSOMJLU,"1,3-dichloro-5-methoxybenzene",COc1cc(Cl)cc(Cl)c1,teacher_molsolv_smd,uncharged_parent_key,SSNXYMVLSOMJLU,177647,COc1cc(Cl)cc(Cl)c1,SSNXYMVLSOMJLU
+SSNXYMVLSOMJLU,"1,3-dichloro-5-methoxybenzene",COc1cc(Cl)cc(Cl)c1,teacher_molsolv_smd,canonical_tautomer_key,SSNXYMVLSOMJLU,177647,COc1cc(Cl)cc(Cl)c1,SSNXYMVLSOMJLU
+STNJBCKSHOAVAJ,2-methylpropenal,C=C(C)C=O,teacher_molsolv_smd,full_inchi_key,STNJBCKSHOAVAJ-UHFFFAOYSA-N,17362,C=C(C)C=O,STNJBCKSHOAVAJ
+STNJBCKSHOAVAJ,2-methylpropenal,C=C(C)C=O,teacher_molsolv_smd,connectivity_key,STNJBCKSHOAVAJ,17362,C=C(C)C=O,STNJBCKSHOAVAJ
+STNJBCKSHOAVAJ,2-methylpropenal,C=C(C)C=O,teacher_molsolv_smd,fragment_parent_key,STNJBCKSHOAVAJ,17362,C=C(C)C=O,STNJBCKSHOAVAJ
+STNJBCKSHOAVAJ,2-methylpropenal,C=C(C)C=O,teacher_molsolv_smd,uncharged_parent_key,STNJBCKSHOAVAJ,17362,C=C(C)C=O,STNJBCKSHOAVAJ
+STNJBCKSHOAVAJ,2-methylpropenal,C=C(C)C=O,teacher_molsolv_smd,canonical_tautomer_key,STNJBCKSHOAVAJ,17362,C=C(C)C=O,STNJBCKSHOAVAJ
+TXINBPKSWKFMNB,peroxypropionyl nitrate,CCC(=O)OO[N+](=O)[O-],teacher_molsolv_smd,full_inchi_key,TXINBPKSWKFMNB-UHFFFAOYSA-N,110288,CCC(=O)OO[N+](=O)[O-],TXINBPKSWKFMNB
+TXINBPKSWKFMNB,peroxypropionyl nitrate,CCC(=O)OO[N+](=O)[O-],teacher_molsolv_smd,connectivity_key,TXINBPKSWKFMNB,110288,CCC(=O)OO[N+](=O)[O-],TXINBPKSWKFMNB
+TXINBPKSWKFMNB,peroxypropionyl nitrate,CCC(=O)OO[N+](=O)[O-],teacher_molsolv_smd,fragment_parent_key,TXINBPKSWKFMNB,110288,CCC(=O)OO[N+](=O)[O-],TXINBPKSWKFMNB
+TXINBPKSWKFMNB,peroxypropionyl nitrate,CCC(=O)OO[N+](=O)[O-],teacher_molsolv_smd,uncharged_parent_key,TXINBPKSWKFMNB,110288,CCC(=O)OO[N+](=O)[O-],TXINBPKSWKFMNB
+TXINBPKSWKFMNB,peroxypropionyl nitrate,CCC(=O)OO[N+](=O)[O-],teacher_molsolv_smd,canonical_tautomer_key,TXINBPKSWKFMNB,110288,CCC(=O)OO[N+](=O)[O-],TXINBPKSWKFMNB
+UBJVUCKUDDKUJF,"3,3'-thiobis-1-propene",C=CCSCC=C,teacher_molsolv_smd,full_inchi_key,UBJVUCKUDDKUJF-UHFFFAOYSA-N,35923,C=CCSCC=C,UBJVUCKUDDKUJF
+UBJVUCKUDDKUJF,"3,3'-thiobis-1-propene",C=CCSCC=C,teacher_molsolv_smd,connectivity_key,UBJVUCKUDDKUJF,35923,C=CCSCC=C,UBJVUCKUDDKUJF
+UBJVUCKUDDKUJF,"3,3'-thiobis-1-propene",C=CCSCC=C,teacher_molsolv_smd,fragment_parent_key,UBJVUCKUDDKUJF,35923,C=CCSCC=C,UBJVUCKUDDKUJF
+UBJVUCKUDDKUJF,"3,3'-thiobis-1-propene",C=CCSCC=C,teacher_molsolv_smd,uncharged_parent_key,UBJVUCKUDDKUJF,35923,C=CCSCC=C,UBJVUCKUDDKUJF
+UBJVUCKUDDKUJF,"3,3'-thiobis-1-propene",C=CCSCC=C,teacher_molsolv_smd,canonical_tautomer_key,UBJVUCKUDDKUJF,35923,C=CCSCC=C,UBJVUCKUDDKUJF
+UIHCLUNTQKBZGK,3-methyl-2-pentanone,CCC(C)C(C)=O,teacher_molsolv_smd,full_inchi_key,UIHCLUNTQKBZGK-UHFFFAOYSA-N,111336,CCC(C)C(C)=O,UIHCLUNTQKBZGK
+UIHCLUNTQKBZGK,3-methyl-2-pentanone,CCC(C)C(C)=O,teacher_molsolv_smd,connectivity_key,UIHCLUNTQKBZGK,111336,CCC(C)C(C)=O,UIHCLUNTQKBZGK
+UIHCLUNTQKBZGK,3-methyl-2-pentanone,CCC(C)C(C)=O,teacher_molsolv_smd,fragment_parent_key,UIHCLUNTQKBZGK,111336,CCC(C)C(C)=O,UIHCLUNTQKBZGK
+UIHCLUNTQKBZGK,3-methyl-2-pentanone,CCC(C)C(C)=O,teacher_molsolv_smd,uncharged_parent_key,UIHCLUNTQKBZGK,111336,CCC(C)C(C)=O,UIHCLUNTQKBZGK
+UIHCLUNTQKBZGK,3-methyl-2-pentanone,CCC(C)C(C)=O,teacher_molsolv_smd,canonical_tautomer_key,UIHCLUNTQKBZGK,20098,C=C(O)C(C)CC,IKDJETWTVWBJRW
+UIHCLUNTQKBZGK,3-methyl-2-pentanone,CCC(C)C(C)=O,teacher_molsolv_smd,canonical_tautomer_key,UIHCLUNTQKBZGK,111178,CCC(C)=C(C)O,FVOALQOAKFPOCF
+UIHCLUNTQKBZGK,3-methyl-2-pentanone,CCC(C)C(C)=O,teacher_molsolv_smd,canonical_tautomer_key,UIHCLUNTQKBZGK,111336,CCC(C)C(C)=O,UIHCLUNTQKBZGK
+UZYYBZNZSSNYSA,"2,3,6-trichloromethylbenzene",Cc1c(Cl)ccc(Cl)c1Cl,teacher_molsolv_smd,full_inchi_key,UZYYBZNZSSNYSA-UHFFFAOYSA-N,189604,Cc1c(Cl)ccc(Cl)c1Cl,UZYYBZNZSSNYSA
+UZYYBZNZSSNYSA,"2,3,6-trichloromethylbenzene",Cc1c(Cl)ccc(Cl)c1Cl,teacher_molsolv_smd,connectivity_key,UZYYBZNZSSNYSA,189604,Cc1c(Cl)ccc(Cl)c1Cl,UZYYBZNZSSNYSA
+UZYYBZNZSSNYSA,"2,3,6-trichloromethylbenzene",Cc1c(Cl)ccc(Cl)c1Cl,teacher_molsolv_smd,fragment_parent_key,UZYYBZNZSSNYSA,189604,Cc1c(Cl)ccc(Cl)c1Cl,UZYYBZNZSSNYSA
+UZYYBZNZSSNYSA,"2,3,6-trichloromethylbenzene",Cc1c(Cl)ccc(Cl)c1Cl,teacher_molsolv_smd,uncharged_parent_key,UZYYBZNZSSNYSA,189604,Cc1c(Cl)ccc(Cl)c1Cl,UZYYBZNZSSNYSA
+UZYYBZNZSSNYSA,"2,3,6-trichloromethylbenzene",Cc1c(Cl)ccc(Cl)c1Cl,teacher_molsolv_smd,canonical_tautomer_key,UZYYBZNZSSNYSA,189604,Cc1c(Cl)ccc(Cl)c1Cl,UZYYBZNZSSNYSA
+VGQXTTSVLMQFHM,peroxyacetyl nitrate,CC(=O)OO[N+](=O)[O-],teacher_molsolv_smd,full_inchi_key,VGQXTTSVLMQFHM-UHFFFAOYSA-N,48585,CC(=O)OO[N+](=O)[O-],VGQXTTSVLMQFHM
+VGQXTTSVLMQFHM,peroxyacetyl nitrate,CC(=O)OO[N+](=O)[O-],teacher_molsolv_smd,connectivity_key,VGQXTTSVLMQFHM,48585,CC(=O)OO[N+](=O)[O-],VGQXTTSVLMQFHM
+VGQXTTSVLMQFHM,peroxyacetyl nitrate,CC(=O)OO[N+](=O)[O-],teacher_molsolv_smd,fragment_parent_key,VGQXTTSVLMQFHM,48585,CC(=O)OO[N+](=O)[O-],VGQXTTSVLMQFHM
+VGQXTTSVLMQFHM,peroxyacetyl nitrate,CC(=O)OO[N+](=O)[O-],teacher_molsolv_smd,uncharged_parent_key,VGQXTTSVLMQFHM,48585,CC(=O)OO[N+](=O)[O-],VGQXTTSVLMQFHM
+VGQXTTSVLMQFHM,peroxyacetyl nitrate,CC(=O)OO[N+](=O)[O-],teacher_molsolv_smd,canonical_tautomer_key,VGQXTTSVLMQFHM,48585,CC(=O)OO[N+](=O)[O-],VGQXTTSVLMQFHM
+VISJRVXHPNMYRH,"1,2-dichloro-4-methoxybenzene",COc1ccc(Cl)c(Cl)c1,teacher_molsolv_smd,full_inchi_key,VISJRVXHPNMYRH-UHFFFAOYSA-N,179552,COc1ccc(Cl)c(Cl)c1,VISJRVXHPNMYRH
+VISJRVXHPNMYRH,"1,2-dichloro-4-methoxybenzene",COc1ccc(Cl)c(Cl)c1,teacher_molsolv_smd,connectivity_key,VISJRVXHPNMYRH,179552,COc1ccc(Cl)c(Cl)c1,VISJRVXHPNMYRH
+VISJRVXHPNMYRH,"1,2-dichloro-4-methoxybenzene",COc1ccc(Cl)c(Cl)c1,teacher_molsolv_smd,fragment_parent_key,VISJRVXHPNMYRH,179552,COc1ccc(Cl)c(Cl)c1,VISJRVXHPNMYRH
+VISJRVXHPNMYRH,"1,2-dichloro-4-methoxybenzene",COc1ccc(Cl)c(Cl)c1,teacher_molsolv_smd,uncharged_parent_key,VISJRVXHPNMYRH,179552,COc1ccc(Cl)c(Cl)c1,VISJRVXHPNMYRH
+VISJRVXHPNMYRH,"1,2-dichloro-4-methoxybenzene",COc1ccc(Cl)c(Cl)c1,teacher_molsolv_smd,canonical_tautomer_key,VISJRVXHPNMYRH,179552,COc1ccc(Cl)c(Cl)c1,VISJRVXHPNMYRH
+VOGSDFLJZPNWHY,"2,2-difluoroethanol",OCC(F)F,teacher_molsolv_smd,full_inchi_key,VOGSDFLJZPNWHY-UHFFFAOYSA-N,316487,OCC(F)F,VOGSDFLJZPNWHY
+VOGSDFLJZPNWHY,"2,2-difluoroethanol",OCC(F)F,teacher_molsolv_smd,connectivity_key,VOGSDFLJZPNWHY,316487,OCC(F)F,VOGSDFLJZPNWHY
+VOGSDFLJZPNWHY,"2,2-difluoroethanol",OCC(F)F,teacher_molsolv_smd,fragment_parent_key,VOGSDFLJZPNWHY,316487,OCC(F)F,VOGSDFLJZPNWHY
+VOGSDFLJZPNWHY,"2,2-difluoroethanol",OCC(F)F,teacher_molsolv_smd,uncharged_parent_key,VOGSDFLJZPNWHY,316487,OCC(F)F,VOGSDFLJZPNWHY
+VOGSDFLJZPNWHY,"2,2-difluoroethanol",OCC(F)F,teacher_molsolv_smd,canonical_tautomer_key,VOGSDFLJZPNWHY,316487,OCC(F)F,VOGSDFLJZPNWHY
+VVJKKWFAADXIJK,2-propen-1-amine,C=CCN,teacher_molsolv_smd,full_inchi_key,VVJKKWFAADXIJK-UHFFFAOYSA-N,34012,C=CCN,VVJKKWFAADXIJK
+VVJKKWFAADXIJK,2-propen-1-amine,C=CCN,teacher_molsolv_smd,connectivity_key,VVJKKWFAADXIJK,34012,C=CCN,VVJKKWFAADXIJK
+VVJKKWFAADXIJK,2-propen-1-amine,C=CCN,teacher_molsolv_smd,fragment_parent_key,VVJKKWFAADXIJK,34012,C=CCN,VVJKKWFAADXIJK
+VVJKKWFAADXIJK,2-propen-1-amine,C=CCN,teacher_molsolv_smd,uncharged_parent_key,VVJKKWFAADXIJK,34012,C=CCN,VVJKKWFAADXIJK
+VVJKKWFAADXIJK,2-propen-1-amine,C=CCN,teacher_molsolv_smd,canonical_tautomer_key,VVJKKWFAADXIJK,34012,C=CCN,VVJKKWFAADXIJK
+WCJYTPVNMWIZCG,xylylcarb,CNC(=O)Oc1ccc(C)c(C)c1,teacher_molsolv_smd,full_inchi_key,WCJYTPVNMWIZCG-UHFFFAOYSA-N,158456,CNC(=O)Oc1ccc(C)c(C)c1,WCJYTPVNMWIZCG
+WCJYTPVNMWIZCG,xylylcarb,CNC(=O)Oc1ccc(C)c(C)c1,teacher_molsolv_smd,connectivity_key,WCJYTPVNMWIZCG,158456,CNC(=O)Oc1ccc(C)c(C)c1,WCJYTPVNMWIZCG
+WCJYTPVNMWIZCG,xylylcarb,CNC(=O)Oc1ccc(C)c(C)c1,teacher_molsolv_smd,fragment_parent_key,WCJYTPVNMWIZCG,158456,CNC(=O)Oc1ccc(C)c(C)c1,WCJYTPVNMWIZCG
+WCJYTPVNMWIZCG,xylylcarb,CNC(=O)Oc1ccc(C)c(C)c1,teacher_molsolv_smd,uncharged_parent_key,WCJYTPVNMWIZCG,158456,CNC(=O)Oc1ccc(C)c(C)c1,WCJYTPVNMWIZCG
+WCJYTPVNMWIZCG,xylylcarb,CNC(=O)Oc1ccc(C)c(C)c1,teacher_molsolv_smd,canonical_tautomer_key,WCJYTPVNMWIZCG,158456,CNC(=O)Oc1ccc(C)c(C)c1,WCJYTPVNMWIZCG
+WNYADZVDBIBLJJ,N-nitrosopyrrolidine,O=NN1CCCC1,teacher_molsolv_smd,full_inchi_key,WNYADZVDBIBLJJ-UHFFFAOYSA-N,343543,[O][N]N1CCCC1,WNYADZVDBIBLJJ
+WNYADZVDBIBLJJ,N-nitrosopyrrolidine,O=NN1CCCC1,teacher_molsolv_smd,connectivity_key,WNYADZVDBIBLJJ,343543,[O][N]N1CCCC1,WNYADZVDBIBLJJ
+WNYADZVDBIBLJJ,N-nitrosopyrrolidine,O=NN1CCCC1,teacher_molsolv_smd,fragment_parent_key,WNYADZVDBIBLJJ,343543,[O][N]N1CCCC1,WNYADZVDBIBLJJ
+WNYADZVDBIBLJJ,N-nitrosopyrrolidine,O=NN1CCCC1,teacher_molsolv_smd,uncharged_parent_key,WNYADZVDBIBLJJ,343543,[O][N]N1CCCC1,WNYADZVDBIBLJJ
+WNYADZVDBIBLJJ,N-nitrosopyrrolidine,O=NN1CCCC1,teacher_molsolv_smd,canonical_tautomer_key,WNYADZVDBIBLJJ,343543,[O][N]N1CCCC1,WNYADZVDBIBLJJ
+YGHRJJRRZDOVPD,3-methylbutanal,CC(C)CC=O,teacher_molsolv_smd,full_inchi_key,YGHRJJRRZDOVPD-UHFFFAOYSA-N,59592,CC(C)CC=O,YGHRJJRRZDOVPD
+YGHRJJRRZDOVPD,3-methylbutanal,CC(C)CC=O,teacher_molsolv_smd,connectivity_key,YGHRJJRRZDOVPD,59592,CC(C)CC=O,YGHRJJRRZDOVPD
+YGHRJJRRZDOVPD,3-methylbutanal,CC(C)CC=O,teacher_molsolv_smd,fragment_parent_key,YGHRJJRRZDOVPD,59592,CC(C)CC=O,YGHRJJRRZDOVPD
+YGHRJJRRZDOVPD,3-methylbutanal,CC(C)CC=O,teacher_molsolv_smd,uncharged_parent_key,YGHRJJRRZDOVPD,59592,CC(C)CC=O,YGHRJJRRZDOVPD
+YGHRJJRRZDOVPD,3-methylbutanal,CC(C)CC=O,teacher_molsolv_smd,canonical_tautomer_key,YGHRJJRRZDOVPD,59090,CC(C)C=CO,QVDTXNVYSHVCGW
+YGHRJJRRZDOVPD,3-methylbutanal,CC(C)CC=O,teacher_molsolv_smd,canonical_tautomer_key,YGHRJJRRZDOVPD,59592,CC(C)CC=O,YGHRJJRRZDOVPD
+YGYAWVDWMABLBF,phosgene,O=C(Cl)Cl,teacher_molsolv_smd,full_inchi_key,YGYAWVDWMABLBF-UHFFFAOYSA-N,272380,O=C(Cl)Cl,YGYAWVDWMABLBF
+YGYAWVDWMABLBF,phosgene,O=C(Cl)Cl,teacher_molsolv_smd,connectivity_key,YGYAWVDWMABLBF,272380,O=C(Cl)Cl,YGYAWVDWMABLBF
+YGYAWVDWMABLBF,phosgene,O=C(Cl)Cl,teacher_molsolv_smd,fragment_parent_key,YGYAWVDWMABLBF,272380,O=C(Cl)Cl,YGYAWVDWMABLBF
+YGYAWVDWMABLBF,phosgene,O=C(Cl)Cl,teacher_molsolv_smd,uncharged_parent_key,YGYAWVDWMABLBF,272380,O=C(Cl)Cl,YGYAWVDWMABLBF
+YGYAWVDWMABLBF,phosgene,O=C(Cl)Cl,teacher_molsolv_smd,canonical_tautomer_key,YGYAWVDWMABLBF,272380,O=C(Cl)Cl,YGYAWVDWMABLBF
+YRGAYAGBVIXNAQ,1-chloro-4-methoxybenzene,COc1ccc(Cl)cc1,teacher_molsolv_smd,full_inchi_key,YRGAYAGBVIXNAQ-UHFFFAOYSA-N,179584,COc1ccc(Cl)cc1,YRGAYAGBVIXNAQ
+YRGAYAGBVIXNAQ,1-chloro-4-methoxybenzene,COc1ccc(Cl)cc1,teacher_molsolv_smd,connectivity_key,YRGAYAGBVIXNAQ,179584,COc1ccc(Cl)cc1,YRGAYAGBVIXNAQ
+YRGAYAGBVIXNAQ,1-chloro-4-methoxybenzene,COc1ccc(Cl)cc1,teacher_molsolv_smd,fragment_parent_key,YRGAYAGBVIXNAQ,179584,COc1ccc(Cl)cc1,YRGAYAGBVIXNAQ
+YRGAYAGBVIXNAQ,1-chloro-4-methoxybenzene,COc1ccc(Cl)cc1,teacher_molsolv_smd,uncharged_parent_key,YRGAYAGBVIXNAQ,179584,COc1ccc(Cl)cc1,YRGAYAGBVIXNAQ
+YRGAYAGBVIXNAQ,1-chloro-4-methoxybenzene,COc1ccc(Cl)cc1,teacher_molsolv_smd,canonical_tautomer_key,YRGAYAGBVIXNAQ,179584,COc1ccc(Cl)cc1,YRGAYAGBVIXNAQ
+YUKILTJWFRTXGB,1-chloro-3-methoxybenzene,COc1cccc(Cl)c1,teacher_molsolv_smd,full_inchi_key,YUKILTJWFRTXGB-UHFFFAOYSA-N,181378,COc1cccc(Cl)c1,YUKILTJWFRTXGB
+YUKILTJWFRTXGB,1-chloro-3-methoxybenzene,COc1cccc(Cl)c1,teacher_molsolv_smd,connectivity_key,YUKILTJWFRTXGB,181378,COc1cccc(Cl)c1,YUKILTJWFRTXGB
+YUKILTJWFRTXGB,1-chloro-3-methoxybenzene,COc1cccc(Cl)c1,teacher_molsolv_smd,fragment_parent_key,YUKILTJWFRTXGB,181378,COc1cccc(Cl)c1,YUKILTJWFRTXGB
+YUKILTJWFRTXGB,1-chloro-3-methoxybenzene,COc1cccc(Cl)c1,teacher_molsolv_smd,uncharged_parent_key,YUKILTJWFRTXGB,181378,COc1cccc(Cl)c1,YUKILTJWFRTXGB
+YUKILTJWFRTXGB,1-chloro-3-methoxybenzene,COc1cccc(Cl)c1,teacher_molsolv_smd,canonical_tautomer_key,YUKILTJWFRTXGB,181378,COc1cccc(Cl)c1,YUKILTJWFRTXGB
+YXWWHNCQZBVZPV,2′-methylacetophenone,CC(=O)c1ccccc1C,teacher_molsolv_smd,full_inchi_key,YXWWHNCQZBVZPV-UHFFFAOYSA-N,49957,CC(=O)c1ccccc1C,YXWWHNCQZBVZPV
+YXWWHNCQZBVZPV,2′-methylacetophenone,CC(=O)c1ccccc1C,teacher_molsolv_smd,connectivity_key,YXWWHNCQZBVZPV,49957,CC(=O)c1ccccc1C,YXWWHNCQZBVZPV
+YXWWHNCQZBVZPV,2′-methylacetophenone,CC(=O)c1ccccc1C,teacher_molsolv_smd,fragment_parent_key,YXWWHNCQZBVZPV,49957,CC(=O)c1ccccc1C,YXWWHNCQZBVZPV
+YXWWHNCQZBVZPV,2′-methylacetophenone,CC(=O)c1ccccc1C,teacher_molsolv_smd,uncharged_parent_key,YXWWHNCQZBVZPV,49957,CC(=O)c1ccccc1C,YXWWHNCQZBVZPV
+YXWWHNCQZBVZPV,2′-methylacetophenone,CC(=O)c1ccccc1C,teacher_molsolv_smd,canonical_tautomer_key,YXWWHNCQZBVZPV,20352,C=C(O)c1ccccc1C,FOQUOQOYOHRCJC
+YXWWHNCQZBVZPV,2′-methylacetophenone,CC(=O)c1ccccc1C,teacher_molsolv_smd,canonical_tautomer_key,YXWWHNCQZBVZPV,49957,CC(=O)c1ccccc1C,YXWWHNCQZBVZPV
+ZOASGOXWEHUTKZ,methyl propyl sulfide,CCCSC,teacher_molsolv_smd,full_inchi_key,ZOASGOXWEHUTKZ-UHFFFAOYSA-N,128372,CCCSC,ZOASGOXWEHUTKZ
+ZOASGOXWEHUTKZ,methyl propyl sulfide,CCCSC,teacher_molsolv_smd,connectivity_key,ZOASGOXWEHUTKZ,128372,CCCSC,ZOASGOXWEHUTKZ
+ZOASGOXWEHUTKZ,methyl propyl sulfide,CCCSC,teacher_molsolv_smd,fragment_parent_key,ZOASGOXWEHUTKZ,128372,CCCSC,ZOASGOXWEHUTKZ
+ZOASGOXWEHUTKZ,methyl propyl sulfide,CCCSC,teacher_molsolv_smd,uncharged_parent_key,ZOASGOXWEHUTKZ,128372,CCCSC,ZOASGOXWEHUTKZ
+ZOASGOXWEHUTKZ,methyl propyl sulfide,CCCSC,teacher_molsolv_smd,canonical_tautomer_key,ZOASGOXWEHUTKZ,128372,CCCSC,ZOASGOXWEHUTKZ
+ZOWSJJBOQDKOHI,"2,2,2-trifluoroethyl ethanoate",CC(=O)OCC(F)(F)F,teacher_molsolv_smd,full_inchi_key,ZOWSJJBOQDKOHI-UHFFFAOYSA-N,48221,CC(=O)OCC(F)(F)F,ZOWSJJBOQDKOHI
+ZOWSJJBOQDKOHI,"2,2,2-trifluoroethyl ethanoate",CC(=O)OCC(F)(F)F,teacher_molsolv_smd,connectivity_key,ZOWSJJBOQDKOHI,48221,CC(=O)OCC(F)(F)F,ZOWSJJBOQDKOHI
+ZOWSJJBOQDKOHI,"2,2,2-trifluoroethyl ethanoate",CC(=O)OCC(F)(F)F,teacher_molsolv_smd,fragment_parent_key,ZOWSJJBOQDKOHI,48221,CC(=O)OCC(F)(F)F,ZOWSJJBOQDKOHI
+ZOWSJJBOQDKOHI,"2,2,2-trifluoroethyl ethanoate",CC(=O)OCC(F)(F)F,teacher_molsolv_smd,uncharged_parent_key,ZOWSJJBOQDKOHI,48221,CC(=O)OCC(F)(F)F,ZOWSJJBOQDKOHI
+ZOWSJJBOQDKOHI,"2,2,2-trifluoroethyl ethanoate",CC(=O)OCC(F)(F)F,teacher_molsolv_smd,canonical_tautomer_key,ZOWSJJBOQDKOHI,48221,CC(=O)OCC(F)(F)F,ZOWSJJBOQDKOHI
+ZVJHJDDKYZXRJI,1-pyrroline,C1=NCCC1,teacher_molsolv_smd,full_inchi_key,ZVJHJDDKYZXRJI-UHFFFAOYSA-N,11326,C1=NCCC1,ZVJHJDDKYZXRJI
+ZVJHJDDKYZXRJI,1-pyrroline,C1=NCCC1,teacher_molsolv_smd,connectivity_key,ZVJHJDDKYZXRJI,11326,C1=NCCC1,ZVJHJDDKYZXRJI
+ZVJHJDDKYZXRJI,1-pyrroline,C1=NCCC1,teacher_molsolv_smd,fragment_parent_key,ZVJHJDDKYZXRJI,11326,C1=NCCC1,ZVJHJDDKYZXRJI
+ZVJHJDDKYZXRJI,1-pyrroline,C1=NCCC1,teacher_molsolv_smd,uncharged_parent_key,ZVJHJDDKYZXRJI,11326,C1=NCCC1,ZVJHJDDKYZXRJI
+ZVJHJDDKYZXRJI,1-pyrroline,C1=NCCC1,teacher_molsolv_smd,canonical_tautomer_key,ZVJHJDDKYZXRJI,11326,C1=NCCC1,ZVJHJDDKYZXRJI
+BRLQWZUYTZBJKN,(chloromethyl)-oxirane,ClCC1CO1,teacher_confsolv,full_inchi_key,BRLQWZUYTZBJKN-UHFFFAOYSA-N,2793,ClCC1CO1,BRLQWZUYTZBJKN
+BRLQWZUYTZBJKN,(chloromethyl)-oxirane,ClCC1CO1,teacher_confsolv,connectivity_key,BRLQWZUYTZBJKN,2793,ClCC1CO1,BRLQWZUYTZBJKN
+BRLQWZUYTZBJKN,(chloromethyl)-oxirane,ClCC1CO1,teacher_confsolv,fragment_parent_key,BRLQWZUYTZBJKN,2793,ClCC1CO1,BRLQWZUYTZBJKN
+BRLQWZUYTZBJKN,(chloromethyl)-oxirane,ClCC1CO1,teacher_confsolv,uncharged_parent_key,BRLQWZUYTZBJKN,2793,ClCC1CO1,BRLQWZUYTZBJKN
+BRLQWZUYTZBJKN,(chloromethyl)-oxirane,ClCC1CO1,teacher_confsolv,canonical_tautomer_key,BRLQWZUYTZBJKN,2793,ClCC1CO1,BRLQWZUYTZBJKN
+FALCMQXTWHPRIH,"2,3-dichloropropene",C=C(Cl)CCl,teacher_confsolv,full_inchi_key,FALCMQXTWHPRIH-UHFFFAOYSA-N,6678,C=C(Cl)CCl,FALCMQXTWHPRIH
+FALCMQXTWHPRIH,"2,3-dichloropropene",C=C(Cl)CCl,teacher_confsolv,connectivity_key,FALCMQXTWHPRIH,6678,C=C(Cl)CCl,FALCMQXTWHPRIH
+FALCMQXTWHPRIH,"2,3-dichloropropene",C=C(Cl)CCl,teacher_confsolv,fragment_parent_key,FALCMQXTWHPRIH,6678,C=C(Cl)CCl,FALCMQXTWHPRIH
+FALCMQXTWHPRIH,"2,3-dichloropropene",C=C(Cl)CCl,teacher_confsolv,uncharged_parent_key,FALCMQXTWHPRIH,6678,C=C(Cl)CCl,FALCMQXTWHPRIH
+FALCMQXTWHPRIH,"2,3-dichloropropene",C=C(Cl)CCl,teacher_confsolv,canonical_tautomer_key,FALCMQXTWHPRIH,6678,C=C(Cl)CCl,FALCMQXTWHPRIH
+FEIKEVSWLMYFFF,"1,2,4,5,8-pentachloronaphthalene",Clc1cc(Cl)c2c(Cl)ccc(Cl)c2c1Cl,teacher_confsolv,full_inchi_key,FEIKEVSWLMYFFF-UHFFFAOYSA-N,6921,Clc1cc(Cl)c2c(Cl)ccc(Cl)c2c1Cl,FEIKEVSWLMYFFF
+FEIKEVSWLMYFFF,"1,2,4,5,8-pentachloronaphthalene",Clc1cc(Cl)c2c(Cl)ccc(Cl)c2c1Cl,teacher_confsolv,connectivity_key,FEIKEVSWLMYFFF,6921,Clc1cc(Cl)c2c(Cl)ccc(Cl)c2c1Cl,FEIKEVSWLMYFFF
+FEIKEVSWLMYFFF,"1,2,4,5,8-pentachloronaphthalene",Clc1cc(Cl)c2c(Cl)ccc(Cl)c2c1Cl,teacher_confsolv,fragment_parent_key,FEIKEVSWLMYFFF,6921,Clc1cc(Cl)c2c(Cl)ccc(Cl)c2c1Cl,FEIKEVSWLMYFFF
+FEIKEVSWLMYFFF,"1,2,4,5,8-pentachloronaphthalene",Clc1cc(Cl)c2c(Cl)ccc(Cl)c2c1Cl,teacher_confsolv,uncharged_parent_key,FEIKEVSWLMYFFF,6921,Clc1cc(Cl)c2c(Cl)ccc(Cl)c2c1Cl,FEIKEVSWLMYFFF
+FEIKEVSWLMYFFF,"1,2,4,5,8-pentachloronaphthalene",Clc1cc(Cl)c2c(Cl)ccc(Cl)c2c1Cl,teacher_confsolv,canonical_tautomer_key,FEIKEVSWLMYFFF,6921,Clc1cc(Cl)c2c(Cl)ccc(Cl)c2c1Cl,FEIKEVSWLMYFFF
+FMWLUWPQPKEARP,bromodichloromethane,ClC(Cl)Br,teacher_confsolv,full_inchi_key,FMWLUWPQPKEARP-UHFFFAOYSA-N,7471,ClC(Cl)Br,FMWLUWPQPKEARP
+FMWLUWPQPKEARP,bromodichloromethane,ClC(Cl)Br,teacher_confsolv,connectivity_key,FMWLUWPQPKEARP,7471,ClC(Cl)Br,FMWLUWPQPKEARP
+FMWLUWPQPKEARP,bromodichloromethane,ClC(Cl)Br,teacher_confsolv,fragment_parent_key,FMWLUWPQPKEARP,7471,ClC(Cl)Br,FMWLUWPQPKEARP
+FMWLUWPQPKEARP,bromodichloromethane,ClC(Cl)Br,teacher_confsolv,uncharged_parent_key,FMWLUWPQPKEARP,7471,ClC(Cl)Br,FMWLUWPQPKEARP
+FMWLUWPQPKEARP,bromodichloromethane,ClC(Cl)Br,teacher_confsolv,canonical_tautomer_key,FMWLUWPQPKEARP,7471,ClC(Cl)Br,FMWLUWPQPKEARP
+GUVLYNGULCJVDO,S-ethyl dipropylthiocarbamate,CCCN(CCC)C(=O)SCC,teacher_confsolv,full_inchi_key,GUVLYNGULCJVDO-UHFFFAOYSA-N,9616,CCCN(CCC)C(=O)SCC,GUVLYNGULCJVDO
+GUVLYNGULCJVDO,S-ethyl dipropylthiocarbamate,CCCN(CCC)C(=O)SCC,teacher_confsolv,connectivity_key,GUVLYNGULCJVDO,9616,CCCN(CCC)C(=O)SCC,GUVLYNGULCJVDO
+GUVLYNGULCJVDO,S-ethyl dipropylthiocarbamate,CCCN(CCC)C(=O)SCC,teacher_confsolv,fragment_parent_key,GUVLYNGULCJVDO,9616,CCCN(CCC)C(=O)SCC,GUVLYNGULCJVDO
+GUVLYNGULCJVDO,S-ethyl dipropylthiocarbamate,CCCN(CCC)C(=O)SCC,teacher_confsolv,uncharged_parent_key,GUVLYNGULCJVDO,9616,CCCN(CCC)C(=O)SCC,GUVLYNGULCJVDO
+GUVLYNGULCJVDO,S-ethyl dipropylthiocarbamate,CCCN(CCC)C(=O)SCC,teacher_confsolv,canonical_tautomer_key,GUVLYNGULCJVDO,9616,CCCN(CCC)C(=O)SCC,GUVLYNGULCJVDO
+NEZWFWIACBUQMN,hydroxymethyl hydroperoxide,OCOO,teacher_confsolv,full_inchi_key,NEZWFWIACBUQMN-UHFFFAOYSA-N,20330,OCOO,NEZWFWIACBUQMN
+NEZWFWIACBUQMN,hydroxymethyl hydroperoxide,OCOO,teacher_confsolv,connectivity_key,NEZWFWIACBUQMN,20330,OCOO,NEZWFWIACBUQMN
+NEZWFWIACBUQMN,hydroxymethyl hydroperoxide,OCOO,teacher_confsolv,fragment_parent_key,NEZWFWIACBUQMN,20330,OCOO,NEZWFWIACBUQMN
+NEZWFWIACBUQMN,hydroxymethyl hydroperoxide,OCOO,teacher_confsolv,uncharged_parent_key,NEZWFWIACBUQMN,20330,OCOO,NEZWFWIACBUQMN
+NEZWFWIACBUQMN,hydroxymethyl hydroperoxide,OCOO,teacher_confsolv,canonical_tautomer_key,NEZWFWIACBUQMN,20330,OCOO,NEZWFWIACBUQMN
+NQFUSWIGRKFAHK,"2,7,7-trimethyl-3-oxatricyclo[4.1.1.0(2,4)]octane",CC1(C)C2CC3OC3(C)C1C2,teacher_confsolv,full_inchi_key,NQFUSWIGRKFAHK-UHFFFAOYSA-N,21069,CC1(C)C2CC3OC3(C)C1C2,NQFUSWIGRKFAHK
+NQFUSWIGRKFAHK,"2,7,7-trimethyl-3-oxatricyclo[4.1.1.0(2,4)]octane",CC1(C)C2CC3OC3(C)C1C2,teacher_confsolv,connectivity_key,NQFUSWIGRKFAHK,21069,CC1(C)C2CC3OC3(C)C1C2,NQFUSWIGRKFAHK
+NQFUSWIGRKFAHK,"2,7,7-trimethyl-3-oxatricyclo[4.1.1.0(2,4)]octane",CC1(C)C2CC3OC3(C)C1C2,teacher_confsolv,fragment_parent_key,NQFUSWIGRKFAHK,21069,CC1(C)C2CC3OC3(C)C1C2,NQFUSWIGRKFAHK
+NQFUSWIGRKFAHK,"2,7,7-trimethyl-3-oxatricyclo[4.1.1.0(2,4)]octane",CC1(C)C2CC3OC3(C)C1C2,teacher_confsolv,uncharged_parent_key,NQFUSWIGRKFAHK,21069,CC1(C)C2CC3OC3(C)C1C2,NQFUSWIGRKFAHK
+NQFUSWIGRKFAHK,"2,7,7-trimethyl-3-oxatricyclo[4.1.1.0(2,4)]octane",CC1(C)C2CC3OC3(C)C1C2,teacher_confsolv,canonical_tautomer_key,NQFUSWIGRKFAHK,21069,CC1(C)C2CC3OC3(C)C1C2,NQFUSWIGRKFAHK
+NVVZEKTVIXIUKW,"1,1,1,2,2,3,3,4,4,5,5,6,6-tridecafluoro-8-iodooctane",FC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)CCI,teacher_confsolv,full_inchi_key,NVVZEKTVIXIUKW-UHFFFAOYSA-N,21437,FC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)CCI,NVVZEKTVIXIUKW
+NVVZEKTVIXIUKW,"1,1,1,2,2,3,3,4,4,5,5,6,6-tridecafluoro-8-iodooctane",FC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)CCI,teacher_confsolv,connectivity_key,NVVZEKTVIXIUKW,21437,FC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)CCI,NVVZEKTVIXIUKW
+NVVZEKTVIXIUKW,"1,1,1,2,2,3,3,4,4,5,5,6,6-tridecafluoro-8-iodooctane",FC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)CCI,teacher_confsolv,fragment_parent_key,NVVZEKTVIXIUKW,21437,FC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)CCI,NVVZEKTVIXIUKW
+NVVZEKTVIXIUKW,"1,1,1,2,2,3,3,4,4,5,5,6,6-tridecafluoro-8-iodooctane",FC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)CCI,teacher_confsolv,uncharged_parent_key,NVVZEKTVIXIUKW,21437,FC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)CCI,NVVZEKTVIXIUKW
+NVVZEKTVIXIUKW,"1,1,1,2,2,3,3,4,4,5,5,6,6-tridecafluoro-8-iodooctane",FC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)CCI,teacher_confsolv,canonical_tautomer_key,NVVZEKTVIXIUKW,21437,FC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)CCI,NVVZEKTVIXIUKW
+OEBRKCOSUFCWJD,"dimethyl-2,2-dichlorovinyl phosphate",COP(=O)(OC)OC=C(Cl)Cl,teacher_confsolv,full_inchi_key,OEBRKCOSUFCWJD-UHFFFAOYSA-N,21965,COP(=O)(OC)OC=C(Cl)Cl,OEBRKCOSUFCWJD
+OEBRKCOSUFCWJD,"dimethyl-2,2-dichlorovinyl phosphate",COP(=O)(OC)OC=C(Cl)Cl,teacher_confsolv,connectivity_key,OEBRKCOSUFCWJD,21965,COP(=O)(OC)OC=C(Cl)Cl,OEBRKCOSUFCWJD
+OEBRKCOSUFCWJD,"dimethyl-2,2-dichlorovinyl phosphate",COP(=O)(OC)OC=C(Cl)Cl,teacher_confsolv,fragment_parent_key,OEBRKCOSUFCWJD,21965,COP(=O)(OC)OC=C(Cl)Cl,OEBRKCOSUFCWJD
+OEBRKCOSUFCWJD,"dimethyl-2,2-dichlorovinyl phosphate",COP(=O)(OC)OC=C(Cl)Cl,teacher_confsolv,uncharged_parent_key,OEBRKCOSUFCWJD,21965,COP(=O)(OC)OC=C(Cl)Cl,OEBRKCOSUFCWJD
+OEBRKCOSUFCWJD,"dimethyl-2,2-dichlorovinyl phosphate",COP(=O)(OC)OC=C(Cl)Cl,teacher_confsolv,canonical_tautomer_key,OEBRKCOSUFCWJD,21965,COP(=O)(OC)OC=C(Cl)Cl,OEBRKCOSUFCWJD
+SXKBHOQOOGRFJF,"1,2,4-trichloro-5-methoxybenzene",COc1cc(Cl)c(Cl)cc1Cl,teacher_confsolv,full_inchi_key,SXKBHOQOOGRFJF-UHFFFAOYSA-N,29735,COc1cc(Cl)c(Cl)cc1Cl,SXKBHOQOOGRFJF
+SXKBHOQOOGRFJF,"1,2,4-trichloro-5-methoxybenzene",COc1cc(Cl)c(Cl)cc1Cl,teacher_confsolv,connectivity_key,SXKBHOQOOGRFJF,29735,COc1cc(Cl)c(Cl)cc1Cl,SXKBHOQOOGRFJF
+SXKBHOQOOGRFJF,"1,2,4-trichloro-5-methoxybenzene",COc1cc(Cl)c(Cl)cc1Cl,teacher_confsolv,fragment_parent_key,SXKBHOQOOGRFJF,29735,COc1cc(Cl)c(Cl)cc1Cl,SXKBHOQOOGRFJF
+SXKBHOQOOGRFJF,"1,2,4-trichloro-5-methoxybenzene",COc1cc(Cl)c(Cl)cc1Cl,teacher_confsolv,uncharged_parent_key,SXKBHOQOOGRFJF,29735,COc1cc(Cl)c(Cl)cc1Cl,SXKBHOQOOGRFJF
+SXKBHOQOOGRFJF,"1,2,4-trichloro-5-methoxybenzene",COc1cc(Cl)c(Cl)cc1Cl,teacher_confsolv,canonical_tautomer_key,SXKBHOQOOGRFJF,29735,COc1cc(Cl)c(Cl)cc1Cl,SXKBHOQOOGRFJF
+UZYYBZNZSSNYSA,"2,3,6-trichloromethylbenzene",Cc1c(Cl)ccc(Cl)c1Cl,teacher_confsolv,full_inchi_key,UZYYBZNZSSNYSA-UHFFFAOYSA-N,31892,Cc1c(Cl)ccc(Cl)c1Cl,UZYYBZNZSSNYSA
+UZYYBZNZSSNYSA,"2,3,6-trichloromethylbenzene",Cc1c(Cl)ccc(Cl)c1Cl,teacher_confsolv,connectivity_key,UZYYBZNZSSNYSA,31892,Cc1c(Cl)ccc(Cl)c1Cl,UZYYBZNZSSNYSA
+UZYYBZNZSSNYSA,"2,3,6-trichloromethylbenzene",Cc1c(Cl)ccc(Cl)c1Cl,teacher_confsolv,fragment_parent_key,UZYYBZNZSSNYSA,31892,Cc1c(Cl)ccc(Cl)c1Cl,UZYYBZNZSSNYSA
+UZYYBZNZSSNYSA,"2,3,6-trichloromethylbenzene",Cc1c(Cl)ccc(Cl)c1Cl,teacher_confsolv,uncharged_parent_key,UZYYBZNZSSNYSA,31892,Cc1c(Cl)ccc(Cl)c1Cl,UZYYBZNZSSNYSA
+UZYYBZNZSSNYSA,"2,3,6-trichloromethylbenzene",Cc1c(Cl)ccc(Cl)c1Cl,teacher_confsolv,canonical_tautomer_key,UZYYBZNZSSNYSA,31892,Cc1c(Cl)ccc(Cl)c1Cl,UZYYBZNZSSNYSA
+WDWNMIBWWPZNJK,"1H,2H-perfluoro-1-iodooct-1-ene",FC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)/C=C/I,teacher_confsolv,connectivity_key,WDWNMIBWWPZNJK,33751,FC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C=CI,WDWNMIBWWPZNJK
+WDWNMIBWWPZNJK,"1H,2H-perfluoro-1-iodooct-1-ene",FC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)/C=C/I,teacher_confsolv,fragment_parent_key,WDWNMIBWWPZNJK,33751,FC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C=CI,WDWNMIBWWPZNJK
+WDWNMIBWWPZNJK,"1H,2H-perfluoro-1-iodooct-1-ene",FC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)/C=C/I,teacher_confsolv,uncharged_parent_key,WDWNMIBWWPZNJK,33751,FC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C=CI,WDWNMIBWWPZNJK
+WDWNMIBWWPZNJK,"1H,2H-perfluoro-1-iodooct-1-ene",FC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)/C=C/I,teacher_confsolv,canonical_tautomer_key,WDWNMIBWWPZNJK,33751,FC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C=CI,WDWNMIBWWPZNJK
+WHPVYXDFIXRKLN,"2,2',4,4',5-pentabromodiphenyl ether",Brc1ccc(Oc2cc(Br)c(Br)cc2Br)c(Br)c1,teacher_confsolv,full_inchi_key,WHPVYXDFIXRKLN-UHFFFAOYSA-N,33971,Brc1ccc(Oc2cc(Br)c(Br)cc2Br)c(Br)c1,WHPVYXDFIXRKLN
+WHPVYXDFIXRKLN,"2,2',4,4',5-pentabromodiphenyl ether",Brc1ccc(Oc2cc(Br)c(Br)cc2Br)c(Br)c1,teacher_confsolv,connectivity_key,WHPVYXDFIXRKLN,33971,Brc1ccc(Oc2cc(Br)c(Br)cc2Br)c(Br)c1,WHPVYXDFIXRKLN
+WHPVYXDFIXRKLN,"2,2',4,4',5-pentabromodiphenyl ether",Brc1ccc(Oc2cc(Br)c(Br)cc2Br)c(Br)c1,teacher_confsolv,fragment_parent_key,WHPVYXDFIXRKLN,33971,Brc1ccc(Oc2cc(Br)c(Br)cc2Br)c(Br)c1,WHPVYXDFIXRKLN
+WHPVYXDFIXRKLN,"2,2',4,4',5-pentabromodiphenyl ether",Brc1ccc(Oc2cc(Br)c(Br)cc2Br)c(Br)c1,teacher_confsolv,uncharged_parent_key,WHPVYXDFIXRKLN,33971,Brc1ccc(Oc2cc(Br)c(Br)cc2Br)c(Br)c1,WHPVYXDFIXRKLN
+WHPVYXDFIXRKLN,"2,2',4,4',5-pentabromodiphenyl ether",Brc1ccc(Oc2cc(Br)c(Br)cc2Br)c(Br)c1,teacher_confsolv,canonical_tautomer_key,WHPVYXDFIXRKLN,33971,Brc1ccc(Oc2cc(Br)c(Br)cc2Br)c(Br)c1,WHPVYXDFIXRKLN
+YORCIIVHUBAYBQ,3-bromo-1-propyne,C#CCBr,teacher_confsolv,full_inchi_key,YORCIIVHUBAYBQ-UHFFFAOYSA-N,37573,C#CCBr,YORCIIVHUBAYBQ
+YORCIIVHUBAYBQ,3-bromo-1-propyne,C#CCBr,teacher_confsolv,connectivity_key,YORCIIVHUBAYBQ,37573,C#CCBr,YORCIIVHUBAYBQ
+YORCIIVHUBAYBQ,3-bromo-1-propyne,C#CCBr,teacher_confsolv,fragment_parent_key,YORCIIVHUBAYBQ,37573,C#CCBr,YORCIIVHUBAYBQ
+YORCIIVHUBAYBQ,3-bromo-1-propyne,C#CCBr,teacher_confsolv,uncharged_parent_key,YORCIIVHUBAYBQ,37573,C#CCBr,YORCIIVHUBAYBQ
+YORCIIVHUBAYBQ,3-bromo-1-propyne,C#CCBr,teacher_confsolv,canonical_tautomer_key,YORCIIVHUBAYBQ,37573,C#CCBr,YORCIIVHUBAYBQ

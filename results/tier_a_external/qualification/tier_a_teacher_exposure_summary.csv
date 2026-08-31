@@ -1,0 +1,7 @@
+teacher_source,endpoint_disjoint_rows,exact_overlap_rows,standardized_overlap_rows,any_overlap_rows
+combisolv_qm,220,24,25,25
+abraham,220,92,92,92
+openff,220,0,0,0
+gbn2,220,0,0,0
+molsolv_smd,220,53,54,54
+confsolv,220,14,14,14

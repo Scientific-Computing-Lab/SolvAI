@@ -1,0 +1,76 @@
+{
+  "qualification_only": true,
+  "prediction_errors_loaded": false,
+  "original_cohort_rows": 221,
+  "target_scope_compatible_rows": 221,
+  "scientifically_eligible_rows": 220,
+  "known_registry_conflicts": 1,
+  "endpoint_overlap_rows": 0,
+  "endpoint_disjoint_eligible_rows": 220,
+  "teacher_exposed_endpoint_disjoint_rows": 123,
+  "strict_response_source_disjoint_rows": 97,
+  "source_exposure": [
+    {
+      "teacher_source": "combisolv_qm",
+      "endpoint_disjoint_rows": 220,
+      "exact_overlap_rows": 24,
+      "standardized_overlap_rows": 25,
+      "any_overlap_rows": 25
+    },
+    {
+      "teacher_source": "abraham",
+      "endpoint_disjoint_rows": 220,
+      "exact_overlap_rows": 92,
+      "standardized_overlap_rows": 92,
+      "any_overlap_rows": 92
+    },
+    {
+      "teacher_source": "openff",
+      "endpoint_disjoint_rows": 220,
+      "exact_overlap_rows": 0,
+      "standardized_overlap_rows": 0,
+      "any_overlap_rows": 0
+    },
+    {
+      "teacher_source": "gbn2",
+      "endpoint_disjoint_rows": 220,
+      "exact_overlap_rows": 0,
+      "standardized_overlap_rows": 0,
+      "any_overlap_rows": 0
+    },
+    {
+      "teacher_source": "molsolv_smd",
+      "endpoint_disjoint_rows": 220,
+      "exact_overlap_rows": 53,
+      "standardized_overlap_rows": 54,
+      "any_overlap_rows": 54
+    },
+    {
+      "teacher_source": "confsolv",
+      "endpoint_disjoint_rows": 220,
+      "exact_overlap_rows": 14,
+      "standardized_overlap_rows": 14,
+      "any_overlap_rows": 14
+    }
+  ],
+  "rdkit_version": "2026.03.5",
+  "inputs": {
+    "tier_a_source": "/home/galoren/ASP/data/processed/tier_a_frozen.csv",
+    "tier_a_source_sha256": "7b7be03c5124559551c5380b0429d5c0156c13060af9902d26266510637fcf45",
+    "source_identity_index": "/home/galoren/Freecurve_AI_Solvation/release/large_confirmatory_intermediates/supervision_standardized_identities.parquet",
+    "source_identity_index_sha256": "6d35c5ea58192d8fe3d0b5c022effcfa93fc8c76cdbd19ed424d0b7b50d2b85f",
+    "benchmark_identity_index": "/home/galoren/Freecurve_AI_Solvation/release/SolvAI/audits/confirmatory/benchmark_standardized_identities.parquet",
+    "benchmark_identity_index_sha256": "3601898f62ade97882494a49443953b3aab987b56182970989e526d59677a6c9"
+  },
+  "outputs_sha256": {
+    "tier_a_qualification_audit.csv": "a32f40de3befe18a1bacfc299a93fbc9afb5972e2828b1c1ff2bd52b94339252",
+    "tier_a_qualification_audit.parquet": "79383d753fb827dd8680f63f8af0bb8393cdf587e12f8cbade4111119eb07682",
+    "tier_a_identity_matches.csv": "f18a33eb404b2c9b61ef9d5b60a35448d242e6a7fc7fd7fd25060f9137b4feae",
+    "tier_a_exclusions.csv": "955c36a8076e36cf397a6efd7dbb628213f76a68f728e560b1c0743213385f10",
+    "tier_a_endpoint_disjoint.csv": "967a9794a5d0e3f131dc5bb6921fecd234809ca21143a5a3ce9ed7895d18b273",
+    "tier_a_endpoint_disjoint.parquet": "a364da2a9fbf4603162cb40a58e0ccf233f073e5ed3d98ca79f9fccaa391eaac",
+    "tier_a_strict_response_source_disjoint.csv": "486040f54082f606ca21f461eb76075648b885c712823c72f7f69317960463bf",
+    "tier_a_strict_response_source_disjoint.parquet": "13ee38d907d9b9afb82bb6a390aa96e1b475d9ef214ab8c96a7129fb4553d414",
+    "tier_a_teacher_exposure_summary.csv": "d3655358f1e0d7bdeb7d2bf501b39dcbe5a10ff1d3320469a1a7604a3e9c5e45"
+  }
+}
