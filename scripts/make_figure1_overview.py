@@ -606,24 +606,15 @@ def build_panel_d(ax):
         ax.add_patch(Rectangle((x, 0.463), width, 0.074, transform=ax.transAxes, facecolor=color, edgecolor=WHITE, linewidth=0.45, zorder=4))
         ax.text(x + width / 2, 0.500, label, transform=ax.transAxes, ha="center", va="center", fontsize=2.55, weight="bold", color=WHITE, zorder=5)
     ax.text(0.471, 0.590, "CONCATENATE", transform=ax.transAxes, ha="center", va="center", fontsize=3.35, weight="bold", color=DEPLOY)
-    ax.text(
-        0.471,
-        0.395,
-        "2,280-D molecular representation",
-        transform=ax.transAxes,
-        ha="center",
-        va="center",
-        fontsize=2.80,
-        weight="bold",
-        color=INK,
-    )
+    ax.text(0.471, 0.410, "2,280-D", transform=ax.transAxes, ha="center", va="center", fontsize=3.25, weight="bold", color=INK)
+    ax.text(0.471, 0.375, "molecular representation", transform=ax.transAxes, ha="center", va="center", fontsize=2.85, color=INK)
     arrow(ax, (0.545, 0.500), (0.565, 0.500), color=DEPLOY, width=0.95, mutation=4.5)
 
     image_asset(
         ax,
-        [0.555, 0.295, 0.290, 0.410],
-        "endpoint_extratrees_triplet_azure_v1.png",
-        crop=(0.02, 0.20, 0.97, 0.72),
+        [0.565, 0.315, 0.255, 0.375],
+        "endpoint_extratrees_forest_flat_v3.png",
+        crop=(0.03, 0.04, 0.97, 0.96),
         zorder=2,
         preserve_aspect=True,
     )
@@ -634,9 +625,9 @@ def build_panel_d(ax):
     # Experimental labels supervise all three endpoint regressors.  A centered,
     # vertical arrow terminates at the ensemble's lower edge instead of pointing
     # ambiguously toward one internal tree glyph.
-    arrow(ax, (0.692, 0.158), (0.692, 0.350), color=PHYSICS, width=0.75, mutation=5)
-    arrow(ax, (0.835, 0.500), (0.865, 0.500), color=DEPLOY, width=1.0)
-    ax.text(0.830, 0.420, "mean prediction", transform=ax.transAxes, fontsize=3.15, color=DEPLOY, ha="center")
+    arrow(ax, (0.692, 0.158), (0.692, 0.315), color=PHYSICS, width=0.75, mutation=5)
+    arrow(ax, (0.820, 0.500), (0.865, 0.500), color=DEPLOY, width=1.0)
+    ax.text(0.842, 0.435, "mean prediction", transform=ax.transAxes, fontsize=3.15, color=DEPLOY, ha="center")
     ax.text(0.910, 0.54, "ΔG", transform=ax.transAxes, fontsize=10.5, weight="bold", color=DEPLOY, ha="center")
     ax.text(0.962, 0.50, "hyd", transform=ax.transAxes, fontsize=4.35, color=DEPLOY, ha="left")
     ax.text(0.185, 0.055, "No PIMD-derived feature in the final stack", transform=ax.transAxes, ha="center", fontsize=3.55, color=MID)
@@ -667,9 +658,7 @@ def build_panel_e(ax):
     )
     ax.text(0.410, 0.625, "six frozen surrogates", transform=ax.transAxes, ha="center", fontsize=4.0, weight="bold", color=LEARNED)
     ax.text(0.410, 0.590, "2 D-MPNN · 3 ExtraTrees · 1 LightGBM", transform=ax.transAxes, ha="center", fontsize=2.85, color=MID)
-    # The lock sits below the surrogate bank, close to the inference path, so it
-    # reads as model state rather than as a floating annotation.
-    lock_asset(ax, 0.465, 0.335, color=LEARNED, scale=0.80)
+    lock_asset(ax, 0.470, 0.485, color=LEARNED, scale=0.90)
 
     arrow(ax, (0.485, pipeline_y), (0.512, pipeline_y), color=LEARNED, width=0.9, mutation=5)
     image_asset(ax, [0.515, 0.35, 0.14, 0.18], "response_channels_15_v1.png", crop=(0.02, 0.20, 0.98, 0.82), zorder=2)
@@ -692,26 +681,25 @@ def build_panel_e(ax):
     arrow(ax, (merge_x, 0.225), (merge_x, pipeline_y - 0.016), color=INK, width=0.72, mutation=4.5)
     # A scatter marker stays perfectly circular under the panel's non-square
     # transform, unlike an axes-coordinate Circle patch.
-    ax.scatter([merge_x], [pipeline_y], transform=ax.transAxes, s=49, facecolor=WHITE, edgecolor=DEPLOY, linewidth=0.95, zorder=6)
-    ax.text(merge_x, pipeline_y - 0.001, "+", transform=ax.transAxes, ha="center", va="center", fontsize=4.8, weight="bold", color=DEPLOY, zorder=7)
-    ax.text(0.690, 0.380, "concatenate", transform=ax.transAxes, ha="center", va="center", fontsize=2.65, color=DEPLOY)
-    ax.text(0.718, 0.410, "2,280-D", transform=ax.transAxes, ha="center", va="center", fontsize=2.75, weight="bold", color=DEPLOY)
-    arrow(ax, (merge_x + 0.023, pipeline_y), (0.738, pipeline_y), color=DEPLOY, width=0.9, mutation=5)
+    ax.scatter([merge_x], [pipeline_y], transform=ax.transAxes, s=31, facecolor=WHITE, edgecolor=DEPLOY, linewidth=0.85, zorder=6)
+    ax.text(merge_x, pipeline_y - 0.001, "+", transform=ax.transAxes, ha="center", va="center", fontsize=4.1, weight="bold", color=DEPLOY, zorder=7)
+    ax.text(0.714, 0.390, "2,280-D", transform=ax.transAxes, ha="center", va="center", fontsize=2.85, weight="bold", color=DEPLOY)
+    arrow(ax, (merge_x + 0.016, pipeline_y), (0.728, pipeline_y), color=DEPLOY, width=0.9, mutation=5)
     image_asset(
         ax,
-        [0.738, 0.325, 0.140, 0.230],
-        "endpoint_extratrees_triplet_azure_v1.png",
-        crop=(0.02, 0.20, 0.97, 0.72),
+        [0.728, 0.330, 0.140, 0.225],
+        "endpoint_extratrees_forest_flat_v3.png",
+        crop=(0.03, 0.04, 0.97, 0.96),
         zorder=2,
         preserve_aspect=True,
     )
-    ax.text(0.820, 0.250, "3 × frozen ExtraTrees ensembles", transform=ax.transAxes, ha="center", fontsize=3.65, weight="bold", color=DEPLOY)
-    ax.text(0.820, 0.218, "360 trees each · predictions averaged", transform=ax.transAxes, ha="center", fontsize=2.65, color=MID)
-    lock_asset(ax, 0.857, 0.315, color=DEPLOY, scale=0.78)
-    arrow(ax, (0.875, pipeline_y), (0.89, pipeline_y), color=DEPLOY, width=1.05, mutation=4.5)
-    ax.text(0.920, pipeline_y, "ΔG", transform=ax.transAxes, fontsize=11.0, weight="bold", color=DEPLOY, ha="center", va="center")
-    ax.text(0.963, 0.415, "hyd", transform=ax.transAxes, fontsize=5.0, color=DEPLOY, ha="left", va="center")
-    ax.text(0.925, 0.29, "predicted hydration\nfree energy", transform=ax.transAxes, fontsize=3.45, color=MID, ha="center", linespacing=0.9)
+    ax.text(0.825, 0.250, "3 × frozen ExtraTrees ensembles", transform=ax.transAxes, ha="center", fontsize=3.65, weight="bold", color=DEPLOY)
+    ax.text(0.825, 0.220, "360 trees each · predictions averaged", transform=ax.transAxes, ha="center", fontsize=2.65, color=MID)
+    lock_asset(ax, 0.850, 0.502, color=DEPLOY, scale=0.90)
+    arrow(ax, (0.867, pipeline_y), (0.88, pipeline_y), color=DEPLOY, width=1.05, mutation=4.5)
+    ax.text(0.910, pipeline_y, "ΔG", transform=ax.transAxes, fontsize=11.0, weight="bold", color=DEPLOY, ha="center", va="center")
+    ax.text(0.953, 0.415, "hyd", transform=ax.transAxes, fontsize=5.0, color=DEPLOY, ha="left", va="center")
+    ax.text(0.915, 0.31, "predicted hydration\nfree energy", transform=ax.transAxes, fontsize=3.45, color=MID, ha="center", linespacing=0.9)
     ax.text(0.50, 0.72, "learned response information is reused", transform=ax.transAxes, ha="center", fontsize=5.55, weight="bold", color=DEPLOY)
     ax.text(0.50, 0.055, "NO MD   ·   NO PIMD   ·   NO PROBE CALCULATION", transform=ax.transAxes, ha="center", fontsize=6.0, weight="bold", color=INK)
 
