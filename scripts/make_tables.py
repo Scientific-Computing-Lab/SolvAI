@@ -16,7 +16,6 @@ ROOT = Path(__file__).resolve().parents[1]
 TABLES = ROOT / "paper/tables"
 SI_TABLES = ROOT / "paper/supplementary/tables"
 SUPP_DATA = ROOT / "paper/supplementary_data"
-ED = ROOT / "paper/extended_data"
 
 
 def latex_escape(value: object) -> str:
@@ -560,9 +559,6 @@ def main() -> None:
             lambda value: f"{value:.3f}" if isinstance(value, float) else value
         )
     latex_table(display, TABLES / "main_comparison.tex", "lcccc")
-    comparison.to_csv(ED / "ED_Table1.csv", index=False)
-    latex_table(display, ED / "ED_Table1.tex", "lcccc")
-
     priors = response_priors()
     endpoint = endpoint_sources()
     source_summary = pd.DataFrame(

@@ -8,6 +8,7 @@
 \usepackage{array}
 \usepackage{longtable}
 \usepackage{graphicx}
+\graphicspath{{figures/}}
 \usepackage[super,sort&compress]{natbib}
 \usepackage[colorlinks=true,allcolors=blue]{hyperref}
 \usepackage{enumitem}
@@ -293,13 +294,6 @@ precision required for hydration-free-energy integration. These observations
 motivate the transfer condition stated in the main text: relevance, structural
 learnability and non-redundancy are all required.
 
-\subsection*{S3. Simulation-assisted analyses}
-
-An earlier branch evaluated routers and selective PIMD fallback. Those results are
-retained as an explicitly non-deployable reference in Extended Data Fig.~4 and the
-experiment ledger. They do not define SolvAI, do not enter its predictions and are
-not used to support the simulation-free inference claim.
-
 \section*{Supplementary Tables}
 \addcontentsline{toc}{section}{Supplementary Tables}
 
@@ -352,5 +346,53 @@ not used to support the simulation-free inference claim.
 \small
 \resizebox{\textwidth}{!}{\input{tables/tier_a_external.tex}}
 \normalsize
+
+\clearpage
+\section*{Supplementary Figures}
+\addcontentsline{toc}{section}{Supplementary Figures}
+
+\begin{center}
+\includegraphics[width=\textwidth]{Supp_Fig1_residuals.pdf}
+\end{center}
+\noindent\textbf{Supplementary Figure 1 | Molecule-level prediction and residuals.}
+\textbf{a}, Confirmatory SolvAI OOF prediction against experiment. \textbf{b}, Signed
+residual against experimental hydration free energy. \textbf{c}, Distribution of the
+paired absolute-error change relative to the matched structure-only endpoint.
+
+\clearpage
+\begin{center}
+\includegraphics[width=\textwidth]{Supp_Fig2_provenance.pdf}
+\end{center}
+\noindent\textbf{Supplementary Figure 2 | Source-specific provenance and standardized
+identity exclusion.} Counts are shown in their native source units and normalized
+only within source. The audit removed standardized benchmark equivalents before the
+confirmatory teacher refits; no endpoint experimental label was removed.
+
+\clearpage
+\begin{center}
+\includegraphics[width=0.88\textwidth]{Supp_Fig3_alternatives.pdf}
+\end{center}
+\noindent\textbf{Supplementary Figure 3 | Alternative physical-supervision routes.}
+Exploratory fixed screens of additional diagnostic, latent and hierarchy features.
+The dashed line is the matched campaign response base for those screens. These
+experiments were not used to select the confirmatory controls.
+
+\clearpage
+\begin{center}
+\includegraphics[width=\textwidth]{Supp_Fig4_lambda_response.pdf}
+\end{center}
+\noindent\textbf{Supplementary Figure 4 | Multi-$\lambda$ response experiment.}
+\textbf{a}, OOF response-head error at three coupling states. \textbf{b}, Matched
+endpoint consequences and the separately scaled error obtained by direct integration
+of the predicted curve.
+
+\clearpage
+\begin{center}
+\includegraphics[width=\textwidth]{Supp_Fig5_extrapolation.pdf}
+\end{center}
+\noindent\textbf{Supplementary Figure 5 | Molecular and chemical-separation errors.}
+\textbf{a}, Individual fixed-partition SolvAI errors grouped by diagnostic chemical
+family; ticks show family means and labels give sample sizes. \textbf{b}, Matched
+structure-only and SolvAI errors under four global separation regimes.
 
 \end{document}

@@ -10,8 +10,8 @@
 - [x] The ARROW weight-one sensitivity was frozen before fitting and reported irrespective of outcome.
 - [x] Data and code availability statements are drafted.
 - [x] Figures have vector PDF/SVG versions and inspected PNG previews.
-- [x] Extended Data are separate display files and cited in the main text.
-- [x] Supplementary Information contains no figures.
+- [x] Five Supplementary Figures are embedded with adjacent legends in the single Supplementary Information PDF and cited in the main text.
+- [x] Discontinued selective-PIMD diagnostics and the redundant comparison table are excluded from the submission package.
 - [x] Five confirmatory internal review perspectives completed twice with no critical issue remaining.
 - [x] The release tree and Git history pass credential scans.
 - [ ] Resolve the human declarations in `AUTHOR_TODOS.md`.

@@ -31,7 +31,7 @@ method or evidence standard as SolvAI.
   representative molecular examples.
 - Robustness and limitations appear after the central result. They define
   scope without displacing the discovery from the opening visual sequence.
-- Extended Data preserve methodological and diagnostic depth without
+- Supplementary Figures preserve methodological and diagnostic depth without
   duplicating main panels.
 
 ## Nature Communications implementation
@@ -40,17 +40,14 @@ method or evidence standard as SolvAI.
   Communications.
 - Main-text subheadings remain below 40 characters.
 - The main article uses four display figures and superscript numeric citations.
-- Extended Data are separate page-compatible files, at no more than 180 mm by
-  170 mm, with sans-serif text in the 5–7 pt target range at final size.
-- Extended Data legends are collected at the end of the main manuscript and
-  every display item is cited in the article.
-- The Supplementary Information contains methods, notes and tables only; it
-  contains no figures.
+- Five Supplementary Figures are embedded in the single Supplementary Information
+  PDF, each followed immediately by its legend, and every item is cited in the article.
+- The discontinued selective-PIMD diagnostic and redundant comparison table are not
+  part of the submission package.
 - Large tabular records are supplied as machine-readable Supplementary Data,
   rather than compressed into an illegible manuscript table.
 
 Official guidance:
 
-- [Nature formatting guide](https://www.nature.com/nature/for-authors/formatting-guide)
-- [Nature Supplementary Information](https://www.nature.com/nature/for-authors/supp-info)
-- [Nature Extended Data formatting](https://research-figure-guide.nature.com/figures/extended-data-formatting-guidelines/)
+- [Nature Communications submission guide](https://www.nature.com/documents/ncomms-submission-guide.pdf)
+- [Nature Communications manuscript checklist](https://www.nature.com/documents/ncomms-manuscript-checklist.pdf)

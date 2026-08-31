@@ -26,8 +26,7 @@ figures: tables
 paper: figures
 	SOURCE_DATE_EPOCH=1787788800 FORCE_SOURCE_DATE=1 latexmk -pdf -interaction=nonstopmode -halt-on-error -cd paper/main.tex
 	SOURCE_DATE_EPOCH=1787788800 FORCE_SOURCE_DATE=1 latexmk -pdf -interaction=nonstopmode -halt-on-error -cd paper/supplementary/supplementary.tex
-	SOURCE_DATE_EPOCH=1787788800 FORCE_SOURCE_DATE=1 latexmk -pdf -interaction=nonstopmode -halt-on-error -jobname=ED_Table1 -cd paper/extended_data/ED_Table1_standalone.tex
-	qpdf --empty --static-id --pages paper/main.pdf paper/extended_data/ED_Fig1_residuals.pdf paper/extended_data/ED_Fig2_provenance.pdf paper/extended_data/ED_Fig3_alternatives.pdf paper/extended_data/ED_Fig4_selective_pimd.pdf paper/extended_data/ED_Fig5_lambda_response.pdf paper/extended_data/ED_Fig6_extrapolation.pdf paper/extended_data/ED_Table1.pdf -- paper/review_combined.pdf
+	qpdf --empty --static-id --pages paper/main.pdf paper/supplementary/supplementary.pdf -- paper/review_combined.pdf
 
 security:
 	uv run python scripts/security_scan.py
@@ -38,4 +37,3 @@ claims:
 clean:
 	latexmk -C -cd paper/main.tex
 	latexmk -C -cd paper/supplementary/supplementary.tex
-	latexmk -C -jobname=ED_Table1 -cd paper/extended_data/ED_Table1_standalone.tex

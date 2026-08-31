@@ -45,8 +45,8 @@ because they were measured on different hardware.
 
 ## Publication and reproducibility
 
-- Four main and six Extended Data figures are regenerated from frozen files.
-- Supplementary Information contains methods, notes and tables but no figures.
+- Four main and five Supplementary figures are regenerated from frozen files.
+- Supplementary Information contains methods, notes, tables, figures and adjacent legends in one PDF.
 - Machine-readable Supplementary Data preserve predictions, splits and all campaign
   experiments.
 - Human-only declarations remain isolated in `submission/AUTHOR_TODOS.md`.

@@ -23,8 +23,8 @@ rechecks the available benchmark-disjoint source tables and model schema, and
 verifies artifact hashes and frozen SMILES-only predictions. This includes the
 prospectively frozen Tier-A external-cohort metrics from the published molecule-level
 table; it does not refit the external endpoints. `make figures`
-regenerates every main and Extended Data panel. `make paper` compiles the main
-manuscript and Supplementary Information.
+regenerates every main and Supplementary panel. `make paper` compiles the main
+manuscript, the complete Supplementary Information and their internal-review bundle.
 
 Expected ethanol output (prediction and ensemble spread, kcal/mol):
 

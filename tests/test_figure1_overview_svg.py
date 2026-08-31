@@ -78,12 +78,12 @@ def test_svg_preserves_core_scientific_constraints():
         assert phrase in text
 
 
-def test_panels_d_and_e_do_not_reintroduce_network_cable_assets():
+def test_panels_d_and_e_use_the_preferred_flat_forest_asset():
     source = GENERATOR.read_text(encoding="utf-8")
     assert '"endpoint_ensemble_v1.png"' not in source
     assert '"frozen_model_v1.png"' not in source
-    assert source.count('"endpoint_extratrees_triplet_azure_v1.png"') == 2
-    assert '"endpoint_extratrees_forest_flat_v3.png"' not in source
+    assert '"endpoint_extratrees_triplet_azure_v1.png"' not in source
+    assert source.count('"endpoint_extratrees_forest_flat_v3.png"') == 2
     assert source.count('"frozen_surrogate_wedge_flat_v2.png"') == 1
     assert '"endpoint_extratrees_wedge_flat_v2.png"' not in source
     assert '"endpoint_extratrees_wedge_v1.png"' not in source

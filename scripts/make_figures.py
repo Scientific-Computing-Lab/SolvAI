@@ -15,9 +15,10 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
 MAIN = ROOT / "figures/main"
-ED = ROOT / "figures/extended_data"
+SUPP = ROOT / "figures/supplementary"
+DIAGNOSTIC = ROOT / "figures/diagnostics"
 PAPER_MAIN = ROOT / "paper/figures/main"
-PAPER_ED = ROOT / "paper/extended_data"
+PAPER_SUPP = ROOT / "paper/supplementary/figures"
 
 INK = "#17212B"
 MID = "#68737D"
@@ -73,8 +74,15 @@ def panel(ax: plt.Axes, label: str) -> None:
     )
 
 
-def save(fig: plt.Figure, name: str, *, extended: bool = False) -> None:
-    targets = (ED, PAPER_ED) if extended else (MAIN, PAPER_MAIN)
+def save(fig: plt.Figure, name: str, *, collection: str = "main") -> None:
+    if collection == "main":
+        targets = (MAIN, PAPER_MAIN)
+    elif collection == "supplementary":
+        targets = (SUPP, PAPER_SUPP)
+    elif collection == "diagnostic":
+        targets = (DIAGNOSTIC,)
+    else:
+        raise ValueError(f"unknown figure collection: {collection}")
     for directory in targets:
         directory.mkdir(parents=True, exist_ok=True)
         for suffix in ("pdf", "svg", "png"):
@@ -461,7 +469,7 @@ def fig4_frontier(metrics: dict) -> None:
     save(fig, "fig4_frontier")
 
 
-def ed_fig1_residuals(primary: pd.DataFrame) -> None:
+def supp_fig1_residuals(primary: pd.DataFrame) -> None:
     full = primary.loc[primary.method.eq("F_full_solvai")].sort_values("molecule_id")
     baseline = primary.loc[primary.method.eq("A_structure_only")].sort_values("molecule_id")
     fig, axes = plt.subplots(1, 3, figsize=(7.2, 2.5))
@@ -495,10 +503,10 @@ def ed_fig1_residuals(primary: pd.DataFrame) -> None:
     ax2.set(xlabel="Paired absolute-error change", ylabel="Molecules")
     clean(ax2)
     panel(ax2, "c")
-    save(fig, "ED_Fig1_residuals", extended=True)
+    save(fig, "Supp_Fig1_residuals", collection="supplementary")
 
 
-def ed_fig2_provenance() -> None:
+def supp_fig2_provenance() -> None:
     source = pd.DataFrame(
         [
             ("CombiSolv-QM", "structures", 3961, 2, 3959),
@@ -537,10 +545,10 @@ def ed_fig2_provenance() -> None:
         color=MID,
         fontsize=6.2,
     )
-    save(fig, "ED_Fig2_provenance", extended=True)
+    save(fig, "Supp_Fig2_provenance", collection="supplementary")
 
 
-def ed_fig3_alternatives(metrics: dict) -> None:
+def supp_fig3_alternatives(metrics: dict) -> None:
     alternatives = {
         "OpenFE diagnostics": metrics["alternative_supervision"]["openfe_diagnostics"],
         "MLFF hierarchy": metrics["alternative_supervision"]["mlff_hierarchy"],
@@ -571,10 +579,10 @@ def ed_fig3_alternatives(metrics: dict) -> None:
     ax.set_xlabel(r"Exploratory OOF MAE (kcal mol$^{-1}$)")
     ax.legend(frameon=False, fontsize=6.2)
     clean(ax, grid="x")
-    save(fig, "ED_Fig3_alternatives", extended=True)
+    save(fig, "Supp_Fig3_alternatives", collection="supplementary")
 
 
-def ed_fig4_selective() -> None:
+def diagnostic_selective_pimd() -> None:
     frontier = pd.read_csv(ROOT / "results/ablations/selective_compute_pareto.csv")
     frontier = frontier.loc[
         frontier.regime.eq("random_oof")
@@ -601,10 +609,10 @@ def ed_fig4_selective() -> None:
     ax.set_title("Simulation-assisted reference (not SolvAI)", loc="left")
     ax.legend(frameon=False, fontsize=5.7)
     clean(ax)
-    save(fig, "ED_Fig4_selective_pimd", extended=True)
+    save(fig, "selective_pimd_reference", collection="diagnostic")
 
 
-def ed_fig5_lambda(metrics: dict) -> None:
+def supp_fig4_lambda(metrics: dict) -> None:
     response = pd.DataFrame(metrics["multilambda"]["response_head_metrics"])
     response = response.loc[~response.component.eq("lig__dhdl_pol_mean")].copy()
     components = ["lig_slv__dhdl_mean", "lig_slv__dhdl_coul_mean", "lig_slv__dhdl_vdw_mean"]
@@ -640,10 +648,10 @@ def ed_fig5_lambda(metrics: dict) -> None:
     )
     clean(axes[1])
     panel(axes[1], "b")
-    save(fig, "ED_Fig5_lambda_response", extended=True)
+    save(fig, "Supp_Fig4_lambda_response", collection="supplementary")
 
 
-def ed_fig6_extrapolation(primary: pd.DataFrame, separation: pd.DataFrame) -> None:
+def supp_fig5_extrapolation(primary: pd.DataFrame, separation: pd.DataFrame) -> None:
     full = primary.loc[primary.method.eq("F_full_solvai")].copy()
     family_counts = (
         full.groupby("functional_group_family", sort=True)
@@ -707,7 +715,7 @@ def ed_fig6_extrapolation(primary: pd.DataFrame, separation: pd.DataFrame) -> No
     axes[1].set_ylabel(r"MAE (kcal mol$^{-1}$)")
     clean(axes[1])
     panel(axes[1], "b")
-    save(fig, "ED_Fig6_extrapolation", extended=True)
+    save(fig, "Supp_Fig5_extrapolation", collection="supplementary")
 
 
 def main() -> None:
@@ -736,23 +744,17 @@ def main() -> None:
     fig2_headline(metrics, primary, repeats, paired)
     fig3_transfer(metrics, separation, zero)
     fig4_frontier(metrics)
-    ed_fig1_residuals(primary)
-    ed_fig2_provenance()
-    ed_fig3_alternatives(metrics)
-    ed_fig4_selective()
-    ed_fig5_lambda(metrics)
-    ed_fig6_extrapolation(primary, separation)
+    supp_fig1_residuals(primary)
+    supp_fig2_provenance()
+    supp_fig3_alternatives(metrics)
+    diagnostic_selective_pimd()
+    supp_fig4_lambda(metrics)
+    supp_fig5_extrapolation(primary, separation)
 
-    obsolete = [
-        "ED_Fig7_statistics",
-    ]
-    for stem in obsolete:
-        for directory in (ED, PAPER_ED):
-            for suffix in ("pdf", "svg", "png"):
-                path = directory / f"{stem}.{suffix}"
-                if path.exists():
-                    path.unlink()
-    print("Rendered the hybrid Figure 1, three result figures and six Extended Data figures.")
+    print(
+        "Rendered the hybrid Figure 1, three result figures, five Supplementary "
+        "figures and one non-publication diagnostic."
+    )
 
 
 if __name__ == "__main__":

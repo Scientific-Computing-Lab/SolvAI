@@ -58,8 +58,8 @@ predicted physical descriptors help, is recorded in
 Current Nature Portfolio guidance was checked on 27 August 2026 and the manuscript
 was subsequently rebuilt for *Nature Communications*. The release uses an explicit
 abstract, numbered references, line numbering, figures integrated with the review
-manuscript, a separate Methods section, standalone Extended Data and separate
-Supplementary Information. A conservative standard LaTeX class is used because no
+manuscript, a separate Methods section and a single Supplementary Information PDF
+containing its supporting figures, tables and legends. A conservative standard LaTeX class is used because no
 journal-specific class is required for initial submission.
 
 The journal-specific declarations still requiring author confirmation are

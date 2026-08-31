@@ -150,7 +150,7 @@ risk is breadth, not internal validity.
 The Phase 2 rebuild should use the corrected 0.202 fixed estimate and 0.207 repeat
 mean, retire the historical 0.197/0.239 contrast from headline use, distinguish
 PIMD8 as comparator rather than teacher, and place complete exploratory results in
-Extended Data and Supplementary Data.
+Supplementary Information and Supplementary Data.
 
 ## Execution record
 

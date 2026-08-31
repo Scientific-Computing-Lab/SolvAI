@@ -87,8 +87,8 @@ The prospectively frozen external protocol and report are
 and [`reports/TIER_A_EXTERNAL_VALIDATION.md`](reports/TIER_A_EXTERNAL_VALIDATION.md).
 
 The compiled [manuscript](paper/main.pdf),
-[Supplementary Information](paper/supplementary/supplementary.pdf), standalone
-Extended Data and machine-readable Supplementary Data are included. See
+[Supplementary Information](paper/supplementary/supplementary.pdf), including five
+supporting figures, and machine-readable Supplementary Data are included. See
 [`repro/QUICK_REPRODUCTION.md`](repro/QUICK_REPRODUCTION.md),
 [`repro/FULL_REPRODUCTION.md`](repro/FULL_REPRODUCTION.md) and
 [`repro/DATA_PROVENANCE.md`](repro/DATA_PROVENANCE.md).
@@ -115,7 +115,7 @@ Extended Data and machine-readable Supplementary Data are included. See
 - `models/final/` — standardized-exclusion response surrogates and endpoint ensemble
 - `results/confirmatory/` — preregistered predictions, comparisons and statistics
 - `audits/confirmatory/` — identity, similarity and refit audits
-- `paper/` — Nature Communications manuscript, Extended Data and Supplementary files
+- `paper/` — Nature Communications manuscript and Supplementary files
 - `repro/` — quick/full reproduction and data provenance
 
 Citation metadata are provided in `CITATION.cff`. Code is MIT licensed; external

@@ -171,7 +171,7 @@ ConfSolv contributed 5,392,567 water conformer records; aggregation, target
 availability and standardized-identity filtering left \ConfSolvN{} structures for
 the response model. These counts are not placed on a common axis because one source
 counts calculations and the other conformer records. Complete definitions appear in
-Supplementary Table~1 and source-specific provenance in Extended Data Fig.~2.
+Supplementary Table~1 and source-specific provenance in Supplementary Fig.~2.
 
 An expanded identity audit changed the original release analysis. Exact connectivity
 had already been removed from every supervised external source, but conservative
@@ -198,7 +198,8 @@ relative to the matched endpoint (95\% paired-bootstrap interval,
 residual-corrected block is independently positive. Computation-derived, SMD and
 ConfSolv blocks are weaker in isolation, but their complete combination is positive
 (Fig.~\ref{fig:headline}c). This is evidence of complementary response information,
-not an additive decomposition of hydration free energy.
+not an additive decomposition of hydration free energy. Molecule-level prediction,
+residual and paired-change diagnostics are shown in Supplementary Fig.~1.
 
 Arbitrary additional columns do not reproduce the result. Across five independent
 permutations of the 15-column block, the fixed-partition mean is \ShuffledMAE{} kcal mol$^{-1}$,
@@ -253,6 +254,8 @@ functional-family separation are much harder, but the same comparison favours So
 respectively. Every paired 95\%
 bootstrap interval lies below zero. Response priors therefore retain value away from
 nearby endpoint labels, even where absolute endpoint accuracy is not yet sufficient.
+Molecule-level family errors and the four global separation regimes are expanded in
+Supplementary Fig.~5.
 
 We next removed all 85 ARROW experimental labels from endpoint training. Using only
 the same 1,280 external labels, the matched structure model gives
@@ -301,7 +304,7 @@ Compact ConfSolv response summaries transfer better than graph or feed-forward l
 representations trained on the same source (Fig.~\ref{fig:frontier}a). Other candidate
 signals—including additional force-field diagnostics, pair-interaction data and
 learned implicit-solvent hierarchies—were non-improving in matched campaign screens
-(Extended Data Fig.~3). These results do not rank the underlying physical methods.
+(Supplementary Fig.~3). These results do not rank the underlying physical methods.
 They test whether each representation can be inferred from structure accurately
 enough, and with sufficiently non-redundant information, to improve the endpoint.
 
@@ -312,7 +315,7 @@ component MAEs ranged from 1.27 to 5.20 kcal mol$^{-1}$
 campaign endpoint from 0.196 to 0.201 kcal mol$^{-1}$; a predicted
 classical--NQE--PIMD hierarchy reached 0.215, and their combination 0.219
 (Fig.~\ref{fig:frontier}c). Direct integration of the predicted response curve yielded
-1.51 kcal mol$^{-1}$ (Extended Data Fig.~5). No PIMD-derived coordinate is present in
+1.51 kcal mol$^{-1}$ (Supplementary Fig.~4). No PIMD-derived coordinate is present in
 the final model.
 
 The experiments suggest a three-part transfer condition. A response must be relevant
@@ -569,38 +572,5 @@ calculations.
 
 \bibliographystyle{unsrtnat}
 \bibliography{references}
-
-\clearpage
-\section*{Extended Data figure legends}
-
-\paragraph{Extended Data Fig. 1 | Molecule-level prediction and residuals.}
-\textbf{a}, Confirmatory SolvAI OOF prediction against experiment. \textbf{b}, Signed
-residual against experimental hydration free energy. \textbf{c}, Distribution of the
-paired absolute-error change relative to the matched structure-only endpoint.
-
-\paragraph{Extended Data Fig. 2 | Source-specific provenance and standardized
-identity exclusion.} Counts are shown in their native source units and normalized
-only within source. The audit removed standardized benchmark equivalents before the
-confirmatory teacher refits; no endpoint experimental label was removed.
-
-\paragraph{Extended Data Fig. 3 | Alternative physical-supervision routes.}
-Exploratory fixed screens of additional diagnostic, latent and hierarchy features.
-The dashed line is the matched campaign response base for those screens. These
-experiments were not used to select the confirmatory controls.
-
-\paragraph{Extended Data Fig. 4 | Simulation-assisted reference.}
-Accuracy--compute curves for selective PIMD policies from the discontinued
-simulation-assisted branch. They are reported for context and are not part of
-SolvAI, whose deployed path never routes to simulation.
-
-\paragraph{Extended Data Fig. 5 | Multi-$\lambda$ response experiment.}
-\textbf{a}, OOF response-head error at three coupling states. \textbf{b}, Matched
-endpoint consequences and the separately scaled error obtained by direct integration
-of the predicted curve.
-
-\paragraph{Extended Data Fig. 6 | Molecular and chemical-separation errors.}
-\textbf{a}, Individual fixed-partition SolvAI errors grouped by diagnostic chemical
-family; ticks show family means and labels give sample sizes. \textbf{b}, Matched
-structure-only and SolvAI errors under four global separation regimes.
 
 \end{document}
