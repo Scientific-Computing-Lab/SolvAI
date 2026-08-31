@@ -1,0 +1,8 @@
+{
+  "figure": "SolvAI Figure 1 — D/E model-language cleanup",
+  "pipeline": "PaperBanana Planner → component ImageGen visualizer → deterministic SVG compositor → Critic",
+  "main_model_name": "built-in ImageGen component assets with deterministic Matplotlib SVG composition",
+  "planner_result": "Replace the remaining cable/network model metaphors in panels D and E with compact wedge-shaped ensemble modules, while preserving the trained-model semantics and the simulation-free left-to-right inference path.",
+  "critic_suggestions": "PASS. Panel D now depicts the three endpoint ExtraTrees pipelines as three explicit tree wedges converging into one prediction hub. Panel E uses a six-lane frozen-surrogate wedge with one inlet and one outlet, followed by the same three-wedge endpoint ensemble. The response-prior and structure-feature branches meet at one native-SVG junction before a single connector enters the endpoint ensemble; there are no split cable ends or competing L/M-shaped arrowheads. Locks are restrained native-SVG cues and are not fused into the generated model imagery.",
+  "revised_description": "Retain the wedge vocabulary in D/E. Do not restore the earlier flowing strands, translucent network plates, exposed multi-cable ports, or separate arrowheads entering different parts of the frozen endpoint model. Keep all labels, merge nodes, locks and arrows editable as vector geometry on white."
+}

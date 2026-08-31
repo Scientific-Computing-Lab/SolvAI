@@ -1,0 +1,8 @@
+{
+  "figure": "SolvAI Figure 1 — learned forest endpoint and white Panel A enclosure",
+  "pipeline": "PaperBanana Planner → component ImageGen visualizer → deterministic SVG compositor → Critic",
+  "main_model_name": "built-in ImageGen learned-forest component with deterministic Matplotlib SVG composition",
+  "planner_result": "Replace the simplistic one-tree-per-wedge endpoint glyph with a richer ExtraTrees ensemble that visibly encodes many varied-depth learned trees and their aggregated votes. Remove the pale-gray fill behind the repeated-sampling enclosure in panel A while retaining its outline.",
+  "critic_suggestions": "PASS. The endpoint asset now contains fifteen varied decision trees across three ensemble members, with decision nodes, leaf nodes and thin vote lines converging to one prediction. It reads as a learned forest model rather than three decorative tree icons. Panel A's sampling enclosure uses a pure-white fill matching the page and retains only a restrained light-gray outline; the embedded sampling frames already had a white background and therefore required no raster edit.",
+  "revised_description": "Retain the learned-forest v3 asset, the flat light palette and the single output hub. Keep Panel A's enclosure fill pure white. Do not restore one simplistic tree per wedge or any gray container fill."
+}

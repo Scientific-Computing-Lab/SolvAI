@@ -291,10 +291,10 @@ L 217.460098 133.24035
 " style="fill: none; stroke: #000000; stroke-width: 0.65; stroke-linejoin: miter; stroke-linecap: square"/>
    </g>
    <g id="text_14">
-    <text style="font-size: 6.7px; font-family: 'DejaVu Sans'; text-anchor: middle" x="56.326408" y="27.405116" transform="rotate(-0 56.326408 27.405116)">0.303</text>
+    <text style="font-size: 6.7px; font-family: 'DejaVu Sans'; text-anchor: middle" x="61.441763" y="27.405116" transform="rotate(-0 61.441763 27.405116)">0.303</text>
    </g>
    <g id="text_15">
-    <text style="font-size: 6.7px; font-family: 'DejaVu Sans'; text-anchor: middle" x="107.47996" y="102.345795" transform="rotate(-0 107.47996 102.345795)">0.212</text>
+    <text style="font-size: 6.7px; font-family: 'DejaVu Sans'; text-anchor: middle" x="112.595315" y="102.345795" transform="rotate(-0 112.595315 102.345795)">0.212</text>
    </g>
    <g id="text_16">
     <text style="font-size: 6.7px; font-family: 'DejaVu Sans'; text-anchor: middle" x="158.633513" y="106.631713" transform="rotate(-0 158.633513 106.631713)">0.207</text>
@@ -303,7 +303,7 @@ L 217.460098 133.24035
     <text style="font-weight: 700; font-size: 6.7px; font-family: 'DejaVu Sans'; text-anchor: middle" x="209.787065" y="110.13873" transform="rotate(-0 209.787065 110.13873)">0.202</text>
    </g>
    <g id="text_18">
-    <text style="font-size: 6.3px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #b43b75" x="222.575453" y="111.282269" transform="rotate(-0 222.575453 111.282269)">PIMD8  0.205</text>
+    <text style="font-size: 6.3px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #b43b75" x="209.787065" y="127.523843" transform="rotate(-0 209.787065 127.523843)">PIMD8</text>
    </g>
    <g id="text_19">
     <text style="font-weight: 700; font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start" x="26.708501" y="13.511611" transform="rotate(-0 26.708501 13.511611)">a</text>

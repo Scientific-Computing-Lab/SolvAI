@@ -7,7 +7,12 @@ date-released: 2026-08-28
 authors:
   - family-names: Oren
     given-names: Gal
+    affiliation: Stanford University
+  - family-names: Fain
+    given-names: Boris
+    affiliation: Freecurve Labs
   - family-names: Levitt
     given-names: Michael
+    affiliation: Stanford University
 repository-code: "https://github.com/Scientific-Computing-Lab/SolvAI"
 license: MIT

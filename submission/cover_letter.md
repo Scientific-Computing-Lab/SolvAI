@@ -49,4 +49,4 @@ and a complete reproducibility package.
 
 Sincerely,
 
-Gal Oren and Michael Levitt
+Gal Oren, Boris Fain and Michael Levitt

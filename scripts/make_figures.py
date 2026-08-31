@@ -119,9 +119,10 @@ def fig2_headline(
     ax0.scatter(
         x, y, s=48, color=[MID, LEARNED, LEARNED, DEPLOY], edgecolor="white", lw=0.6, zorder=2
     )
+    label_x_offsets = {0: 0.10, 1: 0.10}
     for position, value in zip(x, y, strict=True):
         ax0.text(
-            position,
+            position + label_x_offsets.get(int(position), 0.0),
             value + 0.006,
             f"{value:.3f}",
             ha="center",
@@ -130,7 +131,15 @@ def fig2_headline(
         )
     pimd = metrics["methods"]["arrow_pimd8"]["mae_kcal_mol"]
     ax0.axhline(pimd, color=PIMD, ls=(0, (3, 2)), lw=1)
-    ax0.text(3.25, pimd + 0.002, "PIMD8  0.205", ha="right", color=PIMD, fontsize=6.3)
+    ax0.text(
+        3.0,
+        pimd - 0.012,
+        "PIMD8",
+        ha="center",
+        va="top",
+        color=PIMD,
+        fontsize=6.3,
+    )
     ax0.set_xticks(x, [label for label, _ in progression])
     ax0.set_ylabel(r"OOF MAE (kcal mol$^{-1}$)")
     ax0.set_ylim(0.18, 0.325)
@@ -269,7 +278,7 @@ def fig3_transfer(metrics: dict, separation: pd.DataFrame, zero: pd.DataFrame) -
     ax0.invert_yaxis()
     ax0.set_xlabel(r"MAE (kcal mol$^{-1}$)")
     ax0.set_title("Globally separated chemistry", loc="left")
-    ax0.legend(frameon=False, fontsize=6.1, loc="lower right")
+    ax0.legend(frameon=False, fontsize=6.1, loc="upper right")
     clean(ax0, grid="x")
     panel(ax0, "a")
 
@@ -409,7 +418,7 @@ def fig4_frontier(metrics: dict) -> None:
     ax1.set_yticks(range(3), pivot.index)
     ax1.set_title("Response error", loc="left", fontsize=7.4)
     colorbar = fig.colorbar(image, ax=ax1, fraction=0.046, pad=0.03)
-    colorbar.ax.set_title("MAE", fontsize=5.8, pad=2)
+    colorbar.ax.set_title("MAE", fontsize=5.8, pad=2, x=0.90)
     colorbar.ax.tick_params(labelsize=5.8)
     panel(ax1, "b")
 
@@ -718,6 +727,12 @@ def main() -> None:
         [sys.executable, str(ROOT / "figures/penpot/install_exports.py")],
         check=True,
     )
+    # Preserve the upstream Penpot variants and their frozen source package, but
+    # make the reviewed hybrid SVG composition the paper-facing Figure 1.
+    subprocess.run(
+        [sys.executable, str(ROOT / "scripts/make_figure1_overview.py")],
+        check=True,
+    )
     fig2_headline(metrics, primary, repeats, paired)
     fig3_transfer(metrics, separation, zero)
     fig4_frontier(metrics)
@@ -737,7 +752,7 @@ def main() -> None:
                 path = directory / f"{stem}.{suffix}"
                 if path.exists():
                     path.unlink()
-    print("Rendered four main and six Extended Data figures from frozen results.")
+    print("Rendered the hybrid Figure 1, three result figures and six Extended Data figures.")
 
 
 if __name__ == "__main__":

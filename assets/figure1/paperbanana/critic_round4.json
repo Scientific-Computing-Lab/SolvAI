@@ -1,0 +1,8 @@
+{
+  "figure": "SolvAI Figure 1 — revised Panel C",
+  "pipeline": "PaperBanana Planner → component ImageGen visualizer → deterministic SVG compositor → Critic",
+  "main_model_name": "gpt-image-1.5 component assets with deterministic Matplotlib SVG composition",
+  "planner_result": "Authoritative Panel C revision: one neutral organic query molecule fans out to six explicitly typed frozen surrogate families; their family-owned outputs concatenate as 1 | 5 | 1 | 1 | 1 | 6 = 15.",
+  "critic_suggestions": "PASS with the author correction applied. The query molecule appears once and all six arrows originate from its shared fan-out trunk. CombiSolv-QM and SMD(water) are labeled CHEMELEON/D-MPNN; Abraham, OpenFF and GBn2 are labeled ExtraTrees; ConfSolv is labeled LightGBM. Each row terminates in only its own countable group, and a separate collector explicitly concatenates the groups into a single 15-cell vector. The inference wording correctly distinguishes per-molecule frozen-surrogate prediction from the source calculations that are not rerun. All labels, arrows, counts and response cells remain editable SVG on a pure-white background.",
+  "revised_description": "Retain the rendered topology without reverting to varied molecules, three combined rows, a generic hourglass/network surrogate, or one 15-vector per family. Preserve the exact six-family ownership 1 + 5 + 1 + 1 + 1 + 6 = 15 and the explicit surrogate-model labels. Generated imagery must remain text-free and subordinate to deterministic SVG semantics."
+}

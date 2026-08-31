@@ -285,19 +285,19 @@ L 206.428748 127.89875
    <g id="legend_1">
     <g id="PathCollection_7">
      <g>
-      <use xlink:href="#m3f394d2092" x="146.741201" y="110.191594" style="fill: #68737d; stroke: #68737d"/>
+      <use xlink:href="#m3f394d2092" x="146.741201" y="23.122547" style="fill: #68737d; stroke: #68737d"/>
      </g>
     </g>
     <g id="text_13">
-     <text style="font-size: 6.1px; font-family: 'DejaVu Sans'; text-anchor: start" x="157.721201" y="111.792844" transform="rotate(-0 157.721201 111.792844)">Structure only</text>
+     <text style="font-size: 6.1px; font-family: 'DejaVu Sans'; text-anchor: start" x="157.721201" y="24.723797" transform="rotate(-0 157.721201 24.723797)">Structure only</text>
     </g>
     <g id="PathCollection_8">
      <g>
-      <use xlink:href="#m399a5e92e7" x="146.741201" y="119.34207" style="fill: #14927d; stroke: #14927d"/>
+      <use xlink:href="#m399a5e92e7" x="146.741201" y="32.273023" style="fill: #14927d; stroke: #14927d"/>
      </g>
     </g>
     <g id="text_14">
-     <text style="font-size: 6.1px; font-family: 'DejaVu Sans'; text-anchor: start" x="157.721201" y="120.94332" transform="rotate(-0 157.721201 120.94332)">SolvAI</text>
+     <text style="font-size: 6.1px; font-family: 'DejaVu Sans'; text-anchor: start" x="157.721201" y="33.874273" transform="rotate(-0 157.721201 33.874273)">SolvAI</text>
     </g>
    </g>
   </g>

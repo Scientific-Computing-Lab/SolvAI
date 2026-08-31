@@ -18,9 +18,19 @@
 \captionsetup{font=small,labelfont=bf}
 \setlength{\parindent}{1.2em}
 \setlength{\parskip}{0pt}
+% Full-page figures begin at the top margin rather than being vertically
+% centred on a float page.
+\makeatletter
+\setlength{\@fptop}{0pt}
+\setlength{\@fpbot}{0pt plus 1fil}
+\makeatother
 
 \title{Structure-predicted solvent responses enable simulation-free hydration free-energy prediction}
-\author{Gal Oren and Michael Levitt}
+\author{%
+Gal Oren$^{1}$, Boris Fain$^{2}$ and Michael Levitt$^{1}$\\[0.4em]
+\small $^{1}$Stanford University, Stanford, California, USA\\
+\small $^{2}$Freecurve Labs
+}
 \date{}
 
 \begin{document}
@@ -124,7 +134,7 @@ experimental labels are removed. Together these controls test whether predicted
 physical response contributes transferable information beyond ordinary structure
 regression.
 
-\begin{figure}[t]
+\begin{figure}[p]
   \centering
   \includegraphics[width=\textwidth]{fig1_concept.pdf}
   \caption{\textbf{Physical response becomes reusable molecular supervision.}
@@ -132,7 +142,9 @@ regression.
   into water, including continuum response, conformational reweighting and alchemical
   interaction response. In stage 1, structure-to-response surrogates learn 15 compact
   coordinates. In stage 2, their predictions and molecular descriptors are fitted to
-  experimental hydration free energies. Deployment repeats only the learned mappings:
+  experimental hydration free energies: the 15 priors, 2,048 Morgan bits and 217
+  RDKit descriptors are concatenated once into a 2,280-dimensional representation,
+  which is evaluated by three ExtraTrees ensembles and averaged. Deployment repeats only the learned mappings:
   a SMILES string produces a hydration free energy without MD, PIMD or a probe
   calculation. ARROW/PIMD8 is shown separately as an accuracy reference and is not a
   retained teacher.}

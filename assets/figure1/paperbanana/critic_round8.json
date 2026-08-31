@@ -1,0 +1,21 @@
+{
+  "round": 8,
+  "scope": ["panel D", "panel E"],
+  "scientific_correction": {
+    "inputs": [
+      "15 response priors",
+      "2048 Morgan bits",
+      "217 RDKit descriptors"
+    ],
+    "concatenation": "one 2280-dimensional molecular representation",
+    "endpoint_models": "three independent ExtraTrees ensembles; 360 trees each; seeds 11, 29, and 47",
+    "prediction": "mean of the three endpoint predictions",
+    "forbidden_reading": "one feature block feeding one dedicated forest"
+  },
+  "visual_decision": {
+    "generated_asset": "endpoint_extratrees_triplet_azure_v1.png",
+    "asset_contract": "one common input node branches to three parallel forest learners and reconverges at one mean node; pure white background; no text",
+    "svg_contract": "concatenation, feature counts, model counts, seeds, locks, supervision arrows, and output labels remain editable SVG"
+  },
+  "status": "accepted for deterministic composition"
+}

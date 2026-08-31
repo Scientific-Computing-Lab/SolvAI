@@ -1,0 +1,8 @@
+{
+  "figure": "SolvAI Figure 1 — flat D/E wedges and connector repair",
+  "pipeline": "PaperBanana Planner → component ImageGen visualizer → deterministic SVG compositor → Critic",
+  "main_model_name": "built-in ImageGen flat component assets with deterministic Matplotlib SVG composition",
+  "planner_result": "Keep the wedge topology but remove dark machine-like styling and three-dimensional depth. Repair both ambiguous connectors: experimental supervision in D and the structure-feature merge in E.",
+  "critic_suggestions": "PASS. Both model assets now use white or near-white interiors, thin navy/teal outlines and flat two-dimensional tree or lane motifs. There are no dark bodies, perspective blocks, bevels or shadows. In D, the orange experimental-label arrow rises vertically from the label strip and terminates at the center of the complete three-model endpoint ensemble. In E, both response and structure-feature arrows terminate at a visible plus junction; a separate green arrow leaves that node and enters the endpoint model. The black connector no longer terminates on another arrow or in empty space.",
+  "revised_description": "Retain the flat light v2 assets and explicit connector endpoints. Do not restore the dark 3D wedge drafts, diagonal D supervision arrow, invisible E junction or headless black connector."
+}
