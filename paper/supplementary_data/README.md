@@ -14,6 +14,10 @@ frozen release artifacts.
   `Supplementary_Data_4_endpoint_sources.csv` and
   `Supplementary_Data_4_teacher_manifests.xlsx`: teacher and endpoint
   provenance, counts, exclusion rules, licences and hashes.
+- `Supplementary_Data_5_tier_a_predictions.csv`,
+  `Supplementary_Data_5_tier_a_qualification.csv` and
+  `Supplementary_Data_5_tier_a_external_validation.xlsx`: prospective external
+  cohort eligibility, teacher-source exposure and molecule-level matched predictions.
 
 CSV is the archival plain-text format; XLSX mirrors the corresponding tables
 for journal submission and interactive inspection.

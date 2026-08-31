@@ -19,7 +19,7 @@ from rdkit.Chem.MolStandardize import rdMolStandardize
 
 RELEASE_ROOT = Path(__file__).resolve().parents[1]
 WORKSPACE_ROOT = RELEASE_ROOT.parents[1]
-ASP_ROOT = Path("/home/galoren/ASP")
+ASP_ROOT = WORKSPACE_ROOT.parent / "ASP"
 SOURCE_COHORT = ASP_ROOT / "data/processed/tier_a_frozen.csv"
 SOURCE_IDENTITIES = (
     WORKSPACE_ROOT
@@ -57,6 +57,20 @@ def sha256(path: Path) -> str:
         for chunk in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def portable_path(path: Path) -> str:
+    """Describe an input without embedding a release-host home directory."""
+    for prefix, root in (
+        ("repository", RELEASE_ROOT),
+        ("workspace", WORKSPACE_ROOT),
+        ("external/ASP", ASP_ROOT),
+    ):
+        try:
+            return f"{prefix}/{path.relative_to(root)}"
+        except ValueError:
+            continue
+    return path.name
 
 
 def connectivity(key: str) -> str:
@@ -319,11 +333,11 @@ def main() -> None:
         "source_exposure": source_exposure,
         "rdkit_version": rdBase.rdkitVersion,
         "inputs": {
-            "tier_a_source": str(SOURCE_COHORT),
+            "tier_a_source": portable_path(SOURCE_COHORT),
             "tier_a_source_sha256": sha256(SOURCE_COHORT),
-            "source_identity_index": str(SOURCE_IDENTITIES),
+            "source_identity_index": portable_path(SOURCE_IDENTITIES),
             "source_identity_index_sha256": sha256(SOURCE_IDENTITIES),
-            "benchmark_identity_index": str(BENCHMARK_IDENTITIES),
+            "benchmark_identity_index": portable_path(BENCHMARK_IDENTITIES),
             "benchmark_identity_index_sha256": sha256(BENCHMARK_IDENTITIES),
         },
         "outputs_sha256": {name: sha256(OUT / name) for name in files},

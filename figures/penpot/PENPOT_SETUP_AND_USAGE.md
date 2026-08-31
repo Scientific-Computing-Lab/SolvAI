@@ -1,0 +1,134 @@
+# Penpot setup and Figure 1 source
+
+The editable source of SolvAI Figure 1 is the native Penpot file
+[`SolvAI_Figure1.penpot`](SolvAI_Figure1.penpot). The running self-hosted instance
+contains the same file as **SolvAI Figure 1 — response distillation** in the
+**SolvAI Figure 1** project.
+
+## Access the running instance
+
+Penpot is deliberately bound to the server loopback interface. From a workstation:
+
+```bash
+ssh -L 9001:127.0.0.1:9001 USER@SERVER
+```
+
+Open `http://localhost:9001`, then use the credentials stored locally in
+`infra/penpot/credentials.env`. The credentials and MCP access key are ignored by
+Git and must not be copied into issues, logs or publications.
+
+The current design URL is:
+
+```text
+http://localhost:9001/#/workspace?team-id=ecbaaf6b-3d61-80cb-8008-8f5a0136d0b6&file-id=ecbaaf6b-3d61-80cb-8008-8f5daf5a7d27&page-id=cd43df32-78a6-8014-8008-8f618dfd272e
+```
+
+## Deployment
+
+The reproducible stack lives in `infra/penpot/` and pins Penpot 2.17.2:
+
+```bash
+cd infra/penpot
+./bootstrap.sh
+./create_profile.sh
+```
+
+It runs the official Penpot frontend, backend, exporter and MCP images together
+with PostgreSQL 15 and Valkey 8.1. State survives container restarts in the Docker
+volumes `solvai_penpot_postgres` and `solvai_penpot_assets`. The browser service is
+available only at `127.0.0.1:9001`; remote access therefore requires the SSH tunnel
+above. `docker compose --env-file .env up -d` restarts an existing installation.
+
+The official Penpot MCP endpoint is enabled in remote mode and reverse-proxied by
+the frontend. Its generated user token is stored only in the untracked
+`infra/penpot/mcp.env`. The local Codex MCP entry is named `penpot`. A live Penpot
+workspace tab must remain open while the plugin API is used.
+
+After regenerating the MCP access key, reopen the design file and click the
+**MCP** toolbar button so that it reports **MCP connected**. For unattended local
+operation, the same browser-side bridge can be kept open without exposing secrets:
+
+```bash
+uv run --with selenium python infra/penpot/keep_mcp_connected.py
+```
+
+The helper synchronizes the ignored local MCP URL and the local Codex `penpot`
+registration with the active browser session. It prints only a short SHA-256
+fingerprint, never the access credential itself.
+
+## Native document organization
+
+The file contains four pages:
+
+1. **Design system + assets** — shared semantic palette, type scale and an RDKit
+   structure reference.
+2. **Variant A — minimal** — maximum whitespace and the fastest conceptual read.
+3. **Variant B — molecular** — stronger solvent/conformer emphasis, including the
+   real lambda diagnostic and two CC0 Bioicons interaction glyphs; this variant is
+   intentionally more physically dense.
+4. **Variant C — balanced** — selected release figure. It balances real molecular
+   assets, a connected taxonomy of all 15 named scalar responses, the experimentally
+   supervised endpoint and an uncluttered deployment path.
+
+All labels, rules, taxonomy nodes, arrows and architecture objects are editable
+native Penpot layers. RDKit, Packmol-derived, conformer and data-plot assets are
+imported as editable SVG groups rather than flattened screenshots. The local color
+library uses semantic orange (source response information), blue (learned response
+surrogates), teal (endpoint/deployment), charcoal (structure) and magenta (the
+PIMD8 comparator only).
+
+The native build specification is `fig1_penpot_build.js`. It is retained as an
+auditable description of the MCP-created layers; the `.penpot` document is the
+editable design source of truth. Final optical adjustments were performed natively
+in Penpot after the initial MCP construction. The large hydration-free-energy label
+uses two native text objects to preserve an editable typographic subscript; the
+Matplotlib mathtext reference is retained in `fig1_assets/delta_g_hyd_mathtext.svg`.
+
+## Exports
+
+Publication exports are in `figures/penpot/exports/`. SVG files are made portable
+by `normalize_exports.py`, which embeds the Inter font and sets the physical canvas
+to 180 mm × 112 mm without changing geometry. It then derives the vector PDF and a
+3,600 × 2,240 px inspection PNG:
+
+```bash
+uv run python figures/penpot/normalize_exports.py
+```
+
+The selected files are also copied to:
+
+```text
+figures/main/fig1_concept.svg
+figures/main/fig1_concept.pdf
+figures/main/fig1_concept.png
+paper/figures/main/fig1_concept.*
+```
+
+## Scientific assets and licensing
+
+`fig1_assets/` contains the exact imported source material. All chemical drawings,
+conformers, solvent coordinates and plots are deterministic and traceable to the
+repository. The external asset audit and licenses are recorded in
+[`fig1_assets/EXTERNAL_ASSET_MANIFEST.json`](fig1_assets/EXTERNAL_ASSET_MANIFEST.json).
+SciDraw and Bioicons were searched before composition. Two Bioicons CC0 interaction
+assets appear only in variant B. The SciDraw water assets were not adopted because
+the Packmol-derived solvent geometry provided a more faithful scientific depiction.
+
+## Scientific guardrails
+
+- The selected figure shows exactly 15 retained response coordinates.
+- The Abraham axes are empirical physicochemical coordinates.
+- The corrected OpenFF and GBn2 quantities include learned experimental residuals.
+- PIMD2/lambda appears only in variant B as explored, non-retained supervision.
+- PIMD8 is an accuracy reference and has no arrow into the trained or deployed model.
+- At deployment, the frozen structure-to-response surrogates do run; the original
+  physical calculations, MD, PIMD and probe calculations do not.
+
+## Variant choice
+
+Variant C was selected after inspection at 180-mm journal width. Variant A was
+clear but underplayed the chemistry. Variant B made the physical inputs vivid but
+gave a non-retained lambda diagnostic too much visual weight. Variant C made the
+training/deployment contrast immediate while retaining molecular, solvent and
+conformer evidence and displaying the 15 outputs as named coordinates rather than
+an opaque embedding.

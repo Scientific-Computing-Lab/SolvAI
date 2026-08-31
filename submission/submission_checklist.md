@@ -6,6 +6,8 @@
 - [x] Strict identity audit reports zero retained benchmark overlap.
 - [x] SMILES-only inference and artifact hashes are tested.
 - [x] Repeated, global family/scaffold/cluster/similarity and zero-ARROW validations are reported.
+- [x] Tier-A eligibility and identity/source exposure were frozen before evaluation; all qualified molecule-level predictions are released.
+- [x] The ARROW weight-one sensitivity was frozen before fitting and reported irrespective of outcome.
 - [x] Data and code availability statements are drafted.
 - [x] Figures have vector PDF/SVG versions and inspected PNG previews.
 - [x] Extended Data are separate display files and cited in the main text.

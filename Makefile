@@ -14,6 +14,7 @@ verify: metrics
 	uv run python scripts/verify_artifact.py
 	uv run python scripts/check_claims.py
 	uv run python scripts/security_scan.py
+	uv run python scripts/build_release_manifest.py
 	uv run python scripts/verify_release_manifest.py
 
 tables: metrics

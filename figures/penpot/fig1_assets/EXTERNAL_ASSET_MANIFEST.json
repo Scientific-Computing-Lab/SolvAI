@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "audit_date": "2026-08-30",
+  "policy": "External scientific illustration libraries were searched before creating explanatory artwork. Assets were adopted only when their scientific meaning and license were unambiguous; chemistry and quantitative content were generated from molecular structures or frozen SolvAI data.",
+  "adopted": [
+    {
+      "name": "Coulomb interaction",
+      "collection": "Bioicons",
+      "author": "Simon Duerr",
+      "source_url": "https://github.com/duerrsimon/bioicons/blob/d29e766ea7580b8063c4f47b29e872db40a4d979/static/icons/cc-0/Molecular_modelling/Simon_D%C3%BCrr/coulomb-interaction.svg",
+      "license": "CC0-1.0",
+      "local_path": "figures/penpot/fig1_assets/external/bioicons/coulomb-interaction.svg",
+      "sha256": "9c95c69fa513ae34e6bc41d2101ef223d48564dfdb84a7556a682a2faa72434b",
+      "modified": false,
+      "figure_role": "Explanatory non-bonded electrostatic-interaction glyph in the molecular-science-forward comparison variant only; it is not a retained SolvAI coordinate."
+    },
+    {
+      "name": "van der Waals interaction",
+      "collection": "Bioicons",
+      "author": "Emmett Leddin",
+      "source_url": "https://github.com/duerrsimon/bioicons/blob/d29e766ea7580b8063c4f47b29e872db40a4d979/static/icons/cc-0/Molecular_modelling/Emmett_Leddin/van-der-waals.svg",
+      "license": "CC0-1.0",
+      "local_path": "figures/penpot/fig1_assets/external/bioicons/van-der-waals.svg",
+      "sha256": "41f2bf5aaba8c2ddb3cc2b621c4310140c7d153b9d2263fafc32392b2fe9fca8",
+      "modified": false,
+      "figure_role": "Explanatory non-bonded interaction glyph in the molecular-science-forward comparison variant only; it is not a retained SolvAI coordinate."
+    }
+  ],
+  "reviewed_not_adopted": [
+    {
+      "name": "Water",
+      "collection": "SciDraw",
+      "author": "John Chilton",
+      "source_url": "https://scidraw.io/drawing/water-650093e3",
+      "doi": "10.5281/zenodo.3926436",
+      "license": "CC-BY-4.0",
+      "reason": "The cartoon droplet did not convey a molecular solvent environment as accurately as the Packmol-derived water-shell asset."
+    },
+    {
+      "name": "Reward Water Drop",
+      "collection": "SciDraw",
+      "author": "Akshay Markanday",
+      "source_url": "https://scidraw.io/drawing/reward-water-drop-f0c3f63d",
+      "doi": "10.5281/zenodo.3925935",
+      "license": "CC-BY-4.0",
+      "reason": "Decorative reward symbolism was unrelated to solvent-response physics."
+    },
+    {
+      "collection": "Bioicons",
+      "search_scope": "Chemistry, Molecular modelling, Machine Learning and water-related assets at repository commit d29e766ea7580b8063c4f47b29e872db40a4d979",
+      "source_url": "https://github.com/duerrsimon/bioicons/tree/d29e766ea7580b8063c4f47b29e872db40a4d979/static/icons",
+      "reason": "Generic beakers, neural-network symbols and SMILES illustrations were less precise than the RDKit structures, Packmol configuration and native architecture used in the selected balanced variant."
+    }
+  ],
+  "deterministic_project_assets": [
+    {
+      "path": "figures/penpot/fig1_assets/n_methylacetamide_rdkit.svg",
+      "generator": "RDKit 2026.03.5",
+      "scientific_basis": "N-methylacetamide, SMILES CNC(C)=O"
+    },
+    {
+      "path": "figures/penpot/fig1_assets/continuum_cavity_field.svg",
+      "generator": "RDKit coordinates and Matplotlib",
+      "scientific_basis": "van der Waals cavity contours around the RDKit structure; explanatory continuum-response schematic"
+    },
+    {
+      "path": "figures/penpot/fig1_assets/nma_water_shell_vector.svg",
+      "generator": "Open Babel coordinates, Packmol 20.010 and deterministic vector projection",
+      "scientific_basis": "N-methylacetamide and the 18 nearest waters from a fixed 72-water packed configuration; illustrative, not equilibrated"
+    },
+    {
+      "path": "figures/penpot/fig1_assets/dimethoxyethane_conformers.svg",
+      "generator": "RDKit ETKDGv3 and MMFF",
+      "scientific_basis": "Three aligned conformers of 1,2-dimethoxyethane generated with seed 0x5A17"
+    },
+    {
+      "path": "figures/penpot/fig1_assets/nmethylacetamide_lambda_response.svg",
+      "generator": "Matplotlib 3.11.1",
+      "scientific_basis": "Frozen N-methylacetamide PIMD2 observations at lambda 0.1, 0.5 and 0.9; explored supervision, not retained"
+    },
+    {
+      "path": "figures/penpot/fig1_assets/delta_g_hyd_mathtext.svg",
+      "generator": "Matplotlib 3.11.1 mathtext",
+      "sha256": "050c9b0c1509551df8c175f80d8996eae30c78e82ff3a79619f94fb6e6ad5be6",
+      "scientific_basis": "Vector typesetting reference for the hydration free-energy symbol; the selected Penpot composition recreates the same subscript typographically with native editable text"
+    }
+  ]
+}

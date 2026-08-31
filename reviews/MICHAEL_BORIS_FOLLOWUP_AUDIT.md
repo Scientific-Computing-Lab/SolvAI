@@ -42,6 +42,31 @@ coverage, not proof of unrestricted validity: the tested domain is neutral,
 predominantly small organic hydration chemistry, not ions, salts, metals,
 biomacromolecules or chemically remote structures.
 
+### Does SolvAI currently claim applicability to charged or ionic solutes?
+
+**No.** The paper validates hydration of **neutral organic solutes**: all 85 aqueous
+ARROW benchmark entries have formal charge zero, and the endpoint is trained with
+1,280 benchmark-disjoint neutral experimental hydration labels plus neutral ARROW
+outer-training rows. The manuscript and model card explicitly exclude validation for
+ions, salts, metals, proteins and broad chemical extrapolation. A parseable charged
+SMILES may still produce a numerical output, but that is software behaviour—not an
+evidence-backed prediction claim.
+
+Accordingly, Li\(^+\), Cl\(^-\), glutamate\(^{2-}\), charged or zwitterionic
+aspartate, guanidinium and the usual aqueous zwitterionic form of GABA are
+**out-of-scope prospective stress tests**. Dipeptides are likewise outside the
+validated domain because of their peptide-like size, flexibility and commonly
+zwitterionic microstates; even a neutral or capped representation would test transfer
+limits rather than established applicability. Neutral, single-component substituted
+aromatics are closer to the current domain and can be useful challenging
+generalization tests, but an unseen example remains prospective and the frozen audit
+already shows that some substituted/polycyclic aromatics are difficult. None of
+these tests should be folded into the present neutral-solute accuracy claim or used
+post hoc as a favourable demonstration. The controlling evidence is the
+[manuscript Methods](https://github.com/Scientific-Computing-Lab/SolvAI/blob/main/paper/main.tex),
+[Supplementary Methods](https://github.com/Scientific-Computing-Lab/SolvAI/blob/main/paper/supplementary/supplementary.tex),
+and [model card](https://github.com/Scientific-Computing-Lab/SolvAI/blob/main/models/final/MODEL_CARD.md).
+
 ### Does the advantage survive genuinely different chemistry?
 
 **Yes as a relative advantage, but not at the same absolute accuracy.** When chemical

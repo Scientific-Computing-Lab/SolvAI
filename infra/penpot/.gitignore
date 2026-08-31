@@ -1,0 +1,5 @@
+.env
+credentials.env
+backups/
+
+mcp.env

@@ -530,6 +530,85 @@
       "mae_kcal_mol": 0.09532786496913606
     }
   ],
+  "external_validation": {
+    "endpoint_disjoint": {
+      "n": 220,
+      "matched_structure_only": {
+        "n": 220,
+        "mae_kcal_mol": 1.531647178872018,
+        "rmse_kcal_mol": 2.309736437003002,
+        "median_absolute_error_kcal_mol": 0.9618237741272395
+      },
+      "full_solvai": {
+        "n": 220,
+        "mae_kcal_mol": 1.152554228782572,
+        "rmse_kcal_mol": 1.577229348428527,
+        "median_absolute_error_kcal_mol": 0.8450757326262157
+      },
+      "paired_difference": {
+        "replicates": 100000,
+        "seed": 20260828,
+        "mean": -0.37909295008944593,
+        "ci95": [
+          -0.5169233978286898,
+          -0.24816572831992972
+        ],
+        "probability_below_zero": 1.0
+      },
+      "fraction_molecules_improved": 0.6090909090909091
+    },
+    "strict_response_source_disjoint": {
+      "n": 97,
+      "matched_structure_only": {
+        "n": 97,
+        "mae_kcal_mol": 2.1383039557875114,
+        "rmse_kcal_mol": 3.080513921077273,
+        "median_absolute_error_kcal_mol": 1.1023677121042232
+      },
+      "full_solvai": {
+        "n": 97,
+        "mae_kcal_mol": 1.5355951977058884,
+        "rmse_kcal_mol": 1.987916522845103,
+        "median_absolute_error_kcal_mol": 1.243918559909646
+      },
+      "paired_difference": {
+        "replicates": 100000,
+        "seed": 20260828,
+        "mean": -0.6027087580816224,
+        "ci95": [
+          -0.8627666685337494,
+          -0.3585758619067549
+        ],
+        "probability_below_zero": 1.0
+      },
+      "fraction_molecules_improved": 0.5876288659793815
+    }
+  },
+  "weight_one_sensitivity": {
+    "A_structure_only": {
+      "n": 85,
+      "mae_kcal_mol": 0.3097661465141612,
+      "rmse_kcal_mol": 0.5958469627611127,
+      "median_absolute_error_kcal_mol": 0.14971898148147833
+    },
+    "F_full_solvai": {
+      "n": 85,
+      "mae_kcal_mol": 0.20641749455337713,
+      "rmse_kcal_mol": 0.3262665997035961,
+      "median_absolute_error_kcal_mol": 0.11653469135802519
+    },
+    "paired_difference": {
+      "replicates": 100000,
+      "seed": 20260828,
+      "mean": -0.10334865196078398,
+      "ci95": [
+        -0.21883222577160472,
+        -0.01994940771151012
+      ],
+      "probability_below_zero": 0.99582
+    },
+    "fraction_molecules_improved": 0.611764705882353
+  },
   "historical_campaign": {
     "physics_mixture_comparator": {
       "n": 85,

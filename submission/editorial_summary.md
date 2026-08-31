@@ -10,6 +10,9 @@ SMILES string and invokes no simulation. In a preregistered matched comparison o
 error from 0.303 to 0.202 kcal mol⁻¹, comparable to the reconstructed 0.205 kcal mol⁻¹
 ARROW/PIMD8 result. Shuffled priors do not help, while the advantage persists under
 global chemical-separation controls and without ARROW labels in training. PIMD is the
-high-fidelity comparator, not a retained teacher. The broader result is a controlled
-demonstration that structure-learnable solvent responses can convert costly physical
-information into reusable molecular supervision without recomputation for each query.
+high-fidelity comparator, not a retained teacher. In a prospectively frozen external
+molecule-disjoint cohort, the matched response layer lowers MAE from 1.532 to 1.153
+kcal mol⁻¹; the advantage remains in 97 molecules absent from every response source,
+although absolute accuracy is lower. The broader result is a controlled demonstration
+that structure-learnable solvent responses can convert costly physical information
+into reusable molecular supervision without recomputation for each query.

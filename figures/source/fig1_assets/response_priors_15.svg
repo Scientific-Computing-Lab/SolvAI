@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:ev="http://www.w3.org/2001/xml-events" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" height="560" version="1.1" viewBox="0 0 800 560" width="800">
+  <defs/>
+  <rect fill="#DCECF7" height="36" width="365" x="18" y="20"/>
+  <text fill="#195B8E" font-family="Arial, Liberation Sans, DejaVu Sans, sans-serif" font-size="19" font-weight="bold" x="30" y="44">Calculated solvation  (2)</text>
+  <circle cx="37" cy="80" fill="#2678B8" r="10"/>
+  <text fill="white" font-family="Arial, Liberation Sans, DejaVu Sans, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" x="37" y="85">1</text>
+  <text fill="#19242E" font-family="Arial, Liberation Sans, DejaVu Sans, sans-serif" font-size="18" x="56" y="85">COSMOtherm water</text>
+  <circle cx="37" cy="127" fill="#2678B8" r="10"/>
+  <text fill="white" font-family="Arial, Liberation Sans, DejaVu Sans, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" x="37" y="132">9</text>
+  <text fill="#19242E" font-family="Arial, Liberation Sans, DejaVu Sans, sans-serif" font-size="18" x="56" y="132">SMD(water)</text>
+  <rect fill="#E8F2F8" height="36" width="365" x="417" y="20"/>
+  <text fill="#195B8E" font-family="Arial, Liberation Sans, DejaVu Sans, sans-serif" font-size="19" font-weight="bold" x="429" y="44">Polarity / H-bonding  (5)</text>
+  <circle cx="436" cy="80" fill="#2678B8" r="10"/>
+  <text fill="white" font-family="Arial, Liberation Sans, DejaVu Sans, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" x="436" y="85">2</text>
+  <text fill="#19242E" font-family="Arial, Liberation Sans, DejaVu Sans, sans-serif" font-size="16" x="455" y="85">Abraham E · excess molar refraction</text>
+  <circle cx="436" cy="116" fill="#2678B8" r="10"/>
+  <text fill="white" font-family="Arial, Liberation Sans, DejaVu Sans, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" x="436" y="121">3</text>
+  <text fill="#19242E" font-family="Arial, Liberation Sans, DejaVu Sans, sans-serif" font-size="16" x="455" y="121">Abraham S · dipolarity / polarizability</text>
+  <circle cx="436" cy="152" fill="#2678B8" r="10"/>
+  <text fill="white" font-family="Arial, Liberation Sans, DejaVu Sans, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" x="436" y="157">4</text>
+  <text fill="#19242E" font-family="Arial, Liberation Sans, DejaVu Sans, sans-serif" font-size="18" x="455" y="157">Abraham A · H-bond acidity</text>
+  <circle cx="436" cy="188" fill="#2678B8" r="10"/>
+  <text fill="white" font-family="Arial, Liberation Sans, DejaVu Sans, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" x="436" y="193">5</text>
+  <text fill="#19242E" font-family="Arial, Liberation Sans, DejaVu Sans, sans-serif" font-size="18" x="455" y="193">Abraham B · H-bond basicity</text>
+  <circle cx="436" cy="224" fill="#2678B8" r="10"/>
+  <text fill="white" font-family="Arial, Liberation Sans, DejaVu Sans, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" x="436" y="229">6</text>
+  <text fill="#19242E" font-family="Arial, Liberation Sans, DejaVu Sans, sans-serif" font-size="16" x="455" y="229">Abraham L · hexadecane–air partition</text>
+  <rect fill="#D8EAF6" height="36" width="365" x="18" y="284"/>
+  <text fill="#195B8E" font-family="Arial, Liberation Sans, DejaVu Sans, sans-serif" font-size="19" font-weight="bold" x="30" y="308">Explicit / implicit water  (2)</text>
+  <circle cx="37" cy="344" fill="#2678B8" r="10"/>
+  <text fill="white" font-family="Arial, Liberation Sans, DejaVu Sans, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" x="37" y="349">7</text>
+  <text fill="#19242E" font-family="Arial, Liberation Sans, DejaVu Sans, sans-serif" font-size="18" x="56" y="349">corrected OpenFF explicit-water ΔG</text>
+  <circle cx="37" cy="391" fill="#2678B8" r="10"/>
+  <text fill="white" font-family="Arial, Liberation Sans, DejaVu Sans, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" x="37" y="396">8</text>
+  <text fill="#19242E" font-family="Arial, Liberation Sans, DejaVu Sans, sans-serif" font-size="18" x="56" y="396">corrected GBn2 implicit-solvent ΔG</text>
+  <rect fill="#E3F0F6" height="36" width="365" x="417" y="284"/>
+  <text fill="#195B8E" font-family="Arial, Liberation Sans, DejaVu Sans, sans-serif" font-size="19" font-weight="bold" x="429" y="308">Conformational response  (6)</text>
+  <circle cx="436" cy="344" fill="#2678B8" r="10"/>
+  <text fill="white" font-family="Arial, Liberation Sans, DejaVu Sans, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" x="436" y="349">10</text>
+  <text fill="#19242E" font-family="Arial, Liberation Sans, DejaVu Sans, sans-serif" font-size="18" x="455" y="349">gas conformer correction</text>
+  <circle cx="436" cy="380" fill="#2678B8" r="10"/>
+  <text fill="white" font-family="Arial, Liberation Sans, DejaVu Sans, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" x="436" y="385">11</text>
+  <text fill="#19242E" font-family="Arial, Liberation Sans, DejaVu Sans, sans-serif" font-size="18" x="455" y="385">solution conformer correction</text>
+  <circle cx="436" cy="416" fill="#2678B8" r="10"/>
+  <text fill="white" font-family="Arial, Liberation Sans, DejaVu Sans, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" x="436" y="421">12</text>
+  <text fill="#19242E" font-family="Arial, Liberation Sans, DejaVu Sans, sans-serif" font-size="18" x="455" y="421">hydration conformer correction</text>
+  <circle cx="436" cy="452" fill="#2678B8" r="10"/>
+  <text fill="white" font-family="Arial, Liberation Sans, DejaVu Sans, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" x="436" y="457">13</text>
+  <text fill="#19242E" font-family="Arial, Liberation Sans, DejaVu Sans, sans-serif" font-size="18" x="455" y="457">conformer solvation-energy spread</text>
+  <circle cx="436" cy="488" fill="#2678B8" r="10"/>
+  <text fill="white" font-family="Arial, Liberation Sans, DejaVu Sans, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" x="436" y="493">14</text>
+  <text fill="#19242E" font-family="Arial, Liberation Sans, DejaVu Sans, sans-serif" font-size="18" x="455" y="493">mean conformer solvent response</text>
+  <circle cx="436" cy="524" fill="#2678B8" r="10"/>
+  <text fill="white" font-family="Arial, Liberation Sans, DejaVu Sans, sans-serif" font-size="12" font-weight="bold" text-anchor="middle" x="436" y="529">15</text>
+  <text fill="#19242E" font-family="Arial, Liberation Sans, DejaVu Sans, sans-serif" font-size="18" x="455" y="529">conformer response spread</text>
+  <text fill="#2678B8" font-family="Arial, Liberation Sans, DejaVu Sans, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" x="400" y="550">15 named scalar targets — not latent embeddings</text>
+</svg>

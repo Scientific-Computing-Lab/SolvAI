@@ -1,0 +1,19 @@
+{
+  "molecule": "1,2-dimethoxyethane",
+  "smiles": "COCCOC",
+  "method": "RDKit ETKDGv3; MMFF optimisation; fixed seed 0x5A17",
+  "selected": [
+    {
+      "conformer_id": 1,
+      "relative_mmff_energy_kcal_mol": 0.0
+    },
+    {
+      "conformer_id": 7,
+      "relative_mmff_energy_kcal_mol": 1.5223184862012182
+    },
+    {
+      "conformer_id": 4,
+      "relative_mmff_energy_kcal_mol": 1.8459132861989396
+    }
+  ]
+}

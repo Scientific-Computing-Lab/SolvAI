@@ -18,6 +18,9 @@ The full workflow comprises:
    affected response teachers;
 7. generate response predictions and fit the preregistered confirmatory endpoints;
 8. refit the frozen deployment artifact only after evaluation.
+9. qualify the Sander Tier-A cohort without prediction errors, freeze its hashes, and
+   fit the matched deployment-style structure-only and full endpoints for external
+   evaluation.
 
 The exact final-stage training sources are preserved under `training/`; the full
 40-repository Freecurve snapshot and unrelated exploratory scripts are not
@@ -64,3 +67,15 @@ not predictions from the all-data deployment refit. Historical campaign files un
 `results/predictions`, `results/robustness` and `results/ablations` are retained for
 provenance and are labelled as such. `solv_ai.paper_metrics` is the only module
 authorized to write manuscript metrics.
+
+The Tier-A qualification requires the original N=221 CSV from the separate ASP-19/GB
+project plus the standardized source-identity index produced by
+`scripts/audit_confirmatory_chemistry.py`. Its exact input hashes and qualification
+rules are fixed in `release/TIER_A_EXTERNAL_VALIDATION_FREEZE.md`. The committed
+qualified cohorts and predictions are sufficient for the quick reproduction path;
+the full local commands are:
+
+```bash
+uv run python scripts/qualify_tier_a_external.py
+uv run python scripts/run_tier_a_external_validation.py
+```

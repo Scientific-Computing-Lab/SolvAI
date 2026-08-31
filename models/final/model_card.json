@@ -2,6 +2,7 @@
   "artifact": "models/final/head.joblib",
   "input": "SMILES only",
   "output": "hydration free energy in kcal/mol",
+  "input_canonicalization": "RDKit canonical isomeric SMILES",
   "inference_simulation": false,
   "inference_forbidden_inputs": [
     "MD",
@@ -16,6 +17,10 @@
   "five_repeat_mean_mae": 0.20737285802417263,
   "five_repeat_sd_mae": 0.004442534486346201,
   "zero_arrow_label_transfer_mae": 0.2569405918663762,
+  "tier_a_endpoint_disjoint_n": 220,
+  "tier_a_endpoint_disjoint_mae": 1.152554228782572,
+  "tier_a_strict_source_disjoint_n": 97,
+  "tier_a_strict_source_disjoint_mae": 1.5355951977058884,
   "global_family_mae": 0.4677933152583255,
   "global_scaffold_mae": 0.3761935493360304,
   "robust_below_0_20": false,
@@ -23,6 +28,7 @@
   "benchmark_labels_in_post_evaluation_refit": 85,
   "public_labels_in_refit": 1280,
   "pimd8_labels_in_selected_artifact": 0,
+  "calibrated_applicability_score": false,
   "pimd8_note": "PIMD-derived supervision was evaluated but not retained. ARROW/PIMD8 is an accuracy comparator, not an input to the released model.",
   "standardized_teacher_exclusions": {
     "combisolv_qm": 2,

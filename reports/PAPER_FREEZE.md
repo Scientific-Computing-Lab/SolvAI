@@ -30,6 +30,27 @@ performance and superiority over PIMD8 are not claimed.
 | Full SolvAI, global scaffold separation | 0.37619 |
 | ARROW/PIMD8 | 0.20484 |
 
+## Prospective external molecule-disjoint validation
+
+| Cohort | N | Structure-only MAE | SolvAI MAE | Paired change (95% CI) |
+| --- | ---: | ---: | ---: | ---: |
+| Endpoint-disjoint | 220 | 1.53165 | 1.15255 | -0.37909 [-0.51692, -0.24817] |
+| Strict response-source-disjoint | 97 | 2.13830 | 1.53560 | -0.60271 [-0.86277, -0.35858] |
+
+The response-prior advantage transfers, but absolute Tier-A error is much larger than
+on ARROW-85. The PIMD8-level accuracy claim remains specific to the ARROW reference
+chemistry.
+
+## Equal-weight ARROW sensitivity
+
+Changing only the ARROW outer-training sample weight from 3 to 1 gives
+**0.30977 kcal/mol** for structure
+only and **0.20642 kcal/mol** for full
+SolvAI. The paired change is
+**-0.10335 kcal/mol** (95% CI,
+**-0.21883 to
+-0.01995**).
+
 ## Data and artifact integrity
 
 - Benchmark molecules: 85.

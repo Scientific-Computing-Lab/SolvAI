@@ -16,6 +16,24 @@ source units from the structures used by the final response teachers.
 | GBn2 / GNNImplicitSolvent | implicit and learned explicit-water response | 550 source structures used | 550 | 0 | catalogued repository version | [D4SC02432J](https://doi.org/10.1039/D4SC02432J) | `1a50219f3a0c0c60a754b430b4bc9c6c26beea1ed198e76e8aef7b14a8fa13a4` | CC BY-SA 4.0 data | yes | `python scripts/download_data.py implicit` |
 | CombiSolv-QM water | COSMOtherm water response | 3,988 water records | 3,959 structures | 2 standardized equivalents beyond the original exact exclusion | publisher supplementary file | [10.1016/j.cej.2021.129307](https://doi.org/10.1016/j.cej.2021.129307) | `6fbaceff441b62c8399aae2dbd3b6cfbdfa10b86fc47cee8d60001c73da24832` (historical processed table; confirmatory exclusions separately hashed) | publisher supplementary terms; no standalone data licence | no | `python scripts/download_data.py combisolv-qm --accept-source-terms` |
 | Public hydration endpoint labels | experimental hydration-response teacher | 5,075 merged structures | 1,280 selected labels | benchmark connectivities removed before merge | frozen source versions in endpoint manifest | FreeSolv, CombiSolv-Exp and SoluteML (see manifest) | `603ed02b6be25d9a3057e321f2c6ea135b012666cfdb8a1b160e37f347951ec4` (expanded table) | mixed; includes publisher-supplement records without standalone licence | no | `python scripts/download_data.py soluteml` then follow `FULL_REPRODUCTION.md` |
+| Sander Tier-A | prospective external molecule-disjoint validation | 221 frozen candidates | 220 endpoint-disjoint; 97 also response-source-disjoint | 0 endpoint overlaps; one pre-existing registry conflict removed | Sander v5.0.0 | [10.5194/acp-23-10901-2023](https://doi.org/10.5194/acp-23-10901-2023) | `967a9794a5d0e3f131dc5bb6921fecd234809ca21143a5a3ce9ed7895d18b273` (endpoint-disjoint CSV) | CC BY 4.0 data | yes, qualified derivative | `uv run python scripts/qualify_tier_a_external.py` |
+
+## Tier-A external validation
+
+Tier-A was assembled in the separate ASP-19/GB validation repository before SolvAI
+predictions, from original-measurement (`M`) records in Sander's Henry-law compilation.
+The source reports intrinsic pure-water $H_s^{cp}$ at 298.15 K. The frozen conversion
+is `Kc = Hscp R T` and `delta_G = -R T ln(Kc)`, giving the 1 M ideal-gas to 1 M
+ideal-dilute aqueous convention. The original N=221 CSV has SHA-256
+`7b7be03c5124559551c5380b0429d5c0156c13060af9902d26266510637fcf45`.
+
+SolvAI qualification excluded one registry name/CAS/structure conflict documented in
+that earlier project's protocol amendment before this analysis. No other molecule was
+removed for performance. The remaining 220 have no exact or standardized-equivalent
+identity in the 1,280 external or 85 ARROW endpoint labels. The strict N=97 subset is
+also absent from every supervised response-source table. Complete match records,
+exclusions and hashes are under `results/tier_a_external/qualification/`; all
+predictions are under `results/tier_a_external/evaluation/`.
 
 ## Benchmark and predictions
 

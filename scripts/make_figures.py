@@ -4,15 +4,14 @@
 from __future__ import annotations
 
 import json
+import subprocess
+import sys
 from pathlib import Path
 
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from matplotlib.patches import Circle, FancyArrowPatch
-from rdkit import Chem
-from rdkit.Chem import AllChem
 
 ROOT = Path(__file__).resolve().parents[1]
 MAIN = ROOT / "figures/main"
@@ -99,225 +98,6 @@ def save(fig: plt.Figure, name: str, *, extended: bool = False) -> None:
                 lines = output.read_text().splitlines()
                 output.write_text("\n".join(line.rstrip() for line in lines) + "\n")
     plt.close(fig)
-
-
-def arrow(
-    ax: plt.Axes,
-    start: tuple[float, float],
-    end: tuple[float, float],
-    color: str = INK,
-    width: float = 1.0,
-) -> None:
-    ax.add_patch(
-        FancyArrowPatch(
-            start,
-            end,
-            arrowstyle="-|>",
-            mutation_scale=8,
-            lw=width,
-            color=color,
-            shrinkA=0,
-            shrinkB=0,
-        )
-    )
-
-
-def draw_molecule(
-    ax: plt.Axes,
-    smiles: str,
-    centre: tuple[float, float],
-    scale: float,
-    *,
-    alpha: float = 1.0,
-) -> None:
-    molecule = Chem.MolFromSmiles(smiles)
-    AllChem.Compute2DCoords(molecule)
-    coordinates = molecule.GetConformer().GetPositions()[:, :2]
-    span = np.ptp(coordinates, axis=0)
-    normalization = max(float(span.max()), 1.0)
-    coordinates = (coordinates - coordinates.mean(axis=0)) / normalization * scale
-    coordinates[:, 0] += centre[0]
-    coordinates[:, 1] += centre[1]
-    for bond in molecule.GetBonds():
-        i, j = bond.GetBeginAtomIdx(), bond.GetEndAtomIdx()
-        ax.plot(
-            coordinates[[i, j], 0],
-            coordinates[[i, j], 1],
-            color=INK,
-            lw=1.25,
-            alpha=alpha,
-            solid_capstyle="round",
-            zorder=4,
-        )
-    atom_colors = {"O": NEGATIVE, "N": LEARNED, "S": PHYSICS, "Cl": DEPLOY}
-    for atom, (x, y) in zip(molecule.GetAtoms(), coordinates, strict=True):
-        symbol = atom.GetSymbol()
-        if symbol != "C":
-            ax.text(
-                x,
-                y,
-                symbol,
-                ha="center",
-                va="center",
-                fontsize=6.6,
-                color=atom_colors.get(symbol, INK),
-                weight="bold",
-                alpha=alpha,
-                zorder=5,
-            )
-
-
-def draw_water(ax: plt.Axes, x: float, y: float, angle: float = 0.0) -> None:
-    angle = np.deg2rad(angle)
-    oxygen = np.array([x, y])
-    offsets = np.array([[-0.016, 0.019], [0.016, 0.019]])
-    rotation = np.array([[np.cos(angle), -np.sin(angle)], [np.sin(angle), np.cos(angle)]])
-    hydrogens = oxygen + offsets @ rotation.T
-    for hydrogen in hydrogens:
-        ax.plot(
-            [oxygen[0], hydrogen[0]],
-            [oxygen[1], hydrogen[1]],
-            color=MID,
-            lw=0.65,
-            zorder=1,
-        )
-        ax.add_patch(Circle(hydrogen, 0.006, color="#E9EEF1", ec=MID, lw=0.25))
-    ax.add_patch(Circle(oxygen, 0.010, color=NEGATIVE, ec="white", lw=0.3, zorder=2))
-
-
-def response_strip(ax: plt.Axes, x: float, y: float, width: float, height: float) -> None:
-    values = np.array([0.35, 0.72, 0.48, 0.86, 0.58, 0.28, 0.67, 0.42])
-    for index, value in enumerate(values):
-        bar_x = x + width * index / len(values)
-        ax.plot(
-            [bar_x, bar_x],
-            [y, y + height * value],
-            color=LEARNED,
-            lw=2.0,
-            solid_capstyle="round",
-        )
-
-
-def fig1_concept() -> None:
-    fig, ax = plt.subplots(figsize=(7.2, 3.65))
-    ax.set_xlim(0, 1)
-    ax.set_ylim(0, 1)
-    ax.axis("off")
-
-    ax.text(
-        0.02,
-        0.96,
-        "TRAINING: physical response is generated once",
-        color=PHYSICS,
-        weight="bold",
-        fontsize=8,
-    )
-    ax.text(0.69, 0.96, "DEPLOYMENT", color=DEPLOY, weight="bold", fontsize=8)
-    ax.plot([0.655, 0.655], [0.06, 0.96], color=GRID, lw=0.8)
-
-    # Three physical response vignettes, without workflow boxes.
-    draw_molecule(ax, "CC(=O)NC", (0.105, 0.73), 0.10)
-    for x, y, angle in ((0.03, 0.80, 25), (0.17, 0.80, -25), (0.03, 0.65, 150), (0.18, 0.65, 210)):
-        draw_water(ax, x, y, angle)
-    ax.add_patch(Circle((0.105, 0.73), 0.115, fill=False, ec=PHYSICS, lw=0.8, ls=(0, (2, 2))))
-    ax.text(0.105, 0.56, "water response", ha="center", color=PHYSICS, fontsize=6.8)
-
-    for offset, alpha in ((-0.028, 0.35), (0.0, 0.65), (0.028, 1.0)):
-        draw_molecule(ax, "CCCO", (0.32 + offset, 0.73), 0.085, alpha=alpha)
-    ax.annotate(
-        "",
-        xy=(0.37, 0.79),
-        xytext=(0.27, 0.66),
-        arrowprops={"arrowstyle": "<->", "color": PHYSICS, "lw": 0.8},
-    )
-    ax.text(0.32, 0.56, "conformer response", ha="center", color=PHYSICS, fontsize=6.8)
-
-    lam = np.linspace(0.0, 1.0, 100)
-    response = 0.64 + 0.085 * np.sin(np.pi * lam) - 0.13 * lam
-    ax.plot(0.45 + 0.14 * lam, response, color=PHYSICS, lw=1.3)
-    ax.fill_between(0.45 + 0.14 * lam, 0.60, response, color=PHYSICS_LIGHT, alpha=0.75)
-    ax.text(0.45, 0.59, r"$\lambda=0$", ha="center", fontsize=5.8, color=MID)
-    ax.text(0.59, 0.59, r"$\lambda=1$", ha="center", fontsize=5.8, color=MID)
-    ax.text(0.52, 0.56, "alchemical response", ha="center", color=PHYSICS, fontsize=6.8)
-
-    ax.text(
-        0.31, 0.88, "external calculations and measurements", ha="center", color=MID, fontsize=6.3
-    )
-    arrow(ax, (0.31, 0.52), (0.31, 0.42), PHYSICS)
-    ax.text(
-        0.31,
-        0.445,
-        "structure → response surrogates",
-        ha="center",
-        color=LEARNED,
-        weight="bold",
-        fontsize=7.2,
-    )
-    response_strip(ax, 0.255, 0.31, 0.13, 0.08)
-    ax.text(0.32, 0.285, "15 predicted response priors", ha="center", color=LEARNED, fontsize=6.6)
-
-    draw_molecule(ax, "CCOC", (0.105, 0.25), 0.085)
-    ax.text(0.105, 0.14, "molecular structure", ha="center", fontsize=6.5)
-    arrow(ax, (0.17, 0.25), (0.235, 0.25), LEARNED)
-    arrow(ax, (0.39, 0.35), (0.44, 0.29), LEARNED)
-    ax.text(0.43, 0.36, "+", fontsize=11, weight="bold", color=MID)
-    ax.text(
-        0.53, 0.405, r"experimental $\Delta G_{\rm hyd}$", ha="center", color=PHYSICS, fontsize=6.5
-    )
-    arrow(ax, (0.53, 0.38), (0.53, 0.30), PHYSICS)
-    for y in (0.20, 0.25, 0.30):
-        ax.add_patch(Circle((0.48, y), 0.007, color=DEPLOY))
-        ax.plot([0.44, 0.48], [0.25, y], color=DEPLOY, lw=0.6)
-        ax.plot([0.48, 0.55], [y, 0.25], color=DEPLOY, lw=0.6)
-    ax.text(
-        0.50,
-        0.14,
-        "hydration endpoint model",
-        ha="center",
-        color=DEPLOY,
-        weight="bold",
-        fontsize=6.8,
-    )
-    ax.text(
-        0.31,
-        0.06,
-        "Stage 1: learn response coordinates        Stage 2: learn the endpoint",
-        ha="center",
-        color=INK,
-        fontsize=6.3,
-    )
-
-    # Deployment side.
-    ax.text(0.74, 0.80, "CC(=O)NC", ha="center", family="monospace", fontsize=7.0, color=INK)
-    draw_molecule(ax, "CC(=O)NC", (0.82, 0.77), 0.095)
-    arrow(ax, (0.79, 0.69), (0.79, 0.57), DEPLOY)
-    response_strip(ax, 0.735, 0.48, 0.125, 0.075)
-    ax.text(0.80, 0.445, "structure-predicted response", ha="center", fontsize=6.3, color=LEARNED)
-    arrow(ax, (0.80, 0.425), (0.80, 0.32), DEPLOY)
-    ax.text(0.80, 0.27, "SolvAI", ha="center", color=DEPLOY, weight="bold", fontsize=12)
-    arrow(ax, (0.85, 0.27), (0.92, 0.27), DEPLOY)
-    ax.text(
-        0.96,
-        0.27,
-        r"$\Delta G_{\rm hyd}$",
-        ha="center",
-        va="center",
-        color=DEPLOY,
-        weight="bold",
-        fontsize=9,
-    )
-    ax.text(0.82, 0.12, "SMILES only", ha="center", color=INK, fontsize=7, weight="bold")
-    ax.text(0.82, 0.07, "no MD · no PIMD · no probe", ha="center", color=MID, fontsize=6.3)
-    ax.plot([0.69, 0.96], [0.88, 0.88], color=PIMD, lw=0.8, ls=(0, (3, 2)))
-    ax.text(
-        0.825,
-        0.895,
-        "PIMD8: high-fidelity accuracy reference—not a retained teacher",
-        ha="center",
-        color=PIMD,
-        fontsize=5.8,
-    )
-    save(fig, "fig1_concept")
 
 
 def fig2_headline(
@@ -458,9 +238,11 @@ def fig2_headline(
 
 
 def fig3_transfer(metrics: dict, separation: pd.DataFrame, zero: pd.DataFrame) -> None:
-    fig = plt.figure(figsize=(7.2, 3.25))
-    grid = fig.add_gridspec(1, 3, width_ratios=(1.05, 1.0, 1.0), wspace=0.45)
-    ax0, ax1, ax2 = [fig.add_subplot(grid[0, index]) for index in range(3)]
+    fig = plt.figure(figsize=(7.2, 5.15))
+    grid = fig.add_gridspec(2, 2, hspace=0.52, wspace=0.42)
+    ax0, ax1, ax2, ax3 = [
+        fig.add_subplot(grid[row, column]) for row, column in ((0, 0), (0, 1), (1, 0), (1, 1))
+    ]
 
     regimes = ["global_butina_0_70", "global_scaffold", "global_family"]
     labels = ["Molecular\nclusters", "Scaffolds", "Functional\nfamilies"]
@@ -535,6 +317,41 @@ def fig3_transfer(metrics: dict, separation: pd.DataFrame, zero: pd.DataFrame) -
     ax2.set_title("No ARROW labels in training", loc="left")
     clean(ax2)
     panel(ax2, "c")
+
+    external = metrics["external_validation"]
+    external_order = [
+        ("Endpoint-disjoint", external["endpoint_disjoint"]),
+        ("Strict source-disjoint", external["strict_response_source_disjoint"]),
+    ]
+    for position, (label, values) in enumerate(external_order):
+        structure = values["matched_structure_only"]["mae_kcal_mol"]
+        solvai = values["full_solvai"]["mae_kcal_mol"]
+        ax3.plot([solvai, structure], [position, position], color=GRID, lw=2.4, zorder=1)
+        ax3.scatter(structure, position, color=MID, s=36, zorder=2)
+        ax3.scatter(solvai, position, color=DEPLOY, s=36, zorder=2)
+        interval = values["paired_difference"]["ci95"]
+        text_position = position + 0.03 if position == 0 else position - 0.20
+        ax3.text(
+            2.36,
+            text_position,
+            f"N={values['n']}  Δ={values['paired_difference']['mean']:.2f}\n"
+            f"95% CI [{interval[0]:.2f}, {interval[1]:.2f}]",
+            va="center",
+            ha="right",
+            color=INK,
+            fontsize=5.9,
+        )
+    ax3.set_yticks(range(2), [label for label, _ in external_order])
+    ax3.invert_yaxis()
+    ax3.set_ylim(1.14, -0.14)
+    ax3.set_xlim(0.7, 2.45)
+    ax3.set_xlabel(r"External-cohort MAE (kcal mol$^{-1}$)")
+    ax3.set_title("Prospectively frozen Tier-A cohort", loc="left")
+    ax3.scatter([], [], color=MID, s=28, label="Structure only")
+    ax3.scatter([], [], color=DEPLOY, s=28, label="SolvAI")
+    ax3.legend(frameon=False, fontsize=6.1, loc="center right", bbox_to_anchor=(0.99, 0.50))
+    clean(ax3, grid="x")
+    panel(ax3, "d")
     save(fig, "fig3_transfer")
 
 
@@ -897,7 +714,10 @@ def main() -> None:
         ROOT / "results/confirmatory/standardized_exclusion_global_separation_metrics.csv"
     )
 
-    fig1_concept()
+    subprocess.run(
+        [sys.executable, str(ROOT / "figures/penpot/install_exports.py")],
+        check=True,
+    )
     fig2_headline(metrics, primary, repeats, paired)
     fig3_transfer(metrics, separation, zero)
     fig4_frontier(metrics)

@@ -87,6 +87,12 @@ def compute_paper_metrics(root: Path = ROOT) -> tuple[dict[str, Any], pd.DataFra
     chemistry_audit = json.loads(
         (root / "audits/confirmatory/chemical_distance_audit.json").read_text()
     )
+    tier_a = pd.read_parquet(
+        root / "results/tier_a_external/evaluation/tier_a_external_predictions.parquet"
+    )
+    weight_one = pd.read_parquet(
+        root / "results/michael_30aug_sensitivity/weight1_predictions.parquet"
+    )
 
     primary_partition = "standardized_exclusion_primary"
     zero_partition = "standardized_exclusion_zero_arrow"
@@ -187,6 +193,58 @@ def compute_paper_metrics(root: Path = ROOT) -> tuple[dict[str, Any], pd.DataFra
         }
         for _, row in family.iterrows()
     ]
+
+    external_validation: dict[str, Any] = {}
+    for cohort, mask in (
+        ("endpoint_disjoint", np.ones(len(tier_a), dtype=bool)),
+        (
+            "strict_response_source_disjoint",
+            tier_a.strict_response_source_disjoint.to_numpy(dtype=bool),
+        ),
+    ):
+        subset = tier_a.loc[mask].copy()
+        truth_external = subset.y_true.to_numpy(float)
+        structure_external = subset.structure_only_prediction.to_numpy(float)
+        solvai_external = subset.solvai_prediction.to_numpy(float)
+        difference = np.abs(truth_external - solvai_external) - np.abs(
+            truth_external - structure_external
+        )
+        external_validation[cohort] = {
+            "n": len(subset),
+            "matched_structure_only": _summary(
+                pd.DataFrame({"y_true": truth_external, "y_pred": structure_external})
+            ),
+            "full_solvai": _summary(
+                pd.DataFrame({"y_true": truth_external, "y_pred": solvai_external})
+            ),
+            "paired_difference": _bootstrap(difference, seed=BOOTSTRAP_SEED),
+            "fraction_molecules_improved": float(np.mean(difference < 0)),
+        }
+
+    weight_one_metrics: dict[str, Any] = {}
+    for method in ("A_structure_only", "F_full_solvai"):
+        block = weight_one.loc[weight_one.method.eq(method)].copy()
+        if len(block) != 85:
+            raise AssertionError(f"Weight-one sensitivity is incomplete for {method}")
+        weight_one_metrics[method] = _summary(block)
+    weight_baseline = weight_one.loc[weight_one.method.eq("A_structure_only")].copy()
+    weight_candidate = (
+        weight_one.loc[weight_one.method.eq("F_full_solvai")]
+        .set_index("molecule_id")
+        .loc[weight_baseline.molecule_id]
+    )
+    weight_truth = weight_baseline.y_true.to_numpy(float)
+    weight_difference = np.abs(
+        weight_truth - weight_candidate.y_pred.to_numpy(float)
+    ) - np.abs(
+        weight_truth - weight_baseline.y_pred.to_numpy(float)
+    )
+    weight_one_metrics["paired_difference"] = _bootstrap(
+        weight_difference, seed=BOOTSTRAP_SEED
+    )
+    weight_one_metrics["fraction_molecules_improved"] = float(
+        np.mean(weight_difference < 0)
+    )
 
     campaign = pd.read_parquet(root / "results/predictions/campaign_oof.parquet")
     headline = pd.read_parquet(root / "results/predictions/headline_oof.parquet")
@@ -290,6 +348,26 @@ def compute_paper_metrics(root: Path = ROOT) -> tuple[dict[str, Any], pd.DataFra
         raise AssertionError("Packaged feature schema drift")
     if not artifact_metrics["standardized_exclusion_artifact"]:
         raise AssertionError("Final artifact is not the standardized-exclusion refit")
+    external_expected = {
+        "endpoint_disjoint": (220, 1.531647178872018, 1.152554228782572),
+        "strict_response_source_disjoint": (97, 2.1383039557875114, 1.5355951977058884),
+    }
+    for cohort, (expected_n, expected_structure, expected_solvai) in external_expected.items():
+        block = external_validation[cohort]
+        if block["n"] != expected_n:
+            raise AssertionError(f"Tier-A count drift for {cohort}")
+        if not np.isclose(
+            block["matched_structure_only"]["mae_kcal_mol"], expected_structure, atol=1e-12
+        ):
+            raise AssertionError(f"Tier-A structure metric drift for {cohort}")
+        if not np.isclose(block["full_solvai"]["mae_kcal_mol"], expected_solvai, atol=1e-12):
+            raise AssertionError(f"Tier-A SolvAI metric drift for {cohort}")
+    if not np.isclose(
+        weight_one_metrics["F_full_solvai"]["mae_kcal_mol"],
+        0.20641749455337713,
+        atol=1e-12,
+    ):
+        raise AssertionError("Weight-one sensitivity drift")
     endpoint_audit = next(
         row for row in chemistry_audit["sources"] if row["source"] == "endpoint_experimental"
     )
@@ -319,6 +397,8 @@ def compute_paper_metrics(root: Path = ROOT) -> tuple[dict[str, Any], pd.DataFra
         "paired_confirmatory": paired.to_dict(orient="records"),
         "bootstrap": uncertainty,
         "chemistry_family": chemistry_family,
+        "external_validation": external_validation,
+        "weight_one_sensitivity": weight_one_metrics,
         "historical_campaign": historical,
         "alternative_supervision": alternative_supervision,
         "multilambda": {
@@ -385,6 +465,47 @@ def compute_paper_metrics(root: Path = ROOT) -> tuple[dict[str, Any], pd.DataFra
                 "n": np.nan,
             }
         )
+    for cohort, cohort_values in external_validation.items():
+        for method in ("matched_structure_only", "full_solvai"):
+            for metric in ("mae_kcal_mol", "rmse_kcal_mol"):
+                tidy_rows.append(
+                    {
+                        "section": "tier_a_external",
+                        "metric": f"{cohort}.{method}.{metric.removesuffix('_kcal_mol')}",
+                        "value": cohort_values[method][metric],
+                        "unit": "kcal/mol",
+                        "n": cohort_values["n"],
+                    }
+                )
+        tidy_rows.append(
+            {
+                "section": "tier_a_external",
+                "metric": f"{cohort}.paired_mae_difference",
+                "value": cohort_values["paired_difference"]["mean"],
+                "unit": "kcal/mol",
+                "n": cohort_values["n"],
+            }
+        )
+    for method in ("A_structure_only", "F_full_solvai"):
+        for metric in ("mae_kcal_mol", "rmse_kcal_mol"):
+            tidy_rows.append(
+                {
+                    "section": "weight_one_sensitivity",
+                    "metric": f"{method}.{metric.removesuffix('_kcal_mol')}",
+                    "value": weight_one_metrics[method][metric],
+                    "unit": "kcal/mol",
+                    "n": weight_one_metrics[method]["n"],
+                }
+            )
+    tidy_rows.append(
+        {
+            "section": "weight_one_sensitivity",
+            "metric": "paired_mae_difference",
+            "value": weight_one_metrics["paired_difference"]["mean"],
+            "unit": "kcal/mol",
+            "n": weight_one_metrics["F_full_solvai"]["n"],
+        }
+    )
     return metrics, pd.DataFrame(tidy_rows)
 
 
@@ -392,6 +513,8 @@ def freeze_markdown(metrics: dict[str, Any]) -> str:
     methods = metrics["methods"]
     repeats = metrics["repeated_splits"]
     data = metrics["data_counts"]
+    external = metrics["external_validation"]
+    weight_one = metrics["weight_one_sensitivity"]
     return f"""# SolvAI paper freeze
 
 This is the canonical quantitative state for the Nature Communications manuscript.
@@ -423,6 +546,27 @@ performance and superiority over PIMD8 are not claimed.
 | Full SolvAI, global family separation | {metrics["global_separation"]["global_family"]["F_full_solvai"]["mae_kcal_mol"]:.5f} |
 | Full SolvAI, global scaffold separation | {metrics["global_separation"]["global_scaffold"]["F_full_solvai"]["mae_kcal_mol"]:.5f} |
 | ARROW/PIMD8 | {methods["arrow_pimd8"]["mae_kcal_mol"]:.5f} |
+
+## Prospective external molecule-disjoint validation
+
+| Cohort | N | Structure-only MAE | SolvAI MAE | Paired change (95% CI) |
+| --- | ---: | ---: | ---: | ---: |
+| Endpoint-disjoint | {external["endpoint_disjoint"]["n"]} | {external["endpoint_disjoint"]["matched_structure_only"]["mae_kcal_mol"]:.5f} | {external["endpoint_disjoint"]["full_solvai"]["mae_kcal_mol"]:.5f} | {external["endpoint_disjoint"]["paired_difference"]["mean"]:.5f} [{external["endpoint_disjoint"]["paired_difference"]["ci95"][0]:.5f}, {external["endpoint_disjoint"]["paired_difference"]["ci95"][1]:.5f}] |
+| Strict response-source-disjoint | {external["strict_response_source_disjoint"]["n"]} | {external["strict_response_source_disjoint"]["matched_structure_only"]["mae_kcal_mol"]:.5f} | {external["strict_response_source_disjoint"]["full_solvai"]["mae_kcal_mol"]:.5f} | {external["strict_response_source_disjoint"]["paired_difference"]["mean"]:.5f} [{external["strict_response_source_disjoint"]["paired_difference"]["ci95"][0]:.5f}, {external["strict_response_source_disjoint"]["paired_difference"]["ci95"][1]:.5f}] |
+
+The response-prior advantage transfers, but absolute Tier-A error is much larger than
+on ARROW-85. The PIMD8-level accuracy claim remains specific to the ARROW reference
+chemistry.
+
+## Equal-weight ARROW sensitivity
+
+Changing only the ARROW outer-training sample weight from 3 to 1 gives
+**{weight_one["A_structure_only"]["mae_kcal_mol"]:.5f} kcal/mol** for structure
+only and **{weight_one["F_full_solvai"]["mae_kcal_mol"]:.5f} kcal/mol** for full
+SolvAI. The paired change is
+**{weight_one["paired_difference"]["mean"]:.5f} kcal/mol** (95% CI,
+**{weight_one["paired_difference"]["ci95"][0]:.5f} to
+{weight_one["paired_difference"]["ci95"][1]:.5f}**).
 
 ## Data and artifact integrity
 

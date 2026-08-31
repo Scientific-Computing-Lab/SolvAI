@@ -36,3 +36,6 @@ results/confirmatory/teacher_refits/*/model/
 results/confirmatory/teacher_refits/*/benchmark_and_public_raw_predictions.csv
 results/confirmatory/teacher_refits/confsolv/lightgbm_models.joblib
 results/confirmatory/teacher_refits/*/train.log
+
+# Superseded local Figma prototype; Penpot is the release design source.
+figures/source/figma/

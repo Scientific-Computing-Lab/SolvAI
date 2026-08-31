@@ -26,6 +26,14 @@ entire supervised pool, and remains when no ARROW experimental labels are used f
 training. The final point estimate is comparable to the reconstructed ARROW/PIMD8
 error of 0.205 kcal mol⁻¹. PIMD is an accuracy comparator, not a retained teacher.
 
+We also prospectively qualified an external cohort before evaluating either endpoint.
+All 220 retained molecules are disjoint from every experimental endpoint label;
+97 are additionally absent from all six response-teacher source tables. On these two
+cohorts the same matched contrast lowers MAE from 1.532 to 1.153 and from 2.138 to
+1.536 kcal mol⁻¹, respectively, with both paired intervals excluding zero. The higher
+absolute errors expose the current domain limit while showing that the response-layer
+advantage is not confined to the ARROW molecules or direct teacher-source exposure.
+
 Building on established two-stage architectures, the work provides a controlled
 demonstration that aligned solvent responses carry complementary endpoint information,
 together with an experimentally defined boundary: compact, learnable responses

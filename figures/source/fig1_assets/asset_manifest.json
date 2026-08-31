@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "reference_molecule": {
+    "name": "N-methylacetamide",
+    "smiles": "CNC(C)=O"
+  },
+  "conformer_molecule": {
+    "name": "1,2-dimethoxyethane",
+    "smiles": "COCCOC"
+  },
+  "lambda_source": "results/ablations/pimd2_multilambda_teacher.parquet",
+  "lambda_status": "explored training-time supervision; not retained in SolvAI",
+  "retained_prior_count": 15,
+  "assets": {
+    "abraham": {
+      "path": "figures/source/fig1_assets/abraham_axes.svg",
+      "sha256": "1e4264a324e7c02bb4331c36dc11268d99b6ead64f15a40ae77ac89e881ebb3b"
+    },
+    "cavity": {
+      "path": "figures/source/fig1_assets/continuum_cavity.svg",
+      "sha256": "06058243d70ab6594fcd7f1db3d109c99fe8a483b0fb94e3eb416c851303817d"
+    },
+    "conformer_metadata": {
+      "path": "figures/source/fig1_assets/dimethoxyethane_conformer_metadata.json",
+      "sha256": "ce56d2b1296a9f4d0a4c2f225f59ab5eddb9b79a8f8ca55f8387f843fb0d9c7d"
+    },
+    "conformer_sdf": {
+      "path": "figures/source/fig1_assets/dimethoxyethane_selected_conformers.sdf",
+      "sha256": "8ce71e4ee04bdbb0506459e31993b2b6b631829470b42fde285c119086e61399"
+    },
+    "conformers": {
+      "path": "figures/source/fig1_assets/dimethoxyethane_conformers.svg",
+      "sha256": "902cb014515eb82a93205cee9267c14da8a675fc9a1355dcb7d114a3fac33518"
+    },
+    "delta_g": {
+      "path": "figures/source/fig1_assets/delta_g_hyd.svg",
+      "sha256": "cc3b3716768dc4d79f26524e640875fc0c45395512a0e75a3a182bca74872012"
+    },
+    "fig1_variant_A_minimal_pdf": {
+      "path": "figures/alternatives/fig1_variant_A_minimal.pdf",
+      "sha256": "d45fa3d10cf807176de533615185ef75b29a30c4ea63a2a713baafcdab770ef8"
+    },
+    "fig1_variant_A_minimal_png": {
+      "path": "figures/alternatives/fig1_variant_A_minimal.png",
+      "sha256": "05938b6d4eceed5a54cc2c8641b4ccda5a91bd75fa4a43c1ca69f24e9a007c9f"
+    },
+    "fig1_variant_A_minimal_print_180mm": {
+      "path": "figures/alternatives/fig1_variant_A_minimal_print_180mm.png",
+      "sha256": "745e53dba3cbb35314a3b7f58d6b6ebbd48d49a2c18b56f71c70d12cbb3a90e9"
+    },
+    "fig1_variant_A_minimal_svg": {
+      "path": "figures/alternatives/fig1_variant_A_minimal.svg",
+      "sha256": "dd4d5bd1b18a1020b1ccc5a498bfbd0e4849dddffc0fb6f3534dff4746e8c3da"
+    },
+    "fig1_variant_B_molecular_pdf": {
+      "path": "figures/alternatives/fig1_variant_B_molecular.pdf",
+      "sha256": "dcc5ae049e3a508062c2410bf4ba38bc3a999319a869639d70886116323a8c78"
+    },
+    "fig1_variant_B_molecular_png": {
+      "path": "figures/alternatives/fig1_variant_B_molecular.png",
+      "sha256": "ae34916a39a1c02d0f47a4f9180d347a12e437b7bfa76fb5b5550101ae1c6bee"
+    },
+    "fig1_variant_B_molecular_print_180mm": {
+      "path": "figures/alternatives/fig1_variant_B_molecular_print_180mm.png",
+      "sha256": "cf89011e5d5ea0e44f9b08c9299fdc9655577cdc066fe1bc7213d31fc2aa357b"
+    },
+    "fig1_variant_B_molecular_svg": {
+      "path": "figures/alternatives/fig1_variant_B_molecular.svg",
+      "sha256": "5c6995326487fd33be5d5724468b2a3debd46830dc86977691d6583c77587f73"
+    },
+    "fig1_variant_C_balanced_pdf": {
+      "path": "figures/main/fig1_variant_C_balanced.pdf",
+      "sha256": "9428679579edf2415efed96a33b1263b56d253c07a7d4e5c8829305c8cbdf4c9"
+    },
+    "fig1_variant_C_balanced_png": {
+      "path": "figures/main/fig1_variant_C_balanced.png",
+      "sha256": "de4a97f9ff0a6c2a48cb491546c30806564223e03fde5eb8e33a77b47d202188"
+    },
+    "fig1_variant_C_balanced_print_180mm": {
+      "path": "figures/main/fig1_variant_C_balanced_print_180mm.png",
+      "sha256": "99517c6d4ee1f5d51c0d138efe5f5432944324f84faf5e9eabc20a6e0cb10a5c"
+    },
+    "fig1_variant_C_balanced_svg": {
+      "path": "figures/main/fig1_variant_C_balanced.svg",
+      "sha256": "a4673c17d9eab13c751013fea2ce3911455fcd67622f999e85928a32adfce923"
+    },
+    "figure_pdf": {
+      "path": "figures/main/fig1_concept.pdf",
+      "sha256": "9428679579edf2415efed96a33b1263b56d253c07a7d4e5c8829305c8cbdf4c9"
+    },
+    "figure_png": {
+      "path": "figures/main/fig1_concept.png",
+      "sha256": "de4a97f9ff0a6c2a48cb491546c30806564223e03fde5eb8e33a77b47d202188"
+    },
+    "figure_svg": {
+      "path": "figures/main/fig1_concept.svg",
+      "sha256": "a4673c17d9eab13c751013fea2ce3911455fcd67622f999e85928a32adfce923"
+    },
+    "fingerprint": {
+      "path": "figures/source/fig1_assets/n_methylacetamide_morgan2048.svg",
+      "sha256": "7c4b10398d293fa325981a7d4f7822129f424beca0a5db14d33a7a44e5f2c472"
+    },
+    "lambda": {
+      "path": "figures/source/fig1_assets/nmethylacetamide_lambda_response.svg",
+      "sha256": "63f97ec443f08fcb1682f847e33b29cc0cd16b5be308236121ecf0a0fe32bff7"
+    },
+    "lambda_values": {
+      "path": "figures/source/fig1_assets/nmethylacetamide_lambda_response.csv",
+      "sha256": "f6470bb3218080e318e3888d30b53afbe86fd38842d1c0084cd1634886852cd1"
+    },
+    "molecule": {
+      "path": "figures/source/fig1_assets/n_methylacetamide_rdkit.svg",
+      "sha256": "16243af07436ca88d9491de5afb733600b9fb370e2db965f7653aa0a260e7d0c"
+    },
+    "molecule_canvas": {
+      "path": "figures/source/fig1_assets/n_methylacetamide_rdkit_canvas.svg",
+      "sha256": "25720bb73f12ad44601d50829372e6f50565e15b3186d42c72a70c8cff90e0de"
+    },
+    "molecule_indigo": {
+      "path": "figures/source/fig1_assets/n_methylacetamide_indigo.svg",
+      "sha256": "8f90f76caa0f8be96db6422ed755a75414bf9135a70482567e3b2689eabbea01"
+    },
+    "priors": {
+      "path": "figures/source/fig1_assets/response_priors_15.svg",
+      "sha256": "606ca0d3e53a4b430a3a34f3b51014e03d73f523fbc5613b900454d5276bdf4c"
+    },
+    "water_shell": {
+      "path": "figures/source/fig1_assets/nma_water_shell_vector.svg",
+      "sha256": "9aa418cece08d65224d5d7ffd8b428c4be9be7b58bbdb747642265d5a0c2c399"
+    },
+    "water_shell_packmol_input": {
+      "path": "figures/source/fig1_assets/water_shell.packmol.inp",
+      "sha256": "3da0fe64c9e639d6601e0de16d49086a30de3c0a200d8ee4e8e2c568bebbeb37"
+    },
+    "water_shell_pdb": {
+      "path": "figures/source/fig1_assets/nma_water_shell.pdb",
+      "sha256": "6b71a95c222adb872a2778b74d8fbcee81a23c6d3c30ffed49fb86861d8edd3c"
+    },
+    "water_shell_pymol_preview": {
+      "path": "figures/source/fig1_assets/nma_water_shell_pymol.png",
+      "sha256": "6727529be1ad14a61afe15bbc3fbb92179e27cbc3dd3855b15943404f4a840fe"
+    },
+    "water_shell_pymol_script": {
+      "path": "figures/source/fig1_assets/water_shell.pml",
+      "sha256": "96ca887024fdc88f39c5577887bc09c2bc1fbe16c5c35386c63defb0786428eb"
+    }
+  }
+}

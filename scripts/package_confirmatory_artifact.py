@@ -75,10 +75,22 @@ def main() -> None:
         shutil.copy2(source, MODEL_DIR / destination)
 
     summary = json.loads((CONFIRMATORY / "confirmatory_summary.json").read_text())
+    external_metrics = pd.read_csv(
+        RELEASE_ROOT / "results/tier_a_external/evaluation/tier_a_external_metrics.csv"
+    )
+    endpoint_external = external_metrics.loc[
+        external_metrics.cohort.eq("endpoint_disjoint")
+        & external_metrics.method.eq("full_solvai")
+    ].iloc[0]
+    strict_external = external_metrics.loc[
+        external_metrics.cohort.eq("strict_response_source_disjoint")
+        & external_metrics.method.eq("full_solvai")
+    ].iloc[0]
     card = {
         "artifact": "models/final/head.joblib",
         "input": "SMILES only",
         "output": "hydration free energy in kcal/mol",
+        "input_canonicalization": "RDKit canonical isomeric SMILES",
         "inference_simulation": False,
         "inference_forbidden_inputs": [
             "MD",
@@ -93,6 +105,10 @@ def main() -> None:
         "five_repeat_mean_mae": summary["repeats"]["full_solvai_mean"],
         "five_repeat_sd_mae": summary["repeats"]["full_solvai_sd"],
         "zero_arrow_label_transfer_mae": summary["zero_arrow_transfer"]["F_full_solvai"],
+        "tier_a_endpoint_disjoint_n": int(endpoint_external.n),
+        "tier_a_endpoint_disjoint_mae": float(endpoint_external.mae),
+        "tier_a_strict_source_disjoint_n": int(strict_external.n),
+        "tier_a_strict_source_disjoint_mae": float(strict_external.mae),
         "global_family_mae": next(
             row["mae"]
             for row in summary["global_separation"]
@@ -108,6 +124,7 @@ def main() -> None:
         "benchmark_labels_in_post_evaluation_refit": len(data.benchmark),
         "public_labels_in_refit": len(data.public),
         "pimd8_labels_in_selected_artifact": 0,
+        "calibrated_applicability_score": False,
         "pimd8_note": (
             "PIMD-derived supervision was evaluated but not retained. ARROW/PIMD8 "
             "is an accuracy comparator, not an input to the released model."
@@ -135,18 +152,25 @@ with structure surrogates, then applies an ensemble of three ExtraTrees endpoint
 models. No MD, PIMD, ARROW trajectory, probe calculation or experimental lookup is
 performed at inference.
 
+RDKit parses each query and emits canonical isomeric SMILES before feature
+generation. This is not a claim of invariance across tautomers, protonation states or
+salt forms.
+
 ## Validated performance
 
 - Confirmatory fixed five-fold OOF MAE: {card["confirmatory_fixed_oof_mae"]:.5f} kcal/mol
 - Matched no-prior endpoint MAE: {card["matched_structure_only_oof_mae"]:.5f} kcal/mol
 - Five-partition mean: {card["five_repeat_mean_mae"]:.5f} ± {card["five_repeat_sd_mae"]:.5f} kcal/mol
 - Zero-ARROW-label transfer MAE: {card["zero_arrow_label_transfer_mae"]:.5f} kcal/mol
+- Tier-A endpoint-disjoint MAE (N={card["tier_a_endpoint_disjoint_n"]}): {card["tier_a_endpoint_disjoint_mae"]:.5f} kcal/mol
+- Tier-A strict source-disjoint MAE (N={card["tier_a_strict_source_disjoint_n"]}): {card["tier_a_strict_source_disjoint_mae"]:.5f} kcal/mol
 - Global family / scaffold MAE: {card["global_family_mae"]:.5f} / {card["global_scaffold_mae"]:.5f} kcal/mol
 
 The reference domain is neutral organic hydration chemistry. The model is not
 validated for ions, salts, metals, proteins or broad chemical extrapolation. The
 fixed point estimate is on the ARROW/PIMD8 accuracy scale, but robust sub-0.20
-performance and superiority over PIMD8 are not claimed.
+performance and superiority over PIMD8 are not claimed. The returned ensemble spread
+is not a calibrated per-query applicability or reliability score.
 
 ## Training and inference boundary
 

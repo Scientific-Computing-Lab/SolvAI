@@ -1,0 +1,47 @@
+{
+  "protocol": "release/MICHAEL_30AUG_SENSITIVITY_FREEZE.md",
+  "protocol_commit": "9851ed2154be5a8be1f41f3d07975e20fec9a900",
+  "benchmark_rows": 85,
+  "public_training_rows": 1280,
+  "external_weight": 1.0,
+  "arrow_outer_training_weight": 1.0,
+  "fold_column": "fold_random",
+  "model_seeds": [
+    11,
+    29,
+    47
+  ],
+  "input_sha256": {
+    "data/processed/arrow_solvation_master.parquet": "2b7928f162d094e7ee10d197e66636ba4ae09b0f76d626136b79c0975d3b0310",
+    "data/processed/expanded_public_hydration_nonbenchmark.parquet": "603ed02b6be25d9a3057e321f2c6ea135b012666cfdb8a1b160e37f347951ec4",
+    "data/processed/expanded_public_hydration_rdkit_morgan_features.parquet": "f6d9cd37a90bfc0718261f7251c70100be15947f73d7db12c85659ffc05b28e9",
+    "data/processed/rdkit_morgan_features.parquet": "39877c3938616445d9996e093f8f37744a9c13d56202db9e294466396df298b4"
+  },
+  "teacher_overrides": {
+    "combisolv_qm": {
+      "path": "results/confirmatory/teacher_refits/combisolv_qm/teacher_predictions.parquet",
+      "sha256": "c63e37268fbd6d557cb66abf6d5dbcbec5deeb31a72403f970ad330560592d52"
+    },
+    "molsolv_smd": {
+      "path": "results/confirmatory/teacher_refits/molsolv_smd/teacher_predictions.parquet",
+      "sha256": "e3219006795cbb930db14421365b5d34a947029c986a08e8dec53d8058869533"
+    },
+    "confsolv": {
+      "path": "results/confirmatory/teacher_refits/confsolv/teacher_predictions.parquet",
+      "sha256": "a755f999d40bb8ab5db012fd2a598aa19a8162537e395189d5281beff5455825"
+    }
+  },
+  "result": {
+    "candidate": "F_full_solvai",
+    "baseline": "A_structure_only",
+    "bootstrap_seed": 20260828,
+    "bootstrap_draws": 100000,
+    "mae_difference_vs_structure": -0.10334865196078398,
+    "ci_low_95": -0.21883222577160472,
+    "ci_high_95": -0.01994940771151012,
+    "probability_lower_error": 0.99582,
+    "fraction_molecules_improved": 0.611764705882353,
+    "material": true,
+    "outcome": "positive"
+  }
+}

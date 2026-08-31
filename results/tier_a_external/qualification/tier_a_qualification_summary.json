@@ -55,11 +55,11 @@
   ],
   "rdkit_version": "2026.03.5",
   "inputs": {
-    "tier_a_source": "/home/galoren/ASP/data/processed/tier_a_frozen.csv",
+    "tier_a_source": "external/ASP/data/processed/tier_a_frozen.csv",
     "tier_a_source_sha256": "7b7be03c5124559551c5380b0429d5c0156c13060af9902d26266510637fcf45",
-    "source_identity_index": "/home/galoren/Freecurve_AI_Solvation/release/large_confirmatory_intermediates/supervision_standardized_identities.parquet",
+    "source_identity_index": "workspace/release/large_confirmatory_intermediates/supervision_standardized_identities.parquet",
     "source_identity_index_sha256": "6d35c5ea58192d8fe3d0b5c022effcfa93fc8c76cdbd19ed424d0b7b50d2b85f",
-    "benchmark_identity_index": "/home/galoren/Freecurve_AI_Solvation/release/SolvAI/audits/confirmatory/benchmark_standardized_identities.parquet",
+    "benchmark_identity_index": "repository/audits/confirmatory/benchmark_standardized_identities.parquet",
     "benchmark_identity_index_sha256": "3601898f62ade97882494a49443953b3aab987b56182970989e526d59677a6c9"
   },
   "outputs_sha256": {

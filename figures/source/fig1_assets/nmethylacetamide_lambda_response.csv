@@ -1,0 +1,10 @@
+molecule,lambda,component,dhdl
+N-methylacetamide,0.1,total,47.33406723676472
+N-methylacetamide,0.5,total,0.9779674997907841
+N-methylacetamide,0.9,total,-16.69339522870157
+N-methylacetamide,0.1,Coulomb,-1.5516750750533335
+N-methylacetamide,0.5,Coulomb,-24.55296453217647
+N-methylacetamide,0.9,Coulomb,-25.415723897266666
+N-methylacetamide,0.1,van der Waals,51.43261937670588
+N-methylacetamide,0.5,van der Waals,32.31518483419608
+N-methylacetamide,0.9,van der Waals,12.19838574352157

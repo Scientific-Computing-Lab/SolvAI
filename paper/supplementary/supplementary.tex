@@ -58,6 +58,12 @@ outer-training rows weight 3. The experimental value of an outer-test molecule w
 never used. In the zero-ARROW transfer experiment, only the 1,280 external labels
 were fitted and all 85 ARROW molecules were evaluated.
 
+The weight of 3 was part of the prospective confirmatory protocol rather than a
+post-result choice. A separately committed one-factor sensitivity changed only the
+available ARROW outer-training weight to 1. Under this setting, matched structure-only
+and full SolvAI MAEs are 0.30977 and 0.20642 kcal mol$^{-1}$, respectively; the paired
+change is -0.10335 kcal mol$^{-1}$ (95\% interval, -0.21883 to -0.01995).
+
 \subsection*{S3. Response-source processing}
 
 \paragraph{CombiSolv-QM.}
@@ -193,7 +199,38 @@ below zero and a material effect as an absolute MAE change of at least 0.010 kca
 mol$^{-1}$. No correction was applied to convert the predeclared panel into one
 binary discovery claim; all comparisons are reported.
 
-\subsection*{S10. Lambda-response probes}
+\subsection*{S10. Tier-A external validation}
+
+The original 221-molecule Tier-A cohort was frozen in a separate ASP-19/GB validation
+project before its model predictions. It was derived from type-M original-measurement
+records in Sander's Henry-law compilation v5.0.0. Intrinsic pure-water
+$H_s^{cp}$ values normalized to 298.15 K were converted as
+$K_c=H_s^{cp}RT$ and $\Delta G_{\rm hyd}=-RT\ln K_c$. This produces the same 1 M
+gas-to-1 M aqueous standard-state convention used for the endpoint. The source values
+are printed to two significant figures.
+
+SolvAI qualification was performed without reading SolvAI predictions or errors. All
+221 rows passed the connected, neutral, supported-element and target-compatibility
+rules. One candidate was excluded because the earlier ASP audit had documented a
+definite conflict between its registry name/CAS and supplied InChIKey structure. The
+remaining 220 molecules had no exact, fragment-parent, uncharged-parent or
+canonical-tautomer equivalent among the 1,280 external or 85 ARROW endpoint labels.
+Of these, 123 occurred in at least one supervised response-source table and 97 were
+absent from all six. The latter define the strict response-source-disjoint subset.
+The cohort hashes, all exclusions and all teacher-source matches were committed before
+endpoint evaluation.
+
+Both external endpoints were then fitted deployment-style on the same 1,280 external
+plus 85 ARROW labels with weights 1 and 3. They used the same descriptors, imputation,
+three 360-tree ensembles and seeds; only the 15 response columns differed. No Tier-A
+label entered fitting or selection. On N=220, structure-only and SolvAI MAEs were
+1.53165 and 1.15255 kcal mol$^{-1}$ (paired change -0.37909; 95\% interval,
+-0.51692 to -0.24817). On strict N=97, the corresponding values were 2.13830 and
+1.53560 kcal mol$^{-1}$ (paired change -0.60271; interval, -0.86277 to -0.35858).
+The absolute errors delimit applicability and are not presented as PIMD8-level
+performance outside ARROW-85.
+
+\subsection*{S11. Lambda-response probes}
 
 Short PIMD2 response fingerprints were available at $\lambda=0.1$, 0.5 and 0.9 for
 72, 74 and 73 molecules, respectively; 72 had complete three-point curves. The
@@ -205,17 +242,20 @@ ablation. A separate direct-integration experiment used the predicted three-poin
 curve with an affine calibration fitted inside each outer training fold. These
 targets were evaluated as candidate supervision and were not retained.
 
-\subsection*{S11. Artifact verification}
+\subsection*{S12. Artifact verification}
 
-The public API accepts one or more SMILES strings. It canonicalizes each structure,
-computes descriptors, evaluates the two D-MPNNs and four tree-artifact families, and
+The public API accepts one or more SMILES strings. RDKit parses each input and emits
+canonical isomeric SMILES before feature generation. It does not standardize a query
+across tautomers, protonation states or salt forms. The runtime computes descriptors,
+evaluates the two D-MPNNs and four tree-artifact families, and
 passes the resulting 2,280-vector to three endpoint regressors. The artifact audit
 checks file hashes, feature count and names, software versions and two smoke
 predictions. It rejects features containing experimental target, PIMD, trajectory,
 probe, fold or scaffold information. The standardized-exclusion teacher refit is
-identified in the model card and manifest.
+identified in the model card and manifest. The ensemble spread is returned for
+diagnosis but is not a calibrated per-query applicability or reliability score.
 
-\subsection*{S12. Runtime benchmarking}
+\subsection*{S13. Runtime benchmarking}
 
 Runtime was measured end to end from input SMILES to prediction on the released
 artifact. The host used an Intel Core i7-4930K CPU; the installed NVIDIA RTX 3090 was
@@ -297,6 +337,16 @@ not used to support the simulation-free inference claim.
 \subsection*{Supplementary Table 8 | Runtime measurements}
 \small
 \input{tables/runtime.tex}
+\normalsize
+
+\subsection*{Supplementary Table 9 | Equal-weight ARROW sensitivity}
+\small
+\input{tables/weight_one_sensitivity.tex}
+\normalsize
+
+\subsection*{Supplementary Table 10 | Tier-A external validation}
+\small
+\resizebox{\textwidth}{!}{\input{tables/tier_a_external.tex}}
 \normalsize
 
 \end{document}

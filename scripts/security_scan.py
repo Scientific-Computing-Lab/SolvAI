@@ -6,6 +6,7 @@ from __future__ import annotations
 import json
 import re
 import subprocess
+import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -30,9 +31,10 @@ PATTERNS = {
     "authorization_header": re.compile(
         "Author" + "ization:\\s*(?:Bearer|token)\\s+\\S+", re.IGNORECASE
     ),
-    "assigned_secret": re.compile(
-        r"(?:API_KEY|TOKEN|PASSWORD)\s*=\s*[^\s$<{][^\s]{7,}", re.IGNORECASE
-    ),
+    # Environment-style secret assignments are conventionally uppercase. Keeping
+    # this case-sensitive avoids false positives for ordinary local variables such
+    # as ``token = (column, index)`` while still catching committed credentials.
+    "assigned_secret": re.compile(r"(?:API_KEY|TOKEN|PASSWORD)\s*=\s*[^\s$<{][^\s]{7,}"),
     "private_ssh_key": re.compile("BEGIN OPENSSH " + "PRIVATE KEY"),
 }
 
@@ -78,6 +80,21 @@ def scan_history() -> tuple[int, list[dict[str, str]]]:
     return scanned, findings
 
 
+def scan_archive(path: Path) -> tuple[int, list[dict[str, str]]]:
+    """Inspect text members of ZIP and Penpot archives without extracting them."""
+    scanned = 0
+    findings: list[dict[str, str]] = []
+    with zipfile.ZipFile(path) as archive:
+        for member in archive.infolist():
+            member_path = Path(member.filename)
+            if member.is_dir() or not is_scannable(member_path):
+                continue
+            scanned += 1
+            content = archive.read(member).decode(errors="ignore")
+            findings.extend(matches(content, f"{path.relative_to(ROOT)}::{member.filename}"))
+    return scanned, findings
+
+
 def main() -> None:
     findings = []
     scanned = 0
@@ -92,6 +109,11 @@ def main() -> None:
             continue
         path = ROOT / encoded.decode(errors="surrogateescape")
         if not path.is_file() or any(part in EXCLUDED_PARTS for part in path.parts):
+            continue
+        if path.suffix.lower() in {".zip", ".penpot"}:
+            archive_scanned, archive_findings = scan_archive(path)
+            scanned += archive_scanned
+            findings.extend(archive_findings)
             continue
         if not is_scannable(path):
             continue

@@ -1,0 +1,2 @@
+candidate,baseline,bootstrap_seed,bootstrap_draws,mae_difference_vs_structure,ci_low_95,ci_high_95,probability_lower_error,fraction_molecules_improved,material,outcome
+F_full_solvai,A_structure_only,20260828,100000,-0.10334865196078398,-0.21883222577160472,-0.01994940771151012,0.99582,0.611764705882353,True,positive

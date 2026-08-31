@@ -72,7 +72,25 @@ def test_paper_metrics_recompute_without_drift() -> None:
     assert metrics["methods"]["full_solvai"]["mae_kcal_mol"] == pytest.approx(
         0.20223406721910991, abs=1e-12
     )
+    assert metrics["external_validation"]["endpoint_disjoint"]["n"] == 220
+    assert metrics["external_validation"]["endpoint_disjoint"]["full_solvai"][
+        "mae_kcal_mol"
+    ] == pytest.approx(1.152554228782572, abs=1e-12)
+    assert metrics["external_validation"]["strict_response_source_disjoint"]["n"] == 97
     assert not table.empty
+
+
+def test_tier_a_qualification_is_endpoint_disjoint() -> None:
+    audit = json.loads(
+        (
+            ROOT
+            / "results/tier_a_external/qualification/tier_a_qualification_summary.json"
+        ).read_text()
+    )
+    assert audit["original_cohort_rows"] == 221
+    assert audit["endpoint_overlap_rows"] == 0
+    assert audit["endpoint_disjoint_eligible_rows"] == 220
+    assert audit["strict_response_source_disjoint_rows"] == 97
 
 
 def test_manifest_smoke_values_match_test() -> None:
@@ -80,6 +98,10 @@ def test_manifest_smoke_values_match_test() -> None:
     card = json.loads((ROOT / "models/final/model_card.json").read_text())
     assert [row["smiles"] for row in manifest["smoke_test"]] == ["CCO", "c1ccccc1"]
     assert card["inference_simulation"] is False
+    assert card["input_canonicalization"] == "RDKit canonical isomeric SMILES"
+    assert card["calibrated_applicability_score"] is False
+    assert card["tier_a_endpoint_disjoint_n"] == 220
+    assert card["tier_a_strict_source_disjoint_n"] == 97
     assert card["standardized_teacher_exclusions"] == {
         "combisolv_qm": 2,
         "molsolv_smd": 32,

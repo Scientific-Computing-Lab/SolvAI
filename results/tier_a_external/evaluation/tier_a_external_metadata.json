@@ -1,0 +1,109 @@
+{
+  "protocol": "release/TIER_A_EXTERNAL_VALIDATION_FREEZE.md",
+  "protocol_commit": "b01351a",
+  "endpoint_training_rows": {
+    "external": 1280,
+    "arrow": 85
+  },
+  "endpoint_weights": {
+    "external": 1,
+    "arrow": 3
+  },
+  "cohort_rows": {
+    "endpoint_disjoint": 220,
+    "strict_response_source_disjoint": 97
+  },
+  "model_seeds": [
+    11,
+    29,
+    47
+  ],
+  "bootstrap": {
+    "draws": 100000,
+    "seed": 20260828
+  },
+  "released_artifact_maximum_prediction_difference": 3.552713678800501e-15,
+  "rdkit_version": "2026.03.5",
+  "input_sha256": {
+    "repository/results/tier_a_external/qualification/tier_a_endpoint_disjoint.csv": "967a9794a5d0e3f131dc5bb6921fecd234809ca21143a5a3ce9ed7895d18b273",
+    "repository/results/tier_a_external/qualification/tier_a_strict_response_source_disjoint.csv": "486040f54082f606ca21f461eb76075648b885c712823c72f7f69317960463bf",
+    "workspace/data/processed/arrow_solvation_master.parquet": "2b7928f162d094e7ee10d197e66636ba4ae09b0f76d626136b79c0975d3b0310",
+    "workspace/data/processed/expanded_public_hydration_nonbenchmark.parquet": "603ed02b6be25d9a3057e321f2c6ea135b012666cfdb8a1b160e37f347951ec4",
+    "repository/models/final/combisolv_qm.pt": "2950be1232e2f868136e3388cf139e671d4196922ece0d3c7043d9dadece8b40",
+    "repository/models/final/molsolv_smd.pt": "35601030f030af72a9e6990bf8003df9d481858b27994b3fc70c81d605d130be",
+    "repository/models/final/abraham_teacher.joblib": "8c8a6365e7162dbe6ae445ce4004928ed86b2669d3e7a70d3d054f143ca97554",
+    "repository/models/final/openff_teacher.joblib": "55b7d31a293dd61fe57f5505e015775d7d86f53dca69980d398843706d58bb9b",
+    "repository/models/final/implicit_teacher.joblib": "484d5e0c1efa759c8e7acbfcbbd87e218b93ae239e7f35303fe4cd7e310910f8",
+    "repository/models/final/confsolv_teacher.joblib": "a71487e53d5085e897dad02e62e95562933bc47262145fbf44286aae04b70b0d"
+  },
+  "output_sha256": {
+    "tier_a_external_predictions.csv": "d91fc02bac1b8c7a6bde9eda42244132dbcec7da94c87952416ae8855ab46064",
+    "tier_a_external_predictions.parquet": "aa1caca2781137bec2b25369df93e70b56eb26cb91c10c009265e43c62139ad8",
+    "tier_a_external_response_features.parquet": "65581960020f8e136685d84e6b989ffcdeccee729d112d812f1c0d37e9185ce7",
+    "tier_a_external_metrics.csv": "49fe2701a0935804f74aab2a2b5c3223c09abea224f73967ccd433f38641cfe9",
+    "tier_a_external_paired_comparisons.csv": "675ed63a4432b8b854debff531b3ce5831f62fd410eeeb9f57ddb07e9a0919b5",
+    "tier_a_external_descriptive_strata.csv": "caa4e1c4a48ff01b215b6681c262369300b33745b4d855e33d90d559a4211bd5"
+  },
+  "metrics": [
+    {
+      "cohort": "endpoint_disjoint",
+      "method": "matched_structure_only",
+      "n": 220,
+      "mae": 1.531647178872018,
+      "rmse": 2.309736437003002,
+      "median_absolute_error": 0.9618237741272395,
+      "r2": 0.0863375142415359
+    },
+    {
+      "cohort": "endpoint_disjoint",
+      "method": "full_solvai",
+      "n": 220,
+      "mae": 1.152554228782572,
+      "rmse": 1.577229348428527,
+      "median_absolute_error": 0.8450757326262157,
+      "r2": 0.573959739406892
+    },
+    {
+      "cohort": "strict_response_source_disjoint",
+      "method": "matched_structure_only",
+      "n": 97,
+      "mae": 2.1383039557875114,
+      "rmse": 3.080513921077273,
+      "median_absolute_error": 1.1023677121042232,
+      "r2": -0.22329064608416327
+    },
+    {
+      "cohort": "strict_response_source_disjoint",
+      "method": "full_solvai",
+      "n": 97,
+      "mae": 1.5355951977058884,
+      "rmse": 1.987916522845103,
+      "median_absolute_error": 1.243918559909646,
+      "r2": 0.4905757786952303
+    }
+  ],
+  "paired_comparisons": [
+    {
+      "cohort": "endpoint_disjoint",
+      "n": 220,
+      "mae_difference_vs_structure": -0.37909295008944593,
+      "ci_low_95": -0.5169233978286898,
+      "ci_high_95": -0.24816572831992972,
+      "probability_lower_error": 1.0,
+      "fraction_molecules_improved": 0.6090909090909091,
+      "material": true,
+      "outcome": "positive"
+    },
+    {
+      "cohort": "strict_response_source_disjoint",
+      "n": 97,
+      "mae_difference_vs_structure": -0.6027087580816224,
+      "ci_low_95": -0.8627666685337494,
+      "ci_high_95": -0.3585758619067549,
+      "probability_lower_error": 1.0,
+      "fraction_molecules_improved": 0.5876288659793815,
+      "material": true,
+      "outcome": "positive"
+    }
+  ]
+}

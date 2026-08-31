@@ -19,4 +19,7 @@ labels are withheld from training. Conversely, sparse high-fidelity response tar
 fail because they cannot yet be inferred accurately enough from structure. The work
 therefore provides both a positive demonstration and a mechanistic boundary for
 converting physical-response information into reusable supervision rather than
-per-query computation.
+per-query computation. In a prospectively frozen external molecule-disjoint cohort,
+the matched response layer lowers MAE from 1.532 to 1.153 kcal mol⁻¹; the advantage
+remains among 97 molecules absent from every response-teacher source, although the
+larger absolute errors delimit the present chemical scope.

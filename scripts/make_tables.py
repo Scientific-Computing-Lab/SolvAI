@@ -350,6 +350,40 @@ def experiment_ledger(metrics: dict) -> pd.DataFrame:
             "evaluation only",
             "results/confirmatory/standardized_exclusion_endpoint_predictions.parquet",
         ),
+        (
+            "ARROW weight-one sensitivity",
+            "Does the response advantage depend on threefold weighting of ARROW training rows?",
+            "15 priors",
+            "prospective sensitivity",
+            "fixed five-fold OOF; ARROW weight 1",
+            metrics["weight_one_sensitivity"]["F_full_solvai"]["mae_kcal_mol"],
+            "evaluation only",
+            "results/michael_30aug_sensitivity/weight1_predictions.parquet",
+        ),
+        (
+            "Tier-A endpoint-disjoint external cohort",
+            "Does the matched response advantage transfer beyond ARROW-85?",
+            "15 priors",
+            "prospective external validation",
+            f"external endpoint-disjoint; n={metrics['external_validation']['endpoint_disjoint']['n']}",
+            metrics["external_validation"]["endpoint_disjoint"]["full_solvai"][
+                "mae_kcal_mol"
+            ],
+            "evaluation only",
+            "results/tier_a_external/evaluation/tier_a_external_predictions.parquet",
+        ),
+        (
+            "Tier-A strict response-source-disjoint subset",
+            "Does the matched response advantage survive removal of teacher-source identities?",
+            "15 priors",
+            "prospective external validation",
+            f"external source-disjoint; n={metrics['external_validation']['strict_response_source_disjoint']['n']}",
+            metrics["external_validation"]["strict_response_source_disjoint"]["full_solvai"][
+                "mae_kcal_mol"
+            ],
+            "evaluation only",
+            "results/tier_a_external/evaluation/tier_a_external_predictions.parquet",
+        ),
     ]
     for regime, values in metrics["global_separation"].items():
         rows.append(
@@ -421,6 +455,11 @@ def main() -> None:
 
     repeats = metrics["repeated_splits"]
     global_results = metrics["global_separation"]
+    external = metrics["external_validation"]
+    tier_a = external["endpoint_disjoint"]
+    tier_a_strict = external["strict_response_source_disjoint"]
+    weight_one = metrics["weight_one_sensitivity"]
+    runtime = json.loads((ROOT / "results/runtime/runtime_benchmark.json").read_text())
     paired = pd.DataFrame(metrics["paired_confirmatory"])
     primary_pair = paired.loc[paired.analysis.eq("primary_F_full_solvai")].iloc[0]
     shuffle_pair = paired.loc[paired.analysis.eq("aligned_vs_mean_shuffle_primary_-1")].iloc[0]
@@ -450,6 +489,30 @@ def main() -> None:
         "ZeroArrowMAE": f"{methods['zero_arrow_full_solvai']['mae_kcal_mol']:.3f}",
         "MolSolvN": f"{metrics['data_counts']['molsolv_confirmatory_rows']:,}",
         "ConfSolvN": f"{metrics['data_counts']['confsolv_confirmatory_rows']:,}",
+        "TierAN": tier_a["n"],
+        "TierAStructureMAE": f"{tier_a['matched_structure_only']['mae_kcal_mol']:.3f}",
+        "TierASolvAIMAE": f"{tier_a['full_solvai']['mae_kcal_mol']:.3f}",
+        "TierADelta": f"{tier_a['paired_difference']['mean']:.3f}",
+        "TierACILow": f"{tier_a['paired_difference']['ci95'][0]:.3f}",
+        "TierACIHigh": f"{tier_a['paired_difference']['ci95'][1]:.3f}",
+        "TierAStrictN": tier_a_strict["n"],
+        "TierAStrictStructureMAE": (
+            f"{tier_a_strict['matched_structure_only']['mae_kcal_mol']:.3f}"
+        ),
+        "TierAStrictSolvAIMAE": f"{tier_a_strict['full_solvai']['mae_kcal_mol']:.3f}",
+        "TierAStrictDelta": f"{tier_a_strict['paired_difference']['mean']:.3f}",
+        "TierAStrictCILow": f"{tier_a_strict['paired_difference']['ci95'][0]:.3f}",
+        "TierAStrictCIHigh": f"{tier_a_strict['paired_difference']['ci95'][1]:.3f}",
+        "WeightOneStructureMAE": (
+            f"{weight_one['A_structure_only']['mae_kcal_mol']:.3f}"
+        ),
+        "WeightOneSolvAIMAE": f"{weight_one['F_full_solvai']['mae_kcal_mol']:.3f}",
+        "WeightOneDelta": f"{weight_one['paired_difference']['mean']:.3f}",
+        "WeightOneCILow": f"{weight_one['paired_difference']['ci95'][0]:.3f}",
+        "WeightOneCIHigh": f"{weight_one['paired_difference']['ci95'][1]:.3f}",
+        "WarmSingleSeconds": f"{runtime['single_molecule']['warm_median_seconds']:.2f}",
+        "BatchSeconds": f"{runtime['batch']['median_seconds']:.2f}",
+        "BatchPerMoleculeSeconds": f"{runtime['batch']['median_seconds_per_molecule']:.3f}",
     }
     (TABLES / "metrics_macros.tex").write_text(
         "".join(f"\\newcommand{{\\{key}}}{{{value}}}\n" for key, value in macros.items())
@@ -550,7 +613,6 @@ def main() -> None:
     artifacts = pd.DataFrame([{"file": key, **value} for key, value in manifest.items()])
     latex_table(artifacts, SI_TABLES / "artifact_manifest.tex", "lrl")
 
-    runtime = json.loads((ROOT / "results/runtime/runtime_benchmark.json").read_text())
     runtime_rows = pd.DataFrame(
         [
             ("cold single molecule", f"{runtime['single_molecule']['cold_seconds']:.3f} s"),
@@ -565,6 +627,72 @@ def main() -> None:
         columns=["Measurement", "Value"],
     )
     latex_table(runtime_rows, SI_TABLES / "runtime.tex", "ll")
+
+    weight_one_table = pd.DataFrame(
+        [
+            (
+                "Matched structure-only",
+                85,
+                weight_one["A_structure_only"]["mae_kcal_mol"],
+                weight_one["A_structure_only"]["rmse_kcal_mol"],
+                weight_one["A_structure_only"]["median_absolute_error_kcal_mol"],
+            ),
+            (
+                "Full SolvAI",
+                85,
+                weight_one["F_full_solvai"]["mae_kcal_mol"],
+                weight_one["F_full_solvai"]["rmse_kcal_mol"],
+                weight_one["F_full_solvai"]["median_absolute_error_kcal_mol"],
+            ),
+        ],
+        columns=["Method", "N", "MAE", "RMSE", "Median absolute error"],
+    )
+    weight_one_display = weight_one_table.copy()
+    for column in ("MAE", "RMSE", "Median absolute error"):
+        weight_one_display[column] = weight_one_display[column].map(lambda value: f"{value:.5f}")
+    latex_table(weight_one_display, SI_TABLES / "weight_one_sensitivity.tex", "lrrrr")
+
+    tier_a_table = pd.DataFrame(
+        [
+            (
+                "Endpoint-disjoint",
+                "Matched structure-only",
+                tier_a["n"],
+                tier_a["matched_structure_only"]["mae_kcal_mol"],
+                tier_a["matched_structure_only"]["rmse_kcal_mol"],
+                tier_a["matched_structure_only"]["median_absolute_error_kcal_mol"],
+            ),
+            (
+                "Endpoint-disjoint",
+                "Full SolvAI",
+                tier_a["n"],
+                tier_a["full_solvai"]["mae_kcal_mol"],
+                tier_a["full_solvai"]["rmse_kcal_mol"],
+                tier_a["full_solvai"]["median_absolute_error_kcal_mol"],
+            ),
+            (
+                "Strict response-source-disjoint",
+                "Matched structure-only",
+                tier_a_strict["n"],
+                tier_a_strict["matched_structure_only"]["mae_kcal_mol"],
+                tier_a_strict["matched_structure_only"]["rmse_kcal_mol"],
+                tier_a_strict["matched_structure_only"]["median_absolute_error_kcal_mol"],
+            ),
+            (
+                "Strict response-source-disjoint",
+                "Full SolvAI",
+                tier_a_strict["n"],
+                tier_a_strict["full_solvai"]["mae_kcal_mol"],
+                tier_a_strict["full_solvai"]["rmse_kcal_mol"],
+                tier_a_strict["full_solvai"]["median_absolute_error_kcal_mol"],
+            ),
+        ],
+        columns=["Cohort", "Method", "N", "MAE", "RMSE", "Median absolute error"],
+    )
+    tier_a_display = tier_a_table.copy()
+    for column in ("MAE", "RMSE", "Median absolute error"):
+        tier_a_display[column] = tier_a_display[column].map(lambda value: f"{value:.5f}")
+    latex_table(tier_a_display, SI_TABLES / "tier_a_external.tex", "llrrrr")
 
     ledger = experiment_ledger(metrics)
     ledger.to_csv(SUPP_DATA / "Supplementary_Data_1_experiment_ledger.csv", index=False)
@@ -626,6 +754,30 @@ def main() -> None:
             "teacher sources": source_summary,
             "endpoint sources": endpoint,
             "identity audit": audit_summary,
+        },
+    )
+    tier_a_predictions = pd.read_parquet(
+        ROOT / "results/tier_a_external/evaluation/tier_a_external_predictions.parquet"
+    )
+    tier_a_qualification = pd.read_parquet(
+        ROOT / "results/tier_a_external/qualification/tier_a_qualification_audit.parquet"
+    )
+    tier_a_exposure = pd.read_csv(
+        ROOT / "results/tier_a_external/qualification/tier_a_teacher_exposure_summary.csv"
+    )
+    tier_a_predictions.to_csv(
+        SUPP_DATA / "Supplementary_Data_5_tier_a_predictions.csv", index=False
+    )
+    tier_a_qualification.to_csv(
+        SUPP_DATA / "Supplementary_Data_5_tier_a_qualification.csv", index=False
+    )
+    workbook(
+        SUPP_DATA / "Supplementary_Data_5_tier_a_external_validation.xlsx",
+        {
+            "predictions": tier_a_predictions,
+            "qualification": tier_a_qualification,
+            "teacher exposure": tier_a_exposure,
+            "metrics": tier_a_table,
         },
     )
     print("Rendered confirmatory manuscript tables and Supplementary Data.")
