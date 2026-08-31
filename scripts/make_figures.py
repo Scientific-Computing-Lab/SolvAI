@@ -322,12 +322,15 @@ def fig3_transfer(metrics: dict, separation: pd.DataFrame, zero: pd.DataFrame) -
     )
     ax2.axhline(differences.mean(), color=DEPLOY, lw=1.2, ls=(0, (3, 2)))
     ax2.text(
-        84,
-        differences.mean() - 0.025,
+        83,
+        differences.mean() - 0.10,
         f"mean {differences.mean():.3f}",
         ha="right",
+        va="top",
         color=DEPLOY,
         fontsize=6.2,
+        bbox={"facecolor": "white", "edgecolor": "none", "pad": 0.8, "alpha": 0.94},
+        zorder=4,
     )
     ax2.set_xlabel("Molecules ranked by paired change")
     ax2.set_ylabel(r"SolvAI − structure-only error (kcal mol$^{-1}$)")
@@ -691,7 +694,9 @@ def supp_fig5_extrapolation(primary: pd.DataFrame, separation: pd.DataFrame) -> 
     panel(axes[0], "a")
     regimes = ["global_nn_0.70", "global_butina_0_70", "global_scaffold", "global_family"]
     labels = ["NN ≤ 0.70", "clusters", "scaffolds", "families"]
-    label_offsets = [-10, 10, 0, 0]
+    # The two lowest SolvAI points are close together and close to the x-axis.
+    # Stagger their labels upward so neither label collides with the axis text.
+    label_offsets = [3, 14, 0, 0]
     for position, (regime, label) in enumerate(zip(regimes, labels, strict=True)):
         group = separation.loc[separation.regime.eq(regime)].set_index("method")
         axes[1].plot(
@@ -709,6 +714,7 @@ def supp_fig5_extrapolation(primary: pd.DataFrame, separation: pd.DataFrame) -> 
             textcoords="offset points",
             va="center",
             fontsize=6.1,
+            bbox={"facecolor": "white", "edgecolor": "none", "pad": 0.5, "alpha": 0.92},
         )
     axes[1].set_xticks([0, 1], ["Structure only", "SolvAI"])
     axes[1].set_xlim(-0.25, 1.55)

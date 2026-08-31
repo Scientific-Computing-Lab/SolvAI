@@ -206,16 +206,16 @@
       "sha256": "45bc32ed0bdd6dc2010c64011d22630715f146c5d22d9cbe2eafdd1f989fe181"
     },
     "paper/main.pdf": {
-      "bytes": 2019807,
-      "sha256": "0272b7796805d50fddf3cca83eb337f4389cd242b5f14b480d1962703ee70ee8"
+      "bytes": 2015821,
+      "sha256": "c2156f9b6801a522cec4948e04e5a4a4423701936f0c47295d446d62dc200013"
     },
     "paper/supplementary/supplementary.pdf": {
-      "bytes": 437900,
-      "sha256": "786941a0e5c8899a76e6b5cc0d126bcb46b027ed4b6ae7afedc24cf9dee03d91"
+      "bytes": 433713,
+      "sha256": "11b55c3d8fa464e9f850dbf0303b36f79c9233af8231cd96d577c95ae0931f68"
     },
     "paper/supplementary/supplementary.tex": {
-      "bytes": 20364,
-      "sha256": "316aa4ff859f51476c65b94b027ee9ce1b7ca824e86d658c1f3d05fccfbb1cc3"
+      "bytes": 20372,
+      "sha256": "e81984266ae912907a74852b9231f47925d5a46c17e07ee90f10cbf92d4879ea"
     },
     "paper/supplementary_data/Supplementary_Data_1_experiment_ledger.xlsx": {
       "bytes": 7401,
@@ -246,8 +246,8 @@
       "sha256": "45bccc29e896367acdeff85ac5282845fb4ed042993625a5b646619949a30cd3"
     },
     "paper/figures/main/fig3_transfer.pdf": {
-      "bytes": 36641,
-      "sha256": "d0ac2ccfdce5117339eef46ff1d8c7bf333d7360d6d37d3ac0f406dd3eed11d5"
+      "bytes": 32069,
+      "sha256": "926ba5c08e75c9cac8b4b4a9a4c89c28cb02eacaedb20c0bcdb1d56432cd84c4"
     },
     "paper/figures/main/fig4_frontier.pdf": {
       "bytes": 36994,
@@ -270,12 +270,12 @@
       "sha256": "641e6c295dbafaca5686a969829bf90ace78a446af932641d64280b63ee3fe64"
     },
     "paper/supplementary/figures/Supp_Fig5_extrapolation.pdf": {
-      "bytes": 31603,
-      "sha256": "45739c11293a16208099222cd73130943e55c8c2c32791740e686a1c24ceb599"
+      "bytes": 27266,
+      "sha256": "d5e30969b45e120c564b38839c1a6703008055ae92e2c3c995b58b0533163a21"
     },
     "paper/review_combined.pdf": {
-      "bytes": 2513484,
-      "sha256": "0735db870046bc760d18d4dbc101e94a7f8665db666b4b02336d6e0397afcb87"
+      "bytes": 2503512,
+      "sha256": "8751ab0f018ded850ce76ce28813ccb279e116b77b9d9001a68c3b2ab1372d5c"
     },
     "paper/supplementary_data/Supplementary_Data_1_experiment_ledger.csv": {
       "bytes": 6243,
