@@ -1,0 +1,9 @@
+{
+  "role": "prospective",
+  "rows": 120,
+  "molecules": 8,
+  "complete_molecules": 8,
+  "missing": [],
+  "output": "/home/galoren/Freecurve_AI_Solvation/release/SolvAI/active_solvai/results/phase2/dense_responses_prospective.parquet",
+  "output_sha256": "4ce191a2ebfabb10dfcf5e11f98fef91b0bd5b2993f066ab47cfa9cc261c1097"
+}
