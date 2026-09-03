@@ -9,8 +9,26 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "MANIFEST.json"
-EXCLUDED_PARTS = {".venv", "__pycache__", ".pytest_cache", ".ruff_cache", "cache", "output"}
-EXCLUDED_SUFFIXES = {".aux", ".bbl", ".bcf", ".blg", ".fdb_latexmk", ".fls", ".log", ".out", ".run.xml"}
+EXCLUDED_PARTS = {
+    ".venv",
+    "__pycache__",
+    ".pytest_cache",
+    ".ruff_cache",
+    "FFDbLog",
+    "cache",
+    "output",
+}
+EXCLUDED_SUFFIXES = {
+    ".aux",
+    ".bbl",
+    ".bcf",
+    ".blg",
+    ".fdb_latexmk",
+    ".fls",
+    ".log",
+    ".out",
+    ".run.xml",
+}
 
 
 def sha256(path: Path) -> str:

@@ -105,9 +105,7 @@ def export_response_predictions() -> pd.DataFrame:
     }
     split = pd.read_csv(ROOT / "active_solvai/data/manifests/probe_split_assignments.csv")
     split = split.loc[
-        split.partition.isin(
-            ["standardized_exclusion_primary", "standardized_exclusion_repeat"]
-        )
+        split.partition.isin(["standardized_exclusion_primary", "standardized_exclusion_repeat"])
     ]
     rows = []
     for (partition, repeat, split_seed), assignment in split.groupby(
@@ -206,8 +204,7 @@ def make_figures(
     plt.close(fig)
 
     query = response.loc[
-        response.partition.eq("standardized_exclusion_repeat")
-        & response.component.eq("total")
+        response.partition.eq("standardized_exclusion_repeat") & response.component.eq("total")
     ]
     summary = query.groupby(["trajectory_fraction", "lambda"]).absolute_error.mean().reset_index()
     fig, ax = plt.subplots(figsize=(5.4, 3.25))
@@ -229,9 +226,7 @@ def make_figures(
     plt.close(fig)
 
     query = reconstruction.loc[reconstruction.partition.eq("standardized_exclusion_repeat")]
-    summary = (
-        query.groupby(["posterior", "lambda_subset"]).absolute_error.mean().reset_index()
-    )
+    summary = query.groupby(["posterior", "lambda_subset"]).absolute_error.mean().reset_index()
     order = ["0p1", "0p5", "0p9", "0p1_0p5", "0p1_0p9", "0p5_0p9"]
     fig, ax = plt.subplots(figsize=(6.4, 3.35))
     width = 0.36
@@ -249,7 +244,9 @@ def make_figures(
             label=label,
             color=color,
         )
-    ax.set_xticks(np.arange(len(order)), [value.replace("p", ".").replace("_", ", ") for value in order])
+    ax.set_xticks(
+        np.arange(len(order)), [value.replace("p", ".").replace("_", ", ") for value in order]
+    )
     ax.set_xlabel("Observed λ")
     ax.set_ylabel("Hidden-point MAE (kcal mol$^{-1}$)")
     ax.set_title("Conditioning helps interpolation, but errors remain large")
@@ -313,18 +310,20 @@ def main() -> None:
     ]
     repeat_summary = (
         repeat_rows.groupby("method", as_index=False)
-        .agg(mean_mae=("mae", "mean"), sd_mae=("mae", "std"), min_mae=("mae", "min"), max_mae=("mae", "max"))
+        .agg(
+            mean_mae=("mae", "mean"),
+            sd_mae=("mae", "std"),
+            min_mae=("mae", "min"),
+            max_mae=("mae", "max"),
+        )
         .sort_values("mean_mae")
     )
     repeat_summary.to_csv(OUT / "phase1_primary_repeat_summary.csv", index=False)
 
-    response_metrics = (
-        response.groupby(
-            ["partition", "repeat", "trajectory_fraction", "lambda", "component"],
-            as_index=False,
-        )
-        .agg(n=("absolute_error", "size"), mae=("absolute_error", "mean"))
-    )
+    response_metrics = response.groupby(
+        ["partition", "repeat", "trajectory_fraction", "lambda", "component"],
+        as_index=False,
+    ).agg(n=("absolute_error", "size"), mae=("absolute_error", "mean"))
     response_metrics.to_csv(OUT / "phase1_response_metrics.csv", index=False)
 
     reconstruction_comparisons = []
@@ -332,15 +331,10 @@ def main() -> None:
         reconstruction.partition.eq("standardized_exclusion_repeat")
     ]
     for subset in sorted(repeated_reconstruction.lambda_subset.unique()):
-        selected = repeated_reconstruction.loc[
-            repeated_reconstruction.lambda_subset.eq(subset)
-        ]
-        pivoted = (
-            selected.groupby(["molecule_id", "posterior"]).absolute_error.mean().unstack()
-        )
+        selected = repeated_reconstruction.loc[repeated_reconstruction.lambda_subset.eq(subset)]
+        pivoted = selected.groupby(["molecule_id", "posterior"]).absolute_error.mean().unstack()
         difference = (
-            pivoted["P1-F_solvai_conditioned_posterior"]
-            - pivoted["P1-F_generic_posterior"]
+            pivoted["P1-F_solvai_conditioned_posterior"] - pivoted["P1-F_generic_posterior"]
         )
         record = {
             "lambda_subset": subset,
@@ -363,8 +357,7 @@ def main() -> None:
         .reset_index()
     )
     primary_family["active_minus_frozen"] = (
-        primary_family["P1-D_actual_minus_predicted"]
-        - primary_family["P1-A_frozen_solvai"]
+        primary_family["P1-D_actual_minus_predicted"] - primary_family["P1-A_frozen_solvai"]
     )
     family_summary = (
         primary_family.groupby("functional_group_family", as_index=False)
@@ -397,9 +390,9 @@ def main() -> None:
         "primary": {
             "method": "actual-minus-structure-predicted SYSTEM dH/dlambda at lambda 0.1/0.5/0.9",
             "frozen_solvai_repeat_mae_mean": float(
-                repeat_summary.loc[
-                    repeat_summary.method.eq("P1-A_frozen_solvai"), "mean_mae"
-                ].iloc[0]
+                repeat_summary.loc[repeat_summary.method.eq("P1-A_frozen_solvai"), "mean_mae"].iloc[
+                    0
+                ]
             ),
             "active_repeat_mae_mean": float(
                 repeat_summary.loc[
@@ -469,9 +462,9 @@ def main() -> None:
 
 ## Decision
 
-**The preregistered experimental-endpoint gate is negative.** On the 72 molecules with complete 5 ps PIMD2 observations at λ=0.1, 0.5 and 0.9, the actual-minus-predicted response correction increased repeated-partition MAE from {canonical['primary']['frozen_solvai_repeat_mae_mean']:.6f} to {canonical['primary']['active_repeat_mae_mean']:.6f} kcal mol⁻¹. The molecule-paired candidate-minus-baseline change was {primary_vs_baseline['mean']:+.6f} kcal mol⁻¹ (95% bootstrap CI {primary_vs_baseline['ci_low_95']:+.6f} to {primary_vs_baseline['ci_high_95']:+.6f}). Only {primary_vs_baseline['fraction_below_zero']:.1%} of molecules improved. The candidate was also indistinguishable from the mean shuffled-residual control (difference {primary_vs_shuffle['mean']:+.6f}; 95% CI {primary_vs_shuffle['ci_low_95']:+.6f} to {primary_vs_shuffle['ci_high_95']:+.6f}).
+**The preregistered experimental-endpoint gate is negative.** On the 72 molecules with complete 5 ps PIMD2 observations at λ=0.1, 0.5 and 0.9, the actual-minus-predicted response correction increased repeated-partition MAE from {canonical["primary"]["frozen_solvai_repeat_mae_mean"]:.6f} to {canonical["primary"]["active_repeat_mae_mean"]:.6f} kcal mol⁻¹. The molecule-paired candidate-minus-baseline change was {primary_vs_baseline["mean"]:+.6f} kcal mol⁻¹ (95% bootstrap CI {primary_vs_baseline["ci_low_95"]:+.6f} to {primary_vs_baseline["ci_high_95"]:+.6f}). Only {primary_vs_baseline["fraction_below_zero"]:.1%} of molecules improved. The candidate was also indistinguishable from the mean shuffled-residual control (difference {primary_vs_shuffle["mean"]:+.6f}; 95% CI {primary_vs_shuffle["ci_low_95"]:+.6f} to {primary_vs_shuffle["ci_high_95"]:+.6f}).
 
-The sign was unfavourable in four of five repeated partitions and effectively null in the fifth. The fixed parent partition was also worse ({metrics.loc[(metrics.partition.eq('standardized_exclusion_primary')) & metrics.method.eq('P1-A_frozen_solvai'), 'mae'].iloc[0]:.6f} versus {fixed_active_mae:.6f}). This satisfies the frozen negative endpoint criterion and cannot be rescued by a favourable post-hoc λ subset or chemistry.
+The sign was unfavourable in four of five repeated partitions and effectively null in the fifth. The fixed parent partition was also worse ({metrics.loc[(metrics.partition.eq("standardized_exclusion_primary")) & metrics.method.eq("P1-A_frozen_solvai"), "mae"].iloc[0]:.6f} versus {fixed_active_mae:.6f}). This satisfies the frozen negative endpoint criterion and cannot be rescued by a favourable post-hoc λ subset or chemistry.
 
 ## Matched fixed-partition results
 
@@ -491,11 +484,11 @@ The primary residual correction was repeated at sequential 0.5, 1.0, 2.0, 3.5 an
 
 ## Sparse response reconstruction
 
-SolvAI-conditioned Gaussian interpolation often reduced hidden-point error relative to a generic population Gaussian. The largest post-result descriptive gain among the predeclared two-point subsets was `{reconstruction_best['lambda_subset']}`: {reconstruction_best['mae_P1-F_generic_posterior']:.3f} to {reconstruction_best['mae_P1-F_solvai_conditioned_posterior']:.3f} kcal mol⁻¹, paired difference {reconstruction_best['mean']:+.3f} (95% CI {reconstruction_best['ci_low_95']:+.3f} to {reconstruction_best['ci_high_95']:+.3f}). However, hidden-point errors remained 2.4 kcal mol⁻¹ or larger and nominal 95% intervals were very wide. These three-point held-point diagnostics are not dense-curve reconstruction. Under the prospective freeze they justify only a bounded dense same-Hamiltonian sentinel test, not a reconstruction claim or endpoint rescue.
+SolvAI-conditioned Gaussian interpolation often reduced hidden-point error relative to a generic population Gaussian. The largest post-result descriptive gain among the predeclared two-point subsets was `{reconstruction_best["lambda_subset"]}`: {reconstruction_best["mae_P1-F_generic_posterior"]:.3f} to {reconstruction_best["mae_P1-F_solvai_conditioned_posterior"]:.3f} kcal mol⁻¹, paired difference {reconstruction_best["mean"]:+.3f} (95% CI {reconstruction_best["ci_low_95"]:+.3f} to {reconstruction_best["ci_high_95"]:+.3f}). However, hidden-point errors remained 2.4 kcal mol⁻¹ or larger and nominal 95% intervals were very wide. These three-point held-point diagnostics are not dense-curve reconstruction. Under the prospective freeze they justify only a bounded dense same-Hamiltonian sentinel test, not a reconstruction claim or endpoint rescue.
 
 ## Numerical integration
 
-Direct integration of the three actual short-window observations followed by fold-local affine calibration produced a five-repeat mean experimental MAE of {integration_metrics.loc[(integration_metrics.partition.eq('standardized_exclusion_repeat')) & integration_metrics.method.eq('P1-E_actual_integral_affine')].groupby('repeat').mae.first().mean():.3f} kcal mol⁻¹. The best posterior-integral variant remained {canonical['integration_best_repeat_mae']:.3f} kcal mol⁻¹. The inherited three λ points are therefore not an adequate quadrature rule for this endpoint.
+Direct integration of the three actual short-window observations followed by fold-local affine calibration produced a five-repeat mean experimental MAE of {integration_metrics.loc[(integration_metrics.partition.eq("standardized_exclusion_repeat")) & integration_metrics.method.eq("P1-E_actual_integral_affine")].groupby("repeat").mae.first().mean():.3f} kcal mol⁻¹. The best posterior-integral variant remained {canonical["integration_best_repeat_mae"]:.3f} kcal mol⁻¹. The inherited three λ points are therefore not an adequate quadrature rule for this endpoint.
 
 ## Direction decisions
 
@@ -520,7 +513,7 @@ No new MD/PIMD calculation was used in this gate. This is a scientific null for 
 
 - **Frozen before scoring:** commit `a0dd986`.
 - **Question:** do three actual 5 ps PIMD2 SYSTEM dH/dλ observations, especially actual-minus-structure-predicted residuals, improve frozen SolvAI?
-- **Result:** no. Five-repeat mean MAE changed from {canonical['primary']['frozen_solvai_repeat_mae_mean']:.6f} to {canonical['primary']['active_repeat_mae_mean']:.6f} kcal mol⁻¹; paired difference {primary_vs_baseline['mean']:+.6f} (95% CI {primary_vs_baseline['ci_low_95']:+.6f}, {primary_vs_baseline['ci_high_95']:+.6f}). The aligned residual was not better than shuffled residuals.
+- **Result:** no. Five-repeat mean MAE changed from {canonical["primary"]["frozen_solvai_repeat_mae_mean"]:.6f} to {canonical["primary"]["active_repeat_mae_mean"]:.6f} kcal mol⁻¹; paired difference {primary_vs_baseline["mean"]:+.6f} (95% CI {primary_vs_baseline["ci_low_95"]:+.6f}, {primary_vs_baseline["ci_high_95"]:+.6f}). The aligned residual was not better than shuffled residuals.
 - **Mechanistic diagnostic:** structure-conditioned interpolation reduced some hidden-point errors, but errors remained ≥2.4 kcal mol⁻¹ with broad intervals; three points do not constitute a dense reconstruction benchmark.
 - **Decision:** kill Direction A for this probe protocol. Hold Direction C. The limited hidden-point signal permits one separately frozen dense sentinel test of Direction B; it cannot alter this endpoint null.
 """
@@ -537,20 +530,20 @@ No new MD/PIMD calculation was used in this gate. This is a scientific null for 
         append_record(
             ledger_path,
             {
-            "run_id": "AS-P1-SUMMARY-001",
-            "stage": "phase1",
-            "status": "completed",
-            "command": "active_solvai/.venv/bin/python active_solvai/scripts/summarize_phase1.py",
-            "device": "CPU",
-            "wall_seconds": 0.0,
-            "gpu_hours": 0.0,
-            "cpu_hours": 0.0,
-            "simulated_time_ps": 0.0,
-            "force_evaluations": 0,
-            "bead_windows": 0,
-            "quality_control": "summary cross-check complete",
-            "failure_reason": None,
-            "freeze_commit": "a0dd986",
+                "run_id": "AS-P1-SUMMARY-001",
+                "stage": "phase1",
+                "status": "completed",
+                "command": "active_solvai/.venv/bin/python active_solvai/scripts/summarize_phase1.py",
+                "device": "CPU",
+                "wall_seconds": 0.0,
+                "gpu_hours": 0.0,
+                "cpu_hours": 0.0,
+                "simulated_time_ps": 0.0,
+                "force_evaluations": 0,
+                "bead_windows": 0,
+                "quality_control": "summary cross-check complete",
+                "failure_reason": None,
+                "freeze_commit": "a0dd986",
             },
         )
     print(json.dumps(canonical["primary"], indent=2))

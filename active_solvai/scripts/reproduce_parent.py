@@ -66,7 +66,9 @@ def main() -> None:
     primary = frame.loc[frame["partition"].eq("standardized_exclusion_primary")]
     maes = primary.groupby("method", observed=True)["absolute_error"].mean().to_dict()
     expected_metrics = json.loads((ROOT / "results/paper_metrics.json").read_text())
-    expected_structure = float(expected_metrics["methods"]["matched_structure_only"]["mae_kcal_mol"])
+    expected_structure = float(
+        expected_metrics["methods"]["matched_structure_only"]["mae_kcal_mol"]
+    )
     expected_full = float(expected_metrics["methods"]["full_solvai"]["mae_kcal_mol"])
     if not np.isclose(maes["A_structure_only"], expected_structure, atol=1e-12):
         raise AssertionError("Parent structure-only metric did not reproduce")

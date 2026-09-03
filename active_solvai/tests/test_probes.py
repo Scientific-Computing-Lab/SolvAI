@@ -18,4 +18,3 @@ def test_contiguous_block_sem_constant_is_zero():
     sem, blocks = contiguous_block_sem(np.ones(20), blocks=5)
     assert sem == 0.0
     assert blocks == 5
-

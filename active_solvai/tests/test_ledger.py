@@ -17,4 +17,3 @@ def test_append_only_ledger_and_duplicate_detection(tmp_path):
     append_record(path, {"run_id": "r1", "status": "retry"})
     with pytest.raises(AssertionError, match="Duplicate run_id"):
         assert_unique_run_ids(path)
-

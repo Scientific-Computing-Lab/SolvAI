@@ -1,0 +1,9 @@
+{
+  "role": "calibration",
+  "rows": 60,
+  "molecules": 4,
+  "complete_molecules": 4,
+  "missing": [],
+  "output": "/home/galoren/Freecurve_AI_Solvation/release/SolvAI/active_solvai/results/phase2/dense_responses_calibration.parquet",
+  "output_sha256": "b28482786720e821999e6c3c35fc90fe8139859dd52b8db501999463264e21ba"
+}

@@ -2,8 +2,8 @@
   "schema_version": 1,
   "files": {
     ".gitignore": {
-      "sha256": "1c31719d094e5762e1698618e5012c99fde33b36108b429f70f882bbfc4572d9",
-      "bytes": 319
+      "sha256": "a4db6ff0f8afbfd19963f6f9602696a073879d8ffbc58b6e580419b67623f304",
+      "bytes": 409
     },
     "CITATION.cff": {
       "sha256": "df0b454d41886e8170d8db89f66d8e03b6ef771a64eb47f3180a2afde67f2770",
@@ -117,9 +117,21 @@
       "sha256": "9f505b9b7e5d2e64d7bc4e8b123e4cbfe15fbd7e157db9bed611416787ba01dd",
       "bytes": 3474
     },
+    "release/DENSE_SENTINEL_CALIBRATION_LOCK.json": {
+      "sha256": "3d1f411c5320bf17b0bf83d7f6280645848136c88fed7d7be1a54e9e0fd4975a",
+      "bytes": 2876
+    },
+    "release/DENSE_SENTINEL_CALIBRATION_LOCK.md": {
+      "sha256": "5af6e23ba97bc64d55c43255bfff6e9f7190f97a046da7f6b9e33d96e9078664",
+      "bytes": 743
+    },
     "release/DENSE_SENTINEL_FREEZE.md": {
       "sha256": "5a009373e3bda80cb9ca816f9372e8a138f45304b1b87c42980990d471e30de8",
       "bytes": 10158
+    },
+    "release/DENSE_SENTINEL_FREEZE_AMENDMENT_001.md": {
+      "sha256": "932db61194dd28efd2796b2e16a79140f46caf97b435a9b78d59ae8626e3fb90",
+      "bytes": 1271
     },
     "release/PHASE1_ORACLE_FREEZE.md": {
       "sha256": "2bc435bb46a0f3697d9a2519a0b72a0cbfa0ca262ebbfad039ebedc60df5166d",
@@ -205,53 +217,73 @@
       "sha256": "03e3c7cc7af7e6343c9f0b3f5b294f7795a8f7c05814aea18fbee9f9b6372107",
       "bytes": 2914
     },
+    "results/phase2/dense_calibration_search.csv": {
+      "sha256": "d5a0aec01041bb7b0d38bcd9f2430eec685fdff23062fdee95846d679ea8ac20",
+      "bytes": 1078
+    },
+    "results/phase2/dense_responses_calibration.parquet": {
+      "sha256": "b28482786720e821999e6c3c35fc90fe8139859dd52b8db501999463264e21ba",
+      "bytes": 20278
+    },
+    "results/phase2/dense_responses_calibration_summary.json": {
+      "sha256": "9c366f881f54207981e77f8fd1f575ba8296a11df34d62de61cd2da0a10d9b00",
+      "bytes": 323
+    },
     "runs/COMPUTE_LEDGER.csv": {
-      "sha256": "9f50a31194060052e4a192d85d18bd2584f49ad7bac5dc7ac474e143fd67089c",
-      "bytes": 3438
+      "sha256": "2ec635f7df74d903a8ac17095d5a2bb9cfb9ebac4c9ae72006517c69f9bae0da",
+      "bytes": 52980
     },
     "runs/ledger.jsonl": {
-      "sha256": "f05c704c548b521e6fced08626376320df6530643965cfa780b0594f2165f503",
-      "bytes": 5216
+      "sha256": "ee34a00181f11786d7dc4b20d5ac67dd3623f562547ee54b41796050d8e99159",
+      "bytes": 87272
     },
     "scripts/build_manifest.py": {
-      "sha256": "ed01487829fd35e844247c57a92f6f215226e7f0990e6a3326aa60f9638409c6",
-      "bytes": 1314
+      "sha256": "b8c15cf52c0e5200009120b7706dba96d2bb7a3e276b19cfd19ff4cbccf27d3d",
+      "bytes": 1395
     },
     "scripts/calibrate_dense_models.py": {
-      "sha256": "2d1de84269686f229823d987e6b4ae12a36f9804f4bff57b05cafed6f46fdaee",
-      "bytes": 6924
+      "sha256": "c0ada24e42c6dc8a2c4e34c07aec3b0209689f01015a55f5944ca09a79aa2509",
+      "bytes": 8650
     },
     "scripts/capture_environment.py": {
-      "sha256": "8230182286f28ea7902df4a0a3ed545bbd4212aea813c4016b264fdb3ea09085",
-      "bytes": 2332
+      "sha256": "375d767bca564965bbda8b4aabca1f2c110313b2fee88c9ce194ec2a6b0a6ad3",
+      "bytes": 2594
     },
     "scripts/collect_dense_sentinel.py": {
-      "sha256": "455cea5c8e1a7591d4151e2f8881dd86596cceb3c77b822e190718a750e8b2af",
-      "bytes": 3791
+      "sha256": "4e88fe9d8ac596086843a4acae54c9749268f0ab80f2c0b340258bfb90cafa06",
+      "bytes": 4484
+    },
+    "scripts/evaluate_dense_sentinel.py": {
+      "sha256": "c67f6c8763827948b2fbc5472d0dc6d508191b97e6ad0b73fa6819dc2f349d31",
+      "bytes": 17263
     },
     "scripts/inventory_responses.py": {
-      "sha256": "596d391d600497bfe0988d865cc30952980a472aa493324724c5f49fcbc98e5a",
-      "bytes": 10615
+      "sha256": "df59a8734130d45cefff6b855b98d8492d4d40cf350765bafbdd030e1997b10f",
+      "bytes": 10899
     },
     "scripts/prepare_dense_sentinel.py": {
       "sha256": "190ff9ebca15bb51b078e72ece9436bb0300205fc14fbcf8d6019a820c34d260",
       "bytes": 5906
     },
     "scripts/reproduce_parent.py": {
-      "sha256": "04c92ff4ce4ea07d88055613231088048b9125a0da9041cb8b4df830f58a1d69",
-      "bytes": 4613
+      "sha256": "b916c6c0092f5b431c423ea9255f7096b1892eb480e46099ccc6f150e138265a",
+      "bytes": 4627
     },
     "scripts/run_dense_sentinel.py": {
-      "sha256": "86952a3343b7de09ef556366610504b8f63a9c4d4174890af1799c0d2af73f05",
-      "bytes": 7387
+      "sha256": "62341bee47d382b10bea013b6c2789136415f98fc6928d85bcabb9bdf7745ff6",
+      "bytes": 7475
     },
     "scripts/run_phase1_gate.py": {
-      "sha256": "e21546ef4286b8f77d779c5ca67dfcfa4625e5d6b4463f8827f7f8ed681850c2",
-      "bytes": 42239
+      "sha256": "3eff898aeab178dcef34631b578e18e31326b02329cdd4903bfaf5b8d34d2b5d",
+      "bytes": 42247
+    },
+    "scripts/summarize_dense_sentinel.py": {
+      "sha256": "49cd16ad37bae002393a751c46ce05dff0b53643652c6453e62e27a01d4e8cf3",
+      "bytes": 10632
     },
     "scripts/summarize_phase1.py": {
-      "sha256": "c822fbbd546805ac4e013d29f9592acc3dc6d894a633eb5e8e9571ed955602af",
-      "bytes": 26865
+      "sha256": "b8e11ffd15cfd496a0b566525cc66353506070cb1e0a94091d257098aaaa1025",
+      "bytes": 26845
     },
     "scripts/sync_compute_ledger.py": {
       "sha256": "42dd992bd16ae4254c183c65c5de7f02172cc0586698f3138b5272648cf34ee7",
@@ -261,6 +293,10 @@
       "sha256": "b76aef9b60ae497d8b4d39264280a9807fc72a98f3cbc2ad7a10e140280e6ec2",
       "bytes": 14854
     },
+    "simulations/dense_pimd2/calibration/acetone/lambda_0p00/console_attempt_01.txt": {
+      "sha256": "6b4895ab86a3e111b2d50608cc11cfb0e6f34d3c46e8f1eb25f5820f40138f04",
+      "bytes": 39098
+    },
     "simulations/dense_pimd2/calibration/acetone/lambda_0p00/solute.hin": {
       "sha256": "2518a81c4e142a7a362baad29b520d314c022733218c99f11d151dfec942d345",
       "bytes": 757
@@ -268,6 +304,10 @@
     "simulations/dense_pimd2/calibration/acetone/lambda_0p05/conf.xml": {
       "sha256": "b579d3e383e2d69a54ddd288ee9b8f8de24ff9811bb5038d21957f45951a1223",
       "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/acetone/lambda_0p05/console_attempt_01.txt": {
+      "sha256": "29fff858119f9c0bff3a4809f2774a23f02a0c4e9ef5184f7fc714c643cf9310",
+      "bytes": 39099
     },
     "simulations/dense_pimd2/calibration/acetone/lambda_0p05/solute.hin": {
       "sha256": "2518a81c4e142a7a362baad29b520d314c022733218c99f11d151dfec942d345",
@@ -277,6 +317,10 @@
       "sha256": "76234b2fddc4afb3cea1acb9150fce14c7e7a9b997e687329340f99f210e73b3",
       "bytes": 14854
     },
+    "simulations/dense_pimd2/calibration/acetone/lambda_0p20/console_attempt_01.txt": {
+      "sha256": "0087ced51c24c87cd3d43ebbee97dd895616b1f672adc73524fc99af899a8b81",
+      "bytes": 39099
+    },
     "simulations/dense_pimd2/calibration/acetone/lambda_0p20/solute.hin": {
       "sha256": "2518a81c4e142a7a362baad29b520d314c022733218c99f11d151dfec942d345",
       "bytes": 757
@@ -284,6 +328,10 @@
     "simulations/dense_pimd2/calibration/acetone/lambda_0p30/conf.xml": {
       "sha256": "612a8113f5762a319663b9f06c73b5c40bd06973d0242a6b5b9fae7855ed1f34",
       "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/acetone/lambda_0p30/console_attempt_01.txt": {
+      "sha256": "63a8c390eccae5680cf0ad76430b23cf6203945919b45a3c8931e6cc094121ea",
+      "bytes": 39099
     },
     "simulations/dense_pimd2/calibration/acetone/lambda_0p30/solute.hin": {
       "sha256": "2518a81c4e142a7a362baad29b520d314c022733218c99f11d151dfec942d345",
@@ -293,6 +341,10 @@
       "sha256": "ced4d3a81655ecf18d0893b6c5e06400ce64c9dfeedeb91df748d7007c214414",
       "bytes": 14854
     },
+    "simulations/dense_pimd2/calibration/acetone/lambda_0p40/console_attempt_01.txt": {
+      "sha256": "2f45bd11d7bd707e88023e4994540582134c443ab4acc921863a7383c227759e",
+      "bytes": 39097
+    },
     "simulations/dense_pimd2/calibration/acetone/lambda_0p40/solute.hin": {
       "sha256": "2518a81c4e142a7a362baad29b520d314c022733218c99f11d151dfec942d345",
       "bytes": 757
@@ -300,6 +352,10 @@
     "simulations/dense_pimd2/calibration/acetone/lambda_0p60/conf.xml": {
       "sha256": "51b6e328404bc3d736838f01e858fcf7cf8f78bbbc8cefbe35016c449ed268bb",
       "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/acetone/lambda_0p60/console_attempt_01.txt": {
+      "sha256": "3f70002441c636e27c7c319dbba7bc48cbcb23f5ca546e11c82b70d020825f01",
+      "bytes": 39099
     },
     "simulations/dense_pimd2/calibration/acetone/lambda_0p60/solute.hin": {
       "sha256": "2518a81c4e142a7a362baad29b520d314c022733218c99f11d151dfec942d345",
@@ -309,6 +365,10 @@
       "sha256": "2abe2a3cff22a709c83ededcb29e510dd0a7d949a2fe232a5768c267dcf13bb9",
       "bytes": 14854
     },
+    "simulations/dense_pimd2/calibration/acetone/lambda_0p70/console_attempt_01.txt": {
+      "sha256": "8bf83569bb541a562d9c83510d1dfc983b397632bffad43f0e6f223eafba6efb",
+      "bytes": 39100
+    },
     "simulations/dense_pimd2/calibration/acetone/lambda_0p70/solute.hin": {
       "sha256": "2518a81c4e142a7a362baad29b520d314c022733218c99f11d151dfec942d345",
       "bytes": 757
@@ -316,6 +376,10 @@
     "simulations/dense_pimd2/calibration/acetone/lambda_0p75/conf.xml": {
       "sha256": "e534cb4257b963bfd162d4d0a5162dbfe2c872beaebaa0dba48e68323d9781fb",
       "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/acetone/lambda_0p75/console_attempt_01.txt": {
+      "sha256": "ab33dcf30d6ba3fb4a36d1ef8172be80c0e40b07fae41d4fecac8feb79e1d68e",
+      "bytes": 39101
     },
     "simulations/dense_pimd2/calibration/acetone/lambda_0p75/solute.hin": {
       "sha256": "2518a81c4e142a7a362baad29b520d314c022733218c99f11d151dfec942d345",
@@ -325,6 +389,10 @@
       "sha256": "a81171a2a0d358272c4810d0c504b3f4ea01cc0171e874d7f66d4550059c91e5",
       "bytes": 14855
     },
+    "simulations/dense_pimd2/calibration/acetone/lambda_0p80/console_attempt_01.txt": {
+      "sha256": "1a1928b7aa4c5d619722819ac27637fa5477a8238b9326eb7c57091aaf3b56b4",
+      "bytes": 39103
+    },
     "simulations/dense_pimd2/calibration/acetone/lambda_0p80/solute.hin": {
       "sha256": "2518a81c4e142a7a362baad29b520d314c022733218c99f11d151dfec942d345",
       "bytes": 757
@@ -332,6 +400,10 @@
     "simulations/dense_pimd2/calibration/acetone/lambda_0p85/conf.xml": {
       "sha256": "838a51b40c2975f422f43294578057f7b9873f5eec22393672656baed2faf4b5",
       "bytes": 14855
+    },
+    "simulations/dense_pimd2/calibration/acetone/lambda_0p85/console_attempt_01.txt": {
+      "sha256": "38f04f4b28d0641acfae0b33c8791de4c750c01221f8a365e289b320600cc3b3",
+      "bytes": 39102
     },
     "simulations/dense_pimd2/calibration/acetone/lambda_0p85/solute.hin": {
       "sha256": "2518a81c4e142a7a362baad29b520d314c022733218c99f11d151dfec942d345",
@@ -341,6 +413,10 @@
       "sha256": "89d12e9284e1fcae16f08c90024066006508d76101c0404f136a681cd142d981",
       "bytes": 14855
     },
+    "simulations/dense_pimd2/calibration/acetone/lambda_0p95/console_attempt_01.txt": {
+      "sha256": "6944b94d2dd800c2f2ec6451a27d8b9982e0d73a9955fcb37e65c68e54d7ea95",
+      "bytes": 39103
+    },
     "simulations/dense_pimd2/calibration/acetone/lambda_0p95/solute.hin": {
       "sha256": "2518a81c4e142a7a362baad29b520d314c022733218c99f11d151dfec942d345",
       "bytes": 757
@@ -348,6 +424,10 @@
     "simulations/dense_pimd2/calibration/acetone/lambda_1p00/conf.xml": {
       "sha256": "86cacc2b6131e3ea711e80590f11f3f173c55c6067816bca07f5bf645db1d565",
       "bytes": 14855
+    },
+    "simulations/dense_pimd2/calibration/acetone/lambda_1p00/console_attempt_01.txt": {
+      "sha256": "8912209de97b19290f9f33350e4c5014d09553185020f4da4d2d647901cac47c",
+      "bytes": 39230
     },
     "simulations/dense_pimd2/calibration/acetone/lambda_1p00/solute.hin": {
       "sha256": "2518a81c4e142a7a362baad29b520d314c022733218c99f11d151dfec942d345",
@@ -357,6 +437,10 @@
       "sha256": "c9c56e191afcb9920f06ae03250cf9270529180f0bc414c72c16d931cd40ee45",
       "bytes": 14854
     },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_0p00/console_attempt_01.txt": {
+      "sha256": "f62fefad6ec0f688f08482b27f587e4f6146b057fd5aa59265e0358d3576cefc",
+      "bytes": 40335
+    },
     "simulations/dense_pimd2/calibration/ethanol/lambda_0p00/solute.hin": {
       "sha256": "bcde06cdaca9427023d59a7130510633a24e4a180003d60f079f719a8c938e01",
       "bytes": 683
@@ -364,6 +448,10 @@
     "simulations/dense_pimd2/calibration/ethanol/lambda_0p05/conf.xml": {
       "sha256": "4ff267eca09a613a9e945742628a6dc0046c1d6d8077cb283b73a0a3121b23e0",
       "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_0p05/console_attempt_01.txt": {
+      "sha256": "e45024b89eca0b8288db221271499c2d5c784c242484641dbff9b0f9e8e76693",
+      "bytes": 40339
     },
     "simulations/dense_pimd2/calibration/ethanol/lambda_0p05/solute.hin": {
       "sha256": "bcde06cdaca9427023d59a7130510633a24e4a180003d60f079f719a8c938e01",
@@ -373,6 +461,10 @@
       "sha256": "8ced74993ab490b3ceb21c784e07beac5b04152ff9035302b7140a0a021c5491",
       "bytes": 14854
     },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_0p20/console_attempt_01.txt": {
+      "sha256": "8686c1e8f791229433adc96a5f281cf8303deaee24940fa1be4d6dceebd9c7cb",
+      "bytes": 40335
+    },
     "simulations/dense_pimd2/calibration/ethanol/lambda_0p20/solute.hin": {
       "sha256": "bcde06cdaca9427023d59a7130510633a24e4a180003d60f079f719a8c938e01",
       "bytes": 683
@@ -380,6 +472,10 @@
     "simulations/dense_pimd2/calibration/ethanol/lambda_0p30/conf.xml": {
       "sha256": "194c1cb0ac1f00563993202c5d497f79d5a1d7bfe5db0a4006845330d22b337c",
       "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_0p30/console_attempt_01.txt": {
+      "sha256": "6a857eeb6b38300c2019c09c840e732b87874761046fd133e7e1f8230bef27be",
+      "bytes": 40338
     },
     "simulations/dense_pimd2/calibration/ethanol/lambda_0p30/solute.hin": {
       "sha256": "bcde06cdaca9427023d59a7130510633a24e4a180003d60f079f719a8c938e01",
@@ -389,6 +485,10 @@
       "sha256": "c5ff06b12882c09f1c3c9bc45ec83db2521bd4623f3f9c7d2775d806e6411ce3",
       "bytes": 14854
     },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_0p40/console_attempt_01.txt": {
+      "sha256": "f8a674e2d4c7fda6c28261c4329c08ece5fa9031c7c08c4dbae463a10926c081",
+      "bytes": 40338
+    },
     "simulations/dense_pimd2/calibration/ethanol/lambda_0p40/solute.hin": {
       "sha256": "bcde06cdaca9427023d59a7130510633a24e4a180003d60f079f719a8c938e01",
       "bytes": 683
@@ -396,6 +496,10 @@
     "simulations/dense_pimd2/calibration/ethanol/lambda_0p60/conf.xml": {
       "sha256": "9c22fb8c6e9445bf6c54fb9b9f57661c7c95dc09c0bcbd247c27f7bcd5c7d846",
       "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_0p60/console_attempt_01.txt": {
+      "sha256": "1dfa17ff8b97fdf6713a14d5409b7d84d811e515222be09102eecb61cebb0e17",
+      "bytes": 40338
     },
     "simulations/dense_pimd2/calibration/ethanol/lambda_0p60/solute.hin": {
       "sha256": "bcde06cdaca9427023d59a7130510633a24e4a180003d60f079f719a8c938e01",
@@ -405,6 +509,10 @@
       "sha256": "e980488a60a44d66b24ed54ed1588abbc1be7c6a37940e166fbc80fe04c045e6",
       "bytes": 14854
     },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_0p70/console_attempt_01.txt": {
+      "sha256": "b9d7dbc476b2901cfa802c122101717da15e70fcac06c7de6fc81ec29c943279",
+      "bytes": 40337
+    },
     "simulations/dense_pimd2/calibration/ethanol/lambda_0p70/solute.hin": {
       "sha256": "bcde06cdaca9427023d59a7130510633a24e4a180003d60f079f719a8c938e01",
       "bytes": 683
@@ -412,6 +520,10 @@
     "simulations/dense_pimd2/calibration/ethanol/lambda_0p75/conf.xml": {
       "sha256": "28f293fd2733cbdde31ac32a16528b0e89f4f257f6e3dc1f938ca42c3de85050",
       "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_0p75/console_attempt_01.txt": {
+      "sha256": "54846faccebeb12e72c42216a36905dc9e77a7e0bd0095ddc9eb0c1534c6355a",
+      "bytes": 40471
     },
     "simulations/dense_pimd2/calibration/ethanol/lambda_0p75/solute.hin": {
       "sha256": "bcde06cdaca9427023d59a7130510633a24e4a180003d60f079f719a8c938e01",
@@ -421,6 +533,10 @@
       "sha256": "594b314bcc016d9f24e7f78de7e9e11c2958e1bd5ef5be6211f49fcba5a9c114",
       "bytes": 14855
     },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_0p80/console_attempt_01.txt": {
+      "sha256": "a64b29914e8744374a7e525117cd4285bcdd45df80ee4b2eac2378f5a6fc93aa",
+      "bytes": 40342
+    },
     "simulations/dense_pimd2/calibration/ethanol/lambda_0p80/solute.hin": {
       "sha256": "bcde06cdaca9427023d59a7130510633a24e4a180003d60f079f719a8c938e01",
       "bytes": 683
@@ -428,6 +544,10 @@
     "simulations/dense_pimd2/calibration/ethanol/lambda_0p85/conf.xml": {
       "sha256": "e9b707eb23c56ed131eb1b480b22030ef7b0ceffe1959b2638451b31ee4d572f",
       "bytes": 14855
+    },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_0p85/console_attempt_01.txt": {
+      "sha256": "4af3d00f973dcec6413ccde5880fb8c84b85130900b740fdfbac34dc29b9bdcb",
+      "bytes": 40472
     },
     "simulations/dense_pimd2/calibration/ethanol/lambda_0p85/solute.hin": {
       "sha256": "bcde06cdaca9427023d59a7130510633a24e4a180003d60f079f719a8c938e01",
@@ -437,6 +557,10 @@
       "sha256": "e28a0e45f6feb5605953703f0667a0133b90c2934c1d7975e2a106b146b38d21",
       "bytes": 14855
     },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_0p95/console_attempt_01.txt": {
+      "sha256": "36b43c8e675cf5fd05ad512bed1e6a0ead5e9088d89e840d164182fd68b2cd48",
+      "bytes": 40471
+    },
     "simulations/dense_pimd2/calibration/ethanol/lambda_0p95/solute.hin": {
       "sha256": "bcde06cdaca9427023d59a7130510633a24e4a180003d60f079f719a8c938e01",
       "bytes": 683
@@ -444,6 +568,10 @@
     "simulations/dense_pimd2/calibration/ethanol/lambda_1p00/conf.xml": {
       "sha256": "ff429b6ff50780b4bdfe96ff88a93e6d38f5cd711e2ec0b3b0d42d8767d880b0",
       "bytes": 14855
+    },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_1p00/console_attempt_01.txt": {
+      "sha256": "27cfca78fdee81322d7c7e7a42f76052877cbb6227a4ecd8d572fb3d1f5f16a7",
+      "bytes": 40472
     },
     "simulations/dense_pimd2/calibration/ethanol/lambda_1p00/solute.hin": {
       "sha256": "bcde06cdaca9427023d59a7130510633a24e4a180003d60f079f719a8c938e01",
@@ -453,6 +581,10 @@
       "sha256": "a943e4da7e8c74a34be6a1d346ce36a331997a75af3d57f2d60327a2487261d7",
       "bytes": 14854
     },
+    "simulations/dense_pimd2/calibration/propane/lambda_0p00/console_attempt_01.txt": {
+      "sha256": "3980fa7391cf8e871f0b0a9eab4d47cc183da965106613c8033dd56d5929e470",
+      "bytes": 39149
+    },
     "simulations/dense_pimd2/calibration/propane/lambda_0p00/solute.hin": {
       "sha256": "9bc5f92dc900aaed84e4cba906dc84366bed4421d85c0e0b31c3feee5229c3f2",
       "bytes": 891
@@ -460,6 +592,10 @@
     "simulations/dense_pimd2/calibration/propane/lambda_0p05/conf.xml": {
       "sha256": "0ab42ba0ec46d78e8b6f8ecd1f99e28af0c6c4303357d7673aa3376a9fb91953",
       "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/propane/lambda_0p05/console_attempt_01.txt": {
+      "sha256": "96b4475ba9bd8ac7901da699a5fb92820479362121b05f2df1c3383679881224",
+      "bytes": 39156
     },
     "simulations/dense_pimd2/calibration/propane/lambda_0p05/solute.hin": {
       "sha256": "9bc5f92dc900aaed84e4cba906dc84366bed4421d85c0e0b31c3feee5229c3f2",
@@ -469,6 +605,10 @@
       "sha256": "ddaf1e9e53150bb699e1bf81deb725f196acf75c3f0cb8f45830c613a6e140e8",
       "bytes": 14854
     },
+    "simulations/dense_pimd2/calibration/propane/lambda_0p20/console_attempt_01.txt": {
+      "sha256": "1fb35f27544954e43a4949ddb5ec8f32bc424cb6317678035862f6085d007db0",
+      "bytes": 39156
+    },
     "simulations/dense_pimd2/calibration/propane/lambda_0p20/solute.hin": {
       "sha256": "9bc5f92dc900aaed84e4cba906dc84366bed4421d85c0e0b31c3feee5229c3f2",
       "bytes": 891
@@ -476,6 +616,10 @@
     "simulations/dense_pimd2/calibration/propane/lambda_0p30/conf.xml": {
       "sha256": "38b406f01ef224126568c46c305f91d0e5191e1157842cc4db17a53dec8fc1d1",
       "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/propane/lambda_0p30/console_attempt_01.txt": {
+      "sha256": "a198c2ba2f4c4e724ff862e62a2c3a7855c9f78cd7b0bcfa5e69d980008ad98c",
+      "bytes": 39153
     },
     "simulations/dense_pimd2/calibration/propane/lambda_0p30/solute.hin": {
       "sha256": "9bc5f92dc900aaed84e4cba906dc84366bed4421d85c0e0b31c3feee5229c3f2",
@@ -485,6 +629,10 @@
       "sha256": "3b0eb9d069b3bdde6641eb5fa444b408128f00ee4a1c3311261e3342fe5d06c6",
       "bytes": 14854
     },
+    "simulations/dense_pimd2/calibration/propane/lambda_0p40/console_attempt_01.txt": {
+      "sha256": "cb1a4cc88b0b021ed3373a1fbad648e3d291fc9c3b7009d0ba19cae7d5b710ac",
+      "bytes": 39154
+    },
     "simulations/dense_pimd2/calibration/propane/lambda_0p40/solute.hin": {
       "sha256": "9bc5f92dc900aaed84e4cba906dc84366bed4421d85c0e0b31c3feee5229c3f2",
       "bytes": 891
@@ -492,6 +640,10 @@
     "simulations/dense_pimd2/calibration/propane/lambda_0p60/conf.xml": {
       "sha256": "480899e49b3eacba957b1bde15d23510661cc9bcc1c174366daeee1e2c7f3ed3",
       "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/propane/lambda_0p60/console_attempt_01.txt": {
+      "sha256": "262f6e1d09cff77b8b3792c6ade452ffea9af67f8a1a960e7b53b65f0acb259f",
+      "bytes": 39155
     },
     "simulations/dense_pimd2/calibration/propane/lambda_0p60/solute.hin": {
       "sha256": "9bc5f92dc900aaed84e4cba906dc84366bed4421d85c0e0b31c3feee5229c3f2",
@@ -501,6 +653,10 @@
       "sha256": "516dc5c11e0cd0a78f71b29982853186583912d23c692df2d45ebdfe0dcd95ac",
       "bytes": 14854
     },
+    "simulations/dense_pimd2/calibration/propane/lambda_0p70/console_attempt_01.txt": {
+      "sha256": "804c2e2da3b810e9bef17edf22d946d998c66b91212dc6edcbd571fcfb21c20d",
+      "bytes": 39153
+    },
     "simulations/dense_pimd2/calibration/propane/lambda_0p70/solute.hin": {
       "sha256": "9bc5f92dc900aaed84e4cba906dc84366bed4421d85c0e0b31c3feee5229c3f2",
       "bytes": 891
@@ -508,6 +664,10 @@
     "simulations/dense_pimd2/calibration/propane/lambda_0p75/conf.xml": {
       "sha256": "1daa0e438a4ecfbecb0c6b87445f90c2f2dab0f98336e384a4a672cb71baef82",
       "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/propane/lambda_0p75/console_attempt_01.txt": {
+      "sha256": "190df4497ed4071303dafbc0d6a582f3705636f36e50985c52ca3cfef6953691",
+      "bytes": 39155
     },
     "simulations/dense_pimd2/calibration/propane/lambda_0p75/solute.hin": {
       "sha256": "9bc5f92dc900aaed84e4cba906dc84366bed4421d85c0e0b31c3feee5229c3f2",
@@ -517,6 +677,10 @@
       "sha256": "32f911c1c9e6da9b300e988d70eb643f2024a813e5af1ba6e95c793f0eb03729",
       "bytes": 14855
     },
+    "simulations/dense_pimd2/calibration/propane/lambda_0p80/console_attempt_01.txt": {
+      "sha256": "6afc377739f5162daaa624137f7a7c38c001c051b3a3601234b651e29c44fb3e",
+      "bytes": 39156
+    },
     "simulations/dense_pimd2/calibration/propane/lambda_0p80/solute.hin": {
       "sha256": "9bc5f92dc900aaed84e4cba906dc84366bed4421d85c0e0b31c3feee5229c3f2",
       "bytes": 891
@@ -524,6 +688,10 @@
     "simulations/dense_pimd2/calibration/propane/lambda_0p85/conf.xml": {
       "sha256": "fbd21490a40f2809ec3af9236a8fab6076f411401ba91f556f95c846c920cf3f",
       "bytes": 14855
+    },
+    "simulations/dense_pimd2/calibration/propane/lambda_0p85/console_attempt_01.txt": {
+      "sha256": "1dcf8e7cee3320d96459bb7baa464485ace0bbd0055386f426cc120a271645b8",
+      "bytes": 39290
     },
     "simulations/dense_pimd2/calibration/propane/lambda_0p85/solute.hin": {
       "sha256": "9bc5f92dc900aaed84e4cba906dc84366bed4421d85c0e0b31c3feee5229c3f2",
@@ -533,6 +701,10 @@
       "sha256": "6acd9be613d49428d4f1f90f2856b1a064c6afa54171bc9c94949334792ff319",
       "bytes": 14855
     },
+    "simulations/dense_pimd2/calibration/propane/lambda_0p95/console_attempt_01.txt": {
+      "sha256": "34732cbe2bc24ac2accf4bb0d9f29bd87bcc29bb8943512b18aa9e4351b03e33",
+      "bytes": 39288
+    },
     "simulations/dense_pimd2/calibration/propane/lambda_0p95/solute.hin": {
       "sha256": "9bc5f92dc900aaed84e4cba906dc84366bed4421d85c0e0b31c3feee5229c3f2",
       "bytes": 891
@@ -540,6 +712,10 @@
     "simulations/dense_pimd2/calibration/propane/lambda_1p00/conf.xml": {
       "sha256": "f9f4f8ccf95cd6329adc151f2c1baf7240066507ac7fd224412df3e014e6566c",
       "bytes": 14855
+    },
+    "simulations/dense_pimd2/calibration/propane/lambda_1p00/console_attempt_01.txt": {
+      "sha256": "aa5c613346647b5107a05e59373ab7dd454bca1fd31c341cf73685a16d23c239",
+      "bytes": 39283
     },
     "simulations/dense_pimd2/calibration/propane/lambda_1p00/solute.hin": {
       "sha256": "9bc5f92dc900aaed84e4cba906dc84366bed4421d85c0e0b31c3feee5229c3f2",
@@ -549,6 +725,10 @@
       "sha256": "61cbf704e6bfe02e9a225c99c02d8fa977eb342cb02b0f4dc19fd6a3e80b1be1",
       "bytes": 14860
     },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_0p00/console_attempt_01.txt": {
+      "sha256": "198392f431bfe08c0b27c2a6d43434d5478f80c461658680eb8ccb515a584f89",
+      "bytes": 39105
+    },
     "simulations/dense_pimd2/calibration/pyridine/lambda_0p00/solute.hin": {
       "sha256": "f915009518446db3c7b84f3c2d6f8df1e3df9ce534933581fcef3777fd43c9df",
       "bytes": 889
@@ -556,6 +736,10 @@
     "simulations/dense_pimd2/calibration/pyridine/lambda_0p05/conf.xml": {
       "sha256": "b8e03437427cf40f071149e7061f624e1fcdcfa2bab32cd28446015da9453b24",
       "bytes": 14860
+    },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_0p05/console_attempt_01.txt": {
+      "sha256": "ec500faa331e42f1031b0201fb0af1bebf07bc43e4a83719348517409b592691",
+      "bytes": 39109
     },
     "simulations/dense_pimd2/calibration/pyridine/lambda_0p05/solute.hin": {
       "sha256": "f915009518446db3c7b84f3c2d6f8df1e3df9ce534933581fcef3777fd43c9df",
@@ -565,6 +749,10 @@
       "sha256": "dbe181f23e4d050069f34d934fd3eafe36aba61b1f104d19dae40ad97238c595",
       "bytes": 14860
     },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_0p20/console_attempt_01.txt": {
+      "sha256": "bf7b1ef2a032c79b86acaa6632dc791370a51d7dc32d87f1f9f75234f8f671fa",
+      "bytes": 39108
+    },
     "simulations/dense_pimd2/calibration/pyridine/lambda_0p20/solute.hin": {
       "sha256": "f915009518446db3c7b84f3c2d6f8df1e3df9ce534933581fcef3777fd43c9df",
       "bytes": 889
@@ -572,6 +760,10 @@
     "simulations/dense_pimd2/calibration/pyridine/lambda_0p30/conf.xml": {
       "sha256": "41f5b07122c812328a3d55c3f6d691c1e532f7a0428dd507ba575b76afaac360",
       "bytes": 14860
+    },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_0p30/console_attempt_01.txt": {
+      "sha256": "821c83bcdaf87fb2e8c3851ef39e4dae96cc9e21e0810e8298c371870e224188",
+      "bytes": 39110
     },
     "simulations/dense_pimd2/calibration/pyridine/lambda_0p30/solute.hin": {
       "sha256": "f915009518446db3c7b84f3c2d6f8df1e3df9ce534933581fcef3777fd43c9df",
@@ -581,6 +773,10 @@
       "sha256": "5a533f9bd2970e7aba663518acd4ccbb49a8a72bf41596e39199cda45d61b39e",
       "bytes": 14860
     },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_0p40/console_attempt_01.txt": {
+      "sha256": "acf82cd414ca3bc16273431d4097d62e29fa2c579f9f825d31671b7dcad6dfad",
+      "bytes": 39106
+    },
     "simulations/dense_pimd2/calibration/pyridine/lambda_0p40/solute.hin": {
       "sha256": "f915009518446db3c7b84f3c2d6f8df1e3df9ce534933581fcef3777fd43c9df",
       "bytes": 889
@@ -588,6 +784,10 @@
     "simulations/dense_pimd2/calibration/pyridine/lambda_0p60/conf.xml": {
       "sha256": "5bda5f3210a1f72edaa0b90d70016bca234573ffcfe080e9830c983ecbf76722",
       "bytes": 14860
+    },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_0p60/console_attempt_01.txt": {
+      "sha256": "17e6fade78b4bb2d1719576e9701199552f289fe28b86a5348f154b26cf94602",
+      "bytes": 39108
     },
     "simulations/dense_pimd2/calibration/pyridine/lambda_0p60/solute.hin": {
       "sha256": "f915009518446db3c7b84f3c2d6f8df1e3df9ce534933581fcef3777fd43c9df",
@@ -597,6 +797,10 @@
       "sha256": "10a17f6577cbc54ec64aa187b7e52452edccc886f3d4ffffa96ea8a6f622d0fb",
       "bytes": 14860
     },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_0p70/console_attempt_01.txt": {
+      "sha256": "154aaaec6167327e346ef1959ab1faefdbc56149ba176d6664edd17163defdcb",
+      "bytes": 39109
+    },
     "simulations/dense_pimd2/calibration/pyridine/lambda_0p70/solute.hin": {
       "sha256": "f915009518446db3c7b84f3c2d6f8df1e3df9ce534933581fcef3777fd43c9df",
       "bytes": 889
@@ -604,6 +808,10 @@
     "simulations/dense_pimd2/calibration/pyridine/lambda_0p75/conf.xml": {
       "sha256": "a3f59583d4ff038f56dac7d210d727de56e56cb48b6639556bce62db210e173d",
       "bytes": 14860
+    },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_0p75/console_attempt_01.txt": {
+      "sha256": "1b69ea47987ba61d448eb65abcee349e0ee95ce06c91b17d27d6d7d1b88e873c",
+      "bytes": 39108
     },
     "simulations/dense_pimd2/calibration/pyridine/lambda_0p75/solute.hin": {
       "sha256": "f915009518446db3c7b84f3c2d6f8df1e3df9ce534933581fcef3777fd43c9df",
@@ -613,6 +821,10 @@
       "sha256": "fa3ab82e02b7db366bff7610df8354411f4af97a45f991173284c58ed6b535c5",
       "bytes": 14861
     },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_0p80/console_attempt_01.txt": {
+      "sha256": "e353ebd3ee37d24126b06b697913c4552090a0849933e6a02b160a9445c57654",
+      "bytes": 39111
+    },
     "simulations/dense_pimd2/calibration/pyridine/lambda_0p80/solute.hin": {
       "sha256": "f915009518446db3c7b84f3c2d6f8df1e3df9ce534933581fcef3777fd43c9df",
       "bytes": 889
@@ -620,6 +832,10 @@
     "simulations/dense_pimd2/calibration/pyridine/lambda_0p85/conf.xml": {
       "sha256": "278072316af2b6f64bffabeb8e3ab7a350757c2a7c5233df13f0a7b897b2cdab",
       "bytes": 14861
+    },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_0p85/console_attempt_01.txt": {
+      "sha256": "2d158e41cea6e28b258ae92efdb351cc3a17e47177381ff82ede7da2f43ac07b",
+      "bytes": 39112
     },
     "simulations/dense_pimd2/calibration/pyridine/lambda_0p85/solute.hin": {
       "sha256": "f915009518446db3c7b84f3c2d6f8df1e3df9ce534933581fcef3777fd43c9df",
@@ -629,6 +845,10 @@
       "sha256": "2ab954bc6119371df950faad8d1c186ef40842fa079aabdba839d7d44853f99f",
       "bytes": 14861
     },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_0p95/console_attempt_01.txt": {
+      "sha256": "06aaed637263aed7d252d9337d7f404aa74476724b6b7f70f7813c7f173f9610",
+      "bytes": 39240
+    },
     "simulations/dense_pimd2/calibration/pyridine/lambda_0p95/solute.hin": {
       "sha256": "f915009518446db3c7b84f3c2d6f8df1e3df9ce534933581fcef3777fd43c9df",
       "bytes": 889
@@ -636,6 +856,10 @@
     "simulations/dense_pimd2/calibration/pyridine/lambda_1p00/conf.xml": {
       "sha256": "9a92aea8563dbacb1f83c386a205a167ed4f7531a713d1745dffbcddbea234b1",
       "bytes": 14861
+    },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_1p00/console_attempt_01.txt": {
+      "sha256": "2a79b7ba6b3d5694e5d3442bdbb0aa79cc435802e1e60c2c38dc10ac989afdcf",
+      "bytes": 39238
     },
     "simulations/dense_pimd2/calibration/pyridine/lambda_1p00/solute.hin": {
       "sha256": "f915009518446db3c7b84f3c2d6f8df1e3df9ce534933581fcef3777fd43c9df",
@@ -1413,17 +1637,21 @@
       "sha256": "61479cc3423d4c3651c8a93f0d267de952e47f06e23f9f7c7aea4630a62d020e",
       "bytes": 1948
     },
+    "simulations/dense_pimd2/run_status_calibration.csv": {
+      "sha256": "caf29e15f6c4678eb4e9d122f0baf8b9065fe7593d6e0a7115226c8001beb8a0",
+      "bytes": 62204
+    },
     "src/active_solvai/__init__.py": {
-      "sha256": "855eece62ba6dac86982a9db4fbe3cdb0ef20644c64fd99628b57144a91193c0",
-      "bytes": 62
+      "sha256": "80a7faeaa697cbe32cbf67e32b03206e5e91dc828292cf20ae3d4290560abd19",
+      "bytes": 61
     },
     "src/active_solvai/dense.py": {
-      "sha256": "d0f1fd23dff216e04263e7406997cf885e2d2bb4f0bd766e793e19c2b051bd97",
-      "bytes": 7393
+      "sha256": "160aefc62e8cfde3d6f85e59f60bc96adf38a6a85bef23eb7ee18f7108ad24c0",
+      "bytes": 7965
     },
     "src/active_solvai/gate.py": {
-      "sha256": "0c4288cdd9316dcff32d3abcf903d83c23a6b3d42ebfc56179d93ceec8290cad",
-      "bytes": 5531
+      "sha256": "42d23cdc88588df96d135f8a7508f9ab753ba282620283b86eaeca969a2c90f9",
+      "bytes": 5530
     },
     "src/active_solvai/ledger.py": {
       "sha256": "3f846a85a50ca1b9055869e10742de05be4869e3d97043b154acf814ede52677",
@@ -1434,20 +1662,20 @@
       "bytes": 2445
     },
     "tests/test_dense.py": {
-      "sha256": "7bb2d4b999586e3c1443f8b249d72ca482af40c280f38bf10dbb979486213cb0",
-      "bytes": 1759
+      "sha256": "6e3e482319ecd02332c8daf48b997bff7e4935bc21abb08e859767b3728ad580",
+      "bytes": 2028
     },
     "tests/test_gate.py": {
       "sha256": "826ede05c24e5385a8dd4ab3faa37fc96e6c2391d806f2810cc7951cc8987e47",
       "bytes": 781
     },
     "tests/test_ledger.py": {
-      "sha256": "4386fb6c0056fbf4d1b05e9dd8538a5efefed01856f52f706845e73e5755b9bb",
-      "bytes": 690
+      "sha256": "4ec220fe746ef554ef402810a50eaae001b2f28cfa45e4a69e35e96a896def31",
+      "bytes": 689
     },
     "tests/test_probes.py": {
-      "sha256": "0da33cf71d4710b18de8129e7578ffd3112bfac4f686242484189256e95fe036",
-      "bytes": 600
+      "sha256": "1e526561ddf5df00790c7d71d4ff0aecabd606a9d2818c29b05426b892e8f034",
+      "bytes": 599
     },
     "uv.lock": {
       "sha256": "9f2991cb790c44db9385d11069225299f84c84a67422bb93e95fc1f891028257",

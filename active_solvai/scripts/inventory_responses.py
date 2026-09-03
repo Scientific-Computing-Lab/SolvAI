@@ -44,8 +44,13 @@ def main() -> None:
     benchmark = benchmark.loc[benchmark["solvent"].eq("water")].copy()
     identity = benchmark[
         [
-            "molecule_id", "molecule_name", "canonical_smiles", "inchi_key",
-            "inchi_connectivity_key", "functional_group_family", "scaffold",
+            "molecule_id",
+            "molecule_name",
+            "canonical_smiles",
+            "inchi_key",
+            "inchi_connectivity_key",
+            "functional_group_family",
+            "scaffold",
         ]
     ].drop_duplicates("molecule_id")
     name_to_identity = identity.set_index("molecule_name").to_dict(orient="index")
@@ -80,7 +85,12 @@ def main() -> None:
             row["energy_file_count"] = len(energy_paths)
             cases.append(row)
 
-            candidate_files = [case / "conf.xml", case / "console.txt", case / "timing.json", *energy_paths]
+            candidate_files = [
+                case / "conf.xml",
+                case / "console.txt",
+                case / "timing.json",
+                *energy_paths,
+            ]
             for path in candidate_files:
                 if not path.is_file():
                     continue
@@ -137,7 +147,11 @@ def main() -> None:
 
     availability = (
         case_frame.pivot_table(
-            index="molecule_id", columns="campaign", values="success", aggfunc="max", fill_value=False
+            index="molecule_id",
+            columns="campaign",
+            values="success",
+            aggfunc="max",
+            fill_value=False,
         )
         .rename(columns=lambda value: f"has_probe_{value}")
         .reset_index()
@@ -146,12 +160,18 @@ def main() -> None:
     for campaign in CAMPAIGNS:
         column = f"has_probe_{campaign}"
         identity_manifest[column] = identity_manifest[column].fillna(False).astype(bool)
-    identity_manifest["complete_three_point_curve"] = identity_manifest["molecule_id"].astype(
-        str
-    ).isin(complete_ids)
+    identity_manifest["complete_three_point_curve"] = (
+        identity_manifest["molecule_id"].astype(str).isin(complete_ids)
+    )
     fold_columns = [
-        "molecule_id", "fold_random", "fold_family", "fold_scaffold", "delta_g_exp",
-        "delta_g_classical_arrow", "delta_g_pimd4", "delta_g_pimd8",
+        "molecule_id",
+        "fold_random",
+        "fold_family",
+        "fold_scaffold",
+        "delta_g_exp",
+        "delta_g_classical_arrow",
+        "delta_g_pimd4",
+        "delta_g_pimd8",
     ]
     identity_manifest = identity_manifest.merge(
         benchmark[fold_columns].drop_duplicates("molecule_id"), on="molecule_id", how="left"
@@ -179,7 +199,10 @@ def main() -> None:
     dense_candidates = [
         {
             "dataset": "toluene_11_window_test",
-            "path": str(WORKSPACE / "repositories/Simulations/MD_TOOLS_PY/test/test_runscripts/test_analyze/data/286227.InWater_C07H08_Toluene/Output"),
+            "path": str(
+                WORKSPACE
+                / "repositories/Simulations/MD_TOOLS_PY/test/test_runscripts/test_analyze/data/286227.InWater_C07H08_Toluene/Output"
+            ),
             "molecules": 1,
             "windows": 11,
             "population_replay_eligible": False,

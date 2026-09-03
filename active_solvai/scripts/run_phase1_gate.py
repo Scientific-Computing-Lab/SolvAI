@@ -50,11 +50,7 @@ COMPONENTS = (
     "dHdL_PME",
 )
 LAMBDA_LABELS = ("0.1", "0.5", "0.9")
-SUBSETS = tuple(
-    subset
-    for size in (1, 2, 3)
-    for subset in combinations(range(3), size)
-)
+SUBSETS = tuple(subset for size in (1, 2, 3) for subset in combinations(range(3), size))
 
 
 @dataclass
@@ -96,9 +92,7 @@ def load_responses(
         pivoted = pivoted.reindex(index=molecule_ids, columns=[0.1, 0.5, 0.9])
         values = pivoted.to_numpy(dtype=float)
         if not np.isfinite(values).all():
-            raise AssertionError(
-                f"Missing {component}/{value} at trajectory fraction {fraction}"
-            )
+            raise AssertionError(f"Missing {component}/{value} at trajectory fraction {fraction}")
         return values
 
     total = matrix(TOTAL_COMPONENT, "mean_kcal_mol")
@@ -228,9 +222,7 @@ def posterior_features(
             curve = fit_gaussian_curve(actual[model_rows])
         for local_index in np.flatnonzero(inner_test):
             prior_mean = (
-                prior_nested[outer_fold, local_index] + curve.mean
-                if conditioned
-                else curve.mean
+                prior_nested[outer_fold, local_index] + curve.mean if conditioned else curve.mean
             )
             posterior_mean, posterior_covariance = condition_gaussian(
                 prior_mean,
@@ -278,9 +270,7 @@ def correction_prediction(
     train_folds: np.ndarray,
 ) -> tuple[np.ndarray, float]:
     residual = truth_train - baseline_train
-    alpha = choose_ridge_alpha(
-        train_features, residual, baseline_train, truth_train, train_folds
-    )
+    alpha = choose_ridge_alpha(train_features, residual, baseline_train, truth_train, train_folds)
     correction = ridge_correct(train_features, residual, test_features, alpha)
     return baseline_test + correction, alpha
 
@@ -537,9 +527,9 @@ def main() -> None:
                             actual_test = actual[test_mask][:, subset, :].reshape(
                                 test_mask.sum(), -1
                             )
-                            predicted_train = pred_nested[outer_fold, train_mask][:, subset, :].reshape(
-                                train_mask.sum(), -1
-                            )
+                            predicted_train = pred_nested[outer_fold, train_mask][
+                                :, subset, :
+                            ].reshape(train_mask.sum(), -1)
                             predicted_test = pred_outer[test_mask][:, subset, :].reshape(
                                 test_mask.sum(), -1
                             )
@@ -580,8 +570,7 @@ def main() -> None:
                 if full_analysis:
                     # Destructive controls for the primary all-three total residual.
                     residual_train = (
-                        response.total[train_mask]
-                        - total_pred_nested[outer_fold, train_mask]
+                        response.total[train_mask] - total_pred_nested[outer_fold, train_mask]
                     )
                     residual_test = response.total[test_mask] - total_pred_outer[test_mask]
                     for shuffle_seed in SHUFFLE_SEEDS:
@@ -723,8 +712,12 @@ def main() -> None:
                                             "posterior": posterior_name,
                                             "lambda_subset": subset_name,
                                             "hidden_lambda": float((0.1, 0.5, 0.9)[hidden_index]),
-                                            "y_true": float(response.total[local_index, hidden_index]),
-                                            "y_pred": float(posterior_test[test_offset, hidden_index]),
+                                            "y_true": float(
+                                                response.total[local_index, hidden_index]
+                                            ),
+                                            "y_pred": float(
+                                                posterior_test[test_offset, hidden_index]
+                                            ),
                                             "posterior_sd": float(
                                                 np.sqrt(
                                                     max(
@@ -837,26 +830,21 @@ def main() -> None:
         reconstruction[f"covered_{int(level * 100)}"] = (
             reconstruction.absolute_error <= z * reconstruction.posterior_sd
         )
-        reconstruction[f"interval_width_{int(level * 100)}"] = (
-            2.0 * z * reconstruction.posterior_sd
-        )
+        reconstruction[f"interval_width_{int(level * 100)}"] = 2.0 * z * reconstruction.posterior_sd
     reconstruction.to_parquet(
         output_root / "phase1_reconstruction_predictions.parquet", index=False
     )
-    reconstruction_metrics = (
-        reconstruction.groupby(
-            ["partition", "repeat", "posterior", "lambda_subset"], as_index=False
-        )
-        .agg(
-            n=("absolute_error", "size"),
-            mae=("absolute_error", "mean"),
-            rmse=("residual", lambda value: float(np.sqrt(np.mean(np.square(value))))),
-            coverage_50=("covered_50", "mean"),
-            coverage_80=("covered_80", "mean"),
-            coverage_90=("covered_90", "mean"),
-            coverage_95=("covered_95", "mean"),
-            mean_width_95=("interval_width_95", "mean"),
-        )
+    reconstruction_metrics = reconstruction.groupby(
+        ["partition", "repeat", "posterior", "lambda_subset"], as_index=False
+    ).agg(
+        n=("absolute_error", "size"),
+        mae=("absolute_error", "mean"),
+        rmse=("residual", lambda value: float(np.sqrt(np.mean(np.square(value))))),
+        coverage_50=("covered_50", "mean"),
+        coverage_80=("covered_80", "mean"),
+        coverage_90=("covered_90", "mean"),
+        coverage_95=("covered_95", "mean"),
+        mean_width_95=("interval_width_95", "mean"),
     )
     reconstruction_metrics.to_csv(output_root / "phase1_reconstruction_metrics.csv", index=False)
 
@@ -883,6 +871,7 @@ def main() -> None:
 
     # Repeated-partition primary adjudication, averaged per molecule before bootstrap.
     repeated = predictions.loc[predictions.partition.eq("standardized_exclusion_repeat")]
+
     def repeated_error(method: str) -> pd.Series:
         selected = repeated.loc[
             repeated.method.eq(method)
@@ -921,7 +910,9 @@ def main() -> None:
             < metrics.loc[
                 metrics.partition.eq("standardized_exclusion_repeat")
                 & metrics.method.eq("P1-A_frozen_solvai")
-            ].sort_values("repeat").mae.to_numpy()
+            ]
+            .sort_values("repeat")
+            .mae.to_numpy()
         ).all()
     )
     endpoint_positive = bool(

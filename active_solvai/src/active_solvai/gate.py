@@ -147,4 +147,3 @@ def choose_ridge_alpha(
         scores.append((mae, -float(alpha)))
     # The negative alpha key makes the larger alpha win an exact MAE tie.
     return -min(scores)[1]
-

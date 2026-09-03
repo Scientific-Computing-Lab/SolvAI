@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "status": "calibration_locked_before_prospective_generation",
+  "calibration_molecules": [
+    "Propane",
+    "Ethanol",
+    "Acetone",
+    "pyridine"
+  ],
+  "lambda_grid": [
+    0.0,
+    0.05,
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.75,
+    0.8,
+    0.85,
+    0.9,
+    0.95,
+    1.0
+  ],
+  "initial_indices": [
+    2,
+    6,
+    12
+  ],
+  "initial_lambda_values": [
+    0.1,
+    0.5,
+    0.9
+  ],
+  "selection": {
+    "generic": {
+      "lengthscale": 0.08,
+      "noise_inflation": 1.0,
+      "amplitude": 8.090543277630951,
+      "calibration_mean_nlpd": 5.710943536141246
+    },
+    "solvai": {
+      "lengthscale": 0.08,
+      "noise_inflation": 4.0,
+      "amplitude": 7.118131917774104,
+      "calibration_mean_nlpd": 3.8199860875083314
+    }
+  },
+  "generic_prior_mean": [
+    49.21311422321275,
+    36.60292231553001,
+    29.179958201329462,
+    18.434771615132302,
+    11.151855267626818,
+    5.463842433530692,
+    -1.2375368753603981,
+    -2.926132349708912,
+    -2.2222268761038633,
+    -8.676490670781414,
+    -14.076766268505088,
+    -13.021641689155539,
+    -15.099818131967012,
+    -7.3571981963131865,
+    0.0
+  ],
+  "expected_sem_by_lambda": [
+    2.4111968590919264,
+    1.8128241246291568,
+    1.5162133936712332,
+    1.2845592703677178,
+    1.076976650155668,
+    0.869134901375546,
+    1.7480328707574482,
+    1.9060664162156797,
+    1.0962935461402035,
+    2.391233705201355,
+    2.9324358856982027,
+    2.220551915254573,
+    2.201538482841433,
+    1.206677782488482,
+    0.0
+  ],
+  "inputs": {
+    "configuration": {
+      "path": "/home/galoren/Freecurve_AI_Solvation/release/SolvAI/active_solvai/configs/dense_sentinel_v1.json",
+      "sha256": "fc6afd2a4f8a255a641228df624769e6ed437dc4cc69dc244480a33c2936594d"
+    },
+    "calibration_responses": {
+      "path": "/home/galoren/Freecurve_AI_Solvation/release/SolvAI/active_solvai/results/phase2/dense_responses_calibration.parquet",
+      "sha256": "b28482786720e821999e6c3c35fc90fe8139859dd52b8db501999463264e21ba"
+    },
+    "phase1_priors": {
+      "path": "/home/galoren/Freecurve_AI_Solvation/release/SolvAI/active_solvai/results/phase1/phase1_response_predictions.parquet",
+      "sha256": "9d9a514e2cabec3ea6f43600d9987d886ca11f2c96e2cc4f5f0b18f79397c91b"
+    },
+    "search_table": {
+      "path": "/home/galoren/Freecurve_AI_Solvation/release/SolvAI/active_solvai/results/phase2/dense_calibration_search.csv",
+      "sha256": "d5a0aec01041bb7b0d38bcd9f2430eec685fdff23062fdee95846d679ea8ac20"
+    },
+    "calibration_script": {
+      "path": "/home/galoren/Freecurve_AI_Solvation/release/SolvAI/active_solvai/scripts/calibrate_dense_models.py",
+      "sha256": "c0ada24e42c6dc8a2c4e34c07aec3b0209689f01015a55f5944ca09a79aa2509"
+    }
+  },
+  "note": "No prospective sentinel dense response was generated or read before this lock."
+}

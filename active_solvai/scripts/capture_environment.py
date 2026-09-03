@@ -34,13 +34,38 @@ def package_version(name: str) -> str | None:
 
 def main() -> None:
     tools = [
-        "uv", "python3", "git", "gh", "cmake", "ninja", "make", "clang", "gcc",
-        "nvcc", "docker", "latexmk", "pandoc", "sqlite3", "duckdb", "Arbalest",
-        "gmx", "lmp", "namd3",
+        "uv",
+        "python3",
+        "git",
+        "gh",
+        "cmake",
+        "ninja",
+        "make",
+        "clang",
+        "gcc",
+        "nvcc",
+        "docker",
+        "latexmk",
+        "pandoc",
+        "sqlite3",
+        "duckdb",
+        "Arbalest",
+        "gmx",
+        "lmp",
+        "namd3",
     ]
     packages = [
-        "numpy", "pandas", "pyarrow", "scipy", "sklearn", "rdkit", "torch",
-        "gpytorch", "openmm", "chemprop", "lightgbm",
+        "numpy",
+        "pandas",
+        "pyarrow",
+        "scipy",
+        "sklearn",
+        "rdkit",
+        "torch",
+        "gpytorch",
+        "openmm",
+        "chemprop",
+        "lightgbm",
     ]
     payload = {
         "captured_utc": datetime.now(UTC).isoformat(),
@@ -54,10 +79,13 @@ def main() -> None:
             "lscpu": command(["lscpu"]),
             "memory": command(["free", "-h"]),
             "disk": command(["df", "-h", str(ROOT)]),
-            "gpu": command([
-                "nvidia-smi", "--query-gpu=name,memory.total,memory.free,driver_version,temperature.gpu,power.limit",
-                "--format=csv,noheader",
-            ]),
+            "gpu": command(
+                [
+                    "nvidia-smi",
+                    "--query-gpu=name,memory.total,memory.free,driver_version,temperature.gpu,power.limit",
+                    "--format=csv,noheader",
+                ]
+            ),
         },
         "tools": {name: shutil.which(name) for name in tools},
         "packages": {name: package_version(name) for name in packages},
