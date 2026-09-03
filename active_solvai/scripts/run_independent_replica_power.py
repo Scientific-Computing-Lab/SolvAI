@@ -333,6 +333,7 @@ def evaluate_mean_only_planning_boundary(
 def make_power_figure(grid: pd.DataFrame, components: pd.DataFrame) -> None:
     figure_dir = ROOT / "active_solvai/figures/v2_independent_replicas"
     figure_dir.mkdir(parents=True, exist_ok=True)
+    plt.rcParams["svg.hashsalt"] = "active-solvai-v2-independent-replicas"
     eight = grid[grid.n_molecules == 8].sort_values("production_ps_per_replica")
     fig, axes = plt.subplots(1, 2, figsize=(10.2, 4.0), constrained_layout=True)
 
@@ -391,8 +392,17 @@ def make_power_figure(grid: pd.DataFrame, components: pd.DataFrame) -> None:
     ax.spines[["top", "right"]].set_visible(False)
     fig.suptitle("Independent-replica experiment is blocked before simulation", fontsize=12, fontweight="bold")
     for suffix in ("svg", "png"):
-        fig.savefig(figure_dir / f"power_gate.{suffix}", dpi=300, bbox_inches="tight")
+        fig.savefig(
+            figure_dir / f"power_gate.{suffix}",
+            dpi=300,
+            bbox_inches="tight",
+            metadata={"Date": None},
+        )
     plt.close(fig)
+    svg_path = figure_dir / "power_gate.svg"
+    svg_path.write_text(
+        "\n".join(line.rstrip() for line in svg_path.read_text().splitlines()) + "\n"
+    )
 
 
 def main() -> None:

@@ -1,5 +1,11 @@
 # Active SolvAI final handoff
 
+> **Subsequent qualification:** the original same-curve oracle values below do
+> not independently establish stable placement headroom. Held-out-block scoring
+> reversed their advantage, and the independent-replica resolution campaign was
+> blocked by its prospective power gate before simulation. The immutable no-go
+> decision itself is unchanged.
+
 ## Repository state
 
 - Parent SolvAI reference: `531f6cfd21e319c951b461c9ef24fa754790f91d`
@@ -17,9 +23,10 @@
 2. **Prospective dense reconstruction:** active structure-conditioned Bayesian
    quadrature had MAEs of 1.701 and 1.608 kcal mol⁻¹ at five and seven windows;
    the strongest comparator, uniform direct integration, had 1.153 and 1.092.
-3. **Placement headroom:** the non-deployable oracle reached 0.337 and 0.068
-   kcal mol⁻¹ at the same budgets. Informative points exist, but the frozen
-   deployable policy did not identify them.
+3. **Placement diagnostic:** the non-deployable same-curve oracle reached 0.337
+   and 0.068 kcal mol⁻¹ at the same budgets. Subsequent held-out-block scoring
+   reversed this apparent advantage and found unstable selected sets, so stable
+   molecule-specific placement headroom is not established.
 4. **Escalation:** Direction C was prospectively conditional on Direction B and
    was not launched. No PIMD4/PIMD8 scale-up, new Hamiltonian, learned potential
    or Tier-B campaign was opened.

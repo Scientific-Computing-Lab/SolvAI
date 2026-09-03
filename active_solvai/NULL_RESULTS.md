@@ -35,9 +35,18 @@ The completed SolvAI campaign found that **structure-predicted** PIMD2 response 
 - **Calibration:** 90% coverage was 0.750 and 0.875 at five and seven windows,
   but interval widths remained 5.406 and 4.893 kcal mol⁻¹. No Bayesian method
   reached the frozen 0.10-kcal mol⁻¹ half-width stopping threshold.
-- **Diagnostic:** the non-deployable oracle reached 0.337 and 0.068 kcal mol⁻¹
-  at five and seven windows. Useful molecule-specific placements exist, but the
-  frozen deployable acquisition did not identify them.
+- **Diagnostic:** the non-deployable same-curve oracle reached 0.337 and 0.068
+  kcal mol⁻¹ at five and seven windows. A later held-out-block audit reversed
+  this apparent advantage and found unstable selected sets; stable
+  molecule-specific placement headroom is therefore not established.
 - **Decision:** kill Direction B for this protocol. Direction C is not launched
   because it was prospectively contingent on Direction B passing. Tier-B
   remains unopened.
+
+## AS-V2-REPLICA-POWER-001 — prospective simulation power gate (2026-09-03)
+
+- **Frozen before calculation:** commit `52827f851ed0d1a540b0492c63c3df269cf774e1`.
+- **Hypothesis:** two independent 50-ps replicas across eight molecules and all 15 windows can resolve a stable mean oracle-placement advantage of 0.30 kcal mol$^{-1}$ at five and seven windows.
+- **Result:** no. Power was 0.00000 and 0.00001 at five and seven windows; the dense-reference reliability probability was 0.44602. The registered launch thresholds were 0.80 for all three quantities.
+- **Compute:** zero new simulation, zero bead-windows and zero GPU-hours. The proposed 36-GPU-hour campaign was stopped prospectively.
+- **Interpretation:** observed molecule-level heterogeneity, not only short-trajectory noise, prevents the small design from establishing reproducible placement headroom. No experimental A/B/C decision is assigned because the gated campaign did not run.

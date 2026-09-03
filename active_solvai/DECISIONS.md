@@ -41,3 +41,11 @@ This file is append-only. Amendments cite the affected prospective freeze and st
   responses were generated.
 - **Program decision:** return a no-go result. Do not open Tier-B, escalate to
   PIMD4/PIMD8, or tune a new acquisition rule against the eight sentinels.
+
+## 2026-09-03 — Block independent-replica resolution before simulation
+
+- **Frozen before calculation:** commit `52827f851ed0d1a540b0492c63c3df269cf774e1`.
+- **Question:** could two independent 50-ps PIMD2 replicas for the eight sentinels resolve stable molecule-specific placement headroom of approximately 0.30 kcal mol$^{-1}$?
+- **Evidence:** simulated power was 0.00000 and 0.00001 at five and seven windows, and the projected dense-reference reliability probability was 0.44602; all were below the frozen 0.80 launch gate.
+- **Decision:** do not launch any of the 240 proposed trajectories. Preserve the immutable no-go and diagnostic branches. Do not assign experimental decision A, B or C because no independent-replica experiment was run.
+- **Scale implication:** no design in the registered 8--96-molecule grid can establish the full stable-placement claim under the observed heterogeneity. A planning-only mean-effect study would require at least 105 molecules, two replicas, 15 windows and 75 ps per replica (638.68 projected production GPU-hours), but would not test the required cross-molecule consistency and is not authorized.

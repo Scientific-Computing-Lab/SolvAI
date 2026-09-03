@@ -1,5 +1,14 @@
 # Active SolvAI final report
 
+> **Subsequent diagnostic qualification (2026-09-03):** this report preserves
+> the original prospectively registered no-go result. Its interpretation of the
+> same-curve oracle as evidence of stable placement headroom was superseded by
+> the independent-noise audit: held-out-block headroom reversed sign and the
+> selected lambda sets were unstable. The proposed independent-replica
+> resolution study was then stopped by a prospectively frozen power gate before
+> simulation. See `ORACLE_INDEPENDENT_NOISE_DIAGNOSTIC.md` and
+> `INDEPENDENT_REPLICA_RESOLUTION_REPORT.md`.
+
 ## Executive outcome
 
 **No-go under the prospectively frozen program.** Actual short PIMD2 observations did not improve the experimental hydration endpoint, and the molecule-conditioned Bayesian-quadrature policy did not beat the strongest simple schedule in a prospective dense same-Hamiltonian test. The conditional multi-fidelity direction was therefore not launched.
@@ -21,7 +30,7 @@ Four calibration and eight prospective molecules were simulated on a fixed 15-po
 | 5 | 1.701 | 0.750 | uniform_direct | 1.153 | +0.548 | [-0.101, +1.159] | 0.250 |
 | 7 | 1.608 | 0.875 | uniform_direct | 1.092 | +0.516 | [-0.392, +1.491] | 0.375 |
 
-The non-deployable oracle reached 0.337 and 0.068 kcal mol⁻¹ at five and seven windows. Thus informative molecule-specific placements exist in the dense pool, but the frozen acquisition rule did not find them.
+The non-deployable same-curve oracle reached 0.337 and 0.068 kcal mol⁻¹ at five and seven windows. Subsequent independent-block scoring showed that these optimistically selected values do not establish stable molecule-specific placement; the frozen acquisition rule also did not find useful points prospectively.
 
 **Decision:** Direction B fails the prospectively frozen criterion. Direction C was prospectively contingent on this result and was not launched.
 
@@ -31,7 +40,7 @@ The non-deployable oracle reached 0.337 and 0.068 kcal mol⁻¹ at five and seve
 |---|---|
 | Lack of endpoint residual signal | Supported for this protocol: the aligned response residual worsened endpoint MAE and did not beat shuffling. |
 | Response noise / trajectory length | Five-block response SEM averaged 2.283 kcal mol⁻¹ (median 1.861; maximum 15.087). Noise is material, but longer trajectories were not tested, so a length-based rescue is unproven. |
-| λ placement | The oracle was far better than deployable policies at five/seven windows, showing that placement matters; the present acquisition score did not identify the useful points. |
+| λ placement | The same-curve oracle was far better than deployable policies, but held-out-block scoring reversed its advantage and found unstable selected sets; stable placement headroom is not established. |
 | Structure prior | The structure-conditioned prior/posterior was not consistently better than generic BQ or direct interpolation, especially for amide, ether, fused-aromatic and alkane sentinels. |
 | Cross-fidelity mapping | Not tested. The same-fidelity PIMD2 reconstruction prerequisite failed, so PIMD4/PIMD8 escalation would add degrees of freedom without an established base. |
 | Hamiltonian bias | Not a cause of the same-Hamiltonian reconstruction failure. It remains a plausible limit on transfer from short ARROW/PIMD2 responses to experiment. |

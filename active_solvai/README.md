@@ -48,4 +48,12 @@ and seven windows, versus 1.153 and 1.092 for simple uniform direct integration.
 The frozen program therefore ended in a no-go result. See
 [`reports/ACTIVE_SOLVAI_FINAL_REPORT.md`](reports/ACTIVE_SOLVAI_FINAL_REPORT.md).
 
+A subsequent independent-noise audit found that the apparent same-curve oracle
+headroom was not stable under held-out trajectory blocks. A prospectively
+frozen power gate then blocked the proposed independent 50-ps replica campaign
+before simulation: its probabilities of resolving the registered effect were
+0.00000 and 0.00001 at five and seven windows, and projected dense-reference
+reliability was 0.446. See
+[`reports/INDEPENDENT_REPLICA_RESOLUTION_REPORT.md`](reports/INDEPENDENT_REPLICA_RESOLUTION_REPORT.md).
+
 Decisive analyses may run only after the corresponding freeze has been committed. Every attempted run is appended to `runs/ledger.jsonl`; failed work is retained and counted.
