@@ -1,0 +1,7 @@
+n_molecules,production_ps_per_replica,mean_only_power_budget_5,mean_only_power_budget_7,dense_reliability_probability,mean_only_adequately_powered,projected_production_gpu_hours,operational_reservation_gpu_hours,supports_registered_consistency_claim
+157,50,0.84658,0.8646,0.47252,False,636.6551140572368,706.6871766035329,False
+104,75,0.79941,0.8157,0.93997,False,632.5999859422226,702.1859843958671,False
+105,75,0.80094,0.81724,0.94008,True,638.6826781147439,708.9377727073658,False
+78,100,0.76532,0.78218,0.99091,False,632.5999859422226,702.1859843958671,False
+52,150,0.68084,0.72325,0.99925,False,632.5999859422226,702.1859843958671,False
+39,200,0.58831,0.63731,0.99973,False,632.5999859422226,702.1859843958671,False

@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "protocol_commit": "52827f851ed0d1a540b0492c63c3df269cf774e1",
+  "monte_carlo_seed": 20260904,
+  "monte_carlo_trials": 100000,
+  "target_mean_effect_kcal_mol": -0.3,
+  "input_hashes": {
+    "cross_block_predictions": "e6492f5754aab9d4724e10c9b5e2d08863e669beb9b252a4f68a3e0b88a715fa",
+    "molecule_level_metrics": "7be6b7c3580b8386e6f31395463a9a6d6723d41c1590f2d714a066dd4fff3679",
+    "dense_reproducibility": "feec7765a4705ca9390e87fd83eeb29847539cbc18f2aaa16f08bc7c71c3df0e",
+    "schedule_stability": "09a30eb8afacd2220544e4f6f07163e8655fa2b6975e3a2501669d80eda2cdeb",
+    "canonical_metrics": "c0f01f65f3cfae4230d01fb536b7f375a1a0db29742a5023870ed53022cec2f4",
+    "responses": "4ce191a2ebfabb10dfcf5e11f98fef91b0bd5b2993f066ab47cfa9cc261c1097",
+    "replay": "a0dbc9b61c7f54848be8e56dcc5c22d12d511839c90cdbfe44900574112bf1fd",
+    "config": "fc6afd2a4f8a255a641228df624769e6ed437dc4cc69dc244480a33c2936594d",
+    "manifest": "9c46ad5b78af027f3c82d84ff300c1ea839fbd13650eba704bbfef95f5871358"
+  },
+  "pooled_residual_variance_2p5ps": {
+    "5": 1.104762133168894,
+    "7": 1.2639718108521694
+  },
+  "proposed_design": {
+    "n_molecules": 8,
+    "production_ps_per_replica": 50,
+    "replicas": 2,
+    "lambda_windows": 15,
+    "target_mean_effect_kcal_mol": -0.3,
+    "power_budget_5": 0.0,
+    "power_budget_7": 1e-05,
+    "conservative_power_budget_5": 3e-05,
+    "conservative_power_budget_7": 0.00087,
+    "dense_reliability_probability": 0.44602,
+    "adequately_powered": false,
+    "production_total_ps": 12000,
+    "projected_production_gpu_hours": 32.441024920113975,
+    "operational_reservation_gpu_hours": 36.00953766132652
+  },
+  "launch_authorized_by_gate": false,
+  "smallest_adequately_powered_alternative": null,
+  "planning_only_mean_effect_alternative": {
+    "n_molecules": 105,
+    "production_ps_per_replica": 75,
+    "mean_only_power_budget_5": 0.80094,
+    "mean_only_power_budget_7": 0.81724,
+    "dense_reliability_probability": 0.94008,
+    "mean_only_adequately_powered": true,
+    "projected_production_gpu_hours": 638.6826781147439,
+    "operational_reservation_gpu_hours": 708.9377727073658,
+    "supports_registered_consistency_claim": false
+  },
+  "simulation_started": false
+}
