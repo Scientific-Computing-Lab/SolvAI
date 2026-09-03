@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "inputs": {
+    "/home/galoren/Freecurve_AI_Solvation/release/SolvAI/active_solvai_v3/data/derived/gate1_time_series.parquet": "95c2d64e2147421612d0aaad95d2a08e479d0a36b1d443b36abcfdea5aeb160a",
+    "/home/galoren/Freecurve_AI_Solvation/release/SolvAI/active_solvai_v3/data/derived/gate1_molecule_features.parquet": "5862a7ad52b581caeed4d11f0d0cd4dcc6d49a12b5adda998a732f1ad4fa96f3"
+  },
+  "outputs": {
+    "/home/galoren/Freecurve_AI_Solvation/release/SolvAI/active_solvai_v3/results/gate1/gate1_prefix_diagnostics.parquet": "c0150f39e89f14326c6668acb6228b2ac106c4b16375a7d1dc3b06665c86b30f",
+    "/home/galoren/Freecurve_AI_Solvation/release/SolvAI/active_solvai_v3/results/gate1/gate1_oof_predictions.parquet": "66794f846f022e68b7527ecf7001bd6aca26174dd3c247bbc862b2f41ed24c4f",
+    "/home/galoren/Freecurve_AI_Solvation/release/SolvAI/active_solvai_v3/results/gate1/gate1_model_metrics.csv": "da5c46d782dd47d63b560920b8a2a3d304f8fcf0e52f2fe50788bb2a2b36917c",
+    "/home/galoren/Freecurve_AI_Solvation/release/SolvAI/active_solvai_v3/results/gate1/gate1_paired_comparisons.csv": "8deb9f277b90ae56c53ad8e3a253a8274ed774bd438716fa8ab5b59c055d7dde",
+    "/home/galoren/Freecurve_AI_Solvation/release/SolvAI/active_solvai_v3/results/gate1/gate1_diagnostic_reliability.csv": "fe6861befc2f891842b92f4a2eceacba47ad60b8ffa797189f1d35fde63c4d44",
+    "/home/galoren/Freecurve_AI_Solvation/release/SolvAI/active_solvai_v3/results/gate1/gate1_canonical_metrics.json": "fc376c975142efad063089665b96ef4bd9903435a646f89723034dd69c320cf9"
+  }
+}

@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "protocol_commit": "4608c21",
+  "n_molecules": 12,
+  "n_windows": 180,
+  "primary_prefix_ps": 1.0,
+  "primary_stabilizer_kcal_mol": 0.25,
+  "generic_gate_passed": false,
+  "solvai_identifiability_gate_passed": false,
+  "primary_metrics": [
+    {
+      "model": "generic_observed",
+      "prefix_ps": 1.0,
+      "stabilizer": 0.25,
+      "mae": 1.427282267012206,
+      "rmse": 1.8020380062004169,
+      "mean_within_molecule_spearman": 0.2482142857142857,
+      "top_quartile_auroc": 0.5727588383838383
+    },
+    {
+      "model": "lambda_protocol",
+      "prefix_ps": 1.0,
+      "stabilizer": 0.25,
+      "mae": 1.5470045220140909,
+      "rmse": 1.8890134844613589,
+      "mean_within_molecule_spearman": 0.25029761904761905,
+      "top_quartile_auroc": 0.585385101010101
+    },
+    {
+      "model": "solvai_cold_start",
+      "prefix_ps": 1.0,
+      "stabilizer": 0.25,
+      "mae": 1.6757491582176909,
+      "rmse": 2.0303314293537955,
+      "mean_within_molecule_spearman": 0.14672619047619045,
+      "top_quartile_auroc": 0.5891729797979799
+    },
+    {
+      "model": "solvai_conditioned",
+      "prefix_ps": 1.0,
+      "stabilizer": 0.25,
+      "mae": 1.4749761089204099,
+      "rmse": 1.832287006610294,
+      "mean_within_molecule_spearman": 0.22499999999999998,
+      "top_quartile_auroc": 0.5555555555555556
+    },
+    {
+      "model": "solvai_conditioned_shuffled_88031",
+      "prefix_ps": 1.0,
+      "stabilizer": 0.25,
+      "mae": 1.4631873530523516,
+      "rmse": 1.8164446484614163,
+      "mean_within_molecule_spearman": 0.2607142857142857,
+      "top_quartile_auroc": 0.5943813131313131
+    },
+    {
+      "model": "solvai_conditioned_shuffled_88032",
+      "prefix_ps": 1.0,
+      "stabilizer": 0.25,
+      "mae": 1.4450745465450037,
+      "rmse": 1.7762172445654638,
+      "mean_within_molecule_spearman": 0.27232142857142855,
+      "top_quartile_auroc": 0.5850694444444444
+    },
+    {
+      "model": "solvai_conditioned_shuffled_88033",
+      "prefix_ps": 1.0,
+      "stabilizer": 0.25,
+      "mae": 1.5538655946645943,
+      "rmse": 1.9458390138483768,
+      "mean_within_molecule_spearman": 0.1880952380952381,
+      "top_quartile_auroc": 0.5804924242424243
+    },
+    {
+      "model": "solvai_conditioned_shuffled_88034",
+      "prefix_ps": 1.0,
+      "stabilizer": 0.25,
+      "mae": 1.467250096582551,
+      "rmse": 1.805436741595723,
+      "mean_within_molecule_spearman": 0.2282738095238095,
+      "top_quartile_auroc": 0.5958017676767676
+    },
+    {
+      "model": "solvai_conditioned_shuffled_88035",
+      "prefix_ps": 1.0,
+      "stabilizer": 0.25,
+      "mae": 1.496589119264142,
+      "rmse": 1.8709200145570162,
+      "mean_within_molecule_spearman": 0.20238095238095233,
+      "top_quartile_auroc": 0.5754419191919192
+    },
+    {
+      "model": "structure_cold_start",
+      "prefix_ps": 1.0,
+      "stabilizer": 0.25,
+      "mae": 1.6475842915799097,
+      "rmse": 1.9696662299161978,
+      "mean_within_molecule_spearman": 0.19791666666666663,
+      "top_quartile_auroc": 0.5885416666666667
+    },
+    {
+      "model": "structure_conditioned",
+      "prefix_ps": 1.0,
+      "stabilizer": 0.25,
+      "mae": 1.4882422354284757,
+      "rmse": 1.8480425748502476,
+      "mean_within_molecule_spearman": 0.24761904761904754,
+      "top_quartile_auroc": 0.5571338383838383
+    }
+  ],
+  "primary_comparisons": [
+    {
+      "comparison": "solvai_minus_generic",
+      "prefix_ps": 1.0,
+      "stabilizer": 0.25,
+      "mean_difference": 0.047693841908203714,
+      "ci90_low": -0.017112715148333995,
+      "ci90_high": 0.1199182491669135,
+      "ci95_low": -0.027198797012914885,
+      "ci95_high": 0.13563492641312677,
+      "fraction_molecules_below_zero": 0.5
+    },
+    {
+      "comparison": "generic_minus_lambda",
+      "prefix_ps": 1.0,
+      "stabilizer": 0.25,
+      "mean_difference": -0.11972225500188476,
+      "ci90_low": -0.19936249368751874,
+      "ci90_high": -0.041013595940132465,
+      "ci95_low": -0.21408436186473778,
+      "ci95_high": -0.026236935806695665,
+      "fraction_molecules_below_zero": 0.6666666666666666
+    },
+    {
+      "comparison": "structure_minus_generic",
+      "prefix_ps": 1.0,
+      "stabilizer": 0.25,
+      "mean_difference": 0.06095996841626943,
+      "ci90_low": 0.0004745758643680304,
+      "ci90_high": 0.12528303772217608,
+      "ci95_low": -0.01001903886593998,
+      "ci95_high": 0.13789897924811506,
+      "fraction_molecules_below_zero": 0.4166666666666667
+    },
+    {
+      "comparison": "solvai_minus_structure",
+      "prefix_ps": 1.0,
+      "stabilizer": 0.25,
+      "mean_difference": -0.013266126508065718,
+      "ci90_low": -0.04897227801507307,
+      "ci90_high": 0.020756494207626226,
+      "ci95_low": -0.055910771029278536,
+      "ci95_high": 0.026685732236718274,
+      "fraction_molecules_below_zero": 0.5
+    },
+    {
+      "comparison": "solvai_cold_minus_lambda",
+      "prefix_ps": 1.0,
+      "stabilizer": 0.25,
+      "mean_difference": 0.12874463620359985,
+      "ci90_low": 0.051127598634951574,
+      "ci90_high": 0.2253147449219557,
+      "ci95_low": 0.04283272230960915,
+      "ci95_high": 0.24800943981104265,
+      "fraction_molecules_below_zero": 0.16666666666666666
+    },
+    {
+      "comparison": "solvai_cold_minus_structure",
+      "prefix_ps": 1.0,
+      "stabilizer": 0.25,
+      "mean_difference": 0.028164866637781154,
+      "ci90_low": -0.08278908935039445,
+      "ci90_high": 0.1341557258361276,
+      "ci95_low": -0.11030485533922763,
+      "ci95_high": 0.15654185920680078,
+      "fraction_molecules_below_zero": 0.3333333333333333
+    },
+    {
+      "comparison": "aligned_minus_mean_shuffled",
+      "prefix_ps": 1.0,
+      "stabilizer": 0.25,
+      "mean_difference": -0.010217233101318631,
+      "ci90_low": -0.047751061547669865,
+      "ci90_high": 0.03104545109466046,
+      "ci95_low": -0.054115115198222215,
+      "ci95_high": 0.039447938378905506,
+      "fraction_molecules_below_zero": 0.8333333333333334
+    }
+  ],
+  "solvai_relative_mae_gain_vs_generic": -0.0334158442310388,
+  "solvai_relative_mae_gain_vs_mean_shuffled": 0.006879395976425764,
+  "independence_limit": "Complementary blocks of one 5-ps trajectory; not independent-replica validation."
+}
