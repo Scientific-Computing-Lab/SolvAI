@@ -1,6 +1,10 @@
 {
   "schema_version": 1,
   "files": {
+    ".gitignore": {
+      "sha256": "e4010b6a3b96c25fe20ba8a89c5ede19494140ce4f3e8c1520f2fcaa9afe7feb",
+      "bytes": 211
+    },
     "CITATION.cff": {
       "sha256": "df0b454d41886e8170d8db89f66d8e03b6ef771a64eb47f3180a2afde67f2770",
       "bytes": 276
