@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "immutable_source_commit": "8fb984c2eb26d016c6b81cf488f88dc667ca9cd3",
+  "raw_output_audit": {
+    "rows_checked": 180,
+    "energy_hash_failures": 0,
+    "max_abs_mean_difference": 0.0,
+    "max_abs_sd_difference": 0.0,
+    "max_abs_five_block_sem_difference": 0.0,
+    "max_abs_component_sum_difference": 5.800004032607831e-09,
+    "all_frame_counts": [
+      51
+    ]
+  },
+  "configuration_audit": {
+    "rows_checked": 180,
+    "grid_failures": 0,
+    "ti_point_failures": 0,
+    "transition_failures": 0,
+    "existing_observation_alignment_failures": 0,
+    "trapezoid_weights": [
+      0.025,
+      0.05,
+      0.07500000000000001,
+      0.09999999999999999,
+      0.1,
+      0.1,
+      0.09999999999999998,
+      0.09999999999999998,
+      0.07500000000000001,
+      0.050000000000000044,
+      0.04999999999999999,
+      0.04999999999999999,
+      0.04999999999999999,
+      0.04999999999999999,
+      0.025000000000000022
+    ],
+    "trapezoid_weight_sum": 1.0,
+    "hydration_sign": "minus annihilation integral",
+    "reported_unit": "kcal/mol"
+  },
+  "replay_reproduction": {
+    "prediction_rows": 1576,
+    "schedule_mismatches": 0,
+    "max_abs_prediction_field_differences": {
+      "true_integral_kcal_mol": 0.0,
+      "predicted_integral_kcal_mol": 8.881784197001252e-15,
+      "signed_integral_error_kcal_mol": 8.881784197001252e-15,
+      "absolute_integral_error_kcal_mol": 8.881784197001252e-15,
+      "hidden_curve_mae_kcal_mol": 7.105427357601002e-15,
+      "maximum_hidden_error_kcal_mol": 1.7763568394002505e-14,
+      "posterior_integral_sd_kcal_mol": 4.440892098500626e-16,
+      "interval_width_90_kcal_mol": 1.7763568394002505e-15,
+      "measured_window_wall_seconds": 0.0
+    },
+    "max_abs_metric_field_differences": {
+      "n": 0.0,
+      "integral_mae_kcal_mol": 1.3322676295501878e-15,
+      "signed_integral_bias_kcal_mol": 1.3322676295501878e-15,
+      "hidden_curve_mae_kcal_mol": 2.6645352591003757e-15,
+      "maximum_hidden_error_kcal_mol": 1.4210854715202004e-14,
+      "coverage_90": 1.1102230246251565e-16,
+      "mean_interval_width_90_kcal_mol": 8.881784197001252e-16,
+      "mean_measured_window_wall_seconds": 2.2737367544323206e-13
+    },
+    "max_abs_comparison_field_differences": {
+      "candidate_minus_comparator_mae": 6.661338147750939e-16,
+      "ci90_low": 8.881784197001252e-16,
+      "ci90_high": 1.1102230246251565e-15,
+      "ci95_low": 9.43689570931383e-16,
+      "ci95_high": 1.1102230246251565e-15,
+      "fraction_candidate_improved": 0.0
+    }
+  },
+  "cost_balance": [
+    {
+      "total_windows": 5,
+      "method": "fixed_solvai_bq",
+      "active_minus_method_wall_seconds": 0.2405706766876392,
+      "relative_difference": 0.0002902907423782739
+    },
+    {
+      "total_windows": 5,
+      "method": "uniform_solvai_bq",
+      "active_minus_method_wall_seconds": 0.0,
+      "relative_difference": 0.0
+    },
+    {
+      "total_windows": 5,
+      "method": "generic_bq",
+      "active_minus_method_wall_seconds": 0.0,
+      "relative_difference": 0.0
+    },
+    {
+      "total_windows": 5,
+      "method": "fixed_direct",
+      "active_minus_method_wall_seconds": 0.2405706766876392,
+      "relative_difference": 0.0002902907423782739
+    },
+    {
+      "total_windows": 5,
+      "method": "uniform_direct",
+      "active_minus_method_wall_seconds": 0.0,
+      "relative_difference": 0.0
+    },
+    {
+      "total_windows": 7,
+      "method": "fixed_solvai_bq",
+      "active_minus_method_wall_seconds": 1.064012037095381,
+      "relative_difference": 0.0011494897143253943
+    },
+    {
+      "total_windows": 7,
+      "method": "uniform_solvai_bq",
+      "active_minus_method_wall_seconds": -0.8112600474269129,
+      "relative_difference": -0.0008746608342725731
+    },
+    {
+      "total_windows": 7,
+      "method": "generic_bq",
+      "active_minus_method_wall_seconds": -0.5713136605918407,
+      "relative_difference": -0.0006161217862519482
+    },
+    {
+      "total_windows": 7,
+      "method": "fixed_direct",
+      "active_minus_method_wall_seconds": 1.064012037095381,
+      "relative_difference": 0.0011494897143253943
+    },
+    {
+      "total_windows": 7,
+      "method": "uniform_direct",
+      "active_minus_method_wall_seconds": -0.8112600474269129,
+      "relative_difference": -0.0008746608342725731
+    }
+  ],
+  "stopping_audit": {
+    "minimum_half_width_kcal_mol": 0.5474409952503674,
+    "rows_at_or_below_registered_0p10": 0,
+    "note": "The registered outputs did not save actual stopping-time rows; independent reconstruction confirms that no Bayesian molecule-policy trajectory crossed the threshold."
+  },
+  "decision_logic_audit": {
+    "registered_condition_two": false,
+    "condition_two_with_registered_coverage_gate": false,
+    "decision_unchanged": true
+  },
+  "oracle_audit": {
+    "same_curve_used_for_selection_and_evaluation": true,
+    "optimistic_selection_bias_possible": true,
+    "quantification_deferred_to_prespecified_cross_block_diagnostic": true
+  }
+}
