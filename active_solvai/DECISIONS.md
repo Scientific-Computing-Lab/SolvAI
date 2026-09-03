@@ -22,3 +22,22 @@ This file is append-only. Amendments cite the affected prospective freeze and st
 - **Separate reconstruction evidence:** molecule-conditioned Gaussian interpolation reduced held-out response-point error versus a generic Gaussian for several predeclared subsets with approximately nominal coverage, although absolute errors and intervals remained large. No compatible dense response population exists locally.
 - **Decision B:** permit one bounded, prospectively frozen dense PIMD2 sentinel acquisition to test same-Hamiltonian reconstruction. This does not reopen the endpoint gate.
 - **Decision C:** do not launch adaptive multi-fidelity escalation unless the dense sentinel first establishes useful reconstruction against fixed and generic comparators.
+
+## 2026-09-03 — Kill molecule-conditioned quadrature and stop escalation
+
+- **Evidence visible:** the prospectively frozen eight-molecule dense PIMD2
+  sentinel had been scored. At five observed windows, active Bayesian
+  quadrature had 1.701 kcal mol⁻¹ integral MAE versus 1.153 for uniform direct
+  integration; at seven windows the values were 1.608 and 1.092. The active
+  method improved only 2/8 and 3/8 molecules at those budgets. Its 90% interval
+  coverage was 0.750 and 0.875, but no Bayesian method met the frozen stopping
+  threshold.
+- **Decision B:** kill molecule-conditioned Bayesian quadrature for the frozen
+  5-ps PIMD2 protocol. The strong non-deployable oracle is diagnostic evidence
+  that informative molecule-specific λ placements exist, not evidence that the
+  deployable policy found them.
+- **Decision C:** do not launch adaptive multi-fidelity allocation. The dense
+  same-fidelity prerequisite failed, exactly as specified before prospective
+  responses were generated.
+- **Program decision:** return a no-go result. Do not open Tier-B, escalate to
+  PIMD4/PIMD8, or tune a new acquisition rule against the eight sentinels.

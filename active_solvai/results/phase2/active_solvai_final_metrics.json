@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "program_decision": "NO_GO",
+  "phase1_endpoint_decision": "negative",
+  "phase1_frozen_solvai_repeat_mae_kcal_mol": 0.18637437731052825,
+  "phase1_residual_corrected_repeat_mae_kcal_mol": 0.18985627192910542,
+  "phase1_candidate_minus_baseline_kcal_mol": {
+    "ci_high_95": 0.006092698415984924,
+    "ci_low_95": 0.0009597288494216667,
+    "fraction_below_zero": 0.3194444444444444,
+    "mean": 0.003481894618577164
+  },
+  "phase1_candidate_minus_shuffle_kcal_mol": {
+    "ci_high_95": 0.002526322964124729,
+    "ci_low_95": -0.0011910754725136664,
+    "fraction_below_zero": 0.4722222222222222,
+    "mean": 0.0005801997270034282
+  },
+  "phase2_decision": "negative",
+  "phase2_primary_comparisons": [
+    {
+      "budget": 5,
+      "active_mae": 1.7012483627017274,
+      "active_coverage_90": 0.75,
+      "strongest_comparator": "uniform_direct",
+      "comparator_mae": 1.1528798376874347,
+      "paired_difference": 0.5483685250142926,
+      "ci90_low": -0.1010723501773917,
+      "ci90_high": 1.1589932376013172,
+      "fraction_improved": 0.25,
+      "condition_one_passed": false
+    },
+    {
+      "budget": 7,
+      "active_mae": 1.6075147216618912,
+      "active_coverage_90": 0.875,
+      "strongest_comparator": "uniform_direct",
+      "comparator_mae": 1.0917466750866385,
+      "paired_difference": 0.5157680465752527,
+      "ci90_low": -0.392137255783008,
+      "ci90_high": 1.4906416632715445,
+      "fraction_improved": 0.375,
+      "condition_one_passed": false
+    }
+  ],
+  "phase2_mean_window_sem_kcal_mol": 2.2825442588903533,
+  "phase2_median_window_sem_kcal_mol": 1.860691632487105,
+  "phase2_maximum_window_sem_kcal_mol": 15.08673313441268,
+  "phase2_oracle_mae_budget5_kcal_mol": 0.3365798455656114,
+  "phase2_oracle_mae_budget7_kcal_mol": 0.06826557041589926,
+  "simulation_compute": {
+    "by_role": {
+      "calibration": {
+        "attempted_windows": 48,
+        "passed_windows": 48,
+        "failed_windows": 0,
+        "wall_seconds": 2282.839616315905,
+        "gpu_hours": 0.634122115643307,
+        "cpu_hours": 5.072976925146456,
+        "production_ps": 240.0,
+        "bead_windows": 96,
+        "nominal_bead_steps": 300000
+      },
+      "prospective": {
+        "attempted_windows": 96,
+        "passed_windows": 96,
+        "failed_windows": 0,
+        "wall_seconds": 4671.49459156557,
+        "gpu_hours": 1.2976373865459914,
+        "cpu_hours": 10.381099092367931,
+        "production_ps": 480.0,
+        "bead_windows": 192,
+        "nominal_bead_steps": 600000
+      }
+    },
+    "total": {
+      "attempted_windows": 144.0,
+      "passed_windows": 144.0,
+      "failed_windows": 0.0,
+      "wall_seconds": 6954.334207881475,
+      "gpu_hours": 1.9317595021892984,
+      "cpu_hours": 15.454076017514387,
+      "production_ps": 720.0,
+      "bead_windows": 288.0,
+      "nominal_bead_steps": 900000.0
+    }
+  },
+  "direction_status": {
+    "A_empirical_probe_residual": "failed frozen endpoint gate",
+    "B_molecule_conditioned_bayesian_quadrature": "failed frozen prospective dense-sentinel criterion",
+    "C_adaptive_multifidelity": "not launched; prospectively contingent on Direction B passing"
+  },
+  "diagnosis": {
+    "response_signal": "actual three-point residuals did not improve the experimental endpoint and did not beat shuffling",
+    "response_noise": "five-block SEM was substantial; longer trajectories were not tested and rescue is not established",
+    "lambda_placement": "the oracle shows informative molecule-specific placements exist, but the frozen acquisition did not identify them",
+    "structure_prior": "the structure-conditioned curve prior was not consistently better than generic or direct interpolation",
+    "cross_fidelity": "not tested because the same-fidelity prerequisite failed",
+    "hamiltonian_bias": "cannot explain the same-Hamiltonian reconstruction failure; may limit experimental-endpoint transfer",
+    "endpoint_labels": "the low baseline error leaves limited headroom, but aligned-vs-shuffled controls show no usable residual signal",
+    "data_availability": "no compatible historical dense population existed; a prospectively generated 12-molecule panel removed that dependency for this test",
+    "implementation": "no evidence of implementation failure; all prospective windows passed QC and frozen analysis assertions"
+  },
+  "input_hashes": {
+    "phase1": "aef996e0a1785af037221d83204d6b18644249f66d9b7647e5b294f36f78a3bb",
+    "phase2": "e2f3558888527d51098ff89b9d3b0206da38fd7f23c183013e23e4fabc2d4717",
+    "responses": "4ce191a2ebfabb10dfcf5e11f98fef91b0bd5b2993f066ab47cfa9cc261c1097",
+    "predictions": "a0dbc9b61c7f54848be8e56dcc5c22d12d511839c90cdbfe44900574112bf1fd",
+    "diagnostics": "427393f58aeabc35c50fd162d9bfb9dc66e775455352ae80b5cb3e5b2bad970a"
+  }
+}

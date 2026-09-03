@@ -37,3 +37,21 @@ human-readable interpretation is `reports/PHASE1_ACTUAL_OBSERVATION_GATE.md`.
 - A decisive scoring command must refuse to run unless its freeze path exists and is committed.
 
 Phase-specific commands will be added before their corresponding freeze is committed.
+
+## Phase 2 dense sentinel
+
+The scientific protocol was frozen at commit `512aad3`; the calibration lock
+was committed at `3e69d10` before prospective simulation.
+
+```bash
+uv run --project active_solvai python active_solvai/scripts/collect_dense_sentinel.py --role prospective
+uv run --project active_solvai python active_solvai/scripts/evaluate_dense_sentinel.py
+uv run --project active_solvai python active_solvai/scripts/summarize_dense_sentinel.py
+uv run --project active_solvai python active_solvai/scripts/finalize_negative_program.py
+uv run --project active_solvai python active_solvai/scripts/sync_compute_ledger.py
+uv run --project active_solvai python active_solvai/scripts/build_manifest.py
+uv run --project active_solvai python active_solvai/scripts/verify_manifest.py
+```
+
+The result is a registered no-go. Direction C and Tier-B must not be launched
+from this branch without a new prospective protocol and explicit authorization.

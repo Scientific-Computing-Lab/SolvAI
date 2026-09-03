@@ -4,18 +4,20 @@
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{hyperref}
-\title{Active SolvAI: learning what to measure in alchemical hydration calculations}
+\title{Limits of structure-conditioned active learning for sparse alchemical hydration calculations}
 \author{Gal Oren \and Michael Levitt}
 \date{}
 \begin{document}
 \maketitle
 
 \begin{abstract}
-Accurate hydration free energies can require target-specific sampling, whereas structure-only models can fail under chemical shift. Active SolvAI asks whether sparse response observations from a query molecule can update the frozen SolvAI prior and recover either the same-Hamiltonian alchemical response or the experimental endpoint at lower measured cost. In a prospectively frozen test on 72 molecules, three 5-ps PIMD2 observations did not improve experimental prediction: the actual-minus-prior correction increased five-partition mean absolute error from 0.186 to 0.190 kcal mol$^{-1}$ and was indistinguishable from shuffled responses. Molecule-conditioned posteriors did improve several held-out response-point predictions, motivating a bounded dense-curve test while sharply separating response reconstruction from endpoint accuracy.
+Accurate hydration free energies require both a physical model and enough sampling of its alchemical response. Active SolvAI tested whether sparse response observations from a query molecule could update a structure-derived prior, reconstruct the same-Hamiltonian integral and improve prediction of experiment at lower measured cost. The answer was negative for the inherited 5-ps PIMD2 protocol. In a prospectively frozen 72-molecule endpoint test, actual-minus-prior response residuals increased five-partition mean absolute error from 0.186 to 0.190 kcal mol$^{-1}$ and did not beat molecule-shuffled responses. We then generated 144 new windows for a prospectively frozen dense panel. At five and seven observed windows, molecule-conditioned Bayesian quadrature gave integral errors of 1.701 and 1.608 kcal mol$^{-1}$, compared with 1.153 and 1.092 for simple uniform direct integration. A non-deployable oracle exposed substantial placement headroom, but the learned prior did not identify the informative windows. These results distinguish the existence of useful response measurements from the ability to select them prospectively, and define the evidence required before active multi-fidelity solvation can be justified.
 \end{abstract}
 
 \section{Introduction}
-SolvAI established that structure-predicted solvent responses add information beyond matched molecular features and experimental labels. It did not establish that high-fidelity response can be recovered from structure alone, nor that uncertainty can guide a simulation. We therefore test a different proposition: actual sparse observations may reveal molecule-specific departures from the structure prior.
+SolvAI established that structure-predicted solvent responses add information beyond matched molecular features and experimental labels. It did not establish that a high-fidelity alchemical response can be recovered from structure, that a few target-molecule observations contain endpoint information absent from the frozen predictor, or that posterior uncertainty can guide simulation. We therefore tested a distinct proposition: an actual response may reveal the molecule-specific departure from a structure-derived prior and indicate what to measure next.
+
+We separated two targets that are often conflated. The first was the dense integral produced by the same short-window ARROW/PIMD2 Hamiltonian. The second was experimental hydration free energy, which additionally contains sampling error, Hamiltonian bias and experimental discrepancy. Improvement on one target was not allowed to stand in for improvement on the other. All molecule sets, response subsets, policies, budgets, controls and interpretation thresholds were fixed before their decisive outcomes were revealed.
 
 \section{Results}
 \subsection{Actual-observation gate}
@@ -27,16 +29,34 @@ The no-new-simulation gate used 72 ARROW molecules with complete PIMD2 observati
 \caption{\textbf{Actual sparse PIMD2 observations do not improve the experimental endpoint.} Points are five independent molecule partitions; horizontal bars show their means. All models use identical held-out molecules.}
 \end{figure}
 
-\subsection{Retrospective replay}
-The endpoint route was killed by its prospective rule. A distinct reconstruction diagnostic remained: molecule-conditioned Gaussian posteriors reduced hidden-point errors relative to a generic population Gaussian for several predeclared subsets, with approximately nominal interval coverage. Absolute errors nevertheless remained at least 2.4 kcal mol$^{-1}$ and 95\% intervals were broad. Direct integration of the three actual observations gave 1.43 kcal mol$^{-1}$ experimental MAE after fold-local affine calibration. Because no compatible dense response population was available, these tests support only a bounded prospective dense sentinel, not a reconstruction or acceleration claim.
+\subsection{Sparse reconstruction diagnostic}
+The endpoint route was killed by its prospective rule. A distinct reconstruction diagnostic remained: molecule-conditioned Gaussian posteriors reduced hidden-point errors relative to a generic population Gaussian for several predeclared subsets, with approximately nominal interval coverage. Absolute errors nevertheless remained at least 2.4 kcal mol$^{-1}$ and 95\% intervals were broad. Direct integration of the three actual observations gave 1.43 kcal mol$^{-1}$ experimental MAE after fold-local affine calibration. Because no compatible dense historical population was available, these tests authorized only one bounded prospective dense sentinel, not a reconstruction or acceleration claim.
 
 \subsection{Prospective sentinels}
-\textbf{DENSE\_SENTINEL\_RESULT\_PENDING.} A dense same-Hamiltonian protocol and all comparators will be frozen before any new response is revealed.
+We generated a common 15-point response grid for four calibration and eight prospective molecules. Each molecule reused three inherited windows and added twelve 5-ps PIMD2 windows. Calibration selected the Gaussian-process length scale and noise inflation before any prospective response was generated. All 96 prospective windows passed prespecified quality control on the first attempt.
+
+The molecule-conditioned policy failed its frozen primary comparisons (Fig.~2). At five observed windows, active Bayesian quadrature had an integral MAE of 1.701 kcal mol$^{-1}$, compared with 1.153 for uniform direct integration; the paired difference was $+0.548$ kcal mol$^{-1}$ (90\% bootstrap interval $-0.101$ to $+1.159$), with improvement for two of eight molecules. At seven windows the corresponding errors were 1.608 and 1.092 kcal mol$^{-1}$ (difference $+0.516$, interval $-0.392$ to $+1.491$), with three of eight improved. Coverage of the nominal 90\% interval was 0.750 and 0.875, but mean interval widths remained 5.406 and 4.893 kcal mol$^{-1}$. No Bayesian method reached the frozen stopping threshold.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.76\linewidth]{../figures/phase2/dense_cost_error_frontier.png}
+\caption{\textbf{Prospective same-Hamiltonian reconstruction does not favour active allocation.} Mean absolute error of the reconstructed 15-point short-window PIMD2 integral for eight prospective molecules. All methods receive the same inherited three windows and are compared at identical window counts. The oracle is non-deployable.}
+\end{figure}
+
+The negative result was not caused by an absence of informative points in the dense pool. A non-deployable oracle reached 0.337 and 0.068 kcal mol$^{-1}$ at five and seven windows. Rather, the frozen structure-conditioned prior and variance-reduction acquisition did not identify those molecule-specific points. The structure-conditioned posterior also failed to improve reliably over generic Bayesian quadrature or direct interpolation.
 
 \section{Discussion}
-The first decisive result is a clean null: target-molecule PIMD2 measurements at the inherited three windows do not improve SolvAI's experimental prediction. This rejects the simplest active residual-correction mechanism rather than inviting post-hoc selection of a favourable window or chemical family. The separate interpolation result asks a narrower question—whether a molecular prior can reduce the number of response evaluations needed to reconstruct the same Hamiltonian—and requires dense prospective evidence before it can support a computational claim.
+The program produced two linked null results. First, target-molecule PIMD2 measurements at the inherited three windows did not improve SolvAI's experimental prediction. Second, the structure-conditioned policy did not reduce the cost of dense reconstruction under the same Hamiltonian. The latter failure is informative because the oracle exposes a large gap between useful measurements and prospectively identifiable measurements.
+
+The 5-ps windows were noisy: the mean five-block standard error across the prospective dense panel was 2.283 kcal mol$^{-1}$, with a maximum of 15.087. Longer sampling might reduce this component, but the current experiment does not establish that it would rescue the prior or acquisition. Hamiltonian bias cannot explain failure against the same-Hamiltonian dense reference, although it may help explain why PIMD2 residuals do not track experimental error. Cross-fidelity allocation was deliberately not tested because the same-fidelity prerequisite failed.
+
+The result sets a concrete threshold for future work. A larger protocol-matched dense-curve corpus would need to demonstrate accurate structure-to-curve prediction and prospective selection of informative windows before trajectory extension, PIMD4/PIMD8 escalation or a blind external campaign is warranted. Tier-B was not opened. The present evidence therefore supports a no-go decision for this Active SolvAI formulation, not a general claim that adaptive free-energy simulation is impossible.
 
 \section{Methods}
-The parent SolvAI artifact, cohorts, splits and response campaigns are versioned by SHA-256. The primary gate was committed before scoring at Git commit \texttt{a0dd986}. All preprocessing, response prediction, ridge selection and endpoint calibration occur inside molecule-held-out training data. Five repeated five-fold partitions use seeds 314159, 271828, 161803, 141421 and 173205. Destructive controls jointly permute response rows within the outer training and test folds, preserving the response distribution while removing molecule alignment. Paired intervals use 100,000 molecule bootstrap resamples with seed 20260828. Every attempted run, including failures, is included in the compute ledger.
+The parent SolvAI artifact, cohorts, splits and response campaigns are versioned by SHA-256. The primary endpoint gate was committed before scoring at Git commit \texttt{a0dd986}. All preprocessing, response prediction, ridge selection and endpoint calibration occur inside molecule-held-out training data. Five repeated five-fold partitions use seeds 314159, 271828, 161803, 141421 and 173205. Destructive controls jointly permute response rows within the outer training and test folds, preserving the response distribution while removing molecule alignment. Paired intervals use 100,000 molecule bootstrap resamples with seed 20260828.
+
+The dense-sentinel protocol was committed at \texttt{512aad3}; a prospective-noise leakage correction was committed before any sentinel response was generated, and numeric calibration was locked at \texttt{3e69d10}. Native Arbalest used force field 933, explicit water in a 24-\AA{} periodic box, 298 K, 1 bar, two PIMD beads with PILE, a 0.002-ps step, 500 equilibration steps and 2,500 production steps per window. The fixed grid was $\lambda=\{0,0.05,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.75,0.8,0.85,0.9,0.95,1\}$. The dense reference is the trapezoidal integral of these short-window means, not a converged PIMD8 free energy.
+
+The prospective campaign generated 144 new windows: 48 calibration and 96 evaluation. All passed prespecified completeness, finiteness, temperature and density checks on the first attempt. Production totalled 720 ps, 288 bead-windows and 900,000 nominal bead-steps; measured GPU work was 1.932 GPU-h. Arbalest does not expose an exact fast/slow force-kernel call count, so nominal bead-steps are reported instead. Every attempted run, including failures, is retained in the append-only compute ledger.
 
 \end{document}
