@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "inputs": {
+    "/home/galoren/Freecurve_AI_Solvation/release/SolvAI/active_solvai/results/phase2/dense_replay_predictions.parquet": "a0dbc9b61c7f54848be8e56dcc5c22d12d511839c90cdbfe44900574112bf1fd",
+    "/home/galoren/Freecurve_AI_Solvation/release/SolvAI/active_solvai/results/v2_diagnostics/oracle_independent_noise/dense_integral_reproducibility_by_split.csv": "feec7765a4705ca9390e87fd83eeb29847539cbc18f2aaa16f08bc7c71c3df0e"
+  },
+  "outputs": {
+    "/home/galoren/Freecurve_AI_Solvation/release/SolvAI/active_solvai_v3/results/power_reliability/inherited_effect_patterns.csv": "7e1a3a85fe3a54780c7ad1aac8a0f663c4acd7c8aade6d8c1ac4d1926f395369",
+    "/home/galoren/Freecurve_AI_Solvation/release/SolvAI/active_solvai_v3/results/power_reliability/power_by_molecule_count.csv": "c6ca9d75fc7d0daadaa0d68700562c3d8b411cfa94eba8ec7861ffe0c0720f6c",
+    "/home/galoren/Freecurve_AI_Solvation/release/SolvAI/active_solvai_v3/results/power_reliability/reference_reliability_grid.csv": "88f7e31fdefa68621c32892a29dadf88db2441cac459cbaedabbe646d38f1af9",
+    "/home/galoren/Freecurve_AI_Solvation/release/SolvAI/active_solvai_v3/results/power_reliability/prospective_design_grid.csv": "8a2b70b53030aba356b56a48f829fd92d5d9f7538219938a58f231a0f55bc6d5",
+    "/home/galoren/Freecurve_AI_Solvation/release/SolvAI/active_solvai_v3/results/power_reliability/power_reliability_canonical.json": "7509b085c9b57ab28611e36767a20d193b31cdcff8d92cb11030c6bc1f637654",
+    "/home/galoren/Freecurve_AI_Solvation/release/SolvAI/active_solvai_v3/figures/v3_power_reliability.pdf": "c869282a1625db6875768140d74500ab0bb88aca8699b1828a71680832a840ff",
+    "/home/galoren/Freecurve_AI_Solvation/release/SolvAI/active_solvai_v3/figures/v3_power_reliability.svg": "2dd1111c5cf660f16d4857071c70b3518b9a0c7b9a9fb7baf5478ed06a79784a",
+    "/home/galoren/Freecurve_AI_Solvation/release/SolvAI/active_solvai_v3/figures/v3_power_reliability.png": "8b27c75dc10aeb877a7e95702b48d985163b9dde3f66f883c346bb887a649e36"
+  }
+}

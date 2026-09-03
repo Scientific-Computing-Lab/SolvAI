@@ -1,20 +1,164 @@
 \documentclass[11pt]{article}
-\usepackage[margin=1in]{geometry}
+\usepackage[margin=0.85in]{geometry}
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{amsmath}
-\title{Supplementary Information: Active SolvAI v3}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\usepackage{xurl}
+\setlength{\emergencystretch}{2em}
+\title{Supplementary Information: Active SolvAI v3 adaptive simulation effort}
 \author{Gal Oren \and Michael Levitt}
 \date{}
+
 \begin{document}
 \maketitle
-\section{Prospective scope}
-This document is maintained in parallel with the evidence-gated campaign. Unknown
-results remain explicit placeholders until their governing freezes are committed and
-opened.
-\section{Inherited evidence}
-The SolvAI and Active SolvAI v1/v2 findings are preserved without reinterpretation.
-\section{Sequential replay}
-Methods and results pending the v3 master protocol freeze.
-\end{document}
 
+\section{Prospective scope and provenance}
+
+The authoritative blueprint has SHA-256
+\path{264f7f4afad7a9fa578992b33e6d5fefa83fe15f74be7fb9d85fd7e2f751b4de}.
+The inherited evidence audit and v3 master protocol were committed before model
+fitting. The branch descends from the v2 power-gate commit
+\path{770e13ce68ca80104557fd67a224abc5a2c44767}. The v1 and v2 no-go commits are
+\path{8fb984c2eb26d016c6b81cf488f88dc667ca9cd3} and
+\path{f2cc60fb73416e0e417c97c600d5abd00868031c}, respectively.
+
+The parent ARROW set, Tier-A, 76 historical PIMD2-probe molecules and all twelve
+full-grid molecules are development-exposed. Exact and standardized-equivalent
+identities cannot enter a future sentinel. Experimental hydration labels were not
+read by the v3 analysis code.
+
+\section{Inherited trajectory inventory}
+
+The workspace search found 418 `SYSTEM` energy files. Of these, 363 were compatible
+qualified PIMD2 outputs: 219 successful historical probe outputs and 144 new dense-
+grid windows. Seventy-two molecules had complete 0.1/0.5/0.9 observations. The dense
+library comprised twelve molecules and fifteen windows; 36 windows reused historical
+outputs and 144 were generated in v1. Every molecule-window had one 5-ps stream and no
+compatible independent replica.
+
+\begin{table}[ht]
+\centering
+\caption{Dense development molecules. All are development-exposed.}
+\begin{tabular}{ll}
+\toprule
+Calibration & Prospective in v1 \\
+\midrule
+Propane & Cyclohexane \\
+Ethanol & Octane \\
+Acetone & Octanol \\
+Pyridine & AceticAcid \\
+ & Acetamide \\
+ & DiMethylEther \\
+ & EthylAcetate \\
+ & Anthracene \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Sequential replay implementation}
+
+The replay library stores a rectangular window-by-chunk-by-observation tensor but
+exposes a policy only to a frozen state containing lambda, revealed chunk counts,
+revealed means, revealed SEMs, cumulative cost and step number. A policy cannot access
+the raw chunk tensor or future reference. Tests verify deterministic equal-time and
+random replay, recovery of a visibly high-variance synthetic window by max-SEM and
+rejection of an ineligible future action. The inherited one-stream library is used for
+implementation tests only.
+
+\section{Gate-1 feature sets}
+
+\begin{longtable}{p{0.23\textwidth}p{0.68\textwidth}}
+\caption{Predeclared model ladder.}\\
+\toprule
+Model & Inputs \\
+\midrule
+\endfirsthead
+\toprule
+Model & Inputs \\
+\midrule
+\endhead
+Lambda/protocol & lambda, lambda squared, endpoint indicator, trapezoidal weight \\
+Structure cold start & lambda/protocol; molecular weight, heavy atoms, TPSA, MolLogP,
+H-bond donors/acceptors, rotatable bonds, rings, fraction Csp3, formal charge; fixed
+lambda interactions \\
+SolvAI cold start & lambda/protocol; 15 frozen response coordinates; fixed lambda
+interactions \\
+Generic observed & lambda/protocol plus prefix mean/variance/SEM, batch and spectral
+variance rates, autocorrelation, effective sample size, half-prefix distances, drift,
+temperature, density and equilibration flag \\
+Structure-conditioned & generic observed plus ordinary structure features and fixed
+lambda interactions \\
+SolvAI-conditioned & generic observed plus the 15 response coordinates and fixed
+lambda interactions \\
+\bottomrule
+\end{longtable}
+
+\section{Complete fixed-prefix results}
+
+\begin{table}[ht]
+\centering
+\caption{Primary stabilized-target results across every fixed prefix. Lower MAE is
+better.}
+\begin{tabular}{rrrrr}
+\toprule
+Prefix (ps) & Lambda/protocol & Generic observed & Structure-conditioned & SolvAI-conditioned \\
+\midrule
+0.5 & 1.547 & 1.438 & 1.485 & 1.466 \\
+1.0 & 1.547 & 1.427 & 1.488 & 1.475 \\
+2.0 & 1.547 & 1.430 & 1.431 & 1.438 \\
+3.0 & 1.547 & 1.444 & 1.423 & 1.460 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At the primary prefix, SolvAI minus generic was +0.0477 (90\% confidence interval,
+-0.0171 to +0.1199). Aligned SolvAI minus the mean shuffled control was -0.0102
+(90\% confidence interval, -0.0478 to +0.0310). Sensitivity stabilizers of 0.10 and
+0.50 kcal mol$^{-1}$ gave SolvAI-minus-generic effects of +0.0620 and +0.0254.
+
+\section{Power and reference reliability}
+
+The minimum-useful effects were -0.341905 and -0.222900 kcal mol$^{-1}$ at five and
+seven windows. The reference threshold was 0.111450 kcal mol$^{-1}$. Fifty thousand
+Monte Carlo cohorts were generated for each predeclared molecule count and duration.
+
+\begin{table}[ht]
+\centering
+\caption{Selected power/reference designs. The final row is the first adequate point
+in the predeclared grid.}
+\begin{tabular}{rrrrrr}
+\toprule
+$N$ & ps/stream-window & Power$_5$ & Power$_7$ & Reference pass & Reserved GPU h \\
+\midrule
+12 & 50 & 0.218 & 0.114 & 0.000 & 54.0 \\
+20 & 50 & 0.326 & 0.142 & 0.000 & 90.0 \\
+20 & 3000 & 0.326 & 0.142 & 0.734 & 5401.4 \\
+64 & 3000 & 0.769 & 0.317 & 0.716 & 17284.6 \\
+128 & 3000 & 0.970 & 0.545 & 0.821 & 34569.2 \\
+256 & 3000 & 1.000 & 0.830 & 0.827 & 69138.3 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The reference calculation assumes inverse-square-root noise decay and is therefore
+optimistic if slow relaxation or initialization bias persists. The effect calculation
+uses v1 policy heterogeneity because no independent v3 policy effect exists. These
+limitations make the design a lower-bound planning diagnostic, not a launch proposal.
+
+\section{Negative-result disposition}
+
+No policy model was selected and no prospective cohort was qualified. No new
+trajectory, experimental-endpoint analysis, PIMD4/PIMD8 calculation or Tier-B test was
+opened. The v3 result is a causal stop: the frozen response coordinates failed to add
+sampling-difficulty information, and the minimum powered independent design was not
+compatible with the local exploratory envelope.
+
+\section{Reproduction and artifacts}
+
+The exact commands are listed in the workstream README and Makefile. Machine-readable
+predictions, bootstrap contrasts, diagnostic reliability, the complete power grid,
+file hashes and the append-only run ledger are retained under
+\texttt{active\_solvai\_v3/results}, \texttt{data} and \texttt{runs}.
+
+\end{document}

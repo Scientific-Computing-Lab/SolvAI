@@ -11,7 +11,6 @@ import joblib
 import numpy as np
 import pandas as pd
 from rdkit import Chem
-
 from solv_ai.features import descriptor_frame
 from solv_ai.teachers import response_features
 
@@ -147,7 +146,7 @@ def main() -> None:
         "schema_version": 1,
         "molecules": int(features.molecule_id.nunique()),
         "windows": int(responses.shape[0]),
-        "post_initial_frames": int(len(time_series)),
+        "post_initial_frames": len(time_series),
         "lambda_values": sorted(responses["lambda_value"].unique().tolist()),
         "structure_columns": [*STRUCTURE_COLUMNS, "structure_formal_charge"],
         "response_columns": response_columns,

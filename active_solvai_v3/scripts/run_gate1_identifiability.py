@@ -68,7 +68,7 @@ def build_diagnostic_table(time_series: pd.DataFrame, molecule_features: pd.Data
             for stabilizer in STABILIZERS
         }
         for prefix_ps in PREFIX_PS:
-            count = int(round(prefix_ps / 0.1))
+            count = round(prefix_ps / 0.1)
             prefix = trajectory.iloc[:count]
             diagnostics = prefix_diagnostics(
                 prefix.dhdl_kcal_mol.to_numpy(), prefix.time_ps.to_numpy()
@@ -102,7 +102,7 @@ def add_interactions(frame: pd.DataFrame) -> pd.DataFrame:
     molecule_columns = [
         column
         for column in result
-        if column.startswith("structure_") or column.startswith("response__")
+        if column.startswith(("structure_", "response__"))
     ]
     for column in molecule_columns:
         result[f"{column}__x_lambda_centered"] = result[column] * result["lambda_centered"]

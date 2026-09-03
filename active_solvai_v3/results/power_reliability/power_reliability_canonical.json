@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "protocol_commit": "9610813",
+  "monte_carlo_trials": 50000,
+  "seed": 20260903,
+  "minimum_effects_kcal_mol": {
+    "5": -0.34190520682873893,
+    "7": -0.2228996486695131
+  },
+  "reference_threshold_kcal_mol": 0.11144982433475654,
+  "smallest_numerically_adequate_design": {
+    "n_molecules": 256,
+    "production_ps_per_stream_window": 3000,
+    "streams": 2,
+    "lambda_windows": 15,
+    "power_budget5": 0.99974,
+    "power_budget7": 0.8297,
+    "type1_budget5": 0.02888,
+    "type1_budget7": 0.02858,
+    "reference_reliability_probability": 0.82704,
+    "production_total_ps": 23040000,
+    "projected_production_gpu_hours": 62286.76784661884,
+    "operational_reservation_gpu_hours": 69138.31230974692,
+    "numerically_adequate": true
+  },
+  "launch_authorized": false,
+  "launch_blockers": [
+    "Gate-1 SolvAI identifiability criterion failed.",
+    "The planning calculation transfers heterogeneity from the failed v1 placement policy, not an observed v3 allocation policy.",
+    "Inverse-square-root reference scaling is optimistic and unvalidated at the projected duration."
+  ]
+}

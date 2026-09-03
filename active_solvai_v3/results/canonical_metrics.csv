@@ -1,0 +1,16 @@
+metric,value
+gate1_generic_mae,1.427282267012206
+gate1_solvai_mae,1.4749761089204099
+gate1_solvai_minus_generic,0.047693841908203714
+gate1_solvai_ci90_low,-0.017112715148333995
+gate1_solvai_ci90_high,0.1199182491669135
+gate1_aligned_minus_shuffled,-0.010217233101318631
+minimum_design_molecules,256.0
+minimum_design_ps_per_stream_window,3000.0
+minimum_design_total_ps,23040000.0
+minimum_design_power_budget5,0.99974
+minimum_design_power_budget7,0.8297
+minimum_design_reference_probability,0.82704
+minimum_design_production_gpu_hours,62286.76784661884
+minimum_design_reserved_gpu_hours,69138.31230974692
+new_simulation_gpu_hours,0.0

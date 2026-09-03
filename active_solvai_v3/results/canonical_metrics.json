@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "decision": "quantitative_gate_failed_no_simulation",
+  "new_simulation": {
+    "molecules": 0,
+    "trajectories": 0,
+    "simulated_ps": 0.0,
+    "gpu_hours": 0.0
+  },
+  "inherited_inventory": {
+    "schema_version": 1,
+    "all_system_energy_files": 418,
+    "source_counts": {
+      "active_v1_dense_pimd2": 144,
+      "ancillary_unqualified_output": 1,
+      "historical_three_point_pimd2": 220,
+      "legacy_unqualified_output": 21,
+      "repository_test_fixture": 22,
+      "rtx3090_protocol_benchmark": 10
+    },
+    "qualified_pimd2_system_files": 363,
+    "independent_replica_sets": 0,
+    "historical_probe_attempts": 228,
+    "historical_probe_successes": 219,
+    "historical_probe_unique_molecules": 76,
+    "historical_probe_complete_three_point_molecules": 72,
+    "dense_manifest_rows": 180,
+    "dense_molecules": 12,
+    "dense_lambda_values": [
+      0.0,
+      0.05,
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.75,
+      0.8,
+      0.85,
+      0.9,
+      0.95,
+      1.0
+    ],
+    "dense_existing_three_point_rows": 36,
+    "dense_new_window_rows": 144,
+    "dense_streams_per_molecule_window": 1,
+    "dense_production_ps_per_window": [
+      5.0
+    ],
+    "parent_scalar_rows": 125,
+    "parent_scalar_fields": [
+      "delta_g_classical_arrow",
+      "delta_g_classical_uncertainty",
+      "delta_g_pimd4",
+      "delta_g_pimd8",
+      "delta_g_pimd8_uncertainty"
+    ],
+    "scientific_limit": "The inherited full-grid library contains one 5-ps trajectory per molecule-window. It permits complementary-block development diagnostics but no independent-replica policy validation or prospective sentinel claim."
+  },
+  "gate1": {
+    "n_molecules": 12,
+    "n_windows": 180,
+    "generic_mae": 1.427282267012206,
+    "solvai_mae": 1.4749761089204099,
+    "solvai_minus_generic": {
+      "comparison": "solvai_minus_generic",
+      "prefix_ps": 1.0,
+      "stabilizer": 0.25,
+      "mean_difference": 0.047693841908203714,
+      "ci90_low": -0.017112715148333995,
+      "ci90_high": 0.1199182491669135,
+      "ci95_low": -0.027198797012914885,
+      "ci95_high": 0.13563492641312677,
+      "fraction_molecules_below_zero": 0.5
+    },
+    "aligned_minus_shuffled": {
+      "comparison": "aligned_minus_mean_shuffled",
+      "prefix_ps": 1.0,
+      "stabilizer": 0.25,
+      "mean_difference": -0.010217233101318631,
+      "ci90_low": -0.047751061547669865,
+      "ci90_high": 0.03104545109466046,
+      "ci95_low": -0.054115115198222215,
+      "ci95_high": 0.039447938378905506,
+      "fraction_molecules_below_zero": 0.8333333333333334
+    },
+    "generic_minus_lambda": {
+      "comparison": "generic_minus_lambda",
+      "prefix_ps": 1.0,
+      "stabilizer": 0.25,
+      "mean_difference": -0.11972225500188476,
+      "ci90_low": -0.19936249368751874,
+      "ci90_high": -0.041013595940132465,
+      "ci95_low": -0.21408436186473778,
+      "ci95_high": -0.026236935806695665,
+      "fraction_molecules_below_zero": 0.6666666666666666
+    },
+    "generic_gate_passed": false,
+    "solvai_gate_passed": false
+  },
+  "power_reliability": {
+    "minimum_effects_kcal_mol": {
+      "5": -0.34190520682873893,
+      "7": -0.2228996486695131
+    },
+    "reference_threshold_kcal_mol": 0.11144982433475654,
+    "smallest_predeclared_adequate_design": {
+      "n_molecules": 256,
+      "production_ps_per_stream_window": 3000,
+      "streams": 2,
+      "lambda_windows": 15,
+      "power_budget5": 0.99974,
+      "power_budget7": 0.8297,
+      "type1_budget5": 0.02888,
+      "type1_budget7": 0.02858,
+      "reference_reliability_probability": 0.82704,
+      "production_total_ps": 23040000,
+      "projected_production_gpu_hours": 62286.76784661884,
+      "operational_reservation_gpu_hours": 69138.31230974692,
+      "numerically_adequate": true
+    },
+    "launch_authorized": false
+  },
+  "supported_claim": "Generic early-run diagnostics contain modest development signal, but frozen SolvAI response coordinates do not improve held-out sampling-difficulty prediction; no v3 policy or prospective simulation is authorized."
+}

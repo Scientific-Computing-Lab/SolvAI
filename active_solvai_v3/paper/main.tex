@@ -3,25 +3,244 @@
 \usepackage{booktabs}
 \usepackage{amsmath}
 \usepackage{graphicx}
-\usepackage{hyperref}
-\title{Molecule-conditioned allocation of sampling effort in alchemical hydration calculations}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\usepackage[numbers,sort&compress]{natbib}
+\input{generated_metrics.tex}
+\setlength{\emergencystretch}{1em}
+\title{Do structure-predicted solvent responses identify where alchemical simulations need more sampling?}
 \author{Gal Oren \and Michael Levitt}
 \date{}
+
 \begin{document}
 \maketitle
-\begin{abstract}
-Adaptive SolvAI v3 asks whether frozen structure-predicted solvent responses improve
-allocation of additional trajectory time across a fixed alchemical grid beyond a
-matched observed-data-only adaptive allocator. Results remain prospectively gated.
-\end{abstract}
-\section{Introduction}
-The question, controls and scope are fixed in the v3 master protocol. Quantitative
-claims remain placeholders until the corresponding prospective freeze is opened.
-\section{Results}
-\textbf{Result pending.}
-\section{Methods}
-Every window receives a common initial sampling floor; policies allocate only
-additional immutable chunks. Allocation and scoring use independent streams in both
-directions. Experimental hydration labels are excluded from policy development.
-\end{document}
 
+\begin{abstract}
+Alchemical free-energy calculations distribute simulation effort across a set of
+intermediate Hamiltonians. Equal allocation is simple, but inefficient when sampling
+difficulty varies strongly between windows. We asked whether the fifteen
+structure-predicted solvent-response coordinates in SolvAI could identify difficult
+windows before or during a calculation, beyond diagnostics derived from the target
+trajectory itself. We preserved the fixed 15-point integration grid and preregistered
+a molecule-held-out, zero-new-simulation identifiability gate before considering new
+physics. Across twelve molecules and 180 PIMD2 windows, early variance diagnostics
+modestly predicted disagreement between later complementary blocks. A generic
+observed-data model reduced log-difficulty error from 1.547 to \GateGenericMAE, but the
+SolvAI-conditioned model increased it to \GateSolvAIMAE\ and was indistinguishable from
+molecule-shuffled controls. The SolvAI increment was absent at every fixed prefix
+between 0.5 and 3 ps. Independent-reference planning further showed that the first
+predeclared design with adequate power and reference precision would require 256
+molecules, two full-grid streams and 3 ns per stream-window, approximately
+\MinimumDesignReservedGPU
+reserved RTX 3090 GPU-hours under optimistic noise scaling. No new simulation was
+therefore launched. The result separates two forms of transferable physics: response
+coordinates that improve an experimental hydration endpoint need not predict the
+sampling difficulty of the underlying alchemical dynamics.
+\end{abstract}
+
+\section{Introduction}
+
+Adaptive simulation is attractive because different alchemical windows can have very
+different correlation times, transients and estimator variances. An allocator that
+recognizes those differences early could devote additional trajectory time where it
+most reduces uncertainty while retaining a conservative integration grid. The key
+question for Active SolvAI is stricter than whether adaptive sampling works: molecular
+response information predicted before simulation must improve allocation beyond a
+competent policy that already observes the target trajectory.
+
+Earlier Active SolvAI studies addressed a different allocation variable. They tested
+molecule-specific selection of lambda locations and found that a SolvAI-conditioned
+Bayesian-quadrature policy lost to uniform direct integration. An apparently strong
+same-curve oracle also collapsed when lambda positions were selected and evaluated on
+complementary trajectory blocks. A proposed independent-replica resolution experiment
+was stopped at its prospective power gate. Those negative results rule out a simple
+return to placement optimization, but do not establish whether all fixed windows need
+equal trajectory length.
+
+We therefore isolated a new estimand: all policies use the same Hamiltonian, fifteen
+lambda values, quadrature and mandatory initial sampling floor; only the allocation of
+additional immutable trajectory chunks may differ. Before spending new GPU time, we
+asked whether the requisite target---future window-level sampling difficulty---is
+identifiable from existing trajectory prefixes, and whether frozen SolvAI responses
+add information beyond generic observed diagnostics. This preregistered gate produced
+a negative answer for the SolvAI increment and a prohibitive lower-bound design for a
+definitive independent test.
+
+\section{Results}
+
+\subsection{Inherited evidence fixes the test}
+
+All parent SolvAI and Active SolvAI results were regenerated from machine-readable
+artifacts. The parent response layer improves the matched experimental hydration model
+from 0.303 to 0.202 kcal mol$^{-1}$ on the ARROW reference set, but the prior Active
+program found no endpoint gain from actual three-point PIMD2 responses. On eight dense
+sentinels, Active Bayesian quadrature produced integral MAEs of 1.701 and 1.608 kcal
+mol$^{-1}$ at five and seven windows, compared with 1.153 and 1.092 kcal mol$^{-1}$
+for uniform direct integration. Cross-block oracle selection was worse than uniform by
+0.431 and 0.409 kcal mol$^{-1}$. These results were retained without reinterpretation.
+
+The trajectory census found 363 qualified PIMD2 response files, including 72 molecules
+with complete observations at lambda 0.1, 0.5 and 0.9. Only twelve molecules had all
+fifteen windows, and each molecule-window had one 5-ps stream. Contiguous portions of
+these trajectories can diagnose identifiability but cannot provide independent-replica
+validation.
+
+\subsection{Generic diagnostics carry modest signal}
+
+For each of the 180 dense molecule-windows, the preregistered primary analysis exposed
+the first 1 ps and predicted a stabilized measure of disagreement between two
+non-overlapping later 1-ps blocks. All preprocessing and ridge-penalty selection were
+nested within leave-one-molecule-out validation. The generic model used lambda,
+quadrature weight and prefix diagnostics; the matched SolvAI-conditioned model added
+the fifteen frozen response coordinates and fixed lambda interactions.
+
+The lambda/protocol baseline had a log-difficulty MAE of 1.547. Generic trajectory
+diagnostics lowered this to 1.427, a paired difference of -0.120 (90\% confidence
+interval, -0.199 to -0.041). The 7.7\% reduction was statistically directional but
+missed the preregistered 10\% materiality threshold. Variance and SEM-like statistics
+were the most informative individual diagnostics, with rank correlations of
+approximately 0.32--0.36 with later complementary disagreement.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{../figures/gate1_identifiability.pdf}
+  \caption{\textbf{Frozen SolvAI responses do not add identifiable sampling-difficulty
+  information.} \textbf{a}, Molecule-held-out error across all fixed prefix lengths.
+  \textbf{b}, Molecule-level change in absolute prediction error at the primary 1-ps
+  prefix; negative values favor SolvAI conditioning. \textbf{c}, The aligned response
+  model compared with five preregistered molecule-shuffled controls. All outcomes use
+  complementary blocks from one short trajectory and are development diagnostics, not
+  independent-replica validation.}
+  \label{fig:gate1}
+\end{figure}
+
+\subsection{SolvAI conditioning does not improve allocation information}
+
+The SolvAI-conditioned model had an MAE of \GateSolvAIMAE, \GateSolvAIDifference\ higher
+than the generic model (paired 90\% confidence interval, \GateSolvAILow\ to
+\GateSolvAIHigh), with six of twelve molecules
+improved (Fig.~\ref{fig:gate1}). Mean within-molecule rank correlation was 0.225,
+below the frozen 0.30 criterion. The aligned model differed from the mean of five
+molecule-shuffled controls by only -0.0102 (90\% confidence interval, -0.0478 to
+0.0310). SolvAI conditioning was also worse than generic diagnostics at 0.5, 2 and
+3 ps. SolvAI coordinates alone performed worse than lambda/protocol by 0.129 (90\%
+confidence interval, 0.051 to 0.225).
+
+These controls distinguish a failure of the proposed molecule-conditioned increment
+from a total absence of time-series information. Generic diagnostics had modest value;
+the frozen response representation did not identify additional window-specific
+difficulty.
+
+\subsection{A resolving independent design is impractical}
+
+We next ran a separately frozen simulation-based power and reference-reliability
+calculation rather than launching a small campaign. The minimum-useful alternative was
+a 20\% error reduction over the inherited generic policy scale. Molecule-level effect
+heterogeneity came from the eight development-exposed v1 cases, and independent
+reference disagreement was propagated from the v2 complementary-block audit using
+optimistic inverse-square-root time scaling.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.96\textwidth]{../figures/v3_power_reliability.pdf}
+  \caption{\textbf{Power and reference precision jointly rule out a bounded campaign.}
+  Left, probability of detecting a 20\% SolvAI-over-generic effect under inherited
+  molecule-level heterogeneity. Right, probability that the cohort 90th percentile of
+  dense-reference disagreement meets the frozen 0.111 kcal mol$^{-1}$ threshold under
+  optimistic inverse-square-root scaling. Dashed lines mark the 0.80 launch gates.}
+  \label{fig:power}
+\end{figure}
+
+The first adequate point in the predeclared grid used \MinimumDesignMolecules\ molecules,
+fifteen windows, two independent streams and \MinimumDesignDuration\ ps per
+stream-window (Fig.~\ref{fig:power}). This is 23.04 microseconds of production,
+projected as \MinimumDesignProductionGPU\ RTX 3090 GPU-hours or \MinimumDesignReservedGPU
+reserved hours including contingency. A 20-molecule, 50-ps campaign would have powers
+of only 0.326 and 0.142 at the two fixed budgets and zero probability of passing the
+reference criterion. No new trajectory was launched.
+
+\section{Discussion}
+
+This bounded study rejects the current Active SolvAI v3 hypothesis at its first causal
+gate. SolvAI response coordinates are useful for the experimentally supervised
+hydration endpoint, but that usefulness does not transfer automatically to sampling
+difficulty. The two targets depend on different information: endpoint response priors
+describe solvent thermodynamics, whereas effort allocation depends on correlation,
+relaxation and finite-time estimator behavior under a particular simulation protocol.
+
+The generic result is informative but insufficient for a new claim. Early variance
+statistics modestly anticipate later disagreement, suggesting that ordinary adaptive
+sampling could be useful with long independent development trajectories. Yet generic
+adaptation alone is not Active SolvAI, and it missed the frozen materiality threshold
+on the inherited short data. The correct conclusion is therefore a no-go for the
+present molecule-conditioned formulation, not evidence that adaptive sampling is
+impossible.
+
+The main limitation is measurement. One 5-ps stream cannot establish an independent
+sampling-difficulty target, and inverse-square-root extrapolation may be optimistic in
+the presence of slow modes. That limitation does not justify an underpowered pilot:
+the frozen planning calculation makes the required scale explicit. A future program
+would need a response representation trained specifically on protocol-level sampling
+difficulty across hundreds of independent full-grid trajectories. It would be a new
+research program rather than a continuation or rescue of the present test.
+
+\section{Methods}
+
+\subsection{Prospective governance}
+
+The v3 blueprint was hashed and read in full. The inherited evidence audit and master
+protocol were committed before Gate-1 scoring; a pre-result amendment clarified fixed
+lambda interactions needed for molecule-conditioned linear predictions. The power and
+reference protocol was committed after Gate 1 but before its Monte Carlo calculation.
+All prior molecules and results were marked development-exposed. No experimental
+hydration label entered a v3 predictor, policy, stopping criterion or selection rule.
+
+\subsection{Trajectory processing}
+
+We read native Arbalest `SYSTEM dHdL` values in kcal mol$^{-1}$, removed the time-zero
+record and retained 50 observations at 0.1-ps intervals per window. Lambda values were
+ordered numerically and integrated with the fixed trapezoidal weights. Each stream was
+partitioned into ten 0.5-ps blocks. The primary prefix used frames through 1.0 ps; the
+target was
+\[
+\log\left[\tfrac{1}{2}(\bar y_{3.1:4.0}-\bar y_{4.1:5.0})^2+0.25^2\right].
+\]
+Sensitivity analyses used 0.5-, 2- and 3-ps prefixes and stabilizers of 0.10 and
+0.50 kcal mol$^{-1}$.
+
+\subsection{Diagnostics and response features}
+
+Prefix summaries included the response mean and variance, naive SEM,
+non-overlapping and overlapping batch variance rates, a Bartlett--Newey--West variance
+rate, lag-1 autocorrelation, initial-positive-sequence autocorrelation time, effective
+sample size, half-prefix location and scale differences, Kolmogorov--Smirnov distance,
+linear/rank drift, temperature, density and unresolved-equilibration flags. SolvAI
+coordinates were generated by the immutable released structure-to-response surrogates.
+No source calculation was rerun.
+
+\subsection{Nested prediction and controls}
+
+Ridge penalties 0.1, 1, 10, 100 and 1,000 were selected inside each outer training set
+using leave-one-training-molecule-out error. Imputation and standardization were fit on
+training rows only. Molecule-level coordinates entered as main effects and fixed
+interactions with centered lambda and its square. Five joint molecule-level response
+permutations used seeds 88031--88035. Primary uncertainty used 100,000 molecule-
+clustered bootstrap resamples with seed 20260903.
+
+\subsection{Power and cost}
+
+The power calculation ran 50,000 Monte Carlo trials per condition. It centered the
+eight inherited paired policy effects and added null, 20\% and 30\% alternatives.
+Detection required a two-sided 95\% paired interval excluding zero. Reference
+disagreements were resampled from the 24 unique 2.5-ps complementary partitions and
+scaled by the square root of inverse duration. Production cost used the measured
+369.902 PIMD2 ps GPU$^{-1}$ h$^{-1}$ throughput; the operational reservation added
+11\% for failures and restarts.
+
+\section*{Data and code availability}
+
+The branch `active-solvai-v3-effort-allocation` contains every freeze, raw-file hash,
+molecule-level prediction, decision ledger, analysis script and compiled report.
+Earlier SolvAI and Active SolvAI histories remain immutable. No new simulation data
+were generated in v3.
+
+\end{document}
