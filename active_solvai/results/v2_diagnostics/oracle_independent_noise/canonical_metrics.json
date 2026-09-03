@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "protocol_commit": "d0167dcdfc4298a3b0a0ffbfa0be1b87bc8f2be3",
+  "conclusion": "C. INCONCLUSIVE DUE TO RESPONSE NOISE",
+  "dense_integral_reproducibility": {
+    "n_molecules": 8,
+    "complementary_partitions_per_molecule": 3,
+    "mae_kcal_mol": 1.8657538956430815,
+    "median_absolute_difference_kcal_mol": 1.3823479892002448,
+    "rmse_kcal_mol": 2.275589427936316,
+    "ci90_low": 1.4177242148987763,
+    "ci90_high": 2.3115325028999627,
+    "ci95_low": 1.3289969153450165,
+    "ci95_high": 2.3854324272561427
+  },
+  "decision_rows": [
+    {
+      "total_windows": 5,
+      "crossfit_oracle_mae_kcal_mol": 1.7320793655574391,
+      "uniform_direct_mae_kcal_mol": 1.30107586790933,
+      "oracle_minus_uniform_kcal_mol": 0.4310034976481091,
+      "ci90_low": -0.28081876863200084,
+      "ci90_high": 1.137989012128864,
+      "fraction_molecules_improved": 0.375,
+      "original_same_curve_headroom_kcal_mol": 0.8162999921218234,
+      "crossfit_headroom_kcal_mol": -0.4310034976481092,
+      "headroom_survival_ratio": -0.5279964495991161,
+      "a_budget_condition": false,
+      "b_budget_condition": false
+    },
+    {
+      "total_windows": 7,
+      "crossfit_oracle_mae_kcal_mol": 1.6812438015638556,
+      "uniform_direct_mae_kcal_mol": 1.2724751749654484,
+      "oracle_minus_uniform_kcal_mol": 0.40876862659840724,
+      "ci90_low": -0.23255320686628111,
+      "ci90_high": 1.0749453521714034,
+      "fraction_molecules_improved": 0.375,
+      "original_same_curve_headroom_kcal_mol": 1.0234811046707393,
+      "crossfit_headroom_kcal_mol": -0.4087686265984072,
+      "headroom_survival_ratio": -0.39939049654454617,
+      "a_budget_condition": false,
+      "b_budget_condition": false
+    }
+  ],
+  "mean_reversal_jaccard_budget5": 0.1388888888888889,
+  "mean_reversal_jaccard_budget7": 0.2380952380952381,
+  "mean_all_pairs_jaccard_budget5": 0.1888888888888889,
+  "mean_all_pairs_jaccard_budget7": 0.2822222222222222,
+  "reliability_gate_exceeded": true,
+  "b_rule_passed": false,
+  "a_rule_passed": false,
+  "input_hashes": {
+    "responses": "4ce191a2ebfabb10dfcf5e11f98fef91b0bd5b2993f066ab47cfa9cc261c1097",
+    "lock": "3d1f411c5320bf17b0bf83d7f6280645848136c88fed7d7be1a54e9e0fd4975a",
+    "config": "fc6afd2a4f8a255a641228df624769e6ed437dc4cc69dc244480a33c2936594d",
+    "priors": "9d9a514e2cabec3ea6f43600d9987d886ca11f2c96e2cc4f5f0b18f79397c91b",
+    "manifest": "9c46ad5b78af027f3c82d84ff300c1ea839fbd13650eba704bbfef95f5871358",
+    "energy_records": "e0585cc8e1f0d19754b43eec6eaa54c760fcbf106fe76315e46fbf3b7374451e"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "active_solvai/results/v2_diagnostics/oracle_independent_noise/aggregate_metrics.csv": {
+    "bytes": 1837,
+    "sha256": "4471f770a9266625702e013be3d3a05a3fe81597470d8b4f6cc7072019d347ac"
+  },
+  "active_solvai/results/v2_diagnostics/oracle_independent_noise/canonical_metrics.json": {
+    "bytes": 2577,
+    "sha256": "c0f01f65f3cfae4230d01fb536b7f375a1a0db29742a5023870ed53022cec2f4"
+  },
+  "active_solvai/results/v2_diagnostics/oracle_independent_noise/cross_block_predictions.parquet": {
+    "bytes": 33826,
+    "sha256": "e6492f5754aab9d4724e10c9b5e2d08863e669beb9b252a4f68a3e0b88a715fa"
+  },
+  "active_solvai/results/v2_diagnostics/oracle_independent_noise/crossfit_oracle_schedules.csv": {
+    "bytes": 6392,
+    "sha256": "7f72e79fc40204fcb8cb961060d7b1f51742f89dd3f4d765a02b6d550a5f49c9"
+  },
+  "active_solvai/results/v2_diagnostics/oracle_independent_noise/dense_integral_reproducibility_by_split.csv": {
+    "bytes": 5447,
+    "sha256": "feec7765a4705ca9390e87fd83eeb29847539cbc18f2aaa16f08bc7c71c3df0e"
+  },
+  "active_solvai/results/v2_diagnostics/oracle_independent_noise/molecule_level_metrics.csv": {
+    "bytes": 13629,
+    "sha256": "7be6b7c3580b8386e6f31395463a9a6d6723d41c1590f2d714a066dd4fff3679"
+  },
+  "active_solvai/results/v2_diagnostics/oracle_independent_noise/oracle_schedule_stability.csv": {
+    "bytes": 11428,
+    "sha256": "09a30eb8afacd2220544e4f6f07163e8655fa2b6975e3a2501669d80eda2cdeb"
+  },
+  "active_solvai/results/v2_diagnostics/oracle_independent_noise/paired_comparisons.csv": {
+    "bytes": 1828,
+    "sha256": "424782475655f9984aea36cea4119baaa55cab8adc88b9d606ddfa515b87ddc1"
+  },
+  "active_solvai/results/v2_diagnostics/oracle_independent_noise/trajectory_block_responses.parquet": {
+    "bytes": 15505,
+    "sha256": "f8646594576701a3cd11078d0af17ece7f4e2af34cf4680973b325e08e713014"
+  },
+  "active_solvai/figures/v2_diagnostics/oracle_headroom_survival.png": {
+    "bytes": 68882,
+    "sha256": "9c57ba274e01e18f85c806dd85d81977674a51fe80a8fcb021aae7142d7413ae"
+  },
+  "active_solvai/figures/v2_diagnostics/oracle_headroom_survival.svg": {
+    "bytes": 28028,
+    "sha256": "e688a2a8e0df22c295681346777753e977f54fc9326d5facf7acd1b1651b45c2"
+  },
+  "active_solvai/figures/v2_diagnostics/oracle_independent_noise_molecule_errors.png": {
+    "bytes": 157617,
+    "sha256": "3e00c80f5d61e07a9922c4b1ec41e03aac66c4ab6739190e34c68c9e39d14f94"
+  },
+  "active_solvai/figures/v2_diagnostics/oracle_independent_noise_molecule_errors.svg": {
+    "bytes": 70292,
+    "sha256": "614cc574d1960b03f92c2a5a8558a408c0a60579b5984efce5ea915873048e70"
+  },
+  "active_solvai/reports/ORACLE_INDEPENDENT_NOISE_DIAGNOSTIC.md": {
+    "bytes": 8639,
+    "sha256": "de362635b84510457a071c489138a126d1d9c373a448277b976d03eece685dc2"
+  }
+}
