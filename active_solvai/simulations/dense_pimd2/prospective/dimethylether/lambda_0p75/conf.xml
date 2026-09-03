@@ -1,0 +1,358 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Configuration>
+  <ConfigureInteractions>
+    <ForceField Title="933">
+      <FFConfig>/home/galoren/Freecurve_AI_Solvation/repositories/arbalest/OPENMM_ARROW/plugins/arrow/tests/Input/FFConfig.xml</FFConfig>
+      <Settings>
+        <Param Title="RTabulated">10.0</Param>
+        <Param Title="EqTolerance">0.0001</Param>
+        <Param Title="NTabulated">10000</Param>
+        <Param Title="PolarConvergenceTol">0.0001</Param>
+        <Param Title="PolarConvergenceTolPME">0.0</Param>
+        <Param Title="PolarEquilibrationMaxSteps">150</Param>
+        <Param Title="RepulsionFactor">0.010000</Param>
+        <Param Title="RepulsionPower">-8.000000</Param>
+      </Settings>
+    </ForceField>
+    <Volume>
+      <Lx>24.0</Lx>
+      <Ly>24.0</Ly>
+      <Lz>24.0</Lz>
+    </Volume>
+    <Boundary>
+      <BoundX>PERIODIC</BoundX>
+      <BoundY>PERIODIC</BoundY>
+      <BoundZ>PERIODIC</BoundZ>
+    </Boundary>
+    <LongRange>
+      <RCutOff>9.0</RCutOff>
+      <RSwitch>9.0</RSwitch>
+      <RCutOffVdW>9.0</RCutOffVdW>
+      <RSwitchVdW>9.0</RSwitchVdW>
+      <dRCutOff>2.0</dRCutOff>
+      <NLstRefresh>100</NLstRefresh>
+      <LRangeCoulomb Type="PME">
+        <Settings>
+          <Param Title="GridFragmentationX">32</Param>
+          <Param Title="GridFragmentationY">32</Param>
+          <Param Title="GridFragmentationZ">32</Param>
+          <Param Title="BSplineOrder">5</Param>
+          <Param Title="Tolerance">5</Param>
+          <Param Title="DielConstRF">1000000000000.0</Param>
+        </Settings>
+      </LRangeCoulomb>
+      <LRangeVdW>
+        <CorrectEnergy>true</CorrectEnergy>
+        <CorrectPressure>true</CorrectPressure>
+      </LRangeVdW>
+    </LongRange>
+    <Constraints>
+      <Tolerance>0.01</Tolerance>
+      <ConstrGeom>EquilibriumGeom</ConstrGeom>
+    </Constraints>
+  </ConfigureInteractions>
+  <Topology>
+    <MoleculeDefinition Title="LIG">
+      <StructureType>SINGLERES</StructureType>
+      <StructureDefinition>
+        <Instance Title="StateA">
+          <TopologySource>STRUCT</TopologySource>
+          <TopologyFiles>
+            <File Type="HIN">/home/galoren/Freecurve_AI_Solvation/release/SolvAI/active_solvai/simulations/dense_pimd2/prospective/dimethylether/lambda_0p75/solute.hin</File>
+          </TopologyFiles>
+          <StructureFiles>
+            <File Type="HIN">/home/galoren/Freecurve_AI_Solvation/release/SolvAI/active_solvai/simulations/dense_pimd2/prospective/dimethylether/lambda_0p75/solute.hin</File>
+          </StructureFiles>
+          <StructureSettings>
+            <GenerateChargeGroups>AUTO</GenerateChargeGroups>
+            <ConstrainBonds>false</ConstrainBonds>
+            <ConstrainAngles>false</ConstrainAngles>
+            <ConstrainTorsions>false</ConstrainTorsions>
+          </StructureSettings>
+        </Instance>
+      </StructureDefinition>
+    </MoleculeDefinition>
+    <MoleculeDefinition Title="SLV">
+      <StructureType>SINGLERES</StructureType>
+      <StructureDefinition>
+        <Instance Title="StateA">
+          <TopologySource>STRUCT</TopologySource>
+          <TopologyFiles>
+            <File Type="HIN">/home/galoren/Freecurve_AI_Solvation/repositories/Simulations/MD_TOOLS_PY/examples/test_run_ti_solvation/INPUT/HIN/SLV_Water.hin</File>
+          </TopologyFiles>
+          <StructureFiles>
+            <File Type="HIN" Descr="MolTemplate">/home/galoren/Freecurve_AI_Solvation/repositories/Simulations/MD_TOOLS_PY/examples/test_run_ti_solvation/INPUT/HIN/SLV_Water.hin</File>
+          </StructureFiles>
+          <StructureSettings>
+            <GenerateChargeGroups>AUTO</GenerateChargeGroups>
+            <ConstrainBonds>false</ConstrainBonds>
+            <ConstrainAngles>false</ConstrainAngles>
+            <ConstrainTorsions>false</ConstrainTorsions>
+          </StructureSettings>
+        </Instance>
+      </StructureDefinition>
+    </MoleculeDefinition>
+  </Topology>
+  <MolecularSystem ForcePlacement="true">
+    <SystemState Title="LIGSolvated">
+      <Load>
+        <Molecules>
+          <Molecule Title="LIG" Instance="StateA" />
+          <Molecule Title="SLV" Instance="StateA" />
+        </Molecules>
+        <StructureFiles>
+          <File Type="HIN">/home/galoren/Freecurve_AI_Solvation/release/SolvAI/active_solvai/simulations/dense_pimd2/prospective/dimethylether/lambda_0p75/solute.hin</File>
+        </StructureFiles>
+      </Load>
+      <GenerateSolvent>
+        <Rule MaxRotationAngle="2.5" OffsetRadius="2.0">
+          <Molecule Title="SLV" Instance="StateA" />
+          <MolQty Mode="Density">0.997</MolQty>
+          <Placement>RANDOM</Placement>
+        </Rule>
+      </GenerateSolvent>
+    </SystemState>
+    <SystemState Title="Solvent" TransitionFrom="LIGSolvated">
+      <Annihilate>
+        <Molecules>
+          <Molecule Title="LIG" Instance="StateA" />
+        </Molecules>
+      </Annihilate>
+    </SystemState>
+  </MolecularSystem>
+  <ConfigureTI>
+    <Transition Title="LIGAnnihilation" SeqID="1">
+      <Settings>
+        <Param Title="StateI">LIGSolvated</Param>
+        <Param Title="StateF">Solvent</Param>
+        <Param Title="LambdaValues">0.0 0.05 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.75 0.8 0.85 0.9 0.95 1.0</Param>
+        <Param Title="InitialConformation">false</Param>
+        <Param Title="ScaleFactorPwr">2.0</Param>
+        <Param Title="SoftCoringPwr">1.0</Param>
+        <Param Title="SoftCoringRadius">1.5</Param>
+        <Param Title="SoftCoringCutOff">6.0</Param>
+      </Settings>
+    </Transition>
+  </ConfigureTI>
+  <GroupsDefinition>
+    <Group Title="LIG" Type="UNITED">
+      <Set>
+        <LogicalItems>
+          <Item>LIG:</Item>
+        </LogicalItems>
+      </Set>
+    </Group>
+    <Group Title="LIG-SLV" Type="INTER-MOLEC">
+      <Set>
+        <LogicalItems>
+          <Item>LIG:</Item>
+        </LogicalItems>
+      </Set>
+      <Set>
+        <LogicalItems>
+          <Item>SLV:</Item>
+        </LogicalItems>
+      </Set>
+    </Group>
+  </GroupsDefinition>
+  <TaskSequence>
+    <Task Type="SetTIPoint" SeqID="1">
+      <Settings>
+        <Param Title="Transition">LIGAnnihilation</Param>
+        <Param Title="TIPoint">9</Param>
+      </Settings>
+      <ConfigureAlgorithms />
+    </Task>
+    <Task Type="MinEnergy" SeqID="2">
+      <Settings>
+        <Param Title="Method">SteepestDescent</Param>
+        <Param Title="ConvergenceAccuracy">0.0000001</Param>
+        <Param Title="NumIterations">250</Param>
+      </Settings>
+      <ConfigureAlgorithms />
+      <ConsoleOutput Do="True">
+        <Output Screen="SYSTEM" Frequency="10" Mode="WATERFALL" NRows="100">
+          <Item Title="EnrgPot" Param="EnrgPot" FunctionalGroup="SYSTEM" />
+          <Item Title="dHdL" Param="dHdL" FunctionalGroup="SYSTEM" />
+        </Output>
+      </ConsoleOutput>
+      <FileOutput OutputFolder="/home/galoren/Freecurve_AI_Solvation/release/SolvAI/active_solvai/simulations/dense_pimd2/prospective/dimethylether/lambda_0p75/output">
+        <Output DataType="HIN" Frequency="100">
+          <Settings />
+          <FunctionalGroups>
+            <Group>LIG</Group>
+          </FunctionalGroups>
+        </Output>
+      </FileOutput>
+    </Task>
+    <Task Type="MD" SeqID="3">
+      <Settings>
+        <Param Title="TimeStep">0.002</Param>
+        <Param Title="FastForceStepDivider">16</Param>
+        <Param Title="NumIterations">500</Param>
+        <Param Title="NumPIMDReplicas">2</Param>
+      </Settings>
+      <ConfigureAlgorithms>
+        <Algorithm Type="INIT_VELOCITY">
+          <Settings>
+            <Param Title="RefTemp">298</Param>
+            <Param Title="Seed">3130605</Param>
+          </Settings>
+          <FunctionalGroups>
+            <Group>SYSTEM</Group>
+          </FunctionalGroups>
+        </Algorithm>
+        <Algorithm Type="THERMOSTAT">
+          <Settings>
+            <Param Title="Type">PILE</Param>
+            <Param Title="RefTemp">298</Param>
+            <Param Title="RelaxTime">1.0</Param>
+          </Settings>
+          <FunctionalGroups>
+            <Group>SYSTEM</Group>
+          </FunctionalGroups>
+        </Algorithm>
+      </ConfigureAlgorithms>
+      <ConsoleOutput Do="True">
+        <Output Screen="SYSTEM" Frequency="50" Mode="WATERFALL" NRows="100">
+          <Item Title="ID" Param="Step" />
+          <Item Title="Temp" Param="Temp" FunctionalGroup="SYSTEM" />
+          <Item Title="EnrgPot" Param="EnrgPot" FunctionalGroup="SYSTEM" />
+          <Item Title="EnrgTotal" Param="EnrgTotal" FunctionalGroup="SYSTEM" />
+          <Item Title="Density" Param="Density" FunctionalGroup="SYSTEM" />
+          <Item Title="dHdL" Param="dHdL" FunctionalGroup="SYSTEM" />
+        </Output>
+      </ConsoleOutput>
+      <FileOutput OutputFolder="/home/galoren/Freecurve_AI_Solvation/release/SolvAI/active_solvai/simulations/dense_pimd2/prospective/dimethylether/lambda_0p75/output">
+            </FileOutput>
+    </Task>
+    <Task Type="MD" SeqID="5">
+      <Settings>
+        <Param Title="TimeStep">0.002</Param>
+        <Param Title="FastForceStepDivider">16</Param>
+        <Param Title="NumIterations">2500</Param>
+        <Param Title="NumPIMDReplicas">2</Param>
+      </Settings>
+      <ConfigureAlgorithms>
+        <Algorithm Type="THERMOSTAT">
+          <Settings>
+            <Param Title="Type">PILE</Param>
+            <Param Title="RefTemp">298</Param>
+            <Param Title="RelaxTime">1.0</Param>
+          </Settings>
+          <FunctionalGroups>
+            <Group>SYSTEM</Group>
+          </FunctionalGroups>
+        </Algorithm>
+        <Algorithm Type="BAROSTAT">
+          <Settings>
+            <Param Title="Type">Berendsen</Param>
+            <Param Title="RefPressure">1.00000</Param>
+            <Param Title="RelaxTime">0.5</Param>
+            <Param Title="Compressibility">4.5e-5</Param>
+          </Settings>
+          <FunctionalGroups />
+        </Algorithm>
+      </ConfigureAlgorithms>
+      <ConsoleOutput Do="True">
+        <Output Screen="SYSTEM" Frequency="50" Mode="WATERFALL" NRows="100">
+          <Item Title="ID" Param="Step" />
+          <Item Title="Temp" Param="Temp" FunctionalGroup="SYSTEM" />
+          <Item Title="EnrgPot" Param="EnrgPot" FunctionalGroup="SYSTEM" />
+          <Item Title="EnrgTotal" Param="EnrgTotal" FunctionalGroup="SYSTEM" />
+          <Item Title="Density" Param="Density" FunctionalGroup="SYSTEM" />
+          <Item Title="dHdL" Param="dHdL" FunctionalGroup="SYSTEM" />
+        </Output>
+      </ConsoleOutput>
+      <FileOutput OutputFolder="/home/galoren/Freecurve_AI_Solvation/release/SolvAI/active_solvai/simulations/dense_pimd2/prospective/dimethylether/lambda_0p75/output">
+        <Output DataType="ENE" Frequency="50">
+          <Settings>
+            <Param Title="Time">Time</Param>
+            <Param Title="Temp">Temp</Param>
+            <Param Title="EnrgPot">EnrgPot</Param>
+            <Param Title="EnrgKin">EnrgKin</Param>
+            <Param Title="EnrgTotal">EnrgTotal</Param>
+            <Param Title="EnrgRestraint">EnrgRestraint</Param>
+            <Param Title="EnrgCoul">EnrgCoul</Param>
+            <Param Title="EnrgVdW">EnrgVdW</Param>
+            <Param Title="EnrgVdW_LRCor">EnrgVdW_LRCor</Param>
+            <Param Title="EnrgPME">EnrgPME</Param>
+            <Param Title="Pressure">Pressure</Param>
+            <Param Title="Density">Density</Param>
+            <Param Title="dHdL_Coul">dHdL_Coul</Param>
+            <Param Title="dHdL_Coul_SC">dHdL_Coul_SC</Param>
+            <Param Title="dHdL_VdW">dHdL_VdW</Param>
+            <Param Title="dHdL_VdW_SC">dHdL_VdW_SC</Param>
+            <Param Title="dHdL_Pol">dHdL_Pol</Param>
+            <Param Title="dHdL_Bonds">dHdL_Bonds</Param>
+            <Param Title="dHdL_Angles">dHdL_Angles</Param>
+            <Param Title="dHdL_StretchBend">dHdL_StretchBend</Param>
+            <Param Title="dHdL_Tors">dHdL_Tors</Param>
+            <Param Title="dHdL_OutPlane">dHdL_OutPlane</Param>
+            <Param Title="dHdL_LRCor">dHdL_LRCor</Param>
+            <Param Title="dHdL_PME">dHdL_PME</Param>
+            <Param Title="dHdL">dHdL</Param>
+          </Settings>
+          <FunctionalGroups>
+            <Group>SYSTEM</Group>
+          </FunctionalGroups>
+        </Output>
+        <Output DataType="ENE" Frequency="50">
+          <Settings>
+            <Param Title="Time">Time</Param>
+            <Param Title="EnrgPot">EnrgPot</Param>
+            <Param Title="EnrgCoul">EnrgCoul</Param>
+            <Param Title="EnrgVdW">EnrgVdW</Param>
+            <Param Title="EnrgVdW_LRCor">EnrgVdW_LRCor</Param>
+            <Param Title="EnrgPME">EnrgPME</Param>
+            <Param Title="dHdL_Coul">dHdL_Coul</Param>
+            <Param Title="dHdL_Coul_SC">dHdL_Coul_SC</Param>
+            <Param Title="dHdL_VdW">dHdL_VdW</Param>
+            <Param Title="dHdL_VdW_SC">dHdL_VdW_SC</Param>
+            <Param Title="dHdL_PME">dHdL_PME</Param>
+            <Param Title="dHdL">dHdL</Param>
+          </Settings>
+          <FunctionalGroups>
+            <Group>LIG-SLV</Group>
+          </FunctionalGroups>
+        </Output>
+        <Output DataType="ENE" Frequency="50">
+          <Settings>
+            <Param Title="Time">Time</Param>
+            <Param Title="Temp">Temp</Param>
+            <Param Title="EnrgPot">EnrgPot</Param>
+            <Param Title="EnrgKin">EnrgKin</Param>
+            <Param Title="EnrgTotal">EnrgTotal</Param>
+            <Param Title="EnrgRestraint">EnrgRestraint</Param>
+            <Param Title="EnrgCoul">EnrgCoul</Param>
+            <Param Title="EnrgVdW">EnrgVdW</Param>
+            <Param Title="EnrgVdW_LRCor">EnrgVdW_LRCor</Param>
+            <Param Title="EnrgPME">EnrgPME</Param>
+            <Param Title="EnrgPol">EnrgPol</Param>
+            <Param Title="EnrgBond">EnrgBond</Param>
+            <Param Title="EnrgAngle">EnrgAngle</Param>
+            <Param Title="EnrgStretch">EnrgStretchBend</Param>
+            <Param Title="EnrgTorsion">EnrgTorsion</Param>
+            <Param Title="EnrgOOP">EnrgOutOfPlane</Param>
+            <Param Title="dHdL_Coul">dHdL_Coul</Param>
+            <Param Title="dHdL_Coul_SC">dHdL_Coul_SC</Param>
+            <Param Title="dHdL_VdW">dHdL_VdW</Param>
+            <Param Title="dHdL_VdW_SC">dHdL_VdW_SC</Param>
+            <Param Title="dHdL_Pol">dHdL_Pol</Param>
+            <Param Title="dHdL_Bonds">dHdL_Bonds</Param>
+            <Param Title="dHdL_Angles">dHdL_Angles</Param>
+            <Param Title="dHdL_StretchBend">dHdL_StretchBend</Param>
+            <Param Title="dHdL_Tors">dHdL_Tors</Param>
+            <Param Title="dHdL_OutPlane">dHdL_OutPlane</Param>
+            <Param Title="dHdL_LRCor">dHdL_LRCor</Param>
+            <Param Title="dHdL_PME">dHdL_PME</Param>
+            <Param Title="dHdL">dHdL</Param>
+          </Settings>
+          <FunctionalGroups>
+            <Group>LIG</Group>
+          </FunctionalGroups>
+        </Output>
+      </FileOutput>
+    </Task>
+  </TaskSequence>
+</Configuration>

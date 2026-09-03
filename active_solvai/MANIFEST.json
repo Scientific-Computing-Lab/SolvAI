@@ -37,6 +37,10 @@
       "sha256": "1552de81c3de6ad047ba4ce4d26d5a1f04cb4ef76e6f04841fb13a3304ba3258",
       "bytes": 1306
     },
+    "configs/dense_sentinel_v1.json": {
+      "sha256": "fc6afd2a4f8a255a641228df624769e6ed437dc4cc69dc244480a33c2936594d",
+      "bytes": 1669
+    },
     "data/identity/probe_identity_manifest.csv": {
       "sha256": "0cb6ab5ff561138ab1cea609f54383ed305a7aac4c82d0cc8c3b2060e166f2e6",
       "bytes": 15723
@@ -112,6 +116,10 @@
     "release/DATA_AND_IDENTITY_FREEZE.md": {
       "sha256": "9f505b9b7e5d2e64d7bc4e8b123e4cbfe15fbd7e157db9bed611416787ba01dd",
       "bytes": 3474
+    },
+    "release/DENSE_SENTINEL_FREEZE.md": {
+      "sha256": "5a009373e3bda80cb9ca816f9372e8a138f45304b1b87c42980990d471e30de8",
+      "bytes": 10158
     },
     "release/PHASE1_ORACLE_FREEZE.md": {
       "sha256": "2bc435bb46a0f3697d9a2519a0b72a0cbfa0ca262ebbfad039ebedc60df5166d",
@@ -209,17 +217,33 @@
       "sha256": "ed01487829fd35e844247c57a92f6f215226e7f0990e6a3326aa60f9638409c6",
       "bytes": 1314
     },
+    "scripts/calibrate_dense_models.py": {
+      "sha256": "2d1de84269686f229823d987e6b4ae12a36f9804f4bff57b05cafed6f46fdaee",
+      "bytes": 6924
+    },
     "scripts/capture_environment.py": {
       "sha256": "8230182286f28ea7902df4a0a3ed545bbd4212aea813c4016b264fdb3ea09085",
       "bytes": 2332
+    },
+    "scripts/collect_dense_sentinel.py": {
+      "sha256": "455cea5c8e1a7591d4151e2f8881dd86596cceb3c77b822e190718a750e8b2af",
+      "bytes": 3791
     },
     "scripts/inventory_responses.py": {
       "sha256": "596d391d600497bfe0988d865cc30952980a472aa493324724c5f49fcbc98e5a",
       "bytes": 10615
     },
+    "scripts/prepare_dense_sentinel.py": {
+      "sha256": "190ff9ebca15bb51b078e72ece9436bb0300205fc14fbcf8d6019a820c34d260",
+      "bytes": 5906
+    },
     "scripts/reproduce_parent.py": {
       "sha256": "04c92ff4ce4ea07d88055613231088048b9125a0da9041cb8b4df830f58a1d69",
       "bytes": 4613
+    },
+    "scripts/run_dense_sentinel.py": {
+      "sha256": "86952a3343b7de09ef556366610504b8f63a9c4d4174890af1799c0d2af73f05",
+      "bytes": 7387
     },
     "scripts/run_phase1_gate.py": {
       "sha256": "e21546ef4286b8f77d779c5ca67dfcfa4625e5d6b4463f8827f7f8ed681850c2",
@@ -233,9 +257,1169 @@
       "sha256": "42dd992bd16ae4254c183c65c5de7f02172cc0586698f3138b5272648cf34ee7",
       "bytes": 1457
     },
+    "simulations/dense_pimd2/calibration/acetone/lambda_0p00/conf.xml": {
+      "sha256": "b76aef9b60ae497d8b4d39264280a9807fc72a98f3cbc2ad7a10e140280e6ec2",
+      "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/acetone/lambda_0p00/solute.hin": {
+      "sha256": "2518a81c4e142a7a362baad29b520d314c022733218c99f11d151dfec942d345",
+      "bytes": 757
+    },
+    "simulations/dense_pimd2/calibration/acetone/lambda_0p05/conf.xml": {
+      "sha256": "b579d3e383e2d69a54ddd288ee9b8f8de24ff9811bb5038d21957f45951a1223",
+      "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/acetone/lambda_0p05/solute.hin": {
+      "sha256": "2518a81c4e142a7a362baad29b520d314c022733218c99f11d151dfec942d345",
+      "bytes": 757
+    },
+    "simulations/dense_pimd2/calibration/acetone/lambda_0p20/conf.xml": {
+      "sha256": "76234b2fddc4afb3cea1acb9150fce14c7e7a9b997e687329340f99f210e73b3",
+      "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/acetone/lambda_0p20/solute.hin": {
+      "sha256": "2518a81c4e142a7a362baad29b520d314c022733218c99f11d151dfec942d345",
+      "bytes": 757
+    },
+    "simulations/dense_pimd2/calibration/acetone/lambda_0p30/conf.xml": {
+      "sha256": "612a8113f5762a319663b9f06c73b5c40bd06973d0242a6b5b9fae7855ed1f34",
+      "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/acetone/lambda_0p30/solute.hin": {
+      "sha256": "2518a81c4e142a7a362baad29b520d314c022733218c99f11d151dfec942d345",
+      "bytes": 757
+    },
+    "simulations/dense_pimd2/calibration/acetone/lambda_0p40/conf.xml": {
+      "sha256": "ced4d3a81655ecf18d0893b6c5e06400ce64c9dfeedeb91df748d7007c214414",
+      "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/acetone/lambda_0p40/solute.hin": {
+      "sha256": "2518a81c4e142a7a362baad29b520d314c022733218c99f11d151dfec942d345",
+      "bytes": 757
+    },
+    "simulations/dense_pimd2/calibration/acetone/lambda_0p60/conf.xml": {
+      "sha256": "51b6e328404bc3d736838f01e858fcf7cf8f78bbbc8cefbe35016c449ed268bb",
+      "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/acetone/lambda_0p60/solute.hin": {
+      "sha256": "2518a81c4e142a7a362baad29b520d314c022733218c99f11d151dfec942d345",
+      "bytes": 757
+    },
+    "simulations/dense_pimd2/calibration/acetone/lambda_0p70/conf.xml": {
+      "sha256": "2abe2a3cff22a709c83ededcb29e510dd0a7d949a2fe232a5768c267dcf13bb9",
+      "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/acetone/lambda_0p70/solute.hin": {
+      "sha256": "2518a81c4e142a7a362baad29b520d314c022733218c99f11d151dfec942d345",
+      "bytes": 757
+    },
+    "simulations/dense_pimd2/calibration/acetone/lambda_0p75/conf.xml": {
+      "sha256": "e534cb4257b963bfd162d4d0a5162dbfe2c872beaebaa0dba48e68323d9781fb",
+      "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/acetone/lambda_0p75/solute.hin": {
+      "sha256": "2518a81c4e142a7a362baad29b520d314c022733218c99f11d151dfec942d345",
+      "bytes": 757
+    },
+    "simulations/dense_pimd2/calibration/acetone/lambda_0p80/conf.xml": {
+      "sha256": "a81171a2a0d358272c4810d0c504b3f4ea01cc0171e874d7f66d4550059c91e5",
+      "bytes": 14855
+    },
+    "simulations/dense_pimd2/calibration/acetone/lambda_0p80/solute.hin": {
+      "sha256": "2518a81c4e142a7a362baad29b520d314c022733218c99f11d151dfec942d345",
+      "bytes": 757
+    },
+    "simulations/dense_pimd2/calibration/acetone/lambda_0p85/conf.xml": {
+      "sha256": "838a51b40c2975f422f43294578057f7b9873f5eec22393672656baed2faf4b5",
+      "bytes": 14855
+    },
+    "simulations/dense_pimd2/calibration/acetone/lambda_0p85/solute.hin": {
+      "sha256": "2518a81c4e142a7a362baad29b520d314c022733218c99f11d151dfec942d345",
+      "bytes": 757
+    },
+    "simulations/dense_pimd2/calibration/acetone/lambda_0p95/conf.xml": {
+      "sha256": "89d12e9284e1fcae16f08c90024066006508d76101c0404f136a681cd142d981",
+      "bytes": 14855
+    },
+    "simulations/dense_pimd2/calibration/acetone/lambda_0p95/solute.hin": {
+      "sha256": "2518a81c4e142a7a362baad29b520d314c022733218c99f11d151dfec942d345",
+      "bytes": 757
+    },
+    "simulations/dense_pimd2/calibration/acetone/lambda_1p00/conf.xml": {
+      "sha256": "86cacc2b6131e3ea711e80590f11f3f173c55c6067816bca07f5bf645db1d565",
+      "bytes": 14855
+    },
+    "simulations/dense_pimd2/calibration/acetone/lambda_1p00/solute.hin": {
+      "sha256": "2518a81c4e142a7a362baad29b520d314c022733218c99f11d151dfec942d345",
+      "bytes": 757
+    },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_0p00/conf.xml": {
+      "sha256": "c9c56e191afcb9920f06ae03250cf9270529180f0bc414c72c16d931cd40ee45",
+      "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_0p00/solute.hin": {
+      "sha256": "bcde06cdaca9427023d59a7130510633a24e4a180003d60f079f719a8c938e01",
+      "bytes": 683
+    },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_0p05/conf.xml": {
+      "sha256": "4ff267eca09a613a9e945742628a6dc0046c1d6d8077cb283b73a0a3121b23e0",
+      "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_0p05/solute.hin": {
+      "sha256": "bcde06cdaca9427023d59a7130510633a24e4a180003d60f079f719a8c938e01",
+      "bytes": 683
+    },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_0p20/conf.xml": {
+      "sha256": "8ced74993ab490b3ceb21c784e07beac5b04152ff9035302b7140a0a021c5491",
+      "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_0p20/solute.hin": {
+      "sha256": "bcde06cdaca9427023d59a7130510633a24e4a180003d60f079f719a8c938e01",
+      "bytes": 683
+    },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_0p30/conf.xml": {
+      "sha256": "194c1cb0ac1f00563993202c5d497f79d5a1d7bfe5db0a4006845330d22b337c",
+      "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_0p30/solute.hin": {
+      "sha256": "bcde06cdaca9427023d59a7130510633a24e4a180003d60f079f719a8c938e01",
+      "bytes": 683
+    },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_0p40/conf.xml": {
+      "sha256": "c5ff06b12882c09f1c3c9bc45ec83db2521bd4623f3f9c7d2775d806e6411ce3",
+      "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_0p40/solute.hin": {
+      "sha256": "bcde06cdaca9427023d59a7130510633a24e4a180003d60f079f719a8c938e01",
+      "bytes": 683
+    },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_0p60/conf.xml": {
+      "sha256": "9c22fb8c6e9445bf6c54fb9b9f57661c7c95dc09c0bcbd247c27f7bcd5c7d846",
+      "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_0p60/solute.hin": {
+      "sha256": "bcde06cdaca9427023d59a7130510633a24e4a180003d60f079f719a8c938e01",
+      "bytes": 683
+    },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_0p70/conf.xml": {
+      "sha256": "e980488a60a44d66b24ed54ed1588abbc1be7c6a37940e166fbc80fe04c045e6",
+      "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_0p70/solute.hin": {
+      "sha256": "bcde06cdaca9427023d59a7130510633a24e4a180003d60f079f719a8c938e01",
+      "bytes": 683
+    },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_0p75/conf.xml": {
+      "sha256": "28f293fd2733cbdde31ac32a16528b0e89f4f257f6e3dc1f938ca42c3de85050",
+      "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_0p75/solute.hin": {
+      "sha256": "bcde06cdaca9427023d59a7130510633a24e4a180003d60f079f719a8c938e01",
+      "bytes": 683
+    },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_0p80/conf.xml": {
+      "sha256": "594b314bcc016d9f24e7f78de7e9e11c2958e1bd5ef5be6211f49fcba5a9c114",
+      "bytes": 14855
+    },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_0p80/solute.hin": {
+      "sha256": "bcde06cdaca9427023d59a7130510633a24e4a180003d60f079f719a8c938e01",
+      "bytes": 683
+    },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_0p85/conf.xml": {
+      "sha256": "e9b707eb23c56ed131eb1b480b22030ef7b0ceffe1959b2638451b31ee4d572f",
+      "bytes": 14855
+    },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_0p85/solute.hin": {
+      "sha256": "bcde06cdaca9427023d59a7130510633a24e4a180003d60f079f719a8c938e01",
+      "bytes": 683
+    },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_0p95/conf.xml": {
+      "sha256": "e28a0e45f6feb5605953703f0667a0133b90c2934c1d7975e2a106b146b38d21",
+      "bytes": 14855
+    },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_0p95/solute.hin": {
+      "sha256": "bcde06cdaca9427023d59a7130510633a24e4a180003d60f079f719a8c938e01",
+      "bytes": 683
+    },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_1p00/conf.xml": {
+      "sha256": "ff429b6ff50780b4bdfe96ff88a93e6d38f5cd711e2ec0b3b0d42d8767d880b0",
+      "bytes": 14855
+    },
+    "simulations/dense_pimd2/calibration/ethanol/lambda_1p00/solute.hin": {
+      "sha256": "bcde06cdaca9427023d59a7130510633a24e4a180003d60f079f719a8c938e01",
+      "bytes": 683
+    },
+    "simulations/dense_pimd2/calibration/propane/lambda_0p00/conf.xml": {
+      "sha256": "a943e4da7e8c74a34be6a1d346ce36a331997a75af3d57f2d60327a2487261d7",
+      "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/propane/lambda_0p00/solute.hin": {
+      "sha256": "9bc5f92dc900aaed84e4cba906dc84366bed4421d85c0e0b31c3feee5229c3f2",
+      "bytes": 891
+    },
+    "simulations/dense_pimd2/calibration/propane/lambda_0p05/conf.xml": {
+      "sha256": "0ab42ba0ec46d78e8b6f8ecd1f99e28af0c6c4303357d7673aa3376a9fb91953",
+      "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/propane/lambda_0p05/solute.hin": {
+      "sha256": "9bc5f92dc900aaed84e4cba906dc84366bed4421d85c0e0b31c3feee5229c3f2",
+      "bytes": 891
+    },
+    "simulations/dense_pimd2/calibration/propane/lambda_0p20/conf.xml": {
+      "sha256": "ddaf1e9e53150bb699e1bf81deb725f196acf75c3f0cb8f45830c613a6e140e8",
+      "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/propane/lambda_0p20/solute.hin": {
+      "sha256": "9bc5f92dc900aaed84e4cba906dc84366bed4421d85c0e0b31c3feee5229c3f2",
+      "bytes": 891
+    },
+    "simulations/dense_pimd2/calibration/propane/lambda_0p30/conf.xml": {
+      "sha256": "38b406f01ef224126568c46c305f91d0e5191e1157842cc4db17a53dec8fc1d1",
+      "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/propane/lambda_0p30/solute.hin": {
+      "sha256": "9bc5f92dc900aaed84e4cba906dc84366bed4421d85c0e0b31c3feee5229c3f2",
+      "bytes": 891
+    },
+    "simulations/dense_pimd2/calibration/propane/lambda_0p40/conf.xml": {
+      "sha256": "3b0eb9d069b3bdde6641eb5fa444b408128f00ee4a1c3311261e3342fe5d06c6",
+      "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/propane/lambda_0p40/solute.hin": {
+      "sha256": "9bc5f92dc900aaed84e4cba906dc84366bed4421d85c0e0b31c3feee5229c3f2",
+      "bytes": 891
+    },
+    "simulations/dense_pimd2/calibration/propane/lambda_0p60/conf.xml": {
+      "sha256": "480899e49b3eacba957b1bde15d23510661cc9bcc1c174366daeee1e2c7f3ed3",
+      "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/propane/lambda_0p60/solute.hin": {
+      "sha256": "9bc5f92dc900aaed84e4cba906dc84366bed4421d85c0e0b31c3feee5229c3f2",
+      "bytes": 891
+    },
+    "simulations/dense_pimd2/calibration/propane/lambda_0p70/conf.xml": {
+      "sha256": "516dc5c11e0cd0a78f71b29982853186583912d23c692df2d45ebdfe0dcd95ac",
+      "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/propane/lambda_0p70/solute.hin": {
+      "sha256": "9bc5f92dc900aaed84e4cba906dc84366bed4421d85c0e0b31c3feee5229c3f2",
+      "bytes": 891
+    },
+    "simulations/dense_pimd2/calibration/propane/lambda_0p75/conf.xml": {
+      "sha256": "1daa0e438a4ecfbecb0c6b87445f90c2f2dab0f98336e384a4a672cb71baef82",
+      "bytes": 14854
+    },
+    "simulations/dense_pimd2/calibration/propane/lambda_0p75/solute.hin": {
+      "sha256": "9bc5f92dc900aaed84e4cba906dc84366bed4421d85c0e0b31c3feee5229c3f2",
+      "bytes": 891
+    },
+    "simulations/dense_pimd2/calibration/propane/lambda_0p80/conf.xml": {
+      "sha256": "32f911c1c9e6da9b300e988d70eb643f2024a813e5af1ba6e95c793f0eb03729",
+      "bytes": 14855
+    },
+    "simulations/dense_pimd2/calibration/propane/lambda_0p80/solute.hin": {
+      "sha256": "9bc5f92dc900aaed84e4cba906dc84366bed4421d85c0e0b31c3feee5229c3f2",
+      "bytes": 891
+    },
+    "simulations/dense_pimd2/calibration/propane/lambda_0p85/conf.xml": {
+      "sha256": "fbd21490a40f2809ec3af9236a8fab6076f411401ba91f556f95c846c920cf3f",
+      "bytes": 14855
+    },
+    "simulations/dense_pimd2/calibration/propane/lambda_0p85/solute.hin": {
+      "sha256": "9bc5f92dc900aaed84e4cba906dc84366bed4421d85c0e0b31c3feee5229c3f2",
+      "bytes": 891
+    },
+    "simulations/dense_pimd2/calibration/propane/lambda_0p95/conf.xml": {
+      "sha256": "6acd9be613d49428d4f1f90f2856b1a064c6afa54171bc9c94949334792ff319",
+      "bytes": 14855
+    },
+    "simulations/dense_pimd2/calibration/propane/lambda_0p95/solute.hin": {
+      "sha256": "9bc5f92dc900aaed84e4cba906dc84366bed4421d85c0e0b31c3feee5229c3f2",
+      "bytes": 891
+    },
+    "simulations/dense_pimd2/calibration/propane/lambda_1p00/conf.xml": {
+      "sha256": "f9f4f8ccf95cd6329adc151f2c1baf7240066507ac7fd224412df3e014e6566c",
+      "bytes": 14855
+    },
+    "simulations/dense_pimd2/calibration/propane/lambda_1p00/solute.hin": {
+      "sha256": "9bc5f92dc900aaed84e4cba906dc84366bed4421d85c0e0b31c3feee5229c3f2",
+      "bytes": 891
+    },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_0p00/conf.xml": {
+      "sha256": "61cbf704e6bfe02e9a225c99c02d8fa977eb342cb02b0f4dc19fd6a3e80b1be1",
+      "bytes": 14860
+    },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_0p00/solute.hin": {
+      "sha256": "f915009518446db3c7b84f3c2d6f8df1e3df9ce534933581fcef3777fd43c9df",
+      "bytes": 889
+    },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_0p05/conf.xml": {
+      "sha256": "b8e03437427cf40f071149e7061f624e1fcdcfa2bab32cd28446015da9453b24",
+      "bytes": 14860
+    },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_0p05/solute.hin": {
+      "sha256": "f915009518446db3c7b84f3c2d6f8df1e3df9ce534933581fcef3777fd43c9df",
+      "bytes": 889
+    },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_0p20/conf.xml": {
+      "sha256": "dbe181f23e4d050069f34d934fd3eafe36aba61b1f104d19dae40ad97238c595",
+      "bytes": 14860
+    },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_0p20/solute.hin": {
+      "sha256": "f915009518446db3c7b84f3c2d6f8df1e3df9ce534933581fcef3777fd43c9df",
+      "bytes": 889
+    },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_0p30/conf.xml": {
+      "sha256": "41f5b07122c812328a3d55c3f6d691c1e532f7a0428dd507ba575b76afaac360",
+      "bytes": 14860
+    },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_0p30/solute.hin": {
+      "sha256": "f915009518446db3c7b84f3c2d6f8df1e3df9ce534933581fcef3777fd43c9df",
+      "bytes": 889
+    },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_0p40/conf.xml": {
+      "sha256": "5a533f9bd2970e7aba663518acd4ccbb49a8a72bf41596e39199cda45d61b39e",
+      "bytes": 14860
+    },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_0p40/solute.hin": {
+      "sha256": "f915009518446db3c7b84f3c2d6f8df1e3df9ce534933581fcef3777fd43c9df",
+      "bytes": 889
+    },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_0p60/conf.xml": {
+      "sha256": "5bda5f3210a1f72edaa0b90d70016bca234573ffcfe080e9830c983ecbf76722",
+      "bytes": 14860
+    },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_0p60/solute.hin": {
+      "sha256": "f915009518446db3c7b84f3c2d6f8df1e3df9ce534933581fcef3777fd43c9df",
+      "bytes": 889
+    },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_0p70/conf.xml": {
+      "sha256": "10a17f6577cbc54ec64aa187b7e52452edccc886f3d4ffffa96ea8a6f622d0fb",
+      "bytes": 14860
+    },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_0p70/solute.hin": {
+      "sha256": "f915009518446db3c7b84f3c2d6f8df1e3df9ce534933581fcef3777fd43c9df",
+      "bytes": 889
+    },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_0p75/conf.xml": {
+      "sha256": "a3f59583d4ff038f56dac7d210d727de56e56cb48b6639556bce62db210e173d",
+      "bytes": 14860
+    },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_0p75/solute.hin": {
+      "sha256": "f915009518446db3c7b84f3c2d6f8df1e3df9ce534933581fcef3777fd43c9df",
+      "bytes": 889
+    },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_0p80/conf.xml": {
+      "sha256": "fa3ab82e02b7db366bff7610df8354411f4af97a45f991173284c58ed6b535c5",
+      "bytes": 14861
+    },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_0p80/solute.hin": {
+      "sha256": "f915009518446db3c7b84f3c2d6f8df1e3df9ce534933581fcef3777fd43c9df",
+      "bytes": 889
+    },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_0p85/conf.xml": {
+      "sha256": "278072316af2b6f64bffabeb8e3ab7a350757c2a7c5233df13f0a7b897b2cdab",
+      "bytes": 14861
+    },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_0p85/solute.hin": {
+      "sha256": "f915009518446db3c7b84f3c2d6f8df1e3df9ce534933581fcef3777fd43c9df",
+      "bytes": 889
+    },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_0p95/conf.xml": {
+      "sha256": "2ab954bc6119371df950faad8d1c186ef40842fa079aabdba839d7d44853f99f",
+      "bytes": 14861
+    },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_0p95/solute.hin": {
+      "sha256": "f915009518446db3c7b84f3c2d6f8df1e3df9ce534933581fcef3777fd43c9df",
+      "bytes": 889
+    },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_1p00/conf.xml": {
+      "sha256": "9a92aea8563dbacb1f83c386a205a167ed4f7531a713d1745dffbcddbea234b1",
+      "bytes": 14861
+    },
+    "simulations/dense_pimd2/calibration/pyridine/lambda_1p00/solute.hin": {
+      "sha256": "f915009518446db3c7b84f3c2d6f8df1e3df9ce534933581fcef3777fd43c9df",
+      "bytes": 889
+    },
+    "simulations/dense_pimd2/manifest.csv": {
+      "sha256": "9c46ad5b78af027f3c82d84ff300c1ea839fbd13650eba704bbfef95f5871358",
+      "bytes": 101751
+    },
+    "simulations/dense_pimd2/prospective/acetamide/lambda_0p00/conf.xml": {
+      "sha256": "267b89f32f8ded1ea2a34559ebd8d7358310d96168e5d8e229279c5835aace35",
+      "bytes": 14865
+    },
+    "simulations/dense_pimd2/prospective/acetamide/lambda_0p00/solute.hin": {
+      "sha256": "cf8b0d5b549bc7f0de663482a145059480c8cfcb43f52dac10b3097f860bcc87",
+      "bytes": 725
+    },
+    "simulations/dense_pimd2/prospective/acetamide/lambda_0p05/conf.xml": {
+      "sha256": "1caa8622e35a539762bd3df43421f5d38124ecf4062428767b754d04c15f2715",
+      "bytes": 14865
+    },
+    "simulations/dense_pimd2/prospective/acetamide/lambda_0p05/solute.hin": {
+      "sha256": "cf8b0d5b549bc7f0de663482a145059480c8cfcb43f52dac10b3097f860bcc87",
+      "bytes": 725
+    },
+    "simulations/dense_pimd2/prospective/acetamide/lambda_0p20/conf.xml": {
+      "sha256": "f52a4a628e53342225ec84298ba8591976f931a2719a3a595f55e3900b46b51a",
+      "bytes": 14865
+    },
+    "simulations/dense_pimd2/prospective/acetamide/lambda_0p20/solute.hin": {
+      "sha256": "cf8b0d5b549bc7f0de663482a145059480c8cfcb43f52dac10b3097f860bcc87",
+      "bytes": 725
+    },
+    "simulations/dense_pimd2/prospective/acetamide/lambda_0p30/conf.xml": {
+      "sha256": "88ef9c6659fa889ad99081534456be24604391321fb0b6e32c009482b48386e3",
+      "bytes": 14865
+    },
+    "simulations/dense_pimd2/prospective/acetamide/lambda_0p30/solute.hin": {
+      "sha256": "cf8b0d5b549bc7f0de663482a145059480c8cfcb43f52dac10b3097f860bcc87",
+      "bytes": 725
+    },
+    "simulations/dense_pimd2/prospective/acetamide/lambda_0p40/conf.xml": {
+      "sha256": "acf5710df455749a1900a74f71dfa464fdac81f9fe6639c97d7342e9567d0ab3",
+      "bytes": 14865
+    },
+    "simulations/dense_pimd2/prospective/acetamide/lambda_0p40/solute.hin": {
+      "sha256": "cf8b0d5b549bc7f0de663482a145059480c8cfcb43f52dac10b3097f860bcc87",
+      "bytes": 725
+    },
+    "simulations/dense_pimd2/prospective/acetamide/lambda_0p60/conf.xml": {
+      "sha256": "2e05da231d5ec38fd023a7e10ca78c95b21a66897b48894cf72296650f5bb34d",
+      "bytes": 14865
+    },
+    "simulations/dense_pimd2/prospective/acetamide/lambda_0p60/solute.hin": {
+      "sha256": "cf8b0d5b549bc7f0de663482a145059480c8cfcb43f52dac10b3097f860bcc87",
+      "bytes": 725
+    },
+    "simulations/dense_pimd2/prospective/acetamide/lambda_0p70/conf.xml": {
+      "sha256": "42dc519c21f709481d72a517edef6bfebdaf0f92011a2d6ef48517fe77205554",
+      "bytes": 14865
+    },
+    "simulations/dense_pimd2/prospective/acetamide/lambda_0p70/solute.hin": {
+      "sha256": "cf8b0d5b549bc7f0de663482a145059480c8cfcb43f52dac10b3097f860bcc87",
+      "bytes": 725
+    },
+    "simulations/dense_pimd2/prospective/acetamide/lambda_0p75/conf.xml": {
+      "sha256": "4b2032964d7e809bba207d254d5d82332bb2871eb846c1b848f5e338e968fcc0",
+      "bytes": 14865
+    },
+    "simulations/dense_pimd2/prospective/acetamide/lambda_0p75/solute.hin": {
+      "sha256": "cf8b0d5b549bc7f0de663482a145059480c8cfcb43f52dac10b3097f860bcc87",
+      "bytes": 725
+    },
+    "simulations/dense_pimd2/prospective/acetamide/lambda_0p80/conf.xml": {
+      "sha256": "4e9742ebc941c1230b459455d9d2cb962796b29bb7ad0f4a8eee153cbf852d3d",
+      "bytes": 14866
+    },
+    "simulations/dense_pimd2/prospective/acetamide/lambda_0p80/solute.hin": {
+      "sha256": "cf8b0d5b549bc7f0de663482a145059480c8cfcb43f52dac10b3097f860bcc87",
+      "bytes": 725
+    },
+    "simulations/dense_pimd2/prospective/acetamide/lambda_0p85/conf.xml": {
+      "sha256": "cca9844765cfd5f1b2cebd82bbb33de5a97fd77485cf6891aa99aec4b5218d7c",
+      "bytes": 14866
+    },
+    "simulations/dense_pimd2/prospective/acetamide/lambda_0p85/solute.hin": {
+      "sha256": "cf8b0d5b549bc7f0de663482a145059480c8cfcb43f52dac10b3097f860bcc87",
+      "bytes": 725
+    },
+    "simulations/dense_pimd2/prospective/acetamide/lambda_0p95/conf.xml": {
+      "sha256": "7e2293d4ad90f4b60b3cf6ea462aaef22c817269e1b07dcad084a76ff8eaf37a",
+      "bytes": 14866
+    },
+    "simulations/dense_pimd2/prospective/acetamide/lambda_0p95/solute.hin": {
+      "sha256": "cf8b0d5b549bc7f0de663482a145059480c8cfcb43f52dac10b3097f860bcc87",
+      "bytes": 725
+    },
+    "simulations/dense_pimd2/prospective/acetamide/lambda_1p00/conf.xml": {
+      "sha256": "1d762362fbfd4dc8af4437604349a7b0cd1655e49a28b9ed88d2c4bface1e15e",
+      "bytes": 14866
+    },
+    "simulations/dense_pimd2/prospective/acetamide/lambda_1p00/solute.hin": {
+      "sha256": "cf8b0d5b549bc7f0de663482a145059480c8cfcb43f52dac10b3097f860bcc87",
+      "bytes": 725
+    },
+    "simulations/dense_pimd2/prospective/aceticacid/lambda_0p00/conf.xml": {
+      "sha256": "c2a8e2a781a52ec01f859971c5be2b506aef5e5fda57476088a9f52a95c9ebaa",
+      "bytes": 14871
+    },
+    "simulations/dense_pimd2/prospective/aceticacid/lambda_0p00/solute.hin": {
+      "sha256": "641871460f62ddc01bb39cc94671731880079adcb47e0d27c239476ce57abde0",
+      "bytes": 653
+    },
+    "simulations/dense_pimd2/prospective/aceticacid/lambda_0p05/conf.xml": {
+      "sha256": "02fb0bbf3142431e7e667e744bdea3be6d9545689a2fe125a767e5bfd3aee01b",
+      "bytes": 14871
+    },
+    "simulations/dense_pimd2/prospective/aceticacid/lambda_0p05/solute.hin": {
+      "sha256": "641871460f62ddc01bb39cc94671731880079adcb47e0d27c239476ce57abde0",
+      "bytes": 653
+    },
+    "simulations/dense_pimd2/prospective/aceticacid/lambda_0p20/conf.xml": {
+      "sha256": "fe8cb2835a33282bedf214160b5d1bf5f079fcd35807da1d2250e119bcbb3c8d",
+      "bytes": 14871
+    },
+    "simulations/dense_pimd2/prospective/aceticacid/lambda_0p20/solute.hin": {
+      "sha256": "641871460f62ddc01bb39cc94671731880079adcb47e0d27c239476ce57abde0",
+      "bytes": 653
+    },
+    "simulations/dense_pimd2/prospective/aceticacid/lambda_0p30/conf.xml": {
+      "sha256": "7ebbdc73a22a59c41debbd1488385f0b325ed6caadd0e8e713fc80b41ebbf065",
+      "bytes": 14871
+    },
+    "simulations/dense_pimd2/prospective/aceticacid/lambda_0p30/solute.hin": {
+      "sha256": "641871460f62ddc01bb39cc94671731880079adcb47e0d27c239476ce57abde0",
+      "bytes": 653
+    },
+    "simulations/dense_pimd2/prospective/aceticacid/lambda_0p40/conf.xml": {
+      "sha256": "8c81027dac5dc0cabb16d026c3d712bbeec81b03b090e1c9d5291bceda9d4400",
+      "bytes": 14871
+    },
+    "simulations/dense_pimd2/prospective/aceticacid/lambda_0p40/solute.hin": {
+      "sha256": "641871460f62ddc01bb39cc94671731880079adcb47e0d27c239476ce57abde0",
+      "bytes": 653
+    },
+    "simulations/dense_pimd2/prospective/aceticacid/lambda_0p60/conf.xml": {
+      "sha256": "8689ded13351f0c51282c3341f96eb37081258ffdc8c80101c415806bca8062b",
+      "bytes": 14871
+    },
+    "simulations/dense_pimd2/prospective/aceticacid/lambda_0p60/solute.hin": {
+      "sha256": "641871460f62ddc01bb39cc94671731880079adcb47e0d27c239476ce57abde0",
+      "bytes": 653
+    },
+    "simulations/dense_pimd2/prospective/aceticacid/lambda_0p70/conf.xml": {
+      "sha256": "04ebead99817731ba84a5066ce86d630aa75dce5f5d0ed4502f201cbf4c7c548",
+      "bytes": 14871
+    },
+    "simulations/dense_pimd2/prospective/aceticacid/lambda_0p70/solute.hin": {
+      "sha256": "641871460f62ddc01bb39cc94671731880079adcb47e0d27c239476ce57abde0",
+      "bytes": 653
+    },
+    "simulations/dense_pimd2/prospective/aceticacid/lambda_0p75/conf.xml": {
+      "sha256": "77eeb2a1461dc24f23f7a1124838a645c83e1b2df554cf66b3de5da0dbccbd92",
+      "bytes": 14871
+    },
+    "simulations/dense_pimd2/prospective/aceticacid/lambda_0p75/solute.hin": {
+      "sha256": "641871460f62ddc01bb39cc94671731880079adcb47e0d27c239476ce57abde0",
+      "bytes": 653
+    },
+    "simulations/dense_pimd2/prospective/aceticacid/lambda_0p80/conf.xml": {
+      "sha256": "680606c51c06698bc469367f43e867c3e2cec907533a46a3d194be26411521f2",
+      "bytes": 14872
+    },
+    "simulations/dense_pimd2/prospective/aceticacid/lambda_0p80/solute.hin": {
+      "sha256": "641871460f62ddc01bb39cc94671731880079adcb47e0d27c239476ce57abde0",
+      "bytes": 653
+    },
+    "simulations/dense_pimd2/prospective/aceticacid/lambda_0p85/conf.xml": {
+      "sha256": "8352d02226e3e07118dc29f38861eb7a99b3a84e7471806328870ac1eec4a29a",
+      "bytes": 14872
+    },
+    "simulations/dense_pimd2/prospective/aceticacid/lambda_0p85/solute.hin": {
+      "sha256": "641871460f62ddc01bb39cc94671731880079adcb47e0d27c239476ce57abde0",
+      "bytes": 653
+    },
+    "simulations/dense_pimd2/prospective/aceticacid/lambda_0p95/conf.xml": {
+      "sha256": "50ec0d38e006612eadd90048799e5cac0795c3eb2032941c69d663f7588c244e",
+      "bytes": 14872
+    },
+    "simulations/dense_pimd2/prospective/aceticacid/lambda_0p95/solute.hin": {
+      "sha256": "641871460f62ddc01bb39cc94671731880079adcb47e0d27c239476ce57abde0",
+      "bytes": 653
+    },
+    "simulations/dense_pimd2/prospective/aceticacid/lambda_1p00/conf.xml": {
+      "sha256": "addb491c5bfd1e08ec236f43b24a02501e680fc1bce5954f49229e09c719d436",
+      "bytes": 14872
+    },
+    "simulations/dense_pimd2/prospective/aceticacid/lambda_1p00/solute.hin": {
+      "sha256": "641871460f62ddc01bb39cc94671731880079adcb47e0d27c239476ce57abde0",
+      "bytes": 653
+    },
+    "simulations/dense_pimd2/prospective/anthracene/lambda_0p00/conf.xml": {
+      "sha256": "ec4c5350664ea4376ef77eee44ce3ed8280d352c08bca5eb4cf6a1e16ab092de",
+      "bytes": 14871
+    },
+    "simulations/dense_pimd2/prospective/anthracene/lambda_0p00/solute.hin": {
+      "sha256": "ee26419f93ac3e3a6b5f398ade530e0b4d5bd3eb41985a7047d4e66320b95919",
+      "bytes": 1913
+    },
+    "simulations/dense_pimd2/prospective/anthracene/lambda_0p05/conf.xml": {
+      "sha256": "bccd455cd115c46648f6474f488e9df51ffe609fefefb1eed48080258382bd20",
+      "bytes": 14871
+    },
+    "simulations/dense_pimd2/prospective/anthracene/lambda_0p05/solute.hin": {
+      "sha256": "ee26419f93ac3e3a6b5f398ade530e0b4d5bd3eb41985a7047d4e66320b95919",
+      "bytes": 1913
+    },
+    "simulations/dense_pimd2/prospective/anthracene/lambda_0p20/conf.xml": {
+      "sha256": "81d4ba4de42bcba9b17150cbf345f8206e4e8fc1659c02659a92efa264a38a70",
+      "bytes": 14871
+    },
+    "simulations/dense_pimd2/prospective/anthracene/lambda_0p20/solute.hin": {
+      "sha256": "ee26419f93ac3e3a6b5f398ade530e0b4d5bd3eb41985a7047d4e66320b95919",
+      "bytes": 1913
+    },
+    "simulations/dense_pimd2/prospective/anthracene/lambda_0p30/conf.xml": {
+      "sha256": "4a25b131831e18a70d4c5203d691e056f65fa5bd36d9a183e1d0c0d43a8a70d5",
+      "bytes": 14871
+    },
+    "simulations/dense_pimd2/prospective/anthracene/lambda_0p30/solute.hin": {
+      "sha256": "ee26419f93ac3e3a6b5f398ade530e0b4d5bd3eb41985a7047d4e66320b95919",
+      "bytes": 1913
+    },
+    "simulations/dense_pimd2/prospective/anthracene/lambda_0p40/conf.xml": {
+      "sha256": "b582bd6c1018ef24893670caa7ff9faf5d7980da07e4c626ad4adf765d88a960",
+      "bytes": 14871
+    },
+    "simulations/dense_pimd2/prospective/anthracene/lambda_0p40/solute.hin": {
+      "sha256": "ee26419f93ac3e3a6b5f398ade530e0b4d5bd3eb41985a7047d4e66320b95919",
+      "bytes": 1913
+    },
+    "simulations/dense_pimd2/prospective/anthracene/lambda_0p60/conf.xml": {
+      "sha256": "349dfbf4bb3e45db20a92b5657011c9df7a9b6ce15baf7771a4cfe065641fd6a",
+      "bytes": 14871
+    },
+    "simulations/dense_pimd2/prospective/anthracene/lambda_0p60/solute.hin": {
+      "sha256": "ee26419f93ac3e3a6b5f398ade530e0b4d5bd3eb41985a7047d4e66320b95919",
+      "bytes": 1913
+    },
+    "simulations/dense_pimd2/prospective/anthracene/lambda_0p70/conf.xml": {
+      "sha256": "f6cc0e6de7da34bc692ac06b699a0f84cd233d0a48f13ec96da7966344c86d04",
+      "bytes": 14871
+    },
+    "simulations/dense_pimd2/prospective/anthracene/lambda_0p70/solute.hin": {
+      "sha256": "ee26419f93ac3e3a6b5f398ade530e0b4d5bd3eb41985a7047d4e66320b95919",
+      "bytes": 1913
+    },
+    "simulations/dense_pimd2/prospective/anthracene/lambda_0p75/conf.xml": {
+      "sha256": "8c23771b8dedeaa17897d113bc1a9dcc8dec6fc3fe7f170889b5c5b104968669",
+      "bytes": 14871
+    },
+    "simulations/dense_pimd2/prospective/anthracene/lambda_0p75/solute.hin": {
+      "sha256": "ee26419f93ac3e3a6b5f398ade530e0b4d5bd3eb41985a7047d4e66320b95919",
+      "bytes": 1913
+    },
+    "simulations/dense_pimd2/prospective/anthracene/lambda_0p80/conf.xml": {
+      "sha256": "31ef20cf35eac08444cb651eeeae606fdcc506554a899186510fe590ab9a7c70",
+      "bytes": 14872
+    },
+    "simulations/dense_pimd2/prospective/anthracene/lambda_0p80/solute.hin": {
+      "sha256": "ee26419f93ac3e3a6b5f398ade530e0b4d5bd3eb41985a7047d4e66320b95919",
+      "bytes": 1913
+    },
+    "simulations/dense_pimd2/prospective/anthracene/lambda_0p85/conf.xml": {
+      "sha256": "abaf5e45b463fa71ab61a139b2cf126f1c63d5c932743adecb643d1286fbf3a2",
+      "bytes": 14872
+    },
+    "simulations/dense_pimd2/prospective/anthracene/lambda_0p85/solute.hin": {
+      "sha256": "ee26419f93ac3e3a6b5f398ade530e0b4d5bd3eb41985a7047d4e66320b95919",
+      "bytes": 1913
+    },
+    "simulations/dense_pimd2/prospective/anthracene/lambda_0p95/conf.xml": {
+      "sha256": "ef4fcc1dfaf56ec577ccdd912cf30f1e116f9dbb5f36b003a8637cce16d4ef7f",
+      "bytes": 14872
+    },
+    "simulations/dense_pimd2/prospective/anthracene/lambda_0p95/solute.hin": {
+      "sha256": "ee26419f93ac3e3a6b5f398ade530e0b4d5bd3eb41985a7047d4e66320b95919",
+      "bytes": 1913
+    },
+    "simulations/dense_pimd2/prospective/anthracene/lambda_1p00/conf.xml": {
+      "sha256": "1625b53078c219c02b4f35d6f73736a61059f08d5bb7c2b8ddb12cbe9c2d2c88",
+      "bytes": 14872
+    },
+    "simulations/dense_pimd2/prospective/anthracene/lambda_1p00/solute.hin": {
+      "sha256": "ee26419f93ac3e3a6b5f398ade530e0b4d5bd3eb41985a7047d4e66320b95919",
+      "bytes": 1913
+    },
+    "simulations/dense_pimd2/prospective/cyclohexane/lambda_0p00/conf.xml": {
+      "sha256": "6b2c99ce2a9da4ba3afcaf3db8bc891969d5a4ddd6026aafb18906ac11ae1cd8",
+      "bytes": 14877
+    },
+    "simulations/dense_pimd2/prospective/cyclohexane/lambda_0p00/solute.hin": {
+      "sha256": "595e930e6b7e852b66788bb1c8ba9f3c885cdf4c6da224a424dab57990d79d28",
+      "bytes": 1389
+    },
+    "simulations/dense_pimd2/prospective/cyclohexane/lambda_0p05/conf.xml": {
+      "sha256": "821257f22ec3fe6cc8f0ee709014e7b0d15d98ee799179d1740c10ad381f7fea",
+      "bytes": 14877
+    },
+    "simulations/dense_pimd2/prospective/cyclohexane/lambda_0p05/solute.hin": {
+      "sha256": "595e930e6b7e852b66788bb1c8ba9f3c885cdf4c6da224a424dab57990d79d28",
+      "bytes": 1389
+    },
+    "simulations/dense_pimd2/prospective/cyclohexane/lambda_0p20/conf.xml": {
+      "sha256": "708975ac1eff6ba17f7e8e774f2b4975ad10708f20a76d5011c7f6267942def1",
+      "bytes": 14877
+    },
+    "simulations/dense_pimd2/prospective/cyclohexane/lambda_0p20/solute.hin": {
+      "sha256": "595e930e6b7e852b66788bb1c8ba9f3c885cdf4c6da224a424dab57990d79d28",
+      "bytes": 1389
+    },
+    "simulations/dense_pimd2/prospective/cyclohexane/lambda_0p30/conf.xml": {
+      "sha256": "f0da5312c5cea1070f087be034cf739ef92b4c1ea19e5bd3044747be12707703",
+      "bytes": 14877
+    },
+    "simulations/dense_pimd2/prospective/cyclohexane/lambda_0p30/solute.hin": {
+      "sha256": "595e930e6b7e852b66788bb1c8ba9f3c885cdf4c6da224a424dab57990d79d28",
+      "bytes": 1389
+    },
+    "simulations/dense_pimd2/prospective/cyclohexane/lambda_0p40/conf.xml": {
+      "sha256": "723a6e3bea209c44b4404a6365de151ea9ea0d591134b1fb0bab81039f498f05",
+      "bytes": 14877
+    },
+    "simulations/dense_pimd2/prospective/cyclohexane/lambda_0p40/solute.hin": {
+      "sha256": "595e930e6b7e852b66788bb1c8ba9f3c885cdf4c6da224a424dab57990d79d28",
+      "bytes": 1389
+    },
+    "simulations/dense_pimd2/prospective/cyclohexane/lambda_0p60/conf.xml": {
+      "sha256": "4b5b1806d11dafbc4f7c9ddee40cc5e58a05fb2e78cbff66a1b484ffeae6ba33",
+      "bytes": 14877
+    },
+    "simulations/dense_pimd2/prospective/cyclohexane/lambda_0p60/solute.hin": {
+      "sha256": "595e930e6b7e852b66788bb1c8ba9f3c885cdf4c6da224a424dab57990d79d28",
+      "bytes": 1389
+    },
+    "simulations/dense_pimd2/prospective/cyclohexane/lambda_0p70/conf.xml": {
+      "sha256": "6f4429a40eac5f9cfee6bc4bb9e6e0916c5fb1cc54096531e884ec38a24437b6",
+      "bytes": 14877
+    },
+    "simulations/dense_pimd2/prospective/cyclohexane/lambda_0p70/solute.hin": {
+      "sha256": "595e930e6b7e852b66788bb1c8ba9f3c885cdf4c6da224a424dab57990d79d28",
+      "bytes": 1389
+    },
+    "simulations/dense_pimd2/prospective/cyclohexane/lambda_0p75/conf.xml": {
+      "sha256": "a05241590fd11d98b9b379db22f5bcf34b3347e3403f8517e2d2dd186e113942",
+      "bytes": 14877
+    },
+    "simulations/dense_pimd2/prospective/cyclohexane/lambda_0p75/solute.hin": {
+      "sha256": "595e930e6b7e852b66788bb1c8ba9f3c885cdf4c6da224a424dab57990d79d28",
+      "bytes": 1389
+    },
+    "simulations/dense_pimd2/prospective/cyclohexane/lambda_0p80/conf.xml": {
+      "sha256": "0bf751ba398eeec0623fb0058e5953b5f0bb4202c445defc5e7923120c28fe1e",
+      "bytes": 14878
+    },
+    "simulations/dense_pimd2/prospective/cyclohexane/lambda_0p80/solute.hin": {
+      "sha256": "595e930e6b7e852b66788bb1c8ba9f3c885cdf4c6da224a424dab57990d79d28",
+      "bytes": 1389
+    },
+    "simulations/dense_pimd2/prospective/cyclohexane/lambda_0p85/conf.xml": {
+      "sha256": "a19e149d79fda07773cbde337e2d0d5b3c99f81323072a62d8903254888c8fe9",
+      "bytes": 14878
+    },
+    "simulations/dense_pimd2/prospective/cyclohexane/lambda_0p85/solute.hin": {
+      "sha256": "595e930e6b7e852b66788bb1c8ba9f3c885cdf4c6da224a424dab57990d79d28",
+      "bytes": 1389
+    },
+    "simulations/dense_pimd2/prospective/cyclohexane/lambda_0p95/conf.xml": {
+      "sha256": "11f070b57e6f1d7079ba45bbbefe2d156de33a854ccf92000da38102da8f4605",
+      "bytes": 14878
+    },
+    "simulations/dense_pimd2/prospective/cyclohexane/lambda_0p95/solute.hin": {
+      "sha256": "595e930e6b7e852b66788bb1c8ba9f3c885cdf4c6da224a424dab57990d79d28",
+      "bytes": 1389
+    },
+    "simulations/dense_pimd2/prospective/cyclohexane/lambda_1p00/conf.xml": {
+      "sha256": "ab0501f0272507d881fb76d618adae1ebdca25c18961d5b7fd249f2ea53f242b",
+      "bytes": 14878
+    },
+    "simulations/dense_pimd2/prospective/cyclohexane/lambda_1p00/solute.hin": {
+      "sha256": "595e930e6b7e852b66788bb1c8ba9f3c885cdf4c6da224a424dab57990d79d28",
+      "bytes": 1389
+    },
+    "simulations/dense_pimd2/prospective/dimethylether/lambda_0p00/conf.xml": {
+      "sha256": "0eee78b047301c4147b576abedc951b9e06905697ba27155e7ce13ae8d66805d",
+      "bytes": 14889
+    },
+    "simulations/dense_pimd2/prospective/dimethylether/lambda_0p00/solute.hin": {
+      "sha256": "d4caa7b7f2beb091d434e10429e41cce4d08941eaefbc428460bb166de99c996",
+      "bytes": 727
+    },
+    "simulations/dense_pimd2/prospective/dimethylether/lambda_0p05/conf.xml": {
+      "sha256": "a621cc6817b080ec0fca253a07d2d98ac84b65a5ed3192b08a4fc90d0d4b8d45",
+      "bytes": 14889
+    },
+    "simulations/dense_pimd2/prospective/dimethylether/lambda_0p05/solute.hin": {
+      "sha256": "d4caa7b7f2beb091d434e10429e41cce4d08941eaefbc428460bb166de99c996",
+      "bytes": 727
+    },
+    "simulations/dense_pimd2/prospective/dimethylether/lambda_0p20/conf.xml": {
+      "sha256": "15b7f6d4a81cf009e4b7d7c5f2df733889edbeb03e2ed3366c798806b91582e3",
+      "bytes": 14889
+    },
+    "simulations/dense_pimd2/prospective/dimethylether/lambda_0p20/solute.hin": {
+      "sha256": "d4caa7b7f2beb091d434e10429e41cce4d08941eaefbc428460bb166de99c996",
+      "bytes": 727
+    },
+    "simulations/dense_pimd2/prospective/dimethylether/lambda_0p30/conf.xml": {
+      "sha256": "b27357ec3270aaf70cac42544a23c3ea7729343585288c6219cd1159c4fc1c1e",
+      "bytes": 14889
+    },
+    "simulations/dense_pimd2/prospective/dimethylether/lambda_0p30/solute.hin": {
+      "sha256": "d4caa7b7f2beb091d434e10429e41cce4d08941eaefbc428460bb166de99c996",
+      "bytes": 727
+    },
+    "simulations/dense_pimd2/prospective/dimethylether/lambda_0p40/conf.xml": {
+      "sha256": "2fcd0ff9c9d55fda6b34f733d555ad41f5e4d2aa2a9d0da7a524d9bc86398f0f",
+      "bytes": 14889
+    },
+    "simulations/dense_pimd2/prospective/dimethylether/lambda_0p40/solute.hin": {
+      "sha256": "d4caa7b7f2beb091d434e10429e41cce4d08941eaefbc428460bb166de99c996",
+      "bytes": 727
+    },
+    "simulations/dense_pimd2/prospective/dimethylether/lambda_0p60/conf.xml": {
+      "sha256": "8cf18aa4417fe8b7199adfd2e80f74d423a88c5e9436b864da124c4e1e2cb853",
+      "bytes": 14889
+    },
+    "simulations/dense_pimd2/prospective/dimethylether/lambda_0p60/solute.hin": {
+      "sha256": "d4caa7b7f2beb091d434e10429e41cce4d08941eaefbc428460bb166de99c996",
+      "bytes": 727
+    },
+    "simulations/dense_pimd2/prospective/dimethylether/lambda_0p70/conf.xml": {
+      "sha256": "588ee4fbcf6eddce9b7fd9d0fa8811db3b3ce399275c815b76b9173aaa3bd428",
+      "bytes": 14889
+    },
+    "simulations/dense_pimd2/prospective/dimethylether/lambda_0p70/solute.hin": {
+      "sha256": "d4caa7b7f2beb091d434e10429e41cce4d08941eaefbc428460bb166de99c996",
+      "bytes": 727
+    },
+    "simulations/dense_pimd2/prospective/dimethylether/lambda_0p75/conf.xml": {
+      "sha256": "85d4ba48e1717f382c35eb6bc6a0887ec56f86fe59e85320fc8405e6249c9a9f",
+      "bytes": 14889
+    },
+    "simulations/dense_pimd2/prospective/dimethylether/lambda_0p75/solute.hin": {
+      "sha256": "d4caa7b7f2beb091d434e10429e41cce4d08941eaefbc428460bb166de99c996",
+      "bytes": 727
+    },
+    "simulations/dense_pimd2/prospective/dimethylether/lambda_0p80/conf.xml": {
+      "sha256": "0a08c59d963ce5c2796f365f70d46a51187b5aa32e3c8e8a7444d2e61fbb2176",
+      "bytes": 14890
+    },
+    "simulations/dense_pimd2/prospective/dimethylether/lambda_0p80/solute.hin": {
+      "sha256": "d4caa7b7f2beb091d434e10429e41cce4d08941eaefbc428460bb166de99c996",
+      "bytes": 727
+    },
+    "simulations/dense_pimd2/prospective/dimethylether/lambda_0p85/conf.xml": {
+      "sha256": "0f79e9bde21f703c57f6269f275ee78f2018d2026cfb877afbd2f6aef2953c9f",
+      "bytes": 14890
+    },
+    "simulations/dense_pimd2/prospective/dimethylether/lambda_0p85/solute.hin": {
+      "sha256": "d4caa7b7f2beb091d434e10429e41cce4d08941eaefbc428460bb166de99c996",
+      "bytes": 727
+    },
+    "simulations/dense_pimd2/prospective/dimethylether/lambda_0p95/conf.xml": {
+      "sha256": "12de6271ae5024743567e953e6b6b7c809f9b8c0a96cefab7e7bc550a4d15be4",
+      "bytes": 14890
+    },
+    "simulations/dense_pimd2/prospective/dimethylether/lambda_0p95/solute.hin": {
+      "sha256": "d4caa7b7f2beb091d434e10429e41cce4d08941eaefbc428460bb166de99c996",
+      "bytes": 727
+    },
+    "simulations/dense_pimd2/prospective/dimethylether/lambda_1p00/conf.xml": {
+      "sha256": "a1b56453799235d74ddb131a481ddf6864489d65296c2aec07fe82f805e308fa",
+      "bytes": 14890
+    },
+    "simulations/dense_pimd2/prospective/dimethylether/lambda_1p00/solute.hin": {
+      "sha256": "d4caa7b7f2beb091d434e10429e41cce4d08941eaefbc428460bb166de99c996",
+      "bytes": 727
+    },
+    "simulations/dense_pimd2/prospective/ethylacetate/lambda_0p00/conf.xml": {
+      "sha256": "a370563d92e68068b1a9d6611a2ee55081c32d3eefb404a6adae757925f176dc",
+      "bytes": 14882
+    },
+    "simulations/dense_pimd2/prospective/ethylacetate/lambda_0p00/solute.hin": {
+      "sha256": "5202225969ff7623138c2f8b8042b1fa866fb432f32b7dbe2177cbb94cdfdf5a",
+      "bytes": 1115
+    },
+    "simulations/dense_pimd2/prospective/ethylacetate/lambda_0p05/conf.xml": {
+      "sha256": "4173404f03009572b79a1e7ad54cfd129032dffdf6540cce7c58d3f59534a8eb",
+      "bytes": 14882
+    },
+    "simulations/dense_pimd2/prospective/ethylacetate/lambda_0p05/solute.hin": {
+      "sha256": "5202225969ff7623138c2f8b8042b1fa866fb432f32b7dbe2177cbb94cdfdf5a",
+      "bytes": 1115
+    },
+    "simulations/dense_pimd2/prospective/ethylacetate/lambda_0p20/conf.xml": {
+      "sha256": "4c2eccd47a6d988363bc2e10d99e544ba98e8cf84e1c1349e5c821b6d527172d",
+      "bytes": 14882
+    },
+    "simulations/dense_pimd2/prospective/ethylacetate/lambda_0p20/solute.hin": {
+      "sha256": "5202225969ff7623138c2f8b8042b1fa866fb432f32b7dbe2177cbb94cdfdf5a",
+      "bytes": 1115
+    },
+    "simulations/dense_pimd2/prospective/ethylacetate/lambda_0p30/conf.xml": {
+      "sha256": "5d997c32d8ebe9146856ae52a598bb42d2496a1bd89cd4a82eaa11984e71e428",
+      "bytes": 14882
+    },
+    "simulations/dense_pimd2/prospective/ethylacetate/lambda_0p30/solute.hin": {
+      "sha256": "5202225969ff7623138c2f8b8042b1fa866fb432f32b7dbe2177cbb94cdfdf5a",
+      "bytes": 1115
+    },
+    "simulations/dense_pimd2/prospective/ethylacetate/lambda_0p40/conf.xml": {
+      "sha256": "7feb8b2d5696fd242ad86c6ffb5898831894107e2011bd829ee4860e8e52315b",
+      "bytes": 14882
+    },
+    "simulations/dense_pimd2/prospective/ethylacetate/lambda_0p40/solute.hin": {
+      "sha256": "5202225969ff7623138c2f8b8042b1fa866fb432f32b7dbe2177cbb94cdfdf5a",
+      "bytes": 1115
+    },
+    "simulations/dense_pimd2/prospective/ethylacetate/lambda_0p60/conf.xml": {
+      "sha256": "f0eaedcd190e4ccd2311dd8a7f58e42353b633ebc083a9ad03b3fc0a97f73dfe",
+      "bytes": 14882
+    },
+    "simulations/dense_pimd2/prospective/ethylacetate/lambda_0p60/solute.hin": {
+      "sha256": "5202225969ff7623138c2f8b8042b1fa866fb432f32b7dbe2177cbb94cdfdf5a",
+      "bytes": 1115
+    },
+    "simulations/dense_pimd2/prospective/ethylacetate/lambda_0p70/conf.xml": {
+      "sha256": "2607c64d8f3a054c5d333f42775e93a84a4b8f63d3e8f5e503cdb50e831898b8",
+      "bytes": 14882
+    },
+    "simulations/dense_pimd2/prospective/ethylacetate/lambda_0p70/solute.hin": {
+      "sha256": "5202225969ff7623138c2f8b8042b1fa866fb432f32b7dbe2177cbb94cdfdf5a",
+      "bytes": 1115
+    },
+    "simulations/dense_pimd2/prospective/ethylacetate/lambda_0p75/conf.xml": {
+      "sha256": "b8ecca9dac53d01948ee6159b509a3c990bc4b9df1abd8d4fff3b9c84c836c75",
+      "bytes": 14882
+    },
+    "simulations/dense_pimd2/prospective/ethylacetate/lambda_0p75/solute.hin": {
+      "sha256": "5202225969ff7623138c2f8b8042b1fa866fb432f32b7dbe2177cbb94cdfdf5a",
+      "bytes": 1115
+    },
+    "simulations/dense_pimd2/prospective/ethylacetate/lambda_0p80/conf.xml": {
+      "sha256": "e7bd046b9fe983f99a11aa3181bc7a99c8c9a455c94dd88ed11e315edd9183fb",
+      "bytes": 14883
+    },
+    "simulations/dense_pimd2/prospective/ethylacetate/lambda_0p80/solute.hin": {
+      "sha256": "5202225969ff7623138c2f8b8042b1fa866fb432f32b7dbe2177cbb94cdfdf5a",
+      "bytes": 1115
+    },
+    "simulations/dense_pimd2/prospective/ethylacetate/lambda_0p85/conf.xml": {
+      "sha256": "33df542d6f2366cfbefbcc4044cad89079f913bb3a09e0dbf97e17bff85524c1",
+      "bytes": 14883
+    },
+    "simulations/dense_pimd2/prospective/ethylacetate/lambda_0p85/solute.hin": {
+      "sha256": "5202225969ff7623138c2f8b8042b1fa866fb432f32b7dbe2177cbb94cdfdf5a",
+      "bytes": 1115
+    },
+    "simulations/dense_pimd2/prospective/ethylacetate/lambda_0p95/conf.xml": {
+      "sha256": "460b24c3c4f1c81b927c640d27e5b261201e928976e98fa34d4c2b3ab48d6eca",
+      "bytes": 14883
+    },
+    "simulations/dense_pimd2/prospective/ethylacetate/lambda_0p95/solute.hin": {
+      "sha256": "5202225969ff7623138c2f8b8042b1fa866fb432f32b7dbe2177cbb94cdfdf5a",
+      "bytes": 1115
+    },
+    "simulations/dense_pimd2/prospective/ethylacetate/lambda_1p00/conf.xml": {
+      "sha256": "f45d7384f2850428ae2e7a37f6c7864420c795b1cdd6cbe1fa295c432045ef43",
+      "bytes": 14883
+    },
+    "simulations/dense_pimd2/prospective/ethylacetate/lambda_1p00/solute.hin": {
+      "sha256": "5202225969ff7623138c2f8b8042b1fa866fb432f32b7dbe2177cbb94cdfdf5a",
+      "bytes": 1115
+    },
+    "simulations/dense_pimd2/prospective/octane/lambda_0p00/conf.xml": {
+      "sha256": "fd1ad106663bafe3849ce5cf3a35daced4efda56b0241cd9e91d6a2431c2fa25",
+      "bytes": 14847
+    },
+    "simulations/dense_pimd2/prospective/octane/lambda_0p00/solute.hin": {
+      "sha256": "a77266e044c901139dae2214c1ad68cb91de71b3d214ad72694de5678b783011",
+      "bytes": 2065
+    },
+    "simulations/dense_pimd2/prospective/octane/lambda_0p05/conf.xml": {
+      "sha256": "533e072ee3be6345e0c911f6d314d1629377b20deee5aa41832ce196a8dac277",
+      "bytes": 14847
+    },
+    "simulations/dense_pimd2/prospective/octane/lambda_0p05/solute.hin": {
+      "sha256": "a77266e044c901139dae2214c1ad68cb91de71b3d214ad72694de5678b783011",
+      "bytes": 2065
+    },
+    "simulations/dense_pimd2/prospective/octane/lambda_0p20/conf.xml": {
+      "sha256": "97858c40faa5b3b9a90303649c123bdaea09ae37370efe64b55fef7a3ae00f28",
+      "bytes": 14847
+    },
+    "simulations/dense_pimd2/prospective/octane/lambda_0p20/solute.hin": {
+      "sha256": "a77266e044c901139dae2214c1ad68cb91de71b3d214ad72694de5678b783011",
+      "bytes": 2065
+    },
+    "simulations/dense_pimd2/prospective/octane/lambda_0p30/conf.xml": {
+      "sha256": "033373bf4ed1a662e1622eca6932ee08068f6a4b473c199bae0a826378762012",
+      "bytes": 14847
+    },
+    "simulations/dense_pimd2/prospective/octane/lambda_0p30/solute.hin": {
+      "sha256": "a77266e044c901139dae2214c1ad68cb91de71b3d214ad72694de5678b783011",
+      "bytes": 2065
+    },
+    "simulations/dense_pimd2/prospective/octane/lambda_0p40/conf.xml": {
+      "sha256": "36c0951cc286d7f7a637657ac0a51ea10619fae76a35a73558c7408ae95091b0",
+      "bytes": 14847
+    },
+    "simulations/dense_pimd2/prospective/octane/lambda_0p40/solute.hin": {
+      "sha256": "a77266e044c901139dae2214c1ad68cb91de71b3d214ad72694de5678b783011",
+      "bytes": 2065
+    },
+    "simulations/dense_pimd2/prospective/octane/lambda_0p60/conf.xml": {
+      "sha256": "48c6656a147520c9bd4e9a1c99c256b08cf5b87def09dafe9aa3aea64c3dc675",
+      "bytes": 14847
+    },
+    "simulations/dense_pimd2/prospective/octane/lambda_0p60/solute.hin": {
+      "sha256": "a77266e044c901139dae2214c1ad68cb91de71b3d214ad72694de5678b783011",
+      "bytes": 2065
+    },
+    "simulations/dense_pimd2/prospective/octane/lambda_0p70/conf.xml": {
+      "sha256": "b98aff793eec7e06c0ae04dc2cb33218c2752b83e9250d58ba006372634ff4bc",
+      "bytes": 14847
+    },
+    "simulations/dense_pimd2/prospective/octane/lambda_0p70/solute.hin": {
+      "sha256": "a77266e044c901139dae2214c1ad68cb91de71b3d214ad72694de5678b783011",
+      "bytes": 2065
+    },
+    "simulations/dense_pimd2/prospective/octane/lambda_0p75/conf.xml": {
+      "sha256": "6586d9f54bbb8933024fef20b0072ea1542d97129fa0066484a2c260c53cd5b9",
+      "bytes": 14847
+    },
+    "simulations/dense_pimd2/prospective/octane/lambda_0p75/solute.hin": {
+      "sha256": "a77266e044c901139dae2214c1ad68cb91de71b3d214ad72694de5678b783011",
+      "bytes": 2065
+    },
+    "simulations/dense_pimd2/prospective/octane/lambda_0p80/conf.xml": {
+      "sha256": "6a9c2ab073f613732e5efaec0a696bd618843221432be5a31d11e0919a3ebb34",
+      "bytes": 14848
+    },
+    "simulations/dense_pimd2/prospective/octane/lambda_0p80/solute.hin": {
+      "sha256": "a77266e044c901139dae2214c1ad68cb91de71b3d214ad72694de5678b783011",
+      "bytes": 2065
+    },
+    "simulations/dense_pimd2/prospective/octane/lambda_0p85/conf.xml": {
+      "sha256": "c95d6fbb9280f576e707da91a3c840a2d98761f5e425a3fbe7d2172f82c02041",
+      "bytes": 14848
+    },
+    "simulations/dense_pimd2/prospective/octane/lambda_0p85/solute.hin": {
+      "sha256": "a77266e044c901139dae2214c1ad68cb91de71b3d214ad72694de5678b783011",
+      "bytes": 2065
+    },
+    "simulations/dense_pimd2/prospective/octane/lambda_0p95/conf.xml": {
+      "sha256": "bdf60543806dd0a5399baaad1d00c38142f0bf2299a946cde1e3cdbafe4ba275",
+      "bytes": 14848
+    },
+    "simulations/dense_pimd2/prospective/octane/lambda_0p95/solute.hin": {
+      "sha256": "a77266e044c901139dae2214c1ad68cb91de71b3d214ad72694de5678b783011",
+      "bytes": 2065
+    },
+    "simulations/dense_pimd2/prospective/octane/lambda_1p00/conf.xml": {
+      "sha256": "18dd69747d6354d9171c966ef4e429e1930e608e3972a639731629cf47c79b51",
+      "bytes": 14848
+    },
+    "simulations/dense_pimd2/prospective/octane/lambda_1p00/solute.hin": {
+      "sha256": "a77266e044c901139dae2214c1ad68cb91de71b3d214ad72694de5678b783011",
+      "bytes": 2065
+    },
+    "simulations/dense_pimd2/prospective/octanol/lambda_0p00/conf.xml": {
+      "sha256": "38e3be930e6c300d7a97e41f284595914427fb368e2f06faf313bacc5279323b",
+      "bytes": 14854
+    },
+    "simulations/dense_pimd2/prospective/octanol/lambda_0p00/solute.hin": {
+      "sha256": "61479cc3423d4c3651c8a93f0d267de952e47f06e23f9f7c7aea4630a62d020e",
+      "bytes": 1948
+    },
+    "simulations/dense_pimd2/prospective/octanol/lambda_0p05/conf.xml": {
+      "sha256": "996f0825da58c1231aa2032d38042adc92e8ab560fb2e513160cbd3ca4a06bb8",
+      "bytes": 14854
+    },
+    "simulations/dense_pimd2/prospective/octanol/lambda_0p05/solute.hin": {
+      "sha256": "61479cc3423d4c3651c8a93f0d267de952e47f06e23f9f7c7aea4630a62d020e",
+      "bytes": 1948
+    },
+    "simulations/dense_pimd2/prospective/octanol/lambda_0p20/conf.xml": {
+      "sha256": "488ed8aa1d1fbad1a2c5f643ca0506347c5f913d62dcefe832ad22153d01974b",
+      "bytes": 14854
+    },
+    "simulations/dense_pimd2/prospective/octanol/lambda_0p20/solute.hin": {
+      "sha256": "61479cc3423d4c3651c8a93f0d267de952e47f06e23f9f7c7aea4630a62d020e",
+      "bytes": 1948
+    },
+    "simulations/dense_pimd2/prospective/octanol/lambda_0p30/conf.xml": {
+      "sha256": "312924645d90ccf083055cda9915c133252777dbb42f38de00b892875433a641",
+      "bytes": 14854
+    },
+    "simulations/dense_pimd2/prospective/octanol/lambda_0p30/solute.hin": {
+      "sha256": "61479cc3423d4c3651c8a93f0d267de952e47f06e23f9f7c7aea4630a62d020e",
+      "bytes": 1948
+    },
+    "simulations/dense_pimd2/prospective/octanol/lambda_0p40/conf.xml": {
+      "sha256": "2702786e160edf1ebd6b8ab2255bedfd539bf79c7d8ae7b2d14c4133d3abc08b",
+      "bytes": 14854
+    },
+    "simulations/dense_pimd2/prospective/octanol/lambda_0p40/solute.hin": {
+      "sha256": "61479cc3423d4c3651c8a93f0d267de952e47f06e23f9f7c7aea4630a62d020e",
+      "bytes": 1948
+    },
+    "simulations/dense_pimd2/prospective/octanol/lambda_0p60/conf.xml": {
+      "sha256": "4e5ab9ab3e734300d18d5e67c75e0688495da0cea91b1eaa7c3a85def2f20c52",
+      "bytes": 14854
+    },
+    "simulations/dense_pimd2/prospective/octanol/lambda_0p60/solute.hin": {
+      "sha256": "61479cc3423d4c3651c8a93f0d267de952e47f06e23f9f7c7aea4630a62d020e",
+      "bytes": 1948
+    },
+    "simulations/dense_pimd2/prospective/octanol/lambda_0p70/conf.xml": {
+      "sha256": "dd7251a399dcd0d6deabf4c544abc6167dfdfc6c5bcccf63f8e1c75d135aea76",
+      "bytes": 14854
+    },
+    "simulations/dense_pimd2/prospective/octanol/lambda_0p70/solute.hin": {
+      "sha256": "61479cc3423d4c3651c8a93f0d267de952e47f06e23f9f7c7aea4630a62d020e",
+      "bytes": 1948
+    },
+    "simulations/dense_pimd2/prospective/octanol/lambda_0p75/conf.xml": {
+      "sha256": "a298bdd4697892a72b58fad8608921849b21005ef7af79300952984d5ed0d872",
+      "bytes": 14854
+    },
+    "simulations/dense_pimd2/prospective/octanol/lambda_0p75/solute.hin": {
+      "sha256": "61479cc3423d4c3651c8a93f0d267de952e47f06e23f9f7c7aea4630a62d020e",
+      "bytes": 1948
+    },
+    "simulations/dense_pimd2/prospective/octanol/lambda_0p80/conf.xml": {
+      "sha256": "7c067ff37784634734799d55e61ff6d0dae496e8eae3f7822114f9c3ebcf687b",
+      "bytes": 14855
+    },
+    "simulations/dense_pimd2/prospective/octanol/lambda_0p80/solute.hin": {
+      "sha256": "61479cc3423d4c3651c8a93f0d267de952e47f06e23f9f7c7aea4630a62d020e",
+      "bytes": 1948
+    },
+    "simulations/dense_pimd2/prospective/octanol/lambda_0p85/conf.xml": {
+      "sha256": "aec6c13a872cca245eef96dfd43a2383c5b73dd0fa694ab4c86e84f1eec455a6",
+      "bytes": 14855
+    },
+    "simulations/dense_pimd2/prospective/octanol/lambda_0p85/solute.hin": {
+      "sha256": "61479cc3423d4c3651c8a93f0d267de952e47f06e23f9f7c7aea4630a62d020e",
+      "bytes": 1948
+    },
+    "simulations/dense_pimd2/prospective/octanol/lambda_0p95/conf.xml": {
+      "sha256": "ccf79191771112d0ca94dc416931e1143c4d3834bfce1a3b53bb9ff836e9eb42",
+      "bytes": 14855
+    },
+    "simulations/dense_pimd2/prospective/octanol/lambda_0p95/solute.hin": {
+      "sha256": "61479cc3423d4c3651c8a93f0d267de952e47f06e23f9f7c7aea4630a62d020e",
+      "bytes": 1948
+    },
+    "simulations/dense_pimd2/prospective/octanol/lambda_1p00/conf.xml": {
+      "sha256": "9f42d35ff2e1ace2f6038081478b7b6712711eae073be1bd46e9ae6c7ab29ebc",
+      "bytes": 14855
+    },
+    "simulations/dense_pimd2/prospective/octanol/lambda_1p00/solute.hin": {
+      "sha256": "61479cc3423d4c3651c8a93f0d267de952e47f06e23f9f7c7aea4630a62d020e",
+      "bytes": 1948
+    },
     "src/active_solvai/__init__.py": {
       "sha256": "855eece62ba6dac86982a9db4fbe3cdb0ef20644c64fd99628b57144a91193c0",
       "bytes": 62
+    },
+    "src/active_solvai/dense.py": {
+      "sha256": "d0f1fd23dff216e04263e7406997cf885e2d2bb4f0bd766e793e19c2b051bd97",
+      "bytes": 7393
     },
     "src/active_solvai/gate.py": {
       "sha256": "0c4288cdd9316dcff32d3abcf903d83c23a6b3d42ebfc56179d93ceec8290cad",
@@ -248,6 +1432,10 @@
     "src/active_solvai/probes.py": {
       "sha256": "a7a2863b48cc170633e5e0a9b919f01c29d54274809286d96e04898e683455a7",
       "bytes": 2445
+    },
+    "tests/test_dense.py": {
+      "sha256": "7bb2d4b999586e3c1443f8b249d72ca482af40c280f38bf10dbb979486213cb0",
+      "bytes": 1759
     },
     "tests/test_gate.py": {
       "sha256": "826ede05c24e5385a8dd4ab3faa37fc96e6c2391d806f2810cc7951cc8987e47",

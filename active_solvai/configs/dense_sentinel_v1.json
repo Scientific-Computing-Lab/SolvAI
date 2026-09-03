@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "campaign": "AS-P2-DENSE-PIMD2-001",
+  "lambda_grid": [0.0, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1.0],
+  "existing_lambda_values": [0.1, 0.5, 0.9],
+  "calibration_molecules": [
+    "Propane",
+    "Ethanol",
+    "Acetone",
+    "pyridine"
+  ],
+  "prospective_molecules": [
+    "Cyclohexane",
+    "Octane",
+    "Octanol",
+    "AceticAcid",
+    "Acetamide",
+    "DiMethylEther",
+    "EthylAcetate",
+    "Anthracene"
+  ],
+  "protocol": {
+    "force_field": "ARROW 933",
+    "solvent": "water",
+    "temperature_kelvin": 298.0,
+    "pressure_bar": 1.0,
+    "box_size_angstrom": 24.0,
+    "beads": 2,
+    "minimization_steps": 250,
+    "equilibration_steps": 500,
+    "production_steps": 2500,
+    "time_step_ps": 0.002,
+    "production_ps_per_window": 5.0,
+    "thermostat": "PILE",
+    "production_barostat": "Berendsen",
+    "energy_frequency_steps": 50,
+    "trajectory_output": false
+  },
+  "calibration": {
+    "lengthscale_candidates": [0.08, 0.12, 0.18, 0.25, 0.35],
+    "noise_inflation_candidates": [1.0, 2.0, 4.0],
+    "selection_metric": "leave_one_lambda_out_gaussian_nlpd",
+    "tie_break": "smallest_lengthscale_then_smallest_noise_inflation"
+  },
+  "evaluation_budgets_total_windows": [3, 4, 5, 7, 9, 12, 15],
+  "random_schedule_seeds": [91000, 91001, 91002, 91003, 91004, 91005, 91006, 91007, 91008, 91009, 91010, 91011, 91012, 91013, 91014, 91015, 91016, 91017, 91018, 91019],
+  "bootstrap_seed": 20260828,
+  "bootstrap_resamples": 100000,
+  "stopping_rule": {
+    "credible_level": 0.9,
+    "integral_half_width_kcal_mol": 0.1,
+    "minimum_total_windows": 3,
+    "maximum_total_windows": 15
+  }
+}
