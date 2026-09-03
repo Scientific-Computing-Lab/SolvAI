@@ -4,6 +4,8 @@ __pycache__/
 .ruff_cache/
 results/phase1/cache/
 simulations/**/output/
+simulations/**/console_attempt_*.txt
+simulations/**/Arbalest*.log
 simulations/**/*.trr
 simulations/**/*.coor
 simulations/**/*.vel

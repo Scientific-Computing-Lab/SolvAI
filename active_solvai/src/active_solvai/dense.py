@@ -101,7 +101,7 @@ def integral_variance_reduction(
     covariance: np.ndarray,
     observed_indices: np.ndarray,
     candidate_index: int,
-    noise_variance: float,
+    noise_variance: np.ndarray,
     weights: np.ndarray,
 ) -> float:
     """Expected reduction in integral variance from one additional point."""
@@ -111,11 +111,13 @@ def integral_variance_reduction(
         covariance,
         observed_indices,
         np.zeros(len(observed_indices)),
-        np.zeros(len(observed_indices)),
+        noise_variance[observed_indices],
     )
     current_variance = float(weights @ current.covariance @ weights)
     updated_indices = np.append(observed_indices, candidate_index)
-    updated_noise = np.append(np.zeros(len(observed_indices)), max(noise_variance, 0.0))
+    updated_noise = np.append(
+        noise_variance[observed_indices], max(noise_variance[candidate_index], 0.0)
+    )
     updated = condition_curve(
         dummy,
         covariance,
@@ -161,7 +163,7 @@ def variance_reduction_order(
                     covariance,
                     np.asarray(chosen, dtype=int),
                     index,
-                    float(noise_variance[index]),
+                    noise_variance,
                     weights,
                 ),
                 -index,
@@ -202,3 +204,17 @@ def curvature_order(
         chosen.sort()
         remaining.remove(candidate)
     return order
+
+
+def observed_pchip(
+    grid: np.ndarray, observed_indices: np.ndarray, observed_values: np.ndarray
+) -> np.ndarray:
+    """Conventional PCHIP reconstruction from only the revealed observations."""
+    indices = np.asarray(observed_indices, dtype=int)
+    order = np.argsort(indices)
+    interpolator = PchipInterpolator(
+        np.asarray(grid, dtype=float)[indices[order]],
+        np.asarray(observed_values, dtype=float)[order],
+        extrapolate=True,
+    )
+    return np.asarray(interpolator(np.asarray(grid, dtype=float)), dtype=float)
