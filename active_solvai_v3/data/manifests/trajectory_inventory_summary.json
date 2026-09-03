@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "all_system_energy_files": 418,
+  "source_counts": {
+    "active_v1_dense_pimd2": 144,
+    "ancillary_unqualified_output": 1,
+    "historical_three_point_pimd2": 220,
+    "legacy_unqualified_output": 21,
+    "repository_test_fixture": 22,
+    "rtx3090_protocol_benchmark": 10
+  },
+  "qualified_pimd2_system_files": 363,
+  "independent_replica_sets": 0,
+  "historical_probe_attempts": 228,
+  "historical_probe_successes": 219,
+  "historical_probe_unique_molecules": 76,
+  "historical_probe_complete_three_point_molecules": 72,
+  "dense_manifest_rows": 180,
+  "dense_molecules": 12,
+  "dense_lambda_values": [
+    0.0,
+    0.05,
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5,
+    0.6,
+    0.7,
+    0.75,
+    0.8,
+    0.85,
+    0.9,
+    0.95,
+    1.0
+  ],
+  "dense_existing_three_point_rows": 36,
+  "dense_new_window_rows": 144,
+  "dense_streams_per_molecule_window": 1,
+  "dense_production_ps_per_window": [
+    5.0
+  ],
+  "parent_scalar_rows": 125,
+  "parent_scalar_fields": [
+    "delta_g_classical_arrow",
+    "delta_g_classical_uncertainty",
+    "delta_g_pimd4",
+    "delta_g_pimd8",
+    "delta_g_pimd8_uncertainty"
+  ],
+  "scientific_limit": "The inherited full-grid library contains one 5-ps trajectory per molecule-window. It permits complementary-block development diagnostics but no independent-replica policy validation or prospective sentinel claim."
+}

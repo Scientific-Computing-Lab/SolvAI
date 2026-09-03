@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "branch_parent": "770e13ce68ca80104557fd67a224abc5a2c44767",
+  "source_hashes": {
+    "parent_primary": "22c100d39dd540a05513fab918da0007dde3232b11aa3a0e8cd5467bd1507ca0",
+    "phase1": "625e313a3199f2049d5022bba24ae27844cdd7a10edee06e5651738c5a4a88fd",
+    "phase2": "a0dbc9b61c7f54848be8e56dcc5c22d12d511839c90cdbfe44900574112bf1fd",
+    "v2_crossfit": "e6492f5754aab9d4724e10c9b5e2d08863e669beb9b252a4f68a3e0b88a715fa",
+    "v2_power": "70a486901e85eba0828d8a94f479c702c860acdebcf131e033b6177259de5381",
+    "tier_a": "aa1caca2781137bec2b25369df93e70b56eb26cb91c10c009265e43c62139ad8"
+  },
+  "metrics": {
+    "matched_structure_mae": 0.30334846559549733,
+    "full_solvai_mae": 0.20223406721910994,
+    "matched_repeat_mean": 0.31295301471314446,
+    "matched_repeat_sd": 0.004206740598072428,
+    "solvai_repeat_mean": 0.20737285802417266,
+    "solvai_repeat_sd": 0.004442534486346242,
+    "zero_arrow_structure_mae": 0.38482234658678305,
+    "zero_arrow_solvai_mae": 0.25694059186637624,
+    "tier_a_endpoint_disjoint_structure_mae": 1.531647178872018,
+    "tier_a_endpoint_disjoint_solvai_mae": 1.152554228782572,
+    "tier_a_endpoint_disjoint_n": 220,
+    "tier_a_strict_response_source_disjoint_structure_mae": 2.1383039557875114,
+    "tier_a_strict_response_source_disjoint_solvai_mae": 1.5355951977058884,
+    "tier_a_strict_response_source_disjoint_n": 97,
+    "frozen_solvai_repeat_mae": 0.1863743773105283,
+    "actual_residual_repeat_mae": 0.18985627192910545,
+    "phase2_active_solvai_bq_mae_budget5": 1.7012483627017274,
+    "phase2_uniform_direct_mae_budget5": 1.1528798376874347,
+    "phase2_oracle_non_deployable_mae_budget5": 0.3365798455656114,
+    "phase2_active_solvai_bq_mae_budget7": 1.6075147216618912,
+    "phase2_uniform_direct_mae_budget7": 1.0917466750866387,
+    "phase2_oracle_non_deployable_mae_budget7": 0.06826557041589926,
+    "crossfit_oracle_bq_mae_budget5": 1.7320793655574391,
+    "uniform_direct_mae_budget5": 1.30107586790933,
+    "crossfit_oracle_bq_mae_budget7": 1.6812438015638556,
+    "uniform_direct_mae_budget7": 1.2724751749654484,
+    "power_budget_5": 0.0,
+    "power_budget_7": 1e-05,
+    "dense_reliability_probability": 0.44602
+  }
+}
