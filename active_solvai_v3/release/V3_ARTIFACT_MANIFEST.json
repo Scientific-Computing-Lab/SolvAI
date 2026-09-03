@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "branch": "active-solvai-v3-effort-allocation",
+  "source_parent_commit": "45a0e26ce78759b51158191f9db2949e2863123c",
+  "artifacts": [
+    {
+      "path": "active_solvai_v3/figures/gate1_identifiability.pdf",
+      "bytes": 25275,
+      "sha256": "5afabbbc64b86e8183ea76076e3dbc2f6d56a313f29417de1c0c28d9063c916b"
+    },
+    {
+      "path": "active_solvai_v3/figures/gate1_identifiability.png",
+      "bytes": 158323,
+      "sha256": "47e6dd047924b34187d5343701060f434e2fd14ee7887c1b18f76f76285957bf"
+    },
+    {
+      "path": "active_solvai_v3/figures/gate1_identifiability.svg",
+      "bytes": 71868,
+      "sha256": "d98a09a20762c4523f68718ba689479f483c0b48463b22a4ab056ea653497c53"
+    },
+    {
+      "path": "active_solvai_v3/figures/v3_power_reliability.pdf",
+      "bytes": 20002,
+      "sha256": "c869282a1625db6875768140d74500ab0bb88aca8699b1828a71680832a840ff"
+    },
+    {
+      "path": "active_solvai_v3/figures/v3_power_reliability.png",
+      "bytes": 144531,
+      "sha256": "8b27c75dc10aeb877a7e95702b48d985163b9dde3f66f883c346bb887a649e36"
+    },
+    {
+      "path": "active_solvai_v3/figures/v3_power_reliability.svg",
+      "bytes": 55670,
+      "sha256": "2dd1111c5cf660f16d4857071c70b3518b9a0c7b9a9fb7baf5478ed06a79784a"
+    },
+    {
+      "path": "active_solvai_v3/paper/generated_metrics.tex",
+      "bytes": 606,
+      "sha256": "6a8a82f4486feb91201d620abf9e5795766c5eb9e6a582a3801de78551f02a4e"
+    },
+    {
+      "path": "active_solvai_v3/paper/main.pdf",
+      "bytes": 182894,
+      "sha256": "e41aef18105a7fd5bd7bb5286f4b553f1b5676ff4ddd101e235107d90935ff0e"
+    },
+    {
+      "path": "active_solvai_v3/paper/main.tex",
+      "bytes": 14134,
+      "sha256": "4ffc66a0a77db525b2a82eb68eff695522319d99ca486a8bf7310db39aa1cef1"
+    },
+    {
+      "path": "active_solvai_v3/paper/supplementary/supplementary.pdf",
+      "bytes": 109330,
+      "sha256": "61295bcd68ceaffc174dd55004e7dc3394ab20ffa0a9365d04e7e37da12fcdad"
+    },
+    {
+      "path": "active_solvai_v3/paper/supplementary/supplementary.tex",
+      "bytes": 6475,
+      "sha256": "b177124fd4f86140e1b7e61dc9dfc63c0966190a47b236a57333ffcefb84ed34"
+    },
+    {
+      "path": "active_solvai_v3/release/V3_MASTER_PROTOCOL_FREEZE.md",
+      "bytes": 13849,
+      "sha256": "5600337dfad927dcd9d1cd6e563a9e2270ff38d929d13d43f71ef11de1af66e6"
+    },
+    {
+      "path": "active_solvai_v3/release/V3_MASTER_PROTOCOL_FREEZE_AMENDMENT_001.md",
+      "bytes": 1613,
+      "sha256": "f39eb9268a5ca302f6a5c6f61ec357c22860985a05faf32f0b2bac4203b0b05d"
+    },
+    {
+      "path": "active_solvai_v3/release/V3_POWER_RELIABILITY_PROTOCOL.md",
+      "bytes": 3568,
+      "sha256": "b5483f1fb30348517eb01644797261a69f18231b3487524750a9888e2ac5c955"
+    },
+    {
+      "path": "active_solvai_v3/reports/BLUEPRINT_INGESTION.md",
+      "bytes": 3772,
+      "sha256": "b4b3de9a37bf05229e03cfeb1864ac7f8f8bebe6630df33d95983c6ea24296b1"
+    },
+    {
+      "path": "active_solvai_v3/reports/FINAL_GATE_DECISION.md",
+      "bytes": 7053,
+      "sha256": "f6e8714853a9e8ffd9a30bbacdd2e792f68d8a03e7c01bd7b81025f3a766c533"
+    },
+    {
+      "path": "active_solvai_v3/reports/GATE1_IDENTIFIABILITY.md",
+      "bytes": 4681,
+      "sha256": "722f038842bb2a74772dfe103a2126d65d31e9711800b29beade6f9333b59a80"
+    },
+    {
+      "path": "active_solvai_v3/reports/INHERITED_EVIDENCE_AUDIT.md",
+      "bytes": 9173,
+      "sha256": "49a04185a47bfe9a77a329e3a813ca653b5c4a0cdd0de9dff6260a587dc25c83"
+    },
+    {
+      "path": "active_solvai_v3/reports/POWER_REFERENCE_RELIABILITY_GATE.md",
+      "bytes": 4100,
+      "sha256": "629ece2ae133650d9593b40083c6d6ca96372beca9288921403ea405fe717fee"
+    },
+    {
+      "path": "active_solvai_v3/results/canonical_metrics.csv",
+      "bytes": 632,
+      "sha256": "f6c2c8d6adab9766bef2b5249f95e5034773da6735de7ef9143e4e0610ffc9d9"
+    },
+    {
+      "path": "active_solvai_v3/results/canonical_metrics.json",
+      "bytes": 4118,
+      "sha256": "093f2c9bdaa57702843744e61fb08ba48ab3065dd2b50241a7ffac3c38122d22"
+    },
+    {
+      "path": "active_solvai_v3/results/gate1/gate1_artifact_manifest.json",
+      "bytes": 1561,
+      "sha256": "a74185ea1ef4a6d0d2ba778fdf25c8e16e8beef2d224949f744c04a353a95ffd"
+    },
+    {
+      "path": "active_solvai_v3/results/gate1/gate1_canonical_metrics.json",
+      "bytes": 6227,
+      "sha256": "fc376c975142efad063089665b96ef4bd9903435a646f89723034dd69c320cf9"
+    },
+    {
+      "path": "active_solvai_v3/results/gate1/gate1_diagnostic_reliability.csv",
+      "bytes": 3768,
+      "sha256": "fe6861befc2f891842b92f4a2eceacba47ad60b8ffa797189f1d35fde63c4d44"
+    },
+    {
+      "path": "active_solvai_v3/results/gate1/gate1_model_metrics.csv",
+      "bytes": 14570,
+      "sha256": "da5c46d782dd47d63b560920b8a2a3d304f8fcf0e52f2fe50788bb2a2b36917c"
+    },
+    {
+      "path": "active_solvai_v3/results/gate1/gate1_oof_predictions.parquet",
+      "bytes": 207368,
+      "sha256": "66794f846f022e68b7527ecf7001bd6aca26174dd3c247bbc862b2f41ed24c4f"
+    },
+    {
+      "path": "active_solvai_v3/results/gate1/gate1_paired_comparisons.csv",
+      "bytes": 12811,
+      "sha256": "8deb9f277b90ae56c53ad8e3a253a8274ed774bd438716fa8ab5b59c055d7dde"
+    },
+    {
+      "path": "active_solvai_v3/results/gate1/gate1_prefix_diagnostics.parquet",
+      "bytes": 246226,
+      "sha256": "c0150f39e89f14326c6668acb6228b2ac106c4b16375a7d1dc3b06665c86b30f"
+    },
+    {
+      "path": "active_solvai_v3/results/inherited/canonical_reproduction.csv",
+      "bytes": 1617,
+      "sha256": "ed9efe25efa56c306535622e0a23b943e7e14476ee12d087df627dd8190794f8"
+    },
+    {
+      "path": "active_solvai_v3/results/inherited/canonical_reproduction.json",
+      "bytes": 2216,
+      "sha256": "c823fe726f1a1ffeb053f02201fe801bf03b91de9020b96e4baf11e8ce7f8ede"
+    },
+    {
+      "path": "active_solvai_v3/results/power_reliability/artifact_manifest.json",
+      "bytes": 2016,
+      "sha256": "23a58cbfb5f156cc4635b7d0bd6df4c834a8f1f546ca6982042bb02510e4a494"
+    },
+    {
+      "path": "active_solvai_v3/results/power_reliability/inherited_effect_patterns.csv",
+      "bytes": 2327,
+      "sha256": "7e1a3a85fe3a54780c7ad1aac8a0f663c4acd7c8aade6d8c1ac4d1926f395369"
+    },
+    {
+      "path": "active_solvai_v3/results/power_reliability/power_by_molecule_count.csv",
+      "bytes": 4966,
+      "sha256": "c6ca9d75fc7d0daadaa0d68700562c3d8b411cfa94eba8ec7861ffe0c0720f6c"
+    },
+    {
+      "path": "active_solvai_v3/results/power_reliability/power_reliability_canonical.json",
+      "bytes": 1124,
+      "sha256": "7509b085c9b57ab28611e36767a20d193b31cdcff8d92cb11030c6bc1f637654"
+    },
+    {
+      "path": "active_solvai_v3/results/power_reliability/prospective_design_grid.csv",
+      "bytes": 15670,
+      "sha256": "8a2b70b53030aba356b56a48f829fd92d5d9f7538219938a58f231a0f55bc6d5"
+    },
+    {
+      "path": "active_solvai_v3/results/power_reliability/reference_reliability_grid.csv",
+      "bytes": 11340,
+      "sha256": "88f7e31fdefa68621c32892a29dadf88db2441cac459cbaedabbe646d38f1af9"
+    },
+    {
+      "path": "active_solvai_v3/runs/ledger.jsonl",
+      "bytes": 3032,
+      "sha256": "bc109818d9431f494e9570f066f322c8e39a3981f002184d65f167511dddc0e4"
+    }
+  ]
+}
