@@ -74,7 +74,7 @@ stage-2 endpoint combines their predictions with a 2,048-bit Morgan fingerprint 
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.96\linewidth]{fig1_concept.pdf}
+\includegraphics[width=0.96\linewidth]{assets/fig1_concept.png}
 \caption{\textbf{Solvent response becomes reusable molecular supervision.} External
 calculations and measurements define 15 response coordinates. Structure-to-response
 surrogates predict them in stage 1; a matched experimental endpoint combines them
@@ -152,7 +152,7 @@ one fortunate split.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\linewidth]{fig2_headline.pdf}
+\includegraphics[width=\linewidth]{assets/fig2_headline.png}
 \caption{\textbf{Molecule-aligned response priors improve a matched endpoint.}
 \textbf{a}, Frozen response-block progression and the separate PIMD8 reference.
 \textbf{b}, Molecule-level paired absolute errors. \textbf{c}, Predeclared block
@@ -235,7 +235,7 @@ advantage, not the PIMD8-scale accuracy observed on ARROW-85.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\linewidth]{fig3_transfer.pdf}
+\includegraphics[width=\linewidth]{assets/fig3_transfer.png}
 \caption{\textbf{The response-prior advantage survives chemical separation.}
 \textbf{a}, Cluster, scaffold, and functional-family separation.
 \textbf{b}, Maximum train--test Morgan-similarity exclusions. \textbf{c},
@@ -319,7 +319,7 @@ in SolvAI.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\linewidth]{fig4_frontier.pdf}
+\includegraphics[width=\linewidth]{assets/fig4_frontier.png}
 \caption{\textbf{Transfer is limited by structure-to-response accuracy.}
 \textbf{a}, Compact ConfSolv summaries versus latent coordinates from the same source.
 \textbf{b}, OOF errors of predicted PIMD2 response components. \textbf{c}, Their
@@ -436,7 +436,9 @@ The public repository address is omitted during double-blind review.
 \bibliography{../references}
 
 \clearpage
+\nolinenumbers
 \includepdf[pages=-,pagecommand={\thispagestyle{plain}}]{appendix.pdf}
+\linenumbers
 
 \clearpage
 \input{checklist.tex}

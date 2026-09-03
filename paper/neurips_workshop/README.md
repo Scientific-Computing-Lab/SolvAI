@@ -12,4 +12,6 @@ make
 ```
 
 The review PDF is `solvai_main.pdf`. The first eight pages contain the complete workshop
-argument; references, appendix, and checklist begin afterward.
+argument; references, appendix, and checklist begin afterward. Submit only
+`solvai_main.pdf`; `appendix.pdf` is an intermediate already incorporated into it and
+must not be uploaded separately.
