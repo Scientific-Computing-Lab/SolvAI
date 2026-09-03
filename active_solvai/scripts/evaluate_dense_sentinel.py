@@ -42,11 +42,14 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def bootstrap_interval(values: np.ndarray, seed: int, count: int) -> tuple[float, float]:
+def bootstrap_interval(
+    values: np.ndarray, seed: int, count: int, level: float
+) -> tuple[float, float]:
     values = np.asarray(values, dtype=float)
     rng = np.random.default_rng(seed)
     sampled = values[rng.integers(0, len(values), size=(count, len(values)))].mean(axis=1)
-    low, high = np.quantile(sampled, [0.025, 0.975])
+    tail = (1.0 - level) / 2.0
+    low, high = np.quantile(sampled, [tail, 1.0 - tail])
     return float(low), float(high)
 
 
@@ -203,6 +206,7 @@ def main() -> None:
     generic_mean = np.asarray(lock["generic_prior_mean"], dtype=float)
     generic_settings = lock["selection"]["generic"]
     solvai_settings = lock["selection"]["solvai"]
+    expected_sem = np.asarray(lock["expected_sem_by_lambda"], dtype=float)
     generic_covariance = rbf_covariance(
         grid, generic_settings["amplitude"], generic_settings["lengthscale"]
     )
@@ -223,16 +227,10 @@ def main() -> None:
             solvai_settings["lengthscale"],
             local,
         )
-        generic_expected_noise = np.full(
-            len(grid),
-            np.nanmedian(group.five_block_sem_kcal_mol.to_numpy(float)) ** 2
-            * generic_settings["noise_inflation"],
+        generic_expected_noise = (
+            expected_sem**2 * generic_settings["noise_inflation"]
         )
-        solvai_expected_noise = np.full(
-            len(grid),
-            np.nanmedian(group.five_block_sem_kcal_mol.to_numpy(float)) ** 2
-            * solvai_settings["noise_inflation"],
-        )
+        solvai_expected_noise = expected_sem**2 * solvai_settings["noise_inflation"]
         schedules: list[tuple[str, int, list[int], np.ndarray, np.ndarray, float, bool]] = [
             (
                 "fixed_solvai_bq",
@@ -424,8 +422,17 @@ def main() -> None:
                 candidate.absolute_integral_error_kcal_mol
                 - control.absolute_integral_error_kcal_mol
             ).to_numpy(float)
-            low, high = bootstrap_interval(
-                difference, config["bootstrap_seed"], config["bootstrap_resamples"]
+            low90, high90 = bootstrap_interval(
+                difference,
+                config["bootstrap_seed"],
+                config["bootstrap_resamples"],
+                0.90,
+            )
+            low95, high95 = bootstrap_interval(
+                difference,
+                config["bootstrap_seed"],
+                config["bootstrap_resamples"],
+                0.95,
             )
             comparisons.append(
                 {
@@ -433,8 +440,10 @@ def main() -> None:
                     "candidate": "active_solvai_bq",
                     "comparator": comparator,
                     "candidate_minus_comparator_mae": float(difference.mean()),
-                    "ci95_low": low,
-                    "ci95_high": high,
+                    "ci90_low": low90,
+                    "ci90_high": high90,
+                    "ci95_low": low95,
+                    "ci95_high": high95,
                     "fraction_candidate_improved": float(np.mean(difference < 0)),
                 }
             )

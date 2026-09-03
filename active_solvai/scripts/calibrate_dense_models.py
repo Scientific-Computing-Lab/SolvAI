@@ -119,6 +119,7 @@ def main() -> None:
     )
     selected: dict[str, dict[str, float]] = {}
     all_curves = np.stack([curves[name] for name in names])
+    all_sems = np.stack([sems[name] for name in names])
     generic_mean = all_curves.mean(axis=0)
     for prior_kind in ("generic", "solvai"):
         best = search.loc[search.prior.eq(prior_kind)].iloc[0]
@@ -143,6 +144,7 @@ def main() -> None:
         "initial_lambda_values": grid[initial].tolist(),
         "selection": selected,
         "generic_prior_mean": generic_mean.tolist(),
+        "expected_sem_by_lambda": np.median(all_sems, axis=0).tolist(),
         "inputs": {
             "configuration": {"path": str(CONFIG), "sha256": sha256(CONFIG)},
             "calibration_responses": {"path": str(RESPONSES), "sha256": sha256(RESPONSES)},

@@ -8,6 +8,7 @@ from active_solvai.dense import (
     fixed_order,
     interpolate_three_point_prior,
     maximin_order,
+    observed_pchip,
     rbf_covariance,
     trapezoid_weights,
     variance_reduction_order,
@@ -47,3 +48,10 @@ def test_every_schedule_visits_each_missing_window_once() -> None:
     for schedule in schedules:
         assert len(schedule) == len(expected)
         assert set(schedule) == expected
+
+
+def test_observed_pchip_reproduces_observations() -> None:
+    indices = np.array([2, 6, 12])
+    values = np.array([4.0, 1.0, -3.0])
+    reconstructed = observed_pchip(GRID, indices, values)
+    assert np.allclose(reconstructed[indices], values)

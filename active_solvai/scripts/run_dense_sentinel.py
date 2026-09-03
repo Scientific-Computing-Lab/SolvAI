@@ -74,6 +74,11 @@ def main() -> None:
     parser.add_argument("--omp", type=int, default=8)
     parser.add_argument("--timeout-minutes", type=float, default=30.0)
     parser.add_argument("--limit", type=int)
+    parser.add_argument(
+        "--freeze-commit",
+        default="512aad3d46c25c28d590e76ebbd6cd2dc9be7186",
+        help="Prospective protocol commit recorded for every attempt.",
+    )
     args = parser.parse_args()
 
     manifest = pd.read_csv(args.root / "manifest.csv")
@@ -173,9 +178,7 @@ def main() -> None:
             "nominal_bead_steps": 6250,
             "force_evaluations": None,
             "force_evaluation_note": "Arbalest does not expose exact fast/slow kernel call counts; nominal bead-steps are reported instead.",
-            "freeze_commit": subprocess.check_output(
-                ["git", "rev-parse", "HEAD"], cwd=RELEASE_ROOT, text=True
-            ).strip(),
+            "freeze_commit": args.freeze_commit,
         }
         status.append(record)
         pd.DataFrame(status).to_csv(status_path, index=False)
