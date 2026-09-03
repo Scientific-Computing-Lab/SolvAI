@@ -144,6 +144,7 @@ def replay_record(
     indices = np.asarray(selected, dtype=int)
     weights = trapezoid_weights(grid)
     true_integral = -float(weights @ truth_curve)
+    dense_integral_sem = float(np.sqrt(np.sum((weights * sem) ** 2)))
     if direct:
         curve = observed_pchip(grid, indices, truth_curve[indices])
         predicted_integral = -float(weights @ curve)
@@ -175,6 +176,7 @@ def replay_record(
         "total_windows": len(indices),
         "observed_lambdas": ",".join(f"{grid[index]:g}" for index in indices),
         "true_integral_kcal_mol": true_integral,
+        "dense_integral_sem_kcal_mol": dense_integral_sem,
         "predicted_integral_kcal_mol": predicted_integral,
         "signed_integral_error_kcal_mol": predicted_integral - true_integral,
         "absolute_integral_error_kcal_mol": abs(predicted_integral - true_integral),
@@ -227,9 +229,7 @@ def main() -> None:
             solvai_settings["lengthscale"],
             local,
         )
-        generic_expected_noise = (
-            expected_sem**2 * generic_settings["noise_inflation"]
-        )
+        generic_expected_noise = expected_sem**2 * generic_settings["noise_inflation"]
         solvai_expected_noise = expected_sem**2 * solvai_settings["noise_inflation"]
         schedules: list[tuple[str, int, list[int], np.ndarray, np.ndarray, float, bool]] = [
             (

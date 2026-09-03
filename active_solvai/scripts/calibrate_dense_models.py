@@ -22,6 +22,7 @@ CONFIG = ACTIVE_ROOT / "configs/dense_sentinel_v1.json"
 RESPONSES = ACTIVE_ROOT / "results/phase2/dense_responses_calibration.parquet"
 PHASE1_PRIORS = ACTIVE_ROOT / "results/phase1/phase1_response_predictions.parquet"
 OUT = ACTIVE_ROOT / "release/DENSE_SENTINEL_CALIBRATION_LOCK.json"
+OUT_MD = ACTIVE_ROOT / "release/DENSE_SENTINEL_CALIBRATION_LOCK.md"
 
 
 def load_priors(names: list[str], grid: np.ndarray) -> dict[str, np.ndarray]:
@@ -53,6 +54,13 @@ def nlpd(y: np.ndarray, mean: np.ndarray, variance: np.ndarray) -> float:
 
 
 def main() -> None:
+    prospective_energy = list(
+        (ACTIVE_ROOT / "simulations/dense_pimd2/prospective").glob("**/output/*__SYSTEM.ene")
+    )
+    if prospective_energy:
+        raise AssertionError(
+            "Prospective sentinel responses already exist; calibration lock must precede them"
+        )
     config = json.loads(CONFIG.read_text())
     grid = np.asarray(config["lambda_grid"], dtype=float)
     initial = np.array([2, 6, 12], dtype=int)
@@ -150,10 +158,27 @@ def main() -> None:
             "calibration_responses": {"path": str(RESPONSES), "sha256": sha256(RESPONSES)},
             "phase1_priors": {"path": str(PHASE1_PRIORS), "sha256": sha256(PHASE1_PRIORS)},
             "search_table": {"path": str(search_path), "sha256": sha256(search_path)},
+            "calibration_script": {
+                "path": str(Path(__file__).resolve()),
+                "sha256": sha256(Path(__file__).resolve()),
+            },
         },
         "note": "No prospective sentinel dense response was generated or read before this lock.",
     }
     OUT.write_text(json.dumps(payload, indent=2) + "\n")
+    OUT_MD.write_text(
+        "# Dense sentinel calibration lock\n\n"
+        "This file records the automatically selected Gaussian-process settings before any "
+        "prospective-sentinel dense response was generated. Selection followed the committed "
+        "protocol in `DENSE_SENTINEL_FREEZE.md`; no setting was selected using endpoint error.\n\n"
+        f"- Calibration response SHA-256: `{payload['inputs']['calibration_responses']['sha256']}`\n"
+        f"- Phase 1 prior SHA-256: `{payload['inputs']['phase1_priors']['sha256']}`\n"
+        f"- Generic prior: length scale `{selected['generic']['lengthscale']}`, noise inflation "
+        f"`{selected['generic']['noise_inflation']}`, amplitude `{selected['generic']['amplitude']:.8f}` kcal mol^-1.\n"
+        f"- SolvAI-conditioned prior: length scale `{selected['solvai']['lengthscale']}`, noise inflation "
+        f"`{selected['solvai']['noise_inflation']}`, amplitude `{selected['solvai']['amplitude']:.8f}` kcal mol^-1.\n"
+        "- Prospective dense responses available at lock time: `0`.\n"
+    )
     print(json.dumps(payload, indent=2))
 
 

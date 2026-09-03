@@ -36,9 +36,23 @@ def main() -> None:
     manifest = pd.read_csv(args.root / "manifest.csv")
     if args.role != "all":
         manifest = manifest.loc[manifest.role.eq(args.role)]
+    passed_cases: set[str] = set()
+    roles = sorted(manifest.loc[~manifest.existing_observation, "role"].unique())
+    for role in roles:
+        status_path = args.root / f"run_status_{role}.csv"
+        if status_path.exists():
+            status = pd.read_csv(status_path)
+            passed_cases.update(
+                status.loc[
+                    status.passed.astype(str).str.lower().eq("true"), "case_directory"
+                ].astype(str)
+            )
     records: list[dict[str, object]] = []
     missing: list[str] = []
     for row in manifest.to_dict("records"):
+        if not bool(row["existing_observation"]) and str(row["case_directory"]) not in passed_cases:
+            missing.append(f"No passed QC record for {row['molecule_name']} lambda={row['lambda']}")
+            continue
         try:
             energy = find_energy(row)
         except FileNotFoundError as error:
