@@ -2,6 +2,11 @@
 __pycache__/
 .pytest_cache/
 .ruff_cache/
+results/phase1/cache/
+simulations/**/output/
+simulations/**/*.trr
+simulations/**/*.coor
+simulations/**/*.vel
 paper/**/*.aux
 paper/**/*.bbl
 paper/**/*.bcf
@@ -12,4 +17,3 @@ paper/**/*.log
 paper/**/*.out
 paper/**/*.run.xml
 paper/**/*.toc
-

@@ -2,6 +2,7 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{booktabs}
 \usepackage{amsmath}
+\usepackage{graphicx}
 \usepackage{hyperref}
 \title{Active SolvAI: learning what to measure in alchemical hydration calculations}
 \author{Gal Oren \and Michael Levitt}
@@ -10,7 +11,7 @@
 \maketitle
 
 \begin{abstract}
-Accurate hydration free energies require target-specific sampling, whereas structure-only models can fail under chemical shift. Active SolvAI asks whether sparse response observations from the query molecule can update a transferable SolvAI prior and recover either the same-Hamiltonian alchemical response or the experimental endpoint at lower measured cost. This manuscript is a living preregistered report: quantitative claims are inserted only after their generating analysis has been frozen and completed.
+Accurate hydration free energies can require target-specific sampling, whereas structure-only models can fail under chemical shift. Active SolvAI asks whether sparse response observations from a query molecule can update the frozen SolvAI prior and recover either the same-Hamiltonian alchemical response or the experimental endpoint at lower measured cost. In a prospectively frozen test on 72 molecules, three 5-ps PIMD2 observations did not improve experimental prediction: the actual-minus-prior correction increased five-partition mean absolute error from 0.186 to 0.190 kcal mol$^{-1}$ and was indistinguishable from shuffled responses. Molecule-conditioned posteriors did improve several held-out response-point predictions, motivating a bounded dense-curve test while sharply separating response reconstruction from endpoint accuracy.
 \end{abstract}
 
 \section{Introduction}
@@ -18,19 +19,24 @@ SolvAI established that structure-predicted solvent responses add information be
 
 \section{Results}
 \subsection{Actual-observation gate}
-\textbf{PHASE1\_RESULT\_PENDING.} The primary estimand is the paired held-out endpoint-error change obtained from actual-minus-prior response residuals relative to frozen SolvAI. Same-Hamiltonian reconstruction and experimental prediction are reported separately.
+The no-new-simulation gate used 72 ARROW molecules with complete PIMD2 observations at $\lambda=0.1$, 0.5 and 0.9. Every endpoint correction was nested within molecule-held-out validation. Actual-minus-structure-predicted response residuals increased the five-partition mean absolute error from 0.1864 to 0.1899 kcal mol$^{-1}$ (paired change $+0.00348$; 95\% molecule-bootstrap interval $+0.00096$ to $+0.00609$). Only 31.9\% of molecules improved, and the aligned residual was statistically indistinguishable from the mean of five molecule-shuffled controls. Raw actual responses, predicted responses and all predeclared one-, two- and three-point subsets likewise failed to improve the frozen endpoint.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.76\linewidth]{../figures/phase1/phase1_endpoint_gate.png}
+\caption{\textbf{Actual sparse PIMD2 observations do not improve the experimental endpoint.} Points are five independent molecule partitions; horizontal bars show their means. All models use identical held-out molecules.}
+\end{figure}
 
 \subsection{Retrospective replay}
-\textbf{REPLAY\_RESULT\_PENDING.} This section will be populated only if the preregistered Phase 1 go criterion is met.
+The endpoint route was killed by its prospective rule. A distinct reconstruction diagnostic remained: molecule-conditioned Gaussian posteriors reduced hidden-point errors relative to a generic population Gaussian for several predeclared subsets, with approximately nominal interval coverage. Absolute errors nevertheless remained at least 2.4 kcal mol$^{-1}$ and 95\% intervals were broad. Direct integration of the three actual observations gave 1.43 kcal mol$^{-1}$ experimental MAE after fold-local affine calibration. Because no compatible dense response population was available, these tests support only a bounded prospective dense sentinel, not a reconstruction or acceleration claim.
 
 \subsection{Prospective sentinels}
-\textbf{PILOT\_RESULT\_PENDING.} This section will be populated only after a replay policy and its comparators are frozen.
+\textbf{DENSE\_SENTINEL\_RESULT\_PENDING.} A dense same-Hamiltonian protocol and all comparators will be frozen before any new response is revealed.
 
 \section{Discussion}
-The study is designed to support a positive, neutral or negative conclusion without changing its scientific question. Any benefit for same-Hamiltonian reconstruction will not by itself be described as improved agreement with experiment; any endpoint benefit without curve reconstruction will be described as an empirical residual diagnostic rather than successful quadrature.
+The first decisive result is a clean null: target-molecule PIMD2 measurements at the inherited three windows do not improve SolvAI's experimental prediction. This rejects the simplest active residual-correction mechanism rather than inviting post-hoc selection of a favourable window or chemical family. The separate interpolation result asks a narrower question—whether a molecular prior can reduce the number of response evaluations needed to reconstruct the same Hamiltonian—and requires dense prospective evidence before it can support a computational claim.
 
 \section{Methods}
-The parent SolvAI artifact, cohorts, splits and response campaigns are versioned by SHA-256. All preprocessing, calibration and model selection occur inside molecule-held-out training data. Destructive controls preserve response distributions while shuffling molecule alignment. Every attempted run, including failures, is included in the compute ledger.
+The parent SolvAI artifact, cohorts, splits and response campaigns are versioned by SHA-256. The primary gate was committed before scoring at Git commit \texttt{a0dd986}. All preprocessing, response prediction, ridge selection and endpoint calibration occur inside molecule-held-out training data. Five repeated five-fold partitions use seeds 314159, 271828, 161803, 141421 and 173205. Destructive controls jointly permute response rows within the outer training and test folds, preserving the response distribution while removing molecule alignment. Paired intervals use 100,000 molecule bootstrap resamples with seed 20260828. Every attempted run, including failures, is included in the compute ledger.
 
 \end{document}
-

@@ -17,6 +17,18 @@ uv run --project active_solvai python active_solvai/scripts/reproduce_parent.py
 uv run --project active_solvai python active_solvai/scripts/inventory_responses.py
 ```
 
+## Phase 1
+
+The scoring protocol was frozen at commit `a0dd986`.
+
+```bash
+uv run --project active_solvai python active_solvai/scripts/run_phase1_gate.py
+uv run --project active_solvai python active_solvai/scripts/summarize_phase1.py
+```
+
+Canonical results are in `results/phase1/phase1_canonical_metrics.json`; the
+human-readable interpretation is `reports/PHASE1_ACTUAL_OBSERVATION_GATE.md`.
+
 ## Ledger rules
 
 - Append a record before and after every attempted analysis or simulation run.
@@ -25,4 +37,3 @@ uv run --project active_solvai python active_solvai/scripts/inventory_responses.
 - A decisive scoring command must refuse to run unless its freeze path exists and is committed.
 
 Phase-specific commands will be added before their corresponding freeze is committed.
-

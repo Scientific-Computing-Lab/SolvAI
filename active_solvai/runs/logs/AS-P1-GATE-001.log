@@ -1,0 +1,476 @@
+
+Partition primary
+  endpoint nested pair 0/1 complete
+  endpoint nested pair 0/2 complete
+  endpoint nested pair 0/3 complete
+  endpoint nested pair 0/4 complete
+  endpoint nested pair 1/2 complete
+  endpoint nested pair 1/3 complete
+  endpoint nested pair 1/4 complete
+  endpoint nested pair 2/3 complete
+  endpoint nested pair 2/4 complete
+  endpoint nested pair 3/4 complete
+  response nested pair 0/1 complete
+  response nested pair 0/2 complete
+  response nested pair 0/3 complete
+  response nested pair 0/4 complete
+  response nested pair 1/2 complete
+  response nested pair 1/3 complete
+  response nested pair 1/4 complete
+  response nested pair 2/3 complete
+  response nested pair 2/4 complete
+  response nested pair 3/4 complete
+  fraction 0.1 complete
+  response nested pair 0/1 complete
+  response nested pair 0/2 complete
+  response nested pair 0/3 complete
+  response nested pair 0/4 complete
+  response nested pair 1/2 complete
+  response nested pair 1/3 complete
+  response nested pair 1/4 complete
+  response nested pair 2/3 complete
+  response nested pair 2/4 complete
+  response nested pair 3/4 complete
+  fraction 0.2 complete
+  response nested pair 0/1 complete
+  response nested pair 0/2 complete
+  response nested pair 0/3 complete
+  response nested pair 0/4 complete
+  response nested pair 1/2 complete
+  response nested pair 1/3 complete
+  response nested pair 1/4 complete
+  response nested pair 2/3 complete
+  response nested pair 2/4 complete
+  response nested pair 3/4 complete
+  fraction 0.4 complete
+  response nested pair 0/1 complete
+  response nested pair 0/2 complete
+  response nested pair 0/3 complete
+  response nested pair 0/4 complete
+  response nested pair 1/2 complete
+  response nested pair 1/3 complete
+  response nested pair 1/4 complete
+  response nested pair 2/3 complete
+  response nested pair 2/4 complete
+  response nested pair 3/4 complete
+  fraction 0.7 complete
+  response nested pair 0/1 complete
+  response nested pair 0/2 complete
+  response nested pair 0/3 complete
+  response nested pair 0/4 complete
+  response nested pair 1/2 complete
+  response nested pair 1/3 complete
+  response nested pair 1/4 complete
+  response nested pair 2/3 complete
+  response nested pair 2/4 complete
+  response nested pair 3/4 complete
+  fraction 1.0 complete
+
+Partition repeat_0
+  endpoint nested pair 0/1 complete
+  endpoint nested pair 0/2 complete
+  endpoint nested pair 0/3 complete
+  endpoint nested pair 0/4 complete
+  endpoint nested pair 1/2 complete
+  endpoint nested pair 1/3 complete
+  endpoint nested pair 1/4 complete
+  endpoint nested pair 2/3 complete
+  endpoint nested pair 2/4 complete
+  endpoint nested pair 3/4 complete
+  response nested pair 0/1 complete
+  response nested pair 0/2 complete
+  response nested pair 0/3 complete
+  response nested pair 0/4 complete
+  response nested pair 1/2 complete
+  response nested pair 1/3 complete
+  response nested pair 1/4 complete
+  response nested pair 2/3 complete
+  response nested pair 2/4 complete
+  response nested pair 3/4 complete
+  fraction 0.1 complete
+  response nested pair 0/1 complete
+  response nested pair 0/2 complete
+  response nested pair 0/3 complete
+  response nested pair 0/4 complete
+  response nested pair 1/2 complete
+  response nested pair 1/3 complete
+  response nested pair 1/4 complete
+  response nested pair 2/3 complete
+  response nested pair 2/4 complete
+  response nested pair 3/4 complete
+  fraction 0.2 complete
+  response nested pair 0/1 complete
+  response nested pair 0/2 complete
+  response nested pair 0/3 complete
+  response nested pair 0/4 complete
+  response nested pair 1/2 complete
+  response nested pair 1/3 complete
+  response nested pair 1/4 complete
+  response nested pair 2/3 complete
+  response nested pair 2/4 complete
+  response nested pair 3/4 complete
+  fraction 0.4 complete
+  response nested pair 0/1 complete
+  response nested pair 0/2 complete
+  response nested pair 0/3 complete
+  response nested pair 0/4 complete
+  response nested pair 1/2 complete
+  response nested pair 1/3 complete
+  response nested pair 1/4 complete
+  response nested pair 2/3 complete
+  response nested pair 2/4 complete
+  response nested pair 3/4 complete
+  fraction 0.7 complete
+  response nested pair 0/1 complete
+  response nested pair 0/2 complete
+  response nested pair 0/3 complete
+  response nested pair 0/4 complete
+  response nested pair 1/2 complete
+  response nested pair 1/3 complete
+  response nested pair 1/4 complete
+  response nested pair 2/3 complete
+  response nested pair 2/4 complete
+  response nested pair 3/4 complete
+  fraction 1.0 complete
+
+Partition repeat_1
+  endpoint nested pair 0/1 complete
+  endpoint nested pair 0/2 complete
+  endpoint nested pair 0/3 complete
+  endpoint nested pair 0/4 complete
+  endpoint nested pair 1/2 complete
+  endpoint nested pair 1/3 complete
+  endpoint nested pair 1/4 complete
+  endpoint nested pair 2/3 complete
+  endpoint nested pair 2/4 complete
+  endpoint nested pair 3/4 complete
+  response nested pair 0/1 complete
+  response nested pair 0/2 complete
+  response nested pair 0/3 complete
+  response nested pair 0/4 complete
+  response nested pair 1/2 complete
+  response nested pair 1/3 complete
+  response nested pair 1/4 complete
+  response nested pair 2/3 complete
+  response nested pair 2/4 complete
+  response nested pair 3/4 complete
+  fraction 0.1 complete
+  response nested pair 0/1 complete
+  response nested pair 0/2 complete
+  response nested pair 0/3 complete
+  response nested pair 0/4 complete
+  response nested pair 1/2 complete
+  response nested pair 1/3 complete
+  response nested pair 1/4 complete
+  response nested pair 2/3 complete
+  response nested pair 2/4 complete
+  response nested pair 3/4 complete
+  fraction 0.2 complete
+  response nested pair 0/1 complete
+  response nested pair 0/2 complete
+  response nested pair 0/3 complete
+  response nested pair 0/4 complete
+  response nested pair 1/2 complete
+  response nested pair 1/3 complete
+  response nested pair 1/4 complete
+  response nested pair 2/3 complete
+  response nested pair 2/4 complete
+  response nested pair 3/4 complete
+  fraction 0.4 complete
+  response nested pair 0/1 complete
+  response nested pair 0/2 complete
+  response nested pair 0/3 complete
+  response nested pair 0/4 complete
+  response nested pair 1/2 complete
+  response nested pair 1/3 complete
+  response nested pair 1/4 complete
+  response nested pair 2/3 complete
+  response nested pair 2/4 complete
+  response nested pair 3/4 complete
+  fraction 0.7 complete
+  response nested pair 0/1 complete
+  response nested pair 0/2 complete
+  response nested pair 0/3 complete
+  response nested pair 0/4 complete
+  response nested pair 1/2 complete
+  response nested pair 1/3 complete
+  response nested pair 1/4 complete
+  response nested pair 2/3 complete
+  response nested pair 2/4 complete
+  response nested pair 3/4 complete
+  fraction 1.0 complete
+
+Partition repeat_2
+  endpoint nested pair 0/1 complete
+  endpoint nested pair 0/2 complete
+  endpoint nested pair 0/3 complete
+  endpoint nested pair 0/4 complete
+  endpoint nested pair 1/2 complete
+  endpoint nested pair 1/3 complete
+  endpoint nested pair 1/4 complete
+  endpoint nested pair 2/3 complete
+  endpoint nested pair 2/4 complete
+  endpoint nested pair 3/4 complete
+  response nested pair 0/1 complete
+  response nested pair 0/2 complete
+  response nested pair 0/3 complete
+  response nested pair 0/4 complete
+  response nested pair 1/2 complete
+  response nested pair 1/3 complete
+  response nested pair 1/4 complete
+  response nested pair 2/3 complete
+  response nested pair 2/4 complete
+  response nested pair 3/4 complete
+  fraction 0.1 complete
+  response nested pair 0/1 complete
+  response nested pair 0/2 complete
+  response nested pair 0/3 complete
+  response nested pair 0/4 complete
+  response nested pair 1/2 complete
+  response nested pair 1/3 complete
+  response nested pair 1/4 complete
+  response nested pair 2/3 complete
+  response nested pair 2/4 complete
+  response nested pair 3/4 complete
+  fraction 0.2 complete
+  response nested pair 0/1 complete
+  response nested pair 0/2 complete
+  response nested pair 0/3 complete
+  response nested pair 0/4 complete
+  response nested pair 1/2 complete
+  response nested pair 1/3 complete
+  response nested pair 1/4 complete
+  response nested pair 2/3 complete
+  response nested pair 2/4 complete
+  response nested pair 3/4 complete
+  fraction 0.4 complete
+  response nested pair 0/1 complete
+  response nested pair 0/2 complete
+  response nested pair 0/3 complete
+  response nested pair 0/4 complete
+  response nested pair 1/2 complete
+  response nested pair 1/3 complete
+  response nested pair 1/4 complete
+  response nested pair 2/3 complete
+  response nested pair 2/4 complete
+  response nested pair 3/4 complete
+  fraction 0.7 complete
+  response nested pair 0/1 complete
+  response nested pair 0/2 complete
+  response nested pair 0/3 complete
+  response nested pair 0/4 complete
+  response nested pair 1/2 complete
+  response nested pair 1/3 complete
+  response nested pair 1/4 complete
+  response nested pair 2/3 complete
+  response nested pair 2/4 complete
+  response nested pair 3/4 complete
+  fraction 1.0 complete
+
+Partition repeat_3
+  endpoint nested pair 0/1 complete
+  endpoint nested pair 0/2 complete
+  endpoint nested pair 0/3 complete
+  endpoint nested pair 0/4 complete
+  endpoint nested pair 1/2 complete
+  endpoint nested pair 1/3 complete
+  endpoint nested pair 1/4 complete
+  endpoint nested pair 2/3 complete
+  endpoint nested pair 2/4 complete
+  endpoint nested pair 3/4 complete
+  response nested pair 0/1 complete
+  response nested pair 0/2 complete
+  response nested pair 0/3 complete
+  response nested pair 0/4 complete
+  response nested pair 1/2 complete
+  response nested pair 1/3 complete
+  response nested pair 1/4 complete
+  response nested pair 2/3 complete
+  response nested pair 2/4 complete
+  response nested pair 3/4 complete
+  fraction 0.1 complete
+  response nested pair 0/1 complete
+  response nested pair 0/2 complete
+  response nested pair 0/3 complete
+  response nested pair 0/4 complete
+  response nested pair 1/2 complete
+  response nested pair 1/3 complete
+  response nested pair 1/4 complete
+  response nested pair 2/3 complete
+  response nested pair 2/4 complete
+  response nested pair 3/4 complete
+  fraction 0.2 complete
+  response nested pair 0/1 complete
+  response nested pair 0/2 complete
+  response nested pair 0/3 complete
+  response nested pair 0/4 complete
+  response nested pair 1/2 complete
+  response nested pair 1/3 complete
+  response nested pair 1/4 complete
+  response nested pair 2/3 complete
+  response nested pair 2/4 complete
+  response nested pair 3/4 complete
+  fraction 0.4 complete
+  response nested pair 0/1 complete
+  response nested pair 0/2 complete
+  response nested pair 0/3 complete
+  response nested pair 0/4 complete
+  response nested pair 1/2 complete
+  response nested pair 1/3 complete
+  response nested pair 1/4 complete
+  response nested pair 2/3 complete
+  response nested pair 2/4 complete
+  response nested pair 3/4 complete
+  fraction 0.7 complete
+  response nested pair 0/1 complete
+  response nested pair 0/2 complete
+  response nested pair 0/3 complete
+  response nested pair 0/4 complete
+  response nested pair 1/2 complete
+  response nested pair 1/3 complete
+  response nested pair 1/4 complete
+  response nested pair 2/3 complete
+  response nested pair 2/4 complete
+  response nested pair 3/4 complete
+  fraction 1.0 complete
+
+Partition repeat_4
+  endpoint nested pair 0/1 complete
+  endpoint nested pair 0/2 complete
+  endpoint nested pair 0/3 complete
+  endpoint nested pair 0/4 complete
+  endpoint nested pair 1/2 complete
+  endpoint nested pair 1/3 complete
+  endpoint nested pair 1/4 complete
+  endpoint nested pair 2/3 complete
+  endpoint nested pair 2/4 complete
+  endpoint nested pair 3/4 complete
+  response nested pair 0/1 complete
+  response nested pair 0/2 complete
+  response nested pair 0/3 complete
+  response nested pair 0/4 complete
+  response nested pair 1/2 complete
+  response nested pair 1/3 complete
+  response nested pair 1/4 complete
+  response nested pair 2/3 complete
+  response nested pair 2/4 complete
+  response nested pair 3/4 complete
+  fraction 0.1 complete
+  response nested pair 0/1 complete
+  response nested pair 0/2 complete
+  response nested pair 0/3 complete
+  response nested pair 0/4 complete
+  response nested pair 1/2 complete
+  response nested pair 1/3 complete
+  response nested pair 1/4 complete
+  response nested pair 2/3 complete
+  response nested pair 2/4 complete
+  response nested pair 3/4 complete
+  fraction 0.2 complete
+  response nested pair 0/1 complete
+  response nested pair 0/2 complete
+  response nested pair 0/3 complete
+  response nested pair 0/4 complete
+  response nested pair 1/2 complete
+  response nested pair 1/3 complete
+  response nested pair 1/4 complete
+  response nested pair 2/3 complete
+  response nested pair 2/4 complete
+  response nested pair 3/4 complete
+  fraction 0.4 complete
+  response nested pair 0/1 complete
+  response nested pair 0/2 complete
+  response nested pair 0/3 complete
+  response nested pair 0/4 complete
+  response nested pair 1/2 complete
+  response nested pair 1/3 complete
+  response nested pair 1/4 complete
+  response nested pair 2/3 complete
+  response nested pair 2/4 complete
+  response nested pair 3/4 complete
+  fraction 0.7 complete
+  response nested pair 0/1 complete
+  response nested pair 0/2 complete
+  response nested pair 0/3 complete
+  response nested pair 0/4 complete
+  response nested pair 1/2 complete
+  response nested pair 1/3 complete
+  response nested pair 1/4 complete
+  response nested pair 2/3 complete
+  response nested pair 2/4 complete
+  response nested pair 3/4 complete
+  fraction 1.0 complete
+{
+  "status": "complete",
+  "timestamp_utc": "2026-09-03T02:16:31.301775+00:00",
+  "freeze_commit": "a0dd986",
+  "cohort_n": 72,
+  "partitions": 6,
+  "primary_method": "P1-D_actual_minus_predicted",
+  "repeated_primary_maes": [
+    {
+      "repeat": 0,
+      "mae": 0.19157319278113236,
+      "rmse": 0.3049522578389282,
+      "median_absolute_error": 0.11120174184021936
+    },
+    {
+      "repeat": 1,
+      "mae": 0.19337112997198502,
+      "rmse": 0.300250636188224,
+      "median_absolute_error": 0.12202817984800374
+    },
+    {
+      "repeat": 2,
+      "mae": 0.19242216885345773,
+      "rmse": 0.29628290349741937,
+      "median_absolute_error": 0.11782677897849836
+    },
+    {
+      "repeat": 3,
+      "mae": 0.18831189161382086,
+      "rmse": 0.3019527027506116,
+      "median_absolute_error": 0.1187858692562237
+    },
+    {
+      "repeat": 4,
+      "mae": 0.18360297642513132,
+      "rmse": 0.2869854314111886,
+      "median_absolute_error": 0.1125480772121965
+    }
+  ],
+  "paired_vs_frozen_solvai": {
+    "mean_absolute_error_difference": 0.003481894618577164,
+    "ci_low_95": 0.0009597288494216667,
+    "ci_high_95": 0.006092698415984924,
+    "probability_lower_error": 0.00292,
+    "fraction_molecules_improved": 0.3194444444444444
+  },
+  "paired_vs_mean_shuffle": {
+    "mean_absolute_error_difference": 0.0005801997270034282,
+    "ci_low_95": -0.0011910754725136664,
+    "ci_high_95": 0.002526322964124729,
+    "probability_lower_error": 0.27577,
+    "fraction_molecules_improved": 0.4722222222222222
+  },
+  "mean_mae_improvement_vs_frozen_solvai": -0.003481894618577164,
+  "stable_improvement_sign_across_repeats": false,
+  "endpoint_gate_positive": false,
+  "endpoint_gate_negative": true,
+  "elapsed_seconds": 2660.389336824417,
+  "input_hashes": {
+    "freeze": "2bc435bb46a0f3697d9a2519a0b72a0cbfa0ca262ebbfad039ebedc60df5166d",
+    "prefix_blocks": "4d316e5695b49930451e6eb5c2073d26cc87f163e5eac04552dbea4517e8fbae",
+    "splits": "f2fb6e9334f7f95da5fd5a52c0d1c1a377cad12fe49528157bc96ddc306fe0c8",
+    "parent_predictions": "22c100d39dd540a05513fab918da0007dde3232b11aa3a0e8cd5467bd1507ca0"
+  },
+  "output_hashes": {
+    "phase1_endpoint_metrics.csv": "705534f36b03b7fff8ac42f5aacee7539550cf0f3e75b5336c7913d223096ec3",
+    "phase1_endpoint_predictions.parquet": "625e313a3199f2049d5022bba24ae27844cdd7a10edee06e5651738c5a4a88fd",
+    "phase1_integration_metrics.csv": "005d7f3175e894161fc2885a8bc6f06135dd9b3728f1071702828ff2956bbb29",
+    "phase1_integration_predictions.parquet": "26f402519862c32b5190200b8a818f4e804466d67056dc6dbc70782131236fee",
+    "phase1_paired_comparisons.csv": "8c92d3d47a38e92773ee89787c0277b7c79ff37c9647d76e2af010467019a124",
+    "phase1_reconstruction_metrics.csv": "8ff3bf6a8e49164baaee54c6f5f3cb6fb026699afbc1e68973cb8bc38c1c2137",
+    "phase1_reconstruction_predictions.parquet": "2475cda515afd5b36ee6a0352b969f3720bfee35acb00efa408b544e85be4456"
+  }
+}

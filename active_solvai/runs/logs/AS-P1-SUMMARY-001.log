@@ -1,0 +1,19 @@
+{
+  "method": "actual-minus-structure-predicted SYSTEM dH/dlambda at lambda 0.1/0.5/0.9",
+  "frozen_solvai_repeat_mae_mean": 0.18637437731052825,
+  "active_repeat_mae_mean": 0.18985627192910542,
+  "paired_active_minus_frozen": {
+    "mean": 0.003481894618577164,
+    "ci_low_95": 0.0009597288494216667,
+    "ci_high_95": 0.006092698415984924,
+    "fraction_below_zero": 0.3194444444444444
+  },
+  "paired_active_minus_shuffle": {
+    "mean": 0.0005801997270034282,
+    "ci_low_95": -0.0011910754725136664,
+    "ci_high_95": 0.002526322964124729,
+    "fraction_below_zero": 0.4722222222222222
+  },
+  "stable_sign": false,
+  "decision": "negative"
+}

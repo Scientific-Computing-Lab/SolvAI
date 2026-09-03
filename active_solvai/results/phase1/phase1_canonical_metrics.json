@@ -1,0 +1,76 @@
+{
+  "best_hidden_point_diagnostic": {
+    "ci_high_95": -4.598141566386572,
+    "ci_low_95": -7.100050672838599,
+    "fraction_below_zero": 0.7916666666666666,
+    "lambda_subset": "0p5_0p9",
+    "mae_P1-F_generic_posterior": 10.526804881435433,
+    "mae_P1-F_solvai_conditioned_posterior": 4.678638482112232,
+    "mean": -5.848166399323201,
+    "n_molecules": 72
+  },
+  "cohort_n": 72,
+  "dense_same_hamiltonian_population_available": false,
+  "direction_decisions": {
+    "A_empirical_probe_residual": "failed preregistered endpoint gate",
+    "B_molecule_conditioned_bayesian_quadrature": "conditional diagnostic go to a bounded prospective dense sentinel; no dense-reconstruction claim yet",
+    "C_adaptive_multifidelity": "held until the dense sentinel establishes a usable reconstruction model"
+  },
+  "generated_utc": "2026-09-03T02:30:27.412303+00:00",
+  "integration_best_repeat_mae": 0.9780890825494597,
+  "output_hashes": {
+    "phase1_endpoint_metrics.csv": "705534f36b03b7fff8ac42f5aacee7539550cf0f3e75b5336c7913d223096ec3",
+    "phase1_endpoint_predictions.parquet": "625e313a3199f2049d5022bba24ae27844cdd7a10edee06e5651738c5a4a88fd",
+    "phase1_exploratory_family_effects.csv": "0a26fec3e0536a13602406bfc8e935986510d8022de77e4bf66478f539d45404",
+    "phase1_integration_metrics.csv": "005d7f3175e894161fc2885a8bc6f06135dd9b3728f1071702828ff2956bbb29",
+    "phase1_integration_predictions.parquet": "26f402519862c32b5190200b8a818f4e804466d67056dc6dbc70782131236fee",
+    "phase1_paired_comparisons.csv": "8c92d3d47a38e92773ee89787c0277b7c79ff37c9647d76e2af010467019a124",
+    "phase1_primary_repeat_summary.csv": "5eb62005b2aa0545dc68969cfe9967621557cc2da11cfca7ca5eee1d2b49006e",
+    "phase1_reconstruction_metrics.csv": "8ff3bf6a8e49164baaee54c6f5f3cb6fb026699afbc1e68973cb8bc38c1c2137",
+    "phase1_reconstruction_paired_comparisons.csv": "0c95761114537512e87bcdbf9d38611b1dd0e5a6968cf06821e05990cd3e1805",
+    "phase1_reconstruction_predictions.parquet": "2475cda515afd5b36ee6a0352b969f3720bfee35acb00efa408b544e85be4456",
+    "phase1_response_metrics.csv": "39270c727619f66c6452987885cd1424d5c06d0a2bf8133a8a8b52409420112d",
+    "phase1_response_predictions.parquet": "9d9a514e2cabec3ea6f43600d9987d886ca11f2c96e2cc4f5f0b18f79397c91b",
+    "phase1_summary.json": "03e3c7cc7af7e6343c9f0b3f5b294f7795a8f7c05814aea18fbee9f9b6372107"
+  },
+  "primary": {
+    "active_repeat_mae_mean": 0.18985627192910542,
+    "decision": "negative",
+    "frozen_solvai_repeat_mae_mean": 0.18637437731052825,
+    "method": "actual-minus-structure-predicted SYSTEM dH/dlambda at lambda 0.1/0.5/0.9",
+    "paired_active_minus_frozen": {
+      "ci_high_95": 0.006092698415984924,
+      "ci_low_95": 0.0009597288494216667,
+      "fraction_below_zero": 0.3194444444444444,
+      "mean": 0.003481894618577164
+    },
+    "paired_active_minus_shuffle": {
+      "ci_high_95": 0.002526322964124729,
+      "ci_low_95": -0.0011910754725136664,
+      "fraction_below_zero": 0.4722222222222222,
+      "mean": 0.0005801997270034282
+    },
+    "stable_sign": false
+  },
+  "response_prediction_mae_by_lambda": [
+    {
+      "index": 0,
+      "lambda": 0.1,
+      "mean": 4.596470681099289,
+      "std": 0.21025208772893011
+    },
+    {
+      "index": 1,
+      "lambda": 0.5,
+      "mean": 2.373178059957305,
+      "std": 0.036619102997044864
+    },
+    {
+      "index": 2,
+      "lambda": 0.9,
+      "mean": 3.581288782867264,
+      "std": 0.08333157407401852
+    }
+  ],
+  "status": "NEGATIVE_ENDPOINT_GATE"
+}

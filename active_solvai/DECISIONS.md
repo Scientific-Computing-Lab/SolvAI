@@ -15,3 +15,10 @@ This file is append-only. Amendments cite the affected prospective freeze and st
 - **Reason:** the blueprint requires the cheapest decisive test first, and raw logs plus `.ene` time series are present locally.
 - **Known limitation:** these are sparse, short, protocol-specific observations, not dense PIMD8 response curves.
 
+## 2026-09-03 — Kill endpoint correction; permit one dense sentinel
+
+- **Evidence visible:** the frozen Phase 1 endpoint result had been scored. The three-point actual-minus-predicted response increased five-repeat MAE by 0.003482 kcal mol⁻¹ (95% paired interval +0.000960 to +0.006093) and did not beat shuffled residuals.
+- **Decision A:** kill empirical endpoint residual correction for this 5 ps PIMD2 protocol. No λ subset, component block or chemical family may rescue it.
+- **Separate reconstruction evidence:** molecule-conditioned Gaussian interpolation reduced held-out response-point error versus a generic Gaussian for several predeclared subsets with approximately nominal coverage, although absolute errors and intervals remained large. No compatible dense response population exists locally.
+- **Decision B:** permit one bounded, prospectively frozen dense PIMD2 sentinel acquisition to test same-Hamiltonian reconstruction. This does not reopen the endpoint gate.
+- **Decision C:** do not launch adaptive multi-fidelity escalation unless the dense sentinel first establishes useful reconstruction against fixed and generic comparators.

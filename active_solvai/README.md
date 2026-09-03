@@ -15,8 +15,9 @@ These targets are evaluated and reported separately.
 
 ```text
 Phase 0: reproduce parent + inventory existing response data
-  -> Phase 1: nested actual-observation gate (no new simulation)
-  -> Phase 2: retrospective dense replay, only if Phase 1 passes
+  -> Phase 1: nested actual-observation gate (endpoint route negative;
+              sparse reconstruction diagnostic conditionally positive)
+  -> Phase 2: bounded prospective dense sentinel for reconstruction
   -> Phase 3: prospective sentinel pilot, only after replay is frozen and passes
   -> Tier-B: only after an explicit scale request and PI approval
 ```
@@ -30,7 +31,14 @@ uv sync --project active_solvai --locked
 uv run --project active_solvai pytest active_solvai/tests -q
 uv run --project active_solvai python active_solvai/scripts/reproduce_parent.py
 uv run --project active_solvai python active_solvai/scripts/inventory_responses.py
+uv run --project active_solvai python active_solvai/scripts/run_phase1_gate.py
+uv run --project active_solvai python active_solvai/scripts/summarize_phase1.py
 ```
 
-Decisive analyses may run only after the corresponding freeze has been committed. Every attempted run is appended to `runs/ledger.jsonl`; failed work is retained and counted.
+The Phase 1 experimental-endpoint gate is a registered null result: actual
+three-point PIMD2 residuals increased five-repeat MAE by 0.00348 kcal mol⁻¹
+relative to frozen SolvAI. A separate held-point reconstruction diagnostic
+supports one bounded dense same-Hamiltonian sentinel test; it does not reopen
+the endpoint claim.
 
+Decisive analyses may run only after the corresponding freeze has been committed. Every attempted run is appended to `runs/ledger.jsonl`; failed work is retained and counted.
