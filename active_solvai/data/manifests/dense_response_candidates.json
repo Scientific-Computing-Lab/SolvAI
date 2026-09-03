@@ -1,0 +1,18 @@
+[
+  {
+    "dataset": "toluene_11_window_test",
+    "path": "/home/galoren/Freecurve_AI_Solvation/repositories/Simulations/MD_TOOLS_PY/test/test_runscripts/test_analyze/data/286227.InWater_C07H08_Toluene/Output",
+    "molecules": 1,
+    "windows": 11,
+    "population_replay_eligible": false,
+    "reason": "single software-test molecule; protocol compatibility requires audit"
+  },
+  {
+    "dataset": "legacy_21_window_ene_temp",
+    "path": "/home/galoren/Freecurve_AI_Solvation/repositories_recovered/scripts/arbalest/ene-temp",
+    "molecules": null,
+    "windows": 21,
+    "population_replay_eligible": false,
+    "reason": "molecular identity and protocol provenance unresolved"
+  }
+]

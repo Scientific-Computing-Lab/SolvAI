@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+title: Active SolvAI
+message: Cite the associated article and repository release when available.
+type: software
+authors:
+  - family-names: Oren
+    given-names: Gal
+  - family-names: Levitt
+    given-names: Michael
+version: 0.1.0
+date-released: 2026-09-03
+

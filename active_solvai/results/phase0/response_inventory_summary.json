@@ -1,0 +1,53 @@
+{
+  "campaigns": {
+    "lambda01": {
+      "attempted": 76,
+      "lambda": 0.1,
+      "successful": 72
+    },
+    "lambda05": {
+      "attempted": 76,
+      "lambda": 0.5,
+      "successful": 74
+    },
+    "lambda09": {
+      "attempted": 76,
+      "lambda": 0.9,
+      "successful": 73
+    }
+  },
+  "complete_three_point_molecules": 72,
+  "generated_utc": "2026-09-03T01:17:39.072484+00:00",
+  "historical_derived": {
+    "long_path": "/home/galoren/Freecurve_AI_Solvation/results/pimd2_multilambda_teacher_long.parquet",
+    "long_sha256": "6e6d445ab8e0ece61aeaa519d73b537f5a077ddda70dd87660f785a2e14e0fef",
+    "long_shape": [
+      228,
+      714
+    ],
+    "wide_path": "/home/galoren/Freecurve_AI_Solvation/results/pimd2_multilambda_teacher.parquet",
+    "wide_sha256": "56b9607a6e53d22c7ec1d504102594141314533e4ca9b90277cc5516675998de",
+    "wide_shape": [
+      76,
+      108
+    ]
+  },
+  "identity_manifest_rows": 85,
+  "prefix_summary_rows": 35680,
+  "raw_bytes_hashed": 25729358,
+  "raw_files_hashed": 1356,
+  "retrospective_replay": {
+    "population_dense_hidden_window_replay": false,
+    "reason": "No compatible dense multi-window population was located in authorized local storage.",
+    "three_point_endpoint_gate": true,
+    "trajectory_prefix_gate": true
+  },
+  "trajectory_fractions": [
+    0.1,
+    0.2,
+    0.4,
+    0.7,
+    1.0
+  ],
+  "unique_probe_molecules": 76
+}

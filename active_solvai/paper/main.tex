@@ -1,0 +1,36 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\title{Active SolvAI: learning what to measure in alchemical hydration calculations}
+\author{Gal Oren \and Michael Levitt}
+\date{}
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Accurate hydration free energies require target-specific sampling, whereas structure-only models can fail under chemical shift. Active SolvAI asks whether sparse response observations from the query molecule can update a transferable SolvAI prior and recover either the same-Hamiltonian alchemical response or the experimental endpoint at lower measured cost. This manuscript is a living preregistered report: quantitative claims are inserted only after their generating analysis has been frozen and completed.
+\end{abstract}
+
+\section{Introduction}
+SolvAI established that structure-predicted solvent responses add information beyond matched molecular features and experimental labels. It did not establish that high-fidelity response can be recovered from structure alone, nor that uncertainty can guide a simulation. We therefore test a different proposition: actual sparse observations may reveal molecule-specific departures from the structure prior.
+
+\section{Results}
+\subsection{Actual-observation gate}
+\textbf{PHASE1\_RESULT\_PENDING.} The primary estimand is the paired held-out endpoint-error change obtained from actual-minus-prior response residuals relative to frozen SolvAI. Same-Hamiltonian reconstruction and experimental prediction are reported separately.
+
+\subsection{Retrospective replay}
+\textbf{REPLAY\_RESULT\_PENDING.} This section will be populated only if the preregistered Phase 1 go criterion is met.
+
+\subsection{Prospective sentinels}
+\textbf{PILOT\_RESULT\_PENDING.} This section will be populated only after a replay policy and its comparators are frozen.
+
+\section{Discussion}
+The study is designed to support a positive, neutral or negative conclusion without changing its scientific question. Any benefit for same-Hamiltonian reconstruction will not by itself be described as improved agreement with experiment; any endpoint benefit without curve reconstruction will be described as an empirical residual diagnostic rather than successful quadrature.
+
+\section{Methods}
+The parent SolvAI artifact, cohorts, splits and response campaigns are versioned by SHA-256. All preprocessing, calibration and model selection occur inside molecule-held-out training data. Destructive controls preserve response distributions while shuffling molecule alignment. Every attempted run, including failures, is included in the compute ledger.
+
+\end{document}
+

@@ -1,0 +1,1 @@
+run_id,parent_run_id,timestamp_utc,git_commit,dirty,config_sha256,molecule_id,exposure_tier,outer_split,action,fidelity,lambda,beads,requested_steps,completed_steps,seed,device,wall_hours,gpu_hours,cpu_hours,simulated_ps,force_evaluations,bead_windows,qc_status,failure_reason,input_sha256,output_sha256

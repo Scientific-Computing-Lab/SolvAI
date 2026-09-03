@@ -1,0 +1,40 @@
+{
+  "fixed_primary": {
+    "n": 85,
+    "solvai_mae_kcal_mol": 0.20223406721910994,
+    "structure_only_mae_kcal_mol": 0.3033484655954973
+  },
+  "model_files_verified": 9,
+  "model_hashes": {
+    "MODEL_CARD.md": "a20bd031f5b85ba4f8fea701fa74f3d71f092ce79abb0c19b517711ff8ecfbde",
+    "abraham_teacher.joblib": "8c8a6365e7162dbe6ae445ce4004928ed86b2669d3e7a70d3d054f143ca97554",
+    "combisolv_qm.pt": "2950be1232e2f868136e3388cf139e671d4196922ece0d3c7043d9dadece8b40",
+    "confsolv_teacher.joblib": "a71487e53d5085e897dad02e62e95562933bc47262145fbf44286aae04b70b0d",
+    "head.joblib": "fdc88cbae31696f254d85eb427b3c53a4811f29b3290d605b4f1ea66ebb95790",
+    "implicit_teacher.joblib": "484d5e0c1efa759c8e7acbfcbbd87e218b93ae239e7f35303fe4cd7e310910f8",
+    "model_card.json": "0f78177a701320a5aad77c45304ea73d5ca4799fb91e4f4fd01d0bb83f8e1244",
+    "molsolv_smd.pt": "35601030f030af72a9e6990bf8003df9d481858b27994b3fc70c81d605d130be",
+    "openff_teacher.joblib": "55b7d31a293dd61fe57f5505e015775d7d86f53dca69980d398843706d58bb9b"
+  },
+  "parent_commit_expected": "531f6cfd21e319c951b461c9ef24fa754790f91d",
+  "smoke_predictions": [
+    {
+      "prediction_kcal_mol": -5.01256597222221,
+      "smiles": "CCO",
+      "spread": 0.004713819174627497
+    },
+    {
+      "prediction_kcal_mol": -0.8935898148148143,
+      "smiles": "c1ccccc1",
+      "spread": 0.0029209778322461847
+    }
+  ],
+  "source_hashes": {
+    "main_pdf": "7bf883c62828e08f25b65fded21a4a149dc776f198f0a26ee03394b6fd52f041",
+    "paper_metrics_json": "cb8c788234ded4764aad85900fc1e82c7c1840d8140f5c6c7847419809e3d946",
+    "parent_predictions": "22c100d39dd540a05513fab918da0007dde3232b11aa3a0e8cd5467bd1507ca0",
+    "supplement_pdf": "58b46b69f5b6d23a21e0eece00103b9c904f4227874aad345a6bcdc87cc81d89"
+  },
+  "status": "PASS",
+  "timestamp_utc": "2026-09-03T01:15:19.012701+00:00"
+}
