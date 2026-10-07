@@ -61,11 +61,12 @@ def test_journal_figures_use_vector_assets():
     main = (ROOT / "paper/main.tex").read_text()
     supplementary = (ROOT / "paper/supplementary/supplementary.tex").read_text()
     main += (ROOT / "paper/endpoint_results.tex").read_text()
+    main += (ROOT / "paper/endpoint_size_results.tex").read_text()
     assert ".png}" not in main + supplementary
     assert ".jpg}" not in main + supplementary
-    names=['F1_overview','F2_learning_and_evaluation','F3_matched_evidence',
-           'F4_modern_comparisons','F5_generalization','F6_source_composition',
-           'F7_endpoint_comparison','F8_size_and_stress']
+    names=['F1_overview','F2_learning_and_evaluation','F3_endpoint_comparison',
+           'F4_matched_evidence','F5_modern_comparisons','F6_generalization',
+           'F7_source_composition','F8_size_and_stress']
     folder=ROOT/'paper/figures/journal'
     manifest=json.loads((folder/'sources.json').read_text())
     assert manifest['main_figures']==names
@@ -75,7 +76,7 @@ def test_journal_figures_use_vector_assets():
         assert f'{{{name}.pdf}}' in main
         assert (folder/f'{name}.pdf').is_file()
         svg=(folder/f'{name}.svg').read_text()
-        assert bool(re.search(r'<(?:\w+:)?image\b',svg)) == (name in names[:2])
+        assert bool(re.search(r'<(?:\w+:)?image\b',svg)) == (name == 'F1_overview')
         assert '<text' in svg
     for field in ['source_sha256','builder_sha256']:
         for path,digest in manifest[field].items():
@@ -194,3 +195,25 @@ def test_journal_tree_edges_meet_nodes_and_repeated_scores_are_preserved():
         for scatter in [c for c in axis.collections if isinstance(c, PathCollection)]:
             positions = axis.transData.transform(scatter.get_offsets())
             assert not any(box.contains(x,y) for x,y in positions)
+
+
+def test_native_tree_port_geometry_and_endpoint_mechanisms():
+    from unittest.mock import patch
+    import sys
+    sys.path.insert(0,str(ROOT/'scripts'))
+    import journal_diagram as d
+    c=d.Art(120,'Native tree geometry')
+    edges=[];circles=[];leaves=[]
+    with patch.object(c,'line',side_effect=lambda x1,y1,x2,y2,*a,**k:edges.append(((x1,y1),(x2,y2)))), \
+         patch.object(c,'circle',side_effect=lambda x,y,*a,**k:circles.append((x,y))), \
+         patch.object(c,'rect',side_effect=lambda x,y,w,h,*a,**k:leaves.append((x+w/2,y+h/2))):
+        root,output=d.tree(c,5,10,100,70,selected=2)
+    nodes=circles+leaves
+    assert len(edges)==6 and len(nodes)==len(set(nodes))==7
+    assert all(a in nodes and b in nodes for a,b in edges)
+    assert root==circles[0] and output==(leaves[2][0],leaves[2][1]+3.5)
+    for n in [8,9,10]:
+        svg=(ROOT/f'paper/supplementary/figures/Supp_Fig{n}_endpoint_mechanisms.svg').read_text()
+        assert '<image' not in svg and 'data:image/' not in svg
+    svg=(ROOT/'paper/supplementary/figures/Supp_Fig10_endpoint_mechanisms.svg').read_text()
+    assert 'diag(sᵢ) W diag(rᵢ) x' in svg

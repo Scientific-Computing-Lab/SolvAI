@@ -79,10 +79,10 @@ all valid MoLFormer endpoint comparisons were refitted. Identical repeated encod
 gave zero change; changes in query order and batching produced representation
 differences below $3\times10^{-5}$. Fresh encoding through endpoint prediction
 agreed within $4.9\times10^{-6}$ kcal mol$^{-1}$. Corrected fixed-tree results
-replace the earlier cache-based values in Fig.~4 and Supplementary Tables~11--12.
+replace the earlier cache-based values in Fig.~5 and Supplementary Tables~11--12.
 Legacy stochastic-cache branches remain labelled in the released diagnostic data
 and are excluded from valid-model selection and the manuscript's performance
-comparisons. Uni-Mol's conformer pipeline and the original ExtraTrees release are
+comparisons. Uni-Mol's conformer pipeline and the packaged ExtraTrees endpoint are
 unaffected. Original encoder pretraining membership remains unaudited.
 
 TabPFN-3.5 uses \texttt{tabpfn} 9.1.0 and full/Fast checkpoints from revision
@@ -113,7 +113,7 @@ The comprehensive policy selects the eligible option with lowest repeated inner
 score independently in each partition. It selects TabPFN in all six partitions.
 Five-seed final predictions use seeds 11, 29, 47, 71 and 101; controls remove only
 the responses. Common-three-seed means address the unequal ensemble size relative
-to the original three-seed trees. Every fitted-state replay and final identity/label
+to the three-seed ExtraTrees fits. Every fitted-state replay and final identity/label
 audit passed. Licensed TabPFN weights and fitted contexts are retained privately;
 contexts embed training labels and are not public model-weight substitutes.
 

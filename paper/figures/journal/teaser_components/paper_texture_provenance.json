@@ -1,0 +1,69 @@
+{
+  "kind": "non-evidential Azure-generated paper texture",
+  "deployment": "gpt-image-2",
+  "raw_sha256": "6f6dd6320c269f32b6480fddba4e64d0acd76980066eff09eb47a35ce4c896a8",
+  "generation_geometry_rejected": "The generated artwork did not preserve six incoming lanes. Only interior paper-color samples are reused; all topology is authored in SVG.",
+  "background": "Delivered composites have exact #FFFFFF unillustrated backgrounds.",
+  "samples": [
+    {
+      "path": "paper_texture_1.png",
+      "crop_box": [
+        920,
+        331,
+        1120,
+        355
+      ],
+      "sha256": "ecf8eedd8cfc0a0995ee80d8ad27c9756201cd26fc1943adc94366444bd9957e"
+    },
+    {
+      "path": "paper_texture_2.png",
+      "crop_box": [
+        920,
+        398,
+        1120,
+        422
+      ],
+      "sha256": "6ca62db5e80fa4bb4f8b85c3e5ba5c4f544d81d963ddf2d87df8a425b7e77e5f"
+    },
+    {
+      "path": "paper_texture_3.png",
+      "crop_box": [
+        920,
+        476,
+        1120,
+        500
+      ],
+      "sha256": "e37806e6cbd91eabae2593aa83d848aaea1f606c28ca0f9a3cf424f6af0476a7"
+    },
+    {
+      "path": "paper_texture_4.png",
+      "crop_box": [
+        920,
+        551,
+        1120,
+        575
+      ],
+      "sha256": "5fe5412b4ec29d1eb3bdce27d3db2797f32967bc7db159e7c90c8adad2213da2"
+    },
+    {
+      "path": "paper_texture_5.png",
+      "crop_box": [
+        920,
+        627,
+        1120,
+        651
+      ],
+      "sha256": "7b99bba5fdbc5d5844c5f54a7e7580204a7982d42767bd22435e27016e0ea21b"
+    },
+    {
+      "path": "paper_texture_6.png",
+      "crop_box": [
+        920,
+        711,
+        1120,
+        735
+      ],
+      "sha256": "71b627bd785900c2a51a3c3257e2d0b9a69c3ceca57262856bd0dd98bddbbc7e"
+    }
+  ]
+}

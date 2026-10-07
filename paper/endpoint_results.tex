@@ -1,36 +1,40 @@
-\subsection*{Changing the endpoint without changing the response sources}
+\subsection*{One response representation, different endpoint behaviors}
 
-Tree ensembles are effective interpolators, but their predictions are averages of
-training-leaf values. They cannot continue a trend beyond their output range simply
-because a query contains more atoms. We therefore tested whether the same frozen
-response descriptors could support endpoints with different ways of representing
-and combining molecular information (Table~\ref{tab:endpoints}). This comparison
-includes residual multilayer perceptrons (MLPs), separate structure and response
-branches, a linear predictor with a neural residual, message-passing networks with
-size-sensitive readouts, frozen MoLFormer representations with neural heads, TabM
-parameter-sharing ensembles, and TabPFN-3.5 in-context prediction. TabM shares most
-weights across multiple neural predictions; TabPFN uses a pretrained transformer
-conditioned on labelled training rows rather than fitting a new network by gradient
-descent.\cite{tabm2025,tabpfn2025,tabpfn35}
-Supplementary Figs.~8--10 explain the distinct mechanisms. The MoLFormer--ExtraTrees
-control changes the representation without removing the tree endpoint.
+The 15 frozen response predictions can be combined with different molecular
+representations and endpoint learners. We evaluated ExtraTrees, residual multilayer
+perceptrons (MLPs), separate structure and response branches, a linear predictor
+with a neural residual, message-passing graphs with size-sensitive readouts, frozen
+MoLFormer representations with neural heads, TabM parameter-sharing ensembles,
+and TabPFN-3.5 in-context prediction (Table~\ref{tab:endpoints}). TabM shares
+most weights across multiple neural predictions; TabPFN uses a pretrained
+transformer conditioned on labelled training rows.\cite{tabm2025,tabpfn2025,tabpfn35}
+A MoLFormer--ExtraTrees fit changes the representation while retaining a tree
+endpoint. Supplementary Figs.~8--10 depict the mechanisms. We ask separately
+which endpoints predict most accurately and whether adding the responses helps
+each one; these need not have the same answer.
 
-The comparison is retrospective: these evaluation sets were already known during
-method development. Within each outer partition, configuration and training duration
-were chosen using only its training-side validation data. We completed longer-training,
-representation and width challenges, locked the selection policy, and then fitted
-the final models. The policy selected TabPFN in all five ARROW folds and the external
-fit. The selected input recipe can differ by partition; the external TabPFN fit
-uses RDKit descriptors, a frozen MoLFormer encoding and the responses.
-The no-response controls inherit each selected recipe; they are matched ablations,
-not separately optimized structural baselines. Original shuffled-response and
-chemical-separation results remain evidence about ExtraTrees, not about these new heads.
+This architecture comparison is retrospective: the evaluation sets were already
+known during method development. Within each outer partition, configuration and
+training duration were chosen using only training-side validation data. We
+completed longer-training, representation and width challenges, locked the
+selection policy, and then fitted the final models. The policy selected TabPFN
+in all five ARROW folds and the external fit. Input recipes can differ by
+partition; the external TabPFN fit uses RDKit descriptors, a frozen MoLFormer
+encoding and the responses. No-response controls inherit each selected recipe;
+they are paired ablations, not separately optimized structural baselines.
+The common comparison for all nine fixed configurations uses the same ARROW-85,
+External-220 and nested
+Strict-97 evaluation identities, with a paired no-response fit for each
+configuration. Eight configurations were also refitted for the separate
+size-held-out diagnostic; the MoLFormer--ExtraTrees combination was not.
+Shuffled-response and chemical-separation results below concern the ExtraTrees
+fits and are not claims about the other endpoints.
 
 \begin{table}[t]
 \centering\small
 \caption{\textbf{Endpoint mechanisms and their measured accuracy.}
 All entries include the 15 response descriptors. MAE is in kcal mol$^{-1}$.
-The first three columns use the original evaluation identities; Strict-97 is nested
+The first three columns use the ARROW and external evaluation identities; Strict-97 is nested
 within External-220. Neural and TabPFN predictions average five seeds, tree
 controls three. The final column is a separate exploratory size-held-out refit on
 1,160 training and 205 held-out molecules, using three seeds for every method.
@@ -40,31 +44,44 @@ matched no-response controls and common-three-seed results.}
 \input{tables/endpoint_summary.tex}
 \end{table}
 
-TabPFN reaches MAEs of 0.199, 1.134 and 1.493 kcal mol$^{-1}$ on ARROW-85,
-External-220 and Strict-97, respectively. The corresponding ExtraTrees errors are
-0.202, 1.153 and 1.536. The ARROW paired difference is $-0.003$ kcal mol$^{-1}$
-(95\% interval, $-0.054$ to $0.066$); all three comparison intervals include zero.
-The point estimates are close, but do not establish statistical superiority or
-equivalence. Nor is response augmentation uniformly beneficial within TabPFN:
-its no-response errors are 0.218, 1.131 and 1.347, and all three paired
-response-minus-no-response intervals include zero (Fig.~\ref{fig:endpoints}).
+The lowest full-model point estimate changes with the evaluation: TabPFN has
+0.199 kcal mol$^{-1}$ on ARROW-85, a MoLFormer neural head has 1.111 on
+External-220, ridge plus a neural residual has 1.429 on Strict-97, and TabPFN
+has 1.318 in the exploratory size refit (Table~\ref{tab:endpoints}). ExtraTrees
+also fits the small reference set closely at 0.202 but is less accurate on the
+size holdout. These ranks are descriptive, not a statistically established
+ordering of all endpoint pairs.
 
-Other architectures show different strengths. With a neural head, response
-augmentation lowers MoLFormer errors from 0.465 to 0.273 on ARROW, 1.332 to 1.111
-externally, and 1.685 to 1.450 on Strict-97; each paired interval is below zero.
-Graph and TabM endpoints also show response benefits on both external evaluations,
-although their ARROW errors remain about 0.29. Simply substituting a residual MLP
-does not retain the original accuracy: its ARROW error is 0.340. A width-adaptive
-selection variant reaches 1.090 externally, but its difference from ExtraTrees is
-unresolved ($-0.062$; 95\% interval, $-0.157$ to $0.027$). This variant is a
-training-side selection rule that can choose different configurations across
-partitions, not a single additional architecture. Complete variants, unsuccessful
-choices and paired intervals appear in Supplementary Tables~13--14 and Data~6.
+Within-family response effects tell a different story (Fig.~\ref{fig:endpoints}).
+On External-220 and its nested Strict-97 subset, seven of the nine fixed
+endpoint configurations have descriptive paired intervals below zero when the
+responses are added. These include ExtraTrees, the residual MLP, dual branches,
+message passing, a MoLFormer neural head, TabM, and MoLFormer with a tree head.
+On ARROW-85, the intervals are below zero for ExtraTrees and the two MoLFormer
+endpoints. The neural MoLFormer fit changes from 0.465 to 0.273 on ARROW,
+1.332 to 1.111 externally, and 1.685 to 1.450 on Strict-97. The residual
+MLP's external response gain does not compensate for its higher absolute error.
+Ridge plus a neural residual gives the lowest full-model Strict-97 point estimate,
+but removing responses lowers its error further, from 1.429 to 1.294. TabPFN
+has the lowest ARROW point estimate, yet its response-minus-no-response intervals
+include zero on all three original cohorts.
 
-\begin{figure}[p]
+The mechanisms therefore illuminate different trade-offs rather than a single
+winner: separate input branches and the shared-parameter TabM ensemble improve
+the size-holdout estimate; message passing makes molecular size available to its
+readout without imposing additivity; and the MoLFormer--ExtraTrees pair changes
+the molecular representation while retaining a bounded endpoint. A
+width-adaptive selection variant reaches 1.090 externally, but its difference
+from ExtraTrees is unresolved ($-0.062$; 95\% interval, $-0.157$ to $0.027$).
+This variant is a training-side selection rule that can choose different
+configurations across partitions, not another architecture. Complete variants,
+unsuccessful choices and paired intervals appear in Supplementary Tables~13--15
+and Data~6.
+
+\begin{figure}[!htbp]
 \centering
-\includegraphics[width=\textwidth]{F7_endpoint_comparison.pdf}
-\caption{\textbf{The response contribution depends on the endpoint architecture.}
+\includegraphics[width=\textwidth]{F3_endpoint_comparison.pdf}
+\caption{\textbf{The response contribution varies among endpoint families.}
 \textbf{a--c}, Paired MAE changes from adding the same 15 response descriptors to
 each selected endpoint recipe on ARROW-85, External-220 and Strict-97.
 Negative values favor response augmentation. Bars are descriptive 95\% percentile
@@ -76,68 +93,3 @@ accuracy and seed counts are given in Table~\ref{tab:endpoints}; family-specific
 configuration choices are retained in Supplementary Data~6.}
 \label{fig:endpoints}
 \end{figure}
-
-\subsection*{Size transfer requires a separate test}
-
-To test accuracy beyond the endpoint's training-size range, we held out the largest 15\% of
-molecules within each endpoint source and refitted every evaluated model, including
-ExtraTrees, on the remaining 1,160 labels. The 205 held-out molecules contain
-8--37 heavy atoms; 188 exceed the largest training molecule, which has 17.
-The overlapping lower end results from applying the rule within each source.
-These labels were available during earlier random-fold development, so this is
-an exploratory size diagnostic, not an untouched prospective test. The response
-surrogates remain fixed: this comparison tests endpoint transfer conditional on
-their predictions, not size extrapolation with all response-source exposure removed.
-
-TabPFN reduces the size-held-out MAE from 1.772 for ExtraTrees to 1.318
-kcal mol$^{-1}$ (paired difference $-0.453$; 95\% interval, $-0.648$ to $-0.281$;
-Fig.~\ref{fig:size}a). Here its response descriptors also help: without them the
-error is 1.959 (response-minus-control difference $-0.640$; interval, $-0.847$ to
-$-0.451$). TabM, the linear-plus-neural model and the dual-branch model also reduce
-error relative to ExtraTrees, with paired intervals below zero. These results
-identify useful alternatives for this size split; they do not imply the same ordering
-for every new chemical family (Supplementary Table~15).
-
-Capped glycine and alanine series ask a complementary question about prediction
-shape. ExtraTrees approaches plateaus near $-23$ and $-25$ kcal mol$^{-1}$, whereas
-several neural endpoints and TabPFN continue to change over the tested range
-(Fig.~\ref{fig:size}b,c). For Ac-(Gly)$_n$-NHMe, TabPFN predicts $-40.802$ at
-$n=6$ and $-67.194$ at $n=12$, compared with $-23.005$ and $-23.440$ for
-ExtraTrees. No experimental peptide values are available here: these are predictions,
-not errors, and a more negative or more linear curve is not evidence of greater
-physical accuracy. The finite outer bound on the mean prediction is approximately
-$[-32.595,5.757]$ for the released trees and $[-658.495,649.922]$ for the fitted
-TabPFN ensemble. The latter is much wider but still finite; neither architecture
-guarantees asymptotic extensivity.
-
-\begin{figure}[p]
-\centering
-\includegraphics[width=\textwidth]{F8_size_and_stress.pdf}
-\caption{\textbf{Labelled size transfer and unlabelled series answer different questions.}
-\textbf{a}, MAE on the 205-molecule size holdout after refitting on the same 1,160
-training labels. Filled and open marks denote models with and without responses.
-All predictions average three seeds. This diagnostic reuses development labels
-under a different split. \textbf{b,c}, Predictions along capped glycine and alanine
-series, using the full-data models with responses. Neural and TabPFN curves
-average five seeds; ExtraTrees averages three. These curves have no peptide
-reference values and therefore do not rank physical accuracy. The abscissa is the
-number of residues between the acetyl and N-methylamide caps; $n=0$ is
-N-methylacetamide. Colors identify the same families in both panels.}
-\label{fig:size}
-\end{figure}
-
-Linear alkanes expose an additional limitation. TabPFN remains non-monotonic between
-C10 and C14 (3.348 and 3.046 kcal mol$^{-1}$), despite its changed peptide behavior.
-Moreover, 27 of the 30 tested alkanes occur in endpoint training, so this series is
-not an independent extrapolation benchmark. A source audit confirmed that the
-low C14 and C16 training values were copied faithfully from their source; removing
-these two labels raises the corresponding tree predictions. We retain the original
-labels and report the sensitivity rather than substitute an assumed linear trend
-(Supplementary Methods~S20).
-
-Finally, the native TabPFN predictive distributions do not yet provide calibrated
-reliability. Equal mixtures of the five fitted distributions give nominal 80\%
-and 95\% intervals with only 58.2\% and 80.0\% empirical coverage on External-220;
-the corresponding Strict-97 coverages are 55.7\% and 76.3\%. These are predictive
-intervals, not the spread across seeds. No calibration or model reselection was
-performed on these outcomes (Supplementary Fig.~11 and Table~16).

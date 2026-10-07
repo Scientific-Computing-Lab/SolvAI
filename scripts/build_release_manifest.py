@@ -85,11 +85,11 @@ TARGETS = [
 # The current journal PDF includes its supplement. Retain hashes for every vector
 # asset and frozen analysis input used by the journal extension as well.
 TARGETS += ["repro/JOURNAL_COMPARISONS.md", "repro/JOURNAL_FIGURES.md",
-            "paper/endpoint_results.tex", "paper/endpoint_methods.tex",
+            "paper/endpoint_results.tex", "paper/endpoint_size_results.tex", "paper/endpoint_methods.tex",
             "paper/supplementary/endpoint_methods.tex"]
 for pattern in (
     "paper/figures/journal/*.pdf", "paper/figures/journal/*.svg",
-    "paper/figures/journal/sources.json", "paper/figures/journal/teaser_components/*.png", "paper/tables/journal*.tex",
+    "paper/figures/journal/sources.json", "paper/figures/journal/teaser_components/*.png", "paper/figures/journal/teaser_components/*.json", "paper/tables/journal*.tex",
     "paper/supplementary/tables/*.tex", "paper/supplementary/figures/*.pdf",
     "paper/supplementary/figures/*.svg", "results/journal_20261002/*.csv",
     "results/journal_20261002/*.json",

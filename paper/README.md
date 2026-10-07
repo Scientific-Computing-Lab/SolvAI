@@ -25,13 +25,15 @@ pagination, bookmarks and cross-references consistent. There is no independent
 supplement PDF to maintain.
 
 The publication build includes eight main figures and twelve supplementary figures.
-Quantitative plots are vector PDF/SVG. Figures 1--2 and Supplementary
-Figures 8--10 combine conceptual raster motifs with editable vector labels and
-connectors; they are not quantitative data or molecular structures. Components and
+All scientific graphics and mechanisms are native vector PDF/SVG. Figure 1 uses
+small Azure-generated paper-texture samples inside six explicitly authored vector
+streams. The textures carry no scientific topology or data. Components and
 composition scripts are retained. These sources do not contain author-facing submission
 notes, editorial reviews or internal design prompts. Machine-readable supplementary
 data remain in `supplementary_data/` and are not replaced by the PDF tables.
-The extended endpoint study is in `endpoint_results.tex`, `endpoint_methods.tex`
-and `supplementary/endpoint_methods.tex`; its source outputs are in
+The architecture comparison is part of the main Results, before the ExtraTrees
+controls; the size diagnostic is reported separately. These sections are in
+`endpoint_results.tex` and `endpoint_size_results.tex`. Their methods are in
+`endpoint_methods.tex` and `supplementary/endpoint_methods.tex`; their source outputs are in
 `../results/endpoint_models_20261006/`. See `../repro/endpoint_models/README.md`
 for the distinction between reproducible frozen results and licensed training inputs.

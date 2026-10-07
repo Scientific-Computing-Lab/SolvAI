@@ -1,14 +1,15 @@
-\begin{tabular}{@{}p{3.65cm}p{4.7cm}rrrr@{}}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{3.85cm}>{\raggedright\arraybackslash}p{5.25cm}rrrr@{}}
 \toprule
-Endpoint & Main mechanism & ARROW & External & Strict & Size \\
+Endpoint & Mechanism and observed pattern & ARROW & External & Strict & Size \\
 \midrule
-ExtraTrees & Leaf averages & 0.202 & 1.153 & 1.536 & 1.772 \\
-Residual MLP & Residual connections & 0.340 & 1.428 & 2.016 & 1.813 \\
-Dual branch & Separate input branches & 0.288 & 1.234 & 1.616 & 1.560 \\
-Ridge + neural residual & Linear trend + nonlinear residual & 0.336 & 1.172 & 1.429 & 1.391 \\
-Message passing & Size-sensitive graph readout & 0.288 & 1.168 & 1.505 & 1.729 \\
-MoLFormer + neural head & Frozen sequence representation & 0.273 & 1.111 & 1.450 & 1.609 \\
-TabM & Shared-parameter ensemble & 0.291 & 1.132 & 1.454 & 1.389 \\
-TabPFN-3.5 & Pretrained context prediction & 0.199 & 1.134 & 1.493 & 1.318 \\
-MoLFormer + ExtraTrees & Representation-only change & 0.234 & 1.174 & 1.564 & -- \\
+
+ExtraTrees & Leaf averages; bounded output & 0.202 & 1.153 & 1.536 & 1.772 \\
+Residual MLP & Residual links; external response gain & 0.340 & 1.428 & 2.016 & 1.813 \\
+Dual branch & Separate inputs; improved size transfer & 0.288 & 1.234 & 1.616 & 1.560 \\
+Ridge + neural residual & Linear trend + correction; low Strict error & 0.336 & 1.172 & 1.429 & 1.391 \\
+Message passing & Size-aware graph; external response gain & 0.288 & 1.168 & 1.505 & 1.729 \\
+MoLFormer + neural head & Frozen sequence encoding; low external error & 0.273 & 1.111 & 1.450 & 1.609 \\
+TabM & Shared neural ensemble; low size error & 0.291 & 1.132 & 1.454 & 1.389 \\
+TabPFN-3.5 & Label-conditioned transformer; low size error & 0.199 & 1.134 & 1.493 & 1.318 \\
+MoLFormer + ExtraTrees & Frozen encoding + trees; input contrast & 0.234 & 1.174 & 1.564 & -- \\
 \bottomrule\end{tabular}

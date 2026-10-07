@@ -1,0 +1,68 @@
+\subsection*{Testing transfer to larger molecules}
+
+To test accuracy beyond the endpoint's training-size range, we held out the largest 15\% of
+molecules within each endpoint source and refitted eight of the nine fixed endpoint
+configurations on the remaining 1,160 labels. The MoLFormer--ExtraTrees
+combination was not included in this diagnostic. The 205 held-out molecules contain
+8--37 heavy atoms; 188 exceed the largest training molecule, which has 17.
+The overlapping lower end results from applying the rule within each source.
+These labels were available during earlier random-fold development, so this is
+an exploratory size diagnostic, not an untouched prospective test. The response
+surrogates remain fixed: this comparison tests endpoint transfer conditional on
+their predictions, not size extrapolation with all response-source exposure removed.
+
+TabPFN reduces the size-held-out MAE from 1.772 for ExtraTrees to 1.318
+kcal mol$^{-1}$ (paired difference $-0.453$; 95\% interval, $-0.648$ to $-0.281$;
+Fig.~\ref{fig:size}a). Here its response descriptors also help: without them the
+error is 1.959 (response-minus-control difference $-0.640$; interval, $-0.847$ to
+$-0.451$). The refits use separately locked input recipes, so the cross-endpoint
+contrast does not isolate architecture from representation or preprocessing.
+TabM, the linear-plus-neural model and the dual-branch model also reduce
+error relative to ExtraTrees, with paired intervals below zero. These results
+identify useful alternatives for this size split; they do not imply the same ordering
+for every new chemical family (Supplementary Table~15; Supplementary Data~6,
+\nolinkurl{size_diagnostic_comparisons.csv}).
+
+Capped glycine and alanine series ask a complementary question about prediction
+shape. ExtraTrees approaches plateaus near $-23$ and $-25$ kcal mol$^{-1}$, whereas
+several neural endpoints and TabPFN continue to change over the tested range
+(Fig.~\ref{fig:size}b,c). For Ac-(Gly)$_n$-NHMe, TabPFN predicts $-40.802$ at
+$n=6$ and $-67.194$ at $n=12$, compared with $-23.005$ and $-23.440$ for
+ExtraTrees. No experimental peptide values are available here: these are predictions,
+not errors, and a more negative or more linear curve is not evidence of greater
+physical accuracy. The finite outer bound on the mean prediction is approximately
+$[-32.595,5.757]$ for the released trees and $[-658.495,649.922]$ for the fitted
+TabPFN ensemble. The latter is much wider but still finite; neither architecture
+guarantees asymptotic extensivity.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\textwidth]{F8_size_and_stress.pdf}
+\caption{\textbf{Labelled size transfer and unlabelled series answer different questions.}
+\textbf{a}, MAE on the 205-molecule size holdout after refitting on the same 1,160
+training labels. Filled and open marks denote models with and without responses.
+All predictions average three seeds. This diagnostic reuses development labels
+under a different split. \textbf{b,c}, Predictions along capped glycine and alanine
+series, using the full-data models with responses. Neural and TabPFN curves
+average five seeds; ExtraTrees averages three. These curves have no peptide
+reference values and therefore do not rank physical accuracy. The abscissa is the
+number of residues between the acetyl and N-methylamide caps; $n=0$ is
+N-methylacetamide. Colors identify the same families in both panels.}
+\label{fig:size}
+\end{figure}
+
+Linear alkanes expose an additional limitation. TabPFN remains non-monotonic between
+C10 and C14 (3.348 and 3.046 kcal mol$^{-1}$), despite its changed peptide behavior.
+Moreover, 27 of the 30 tested alkanes occur in endpoint training, so this series is
+not an independent extrapolation benchmark. A source audit confirmed that the
+low C14 and C16 training values were copied faithfully from their source; removing
+these two labels raises the corresponding tree predictions. We retain the original
+labels and report the sensitivity rather than substitute an assumed linear trend
+(Supplementary Methods~S20).
+
+Finally, the native TabPFN predictive distributions do not yet provide calibrated
+reliability. Equal mixtures of the five fitted distributions give nominal 80\%
+and 95\% intervals with only 58.2\% and 80.0\% empirical coverage on External-220;
+the corresponding Strict-97 coverages are 55.7\% and 76.3\%. These are predictive
+intervals, not the spread across seeds. No calibration or model reselection was
+performed on these outcomes (Supplementary Fig.~11 and Table~16).

@@ -128,12 +128,13 @@
     "old_results": "Retained only as explicitly marked diagnostic data; not valid scientific comparisons."
   },
   "analysis_sources": {
-    "make_figures.py": "5660cb160f649d93f295279a10a7dd86a5814783d8835706f17fad1225e54bc5",
-    "make_endpoint_figures.py": "e94f180d34f2e13746d5ea2dec8010cab7735d663984b755c163b65234e6ac23",
-    "make_endpoint_concepts.py": "a8b3da5ed26889558cd4b91f08771727591514c61b5ccd9ea43bbed15661c3be",
-    "make_local_journal_figures.py": "74b8b3e728d3f7428a78a4605c0154d8364caff703b9ff02e8a4486a30c2844a",
+    "make_figures.py": "1f6fadf8da02b86168f398a4dde3660b4ebd4e7c96fbe16bad3dcdf95c123ec2",
+    "make_endpoint_figures.py": "6dd4de5f5b77d73be8cd57c8f5f9343957e3f07963672500799bdc5dfda2dd8b",
+    "make_endpoint_concepts.py": "b7b93554df0c02ce23d482653dd8e16aa9ff31fd2da1d27df5486fb0d14f6926",
+    "make_local_journal_figures.py": "4de1fd0c35507cd4788aa9b865505c0c34af1d962f75e9fcc31d631480ada0ad",
     "journal_vector_art.py": "c2d7a2631703696bbc8cf88b1d0c9dc569cdc47c0e6df5b77aff5634c371dc11",
-    "journal_teaser.py": "daba4a0dd00d2a3b8615db0e10c893d5c655c3eb0bc2c00c45a323b682703f27",
-    "journal_style.py": "ee0b6ab2f24a5c1ef59c88403e0a399b7220cc6638bd2a522a1371a17fd2c868"
+    "journal_teaser.py": "62492496b4010196d645c98759a4546632b1c7115fb96fba0e7c465e294d1837",
+    "journal_diagram.py": "e80a25b698741c5b19ad7c03065208b6d1d15466e8791c1172511b3b4cacf48a",
+    "journal_style.py": "93d7ba7737d1e40477388bbf7adc32684b0f22b68cc65efe3e30616fb3181911"
   }
 }

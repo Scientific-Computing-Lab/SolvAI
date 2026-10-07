@@ -510,7 +510,7 @@ def supp_fig1_residuals(primary: pd.DataFrame) -> None:
             ylim=(-residual_limit,residual_limit))
     clean(ax1)
     delta = full.absolute_error.to_numpy() - baseline.absolute_error.to_numpy()
-    ax2.hist(delta, bins=np.linspace(delta.min(), delta.max(), 17), color=DEPLOY, alpha=0.85)
+    ax2.hist(delta, bins=np.linspace(delta.min(), delta.max(), 17), color=DEPLOY, alpha=0.85,edgecolor='white',linewidth=.7)
     ax2.axvline(0, color=MID, lw=0.8)
     ax2.axvline(delta.mean(), color=INK, lw=1.1, ls=(0, (3, 2)), label="Mean change")
     ax2.set(xlabel="SolvAI − structure-only\nabsolute error (kcal mol$^{-1}$)",
@@ -591,7 +591,7 @@ def supp_fig3_alternatives(metrics: dict) -> None:
     for letter, ax, (title, baseline, frame) in zip("ab", axes, campaigns, strict=True):
         positions = np.arange(len(frame))
         ax.hlines(positions, baseline, frame.values, color=GRID, lw=1)
-        ax.scatter(frame.values, positions, color=LEARNED, s=28, zorder=3)
+        ax.scatter(frame.values, positions, color=LEARNED, s=30, zorder=3,edgecolor='white',linewidth=.5)
         ax.axvline(baseline, color=DEPLOY, lw=1.0, ls=(0, (3, 2)))
         ax.set_yticks(positions, frame.index)
         ax.set_ylim(len(frame) - 0.5, -0.5)
@@ -651,7 +651,8 @@ def supp_fig4_lambda(metrics: dict) -> None:
     axes[0].legend(frameon=False,fontsize=7.3,handlelength=1.5)
     values=metrics['multilambda']['method_mae_kcal_mol'];vals=list(values.values())
     names=['Base','+ PIMD2','+ hierarchy','+ both']
-    axes[1].barh(range(4),vals[:4],height=.54,color=[DEPLOY,LEARNED,PHYSICS,NEGATIVE])
+    axes[1].hlines(range(4),0,vals[:4],color=GRID,lw=1.2)
+    axes[1].scatter(vals[:4],range(4),s=30,color=[DEPLOY,LEARNED,PHYSICS,NEGATIVE],zorder=3)
     axes[1].set(yticks=range(4),yticklabels=names,ylim=(3.6,-.6),xlim=(0,.25),xlabel=r'Endpoint MAE')
     axes[1].tick_params(axis='y',length=0,labelsize=7.5)
     axes[2].scatter([0],[vals[4]],marker='D',s=40,color=NEGATIVE,zorder=3)
@@ -687,7 +688,7 @@ def supp_fig5_extrapolation(primary: pd.DataFrame, separation: pd.DataFrame) -> 
             .to_numpy()
         )
         jitter = rng.uniform(-0.12, 0.12, len(values))
-        axes[0].scatter(values, position + jitter, s=12, color=DEPLOY, alpha=0.8)
+        axes[0].scatter(values, position + jitter, s=15, color=DEPLOY, alpha=0.85,edgecolor='white',linewidth=.3)
         axes[0].plot(
             [values.mean(), values.mean()], [position - 0.18, position + 0.18], color=INK, lw=1
         )

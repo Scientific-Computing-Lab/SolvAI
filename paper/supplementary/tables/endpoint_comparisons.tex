@@ -1,66 +1,44 @@
-\begin{longtable}{@{}lp{4.1cm}lrrr@{}}
+\begin{longtable}{@{}lp{5.3cm}rrr@{}}
 \toprule
-Set & Endpoint & Reference & $\Delta$MAE & Lower & Upper \\
-\midrule\endhead
-ARROW-85 & Residual MLP & ExtraTrees & $0.1380$ & $0.0633$ & $0.2283$ \\
-ARROW-85 & Residual MLP & No response & $-0.0179$ & $-0.0543$ & $0.0127$ \\
-ARROW-85 & Dual branch & ExtraTrees & $0.0862$ & $0.0247$ & $0.1579$ \\
-ARROW-85 & Dual branch & No response & $-0.0559$ & $-0.1244$ & $0.0066$ \\
-ARROW-85 & Ridge + neural residual & ExtraTrees & $0.1338$ & $0.0582$ & $0.2241$ \\
-ARROW-85 & Ridge + neural residual & No response & $-0.0504$ & $-0.1403$ & $0.0263$ \\
-ARROW-85 & Message passing & ExtraTrees & $0.0854$ & $0.0185$ & $0.1744$ \\
-ARROW-85 & Message passing & No response & $-0.0345$ & $-0.0997$ & $0.0189$ \\
-ARROW-85 & TabM & ExtraTrees & $0.0888$ & $0.0375$ & $0.1571$ \\
-ARROW-85 & TabM & No response & $-0.0457$ & $-0.1138$ & $0.0129$ \\
-ARROW-85 & Count-adaptive selection & ExtraTrees & $0.0854$ & $0.0185$ & $0.1744$ \\
-ARROW-85 & Count-adaptive selection & No response & $-0.0345$ & $-0.0997$ & $0.0189$ \\
-ARROW-85 & MoLFormer + neural head & ExtraTrees & $0.0707$ & $0.0171$ & $0.1261$ \\
-ARROW-85 & MoLFormer + neural head & No response & $-0.1918$ & $-0.2925$ & $-0.1005$ \\
-ARROW-85 & MoLFormer + ExtraTrees & ExtraTrees & $0.0319$ & $0.0110$ & $0.0541$ \\
-ARROW-85 & MoLFormer + ExtraTrees & No response & $-0.1139$ & $-0.2095$ & $-0.0322$ \\
-ARROW-85 & TabPFN-3.5 & ExtraTrees & $-0.0030$ & $-0.0538$ & $0.0655$ \\
-ARROW-85 & TabPFN-3.5 & No response & $-0.0187$ & $-0.0463$ & $0.0072$ \\
-ARROW-85 & Width-adaptive selection & ExtraTrees & $0.0856$ & $0.0135$ & $0.1748$ \\
-ARROW-85 & Width-adaptive selection & No response & $-0.0853$ & $-0.1652$ & $-0.0177$ \\
-External-220 & Residual MLP & ExtraTrees & $0.2756$ & $0.1388$ & $0.4150$ \\
-External-220 & Residual MLP & No response & $-0.0965$ & $-0.1372$ & $-0.0575$ \\
-External-220 & Dual branch & ExtraTrees & $0.0813$ & $-0.0279$ & $0.1858$ \\
-External-220 & Dual branch & No response & $-0.3023$ & $-0.4151$ & $-0.1960$ \\
-External-220 & Ridge + neural residual & ExtraTrees & $0.0197$ & $-0.0764$ & $0.1205$ \\
-External-220 & Ridge + neural residual & No response & $0.0410$ & $-0.0335$ & $0.1180$ \\
-External-220 & Message passing & ExtraTrees & $0.0152$ & $-0.1078$ & $0.1330$ \\
-External-220 & Message passing & No response & $-0.1432$ & $-0.2174$ & $-0.0765$ \\
-External-220 & TabM & ExtraTrees & $-0.0209$ & $-0.1105$ & $0.0639$ \\
-External-220 & TabM & No response & $-0.0886$ & $-0.1324$ & $-0.0441$ \\
-External-220 & Count-adaptive selection & ExtraTrees & $-0.0046$ & $-0.0968$ & $0.0927$ \\
-External-220 & Count-adaptive selection & No response & $0.0132$ & $-0.0642$ & $0.0934$ \\
-External-220 & MoLFormer + neural head & ExtraTrees & $-0.0413$ & $-0.1273$ & $0.0418$ \\
-External-220 & MoLFormer + neural head & No response & $-0.2212$ & $-0.3096$ & $-0.1343$ \\
-External-220 & MoLFormer + ExtraTrees & ExtraTrees & $0.0212$ & $-0.0008$ & $0.0433$ \\
-External-220 & MoLFormer + ExtraTrees & No response & $-0.4201$ & $-0.5619$ & $-0.2862$ \\
-External-220 & TabPFN-3.5 & ExtraTrees & $-0.0186$ & $-0.0760$ & $0.0395$ \\
-External-220 & TabPFN-3.5 & No response & $0.0028$ & $-0.0992$ & $0.1122$ \\
-External-220 & Width-adaptive selection & ExtraTrees & $-0.0621$ & $-0.1566$ & $0.0267$ \\
-External-220 & Width-adaptive selection & No response & $-0.2303$ & $-0.3186$ & $-0.1451$ \\
-\pagebreak
-Strict-97 & Residual MLP & ExtraTrees & $0.4806$ & $0.1947$ & $0.7730$ \\
-Strict-97 & Residual MLP & No response & $-0.1362$ & $-0.2132$ & $-0.0625$ \\
-Strict-97 & Dual branch & ExtraTrees & $0.0809$ & $-0.1322$ & $0.2806$ \\
-Strict-97 & Dual branch & No response & $-0.5724$ & $-0.7824$ & $-0.3750$ \\
-Strict-97 & Ridge + neural residual & ExtraTrees & $-0.1068$ & $-0.2498$ & $0.0387$ \\
-Strict-97 & Ridge + neural residual & No response & $0.1346$ & $0.0068$ & $0.2699$ \\
-Strict-97 & Message passing & ExtraTrees & $-0.0302$ & $-0.2766$ & $0.1977$ \\
-Strict-97 & Message passing & No response & $-0.2098$ & $-0.3468$ & $-0.0889$ \\
-Strict-97 & TabM & ExtraTrees & $-0.0816$ & $-0.2526$ & $0.0752$ \\
-Strict-97 & TabM & No response & $-0.1116$ & $-0.1827$ & $-0.0409$ \\
-Strict-97 & Count-adaptive selection & ExtraTrees & $-0.1544$ & $-0.2804$ & $-0.0296$ \\
-Strict-97 & Count-adaptive selection & No response & $0.0838$ & $-0.0531$ & $0.2277$ \\
-Strict-97 & MoLFormer + neural head & ExtraTrees & $-0.0855$ & $-0.2423$ & $0.0625$ \\
-Strict-97 & MoLFormer + neural head & No response & $-0.2349$ & $-0.3810$ & $-0.0869$ \\
-Strict-97 & MoLFormer + ExtraTrees & ExtraTrees & $0.0279$ & $-0.0083$ & $0.0640$ \\
-Strict-97 & MoLFormer + ExtraTrees & No response & $-0.6612$ & $-0.9282$ & $-0.4102$ \\
-Strict-97 & TabPFN-3.5 & ExtraTrees & $-0.0424$ & $-0.1360$ & $0.0562$ \\
-Strict-97 & TabPFN-3.5 & No response & $0.1465$ & $-0.0470$ & $0.3611$ \\
-Strict-97 & Width-adaptive selection & ExtraTrees & $-0.1633$ & $-0.3479$ & $0.0058$ \\
-Strict-97 & Width-adaptive selection & No response & $-0.2548$ & $-0.3934$ & $-0.1184$ \\
+Set & Endpoint & $\Delta$MAE & Lower & Upper \\
+\midrule
+\endfirsthead
+\multicolumn{5}{@{}l}{\emph{Supplementary Table 14 (continued)}} \\
+\toprule
+Set & Endpoint & $\Delta$MAE & Lower & Upper \\
+\midrule
+\endhead
+ARROW-85 & ExtraTrees & $-0.1011$ & $-0.2151$ & $-0.0203$ \\
+ARROW-85 & Residual MLP & $-0.0179$ & $-0.0543$ & $0.0127$ \\
+ARROW-85 & Dual branch & $-0.0559$ & $-0.1244$ & $0.0066$ \\
+ARROW-85 & Ridge + neural residual & $-0.0504$ & $-0.1403$ & $0.0263$ \\
+ARROW-85 & Message passing & $-0.0345$ & $-0.0997$ & $0.0189$ \\
+ARROW-85 & MoLFormer + neural head & $-0.1918$ & $-0.2925$ & $-0.1005$ \\
+ARROW-85 & TabM & $-0.0457$ & $-0.1138$ & $0.0129$ \\
+ARROW-85 & TabPFN-3.5 & $-0.0187$ & $-0.0463$ & $0.0072$ \\
+ARROW-85 & MoLFormer + ExtraTrees & $-0.1139$ & $-0.2095$ & $-0.0322$ \\
+ARROW-85 & Count-adaptive selection & $-0.0345$ & $-0.0997$ & $0.0189$ \\
+ARROW-85 & Width-adaptive selection & $-0.0853$ & $-0.1652$ & $-0.0177$ \\
+External-220 & ExtraTrees & $-0.3791$ & $-0.5169$ & $-0.2482$ \\
+External-220 & Residual MLP & $-0.0965$ & $-0.1372$ & $-0.0575$ \\
+External-220 & Dual branch & $-0.3023$ & $-0.4151$ & $-0.1960$ \\
+External-220 & Ridge + neural residual & $0.0410$ & $-0.0335$ & $0.1180$ \\
+External-220 & Message passing & $-0.1432$ & $-0.2174$ & $-0.0765$ \\
+External-220 & MoLFormer + neural head & $-0.2212$ & $-0.3096$ & $-0.1343$ \\
+External-220 & TabM & $-0.0886$ & $-0.1324$ & $-0.0441$ \\
+External-220 & TabPFN-3.5 & $0.0028$ & $-0.0992$ & $0.1122$ \\
+External-220 & MoLFormer + ExtraTrees & $-0.4201$ & $-0.5619$ & $-0.2862$ \\
+External-220 & Count-adaptive selection & $0.0132$ & $-0.0642$ & $0.0934$ \\
+External-220 & Width-adaptive selection & $-0.2303$ & $-0.3186$ & $-0.1451$ \\
+Strict-97 & ExtraTrees & $-0.6027$ & $-0.8628$ & $-0.3586$ \\
+Strict-97 & Residual MLP & $-0.1362$ & $-0.2132$ & $-0.0625$ \\
+Strict-97 & Dual branch & $-0.5724$ & $-0.7824$ & $-0.3750$ \\
+Strict-97 & Ridge + neural residual & $0.1346$ & $0.0068$ & $0.2699$ \\
+Strict-97 & Message passing & $-0.2098$ & $-0.3468$ & $-0.0889$ \\
+Strict-97 & MoLFormer + neural head & $-0.2349$ & $-0.3810$ & $-0.0869$ \\
+Strict-97 & TabM & $-0.1116$ & $-0.1827$ & $-0.0409$ \\
+Strict-97 & TabPFN-3.5 & $0.1465$ & $-0.0470$ & $0.3611$ \\
+Strict-97 & MoLFormer + ExtraTrees & $-0.6612$ & $-0.9282$ & $-0.4102$ \\
+Strict-97 & Count-adaptive selection & $0.0838$ & $-0.0531$ & $0.2277$ \\
+Strict-97 & Width-adaptive selection & $-0.2548$ & $-0.3934$ & $-0.1184$ \\
 \bottomrule\end{longtable}

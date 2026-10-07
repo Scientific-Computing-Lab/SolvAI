@@ -15,6 +15,7 @@ import numpy as np
 import pandas as pd
 
 from journal_vector_art import Art, ROOT, ASSETS, INK, MID, GRID, BLUE, TEAL, AMBER, PURPLE, ROSE, COLORS, COUNTS
+from journal_diagram import wire, block, forest, vector
 
 OUT = ROOT / 'paper/figures/journal'
 SI = ROOT / 'paper/supplementary/figures'
@@ -112,7 +113,7 @@ def matched(data,preview):
         c.text(x+174,144,'MAE',10.5,MID,400,'middle')
     c.line(10,163,710,163,GRID)
     c.title(10,192,'b','Build the response set')
-    c.title(389,192,'c','Resolve molecule-level changes')
+    c.title(389,192,'c','Compare individual molecules')
     fig,ax=base_plot(342,225,(.17,.23,.77,.69))
     methods=data['metrics']['methods'];keys=['matched_structure_only','narrow_response','narrow_plus_smd','full_solvai']
     values=[methods[k]['mae_kcal_mol'] for k in keys]
@@ -138,7 +139,7 @@ def matched(data,preview):
     ax.set_aspect('equal',adjustable='box')
     c.embed_plot(fig,389,210,325,225,'molecules');plt.close(fig)
     c.title(10,477,'d','Which source blocks contribute?')
-    c.title(389,477,'e','Repeat the complete partition')
+    c.title(389,477,'e','Repeat the full partition')
     fig,ax=base_plot(342,222,(.34,.23,.60,.67));pairs=data['oldpairs'].set_index('analysis')
     keys=['primary_B_empirical_residual','primary_C_computation_core','primary_D_smd_water','primary_E_confsolv','primary_F_full_solvai']
     for i,key in enumerate(keys):
@@ -158,7 +159,7 @@ def matched(data,preview):
             ha='left',va='top',color=ROSE,fontsize=8)
     ax.set(xlim=(-.25,1.27),ylim=(.177,.333),xticks=[0,1],xticklabels=['Structure','SolvAI'],ylabel='OOF MAE (kcal mol$^{-1}$)');grid(ax,'y')
     c.embed_plot(fig,389,494,325,222,'repeats');plt.close(fig)
-    return c.save(OUT/'F3_matched_evidence',preview/'F3_matched_evidence.png' if preview else None)
+    return c.save(OUT/'F4_matched_evidence',preview/'F4_matched_evidence.png' if preview else None)
 
 
 def modern(data,preview):
@@ -169,13 +170,14 @@ def modern(data,preview):
     c.text(114,83,'D-MPNN / CheMeleon',12,INK,600)
     c.text(114,103,'Fit the graph model end to end',11,MID)
     c.line(357,45,357,120,GRID,.8)
-    c.text(380,52,'Frozen encoder + matched endpoint',12,TEAL,600)
-    c.text(380,85,'MoLFormer\nor Uni-Mol',11.5,INK,600)
-    c.lock(469,70,BLUE)
-    c.arrow(482,88,512,88,TEAL)
-    c.trees(524,74,87,40)
-    c.text(626,86,'With / without',11.5,INK)
-    c.text(626,103,'responses',11.5,TEAL,600)
+    c.text(380,52,'Frozen encoder + matched ExtraTrees',12,TEAL,600)
+    encoder=block(c,380,73,123,39,'MoLFormer',subtitle='or Uni-Mol',color=BLUE,frozen=True)
+    roots,ends=forest(c,548,76,98,40)
+    wire(c,encoder.port('r'),(529,65),TEAL,via=[(519,92.5),(519,65)],arrow=False)
+    c.line(529,65,roots[-1][0],65,TEAL,1.2)
+    for root in roots:wire(c,(root[0],65),(root[0],root[1]-3.5),TEAL,width=1.1)
+    c.text(696,90,'± response',10.5,TEAL,500,'end')
+    c.text(696,104,'features',10.5,MID,400,'end')
     c.line(10,133,710,133,GRID)
     c.title(10,162,'b','Compare every model on the same held-out molecules')
     order=['structure','solvai','computed_only','dmpnn','chemeleon','molformer_structure','molformer_solvai','unimol_structure','unimol_solvai']
@@ -210,7 +212,7 @@ def modern(data,preview):
         ax.axvline(0,color=MID,lw=.7);ax.set(ylim=(2.45,-.45),xlim=(-1,.04),yticks=[],xticks=[-1,-.5,0]);ax.spines['left'].set_visible(False);grid(ax)
         c.embed_plot(fig,x,539,172,137,f'augmentation{k}');plt.close(fig)
     c.text(361,672,'ΔMAE after response augmentation (kcal mol⁻¹); negative favors responses',11.5,TEAL,400,'middle')
-    return c.save(OUT/'F4_modern_comparisons',preview/'F4_modern_comparisons.png' if preview else None)
+    return c.save(OUT/'F5_modern_comparisons',preview/'F5_modern_comparisons.png' if preview else None)
 
 
 def transfer(data,preview):
@@ -225,7 +227,7 @@ def transfer(data,preview):
     for i,regime in enumerate(['global_butina_0_70','global_scaffold','global_family']):
         v=sep.loc[sep.regime.eq(regime)].set_index('method').mae
         a,b=v.A_structure_only,v.F_full_solvai
-        ax.plot([a,b],[i,i],color=GRID,lw=2)
+        ax.plot([a,b],[i,i],color='#BBCBD3',lw=1.5)
         ax.scatter(a,i,s=31,color=MID);ax.scatter(b,i,s=31,color=TEAL)
     ax.set(yticks=range(3),yticklabels=['Clusters','Scaffolds','Families'],ylim=(2.5,-.5),xlim=(0,1.4),xticks=[0,.5,1],xlabel='MAE (kcal mol$^{-1}$)');grid(ax)
     c.embed_plot(fig,4,77,242,224,'groups');plt.close(fig)
@@ -261,11 +263,14 @@ def transfer(data,preview):
         r=data['metrics']['external_validation'][key];p=r['paired_difference'];lo,hi=p['ci95']
         c.text(22,598+i*20,f"{r['n']}: ΔMAE {p['mean']:+.3f} [{lo:+.3f}, {hi:+.3f}]",11.3,TEAL)
     fig,ax=base_plot(326,224,(.19,.25,.78,.69));s=data['strata'];xx=np.arange(4)
-    ax.bar(xx-.19,s.structure_mae,.35,color=MID);ax.bar(xx+.19,s.solvai_mae,.35,color=TEAL)
+    for x,a,b in zip(xx,s.structure_mae,s.solvai_mae):
+        ax.plot([x-.13,x+.13],[a,b],color='#BBCBD3',lw=1.1)
+    ax.scatter(xx-.13,s.structure_mae,color=MID,s=28,zorder=3)
+    ax.scatter(xx+.13,s.solvai_mae,color=TEAL,s=28,zorder=3)
     ax.set(xticks=xx,xticklabels=[f'{a:.1f}–{b:.1f}\nn={n}' for a,b,n in zip(s.lower,s.upper,s.n)],ylim=(0,4.6),ylabel='MAE (kcal mol$^{-1}$)');grid(ax,'y')
     c.embed_plot(fig,385,384,326,224,'similarity');plt.close(fig)
     c.text(552,630,'Nearest-training Morgan similarity',11.4,MID,400,'middle')
-    return c.save(OUT/'F5_generalization',preview/'F5_generalization.png' if preview else None)
+    return c.save(OUT/'F6_generalization',preview/'F6_generalization.png' if preview else None)
 
 
 def composition(data,preview):
@@ -290,7 +295,7 @@ def composition(data,preview):
     c.text(10,208,'Both models learn hydration from the same experimental labels.',11.5,MID)
     c.line(10,226,710,226,GRID)
     c.title(10,257,'b','Compare absolute errors')
-    c.title(389,257,'c','Resolve the change in ordering')
+    c.title(389,257,'c','Compare the source sets directly')
     fig,ax=base_plot(349,261,(.18,.23,.77,.72));xx=np.arange(3)
     for shift,model,color,label,marker in [(-.16,'structure',MID,'Structure','o'),(0,'solvai',TEAL,'Full 15','o'),(.16,'computed_only',BLUE,'Computation-only','s')]:
         vals=[mae(data,model,cohort) for cohort in COHORTS]
@@ -309,15 +314,15 @@ def composition(data,preview):
     c.embed_plot(fig,385,282,326,261,'composition');plt.close(fig)
     c.text(431,561,'← Full 15 better',11.3,TEAL)
     c.text(707,561,'Computation-only better →',11.3,BLUE,400,'end')
-    return c.save(OUT/'F6_source_composition',preview/'F6_source_composition.png' if preview else None)
+    return c.save(OUT/'F7_source_composition',preview/'F7_source_composition.png' if preview else None)
 
 
 def protocol(data,preview):
-    c=Art(459,'Inner model selection and fresh graph-model refitting')
+    c=Art(449,'Inner model selection and fresh graph-model refitting')
     c.title(10,25,'a','Keep test labels outside fitting and selection')
     c.text(16,63,'Outer-training labels',14,INK,600)
-    c.rect(16,85,170,21,'#D6E6F2');c.rect(186,85,30,21,'#F0D9B6')
-    c.text(101,100,'85% inner fit',11.5,BLUE,600,'middle')
+    c.rect(16,85,170,21,BLUE);c.rect(186,85,30,21,AMBER)
+    c.text(101,100,'85% inner fit',11.5,'white',600,'middle')
     c.text(201,126,'15%',11.5,AMBER,600,'middle')
     c.text(201,143,'validation',10.7,AMBER,400,'middle')
     c.arrow(230,96,271,96,BLUE)
@@ -331,22 +336,23 @@ def protocol(data,preview):
     c.text(16,178,'The 15% inner split is selected separately within each label source.',11.5,MID)
     c.line(10,201,710,201,GRID)
     c.title(10,230,'b','Average independent seeds before scoring')
+    c.text(36,253,'Repeat selection and refit for every seed',11.5,MID)
     for i,seed in enumerate([11,29,47]):
-        x=30+i*124
-        c.text(x+41,271,f'Seed {seed}',12,INK,600,'middle')
-        c.molecule(x+9,279,69,50,hydrogens=False)
-        c.path(f'M{x+43},327 C{x+43},360 424,347 451,347',BLUE,1)
-    c.text(248,390,'Repeat selection and refit for each seed',11.4,MID,400,'middle')
-    c.text(474,310,'Average',13,TEAL,600)
-    c.text(474,330,'predictions',13,TEAL,600)
-    c.arrow(452,347,530,347,TEAL)
-    c.arrow(544,347,585,347,TEAL)
-    c.text(607,317,'Score',14,INK,600)
-    c.text(607,339,'Held-out',11.7,INK)
-    c.text(607,356,'molecules',11.7,INK)
-    c.text(588,423,'Held-out labels',12,AMBER,600)
-    c.arrow(631,404,631,367,AMBER)
-    c.text(16,441,'Five ARROW folds + one external fit; three seeds × two direct graph models = 36 runs.',11.5,MID)
+        yy=283+i*44
+        c.text(35,yy+4,f'Seed {seed}',12,BLUE,600)
+        b=block(c,119,yy-15,111,30,'Fresh graph fit',color=BLUE)
+        v=vector(c,266,yy-6,75,6,TEAL,12)
+        wire(c,b.port('r'),v.port('l'),BLUE)
+        wire(c,v.port('r'),(389,yy),TEAL,arrow=False)
+    c.text(303,400,'Predictions',11,TEAL,500,'middle')
+    c.line(389,283,389,371,TEAL,1.4)
+    mean=block(c,424,305,88,44,'Mean')
+    score=block(c,566,305,120,44,'Score',subtitle='Held-out molecules',color=BLUE)
+    wire(c,(389,327),mean.port('l'),TEAL)
+    wire(c,mean.port('r'),score.port('l'),TEAL)
+    c.text(626,392,'Held-out labels',11.5,AMBER,500,'middle')
+    wire(c,(626,376),score.port('b'),AMBER)
+    c.text(16,438,'Five ARROW folds + one external fit; three seeds × two direct graph models = 36 runs.',11.5,MID)
     return c.save(SI/'Supp_Fig6_evaluation_protocol',preview/'Supp_Fig6_evaluation_protocol.png' if preview else None)
 
 
@@ -377,7 +383,7 @@ def conformers(data,preview):
     desc=['Gas ensemble','Water ensemble','Hydration correction','Solvation spread','Mean water response','Response spread']
     for i,(mathtext,label) in enumerate(zip(mathlabels,desc)):
         x=10+i*118
-        c.rect(x,425,110,46,'#F4F0F7',radius=1)
+        c.rect(x,425,110,46,'white',PURPLE,4)
         fig=plt.figure(figsize=(27.5/25.4,11.5/25.4));fig.text(.5,.42,mathtext,fontsize=8.6,color=PURPLE,ha='center')
         c.embed_plot(fig,x,425,110,46,f'summary{i}');plt.close(fig)
         c.text(x+55,489,label,10.5,MID,400,'middle')
@@ -409,12 +415,12 @@ def main():
         'figures/source/fig1_assets/nma_openbabel.pdb',
         'figures/source/fig1_assets/dimethoxyethane_selected_conformers.sdf']
     inputs += [str(p.relative_to(ROOT)) for p in sorted((OUT/'teaser_components').glob('*.png'))]
-    scripts=['scripts/make_local_journal_figures.py','scripts/journal_vector_art.py','scripts/journal_teaser.py','scripts/journal_style.py']
+    scripts=['scripts/make_local_journal_figures.py','scripts/journal_vector_art.py','scripts/journal_teaser.py','scripts/journal_diagram.py','scripts/journal_style.py']
     manifest=dict(source_sha256={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in inputs},
         builder_sha256={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in scripts},
         build_platform=f'{platform.system()} {platform.machine()}',
         source_descriptor_counts=COUNTS,computed_only_descriptor_count=10,
-        embedded_raster_images=True,mixed_figures=['F1_overview','F2_learning_and_evaluation'],molecular_connectivity_checked=True,
+        embedded_raster_images=True,mixed_figures=['F1_overview'],molecular_connectivity_checked=True,
         molecular_illustrations='N-methylacetamide; 1,2-dimethoxyethane conformers',
         solvent_shells_and_energy_levels='Schematic, not simulation results',
         main_figures=[p.stem for p in sorted(OUT.glob('F*.pdf'))])

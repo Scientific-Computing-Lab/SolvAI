@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="180mm" height="141.75mm" viewBox="0 0 720 567"><title>Response-source composition changes the preferred model across chemistry</title><defs><radialGradient id="atomC" cx="30%" cy="25%" r="75%"><stop offset="0" stop-color="#CFD7DD"/><stop offset=".45" stop-color="#5E6F7B"/><stop offset="1" stop-color="#243D4B"/></radialGradient><radialGradient id="atomN" cx="30%" cy="25%" r="75%"><stop offset="0" stop-color="#B7DAF6"/><stop offset=".45" stop-color="#3C83B9"/><stop offset="1" stop-color="#19496F"/></radialGradient><radialGradient id="atomO" cx="30%" cy="25%" r="75%"><stop offset="0" stop-color="#F5C4B9"/><stop offset=".45" stop-color="#D76D58"/><stop offset="1" stop-color="#923E31"/></radialGradient><radialGradient id="atomH" cx="30%" cy="25%" r="75%"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".45" stop-color="#EFF2F4"/><stop offset="1" stop-color="#B8C3CB"/></radialGradient></defs><g font-family="Arial, Helvetica, sans-serif" stroke-linecap="round" stroke-linejoin="round"><rect x="0" y="0" width="720" height="567" rx="0" fill="white" stroke="none" opacity="1"/><text x="10" y="25.000" font-size="20" fill="#172D3A" font-weight="700" text-anchor="start">a</text><text x="34" y="24.000" font-size="14" fill="#172D3A" font-weight="700" text-anchor="start">Keep the learner fixed, change the response sources</text><text x="182" y="66.000" font-size="11.4" fill="#3F7FAD" font-weight="600" text-anchor="middle">COSMOtherm</text><rect x="145.0" y="89" width="74.0" height="14" rx="0" fill="#3F7FAD" stroke="none" opacity="1"/><rect x="145.0" y="132" width="74.0" height="14" rx="0" fill="#3F7FAD" stroke="none" opacity="1"/><text x="275" y="66.000" font-size="11.4" fill="#CB8C39" font-weight="600" text-anchor="middle">Abraham</text><rect x="238.0" y="89" width="12.4" height="14" rx="0" fill="#CB8C39" stroke="none" opacity="1"/><rect x="253.4" y="89" width="12.4" height="14" rx="0" fill="#CB8C39" stroke="none" opacity="1"/><rect x="268.8" y="89" width="12.4" height="14" rx="0" fill="#CB8C39" stroke="none" opacity="1"/><rect x="284.2" y="89" width="12.4" height="14" rx="0" fill="#CB8C39" stroke="none" opacity="1"/><rect x="299.6" y="89" width="12.4" height="14" rx="0" fill="#CB8C39" stroke="none" opacity="1"/><text x="275" y="145.000" font-size="11.5" fill="#657782" font-weight="400" text-anchor="middle">Omitted</text><text x="368" y="66.000" font-size="11.4" fill="#599FB0" font-weight="600" text-anchor="middle">OpenFF</text><rect x="331.0" y="89" width="74.0" height="14" rx="0" fill="#599FB0" stroke="none" opacity="1"/><text x="368" y="100.000" font-size="10" fill="white" font-weight="600" text-anchor="middle">physical + δ</text><rect x="331.0" y="132" width="74.0" height="14" rx="0" fill="#599FB0" stroke="none" opacity="1"/><text x="368" y="143.000" font-size="10" fill="white" font-weight="600" text-anchor="middle">physical</text><text x="461" y="66.000" font-size="11.4" fill="#8EAAB7" font-weight="600" text-anchor="middle">GBn2</text><rect x="424.0" y="89" width="74.0" height="14" rx="0" fill="#8EAAB7" stroke="none" opacity="1"/><text x="461" y="100.000" font-size="10" fill="white" font-weight="600" text-anchor="middle">physical + δ</text><rect x="424.0" y="132" width="74.0" height="14" rx="0" fill="#8EAAB7" stroke="none" opacity="1"/><text x="461" y="143.000" font-size="10" fill="white" font-weight="600" text-anchor="middle">physical</text><text x="554" y="66.000" font-size="11.4" fill="#557FBE" font-weight="600" text-anchor="middle">SMD(water)</text><rect x="517.0" y="89" width="74.0" height="14" rx="0" fill="#557FBE" stroke="none" opacity="1"/><rect x="517.0" y="132" width="74.0" height="14" rx="0" fill="#557FBE" stroke="none" opacity="1"/><text x="647" y="66.000" font-size="11.4" fill="#9776AE" font-weight="600" text-anchor="middle">ConfSolv</text><rect x="610.0" y="89" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><rect x="622.8333333333334" y="89" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><rect x="635.6666666666666" y="89" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><rect x="648.5" y="89" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><rect x="661.3333333333334" y="89" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><rect x="674.1666666666666" y="89" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><rect x="610.0" y="132" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><rect x="622.8333333333334" y="132" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><rect x="635.6666666666666" y="132" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><rect x="648.5" y="132" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><rect x="661.3333333333334" y="132" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><rect x="674.1666666666666" y="132" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><text x="10" y="94.000" font-size="12.5" fill="#078774" font-weight="600" text-anchor="start">Full model</text><text x="10" y="111.000" font-size="11.5" fill="#078774" font-weight="400" text-anchor="start">15 responses</text><text x="10" y="138.000" font-size="12.5" fill="#3F7FAD" font-weight="600" text-anchor="start">Computation-only</text><text x="10" y="155.000" font-size="11.5" fill="#3F7FAD" font-weight="400" text-anchor="start">10 responses</text><text x="10" y="188.000" font-size="11.3" fill="#657782" font-weight="400" text-anchor="start">Remove five Abraham values and two residual corrections (δ). Retain the two physical energies.</text><text x="10" y="208.000" font-size="11.5" fill="#657782" font-weight="400" text-anchor="start">Both models learn hydration from the same experimental labels.</text><path d="M10,226 L710,226" fill="none" stroke="#DCE4E8" stroke-width="1"/><text x="10" y="257.000" font-size="20" fill="#172D3A" font-weight="700" text-anchor="start">b</text><text x="34" y="256.000" font-size="14" fill="#172D3A" font-weight="700" text-anchor="start">Compare absolute errors</text><text x="389" y="257.000" font-size="20" fill="#172D3A" font-weight="700" text-anchor="start">c</text><text x="413" y="256.000" font-size="14" fill="#172D3A" font-weight="700" text-anchor="start">Resolve the change in ordering</text><g transform="translate(10,282) scale(1.411111109089462,1.4111111105103826)"><ns0:metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns2="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="180mm" height="141.75mm" viewBox="0 0 720 567"><title>Response-source composition changes the preferred model across chemistry</title><defs><radialGradient id="atomC" cx="30%" cy="25%" r="75%"><stop offset="0" stop-color="#CFD7DD"/><stop offset=".45" stop-color="#5E6F7B"/><stop offset="1" stop-color="#243D4B"/></radialGradient><radialGradient id="atomN" cx="30%" cy="25%" r="75%"><stop offset="0" stop-color="#B7DAF6"/><stop offset=".45" stop-color="#3C83B9"/><stop offset="1" stop-color="#19496F"/></radialGradient><radialGradient id="atomO" cx="30%" cy="25%" r="75%"><stop offset="0" stop-color="#F5C4B9"/><stop offset=".45" stop-color="#D76D58"/><stop offset="1" stop-color="#923E31"/></radialGradient><radialGradient id="atomH" cx="30%" cy="25%" r="75%"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".45" stop-color="#EFF2F4"/><stop offset="1" stop-color="#B8C3CB"/></radialGradient></defs><g font-family="Arial, Helvetica, sans-serif" stroke-linecap="round" stroke-linejoin="round"><rect x="0" y="0" width="720" height="567" rx="0" fill="white" stroke="none" opacity="1"/><text x="10" y="25.000" font-size="20" fill="#172D3A" font-weight="700" text-anchor="start">a</text><text x="34" y="24.000" font-size="14" fill="#172D3A" font-weight="700" text-anchor="start">Keep the learner fixed, change the response sources</text><text x="182" y="66.000" font-size="11.4" fill="#3F7FAD" font-weight="600" text-anchor="middle">COSMOtherm</text><rect x="145.0" y="89" width="74.0" height="14" rx="0" fill="#3F7FAD" stroke="none" opacity="1"/><rect x="145.0" y="132" width="74.0" height="14" rx="0" fill="#3F7FAD" stroke="none" opacity="1"/><text x="275" y="66.000" font-size="11.4" fill="#CB8C39" font-weight="600" text-anchor="middle">Abraham</text><rect x="238.0" y="89" width="12.4" height="14" rx="0" fill="#CB8C39" stroke="none" opacity="1"/><rect x="253.4" y="89" width="12.4" height="14" rx="0" fill="#CB8C39" stroke="none" opacity="1"/><rect x="268.8" y="89" width="12.4" height="14" rx="0" fill="#CB8C39" stroke="none" opacity="1"/><rect x="284.2" y="89" width="12.4" height="14" rx="0" fill="#CB8C39" stroke="none" opacity="1"/><rect x="299.6" y="89" width="12.4" height="14" rx="0" fill="#CB8C39" stroke="none" opacity="1"/><text x="275" y="145.000" font-size="11.5" fill="#657782" font-weight="400" text-anchor="middle">Omitted</text><text x="368" y="66.000" font-size="11.4" fill="#599FB0" font-weight="600" text-anchor="middle">OpenFF</text><rect x="331.0" y="89" width="74.0" height="14" rx="0" fill="#599FB0" stroke="none" opacity="1"/><text x="368" y="100.000" font-size="10" fill="white" font-weight="600" text-anchor="middle">physical + δ</text><rect x="331.0" y="132" width="74.0" height="14" rx="0" fill="#599FB0" stroke="none" opacity="1"/><text x="368" y="143.000" font-size="10" fill="white" font-weight="600" text-anchor="middle">physical</text><text x="461" y="66.000" font-size="11.4" fill="#8EAAB7" font-weight="600" text-anchor="middle">GBn2</text><rect x="424.0" y="89" width="74.0" height="14" rx="0" fill="#8EAAB7" stroke="none" opacity="1"/><text x="461" y="100.000" font-size="10" fill="white" font-weight="600" text-anchor="middle">physical + δ</text><rect x="424.0" y="132" width="74.0" height="14" rx="0" fill="#8EAAB7" stroke="none" opacity="1"/><text x="461" y="143.000" font-size="10" fill="white" font-weight="600" text-anchor="middle">physical</text><text x="554" y="66.000" font-size="11.4" fill="#557FBE" font-weight="600" text-anchor="middle">SMD(water)</text><rect x="517.0" y="89" width="74.0" height="14" rx="0" fill="#557FBE" stroke="none" opacity="1"/><rect x="517.0" y="132" width="74.0" height="14" rx="0" fill="#557FBE" stroke="none" opacity="1"/><text x="647" y="66.000" font-size="11.4" fill="#9776AE" font-weight="600" text-anchor="middle">ConfSolv</text><rect x="610.0" y="89" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><rect x="622.8333333333334" y="89" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><rect x="635.6666666666666" y="89" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><rect x="648.5" y="89" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><rect x="661.3333333333334" y="89" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><rect x="674.1666666666666" y="89" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><rect x="610.0" y="132" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><rect x="622.8333333333334" y="132" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><rect x="635.6666666666666" y="132" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><rect x="648.5" y="132" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><rect x="661.3333333333334" y="132" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><rect x="674.1666666666666" y="132" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><text x="10" y="94.000" font-size="12.5" fill="#078774" font-weight="600" text-anchor="start">Full model</text><text x="10" y="111.000" font-size="11.5" fill="#078774" font-weight="400" text-anchor="start">15 responses</text><text x="10" y="138.000" font-size="12.5" fill="#3F7FAD" font-weight="600" text-anchor="start">Computation-only</text><text x="10" y="155.000" font-size="11.5" fill="#3F7FAD" font-weight="400" text-anchor="start">10 responses</text><text x="10" y="188.000" font-size="11.3" fill="#657782" font-weight="400" text-anchor="start">Remove five Abraham values and two residual corrections (δ). Retain the two physical energies.</text><text x="10" y="208.000" font-size="11.5" fill="#657782" font-weight="400" text-anchor="start">Both models learn hydration from the same experimental labels.</text><path d="M10,226 L710,226" fill="none" stroke="#DCE4E8" stroke-width="1"/><text x="10" y="257.000" font-size="20" fill="#172D3A" font-weight="700" text-anchor="start">b</text><text x="34" y="256.000" font-size="14" fill="#172D3A" font-weight="700" text-anchor="start">Compare absolute errors</text><text x="389" y="257.000" font-size="20" fill="#172D3A" font-weight="700" text-anchor="start">c</text><text x="413" y="256.000" font-size="14" fill="#172D3A" font-weight="700" text-anchor="start">Compare the source sets directly</text><g transform="translate(10,282) scale(1.411111109089462,1.4111111105103826)"><ns0:metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns2="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:RDF>
    <ns2:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-    <dc:date>2026-10-06T21:24:02.003358</dc:date>
+    <dc:date>2026-10-06T22:16:59.901860</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <ns2:Agent>
@@ -64,7 +64,7 @@
    <ns0:g id="absolute_matplotlib.axis_2">
     <ns0:g id="absolute_ytick_1">
      <ns0:g id="absolute_line2d_4">
-      <ns0:path d="M 44.51811 142.419685  L 234.956693 142.419685  " clip-path="url(#absolute_paae1e64756)" style="fill: none; stroke: #dce4e8; stroke-width: 0.5; stroke-linecap: square" />
+      <ns0:path d="M 44.51811 142.419685  L 234.956693 142.419685  " clip-path="url(#absolute_paae1e64756)" style="fill: none; stroke: #dce4e8; stroke-width: 0.5; stroke-linecap: round" />
      </ns0:g>
      <ns0:g id="absolute_line2d_5">
       <ns0:defs>
@@ -80,7 +80,7 @@
     </ns0:g>
     <ns0:g id="absolute_ytick_2">
      <ns0:g id="absolute_line2d_6">
-      <ns0:path d="M 44.51811 115.241797  L 234.956693 115.241797  " clip-path="url(#absolute_paae1e64756)" style="fill: none; stroke: #dce4e8; stroke-width: 0.5; stroke-linecap: square" />
+      <ns0:path d="M 44.51811 115.241797  L 234.956693 115.241797  " clip-path="url(#absolute_paae1e64756)" style="fill: none; stroke: #dce4e8; stroke-width: 0.5; stroke-linecap: round" />
      </ns0:g>
      <ns0:g id="absolute_line2d_7">
       <ns0:g>
@@ -93,7 +93,7 @@
     </ns0:g>
     <ns0:g id="absolute_ytick_3">
      <ns0:g id="absolute_line2d_8">
-      <ns0:path d="M 44.51811 88.063908  L 234.956693 88.063908  " clip-path="url(#absolute_paae1e64756)" style="fill: none; stroke: #dce4e8; stroke-width: 0.5; stroke-linecap: square" />
+      <ns0:path d="M 44.51811 88.063908  L 234.956693 88.063908  " clip-path="url(#absolute_paae1e64756)" style="fill: none; stroke: #dce4e8; stroke-width: 0.5; stroke-linecap: round" />
      </ns0:g>
      <ns0:g id="absolute_line2d_9">
       <ns0:g>
@@ -106,7 +106,7 @@
     </ns0:g>
     <ns0:g id="absolute_ytick_4">
      <ns0:g id="absolute_line2d_10">
-      <ns0:path d="M 44.51811 60.88602  L 234.956693 60.88602  " clip-path="url(#absolute_paae1e64756)" style="fill: none; stroke: #dce4e8; stroke-width: 0.5; stroke-linecap: square" />
+      <ns0:path d="M 44.51811 60.88602  L 234.956693 60.88602  " clip-path="url(#absolute_paae1e64756)" style="fill: none; stroke: #dce4e8; stroke-width: 0.5; stroke-linecap: round" />
      </ns0:g>
      <ns0:g id="absolute_line2d_11">
       <ns0:g>
@@ -119,7 +119,7 @@
     </ns0:g>
     <ns0:g id="absolute_ytick_5">
      <ns0:g id="absolute_line2d_12">
-      <ns0:path d="M 44.51811 33.708131  L 234.956693 33.708131  " clip-path="url(#absolute_paae1e64756)" style="fill: none; stroke: #dce4e8; stroke-width: 0.5; stroke-linecap: square" />
+      <ns0:path d="M 44.51811 33.708131  L 234.956693 33.708131  " clip-path="url(#absolute_paae1e64756)" style="fill: none; stroke: #dce4e8; stroke-width: 0.5; stroke-linecap: round" />
      </ns0:g>
      <ns0:g id="absolute_line2d_13">
       <ns0:g>
@@ -132,7 +132,7 @@
     </ns0:g>
     <ns0:g id="absolute_text_9">
 
-     <ns0:g style="fill: #18303c" transform="translate(19.02811 109.196358) rotate(-90)">
+     <ns0:g style="fill: #18303c" transform="translate(18.02811 109.196358) rotate(-90)">
       <ns0:text>
        <ns0:tspan x="0" y="-0.147312" style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c">M</ns0:tspan>
        <ns0:tspan x="7.080566" y="-0.147312" style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c">A</ns0:tspan>
@@ -155,10 +155,10 @@
     </ns0:g>
    </ns0:g>
    <ns0:g id="absolute_patch_3">
-    <ns0:path d="M 44.51811 142.419685  L 44.51811 9.248031  " style="fill: none; stroke: #647581; stroke-width: 0.65; stroke-linejoin: miter; stroke-linecap: square" />
+    <ns0:path d="M 44.51811 142.419685  L 44.51811 9.248031  " style="fill: none; stroke: #9babb4; stroke-width: 0.55; stroke-linejoin: miter; stroke-linecap: square" />
    </ns0:g>
    <ns0:g id="absolute_patch_4">
-    <ns0:path d="M 44.51811 142.419685  L 234.956693 142.419685  " style="fill: none; stroke: #647581; stroke-width: 0.65; stroke-linejoin: miter; stroke-linecap: square" />
+    <ns0:path d="M 44.51811 142.419685  L 234.956693 142.419685  " style="fill: none; stroke: #9babb4; stroke-width: 0.55; stroke-linejoin: miter; stroke-linecap: square" />
    </ns0:g>
    <ns0:g id="absolute_PathCollection_1">
     <ns0:defs>
@@ -227,7 +227,7 @@
   <rdf:RDF>
    <ns2:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-    <dc:date>2026-10-06T21:24:02.020753</dc:date>
+    <dc:date>2026-10-06T22:16:59.917930</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <ns2:Agent>
@@ -251,7 +251,7 @@
    <ns0:g id="composition_matplotlib.axis_1">
     <ns0:g id="composition_xtick_1">
      <ns0:g id="composition_line2d_1">
-      <ns0:path d="M 92.329786 142.419685  L 92.329786 9.248031  " clip-path="url(#composition_p39fc879c0c)" style="fill: none; stroke: #dce4e8; stroke-width: 0.5; stroke-linecap: square" />
+      <ns0:path d="M 92.329786 142.419685  L 92.329786 9.248031  " clip-path="url(#composition_p39fc879c0c)" style="fill: none; stroke: #dce4e8; stroke-width: 0.5; stroke-linecap: round" />
      </ns0:g>
      <ns0:g id="composition_line2d_2">
       <ns0:defs>
@@ -267,7 +267,7 @@
     </ns0:g>
     <ns0:g id="composition_xtick_2">
      <ns0:g id="composition_line2d_3">
-      <ns0:path d="M 118.220364 142.419685  L 118.220364 9.248031  " clip-path="url(#composition_p39fc879c0c)" style="fill: none; stroke: #dce4e8; stroke-width: 0.5; stroke-linecap: square" />
+      <ns0:path d="M 118.220364 142.419685  L 118.220364 9.248031  " clip-path="url(#composition_p39fc879c0c)" style="fill: none; stroke: #dce4e8; stroke-width: 0.5; stroke-linecap: round" />
      </ns0:g>
      <ns0:g id="composition_line2d_4">
       <ns0:g>
@@ -280,7 +280,7 @@
     </ns0:g>
     <ns0:g id="composition_xtick_3">
      <ns0:g id="composition_line2d_5">
-      <ns0:path d="M 144.110942 142.419685  L 144.110942 9.248031  " clip-path="url(#composition_p39fc879c0c)" style="fill: none; stroke: #dce4e8; stroke-width: 0.5; stroke-linecap: square" />
+      <ns0:path d="M 144.110942 142.419685  L 144.110942 9.248031  " clip-path="url(#composition_p39fc879c0c)" style="fill: none; stroke: #dce4e8; stroke-width: 0.5; stroke-linecap: round" />
      </ns0:g>
      <ns0:g id="composition_line2d_6">
       <ns0:g>
@@ -293,7 +293,7 @@
     </ns0:g>
     <ns0:g id="composition_xtick_4">
      <ns0:g id="composition_line2d_7">
-      <ns0:path d="M 170.00152 142.419685  L 170.00152 9.248031  " clip-path="url(#composition_p39fc879c0c)" style="fill: none; stroke: #dce4e8; stroke-width: 0.5; stroke-linecap: square" />
+      <ns0:path d="M 170.00152 142.419685  L 170.00152 9.248031  " clip-path="url(#composition_p39fc879c0c)" style="fill: none; stroke: #dce4e8; stroke-width: 0.5; stroke-linecap: round" />
      </ns0:g>
      <ns0:g id="composition_line2d_8">
       <ns0:g>
@@ -306,7 +306,7 @@
     </ns0:g>
     <ns0:g id="composition_xtick_5">
      <ns0:g id="composition_line2d_9">
-      <ns0:path d="M 195.892099 142.419685  L 195.892099 9.248031  " clip-path="url(#composition_p39fc879c0c)" style="fill: none; stroke: #dce4e8; stroke-width: 0.5; stroke-linecap: square" />
+      <ns0:path d="M 195.892099 142.419685  L 195.892099 9.248031  " clip-path="url(#composition_p39fc879c0c)" style="fill: none; stroke: #dce4e8; stroke-width: 0.5; stroke-linecap: round" />
      </ns0:g>
      <ns0:g id="composition_line2d_10">
       <ns0:g>
@@ -319,7 +319,7 @@
     </ns0:g>
     <ns0:g id="composition_xtick_6">
      <ns0:g id="composition_line2d_11">
-      <ns0:path d="M 221.782677 142.419685  L 221.782677 9.248031  " clip-path="url(#composition_p39fc879c0c)" style="fill: none; stroke: #dce4e8; stroke-width: 0.5; stroke-linecap: square" />
+      <ns0:path d="M 221.782677 142.419685  L 221.782677 9.248031  " clip-path="url(#composition_p39fc879c0c)" style="fill: none; stroke: #dce4e8; stroke-width: 0.5; stroke-linecap: round" />
      </ns0:g>
      <ns0:g id="composition_line2d_12">
       <ns0:g>
@@ -331,9 +331,9 @@
      </ns0:g>
     </ns0:g>
     <ns0:g id="composition_text_7">
-     <ns0:text style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c" transform="translate(96.738594 169.252815)">Full 15 − computation-only</ns0:text>
+     <ns0:text style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c" transform="translate(96.738594 170.252815)">Full 15 − computation-only</ns0:text>
 
-     <ns0:g style="fill: #18303c" transform="translate(110.49 180.220969)">
+     <ns0:g style="fill: #18303c" transform="translate(110.49 181.220969)">
       <ns0:text>
        <ns0:tspan x="0" y="-0.147312" style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c">Δ</ns0:tspan>
        <ns0:tspan x="5.677734" y="-0.147312" style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c">M</ns0:tspan>
@@ -437,7 +437,7 @@
     </ns0:g>
    </ns0:g>
    <ns0:g id="composition_line2d_22">
-    <ns0:path d="M 118.220364 142.419685  L 118.220364 9.248031  " clip-path="url(#composition_p39fc879c0c)" style="fill: none; stroke: #657782; stroke-width: 0.8; stroke-linecap: square" />
+    <ns0:path d="M 118.220364 142.419685  L 118.220364 9.248031  " clip-path="url(#composition_p39fc879c0c)" style="fill: none; stroke: #657782; stroke-width: 0.8; stroke-linecap: round" />
    </ns0:g>
    <ns0:g id="composition_line2d_23">
     <ns0:defs>
@@ -461,10 +461,10 @@
     </ns0:g>
    </ns0:g>
    <ns0:g id="composition_patch_3">
-    <ns0:path d="M 71.617323 142.419685  L 71.617323 9.248031  " style="fill: none; stroke: #647581; stroke-width: 0.65; stroke-linejoin: miter; stroke-linecap: square" />
+    <ns0:path d="M 71.617323 142.419685  L 71.617323 9.248031  " style="fill: none; stroke: #9babb4; stroke-width: 0.55; stroke-linejoin: miter; stroke-linecap: square" />
    </ns0:g>
    <ns0:g id="composition_patch_4">
-    <ns0:path d="M 71.617323 142.419685  L 221.782677 142.419685  " style="fill: none; stroke: #647581; stroke-width: 0.65; stroke-linejoin: miter; stroke-linecap: square" />
+    <ns0:path d="M 71.617323 142.419685  L 221.782677 142.419685  " style="fill: none; stroke: #9babb4; stroke-width: 0.55; stroke-linejoin: miter; stroke-linecap: square" />
    </ns0:g>
    <ns0:g id="composition_text_11">
     <ns0:text style="font-size: 8.3px; font-family: 'Arial'; text-anchor: middle; fill: #078774" x="101.84901" y="43.069404" transform="rotate(-0 101.84901 43.069404)">−0.032</ns0:text>

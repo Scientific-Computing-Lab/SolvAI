@@ -56,7 +56,7 @@ def test_lambda_redesign_keeps_every_frozen_value():
         make_figures.supp_fig4_lambda(metrics)
         fig=saved.call_args.args[0]
         assert len(fig.axes)==3
-        np.testing.assert_allclose([b.get_width() for b in fig.axes[1].patches],expected[:4],rtol=0,atol=0)
+        np.testing.assert_allclose(fig.axes[1].collections[1].get_offsets()[:,0],expected[:4],rtol=0,atol=0)
         assert float(fig.axes[2].collections[0].get_offsets()[0,1])==expected[4]
         assert len(fig.axes[0].lines)==3
         make_figures.plt.close(fig)

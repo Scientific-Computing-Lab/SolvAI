@@ -18,10 +18,15 @@ LABELS = {'tree':'ExtraTrees','resnet':'Residual MLP','dual':'Dual branch',
           'molformer_deterministic':'MoLFormer + neural head','tabm':'TabM',
           'tabpfn':'TabPFN-3.5','molformer_fixed_tree':'MoLFormer + ExtraTrees',
           'capacity_adapted':'Width-adaptive selection','count_adapted':'Count-adaptive selection'}
-IDEAS = ['Leaf averages','Residual connections','Separate input branches',
-         'Linear trend + nonlinear residual','Size-sensitive graph readout',
-         'Frozen sequence representation','Shared-parameter ensemble',
-         'Pretrained context prediction','Representation-only change']
+IDEAS = ['Leaf averages; bounded output',
+         'Residual links; external response gain',
+         'Separate inputs; improved size transfer',
+         'Linear trend + correction; low Strict error',
+         'Size-aware graph; external response gain',
+         'Frozen sequence encoding; low external error',
+         'Shared neural ensemble; low size error',
+         'Label-conditioned transformer; low size error',
+         'Frozen encoding + trees; input contrast']
 COHORTS = ['ARROW-85','External-220','Strict-97']
 COLORS = ['#647581','#417FA8','#C78935','#9870AD','#277476','#5173B4','#B05C7C','#008C7A','#8097A5']
 plt.rcParams.update({'font.family':'Arial','font.size':8,'axes.labelsize':8,
@@ -47,10 +52,15 @@ def save(fig, name, supplement=False):
     plt.close(fig)
 
 def table(path, columns, header, rows):
-    lines=[r'\begin{longtable}{@{}'+columns+r'@{}}',r'\toprule',header+r' \\',r'\midrule\endhead']
+    lines=[r'\begin{longtable}{@{}'+columns+r'@{}}',r'\toprule',header+r' \\',r'\midrule']
+    if path.stem=='endpoint_comparisons':
+        lines += [r'\endfirsthead',
+                  r'\multicolumn{5}{@{}l}{\emph{Supplementary Table 14 (continued)}} \\',
+                  r'\toprule',header+r' \\',r'\midrule']
+    lines.append(r'\endhead')
     previous=None
     for row in rows:
-        if path.stem in ['endpoint_metrics','endpoint_comparisons'] and row[0]=='Strict-97' and previous!='Strict-97':
+        if path.stem=='endpoint_metrics' and row[0]=='Strict-97' and previous!='Strict-97':
             lines.append(r'\pagebreak')
         lines.append(' & '.join(map(str,row))+r' \\')
         previous=row[0]
@@ -115,8 +125,8 @@ def tables_and_plots():
                      f'{sz(family):.3f}' if sz(family) is not None else '--'])
     # Main table is a float-compatible tabular, not a longtable inside a float.
     path=PAPER/'tables/endpoint_summary.tex'
-    table(path,'p{3.65cm}p{4.7cm}rrrr',
-          r'Endpoint & Main mechanism & ARROW & External & Strict & Size',rows)
+    table(path,r'>{\raggedright\arraybackslash}p{3.85cm}>{\raggedright\arraybackslash}p{5.25cm}rrrr',
+          r'Endpoint & Mechanism and observed pattern & ARROW & External & Strict & Size',rows)
     text=path.read_text().replace('longtable','tabular').replace(r'\endhead','')
     path.write_text(text)
     eligible=FAMILIES+['count_adapted','capacity_adapted']
@@ -130,21 +140,26 @@ def tables_and_plots():
     table(PAPER/'supplementary/tables/endpoint_metrics.tex','lp{3.8cm}lrrrr',
           r'Set & Endpoint & Input & MAE & RMSE & Median & 3-seed MAE',rows)
     rows=[]
-    for r in p.loc[p.aggregation.eq('prediction')].itertuples():
-        family=r.candidate.removesuffix('_solvai')
-        if family not in eligible or not r.candidate.endswith('_solvai'):continue
-        reference='ExtraTrees' if r.reference=='tree_solvai' else 'No response'
-        rows.append([r.cohort,LABELS[family],reference,f'${r.delta:.4f}$',f'${r.low:.4f}$',f'${r.high:.4f}$'])
-    table(PAPER/'supplementary/tables/endpoint_comparisons.tex','lp{4.1cm}lrrr',
-          r'Set & Endpoint & Reference & $\Delta$MAE & Lower & Upper',rows)
+    original=pd.read_csv(ROOT/'results/journal_20261002/paired_comparisons.csv')
+    for cohort in COHORTS:
+        tree=original.loc[original.cohort.eq(cohort)&original.candidate.eq('solvai')&original.reference.eq('structure')].iloc[0]
+        rows.append([cohort,LABELS['tree'],f'${tree.delta:.4f}$',f'${tree.low:.4f}$',f'${tree.high:.4f}$'])
+        for family in eligible:
+            if family=='tree':continue
+            q=p.loc[p.aggregation.eq('prediction')&p.cohort.eq(cohort)&
+                    p.candidate.eq(family+'_solvai')&p.reference.eq(family+'_structure')]
+            assert len(q)==1,(cohort,family)
+            r=q.iloc[0]
+            rows.append([cohort,LABELS[family],f'${r.delta:.4f}$',f'${r.low:.4f}$',f'${r.high:.4f}$'])
+    table(PAPER/'supplementary/tables/endpoint_comparisons.tex','lp{5.3cm}rrr',
+          r'Set & Endpoint & $\Delta$MAE & Lower & Upper',rows)
     rows=[]
     for family in eligible:
         if sz(family) is None:continue
-        r=sc.loc[sc.candidate.eq(family+'_solvai')&sc.reference.eq('tree_solvai')]
-        interval='--' if r.empty else f'$[{r.iloc[0].low:.4f}, {r.iloc[0].high:.4f}]$'
-        rows.append([LABELS[family],f'{sz(family):.4f}',f'{sz(family,"structure"):.4f}',interval])
-    table(PAPER/'supplementary/tables/endpoint_size.tex','p{5.4cm}rrl',
-          r'Endpoint & Response MAE & No-response MAE & 95\% CI versus trees',rows)
+        response=sz(family);control=sz(family,'structure')
+        rows.append([LABELS[family],f'{response:.4f}',f'{control:.4f}',f'${response-control:.4f}$'])
+    table(PAPER/'supplementary/tables/endpoint_size.tex','p{5.4cm}rrr',
+          r'Endpoint & Response MAE & No-response MAE & $\Delta$MAE',rows)
     coverage=read('tabpfn_interval_coverage.csv')
     table(PAPER/'supplementary/tables/endpoint_uncertainty.tex','lrrrrr',
           r'Set & Nominal & Covered & Observed & Mean width & Median width',
@@ -152,8 +167,8 @@ def tables_and_plots():
             f'{r.observed_coverage*100:.1f}\\%',f'{r.mean_width_kcal_mol:.3f}',
             f'{r.median_width_kcal_mol:.3f}'] for r in coverage.itertuples()])
     # Matched information contrast: no legacy/mixed-cache or selected duplicates.
-    fig,axes=plt.subplots(1,3,figsize=(7.09,4.65),sharey=True)
-    fig.subplots_adjust(left=.30,right=.985,top=.86,bottom=.15,wspace=.24)
+    fig,axes=plt.subplots(1,3,figsize=(7.09,3.85),sharey=True)
+    fig.subplots_adjust(left=.30,right=.985,top=.88,bottom=.18,wspace=.30)
     for j,(ax,cohort) in enumerate(zip(axes,COHORTS)):
         for i,(family,color) in enumerate(zip(FAMILIES,COLORS)):
             q=p.loc[p.candidate.eq(family+'_solvai')&p.reference.eq(family+'_structure')&p.cohort.eq(cohort)&p.aggregation.eq('prediction')]
@@ -161,25 +176,27 @@ def tables_and_plots():
                 old=pd.read_csv(ROOT/'results/journal_20261002/paired_comparisons.csv')
                 q=old.loc[old.candidate.eq('solvai')&old.reference.eq('structure')&old.cohort.eq(cohort)]
             r=q.iloc[0]
-            ax.errorbar(r.delta,i,xerr=[[r.delta-r.low],[r.high-r.delta]],fmt='o',ms=4.8,color=color,lw=1.3,capsize=2.7)
+            ax.axhline(i,color='#EDF1F3',lw=.55,zorder=0)
+            ax.errorbar(r.delta,i,xerr=[[r.delta-r.low],[r.high-r.delta]],fmt='o',ms=4.6,color=color,lw=1.45,capsize=0)
         ax.axvline(0,color='#6A7984',lw=.8);ax.grid(axis='x',color='#E0E7EA',lw=.5)
         ax.set_title('abc'[j]+'  '+cohort,loc='left',fontsize=10)
-        ax.set_xlabel(r'$\Delta$MAE');ax.set_yticks(range(len(FAMILIES)))
+        ax.set_xlabel(r'$\Delta$MAE');ax.set_yticks(range(len(FAMILIES)));ax.tick_params(axis='y',length=0)
         ax.set_yticklabels([LABELS[x] for x in FAMILIES],fontsize=8.2)
         ax.set_ylim(len(FAMILIES)-.5,-.5);ax.spines['left'].set_visible(False)
     fig.text(.63,.035,'kcal mol$^{-1}$; negative favors adding responses',ha='center',fontsize=8)
-    save(fig,'F7_endpoint_comparison')
+    save(fig,'F3_endpoint_comparison')
     fig=plt.figure(figsize=(7.09,6.7));gs=fig.add_gridspec(2,2,height_ratios=[1.13,1])
     fig.subplots_adjust(left=.12,right=.97,top=.92,bottom=.19,hspace=.54,wspace=.32)
     ax=fig.add_subplot(gs[0,:]);plotfamilies=FAMILIES[:-1]
     for i,family in enumerate(plotfamilies):
+        ax.axhline(i,color='#EDF1F3',lw=.55,zorder=0)
         ax.plot([sz(family),sz(family,'structure')],[i,i],color='#CCD8DD',lw=1.3)
         ax.scatter(sz(family),i,s=25,color=COLORS[i],zorder=3)
         ax.scatter(sz(family,'structure'),i,s=25,facecolors='white',edgecolors=COLORS[i],zorder=3)
     ax.set_title('a  Accuracy on the size-held-out molecules',loc='left')
     ax.set_yticks(range(8));ax.set_yticklabels([LABELS[f] for f in plotfamilies],fontsize=8.2)
     ax.set_ylim(7.6,-.6);ax.set_xlim(1.2,2.35);ax.set_xlabel('MAE (kcal mol$^{-1}$)')
-    ax.grid(axis='x',color='#E0E7EA',lw=.5)
+    ax.grid(axis='x',color='#E0E7EA',lw=.5);ax.tick_params(axis='y',length=0);ax.spines['left'].set_visible(False)
     # Extra left room for long labels in the top panel only.
     pos=ax.get_position();ax.set_position([.31,pos.y0,.66,pos.height])
     fig.text(.97,.976,'Filled: with responses   |   Open: without responses',ha='right',fontsize=8)
@@ -189,7 +206,7 @@ def tables_and_plots():
         ax=fig.add_subplot(gs[1,k])
         for i,family in enumerate(plotfamilies):
             g=stress.loc[stress.model.eq(family+'_solvai')&stress.series.eq(series)].sort_values('n')
-            h,=ax.plot(g.n,g.prediction,color=COLORS[i],lw=1.7 if family in ['tree','tabpfn'] else 1.3,ls=LINE_STYLES[i],
+            h,=ax.plot(g.n,g.prediction,color=COLORS[i],lw=1.9 if family in ['tree','tabpfn'] else 1.15,ls=LINE_STYLES[i],
                       marker='o' if family in ['tree','tabpfn'] else None,ms=2.6,label=LABELS[family])
             if k==0:handles.append(h)
         ax.set_title(('b' if k==0 else 'c')+'  Capped '+series,loc='left')
@@ -204,8 +221,8 @@ def tables_and_plots():
     fig.subplots_adjust(left=.09,right=.98,top=.84,bottom=.23,wspace=.39)
     for k,cohort in enumerate(['External-220','Strict-97']):
         g=coverage.loc[coverage.cohort.eq(cohort)]
-        axes[0].plot(g.nominal_coverage*100,g.observed_coverage*100,'o-',color=[COLORS[7],COLORS[0]][k],label=cohort)
-        axes[1].plot(g.nominal_coverage*100,g.mean_width_kcal_mol,'o-',color=[COLORS[7],COLORS[0]][k],label=cohort)
+        axes[0].plot(g.nominal_coverage*100,g.observed_coverage*100,'o-',color=[COLORS[7],COLORS[0]][k],label=cohort,ms=5,lw=1.6)
+        axes[1].plot(g.nominal_coverage*100,g.mean_width_kcal_mol,'o-',color=[COLORS[7],COLORS[0]][k],label=cohort,ms=5,lw=1.6)
     axes[0].plot([50,100],[50,100],ls='--',color='#B7C3CB',lw=1)
     axes[0].set(xlim=(75,100),ylim=(50,100),xticks=[80,95],xlabel='Nominal coverage (%)',ylabel='Observed coverage (%)')
     axes[1].set(xticks=[80,95],xlabel='Nominal coverage (%)',ylabel='Mean width (kcal mol$^{-1}$)')
@@ -223,6 +240,7 @@ def tables_and_plots():
         grouped=frame.groupby(['family','partition'])[column].mean().reset_index()
         fam=list(grouped.family.unique())
         for j,family in enumerate(fam):
+            axes[k].axhline(j,color='#EDF1F3',lw=.55,zorder=0)
             v=grouped.loc[grouped.family.eq(family),column].to_numpy()
             axes[k].scatter(v,j+np.linspace(-.16,.16,len(v)),s=27,
                 color=COLORS[FAMILIES.index(family)],edgecolors='white',lw=.5,zorder=3)
@@ -233,7 +251,7 @@ def tables_and_plots():
         axes[k].set_ylim(len(fam)-.6,-.6)
         axes[k].set_xlabel('Inner-validation MAE change (kcal mol$^{-1}$)')
         axes[k].grid(axis='x',color='#E3E9EC',lw=.6)
-        axes[k].spines['left'].set_visible(False)
+        axes[k].spines['left'].set_visible(False);axes[k].tick_params(axis='y',length=0)
     axes[0].set_title('a  Longer cosine schedules',loc='left')
     axes[1].set_title('b  Width 256 to 512',loc='left')
     save(fig,'Supp_Fig12_optimization',True)

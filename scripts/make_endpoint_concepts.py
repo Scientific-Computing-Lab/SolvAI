@@ -1,189 +1,198 @@
-"""Compose checked Azure motifs with native scientific labels and connectors."""
+"""Native, port-anchored mechanism plates: what each endpoint changes."""
 from pathlib import Path
-import base64
-import html
 import argparse
-import cairosvg
+from journal_vector_art import Art, ROOT, INK, MID, GRID, BLUE, TEAL, AMBER
+from journal_diagram import wire, block, concat, add, vector, tree, forest
 
-ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'paper/supplementary/figures'
 ASSET=OUT/'endpoint_components'
-ASSET.mkdir(exist_ok=True)
-parser=argparse.ArgumentParser()
-parser.add_argument('--preview-dir',type=Path)
-QA=parser.parse_args().preview_dir
-if QA:QA.mkdir(parents=True,exist_ok=True)
-INK='#18303C';BLUE='#417FA8';TEAL='#008C7A';AMBER='#C78935';GRAY='#647581'
 
-# Selected label-free raster motifs are supplied in endpoint_components/.
-# Every scientific label and connector is authored below as native SVG.
+ROWS=[
+('tree','ExtraTrees','Partition feature space; average one stored leaf value from every tree.',
+ 'ARROW MAE 0.202 · Matched and shuffled-response controls',
+ 'A finite range of leaf values bounds the prediction.'),
+('resnet','Residual MLP','Learn nonlinear corrections along an identity-preserving pathway.',
+ 'ARROW MAE 0.340 · Tests a direct neural replacement',
+ 'A flexible function alone does not recover the tree accuracy.'),
+('dual','Dual structure / response branches','Learn a representation for each input group before combining them.',
+ 'Size-held-out MAE 1.560 · Refitted ExtraTrees: 1.772',
+ 'Separate branches do not impose physical additivity.'),
+('ridge_residual','Ridge + neural residual','Combine a continuous baseline with a learned correction.',
+ 'Size-held-out MAE 1.391 · No tree-leaf ceiling in the correction',
+ 'A linear trend is not a validated asymptotic free-energy law.'),
+('graph','Size-sensitive message passing','Count and aggregate atom states, not only fragment presence.',
+ 'External MAE 1.168 · Without responses: 1.311',
+ 'Shown: sum / mean / count readout; an atomic-plus-global variant was also tested.'),
+('molformer_deterministic','Frozen MoLFormer + neural head','Reuse a pretrained sequence representation alongside response information.',
+ 'External MAE 1.111 · Responses help in all three cohorts',
+ 'The encoder stays fixed; the endpoint learns from hydration labels.'),
+('tabm','TabM: a parameter-sharing ensemble','Use member-specific factors within layers that share their main weights.',
+ 'External MAE 1.132 · Size-held-out MAE 1.389',
+ '32 members share parameters; these are not 32 independent training runs.'),
+('tabpfn','TabPFN-3.5: prediction from context','Condition a pretrained transformer on eligible labelled training rows.',
+ 'ARROW MAE 0.199 · Size-held-out MAE 1.318',
+ 'Native intervals under-cover; input recipes differ across partitions.'),
+('molformer_fixed_tree','Frozen MoLFormer + ExtraTrees','Change the representation while keeping the tree endpoint family.',
+ 'ARROW MAE 0.234 · Without responses: 0.348',
+ 'The endpoint remains bounded by its stored leaf values.')]
 
-class SVG:
-    def __init__(self,h=840):
-        self.markers=set()
-        self.items=[f'<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="720" height="{h}" viewBox="0 0 720 {h}">',
-          '<defs><marker id="arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="context-stroke"/></marker></defs>',
-          f'<rect width="720" height="{h}" fill="#FFFFFF"/>']
-    def text(self,x,y,t,size=12.5,color=INK,bold=False,anchor='start'):
-        self.items.append(f'<text x="{x}" y="{y}" fill="{color}" font-family="Arial" font-size="{size}" font-weight="{700 if bold else 400}" text-anchor="{anchor}">{html.escape(t)}</text>')
-    def rect(self,x,y,w,h,stroke=BLUE,fill='white',r=5):
-        self.items.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="{r}" fill="{fill}" stroke="{stroke}" stroke-width="1.4"/>')
-    def path(self,d,color=GRAY,arrow=False,dash=False):
-        marker='arrow_'+color.lstrip('#')
-        if arrow and marker not in self.markers:
-            self.items.append(f'<defs><marker id="{marker}" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="{color}"/></marker></defs>')
-            self.markers.add(marker)
-        self.items.append(f'<path d="{d}" stroke="{color}" stroke-width="1.6" fill="none"'+(f' marker-end="url(#{marker})"' if arrow else '')+(' stroke-dasharray="4 3"' if dash else '')+'/>')
-    def arrow(self,x,y,xx,yy,color=BLUE,dash=False):self.path(f'M{x},{y} L{xx},{yy}',color,True,dash)
-    def img(self,key,x,y,w,h):
-        b=base64.b64encode((ASSET/(key+'.png')).read_bytes()).decode()
-        self.items.append(f'<image x="{x}" y="{y}" width="{w}" height="{h}" preserveAspectRatio="xMidYMid meet" xlink:href="data:image/png;base64,{b}"/>')
-    def box(self,x,y,w,h,title,color=BLUE):
-        self.rect(x,y,w,h,color,r=3);self.text(x+w/2,y+h/2+4,title,12.5,color,True,'middle')
-    def module(self,x,y,w,h,title,color=TEAL):
-        path=ROOT/'paper/figures/journal/teaser_components/endpoint.png'
-        b=base64.b64encode(path.read_bytes()).decode()
-        self.items.append(f'<image x="{x}" y="{y}" width="{w}" height="{h}" preserveAspectRatio="xMidYMid meet" xlink:href="data:image/png;base64,{b}"/>')
-        self.text(x+w/2,y+h+18,title,12,color,True,'middle')
-    def lock(self,x,y,color=BLUE):
-        self.rect(x-4,y,8,8,color,r=1)
-        self.path(f'M{x-3},{y} v-4 a3,3 0 0 1 6,0 v4',color)
+def frame(c,y,letter,title,reason,evidence,limit):
+    if y:c.line(10,y,710,y,GRID,1)
+    c.text(12,y+27,letter,20,INK,700)
+    c.text(39,y+26,title,15,INK,600)
+    c.text(39,y+48,reason,11.5,MID)
+    c.line(39,y+210,85,y+210,TEAL,2)
+    c.text(39,y+230,evidence,11.8,TEAL,600)
+    c.text(39,y+249,limit,10.7,MID)
 
-    def plus(self,x,y):
-        self.items.append(f'<circle cx="{x}" cy="{y}" r="13" fill="white" stroke="{TEAL}" stroke-width="1.4"/>');self.text(x,y+5,'+',20,TEAL,False,'middle')
-    def row(self,y,letter,title,question,evidence,limit):
-        if y:self.path(f'M10,{y} L710,{y}','#D6E0E5')
-        self.text(12,y+26,letter,21,INK,True);self.text(39,y+25,title,17,INK,True)
-        self.text(39,y+48,question,12,GRAY)
-        self.text(39,y+246,evidence,12,TEAL,True);self.text(39,y+266,limit,11.5,GRAY)
-    def finish(self):return '\n'.join(self.items+['</svg>'])
+def result(c,start,end_y,x=683):
+    wire(c,start,(x-16,end_y),TEAL)
+    c.text(x,end_y+6,'ŷ',24,TEAL,500,'middle')
+
+def joined_head(c,join,head,y):
+    wire(c,join.port('r'),head.port('l'),TEAL)
+    result(c,head.port('r'),y)
 
 def diagram(c,key,y):
     Y=lambda v:y+v
     if key=='tree':
-        c.text(28,Y(138),'Features',13,BLUE,True)
-        c.path(f'M91,{Y(134)} L125,{Y(134)} L125,{Y(77)} L462,{Y(77)}',BLUE)
-        for j in range(3):
-            x=162+j*119;c.arrow(x+43,Y(77),x+43,Y(88),BLUE)
-            c.img('tree',x,Y(86),108,77)
-            c.path(f'M{x+42},{Y(157)} L{x+42},{Y(192)} L573,{Y(192)}',TEAL)
-        c.text(350,Y(217),'One selected leaf value per tree',12,GRAY,False,'middle')
-        c.box(574,Y(170),74,44,'Mean',TEAL);c.arrow(651,Y(192),681,Y(192),TEAL)
-        c.text(690,Y(198),'ŷ',21,TEAL,True)
+        c.text(23,Y(126),'Features',12,BLUE,600)
+        wire(c,(82,Y(122)),(132,Y(82)),BLUE,via=[(105,Y(122)),(105,Y(82))],arrow=False)
+        roots,ends=forest(c,138,Y(90),311,69)
+        c.line(132,Y(82),roots[-1][0],Y(82),BLUE,1.4)
+        for root in roots:wire(c,(root[0],Y(82)),(root[0],root[1]-3.5),BLUE)
+        for p in ends:wire(c,p,(p[0],Y(184)),TEAL,arrow=False)
+        c.line(ends[0][0],Y(184),519,Y(184),TEAL,1.4)
+        mean=block(c,537,Y(162),87,44,'Mean')
+        wire(c,(519,Y(184)),mean.port('l'),TEAL)
+        c.text(302,Y(203),'Selected leaf values',10.8,MID,400,'middle')
+        result(c,mean.port('r'),Y(184))
     elif key=='resnet':
-        c.text(21,Y(153),'Features',13,BLUE,True);c.arrow(85,Y(149),126,Y(149))
-        for x in [138,358]:
-            c.module(x,Y(128),118,45,'Learned correction',BLUE)
-            c.arrow(x+120,Y(149),x+151,Y(149),BLUE);c.plus(x+168,Y(149))
-            c.path(f'M{x-11},{Y(149)} L{x-11},{Y(90)} L{x+168},{Y(90)} L{x+168},{Y(133)}',TEAL,True)
-            c.text(x+72,Y(80),'Identity path',12,TEAL,False,'middle')
-            c.arrow(x+183,Y(149),x+211,Y(149),TEAL)
-        c.box(578,Y(126),105,45,'Readout',TEAL)
+        c.text(24,Y(139),'Features',12,BLUE,600)
+        wire(c,(85,Y(135)),(125,Y(135)),BLUE)
+        for x in [125,337]:
+            f=block(c,x,Y(114),113,42,'F1' if x==125 else 'F2',color=BLUE)
+            p=add(c,x+147,Y(135),10)
+            wire(c,f.port('r'),p.port('l'),BLUE)
+            wire(c,(x-10,Y(135)),p.port('t'),TEAL,via=[(x-10,Y(84)),(x+147,Y(84))])
+            c.text(x+56,Y(74),'Identity',10.8,TEAL,500,'middle')
+            c.text(x+57,Y(178),'Learned correction',10.8,MID,400,'middle')
+            wire(c,p.port('r'),(337 if x==125 else 553,Y(135)),TEAL)
+        h=block(c,553,Y(114),85,42,'Readout')
+        result(c,h.port('r'),Y(135))
     elif key=='dual':
-        for yy,name,col in [(104,'Structure',BLUE),(174,'Responses',AMBER)]:
-            c.text(22,Y(yy+4),name,13,col,True);c.arrow(107,Y(yy),154,Y(yy),col)
-            c.module(162,Y(yy-24),125,45,'Branch representation',col)
-            c.path(f'M294,{Y(yy)} L392,{Y(yy)} L392,{Y(140)}',col)
-        c.text(391,Y(83),'Concatenate',12,TEAL,False,'middle')
-        c.arrow(394,Y(140),439,Y(140),TEAL)
-        c.module(449,Y(114),135,51,'Joint head',TEAL)
-        c.arrow(591,Y(140),662,Y(140),TEAL);c.text(677,Y(146),'ŷ',22,TEAL)
+        join=concat(c,408,Y(106),35,65)
+        for yy,label,col in [(99,'Structure',BLUE),(174,'Responses',AMBER)]:
+            c.text(25,Y(yy+4),label,12,col,600)
+            b=block(c,155,Y(yy-20),166,40,'Encoder',color=col)
+            wire(c,(109,Y(yy)),b.port('l'),col)
+            target=(408,Y(yy+19 if yy==99 else yy-17))
+            wire(c,b.port('r'),target,col,via=[(378,Y(yy)),(378,target[1])])
+        h=block(c,503,Y(117),128,42,'Joint head')
+        joined_head(c,join,h,Y(138))
     elif key=='ridge_residual':
-        c.text(23,Y(102),'Continuous',12,BLUE,True);c.text(23,Y(119),'descriptors',12,BLUE,True)
-        c.arrow(115,Y(111),172,Y(111),BLUE);c.box(180,Y(90),163,43,'Ridge baseline',BLUE)
-        c.text(23,Y(183),'All features',12,TEAL,True);c.arrow(114,Y(179),172,Y(179),TEAL)
-        c.module(180,Y(154),163,49,'Neural residual',TEAL)
-        c.path(f'M349,{Y(111)} L532,{Y(111)} L532,{Y(131)}',BLUE,True)
-        c.path(f'M349,{Y(179)} L532,{Y(179)} L532,{Y(161)}',TEAL,True)
-        c.plus(532,Y(146));c.arrow(550,Y(146),666,Y(146),TEAL);c.text(681,Y(152),'ŷ',22,TEAL)
-        c.text(386,Y(75),'Training target − baseline',12,AMBER,False,'middle')
-        c.path(f'M387,{Y(82)} L387,{Y(187)} L350,{Y(187)}',AMBER,True,True)
+        baseline=block(c,169,Y(82),159,41,'Ridge baseline',color=BLUE)
+        residual=block(c,169,Y(156),159,41,'Neural residual')
+        c.text(23,Y(99),'Continuous',11.5,BLUE,600)
+        c.text(23,Y(114),'descriptors',11.5,BLUE,600)
+        c.text(23,Y(181),'All features',11.5,TEAL,600)
+        wire(c,(116,Y(102.5)),baseline.port('l'),BLUE)
+        wire(c,(116,Y(176.5)),residual.port('l'),TEAL)
+        p=add(c,557,Y(139),11)
+        wire(c,baseline.port('r'),p.port('t'),BLUE,via=[(557,Y(102.5))])
+        wire(c,residual.port('r'),p.port('b'),TEAL,via=[(557,Y(176.5))])
+        c.text(407,Y(91),'b(x)',11.5,BLUE,500,'middle')
+        c.text(422,Y(195),'r(x)',11.5,TEAL,500,'middle')
+        c.text(423,Y(142),'Train r on y − b(x)',10.7,AMBER,500,'middle')
+        result(c,p.port('r'),Y(139))
     elif key=='graph':
-        c.box(22,Y(118),78,46,'Graph',BLUE);c.arrow(106,Y(141),147,Y(141),BLUE)
-        c.img('graph',156,Y(74),63,125);c.text(187,Y(219),'Atom states',12,BLUE,False,'middle')
-        c.arrow(227,Y(140),278,Y(140),TEAL)
-        c.box(287,Y(117),161,46,'Sum | mean | count',TEAL)
-        c.text(366,Y(96),'Concatenate',12,TEAL,False,'middle')
-        c.arrow(454,Y(140),506,Y(140),TEAL)
-        c.module(515,Y(116),146,49,'Neural head',TEAL)
-        c.text(464,Y(221),'RDKit + response branch',12,AMBER,False,'middle')
-        c.path(f'M463,{Y(206)} L501,{Y(206)} L501,{Y(161)} L516,{Y(161)}',AMBER,True)
-        c.arrow(665,Y(141),693,Y(141),TEAL)
+        # Schematic graph is explicitly an abstract topology, not a molecule.
+        pts=[(45,110),(75,91),(101,110),(95,149),(56,155)]
+        for a,b in [(0,1),(1,2),(2,3),(3,4),(4,0),(1,4)]:
+            c.line(pts[a][0],Y(pts[a][1]),pts[b][0],Y(pts[b][1]),BLUE,1.3)
+        for x,yy in pts:c.circle(x,Y(yy),5,'white',BLUE,1.5)
+        c.text(75,Y(186),'Graph',11.2,BLUE,500,'middle')
+        m=block(c,144,Y(104),125,51,'Message passing',color=BLUE)
+        wire(c,(108,Y(129.5)),m.port('l'),BLUE)
+        read=block(c,308,Y(104),146,51,'Σhᵢ | mean hᵢ | N',color=TEAL)
+        wire(c,m.port('r'),read.port('l'),TEAL)
+        c.text(383,Y(91),'Readout',10.7,TEAL,500,'middle')
+        join=concat(c,489,Y(110),29,58)
+        wire(c,read.port('r'),(489,Y(127)),TEAL)
+        c.text(323,Y(191),'RDKit + responses',10.8,AMBER,500)
+        wire(c,(441,Y(184)),(489,Y(155)),AMBER,via=[(471,Y(184)),(471,Y(155))])
+        h=block(c,557,Y(118),85,42,'Head')
+        joined_head(c,join,h,Y(139))
     elif key in ['molformer_deterministic','molformer_fixed_tree']:
-        c.text(22,Y(127),'SMILES',13,BLUE,True);c.arrow(85,Y(123),119,Y(123),BLUE)
-        c.module(129,Y(100),170,51,'Frozen MoLFormer',BLUE);c.lock(280,Y(98))
-        c.arrow(306,Y(123),356,Y(123),BLUE)
-        c.path(f'M363,{Y(111)} L363,{Y(193)} M296,{Y(188)} L363,{Y(188)}',TEAL)
-        c.text(257,Y(213),'Structure + 15 responses',12,AMBER,False,'middle')
-        c.text(370,Y(85),'Concatenate',12,TEAL,False,'middle')
+        c.text(25,Y(111),'SMILES',12,BLUE,600)
+        enc=block(c,129,Y(85),159,47,'MoLFormer',color=BLUE,frozen=True)
+        wire(c,(85,Y(108.5)),enc.port('l'),BLUE)
+        join=concat(c,354,Y(96),34,75)
+        wire(c,enc.port('r'),(354,Y(111)),BLUE)
+        c.text(128,Y(167),'Structure + responses',11.2,AMBER,500)
+        wire(c,(284,Y(162)),(354,Y(157)),AMBER,via=[(331,Y(162)),(331,Y(157))])
         if key=='molformer_deterministic':
-            c.arrow(365,Y(150),420,Y(150),TEAL)
-            c.module(432,Y(124),148,53,'Neural head',TEAL)
-            c.arrow(588,Y(150),674,Y(150),TEAL)
+            h=block(c,462,Y(112),153,43,'Neural head')
+            joined_head(c,join,h,Y(133.5))
         else:
-            c.path(f'M365,{Y(150)} L412,{Y(150)} L412,{Y(91)} L486,{Y(91)} L486,{Y(103)}',TEAL,True)
-            c.img('tree',431,Y(92),115,85)
-            c.path(f'M476,{Y(172)} L476,{Y(198)} L568,{Y(198)} L568,{Y(151)}',TEAL,True)
-            c.box(558,Y(112),110,36,'Leaf mean',TEAL)
-            c.arrow(670,Y(132),696,Y(132),TEAL)
-            c.text(532,Y(80),'ExtraTrees',12,TEAL,True,'middle')
+            roots,ends=forest(c,431,Y(96),130,55)
+            wire(c,join.port('r'),(418,Y(83)),TEAL,via=[(408,Y(133.5)),(408,Y(83))],arrow=False)
+            c.line(418,Y(83),roots[-1][0],Y(83),TEAL,1.3)
+            for root in roots:wire(c,(root[0],Y(83)),(root[0],root[1]-3.5),TEAL)
+            for p in ends:wire(c,p,(p[0],Y(168)),TEAL,arrow=False)
+            c.line(ends[0][0],Y(168),570,Y(168),TEAL,1.3)
+            c.text(496,Y(70),'ExtraTrees',11.2,TEAL,600,'middle')
+            h=block(c,582,Y(146),65,44,'Mean')
+            wire(c,(570,Y(168)),h.port('l'),TEAL)
+            result(c,h.port('r'),Y(168))
     elif key=='tabm':
-        c.text(22,Y(146),'Features',13,BLUE,True);c.arrow(87,Y(142),129,Y(142),BLUE)
-        c.rect(128,Y(70),302,150,BLUE,r=3)
-        c.img('tabm',140,Y(80),87,123);c.text(184,Y(235),'Shared weights',12,BLUE,True,'middle')
+        c.text(23,Y(142),'Features',12,BLUE,600)
+        wire(c,(84,Y(138)),(234,Y(138)),BLUE,arrow=False)
+        c.text(153,Y(122),'Within a layer',10.7,MID,400,'middle')
+        c.line(234,Y(92),234,Y(184),BLUE,1.3)
+        c.text(366,Y(69),'Same W · different rᵢ and sᵢ',11.2,AMBER,500,'middle')
         for j in range(3):
-            yy=98+j*43;c.arrow(234,Y(yy),279,Y(yy),BLUE)
-            c.box(286,Y(yy-14),127,29,'Modulate rᵢ, sᵢ',AMBER)
-            c.path(f'M418,{Y(yy)} L494,{Y(yy)} L494,{Y(142)}',TEAL)
-        c.text(278,Y(65),'Within-layer modulation',12,AMBER,False,'middle')
-        c.text(499,Y(216),'32 predictions',12,TEAL,True,'middle')
-        c.arrow(497,Y(142),545,Y(142),TEAL);c.box(552,Y(120),74,43,'Mean',TEAL)
-        c.arrow(632,Y(142),678,Y(142),TEAL);c.text(689,Y(148),'ŷ',21,TEAL)
+            yy=92+j*46
+            b=block(c,263,Y(yy-15),207,30,'diag(sᵢ) W diag(rᵢ) x',color=AMBER)
+            wire(c,(234,Y(yy)),b.port('l'),BLUE)
+            wire(c,b.port('r'),(505,Y(yy)),TEAL,arrow=False)
+        c.line(505,Y(92),505,Y(184),TEAL,1.3)
+        c.text(585,Y(184),'32 member outputs',10.7,MID,400,'middle')
+        h=block(c,548,Y(116),86,44,'Mean')
+        wire(c,(505,Y(138)),h.port('l'),TEAL)
+        result(c,h.port('r'),Y(138))
     elif key=='tabpfn':
-        c.text(22,Y(80),'Labelled context',13,BLUE,True)
-        for row in range(3):
-            for col in range(5):c.rect(24+col*29,Y(91+row*22),26,19,AMBER if col==4 else BLUE,'white',1)
-        c.text(153,Y(82),'y',12,AMBER,True,'middle')
-        c.text(22,Y(179),'Unlabelled query',12,TEAL,True)
-        for col in range(5):c.rect(24+col*29,Y(190),26,20,AMBER if col==4 else BLUE,'white',1)
-        c.text(154,Y(205),'?',14,AMBER)
-        c.path(f'M175,{Y(123)} L225,{Y(123)} L225,{Y(140)} L282,{Y(140)}',BLUE,True)
-        c.path(f'M175,{Y(201)} L238,{Y(201)} L238,{Y(154)} L282,{Y(154)}',TEAL,True)
-        c.module(292,Y(117),169,62,'Pretrained TabPFN',BLUE);c.lock(443,Y(115))
-        c.arrow(468,Y(148),510,Y(148),TEAL)
-        c.box(518,Y(121),181,51,'Distribution → mean',TEAL)
-        c.text(602,Y(199),'No gradient fine-tuning',12,GRAY,False,'middle')
+        c.text(25,Y(77),'Training context',11.5,BLUE,600)
+        for i in range(3):
+            for j in range(4):c.rect(25+j*23,Y(88+i*19),19,14,'white',BLUE,1)
+            c.rect(127,Y(88+i*19),22,14,'white',AMBER,1)
+        c.text(137,Y(77),'y',11.5,AMBER,500,'middle')
+        c.text(25,Y(165),'Query',11.5,TEAL,600)
+        for j in range(4):c.rect(25+j*23,Y(177),19,14,'white',TEAL,1)
+        c.text(138,Y(190),'?',16,AMBER,500,'middle')
+        enc=block(c,251,Y(113),164,52,'TabPFN',color=BLUE,frozen=True)
+        wire(c,(158,Y(114)),(251,Y(130)),BLUE,via=[(207,Y(114)),(207,Y(130))])
+        wire(c,(158,Y(184)),(251,Y(150)),TEAL,via=[(222,Y(184)),(222,Y(150))])
+        c.text(333,Y(94),'Pretrained transformer',11.2,BLUE,500,'middle')
+        wire(c,enc.port('r'),(453,Y(139)),TEAL)
+        c.text(499,Y(146),'p(y | x, D)',17,TEAL,500,'middle')
+        c.text(499,Y(176),'Predictive distribution',10.3,MID,400,'middle')
+        h=block(c,573,Y(117),65,44,'Mean')
+        wire(c,(551,Y(139)),h.port('l'),TEAL)
+        result(c,h.port('r'),Y(139))
 
+def main():
+    p=argparse.ArgumentParser();p.add_argument('--preview-dir',type=Path);a=p.parse_args()
+    ASSET.mkdir(exist_ok=True)
+    for group in range(3):
+        c=Art(788,'Endpoint mechanisms: '+', '.join(r[1] for r in ROWS[group*3:group*3+3]))
+        for j,row in enumerate(ROWS[group*3:group*3+3]):
+            key,title,reason,evidence,limit=row;y=j*263
+            frame(c,y,'abc'[j],title,reason,evidence,limit);diagram(c,key,y)
+            solo=Art(263,title);frame(solo,0,'',title,reason,evidence,limit);diagram(solo,key,0)
+            (ASSET/(key+'.svg')).write_text(solo.svg()+'\n')
+        name=f'Supp_Fig{8+group}_endpoint_mechanisms'
+        c.save(OUT/name,a.preview_dir/(name+'.png') if a.preview_dir else None)
+    print('Nine native vector mechanisms; connected ports; no generated scientific topology.')
 
-ROWS=[
-('tree','ExtraTrees','Local partitions: can averaging nearby labels predict hydration?',
- 'ARROW MAE 0.202; strong original matched-response controls.', 'Finite leaf-value range limits extrapolation of the mean.'),
-('resnet','Residual MLP','Learn nonlinear corrections while preserving an identity path.',
- 'Tests a direct neural replacement; ARROW MAE 0.340.', 'Neural flexibility alone does not recover the tree accuracy.'),
-('dual','Dual structure / response branches','Let each input group learn its own representation before combining them.',
- 'Size-held-out MAE 1.560 versus 1.772 for refitted trees.', 'Separate branches do not impose physical additivity.'),
-('ridge_residual','Ridge + neural residual','Fit a continuous baseline; learn the remaining target with a network.',
- 'Size-held-out MAE 1.391; no tree-leaf ceiling in the neural correction.', 'A linear trend is not a validated asymptotic free-energy law.'),
-('graph','Size-sensitive message passing','Aggregate learned atom states rather than only recording fragment presence.',
- 'Responses lower external MAE from 1.311 to 1.168.', 'Shown: sum / mean readout; atomic-plus-global variant also tested.'),
-('molformer_deterministic','Frozen MoLFormer + neural head','Reuse a pretrained sequence representation alongside response information.',
- 'Responses help in all three cohorts; external MAE 1.111.', 'The encoder is frozen; the endpoint is trained on hydration labels.'),
-('tabm','TabM: parameter-sharing ensemble','Obtain several neural predictors while sharing most of their weights.',
- 'External MAE 1.132; size-held-out MAE 1.389.', '32 members share parameters; they are not 32 independent fits.'),
-('tabpfn','TabPFN-3.5: prediction from context','Condition a pretrained transformer on eligible labelled training rows.',
- 'ARROW MAE 0.199; size-held-out MAE 1.318.', 'Native intervals under-cover; input recipes differ across partitions.'),
-('molformer_fixed_tree','Frozen MoLFormer + ExtraTrees','Change the representation while retaining the original endpoint family.',
- 'ARROW MAE 0.234 with responses; 0.348 without.', 'This control retains the bounded tree endpoint.')]
-
-for group in range(3):
-    c=SVG()
-    for j,row in enumerate(ROWS[group*3:group*3+3]):
-        key,title,question,evidence,limit=row;y=j*280
-        c.row(y,'abc'[j],title,question,evidence,limit);diagram(c,key,y)
-        solo=SVG(280);solo.row(0,'',title,question,evidence,limit);diagram(solo,key,0)
-        (ASSET/(key+'.svg')).write_text(solo.finish())
-    stem=f'Supp_Fig{8+group}_endpoint_mechanisms'
-    svg=c.finish();(OUT/(stem+'.svg')).write_text(svg)
-    cairosvg.svg2pdf(bytestring=svg.encode(),write_to=str(OUT/(stem+'.pdf')))
-    if QA:cairosvg.svg2png(bytestring=svg.encode(),write_to=str(QA/(stem+'.png')),scale=1.5)
-print('Nine checked conceptual composites; native text/connectors, Azure raster motifs, white backgrounds.')
+if __name__=='__main__':main()

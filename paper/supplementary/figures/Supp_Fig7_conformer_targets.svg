@@ -2,7 +2,7 @@
   <rdf:RDF>
    <ns2:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-    <dc:date>2026-10-06T21:04:03.273061</dc:date>
+    <dc:date>2026-10-06T22:17:00.088639</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <ns2:Agent>
@@ -62,11 +62,11 @@
    </ns0:g>
   </ns0:g>
  </ns0:g>
-</g><text x="10" y="403.000" font-size="20" fill="#172D3A" font-weight="700" text-anchor="start">c</text><text x="34" y="402.000" font-size="14" fill="#172D3A" font-weight="700" text-anchor="start">Predict six summaries from molecular structure</text><rect x="10" y="425" width="110" height="46" rx="1" fill="#F4F0F7" stroke="none" opacity="1"/><g transform="translate(10,425) scale(1.4111111094006734,1.4111111196323136)"><ns0:metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns2="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+</g><text x="10" y="403.000" font-size="20" fill="#172D3A" font-weight="700" text-anchor="start">c</text><text x="34" y="402.000" font-size="14" fill="#172D3A" font-weight="700" text-anchor="start">Predict six summaries from molecular structure</text><rect x="10" y="425" width="110" height="46" rx="4" fill="white" stroke="#9776AE" opacity="1"/><g transform="translate(10,425) scale(1.4111111094006734,1.4111111196323136)"><ns0:metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns2="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:RDF>
    <ns2:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-    <dc:date>2026-10-06T21:04:03.287797</dc:date>
+    <dc:date>2026-10-06T22:17:00.106057</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <ns2:Agent>
@@ -95,11 +95,11 @@
    </ns0:g>
   </ns0:g>
  </ns0:g>
-</g><text x="65" y="489.000" font-size="10.5" fill="#657782" font-weight="400" text-anchor="middle">Gas ensemble</text><rect x="128" y="425" width="110" height="46" rx="1" fill="#F4F0F7" stroke="none" opacity="1"/><g transform="translate(128,425) scale(1.4111111094006734,1.4111111196323136)"><ns0:metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns2="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+</g><text x="65" y="489.000" font-size="10.5" fill="#657782" font-weight="400" text-anchor="middle">Gas ensemble</text><rect x="128" y="425" width="110" height="46" rx="4" fill="white" stroke="#9776AE" opacity="1"/><g transform="translate(128,425) scale(1.4111111094006734,1.4111111196323136)"><ns0:metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns2="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:RDF>
    <ns2:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-    <dc:date>2026-10-06T21:04:03.294556</dc:date>
+    <dc:date>2026-10-06T22:17:00.112617</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <ns2:Agent>
@@ -130,11 +130,11 @@
    </ns0:g>
   </ns0:g>
  </ns0:g>
-</g><text x="183" y="489.000" font-size="10.5" fill="#657782" font-weight="400" text-anchor="middle">Water ensemble</text><rect x="246" y="425" width="110" height="46" rx="1" fill="#F4F0F7" stroke="none" opacity="1"/><g transform="translate(246,425) scale(1.4111111094006734,1.4111111196323136)"><ns0:metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns2="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+</g><text x="183" y="489.000" font-size="10.5" fill="#657782" font-weight="400" text-anchor="middle">Water ensemble</text><rect x="246" y="425" width="110" height="46" rx="4" fill="white" stroke="#9776AE" opacity="1"/><g transform="translate(246,425) scale(1.4111111094006734,1.4111111196323136)"><ns0:metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns2="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:RDF>
    <ns2:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-    <dc:date>2026-10-06T21:04:03.298179</dc:date>
+    <dc:date>2026-10-06T22:17:00.115919</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <ns2:Agent>
@@ -173,11 +173,11 @@
    </ns0:g>
   </ns0:g>
  </ns0:g>
-</g><text x="301" y="489.000" font-size="10.5" fill="#657782" font-weight="400" text-anchor="middle">Hydration correction</text><rect x="364" y="425" width="110" height="46" rx="1" fill="#F4F0F7" stroke="none" opacity="1"/><g transform="translate(364,425) scale(1.4111111094006734,1.4111111196323136)"><ns0:metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns2="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+</g><text x="301" y="489.000" font-size="10.5" fill="#657782" font-weight="400" text-anchor="middle">Hydration correction</text><rect x="364" y="425" width="110" height="46" rx="4" fill="white" stroke="#9776AE" opacity="1"/><g transform="translate(364,425) scale(1.4111111094006734,1.4111111196323136)"><ns0:metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns2="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:RDF>
    <ns2:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-    <dc:date>2026-10-06T21:04:03.327827</dc:date>
+    <dc:date>2026-10-06T22:17:00.143689</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <ns2:Agent>
@@ -208,11 +208,11 @@
    </ns0:g>
   </ns0:g>
  </ns0:g>
-</g><text x="419" y="489.000" font-size="10.5" fill="#657782" font-weight="400" text-anchor="middle">Solvation spread</text><rect x="482" y="425" width="110" height="46" rx="1" fill="#F4F0F7" stroke="none" opacity="1"/><g transform="translate(482,425) scale(1.4111111094006734,1.4111111196323136)"><ns0:metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns2="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+</g><text x="419" y="489.000" font-size="10.5" fill="#657782" font-weight="400" text-anchor="middle">Solvation spread</text><rect x="482" y="425" width="110" height="46" rx="4" fill="white" stroke="#9776AE" opacity="1"/><g transform="translate(482,425) scale(1.4111111094006734,1.4111111196323136)"><ns0:metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns2="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:RDF>
    <ns2:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-    <dc:date>2026-10-06T21:04:03.331392</dc:date>
+    <dc:date>2026-10-06T22:17:00.146798</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <ns2:Agent>
@@ -246,11 +246,11 @@
    </ns0:g>
   </ns0:g>
  </ns0:g>
-</g><text x="537" y="489.000" font-size="10.5" fill="#657782" font-weight="400" text-anchor="middle">Mean water response</text><rect x="600" y="425" width="110" height="46" rx="1" fill="#F4F0F7" stroke="none" opacity="1"/><g transform="translate(600,425) scale(1.4111111094006734,1.4111111196323136)"><ns0:metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns2="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+</g><text x="537" y="489.000" font-size="10.5" fill="#657782" font-weight="400" text-anchor="middle">Mean water response</text><rect x="600" y="425" width="110" height="46" rx="4" fill="white" stroke="#9776AE" opacity="1"/><g transform="translate(600,425) scale(1.4111111094006734,1.4111111196323136)"><ns0:metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns2="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:RDF>
    <ns2:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-    <dc:date>2026-10-06T21:04:03.335064</dc:date>
+    <dc:date>2026-10-06T22:17:00.150144</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <ns2:Agent>
@@ -286,7 +286,7 @@
   <rdf:RDF>
    <ns2:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-    <dc:date>2026-10-06T21:04:03.338691</dc:date>
+    <dc:date>2026-10-06T22:17:00.153659</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <ns2:Agent>

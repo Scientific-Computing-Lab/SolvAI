@@ -1,172 +1,133 @@
-"""Compose the two opening figures from verified chemistry, data and concept art.
+"""Exact vector topology with an Azure-generated paper-texture accent.
 
-Selected raster objects depict information reuse, not molecules, fields or a
-particular architecture. Every scientific label, connector and value is vector.
+Texture is non-evidential: native paths define all six source streams. Molecular
+connectivity, coordinate counts, labels and values come from retained sources.
 """
-from pathlib import Path
 import base64
-from journal_vector_art import Art, ROOT, INK, MID, GRID, BLUE, TEAL, AMBER, PURPLE, COLORS, COUNTS
+from journal_vector_art import Art, ROOT, INK, MID, GRID, BLUE, TEAL, AMBER, COLORS, COUNTS
+from journal_diagram import wire, block, concat, bank, heading
 
 OUT=ROOT/'paper/figures/journal'
 ASSET=OUT/'teaser_components'
 
-def image(c,name,x,y,w,h):
-    data=base64.b64encode((ASSET/(name+'.png')).read_bytes()).decode()
-    c.add(f'<image x="{x}" y="{y}" width="{w}" height="{h}" preserveAspectRatio="xMidYMid meet" xlink:href="data:image/png;base64,{data}"/>')
-
-def heading(c,x,y,letter,title,subtitle=None):
-    c.text(x,y,letter,20,INK,700)
-    c.text(x+24,y-1,title,14.2,INK,700)
-    if subtitle:c.text(x+24,y+18,subtitle,11.6,MID)
-
 def output(c,x,y,size=25):
-    c.text(x,y,'ΔG',size,TEAL,600)
-    c.text(x+size*1.65,y+size*.23,'hyd',size*.46,TEAL)
+    c.text(x,y,'ΔG',size,TEAL,500)
+    c.text(x+size*1.58,y+size*.22,'hyd',size*.43,TEAL)
 
-def response_bar(c,x,y,w,h=13,labels=False):
-    c.responses(x,y,w,h)
-    if labels:
-        gap=3;gg=7;cell=(w-gap*(sum(COUNTS)-len(COUNTS))-gg*(len(COUNTS)-1))/sum(COUNTS)
-        cur=x
-        for count,color in zip(COUNTS,COLORS):
-            span=count*cell+(count-1)*gap
-            c.text(cur+span/2,y+h+16,str(count),11.5,color,600,'middle')
-            cur+=span+gg
-
-def ai(c,x,y,w,h,locked=False):
-    image(c,'endpoint',x,y,w,h)
-    c.text(x+w*.50,y+h*.66,'AI',19,TEAL,700,'middle')
-    if locked:c.lock(x+w*.88,y+8,TEAL,1.25)
+def texture(c):
+    for j in range(6):
+        b=base64.b64encode((ASSET/f'paper_texture_{j+1}.png').read_bytes()).decode()
+        c.defs.append(f'<pattern id="paper{j}" width="100" height="30" patternUnits="userSpaceOnUse"><image width="100" height="30" preserveAspectRatio="none" xlink:href="data:image/png;base64,{b}"/></pattern>')
 
 def overview(data,preview):
-    c=Art(690,'SolvAI: learn solvent responses once and reuse them from structure')
-    heading(c,10,26,'a','The recurring physical cost')
-    c.text(110,65,'Gas → water',14,INK,600,'middle')
-    c.molecule(53,79,117,81)
-    c.text(110,180,'One new molecule',12,MID,400,'middle')
-    c.arrow(109,192,109,215,AMBER,2)
-    c.shell(26,222,164,109,explicit=True)
-    c.text(110,350,'Sample and calculate again',12,AMBER,600,'middle')
-    c.path('M181,249 C199,217 192,167 174,148',AMBER,1.3)
-    c.arrow(174,148,170,144,AMBER,1.3)
-    c.line(213,45,213,357,GRID,1)
+    c=Art(640,'SolvAI: turn repeated solvent calculations into reusable molecular information')
+    texture(c)
+    heading(c,10,27,'a','Repeated calculation')
+    c.text(36,49,'Gas-to-water free energy',11.7,MID)
+    c.molecule(28,82,147,105)
+    c.text(103,207,'New molecule',12,INK,500,'middle')
+    wire(c,(104,218),(104,252),AMBER,width=1.8)
+    c.shell(19,266,167,111,explicit=True)
+    c.text(103,401,'Sample solvent configurations',11.3,AMBER,500,'middle')
+    c.text(103,418,'Repeat the free-energy calculation',11.3,MID,400,'middle')
+    c.line(213,61,213,421,GRID,1)
 
-    heading(c,235,26,'b','Learn reusable solvent responses')
-    c.text(260,60,'Six complementary source families',12,MID)
-    labels=[('COSMOtherm','Continuum water'),('Abraham','Five empirical axes'),
-            ('OpenFF + δ','Explicit water'),('GBn2 + δ','Implicit water'),
-            ('SMD(water)','Continuum water'),('ConfSolv','Conformer summaries')]
-    ys=[95,140,185,230,275,320]
-    for (name,desc),y,color in zip(labels,ys,COLORS):
-        c.circle(244,y-4,3.3,color)
-        c.text(255,y,name,12.4,color,600)
-        c.text(255,y+15,desc,10.7,MID)
-    image(c,'response_bank',365,75,334,265)
-    # Each colored ribbon is conceptual; exact scientific counts are native.
-    c.responses(413,339,279,13)
-    c.text(553,371,'15 structure-predicted descriptors',12.7,TEAL,600,'middle')
-    c.text(270,371,'δ: learned residual',10.5,MID)
-    c.line(10,393,710,393,GRID,1)
+    heading(c,235,27,'b','Learn once, reuse across molecules')
+    c.text(260,49,'Six sources → six frozen structure-to-response maps',11.7,MID)
+    names=['COSMOtherm','Abraham','OpenFF + δ','GBn2 + δ','SMD(water)','ConfSolv']
+    desc=['continuum water','empirical axes','explicit water','implicit water','continuum water','conformer response']
+    for j,(name,sub,col,n) in enumerate(zip(names,desc,COLORS,COUNTS)):
+        yy=87+j*47
+        c.text(246,yy,name,12.3,col,600)
+        c.text(246,yy+15,sub,10.2,MID)
+        start=381;stop=568;end=104+j*39;th=12
+        path=(f'M{start},{yy-7} C447,{yy-7} 453,{end-15} {stop},{end-15} '
+              f'L{stop},{end-15+th} C453,{end-15+th} 447,{yy+5} {start},{yy+5} Z')
+        c.path(path,col,.6,f'url(#paper{j})')
+        c.circle(577,end-9,12,'white',col,1.25)
+        c.text(577,end-5,'φ'+str(j+1),10.3,col,500,'middle')
+        wire(c,(589,end-9),(611,end-9),col,width=1.25)
+        for k in range(n):c.rect(619+k*13,end-17,9,16,col,radius=1)
+    c.text(560,367,'Learned maps',11.4,INK,500,'end')
+    c.text(659,367,'15 coordinates',12.3,TEAL,600,'middle')
+    c.text(249,413,'δ: learned correction to a physical calculation',10.7,MID)
+    c.line(10,443,710,443,GRID,1)
 
-    heading(c,10,422,'c','Reuse the learned mappings for a new molecule')
-    c.text(52,451,'SMILES',11.6,INK,600,'middle')
-    c.molecule(12,456,79,63)
-    c.text(53,537,'CNC(C)=O',11.1,MID,400,'middle')
-    c.arrow(100,492,143,492,BLUE,1.7)
-    image(c,'response_core',150,446,62,95)
-    c.lock(201,446,TEAL,1.2)
-    c.text(181,559,'Six frozen mappings',11.5,TEAL,600,'middle')
-    c.arrow(217,492,261,492,TEAL,1.7)
-    c.responses(273,482,128,20)
-    c.text(337,524,'15 responses',11.5,TEAL,600,'middle')
-    c.path('M408,492 L433,492 L433,512',TEAL,1.6)
-    c.path('M112,492 L112,567 L434,567 L434,525',MID,1.4)
-    c.circle(112,492,2.5,BLUE)
-    c.feature_stripes(275,555,103,10)
-    c.text(327,590,'Structural descriptors',11.2,MID,400,'middle')
-    c.circle(434,518,6,'white',TEAL,1.1)
-    c.text(434,522,'+',12,TEAL,600,'middle')
-    c.text(434,548,'Concat.',10.5,TEAL,400,'middle')
-    c.arrow(442,518,470,518,TEAL,1.7)
-    ai(c,478,485,130,60,locked=True)
-    c.text(543,567,'Learned endpoint',11.5,TEAL,600,'middle')
-    c.arrow(613,518,642,518,TEAL,1.7);output(c,650,527,22)
-    c.text(700,590,'No new solvent calculation',12,TEAL,600,'end')
-    c.line(10,607,710,607,GRID,1)
-
-    heading(c,10,635,'d','Original matched evidence')
-    c.text(34,657,'ExtraTrees endpoint',11.4,MID)
-    c.text(34,677,'MAE (kcal mol⁻¹)',11.4,MID)
-    # Exact data-derived values, no generated numeric content.
-    for cohort,cx in [('ARROW-85',346),('External-220',591)]:
-        f=data['modern'];g=f.loc[f.cohort.eq(cohort)]
-        a=float(g.loc[g.model.eq('structure'),'mae'].item())
-        b=float(g.loc[g.model.eq('solvai'),'mae'].item())
-        c.text(cx,634,cohort,12,INK,600,'middle')
-        c.text(cx-43,660,f'{a:.3f}',19,MID,500,'end')
-        c.arrow(cx-34,654,cx-2,654,TEAL,1.5)
-        c.text(cx+8,660,f'{b:.3f}',19,TEAL,700)
-        c.text(cx-68,680,'Structure',10.5,MID,400,'middle')
-        c.text(cx+35,680,'+ responses',10.5,TEAL,600,'middle')
+    heading(c,10,472,'c','Predict hydration from structure alone')
+    c.text(35,495,'No new solvent calculation at inference',11.5,TEAL)
+    c.text(45,532,'SMILES',11.5,BLUE,600,'middle')
+    b=bank(c,104,505,82,53)
+    wire(c,(75,530),b.port('l'),BLUE)
+    c.text(145,577,'Six fixed maps',10.9,TEAL,500,'middle')
+    wire(c,b.port('r'),(208,530),TEAL)
+    c.responses(217,522,183,16)
+    c.text(309,558,'15 response descriptors',10.9,TEAL,500,'middle')
+    wire(c,(83,530),(419,566),MID,via=[(83,595),(409,595),(409,566)])
+    c.rect(217,583,171,17,'white')
+    c.feature_stripes(228,585,151,10)
+    c.text(304,615,'Structural descriptors',10.7,MID,400,'middle')
+    join=concat(c,419,515,32,52)
+    wire(c,(402,530),(419,530),TEAL)
+    h=block(c,482,514,113,54,'Hydration model',symbol='h',frozen=True)
+    wire(c,join.port('r'),h.port('l'),TEAL)
+    wire(c,h.port('r'),(630,541),TEAL)
+    output(c,647,549,25)
     return c.save(OUT/'F1_overview',preview/'F1_overview.png' if preview else None)
 
 def learning(data,preview):
-    c=Art(690,'SolvAI: separate source learning, endpoint fitting and evaluation exposure')
-    heading(c,10,26,'a','Learn the source mappings, then freeze them')
-    c.text(34,50,'Source supervision: calculated quantities or empirical measurements',11.8,MID)
-    c.molecule(20,119,83,72)
-    c.text(62,215,'Molecular\nstructure',12,INK,400,'middle')
-    c.arrow(104,151,133,151,BLUE)
+    c=Art(706,'SolvAI: source supervision, endpoint fitting and evaluation exposure')
+    heading(c,10,27,'a','Distil each source into a structure-to-response map')
+    c.text(35,49,'Source targets are computed quantities or empirical measurements',11.6,MID)
+    c.text(190,77,'Frozen surrogate',10.4,MID,500,'middle')
+    c.text(359,77,'Predicted coordinates',10.4,MID,500,'middle')
+    c.text(488,77,'Source training targets',10.4,AMBER,500)
     labels=['COSMOtherm water','Abraham E, S, A, B, L','OpenFF + correction',
             'GBn2 + correction','SMD(water)','ConfSolv summaries']
-    for j,(name,count,col) in enumerate(zip(labels,COUNTS,COLORS)):
-        y=83+j*29
-        c.path(f'M133,151 C153,151 140,{y+8} 172,{y+8}',col,1.2)
-        c.rect(180,y-3,81,23,'#FFFFFF',col,4)
-        c.text(220,y+13,'φ'+str(j+1),12,col,600,'middle')
-        c.lock(279,y+4,col,.95)
-        c.arrow(295,y+8,325,y+8,col,1.2)
-        for k in range(count):c.rect(335+k*19,y,14,15,col,radius=1)
-        c.text(483,y+11,name,12,INK)
-    c.text(221,271,'Six distinct surrogate families',11.4,TEAL,600,'middle')
-    c.text(485,271,'1 + 5 + 1 + 1 + 1 + 6 = 15 coordinates',11.4,TEAL,600,'middle')
-    c.line(10,291,710,291,GRID,1)
+    types=['D-MPNN','ExtraTrees','ExtraTrees','ExtraTrees','D-MPNN','LightGBM']
+    c.molecule(15,145,83,64)
+    c.text(57,235,'Molecular',11.5,INK,400,'middle')
+    c.text(57,251,'structure',11.5,INK,400,'middle')
+    wire(c,(97,176),(115,176),BLUE,arrow=False)
+    c.line(115,110,115,287,BLUE,1.2)
+    for j,(name,n,col,typ) in enumerate(zip(labels,COUNTS,COLORS,types)):
+        y=94+j*35.4
+        b=block(c,145,y,119,29,'φ'+str(j+1)+'  ·  '+typ,color=col)
+        wire(c,(115,y+14.5),b.port('l'),col,width=1.2)
+        wire(c,b.port('r'),(311,y+14.5),col,width=1.2)
+        for k in range(n):c.rect(322+k*22,y+6,16,17,col,radius=1)
+        c.text(488,y+20,name,11.8,INK)
+    c.text(359,328,'1 + 5 + 1 + 1 + 1 + 6 = 15',12.2,TEAL,600,'middle')
+    c.line(10,348,710,348,GRID,1)
 
-    heading(c,10,321,'b','Learn hydration from responses and structure')
-    c.text(34,344,'Endpoint supervision: experimental hydration free energy',11.8,MID)
-    response_bar(c,35,373,194,16)
-    c.text(132,413,'15 frozen response predictions',11.7,TEAL,600,'middle')
-    c.feature_stripes(37,432,191,13)
-    c.text(132,466,'Structural descriptors',11.7,MID,400,'middle')
-    c.path('M239,381 L267,381 L267,412',TEAL,1.4)
-    c.path('M239,439 L267,439 L267,424',MID,1.4)
-    c.circle(267,418,6,'white',TEAL,1.1);c.text(267,422,'+',12,TEAL,600,'middle')
-    c.text(292,372,'Concatenate',10.7,MID,400,'middle')
-    c.arrow(275,418,330,418,TEAL,1.8)
-    ai(c,343,378,193,87)
-    c.text(439,477,'Endpoint model h',12.4,TEAL,600,'middle')
-    c.arrow(543,418,585,418,TEAL,1.8);output(c,601,426,27)
-    c.text(612,465,'Hydration prediction',11.7,TEAL,600,'middle')
-    c.text(695,354,'Training-fold labels only',11.2,AMBER,600,'end')
-    c.path('M590,363 L440,363',AMBER,1.3)
-    c.arrow(440,363,440,380,AMBER,1.3)
-    c.text(34,498,'The response layer stays fixed when the endpoint architecture changes.',11.7,MID)
-    c.line(10,519,710,519,GRID,1)
+    heading(c,10,377,'b','Learn the endpoint separately')
+    c.text(35,400,'Experimental hydration labels supervise the endpoint, not its source targets',11.6,MID)
+    c.responses(35,431,205,15)
+    c.text(137,467,'Response descriptors',11.4,TEAL,500,'middle')
+    c.feature_stripes(35,490,205,12)
+    c.text(137,522,'Structural descriptors',11.4,MID,400,'middle')
+    join=concat(c,280,437,34,62)
+    wire(c,(248,438),(280,450),TEAL,via=[(264,438),(264,450)])
+    wire(c,(248,496),(280,486),MID,via=[(264,496),(264,486)])
+    h=block(c,378,440,154,56,'Hydration model',symbol='h')
+    wire(c,join.port('r'),h.port('l'),TEAL)
+    c.text(455,425,'Experimental ΔG labels · training folds',10.3,AMBER,500,'middle')
+    wire(c,(455,430),h.port('t'),AMBER)
+    wire(c,h.port('r'),(586,468),TEAL)
+    output(c,609,477,28)
+    c.text(455,526,'Swap the endpoint; keep the response layer fixed',11.3,MID,400,'middle')
+    c.line(10,546,710,546,GRID,1)
 
-    heading(c,10,548,'c','Separate endpoint exclusion from source exclusion')
-    c.text(34,581,'85 ARROW molecules',14,BLUE,600)
-    c.text(34,605,'Absent from all six supervised sources',11.6,INK)
-    c.text(34,630,'Each prediction is out of fold:',11.6,MID)
-    c.text(34,650,'its hydration label is not used in that fit.',11.6,MID)
-    c.line(335,567,335,676,GRID,1)
-
-    c.text(354,581,'220 external molecules',14,BLUE,600)
-    c.text(354,601,'All absent from endpoint training',11.6,INK)
-    # Each native dot is one molecule: exact123/97partition, not two cohorts.
+    heading(c,10,575,'c','Distinguish endpoint exclusion from source exclusion')
+    c.text(35,608,'85 ARROW molecules',14,BLUE,600)
+    c.text(35,632,'Absent from all six supervised sources',11.4,INK)
+    c.text(35,657,'Each hydration prediction is out of fold:',11.3,MID)
+    c.text(35,676,'its label is excluded from that endpoint fit.',11.3,MID)
+    c.line(336,595,336,688,GRID,1)
+    c.text(355,608,'220 external molecules',14,BLUE,600)
+    c.text(355,629,'All absent from endpoint training',11.4,INK)
     for i in range(220):
-        col=MID if i<123 else TEAL
-        c.circle(361+(i%22)*7.1,621+(i//22)*5.7,1.75,col)
-    c.text(544,626,'123 source-exposed',11.5,MID,600)
-    c.text(544,648,'97 absent from all six',11.5,TEAL,600)
-    c.text(544,671,'Nested subsets, same fitted model',10.4,MID)
+        c.circle(360+(i%22)*6.4,645+(i//22)*4.7,1.45,MID if i<123 else TEAL)
+    c.text(519,656,'123 source-exposed',11.2,MID,600)
+    c.text(519,677,'97 absent from all six',11.2,TEAL,600)
+    c.text(710,701,'97 is a subset of 220, not a separate fit.',10.5,MID,400,'end')
     return c.save(OUT/'F2_learning_and_evaluation',preview/'F2_learning_and_evaluation.png' if preview else None)

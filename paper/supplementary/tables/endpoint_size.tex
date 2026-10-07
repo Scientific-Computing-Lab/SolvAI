@@ -1,15 +1,16 @@
-\begin{longtable}{@{}p{5.4cm}rrl@{}}
+\begin{longtable}{@{}p{5.4cm}rrr@{}}
 \toprule
-Endpoint & Response MAE & No-response MAE & 95\% CI versus trees \\
-\midrule\endhead
-ExtraTrees & 1.7716 & 2.2459 & -- \\
-Residual MLP & 1.8130 & 1.9921 & $[-0.1714, 0.2514]$ \\
-Dual branch & 1.5600 & 1.9753 & $[-0.4039, -0.0278]$ \\
-Ridge + neural residual & 1.3913 & 1.4622 & $[-0.6387, -0.1467]$ \\
-Message passing & 1.7293 & 1.9303 & $[-0.2634, 0.1737]$ \\
-MoLFormer + neural head & 1.6091 & 2.0165 & $[-0.3729, 0.0361]$ \\
-TabM & 1.3886 & 1.6891 & $[-0.5784, -0.2051]$ \\
-TabPFN-3.5 & 1.3185 & 1.9586 & $[-0.6476, -0.2812]$ \\
-Count-adaptive selection & 1.3369 & 1.4470 & $[-0.6975, -0.1955]$ \\
-Width-adaptive selection & 1.5215 & 1.9901 & $[-0.4572, -0.0565]$ \\
+Endpoint & Response MAE & No-response MAE & $\Delta$MAE \\
+\midrule
+\endhead
+ExtraTrees & 1.7716 & 2.2459 & $-0.4743$ \\
+Residual MLP & 1.8130 & 1.9921 & $-0.1791$ \\
+Dual branch & 1.5600 & 1.9753 & $-0.4154$ \\
+Ridge + neural residual & 1.3913 & 1.4622 & $-0.0709$ \\
+Message passing & 1.7293 & 1.9303 & $-0.2010$ \\
+MoLFormer + neural head & 1.6091 & 2.0165 & $-0.4074$ \\
+TabM & 1.3886 & 1.6891 & $-0.3006$ \\
+TabPFN-3.5 & 1.3185 & 1.9586 & $-0.6402$ \\
+Count-adaptive selection & 1.3369 & 1.4470 & $-0.1101$ \\
+Width-adaptive selection & 1.5215 & 1.9901 & $-0.4686$ \\
 \bottomrule\end{longtable}

@@ -43,7 +43,7 @@ were fitted and all 85 ARROW molecules were evaluated.
 The weight of 3 was part of the prospective confirmatory protocol rather than a
 post-result choice. A separately prespecified one-factor sensitivity changed only the
 available ARROW outer-training weight to 1. Under this setting, matched structure-only
-and full SolvAI MAEs are 0.30977 and 0.20642 kcal mol$^{-1}$, respectively; the paired
+and response-augmented ExtraTrees MAEs are 0.30977 and 0.20642 kcal mol$^{-1}$, respectively; the paired
 change is $-0.10335$ kcal mol$^{-1}$ (95\% interval, $-0.21883$ to $-0.01995$).
 
 \subsection*{S3. Response-source processing}
@@ -240,7 +240,8 @@ endpoint evaluation.
 Both endpoint models were then fitted deployment-style on the same 1,280 public
 plus 85 ARROW labels with weights 1 and 3. They used the same descriptors, imputation,
 three 360-tree ensembles and seeds; only the 15 response columns differed. No external-cohort
-label entered fitting or selection. On N=220, structure-only and SolvAI MAEs were
+label entered fitting or selection. On N=220, structure-only and response-augmented
+ExtraTrees MAEs were
 1.53165 and 1.15255 kcal mol$^{-1}$ (paired change $-0.37909$; 95\% interval,
 $-0.51692$ to $-0.24817$). On strict N=97, the corresponding values were 2.13830 and
 1.53560 kcal mol$^{-1}$ (paired change $-0.60271$; interval, $-0.86277$ to $-0.35858$).
@@ -490,7 +491,7 @@ threshold: endpoint-training rows at or above that threshold are removed.
 
 \subsection*{Supplementary Table 6 | Diagnostic family errors}
 \small
-Fixed-partition out-of-fold SolvAI errors, grouped by diagnostic family; these are
+Fixed-partition out-of-fold response-augmented ExtraTrees errors, grouped by diagnostic family; these are
 not family-held-out predictions. MAE is in kcal mol$^{-1}$.
 \par\smallskip\noindent
 \input{supplementary/tables/family_errors.tex}
@@ -551,10 +552,11 @@ The three reported cohorts are not independent: Strict-97 is nested within Exter
 \normalsize
 
 \clearpage
-\subsection*{Supplementary Table 14 | Paired endpoint contrasts}
+\subsection*{Supplementary Table 14 | Matched response contrasts across endpoints}
 \small
-Candidate-minus-reference MAE and descriptive 95\% paired molecule-bootstrap
-intervals, in kcal mol$^{-1}$; 100,000 resamples without multiplicity adjustment.
+Within each endpoint, response-minus-no-response MAE and descriptive 95\%
+paired molecule-bootstrap intervals, in kcal mol$^{-1}$; 100,000 resamples
+without multiplicity adjustment. Negative values favor adding responses.
 The candidate always includes responses; ``No response'' is its matched ablation.
 \input{supplementary/tables/endpoint_comparisons.tex}
 \normalsize
@@ -563,9 +565,11 @@ The candidate always includes responses; ``No response'' is its matched ablation
 \subsection*{Supplementary Table 15 | Exploratory size holdout}
 \small
 The same 205 held-out molecules and 1,160 training labels are used for every row.
-All fits average three seeds. Errors and paired intervals are in kcal mol$^{-1}$.
+All fits average three seeds. Errors are in kcal mol$^{-1}$; the last column
+is each endpoint's response-minus-no-response MAE, not a cross-endpoint ranking.
+Cross-endpoint paired intervals are in Supplementary Data~6,
+\nolinkurl{size_diagnostic_comparisons.csv}.
 These development labels were available in earlier random-fold evaluation.
-The last column compares the response model with refitted ExtraTrees.
 \input{supplementary/tables/endpoint_size.tex}
 \normalsize
 
@@ -583,10 +587,10 @@ Widths are in kcal mol$^{-1}$; no external calibration was applied.
 \includegraphics[width=\textwidth]{Supp_Fig1_residuals.pdf}
 \end{center}
 \noindent\textbf{Supplementary Figure 1 | Molecule-level prediction and residuals.}
-\textbf{a}, Confirmatory SolvAI OOF prediction against experiment. \textbf{b}, Signed
+\textbf{a}, Confirmatory response-augmented ExtraTrees OOF prediction against experiment. \textbf{b}, Signed
 residual (prediction minus experiment) against experimental hydration free energy.
-\textbf{c}, Distribution of the paired absolute-error change, SolvAI minus the
-matched structure-only endpoint; negative values favor SolvAI.
+\textbf{c}, Distribution of the paired absolute-error change, responses minus the
+matched structure-only endpoint; negative values favor responses.
 
 \vspace{1.2em}
 \begin{center}
@@ -626,9 +630,9 @@ integration of the predicted curve with fold-local affine calibration (diamond).
 \includegraphics[width=\textwidth]{Supp_Fig5_extrapolation.pdf}
 \end{center}
 \noindent\textbf{Supplementary Figure 5 | Molecular and chemical-separation errors.}
-\textbf{a}, Individual fixed-partition SolvAI errors grouped by diagnostic chemical
+\textbf{a}, Individual fixed-partition response-augmented ExtraTrees errors grouped by diagnostic chemical
 family; ticks show family means and labels give sample sizes. \textbf{b}, Matched
-structure-only and SolvAI errors under four global separation regimes.
+structure-only and response-augmented ExtraTrees errors under four global separation regimes.
 
 \clearpage
 \begin{center}
@@ -643,8 +647,8 @@ then refitted on all outer-training labels for that
 many epochs, with a newly fitted training scaler. \textbf{b}, Selection and refitting
 are repeated for seeds 11, 29 and 47. Their predictions are averaged before comparison
 with held-out labels. The five ARROW folds and one all-training external fit give
-36 seed-level runs across the scratch D-MPNN and fine-tuned CheMeleon models. Molecular
-glyphs represent graph-model inputs, not an additional tree-based learner.
+36 seed-level runs across the scratch D-MPNN and fine-tuned CheMeleon models. The
+colored vectors represent predictions for held-out molecules, not new training inputs.
 
 \clearpage
 \begin{center}
@@ -674,8 +678,8 @@ stored value. \textbf{b}, A residual MLP learns corrections alongside identity
 paths. \textbf{c}, Separate structural and response branches are concatenated
 before a joint head. Illustrations explain mechanisms, not exact layer widths or
 tree counts. Numerical callouts refer to the evaluations in Table~2, not theoretical
-properties of the architectures. Conceptual motifs are combined with editable
-vector labels and connectors; they are not data-derived plots.
+properties of the architectures. All mechanism diagrams use editable vector
+geometry; they are explanatory schematics, not data-derived plots.
 
 \clearpage
 \begin{center}
@@ -683,8 +687,8 @@ vector labels and connectors; they are not data-derived plots.
 \end{center}
 \noindent\textbf{Supplementary Figure 9 | Baselines, graph aggregation and pretrained encodings.}
 \textbf{a}, Ridge predicts a continuous baseline and a network learns the remaining
-target. The dashed path denotes training supervision, not access to a query's target
-at inference. \textbf{b}, One graph variant combines summed and mean atom states
+target, $y-b(x)$, during training; inference adds the baseline and predicted residual
+without access to the query's target. \textbf{b}, One graph variant combines summed and mean atom states
 with atom-count information; a separate atomic-plus-global variant is also tested.
 The summaries are concatenated, not numerically equated or treated as independent
 free-energy contributions. \textbf{c}, MoLFormer is frozen, while the downstream
@@ -703,7 +707,7 @@ and an unlabelled query using pretrained weights. No query label is supplied and
 no gradient fine-tuning is done here. Feature recipes vary by partition (S19).
 \textbf{c}, Frozen MoLFormer features are combined with structural and response
 features before an ExtraTrees endpoint, isolating a representation change while
-retaining leaf-value averaging. One representative tree is shown, not the full ensemble.
+retaining leaf-value averaging. Three representative trees are shown, not the full ensemble.
 
 \clearpage
 \begin{center}

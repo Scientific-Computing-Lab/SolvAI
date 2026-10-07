@@ -6,64 +6,53 @@ structure—without running simulation at inference.**
 
 ![SolvAI concept](paper/figures/journal/F1_overview.svg)
 
-The released system maps one SMILES string to one hydration free energy. Its response
-surrogates were trained on benchmark-disjoint quantum-continuum, alchemical,
-empirical and conformational data; the expensive source calculations are not rerun
-for a query. PIMD-derived features were tested but are not present in the final model.
+SolvAI predicts 15 solvent-response descriptors from six source families, then
+combines them with molecular structure in a learned hydration endpoint. The response
+representation is shared across the tested endpoint families; SolvAI is not a
+particular endpoint algorithm. Inference starts from SMILES and does not rerun the
+source calculations. PIMD-derived features were tested but are not in the final
+response set.
 
-## Confirmatory result
+## Endpoint comparison
 
-On the 85-solute neutral-hydration reference set introduced with ARROW:
-
-| Method | Simulation at inference? | MAE (kcal/mol) |
-|---|---:|---:|
-| Classical ARROW | yes | 0.785 |
-| ARROW/PIMD8 | yes | 0.205 |
-| Matched structure-only endpoint | no | 0.303 |
-| SolvAI, fixed five-fold OOF | **no** | **0.202** |
-| SolvAI, five complete partitions | **no** | **0.207 ± 0.004** |
-| SolvAI, no ARROW labels in training | **no** | **0.257** |
-
-The matched endpoint uses exactly the same experimental labels, descriptors,
-ExtraTrees architecture, weights, folds and seeds; only the 15 response priors are
-removed. The paired OOF improvement is −0.101 kcal/mol (95% bootstrap interval,
-−0.215 to −0.020). Shuffled priors do not improve the endpoint, and the advantage
-survives global family, scaffold, molecular-cluster and nearest-neighbour exclusions.
-
-In a prospectively frozen external molecule-disjoint cohort, the same matched
-comparison lowers MAE from 1.532 to 1.153 kcal/mol (N=220). The advantage also
-persists in 97 molecules absent from all six response-source tables (2.138 to
-1.536 kcal/mol). These broader molecules establish transfer of the response-layer
-advantage, not PIMD8-level absolute accuracy outside ARROW-85.
-
-The supported conclusion is PIMD8-level accuracy on this reference chemistry, not a
-general sub-0.20 claim. Global family and scaffold separation
-remain harder at 0.468 and 0.376 kcal/mol, respectively.
-
-## Alternative endpoint models
-
-The journal study also evaluates residual and dual-branch MLPs, a ridge-plus-neural
-residual, size-sensitive message passing, frozen MoLFormer with a neural head,
-TabM, TabPFN-3.5, and MoLFormer with the original tree endpoint. All families and
-matched response ablations are reported, not only the selected model.
+The journal study evaluates ExtraTrees, residual and dual-branch MLPs, a
+ridge-plus-neural residual, size-sensitive message passing, frozen MoLFormer with
+neural and tree heads, TabM and TabPFN-3.5. For compatible endpoints, matched fits
+with and without the 15 responses test the value of the representation separately
+from the absolute-error ranking. No endpoint wins every evaluation.
 
 | Endpoint with responses | ARROW-85 MAE | External-220 MAE | Exploratory size MAE |
 |---|---:|---:|---:|
-| Original ExtraTrees | 0.202 | 1.153 | 1.772 |
+| ExtraTrees | 0.202 | 1.153 | 1.772 |
 | MoLFormer + neural head | 0.273 | 1.111 | 1.609 |
 | TabM | 0.291 | 1.132 | 1.389 |
 | TabPFN-3.5 | 0.199 | 1.134 | 1.318 |
 
-MAE is in kcal/mol. The separate size diagnostic refits every method on 1,160
-labels and evaluates 205 size-held-out molecules, reusing development data.
-Its response-source features remain fixed: this tests endpoint size transfer,
-not a pipeline with all upstream source exposure removed.
-The original-cohort TabPFN/tree differences do not establish superiority or
-equivalence. Responses do not benefit TabPFN uniformly; peptide curves have no
-experimental reference and native intervals under-cover. The study is retrospective,
-with final configurations selected inside training pools. Complete results and
+MAE is in kcal/mol. These are examples from the full comparison, not an exhaustive
+leaderboard. The size diagnostic refits each method on 1,160 labels and evaluates
+205 size-held-out molecules, reusing development data. Its source surrogates stay
+fixed, and endpoint input recipes differ; the contrast does not isolate architecture
+alone or test a pipeline with all upstream source exposure removed. Responses do not
+benefit TabPFN uniformly. Peptide curves have no experimental reference and native
+TabPFN intervals under-cover. The architecture study is retrospective, with final
+configurations selected inside training pools. Complete results and
 reproduction details: [`repro/endpoint_models/`](repro/endpoint_models/README.md).
-The public inference command below still runs the original ExtraTrees release.
+## Matched response controls with ExtraTrees
+
+One endpoint has additional prespecified alignment, shuffling, partition and
+chemical-separation controls. On ARROW-85, adding responses to a matched ExtraTrees
+fit lowers MAE from 0.303 to 0.202 kcal/mol (paired OOF change −0.101; 95%
+bootstrap interval, −0.215 to −0.020). The labels, structural features,
+weights, folds and seeds are identical across the pair. Shuffling the responses
+abolishes the gain. ARROW/PIMD8 has an MAE of 0.205 on this chemistry but is an
+accuracy reference, not a model input.
+
+On a prospectively frozen external cohort, the same matched comparison lowers MAE
+from 1.532 to 1.153 kcal/mol (N=220). In its nested 97-molecule subset absent from
+all six supervised response-source tables, the corresponding errors are 2.138 and
+1.536. These tests support response usefulness for this endpoint; they do not imply
+PIMD8-level absolute accuracy beyond ARROW-85 or the same effect size for every
+endpoint. The public inference command below uses this packaged ExtraTrees endpoint.
 
 ## Install and predict
 

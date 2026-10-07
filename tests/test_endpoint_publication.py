@@ -45,13 +45,13 @@ def test_corrected_comparison_preserves_non_molformer_rows():
 def test_neutral_framework_and_scientific_figure_formats():
     for name in ['F1_overview','F2_learning_and_evaluation']:
         svg=(ROOT/f'paper/figures/journal/{name}.svg').read_text()
-        assert '>AI</text>' in svg
-        assert 'data:image/png;base64,' in svg
+        assert '>h</text>' in svg
+        assert ('data:image/png;base64,' in svg)==(name=='F1_overview')
         assert '/Users/' not in svg and '/home/' not in svg
     for n in range(8,11):
         svg=(ROOT/f'paper/supplementary/figures/Supp_Fig{n}_endpoint_mechanisms.svg').read_text()
-        assert 'data:image/png;base64,' in svg
-        assert '<text' in svg and '<path' in svg and '#FFFFFF' in svg
+        assert 'data:image/' not in svg
+        assert '<text' in svg and '<path' in svg and 'white' in svg
         assert '/Users/' not in svg and '/home/' not in svg
     from PIL import Image
     for p in (ROOT/'paper/supplementary/figures/endpoint_components').glob('*.png'):

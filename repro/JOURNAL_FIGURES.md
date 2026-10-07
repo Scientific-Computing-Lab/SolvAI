@@ -34,23 +34,24 @@ All plotted numbers come from the frozen confirmatory and journal result tables.
 The molecular illustration uses retained N-methylacetamide connectivity and
 coordinates. Conformers use the retained 1,2-dimethoxyethane SDF. Neither solvent
 shell placement nor schematic energy levels is represented as simulation data.
-Quantitative plots contain no embedded rasters. Figures 1--2 and Supplementary
-Figures 8--10 combine selected Azure-generated conceptual motifs
-with native SVG labels, arrows and scientific annotations. These are explicitly
-non-evidential illustrations, not molecular structures or measured data. Selected
-components are in `paper/figures/journal/teaser_components/` and
-`paper/supplementary/figures/endpoint_components/`; the composition
-script rebuilds the exports without an image-generation API or credentials.
+Quantitative plots and all mechanism diagrams are native vectors. Figure 1 uses
+six small Azure-generated paper-texture samples, clipped inside native vector
+streams. Their geometry and exact counts are authored, not generated. The samples
+and sanitized crop provenance are in `paper/figures/journal/teaser_components/`.
+Individual vector mechanism panels are in
+`paper/supplementary/figures/endpoint_components/`. Rebuilding the exports needs
+neither an image-generation API nor credentials.
 
 The paper-wide plotting style is in `scripts/journal_style.py`; opening-figure
-composition is in `scripts/journal_teaser.py`. Native SVG labels, molecule counts,
-operators and arrows carry the scientific meaning; translucent objects depict
-information processing rather than physical fields or exact network layer counts.
+composition is in `scripts/journal_teaser.py`. `scripts/journal_diagram.py` defines
+native function ports, tree geometry, concatenation and addition. Every connector
+is anchored to an explicit port. Colored streams depict information reuse, not
+physical fields; generic hydration functions do not imply a particular architecture.
 
-The main sequence is: overview; learning and evaluation boundaries; matched
-evidence; molecular-model comparisons; chemical generalization; source-composition
-reversal; cross-endpoint response ablation; labelled size transfer and unlabelled
-peptide series. Captions in the manuscript define every panel and interval. The
+The main sequence is: overview; learning and evaluation boundaries; cross-endpoint
+response ablation; matched molecule-alignment evidence; molecular-model comparisons;
+chemical generalization; source-composition reversal; labelled size transfer and
+unlabelled peptide series. Captions in the manuscript define every panel and interval. The
 supplement retains all original exploratory and confirmatory diagnostics and adds
 the graph-model selection/refit protocol, conformer-target interpretation, nine
 endpoint mechanisms, native interval coverage, and duration/capacity challenges.
