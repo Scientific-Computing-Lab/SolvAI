@@ -17,18 +17,6 @@ The research question is not whether one model can imitate a particular simulati
 
 ## The results
 
-In a matched ExtraTrees implementation, adding the 15 predicted responses changes only the response feature block; labels, folds, structural features, weights and model seeds remain fixed.
-
-| Evaluation | Structure only | + Responses | Molecules |
-|:--|--:|--:|--:|
-| ARROW-85, out of fold | 0.303 | **0.202** | 85 |
-| External-220, endpoint-disjoint | 1.532 | **1.153** | 220 |
-| Strict-97, also response-source-disjoint | 2.138 | **1.536** | 97 |
-
-Values are mean absolute error (MAE), kcal mol⁻¹. The strict 97 are a subset of the external 220, not a separate fit. The published ARROW/PIMD8 value is 0.205 on the same 85 molecules: an **accuracy reference**, not a SolvAI training target or evidence of physical equivalence. Shuffling molecule-to-response assignments removes the matched ARROW gain. These alignment and chemical-separation controls were run for ExtraTrees; the broader endpoint study uses its own matched response/no-response comparisons.
-
-### One representation, different endpoint behaviors
-
 The same 15 frozen response predictions were tested across tree ensembles, neural networks, message-passing graphs, pretrained molecular encoders, TabM and TabPFN-3.5. The lowest *absolute* MAE and the strongest *benefit from adding responses* are different questions. Seven of nine fixed endpoint configurations show a response-associated reduction on External-220 and its nested Strict-97 subset.
 
 | Endpoint with responses | ARROW-85 | External-220 | Strict-97 | Size holdout |
@@ -46,6 +34,18 @@ The same 15 frozen response predictions were tested across tree ensembles, neura
 All entries include responses and are MAE in kcal mol⁻¹. Bold marks the lowest displayed point estimate per column, **not a statistically established winner**. The size column is a separate exploratory refit on 1,160 training and 205 held-out molecules; fixed source surrogates and model-specific input recipes limit what can be attributed to endpoint architecture alone. Full no-response comparisons and intervals are in [the paper](paper/main.pdf), [Supplementary Data 6](results/endpoint_models_20261006/) and the [endpoint reproduction guide](repro/endpoint_models/README.md).
 
 The experiments also reveal a source-composition trade-off: all 15 descriptors are better on ARROW-85, while a fixed ten-descriptor subset derived from computed sources has lower error externally. There is no universally preferred endpoint or source mixture in these data.
+
+### Matched response controls
+
+In the ExtraTrees implementation, adding the 15 predicted responses changes only the response feature block; labels, folds, structural features, weights and model seeds remain fixed.
+
+| Evaluation | Structure only | + Responses | Molecules |
+|:--|--:|--:|--:|
+| ARROW-85, out of fold | 0.303 | **0.202** | 85 |
+| External-220, endpoint-disjoint | 1.532 | **1.153** | 220 |
+| Strict-97, also response-source-disjoint | 2.138 | **1.536** | 97 |
+
+Values are MAE in kcal mol⁻¹. The strict 97 are a subset of the external 220, not a separate fit. The published ARROW/PIMD8 value is 0.205 on the same 85 molecules: an **accuracy reference**, not a SolvAI training target or evidence of physical equivalence. Shuffling molecule-to-response assignments removes the matched ARROW gain. These alignment and chemical-separation controls were run for ExtraTrees; the broader endpoint study uses its own matched response/no-response comparisons.
 
 <details>
 <summary><strong>See the paper's full workflow figure</strong></summary>
