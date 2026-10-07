@@ -178,28 +178,36 @@
       "sha256": "594cede65e42376dd1d7770ac09b5116a2c6989a7f31f9ee5c07bc307a7fb1c3"
     },
     "README.md": {
-      "bytes": 7358,
-      "sha256": "7732682423b1d774cf00f0aa9cf1547e40cc7a74ff2b0a9ce0a4ab4c924ab00d"
+      "bytes": 8331,
+      "sha256": "108377de595de5abb8c359dcab41113391db4bf789f1a03d6da36c0f4d262340"
+    },
+    "assets/readme/solvai-hero.svg": {
+      "bytes": 4581,
+      "sha256": "d3366a34f919f508cc999e58d8d06e2ddebb2b5452b39f535047d4b11526893a"
     },
     "CITATION.cff": {
-      "bytes": 580,
-      "sha256": "085eda3d41a81be9d968914d6ddf6432bed2bd611f7d438156d1907f8f11a312"
+      "bytes": 571,
+      "sha256": "9b40d6fb8745f9ee915955c9c9f9fc6c08d80dc1e6f4db4ca378efcf180c9b18"
+    },
+    "pyproject.toml": {
+      "bytes": 1103,
+      "sha256": "acb489aff73b9bb2494816a05845b59ea4e37f63e9f9fa4adcd1031308cd6ba0"
     },
     "paper/README.md": {
-      "bytes": 2005,
-      "sha256": "29f95b1465eff60a54c2bc97173690a9558b45404a093743a1484ceeb848e8c3"
+      "bytes": 2006,
+      "sha256": "1bde4a6e69699d3be0415f792a973dc8d4515568107a5c826576b257f770fd22"
     },
     "paper/main.tex": {
-      "bytes": 56598,
-      "sha256": "55101733d61616acaa4c009bb1c2ff7d9ab0e515ece6e6b439563ca90c4c9240"
+      "bytes": 56701,
+      "sha256": "4a425ed9f75450dce470426cfb6b66dbaf4cb9afe555071d14078a68f56e1e66"
     },
     "paper/references.bib": {
       "bytes": 15909,
       "sha256": "2bfee1ce43906cd3dadc2f12444b3b7763f05247c18cc64257f7edc8a45d41f3"
     },
     "paper/main.pdf": {
-      "bytes": 1691084,
-      "sha256": "bc7868b43ba391e56bcdb4f1ae9ca5470f7aaedf94e31ac040c58d720f5cff2d"
+      "bytes": 1742222,
+      "sha256": "df2266df4d0ddcc2454d92d3e88c064eabc734f722f6a9c1f2105768f84234c0"
     },
     "paper/supplementary/supplementary.tex": {
       "bytes": 43624,

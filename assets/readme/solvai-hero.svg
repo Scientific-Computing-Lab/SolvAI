@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="340" viewBox="0 0 1200 340" role="img" aria-labelledby="title description">
+  <title id="title">SolvAI: learn solvent response once, reuse it across molecular predictors</title>
+  <desc id="description">Six complementary source families feed fifteen structure-predicted response descriptors. The descriptors and structural features enter an interchangeable hydration endpoint. This is a conceptual diagram, not measured data.</desc>
+  <rect width="1200" height="340" fill="#FFFFFF"/>
+  <path d="M48 42H1152" fill="none" stroke="#E3E9EC" stroke-width="1"/>
+  <circle cx="62" cy="27" r="7" fill="#008C7A"/>
+  <text x="81" y="33" fill="#18303C" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="700" letter-spacing="2">SOLVAI</text>
+  <text x="189" y="33" fill="#647581" font-family="Arial,Helvetica,sans-serif" font-size="13" letter-spacing="1.4">A REUSABLE SOLVENT-RESPONSE FRAMEWORK</text>
+
+  <text x="58" y="112" fill="#18303C" font-family="Arial,Helvetica,sans-serif" font-size="52" font-weight="700" letter-spacing="-1.5">Learn once.</text>
+  <text x="58" y="172" fill="#18303C" font-family="Arial,Helvetica,sans-serif" font-size="44" font-weight="700" letter-spacing="-1.2">Reuse across molecules.</text>
+  <text x="61" y="219" fill="#647581" font-family="Arial,Helvetica,sans-serif" font-size="21">From existing solvent calculations and measurements</text>
+  <text x="61" y="248" fill="#647581" font-family="Arial,Helvetica,sans-serif" font-size="21">to structure-only hydration prediction.</text>
+  <path d="M60 282H579" fill="none" stroke="#E3E9EC" stroke-width="1"/>
+  <text x="61" y="310" fill="#417FA8" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="700">6 SOURCES</text>
+  <text x="196" y="310" fill="#008C7A" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="700">15 DESCRIPTORS</text>
+  <text x="378" y="310" fill="#9870AD" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="700">MULTIPLE ENDPOINTS</text>
+
+  <path d="M625 64V278" fill="none" stroke="#E3E9EC" stroke-width="1"/>
+  <text x="664" y="76" fill="#647581" font-family="Arial,Helvetica,sans-serif" font-size="13" font-weight="700" letter-spacing="1.1">EXISTING SOURCES</text>
+  <path d="M665 99 C757 99 792 146 857 169" fill="none" stroke="#417FA8" stroke-width="6" stroke-linecap="round"/>
+  <path d="M665 122 C761 122 802 151 857 169" fill="none" stroke="#C78935" stroke-width="6" stroke-linecap="round"/>
+  <path d="M665 145 C760 145 813 158 857 169" fill="none" stroke="#5A9AB0" stroke-width="6" stroke-linecap="round"/>
+  <path d="M665 193 C760 193 813 179 857 169" fill="none" stroke="#8EAAB8" stroke-width="6" stroke-linecap="round"/>
+  <path d="M665 216 C761 216 802 188 857 169" fill="none" stroke="#5173B4" stroke-width="6" stroke-linecap="round"/>
+  <path d="M665 239 C757 239 792 192 857 169" fill="none" stroke="#9870AD" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="887" cy="169" r="30" fill="#FFFFFF" stroke="#008C7A" stroke-width="2.5"/>
+  <text x="887" y="178" text-anchor="middle" fill="#008C7A" font-family="Arial,Helvetica,sans-serif" font-size="28" font-weight="700">15</text>
+  <text x="887" y="220" text-anchor="middle" fill="#647581" font-family="Arial,Helvetica,sans-serif" font-size="13">responses</text>
+  <path d="M918 169H971" fill="none" stroke="#18303C" stroke-width="2"/>
+  <path d="M971 169l-9-5v10z" fill="#18303C"/>
+  <rect x="973" y="136" width="74" height="66" rx="8" fill="#FFFFFF" stroke="#008C7A" stroke-width="2"/>
+  <text x="1010" y="179" text-anchor="middle" fill="#008C7A" font-family="Georgia,serif" font-size="36" font-style="italic">h</text>
+  <text x="1010" y="220" text-anchor="middle" fill="#647581" font-family="Arial,Helvetica,sans-serif" font-size="13">endpoint</text>
+  <path d="M1048 169H1095" fill="none" stroke="#18303C" stroke-width="2"/>
+  <path d="M1095 169l-9-5v10z" fill="#18303C"/>
+  <text x="1101" y="177" fill="#18303C" font-family="Arial,Helvetica,sans-serif" font-size="30">&#916;G</text>
+  <text x="1102" y="197" fill="#647581" font-family="Arial,Helvetica,sans-serif" font-size="13">hydration</text>
+  <path d="M665 270H972" fill="none" stroke="#647581" stroke-width="1.5" stroke-dasharray="4 5"/>
+  <path d="M972 270v-67" fill="none" stroke="#647581" stroke-width="1.5" stroke-dasharray="4 5"/>
+  <text x="665" y="294" fill="#647581" font-family="Arial,Helvetica,sans-serif" font-size="13">SMILES + structural features at inference</text>
+</svg>

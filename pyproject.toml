@@ -1,7 +1,7 @@
 [project]
 name = "solv-ai"
 version = "1.0.0"
-description = "Physics-distilled, structure-only hydration free-energy prediction"
+description = "Reusable solvent-response representation for simulation-free hydration prediction"
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.11,<3.12"
