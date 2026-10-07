@@ -17,19 +17,25 @@ response set.
 
 The journal study evaluates ExtraTrees, residual and dual-branch MLPs, a
 ridge-plus-neural residual, size-sensitive message passing, frozen MoLFormer with
-neural and tree heads, TabM and TabPFN-3.5. For compatible endpoints, matched fits
-with and without the 15 responses test the value of the representation separately
-from the absolute-error ranking. No endpoint wins every evaluation.
+neural and tree heads, TabM and TabPFN-3.5. All nine fixed configurations have
+matched fits with and without the 15 responses on the same three evaluation
+cohorts. Those fits test the value of the representation separately from the
+absolute-error ranking. No endpoint wins every evaluation.
 
-| Endpoint with responses | ARROW-85 MAE | External-220 MAE | Exploratory size MAE |
-|---|---:|---:|---:|
-| ExtraTrees | 0.202 | 1.153 | 1.772 |
-| MoLFormer + neural head | 0.273 | 1.111 | 1.609 |
-| TabM | 0.291 | 1.132 | 1.389 |
-| TabPFN-3.5 | 0.199 | 1.134 | 1.318 |
+| Endpoint with responses | ARROW-85 | External-220 | Strict-97 | Size holdout |
+|---|---:|---:|---:|---:|
+| ExtraTrees | 0.202 | 1.153 | 1.536 | 1.772 |
+| Residual MLP | 0.340 | 1.428 | 2.016 | 1.813 |
+| Dual branch | 0.288 | 1.234 | 1.616 | 1.560 |
+| Ridge + neural residual | 0.336 | 1.172 | 1.429 | 1.391 |
+| Message passing | 0.288 | 1.168 | 1.505 | 1.729 |
+| MoLFormer + neural head | 0.273 | 1.111 | 1.450 | 1.609 |
+| TabM | 0.291 | 1.132 | 1.454 | 1.389 |
+| TabPFN-3.5 | 0.199 | 1.134 | 1.493 | 1.318 |
+| MoLFormer + ExtraTrees | 0.234 | 1.174 | 1.564 | not evaluated |
 
-MAE is in kcal/mol. These are examples from the full comparison, not an exhaustive
-leaderboard. The size diagnostic refits each method on 1,160 labels and evaluates
+MAE is in kcal/mol. The strict set is nested within External-220. The size
+diagnostic refits eight configurations on 1,160 labels and evaluates
 205 size-held-out molecules, reusing development data. Its source surrogates stay
 fixed, and endpoint input recipes differ; the contrast does not isolate architecture
 alone or test a pipeline with all upstream source exposure removed. Responses do not
@@ -118,8 +124,9 @@ Machine-readable Supplementary Data are also included. See
   external training sources used by the confirmatory model.
 - Every reported accuracy value is held out; the all-data deployment refit is never
   used as evidence.
-- Shuffled-prior, global chemical-separation and zero-ARROW-label controls are
-  included molecule by molecule.
+- Shuffled-response, global chemical-separation and zero-ARROW-label controls
+  are included molecule by molecule for the ExtraTrees configuration; matched
+  response/no-response fits cover all nine fixed configurations.
 - Tier-A eligibility was frozen before evaluation; all 220 rows are endpoint-disjoint
   and the strict 97-molecule subset is also response-source-disjoint.
 - Inference requires no experimental target, family/scaffold label, MD, PIMD, ARROW
