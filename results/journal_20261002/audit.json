@@ -1,0 +1,10 @@
+{
+  "status": "pass",
+  "graph_seed_runs": 36,
+  "outer_test_labels_entered_fitting_or_epoch_selection": false,
+  "complete_inner_partitions_checked": true,
+  "epoch_selection_traces_checked": true,
+  "control_prediction_replay_checked": true,
+  "computed_external_component_replay_checked": true,
+  "audit_script_sha256": "4eacbefb5c842798ad19c54f8241a0180d854dc5af2ead8c29b3401bcaf42da7"
+}

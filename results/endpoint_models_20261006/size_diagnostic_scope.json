@@ -1,0 +1,20 @@
+{
+  "status": "pass",
+  "models": 24,
+  "train_n": 1160,
+  "holdout_n": 205,
+  "train_heavy_atoms_range": [
+    0,
+    17
+  ],
+  "holdout_heavy_atoms_range": [
+    8,
+    37
+  ],
+  "holdout_above_global_training_max": 188,
+  "caveat": "Exploratory high-size holdout within prior training data. These labels were available in random-fold model development; not an untouched external estimate.",
+  "ranking": "Not used for the comprehensive selector or architecture/horizon selection.",
+  "trees": "Refit on the same reduced training set; not released weights that had seen held labels.",
+  "seed_count": 3,
+  "intervals": "Descriptive paired molecule bootstrap, 100000 resamples; conditional on fitted models."
+}

@@ -46,22 +46,19 @@ TARGETS = [
     "audits/confirmatory/chemical_distance_audit.json",
     "audits/confirmatory/standardized_exclusion_refit_verification.json",
     "audits/artifact_audit.json",
-    "audits/claim_red_team.json",
-    "audits/security_audit.json",
     "models/final/manifest.json",
     "results/runtime/runtime_benchmark.json",
     "release/CONFIRMATORY_FREEZE.md",
     "release/MICHAEL_30AUG_SENSITIVITY_FREEZE.md",
     "release/TIER_A_EXTERNAL_VALIDATION_FREEZE.md",
     "reports/CONFIRMATORY_ANALYSIS.md",
-    "reports/MICHAEL_30AUG_WEIGHT_SENSITIVITY.md",
     "reports/TIER_A_EXTERNAL_VALIDATION.md",
-    "reports/PAPER_FREEZE.md",
     "README.md",
+    "CITATION.cff",
+    "paper/README.md",
     "paper/main.tex",
     "paper/references.bib",
     "paper/main.pdf",
-    "paper/supplementary/supplementary.pdf",
     "paper/supplementary/supplementary.tex",
     "paper/supplementary_data/Supplementary_Data_1_experiment_ledger.xlsx",
     "paper/supplementary_data/Supplementary_Data_2_molecule_predictions.xlsx",
@@ -77,7 +74,6 @@ TARGETS = [
     "paper/supplementary/figures/Supp_Fig3_alternatives.pdf",
     "paper/supplementary/figures/Supp_Fig4_lambda_response.pdf",
     "paper/supplementary/figures/Supp_Fig5_extrapolation.pdf",
-    "paper/review_combined.pdf",
     "paper/supplementary_data/Supplementary_Data_1_experiment_ledger.csv",
     "paper/supplementary_data/Supplementary_Data_2_molecule_predictions.csv",
     "paper/supplementary_data/Supplementary_Data_3_split_assignments.csv",
@@ -85,6 +81,27 @@ TARGETS = [
     "paper/supplementary_data/Supplementary_Data_5_tier_a_predictions.csv",
     "paper/supplementary_data/Supplementary_Data_5_tier_a_qualification.csv",
 ]
+
+# The current journal PDF includes its supplement. Retain hashes for every vector
+# asset and frozen analysis input used by the journal extension as well.
+TARGETS += ["repro/JOURNAL_COMPARISONS.md", "repro/JOURNAL_FIGURES.md",
+            "paper/endpoint_results.tex", "paper/endpoint_methods.tex",
+            "paper/supplementary/endpoint_methods.tex"]
+for pattern in (
+    "paper/figures/journal/*.pdf", "paper/figures/journal/*.svg",
+    "paper/figures/journal/sources.json", "paper/figures/journal/teaser_components/*.png", "paper/tables/journal*.tex",
+    "paper/supplementary/tables/*.tex", "paper/supplementary/figures/*.pdf",
+    "paper/supplementary/figures/*.svg", "results/journal_20261002/*.csv",
+    "results/journal_20261002/*.json",
+    "paper/tables/endpoint*.tex", "results/endpoint_models_20261006/*.csv",
+    "results/endpoint_models_20261006/*.json", "repro/endpoint_models/*.md",
+    "repro/endpoint_models/implementation/*.py", "scripts/make_endpoint*.py",
+    "scripts/*journal*.py", "paper/supplementary/figures/endpoint_components/*.png",
+    "paper/supplementary/figures/endpoint_components/*.svg",
+    "repro/response_sources/*.py", "repro/response_sources/*.md",
+):
+    TARGETS.extend(str(path.relative_to(ROOT)) for path in sorted(ROOT.glob(pattern)))
+TARGETS = list(dict.fromkeys(TARGETS))
 
 
 def sha256(path: Path) -> str:

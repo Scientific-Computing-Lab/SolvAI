@@ -1,0 +1,11 @@
+{
+  "declared": "2026-10-02 before fitting the external control, after ARROW source-control evaluation",
+  "question": "Does the same computed-only descriptor set transfer to the frozen external cohort?",
+  "changes_to_model_or_training": "none; same ten descriptors, all 1365 training labels and weights",
+  "components": "recovered from original packaged surrogates; corrected sums replay before fitting",
+  "component_sum_max_replay_difference": {
+    "openff": 0.0,
+    "gbn2": 0.0
+  },
+  "feature_sha256": "6f66d815956cf0e7844e1b9234df48cb8a12dcad688f0f9a75ebcc3e84f3a739"
+}

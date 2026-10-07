@@ -4,7 +4,7 @@
 corrected solvation data and predicts hydration free energy directly from molecular
 structure—without running simulation at inference.**
 
-![SolvAI concept](paper/figures/main/fig1_concept.svg)
+![SolvAI concept](paper/figures/journal/F1_overview.svg)
 
 The released system maps one SMILES string to one hydration free energy. Its response
 surrogates were trained on benchmark-disjoint quantum-continuum, alchemical,
@@ -32,13 +32,38 @@ survives global family, scaffold, molecular-cluster and nearest-neighbour exclus
 
 In a prospectively frozen external molecule-disjoint cohort, the same matched
 comparison lowers MAE from 1.532 to 1.153 kcal/mol (N=220). The advantage also
-survives in 97 molecules absent from all six response-teacher source tables (2.138 to
+persists in 97 molecules absent from all six response-source tables (2.138 to
 1.536 kcal/mol). These broader molecules establish transfer of the response-layer
 advantage, not PIMD8-level absolute accuracy outside ARROW-85.
 
 The supported conclusion is PIMD8-level accuracy on this reference chemistry, not a
 general sub-0.20 claim. Global family and scaffold separation
 remain harder at 0.468 and 0.376 kcal/mol, respectively.
+
+## Alternative endpoint models
+
+The journal study also evaluates residual and dual-branch MLPs, a ridge-plus-neural
+residual, size-sensitive message passing, frozen MoLFormer with a neural head,
+TabM, TabPFN-3.5, and MoLFormer with the original tree endpoint. All families and
+matched response ablations are reported, not only the selected model.
+
+| Endpoint with responses | ARROW-85 MAE | External-220 MAE | Exploratory size MAE |
+|---|---:|---:|---:|
+| Original ExtraTrees | 0.202 | 1.153 | 1.772 |
+| MoLFormer + neural head | 0.273 | 1.111 | 1.609 |
+| TabM | 0.291 | 1.132 | 1.389 |
+| TabPFN-3.5 | 0.199 | 1.134 | 1.318 |
+
+MAE is in kcal/mol. The separate size diagnostic refits every method on 1,160
+labels and evaluates 205 size-held-out molecules, reusing development data.
+Its response-source features remain fixed: this tests endpoint size transfer,
+not a pipeline with all upstream source exposure removed.
+The original-cohort TabPFN/tree differences do not establish superiority or
+equivalence. Responses do not benefit TabPFN uniformly; peptide curves have no
+experimental reference and native intervals under-cover. The study is retrospective,
+with final configurations selected inside training pools. Complete results and
+reproduction details: [`repro/endpoint_models/`](repro/endpoint_models/README.md).
+The public inference command below still runs the original ExtraTrees release.
 
 ## Install and predict
 
@@ -77,18 +102,23 @@ two response D-MPNNs dominates single-query latency; no simulation is performed.
 make test && make verify && make figures && make paper
 ```
 
-This quick path uses frozen, hash-verified artifacts to recompute predictions,
-metrics, tables, figures and PDFs. It does not rerun physical calculations or model
-training. The preregistered confirmation protocol is in
+This path checks the original release and rebuilds its metrics and displays from
+frozen artifacts. It does not rerun physical calculations or model training;
+the journal extension's additional rebuild commands are documented below and in
+`repro/endpoint_models/`. The preregistered confirmation protocol is in
 [`release/CONFIRMATORY_FREEZE.md`](release/CONFIRMATORY_FREEZE.md), with results in
 [`reports/CONFIRMATORY_ANALYSIS.md`](reports/CONFIRMATORY_ANALYSIS.md).
 The prospectively frozen external protocol and report are
 [`release/TIER_A_EXTERNAL_VALIDATION_FREEZE.md`](release/TIER_A_EXTERNAL_VALIDATION_FREEZE.md)
 and [`reports/TIER_A_EXTERNAL_VALIDATION.md`](reports/TIER_A_EXTERNAL_VALIDATION.md).
 
-The compiled [manuscript](paper/main.pdf),
-[Supplementary Information](paper/supplementary/supplementary.pdf), including five
-supporting figures, and machine-readable Supplementary Data are included. See
+The compiled [journal manuscript](paper/main.pdf) is one continuous PDF containing
+the main text, references and Supplementary Information (eight main figures, twelve
+supporting figures and sixteen supplementary tables). `make journal-paper` rebuilds
+this complete document from the existing figures and tables; the supplement
+is included automatically, never compiled as a separate default deliverable.
+Machine-readable Supplementary Data are also included. See
+[`paper/README.md`](paper/README.md),
 [`repro/QUICK_REPRODUCTION.md`](repro/QUICK_REPRODUCTION.md),
 [`repro/FULL_REPRODUCTION.md`](repro/FULL_REPRODUCTION.md) and
 [`repro/DATA_PROVENANCE.md`](repro/DATA_PROVENANCE.md).
@@ -115,7 +145,7 @@ supporting figures, and machine-readable Supplementary Data are included. See
 - `models/final/` — standardized-exclusion response surrogates and endpoint ensemble
 - `results/confirmatory/` — preregistered predictions, comparisons and statistics
 - `audits/confirmatory/` — identity, similarity and refit audits
-- `paper/` — Nature Communications manuscript and Supplementary files
+- `paper/` — unified journal manuscript, vector figures and Supplementary Data
 - `repro/` — quick/full reproduction and data provenance
 
 Citation metadata are provided in `CITATION.cff`. Code is MIT licensed; external

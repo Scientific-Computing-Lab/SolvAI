@@ -7,17 +7,19 @@ frozen release artifacts.
   ledger, including non-retained and non-deployable branches.
 - `Supplementary_Data_2_molecule_predictions.*`: molecule-level experimental,
   ARROW/PIMD8 and held-out SolvAI predictions.
-- `Supplementary_Data_3_split_assignments.*`: random, repeated, family and
-  scaffold validation assignments.
+- `Supplementary_Data_3_split_assignments.csv`: identities, family, scaffold and
+  cluster assignments. The XLSX additionally includes repeated-partition folds;
+  primary folds are in Supplementary Data 2.
 - `Supplementary_Data_4_teacher_priors.csv`: definitive 15-prior schema.
 - `Supplementary_Data_4_teacher_sources.csv`,
   `Supplementary_Data_4_endpoint_sources.csv` and
-  `Supplementary_Data_4_teacher_manifests.xlsx`: teacher and endpoint
-  provenance, counts, exclusion rules, licences and hashes.
+  `Supplementary_Data_4_teacher_manifests.xlsx`: surrogate and endpoint
+  provenance, counts and the identity audit. Source versions, licenses and hashes
+  are in `repro/DATA_PROVENANCE.md` and its linked manifests.
 - `Supplementary_Data_5_tier_a_predictions.csv`,
   `Supplementary_Data_5_tier_a_qualification.csv` and
   `Supplementary_Data_5_tier_a_external_validation.xlsx`: prospective external
-  cohort eligibility, teacher-source exposure and molecule-level matched predictions.
+  cohort eligibility, response-source exposure and molecule-level matched predictions.
 
 CSV is the archival plain-text format; XLSX mirrors the corresponding tables
 for journal submission and interactive inspection.

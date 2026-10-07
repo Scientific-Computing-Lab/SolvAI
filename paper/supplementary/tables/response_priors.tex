@@ -1,21 +1,36 @@
-\begin{tabular}{rlllllrrl}
+\noindent\begin{tabularx}{\textwidth}{@{}rlX@{}}
 \toprule
-prior & name & physical meaning & source & units & surrogate & training rows & transformation & inference \\
+Index & Artifact name & Physical meaning \\
 \midrule
-1 & combisolv\_qm & COSMOtherm water response & CombiSolv-QM & kcal mol-1 & CHEMELEON D-MPNN & 3959 & direct & structure surrogate; no simulation \\
-2 & abraham\_e & excess molar refraction E & SoluteML & Abraham scale & ExtraTrees & 8098 & direct & structure surrogate; no simulation \\
-3 & abraham\_s & dipolarity/polarizability S & SoluteML & Abraham scale & ExtraTrees & 8098 & direct & structure surrogate; no simulation \\
-4 & abraham\_a & hydrogen-bond acidity A & SoluteML & Abraham scale & ExtraTrees & 8098 & direct & structure surrogate; no simulation \\
-5 & abraham\_b & hydrogen-bond basicity B & SoluteML & Abraham scale & ExtraTrees & 8098 & direct & structure surrogate; no simulation \\
-6 & abraham\_l & hexadecane-air partition L & SoluteML & Abraham scale & ExtraTrees & 8098 & direct & structure surrogate; no simulation \\
-7 & openff\_corrected & explicit-water alchemical response & OpenFF 2.3.0 ASFE & kcal mol-1 & ExtraTrees & 520 & prediction + residual & structure surrogate; no simulation \\
-8 & gbn2\_corrected & implicit-solvent hydration response & GBn2 & kcal mol-1 & ExtraTrees & 550 & prediction + residual & structure surrogate; no simulation \\
-9 & smd\_water & SMD water response & MolSolv & kcal mol-1 & CHEMELEON D-MPNN & 350359 & direct & structure surrogate; no simulation \\
-10 & conf\_gas\_corr & gas conformer correction & ConfSolv H2O & kcal mol-1 & LightGBM & 17829 & direct & structure surrogate; no simulation \\
-11 & conf\_solution\_corr & solution conformer correction & ConfSolv H2O & kcal mol-1 & LightGBM & 17829 & direct & structure surrogate; no simulation \\
-12 & conf\_hydration\_corr & hydration conformer correction & ConfSolv H2O & kcal mol-1 & LightGBM & 17829 & direct & structure surrogate; no simulation \\
-13 & conf\_gsolv\_sd & conformer solvation-energy spread & ConfSolv H2O & kcal mol-1 & LightGBM & 17829 & direct & structure surrogate; no simulation \\
-14 & conf\_response\_mean & mean conformer solvent response & ConfSolv H2O & kcal mol-1 & LightGBM & 17829 & direct & structure surrogate; no simulation \\
-15 & conf\_response\_sd & conformer response spread & ConfSolv H2O & kcal mol-1 & LightGBM & 17829 & direct & structure surrogate; no simulation \\
-\bottomrule
-\end{tabular}
+1 & combisolv\_qm & COSMOtherm water response \\
+2 & abraham\_e & excess molar refraction E \\
+3 & abraham\_s & dipolarity/polarizability S \\
+4 & abraham\_a & hydrogen-bond acidity A \\
+5 & abraham\_b & hydrogen-bond basicity B \\
+6 & abraham\_l & gas-to-hexadecane partition L \\
+7 & openff\_corrected & explicit-water alchemical response \\
+8 & gbn2\_corrected & implicit-solvent hydration response \\
+9 & smd\_water & SMD water response \\
+10 & conf\_gas\_corr & gas conformer correction \\
+11 & conf\_solution\_corr & water conformer correction \\
+12 & conf\_hydration\_corr & hydration conformer correction \\
+13 & conf\_gsolv\_sd & conformer solvation-energy spread \\
+14 & conf\_response\_mean & mean conformer solvent response \\
+15 & conf\_response\_sd & conformer response spread \\
+\bottomrule\end{tabularx}
+\par\medskip
+\noindent\begin{tabularx}{\textwidth}{@{}lp{3cm}Xrp{3cm}@{}}
+\toprule
+Indices & Source & Surrogate & Training rows & Transformation \\
+\midrule
+1 & CombiSolv-QM & CheMeleon D-MPNN & 3959 & direct \\
+2--6 & SoluteML & ExtraTrees & 8098 & direct \\
+7 & OpenFF 2.3.0 ASFE & ExtraTrees & 520 & prediction + residual \\
+8 & GBn2 & ExtraTrees & 550 & prediction + residual \\
+9 & MolSolv & CheMeleon D-MPNN & 350359 & direct \\
+10--15 & ConfSolv H2O & LightGBM & 17829 & direct \\
+\bottomrule\end{tabularx}
+\par\smallskip
+Units are kcal mol$^{-1}$ except for indices 2--6, which use their respective Abraham scales.
+Every descriptor is inferred from structure by its surrogate; no source simulation is run at inference.
+ASFE denotes absolute solvation free energy. The six conformer summaries are defined explicitly in Supplementary Methods S15.

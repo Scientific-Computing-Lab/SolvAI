@@ -34,13 +34,13 @@ NEGATIVE = "#B95C50"
 
 mpl.rcParams.update(
     {
-        "font.family": "DejaVu Sans",
-        "font.size": 7.0,
-        "axes.labelsize": 7.0,
-        "axes.titlesize": 8.0,
+        "font.family": "Arial",
+        "font.size": 8.0,
+        "axes.labelsize": 8.0,
+        "axes.titlesize": 8.5,
         "axes.titleweight": "bold",
-        "xtick.labelsize": 6.2,
-        "ytick.labelsize": 6.2,
+        "xtick.labelsize": 7.0,
+        "ytick.labelsize": 7.0,
         "axes.linewidth": 0.65,
         "xtick.major.width": 0.55,
         "ytick.major.width": 0.55,
@@ -53,6 +53,13 @@ mpl.rcParams.update(
         "savefig.dpi": 450,
     }
 )
+
+try:
+    from .journal_style import apply as apply_style, INK, MID, GRID, BLUE, TEAL, AMBER, ROSE
+except ImportError:
+    from journal_style import apply as apply_style, INK, MID, GRID, BLUE, TEAL, AMBER, ROSE
+apply_style(plt)
+LEARNED, DEPLOY, PHYSICS, PIMD = BLUE, TEAL, AMBER, ROSE
 
 
 def clean(ax: plt.Axes, *, grid: str | None = "y") -> None:
@@ -85,7 +92,7 @@ def save(fig: plt.Figure, name: str, *, collection: str = "main") -> None:
         raise ValueError(f"unknown figure collection: {collection}")
     for directory in targets:
         directory.mkdir(parents=True, exist_ok=True)
-        for suffix in ("pdf", "svg", "png"):
+        for suffix in ("pdf", "svg"):
             output = directory / f"{name}.{suffix}"
             metadata = {
                 "pdf": {"CreationDate": None, "ModDate": None, "Creator": "SolvAI"},
@@ -151,7 +158,7 @@ def fig2_headline(
     ax0.set_xticks(x, [label for label, _ in progression])
     ax0.set_ylabel(r"OOF MAE (kcal mol$^{-1}$)")
     ax0.set_ylim(0.18, 0.325)
-    ax0.set_title("Response priors close the accuracy gap", loc="left")
+    ax0.set_title("Response descriptors improve accuracy", loc="left")
     clean(ax0)
     panel(ax0, "a")
 
@@ -286,7 +293,7 @@ def fig3_transfer(metrics: dict, separation: pd.DataFrame, zero: pd.DataFrame) -
     ax0.invert_yaxis()
     ax0.set_xlabel(r"MAE (kcal mol$^{-1}$)")
     ax0.set_title("Globally separated chemistry", loc="left")
-    ax0.legend(frameon=False, fontsize=6.1, loc="upper right")
+    ax0.legend(frameon=False, fontsize=7.4, loc="upper right")
     clean(ax0, grid="x")
     panel(ax0, "a")
 
@@ -376,7 +383,7 @@ def fig3_transfer(metrics: dict, separation: pd.DataFrame, zero: pd.DataFrame) -
 
 
 def fig4_frontier(metrics: dict) -> None:
-    fig = plt.figure(figsize=(7.2, 3.35))
+    fig = plt.figure(figsize=(7.09, 4.1))
     grid = fig.add_gridspec(1, 3, width_ratios=(1.0, 1.05, 1.0), wspace=0.62)
     ax0, ax1, ax2 = [fig.add_subplot(grid[0, index]) for index in range(3)]
 
@@ -475,7 +482,9 @@ def fig4_frontier(metrics: dict) -> None:
 def supp_fig1_residuals(primary: pd.DataFrame) -> None:
     full = primary.loc[primary.method.eq("F_full_solvai")].sort_values("molecule_id")
     baseline = primary.loc[primary.method.eq("A_structure_only")].sort_values("molecule_id")
-    fig, axes = plt.subplots(1, 3, figsize=(7.2, 2.5))
+    assert list(full.molecule_id) == list(baseline.molecule_id)
+    fig, axes = plt.subplots(1, 3, figsize=(7.09, 2.9))
+    fig.subplots_adjust(left=.085, right=.99, bottom=.27, top=.86, wspace=.64)
     ax0, ax1, ax2 = axes
     limits = [
         min(full.y_true.min(), full.y_pred.min()) - 0.4,
@@ -484,28 +493,36 @@ def supp_fig1_residuals(primary: pd.DataFrame) -> None:
     ax0.plot(limits, limits, color=MID, ls="--", lw=0.8)
     ax0.scatter(full.y_true, full.y_pred, s=15, color=DEPLOY, edgecolor="white", lw=0.3)
     ax0.set(
-        xlabel=r"Experimental $\Delta G_{\rm hyd}$",
-        ylabel=r"OOF prediction",
+        xlabel="Experimental $\\Delta G_{\\rm hyd}$\n(kcal mol$^{-1}$)",
+        ylabel="OOF prediction\n(kcal mol$^{-1}$)",
         xlim=limits,
         ylim=limits,
     )
     ax0.set_aspect("equal", adjustable="box")
     clean(ax0, grid=None)
-    panel(ax0, "a")
     ax1.axhline(0, color=MID, lw=0.8)
     ax1.scatter(
         full.y_true, full.y_pred - full.y_true, s=15, color=DEPLOY, edgecolor="white", lw=0.3
     )
-    ax1.set(xlabel=r"Experimental $\Delta G_{\rm hyd}$", ylabel="Prediction residual")
+    residual_limit=float((full.y_pred-full.y_true).abs().max())*1.08
+    ax1.set(xlabel="Experimental $\\Delta G_{\\rm hyd}$\n(kcal mol$^{-1}$)",
+            ylabel="Prediction residual\n(kcal mol$^{-1}$)", xlim=limits,
+            ylim=(-residual_limit,residual_limit))
     clean(ax1)
-    panel(ax1, "b")
     delta = full.absolute_error.to_numpy() - baseline.absolute_error.to_numpy()
     ax2.hist(delta, bins=np.linspace(delta.min(), delta.max(), 17), color=DEPLOY, alpha=0.85)
     ax2.axvline(0, color=MID, lw=0.8)
-    ax2.axvline(delta.mean(), color=INK, lw=1.1, ls=(0, (3, 2)))
-    ax2.set(xlabel="Paired absolute-error change", ylabel="Molecules")
+    ax2.axvline(delta.mean(), color=INK, lw=1.1, ls=(0, (3, 2)), label="Mean change")
+    ax2.set(xlabel="SolvAI − structure-only\nabsolute error (kcal mol$^{-1}$)",
+            ylabel="Number of molecules")
+    ax2.yaxis.set_major_locator(mpl.ticker.MaxNLocator(nbins=4, integer=True))
+    ax2.legend(loc="upper left",frameon=False,fontsize=7.5,handlelength=1.5)
     clean(ax2)
-    panel(ax2, "c")
+    for ax, title in zip(axes,["a  Prediction", "b  Residual", "c  Paired change"]):
+        ax.set_box_aspect(1)
+        ax.set_title(title, loc="left", pad=8, fontsize=8.5)
+        ax.xaxis.labelpad=5
+        ax.yaxis.labelpad=5
     save(fig, "Supp_Fig1_residuals", collection="supplementary")
 
 
@@ -513,51 +530,40 @@ def supp_fig2_provenance() -> None:
     source = pd.DataFrame(
         [
             ("CombiSolv-QM", "structures", 3961, 2, 3959),
-            ("MolSolv", "SMD calculations", 350391, 32, 350359),
+            ("MolSolv", "unique structures", 350391, 32, 350359),
             ("ConfSolv", "usable connectivities", 17851, 22, 17829),
             ("Endpoint labels", "connectivities", 1280, 0, 1280),
         ],
         columns=["source", "unit", "before", "removed", "retained"],
     )
-    fig, ax = plt.subplots(figsize=(7.2, 2.65))
-    ax.axis("off")
-    y_positions = np.linspace(0.78, 0.18, len(source))
-    ax.text(0.03, 0.94, "Source", weight="bold")
-    ax.text(0.31, 0.94, "Source-specific unit", weight="bold")
-    ax.text(0.60, 0.94, "Standardized-equivalent exclusion", weight="bold")
-    ax.text(0.90, 0.94, "Retained", weight="bold", ha="right")
-    for row, y in zip(source.itertuples(), y_positions, strict=True):
-        ax.text(0.03, y, row.source, weight="bold", color=INK)
-        ax.text(0.31, y, row.unit, color=MID)
-        ax.plot([0.57, 0.82], [y, y], color=GRID, lw=5, solid_capstyle="round")
-        width = max(0.008, 0.25 * row.removed / max(row.before, 1))
-        ax.plot([0.57, 0.57 + width], [y, y], color=NEGATIVE, lw=5, solid_capstyle="round")
-        ax.text(
-            0.695,
-            y + 0.045,
-            f"{row.removed:,} removed from {row.before:,}",
-            ha="center",
-            fontsize=6.2,
-            color=NEGATIVE if row.removed else MID,
-        )
-        ax.text(0.90, y, f"{row.retained:,}", ha="right", color=DEPLOY, weight="bold")
-    ax.text(
-        0.03,
-        0.05,
-        "Source units are reported separately. Bar lengths are normalized within source,\nnot compared across calculations, structures and connectivities.",
-        color=MID,
-        fontsize=6.2,
-    )
-    save(fig, "Supp_Fig2_provenance", collection="supplementary")
+    fig, ax = plt.subplots(figsize=(7.09, 2.8))
+    fig.subplots_adjust(left=.015,right=.985,bottom=.06,top=.94)
+    ax.axis('off');ax.set(xlim=(0,1),ylim=(0,1))
+    for x,title,align in [(0.015,'Source','left'),(.29,'Counting unit','left'),
+                           (.64,'Before','right'),(.80,'Removed','right'),(.99,'Retained','right')]:
+        ax.text(x,.92,title,weight='bold',ha=align,fontsize=9)
+    ax.plot([.015,.99],[.855,.855],color=GRID,lw=.8)
+    for row,y in zip(source.itertuples(),[.72,.54,.36,.18]):
+        ax.text(.015,y,row.source,weight='bold',fontsize=9)
+        ax.text(.29,y,row.unit,color=MID,fontsize=8)
+        ax.text(.64,y,f'{row.before:,}',ha='right',fontsize=10)
+        ax.text(.80,y,f'{row.removed:,}',ha='right',color=NEGATIVE if row.removed else MID,fontsize=10)
+        ax.text(.99,y,f'{row.retained:,}',ha='right',color=DEPLOY,weight='bold',fontsize=10)
+        ax.plot([.015,.99],[y-.055,y-.055],color=GRID,lw=.5)
+    ax.text(.015,.03,'Counts retain their source-specific units; they are not pooled.',color=MID,fontsize=8)
+    save(fig,'Supp_Fig2_provenance',collection='supplementary')
 
 
-def supp_fig3_alternatives(metrics: dict) -> None:
-    alternatives = {
+def supp_fig3_campaigns(metrics: dict) -> tuple:
+    """Keep each exploratory screen with its own frozen campaign control."""
+    source_screens = {
         "OpenFE diagnostics": metrics["alternative_supervision"]["openfe_diagnostics"],
         "MLFF hierarchy": metrics["alternative_supervision"]["mlff_hierarchy"],
         "DES370K response": metrics["alternative_supervision"]["des370k_water_response"],
         "ConfSolv graph latent": 0.2121932664,
         "ConfSolv FFN latent": 0.2154807450,
+    }
+    lambda_screens = {
         "PIMD2 lambda response": metrics["multilambda"]["method_mae_kcal_mol"][
             "Multi-lambda physics distillation B2: +distilled PIMD2 lambda response"
         ],
@@ -565,23 +571,37 @@ def supp_fig3_alternatives(metrics: dict) -> None:
             "Multi-lambda physics distillation B1: +distilled classical-NQE-PIMD hierarchy"
         ],
     }
-    frame = pd.Series(alternatives).sort_values()
-    fig, ax = plt.subplots(figsize=(6.2, 3.15))
-    ax.scatter(frame.values, np.arange(len(frame)), color=LEARNED, s=28)
-    ax.axvline(
-        metrics["multilambda"]["method_mae_kcal_mol"][
-            "Multi-lambda physics distillation A: structure/response baseline"
-        ],
-        color=DEPLOY,
-        lw=1.0,
-        ls=(0, (3, 2)),
-        label="matched campaign base",
+    return (
+        ("Source and representation screens",
+         metrics["alternative_supervision"]["matched_one_seed_base"],
+         pd.Series(source_screens).sort_values()),
+        (r"Multi-$\lambda$ ablations",
+         metrics["multilambda"]["method_mae_kcal_mol"][
+             "Multi-lambda physics distillation A: structure/response baseline"],
+         pd.Series(lambda_screens).sort_values()),
     )
-    ax.set_yticks(np.arange(len(frame)), frame.index)
-    ax.invert_yaxis()
-    ax.set_xlabel(r"Exploratory OOF MAE (kcal mol$^{-1}$)")
-    ax.legend(frameon=False, fontsize=6.2)
-    clean(ax, grid="x")
+
+
+def supp_fig3_alternatives(metrics: dict) -> None:
+    campaigns = supp_fig3_campaigns(metrics)
+    fig, axes = plt.subplots(
+        2, 1, figsize=(6.2, 3.85), sharex=True,
+        gridspec_kw={"height_ratios": [5, 2], "hspace": 0.7},
+    )
+    for letter, ax, (title, baseline, frame) in zip("ab", axes, campaigns, strict=True):
+        positions = np.arange(len(frame))
+        ax.hlines(positions, baseline, frame.values, color=GRID, lw=1)
+        ax.scatter(frame.values, positions, color=LEARNED, s=28, zorder=3)
+        ax.axvline(baseline, color=DEPLOY, lw=1.0, ls=(0, (3, 2)))
+        ax.set_yticks(positions, frame.index)
+        ax.set_ylim(len(frame) - 0.5, -0.5)
+        ax.set_xlim(0.188, 0.220)
+        ax.set_title(f"{letter}  {title}", loc="left", fontsize=9)
+        ax.text(1, 1.045, f"Base: {baseline:.4f}", transform=ax.transAxes,
+                ha="right", va="bottom", color=DEPLOY, fontsize=8)
+        clean(ax, grid="x")
+    axes[-1].set_xticks([0.19, 0.20, 0.21, 0.22])
+    axes[-1].set_xlabel(r"Exploratory OOF MAE (kcal mol$^{-1}$)")
     save(fig, "Supp_Fig3_alternatives", collection="supplementary")
 
 
@@ -620,38 +640,28 @@ def supp_fig4_lambda(metrics: dict) -> None:
     response = response.loc[~response.component.eq("lig__dhdl_pol_mean")].copy()
     components = ["lig_slv__dhdl_mean", "lig_slv__dhdl_coul_mean", "lig_slv__dhdl_vdw_mean"]
     labels = ["total", "electrostatic", "van der Waals"]
-    fig, axes = plt.subplots(1, 2, figsize=(7.2, 2.75), gridspec_kw={"width_ratios": [1.3, 1.0]})
-    for component, label, color in zip(components, labels, [INK, LEARNED, PHYSICS], strict=True):
-        group = response.loc[response.component.eq(component)].sort_values("lambda")
-        axes[0].plot(
-            group["lambda"], group.mae, marker="o", ms=4, lw=1.15, color=color, label=label
-        )
-    axes[0].set(xlabel=r"Coupling coordinate $\lambda$", ylabel=r"Response MAE (kcal mol$^{-1}$)")
-    axes[0].legend(frameon=False, fontsize=6.2)
-    clean(axes[0])
-    panel(axes[0], "a")
-    values = metrics["multilambda"]["method_mae_kcal_mol"]
-    names = ["base", "+ PIMD2", "+ hierarchy", "+ both", "integrated curve"]
-    vals = [values[key] for key in values]
-    axes[1].bar(np.arange(4), vals[:4], color=[DEPLOY, PHYSICS_LIGHT, PHYSICS_LIGHT, NEGATIVE])
-    axes[1].set_xticks(np.arange(4), names[:4], rotation=25, ha="right")
-    axes[1].set_ylabel(r"Endpoint OOF MAE (kcal mol$^{-1}$)")
-    twin = axes[1].twinx()
-    twin.scatter([3.8], [vals[4]], marker="D", color=NEGATIVE, s=28)
-    twin.set_ylim(0, 1.7)
-    twin.set_ylabel("Integrated-curve MAE", color=NEGATIVE)
-    axes[1].text(
-        3.8,
-        0.07,
-        f"{vals[4]:.2f}",
-        transform=twin.get_xaxis_transform(),
-        ha="center",
-        color=NEGATIVE,
-        fontsize=6.2,
-    )
-    clean(axes[1])
-    panel(axes[1], "b")
-    save(fig, "Supp_Fig4_lambda_response", collection="supplementary")
+    fig=plt.figure(figsize=(7.09,3.25))
+    gs=fig.add_gridspec(1,3,width_ratios=[1.2,1.0,.55])
+    fig.subplots_adjust(left=.085,right=.99,bottom=.27,top=.84,wspace=.61)
+    axes=[fig.add_subplot(gs[0,i]) for i in range(3)]
+    for component,label,color in zip(components,labels,[INK,LEARNED,PHYSICS],strict=True):
+        group=response.loc[response.component.eq(component)].sort_values('lambda')
+        axes[0].plot(group['lambda'],group.mae,marker='o',ms=4,lw=1.3,color=color,label=label)
+    axes[0].set(xlabel=r'Coupling coordinate $\lambda$',ylabel=r'Response MAE (kcal mol$^{-1}$)')
+    axes[0].legend(frameon=False,fontsize=7.3,handlelength=1.5)
+    values=metrics['multilambda']['method_mae_kcal_mol'];vals=list(values.values())
+    names=['Base','+ PIMD2','+ hierarchy','+ both']
+    axes[1].barh(range(4),vals[:4],height=.54,color=[DEPLOY,LEARNED,PHYSICS,NEGATIVE])
+    axes[1].set(yticks=range(4),yticklabels=names,ylim=(3.6,-.6),xlim=(0,.25),xlabel=r'Endpoint MAE')
+    axes[1].tick_params(axis='y',length=0,labelsize=7.5)
+    axes[2].scatter([0],[vals[4]],marker='D',s=40,color=NEGATIVE,zorder=3)
+    axes[2].set(xlim=(-.5,.5),xticks=[],ylim=(0,1.7),ylabel=r'Integrated-curve MAE')
+    axes[2].annotate(f'{vals[4]:.2f}',(0,vals[4]),xytext=(0,10),textcoords='offset points',ha='center',color=NEGATIVE,fontsize=9)
+    for ax,title in zip(axes,['a  Source response','b  Endpoint','c  Integration']):
+        clean(ax,grid='x' if ax is axes[1] else 'y');ax.set_title(title,loc='left',fontsize=9)
+    fig.text(.74,.045,r'Panels b–c: kcal mol$^{-1}$',ha='center',fontsize=8,color=MID)
+    save(fig,'Supp_Fig4_lambda_response',collection='supplementary')
+
 
 
 def supp_fig5_extrapolation(primary: pd.DataFrame, separation: pd.DataFrame) -> None:
@@ -689,14 +699,15 @@ def supp_fig5_extrapolation(primary: pd.DataFrame, separation: pd.DataFrame) -> 
         ],
     )
     axes[0].invert_yaxis()
-    axes[0].set_xlabel("Absolute OOF error")
+    axes[0].set_xlabel(r"Absolute OOF error (kcal mol$^{-1}$)")
     clean(axes[0], grid="x")
     panel(axes[0], "a")
     regimes = ["global_nn_0.70", "global_butina_0_70", "global_scaffold", "global_family"]
-    labels = ["NN ≤ 0.70", "clusters", "scaffolds", "families"]
+    labels = ["NN < 0.70", "clusters", "scaffolds", "families"]
     # The two lowest SolvAI points are close together and close to the x-axis.
     # Stagger their labels upward so neither label collides with the axis text.
-    label_offsets = [3, 14, 0, 0]
+    label_offsets = [-8, 14, 0, 0]
+    regime_markers = ['o', 's', 'D', '^']
     for position, (regime, label) in enumerate(zip(regimes, labels, strict=True)):
         group = separation.loc[separation.regime.eq(regime)].set_index("method")
         axes[1].plot(
@@ -705,15 +716,16 @@ def supp_fig5_extrapolation(primary: pd.DataFrame, separation: pd.DataFrame) -> 
             color=GRID,
             lw=1,
         )
-        axes[1].scatter([0], [group.loc["A_structure_only", "mae"]], color=MID, s=23)
-        axes[1].scatter([1], [group.loc["F_full_solvai", "mae"]], color=DEPLOY, s=23)
+        axes[1].scatter([0], [group.loc["A_structure_only", "mae"]], color=MID, s=23, marker=regime_markers[position])
+        axes[1].scatter([1], [group.loc["F_full_solvai", "mae"]], color=DEPLOY, s=23, marker=regime_markers[position])
         axes[1].annotate(
             label,
             (1, group.loc["F_full_solvai", "mae"]),
-            xytext=(8, label_offsets[position]),
+            xytext=(15, label_offsets[position]),
             textcoords="offset points",
             va="center",
-            fontsize=6.1,
+            fontsize=7.5,
+            arrowprops={"arrowstyle": "-", "color": MID, "lw": 0.6, "shrinkA": 2, "shrinkB": 3},
             bbox={"facecolor": "white", "edgecolor": "none", "pad": 0.5, "alpha": 0.92},
         )
     axes[1].set_xticks([0, 1], ["Structure only", "SolvAI"])
@@ -737,30 +749,19 @@ def main() -> None:
         ROOT / "results/confirmatory/standardized_exclusion_global_separation_metrics.csv"
     )
 
-    subprocess.run(
-        [sys.executable, str(ROOT / "figures/penpot/install_exports.py")],
-        check=True,
-    )
-    # Preserve the upstream Penpot variants and their frozen source package, but
-    # make the reviewed hybrid SVG composition the paper-facing Figure 1.
-    subprocess.run(
-        [sys.executable, str(ROOT / "scripts/make_figure1_overview.py")],
-        check=True,
-    )
-    fig2_headline(metrics, primary, repeats, paired)
-    fig3_transfer(metrics, separation, zero)
-    fig4_frontier(metrics)
+    # Existing supplementary experiments remain distinct from journal comparisons.
     supp_fig1_residuals(primary)
     supp_fig2_provenance()
     supp_fig3_alternatives(metrics)
-    diagnostic_selective_pimd()
     supp_fig4_lambda(metrics)
     supp_fig5_extrapolation(primary, separation)
 
-    print(
-        "Rendered the hybrid Figure 1, three result figures, five Supplementary "
-        "figures and one non-publication diagnostic."
-    )
+    # Plot the already validated journal tables; aggregation/model fitting is a
+    # separate operation and is not a dependency of a graphical rebuild.
+    subprocess.run([sys.executable, str(ROOT / "scripts/make_endpoint_figures.py")], check=True)
+    subprocess.run([sys.executable, str(ROOT / "scripts/make_local_journal_figures.py")], check=True)
+    subprocess.run([sys.executable, str(ROOT / "scripts/make_endpoint_concepts.py")], check=True)
+    print("Rendered eight main and twelve supplementary figures locally; conceptual panels 8–10 are mixed-content.")
 
 
 if __name__ == "__main__":

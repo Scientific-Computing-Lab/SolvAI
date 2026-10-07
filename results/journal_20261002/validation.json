@@ -1,0 +1,22 @@
+{
+  "control_replay_max_absolute_difference": {
+    "structure": 3.552713678800501e-15,
+    "structure_arrow": 8.881784197001252e-16,
+    "solvai": 3.552713678800501e-15,
+    "solvai_arrow": 1.7763568394002505e-15
+  },
+  "models": [
+    "structure",
+    "solvai",
+    "computed_only",
+    "dmpnn",
+    "chemeleon",
+    "molformer_structure",
+    "molformer_solvai",
+    "unimol_structure",
+    "unimol_solvai"
+  ],
+  "molecule_predictions": 2745,
+  "protocol_sha256": "5dd95ab3aaf6eff3a106fec2a805b1969aa0fc58e6d0c911f6d7e034e72451f1",
+  "analysis_script_sha256": "7764d29faa0dc6553a3ce024dde076f0cc99dda47964d8c8dfa75feeeb06532b"
+}

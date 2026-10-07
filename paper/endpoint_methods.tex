@@ -1,0 +1,57 @@
+\subsection*{Broader endpoint search and numerical reproducibility}
+
+The extended study retains the five original ARROW outer folds, the external
+220 identities, the strict subset and the 15 frozen response predictions. For each
+outer training pool, random inner splits hold out 15\% of each source. The
+selection score is the equally weighted mean of public-source and ARROW-source
+validation MAE, not an outer-test score. Neural fits use source weights 1 and 3,
+respectively. Candidate screening is followed by repeated inner validation,
+longer-training challenges up to 1,200 epochs and a separate width challenge.
+Each family has a locked configuration and training schedule for each outer
+partition. Final fits restart from their specified initialization, restore the
+inner-validation rows to training, and average seeds 11, 29, 47, 71 and 101.
+Matched no-response fits use the same recipe and schedule. The original tree and
+frozen-encoder/tree controls use seeds 11, 29 and 47; common-three-seed comparisons
+are also reported. Supplementary Methods~S18 specifies the search and its limits.
+
+MoLFormer representations are generated with the encoder's deterministic evaluation
+option in addition to evaluation mode. An audit found that evaluation mode alone
+left stochastic attention projections active in the earlier cache. We regenerated
+all study and stress representations from the same checkpoint and repeated both
+the neural-head and fixed-tree comparisons. Only these corrected MoLFormer results
+enter the manuscript's comparisons. Reload, repeated-query and reordered-batch
+checks verify prediction replay; the original SolvAI--ExtraTrees release does not
+use MoLFormer and is unaffected. The discrepancy and corrected hashes are recorded
+in Supplementary Methods~S19 and Data~6.
+
+TabPFN-3.5 uses the pinned full and Fast checkpoints with \texttt{tabpfn} 9.1.0,
+run locally under the provider's non-commercial license. We do not fine-tune the
+foundation model. Eight candidates combine two checkpoints with four feature
+recipes; training-side challenges compare eight versus 32 ensemble passes and
+single versus repeated ARROW context rows. Context repetition represents source
+emphasis but is not mathematically equivalent to weighted neural loss. Splits
+precede repetition. The pretrained model's native preprocessing, including
+feature selection, is retained; this is not an entirely tree-free preprocessing
+pipeline. Fitted contexts contain training labels and are not redistributed.
+
+\subsection*{Size, series and predictive-uncertainty diagnostics}
+
+The size diagnostic holds out the largest 15\% within each source, with stable
+identity ordering for ties. Every model uses the same 1,160/205 split and three
+seeds; no held-out label is used in that refit. Configurations come from the locked
+external-fit recipe. Because the held-out labels were accessible in earlier
+random-fold development, this is an exploratory conditional test of size transfer.
+The source models and their source-level out-of-fold predictions are not rebuilt
+around this size split; exclusion from the endpoint refit does not imply exclusion
+from all source supervision (Supplementary Methods~S5 and S20).
+The unlabelled grid comprises 30 linear alkanes and 13 members each of capped glycine
+and alanine series, including the common zero-residue molecule. Series identities,
+source overlap, fingerprint counts and all predictions are released.
+
+For uncertainty evaluation, we transform each TabPFN distribution to the common
+raw-target scale and form an equally weighted mixture across five seeds. Central
+80\% and 95\% intervals are quantiles of this mixture, not averages of seedwise
+quantiles. Empirical coverage is the fraction of external labels inside each
+interval. We also report widths and verify the mixture mean against stored point
+predictions. The external cohort is used only to evaluate these intervals, not
+to calibrate them. Supplementary Methods~S20--S21 details these diagnostics.

@@ -1,0 +1,139 @@
+{
+  "scope": "Retrospective endpoint study; test predictions and aggregate diagnostics only.",
+  "excluded": [
+    "training labels",
+    "fitted TabPFN contexts",
+    "credentials",
+    "editorial notes",
+    "legacy stochastic models from valid comparisons"
+  ],
+  "files": {
+    "combined_metrics.csv": "266106542e0f17d9c9098e41894a99798070ba0be993d63a7590f2ea1458b372",
+    "combined_comparisons.csv": "3c76f75c8954809682f628b71d03284a180fc151652e2fb94a23e64df0fe6bc7",
+    "combined_predictions.csv": "5290a0265c09b1be187125056083cbda6dc326807441ffe99cee912311bc9c3b",
+    "combined_stress_predictions.csv": "5040b682645607f58a3dc1e336eeb8631817c06b03f587ebd96a47238c6986b8",
+    "combined_stress_summary.csv": "da3f201b887cfff51f774e6b23bcd6d6c631d6db8f63a314c0dd8b9cd3bc6b54",
+    "size_diagnostic_metrics.csv": "e681e58181ecd8d55212d415d341dfd250e219de030d791a8a82c784b3904d26",
+    "size_diagnostic_comparisons.csv": "cbad2de2f43ea9da794aebde9106546b011b2b925f16fb2fe32d81889ba8b918",
+    "size_diagnostic_scope.json": "9b51effcd7a9d7849276d5738d8eac8098debefeea82a075e9974479e795d0fc",
+    "tabpfn_interval_coverage.csv": "785cbd7e25e244c9ad9358ce33272b936714f712be40621165da6b687887874f",
+    "tabpfn_predictive_intervals_external.csv": "68381b286c0f38a3bc19bafb9f94369a21a0f416c742d10a19737bf2819912e5",
+    "tabpfn_predictive_intervals_stress.csv": "285a7c3bb25317407effca057035ce8e9d507abd680e66aab5d754810029d5a8",
+    "optimization_summary.csv": "4f31324d4bb8dab69802476911eb6e81f3aea8e3e78220c4818d51dc2b265c08",
+    "learning_diagnostics_summary.csv": "5e6a965f3450b1edf74b5605eee9861fd2a87c5b02d07da7cc0990f6963aa861",
+    "training_duration_pairs.csv": "e0c55d352e43cce7eee22d1b9b1898a0e31b1b55b06244242050732443adf8b3",
+    "capacity_width_pairs.csv": "fba2507e0bd55a89e39573d65845f96440388ccde0f5c3a9a49bb6a8df24a63e",
+    "stress_grid.csv": "0cecee6c91d4b4ad14b39239a65f12f521a7c5be7d705a75c28322a1a075ac0b",
+    "frozen_response_support.csv": "3a5ee85acae902680a9e992dd22070b27374acf26a4a09237498b1a7d5931bb8",
+    "policy_fallbacks.csv": "7002f38ab5e94f4114cc6c91b240cd21c8f9f074fa04ec00bd84bb1ecd77696a",
+    "selection_specification.json": "1959731d6f1b2f68fe6f606d9bcb15664917848dee587702f1c4dc82b4b467ea",
+    "corrected_original_predictions.csv": "c354413b5ab64bca1d144daf3b872c6c937153d76e5907a0537abbdb90eb74e2",
+    "corrected_original_metrics.csv": "aa8e975822cf034aeed59e4d64065c5a3cae2691c2589590371e79b140a28cde",
+    "corrected_original_comparisons.csv": "15ea412644dace892bbd9673b9000788b4764235af4b1949455cbb386e1031ae"
+  },
+  "implementation": {
+    "core.py": {
+      "experiment_sha256": "59ce708fd3b7d74d7cc4cb24fd2a2b25288e8a7fbfdf2cee0df1d11393de33b1",
+      "publication_sha256": "4e6040cf956b173a7485f2adb3346541042028552d49ef0a9484f7b49e773c1c",
+      "changes": "Machine paths and module descriptions only."
+    },
+    "tabm_extension.py": {
+      "experiment_sha256": "78b2cf7996dbb4e1060dae9d2043973b1b7bdd2f134ce2a7bdc8721ecd2fd1be",
+      "publication_sha256": "c9c20ffe92e8275df9d3be49e8efb03ba60e6fcaccff2aba817516cbac31a24d",
+      "changes": "Machine paths and module descriptions only."
+    },
+    "refine_representation.py": {
+      "experiment_sha256": "c00f97fbe85366e553fbb17bfef799a3b0310716bedff061f26c35bbeea4f804",
+      "publication_sha256": "1632ec194caaf03f45b39cc388f12fd271f9f306ffc2203e4968a2f2e913b952",
+      "changes": "Machine paths and module descriptions only."
+    },
+    "deterministic_repair.py": {
+      "experiment_sha256": "fa6ddefe33c57c84778b2c37bc56a3759aaf2d08c06881bfb65c6b81f858e694",
+      "publication_sha256": "be187f21cb08ff410f6515b5f672727f18fad2b6367478072b3a211477a5c25e",
+      "changes": "Machine paths and module descriptions only."
+    },
+    "tabpfn_extension.py": {
+      "experiment_sha256": "dd0c511e0da003a7229df1cc8bad46cd33298609f2f1d52333ca20d7f503e4f0",
+      "publication_sha256": "843363fa5bf8e7f6f7c28a16366a00198de63f3fe8ca5677cb426e9874e91722",
+      "changes": "Machine paths and module descriptions only."
+    },
+    "capacity_extension.py": {
+      "experiment_sha256": "3cf87aaab29c30d7e43f57601fddd287cf3bb6439cdb2487f53670c1c7802e08",
+      "publication_sha256": "a041bf040462e12c5d1bba53fc60b5a53511cbe3ff5fbdd096f7146760d40eb4",
+      "changes": "Machine paths and module descriptions only."
+    },
+    "evaluate.py": {
+      "experiment_sha256": "4518da1b0b6325359499a4efe27c37f6a219e3046d73ae62676fcbed38f10eb3",
+      "publication_sha256": "154c68e0253c2b63c77bcf720d1596db576e18e5c1f981bb7212eb54948f4ad7",
+      "changes": "Machine paths and module descriptions only."
+    },
+    "evaluate_extensions.py": {
+      "experiment_sha256": "5456940729af054ff92bf7e926882479c856701eab6a675fb81ad4a179b55f63",
+      "publication_sha256": "98cefb9842bd553fe7e50f3c7bc6bac62767930120c97a68d054c7439f107115",
+      "changes": "Machine paths and module descriptions only."
+    },
+    "evaluate_capacity.py": {
+      "experiment_sha256": "181092739bb9033d9bf712b5ec8ddfec25a784a970234a315bc287506e2a55c2",
+      "publication_sha256": "94d924c110f1e649625317c250f956bd79a4e62ccfc899cac7733a57910066d8",
+      "changes": "Machine paths and module descriptions only."
+    },
+    "fixed_tree_control.py": {
+      "experiment_sha256": "9d75dd73e96bc16348403e109373b47deb87e605d41f7392d314d1dd8eb5ccf5",
+      "publication_sha256": "cf4eadc892ba0d8c2953106df4ec2f6220bed4ba9ea8a263245b415b0257a63b",
+      "changes": "Machine paths and module descriptions only."
+    }
+  },
+  "audits": {
+    "final_report_verification": {
+      "status": "pass",
+      "sha256": "49580cb2b528d4521f8af0b4ecbc4b1cba709602ba0d20aae350249279371e8e"
+    },
+    "final_selection_audit": {
+      "status": "pass",
+      "sha256": "2e9f121619f88570d4f098b37ab6440f58189d165ca57ec4e863f4f41945b080"
+    },
+    "final_label_audit": {
+      "status": "pass",
+      "sha256": "3c501085d2916e87472d58ebb66323e8d9eedc4b1081c74cedb7eaea884826d4"
+    },
+    "final_tabpfn_selection_audit": {
+      "status": "pass",
+      "sha256": "df85f6a7b0f0e5fe5e57d93c42bf3de40043b5e191110dae4f724d024f7c4563"
+    },
+    "final_tabpfn_label_audit": {
+      "status": "pass",
+      "sha256": "0da7f5aabecac8190b6bece333fde11270014b0976029cf47dab450e35f21fc7"
+    },
+    "final_capacity_selection_audit": {
+      "status": "pass",
+      "sha256": "af3d003dd013adeb0c05a2984d44c3da09722b85543120efbeb2660645422f55"
+    },
+    "final_capacity_label_audit": {
+      "status": "pass",
+      "sha256": "1ea8b61ac4d8e17b834428e7a052af2f0e10a3dc1eff6aa77d27b2af42e64e53"
+    },
+    "end_to_end_encoding_check": {
+      "status": "pass",
+      "sha256": "bc2c1d3e294ff0b92b0d4606809947ba4dd7290563693d5f249c1c9363440079"
+    },
+    "tabpfn_uncertainty_audit": {
+      "status": "pass",
+      "sha256": "c1b99f08ed5fe0a072d717514f126f1abd1bd831943be14e86d5aebf73ca4dcb"
+    }
+  },
+  "encoder_correction": {
+    "old_cache": "stochastic attention projections remained active",
+    "new_cache_sha256": "85381e2b52c12b4719ac8ea6db827068ca8633bcf608d94df70e062299d5606e",
+    "replay_audit_sha256": "bc2c1d3e294ff0b92b0d4606809947ba4dd7290563693d5f249c1c9363440079",
+    "old_results": "Retained only as explicitly marked diagnostic data; not valid scientific comparisons."
+  },
+  "analysis_sources": {
+    "make_figures.py": "5660cb160f649d93f295279a10a7dd86a5814783d8835706f17fad1225e54bc5",
+    "make_endpoint_figures.py": "e94f180d34f2e13746d5ea2dec8010cab7735d663984b755c163b65234e6ac23",
+    "make_endpoint_concepts.py": "a8b3da5ed26889558cd4b91f08771727591514c61b5ccd9ea43bbed15661c3be",
+    "make_local_journal_figures.py": "74b8b3e728d3f7428a78a4605c0154d8364caff703b9ff02e8a4486a30c2844a",
+    "journal_vector_art.py": "c2d7a2631703696bbc8cf88b1d0c9dc569cdc47c0e6df5b77aff5634c371dc11",
+    "journal_teaser.py": "daba4a0dd00d2a3b8615db0e10c893d5c655c3eb0bc2c00c45a323b682703f27",
+    "journal_style.py": "ee0b6ab2f24a5c1ef59c88403e0a399b7220cc6638bd2a522a1371a17fd2c868"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "source": "saved full-precision per-seed JSON arrays",
+  "models_refitted": false,
+  "maximum_mean_export_changes": {
+    "dmpnn_arrow_0.csv": 0.0,
+    "dmpnn_arrow_1.csv": 7.580159504527728e-07,
+    "dmpnn_arrow_2.csv": 0.0,
+    "dmpnn_arrow_3.csv": 3.952433269560629e-07,
+    "dmpnn_arrow_4.csv": 6.936340328778101e-07,
+    "dmpnn_external.csv": 1.069213867666008e-06,
+    "chemeleon_arrow_0.csv": 2.5065104214405665e-07,
+    "chemeleon_arrow_1.csv": 6.515706392207221e-07,
+    "chemeleon_arrow_2.csv": 5.003234866407524e-07,
+    "chemeleon_arrow_3.csv": 3.3730061854697624e-07,
+    "chemeleon_arrow_4.csv": 4.184163415743569e-07,
+    "chemeleon_external.csv": 1.2357177734401148e-06
+  }
+}

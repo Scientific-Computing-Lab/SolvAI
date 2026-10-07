@@ -1,0 +1,485 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="180mm" height="141.75mm" viewBox="0 0 720 567"><title>Response-source composition changes the preferred model across chemistry</title><defs><radialGradient id="atomC" cx="30%" cy="25%" r="75%"><stop offset="0" stop-color="#CFD7DD"/><stop offset=".45" stop-color="#5E6F7B"/><stop offset="1" stop-color="#243D4B"/></radialGradient><radialGradient id="atomN" cx="30%" cy="25%" r="75%"><stop offset="0" stop-color="#B7DAF6"/><stop offset=".45" stop-color="#3C83B9"/><stop offset="1" stop-color="#19496F"/></radialGradient><radialGradient id="atomO" cx="30%" cy="25%" r="75%"><stop offset="0" stop-color="#F5C4B9"/><stop offset=".45" stop-color="#D76D58"/><stop offset="1" stop-color="#923E31"/></radialGradient><radialGradient id="atomH" cx="30%" cy="25%" r="75%"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".45" stop-color="#EFF2F4"/><stop offset="1" stop-color="#B8C3CB"/></radialGradient></defs><g font-family="Arial, Helvetica, sans-serif" stroke-linecap="round" stroke-linejoin="round"><rect x="0" y="0" width="720" height="567" rx="0" fill="white" stroke="none" opacity="1"/><text x="10" y="25.000" font-size="20" fill="#172D3A" font-weight="700" text-anchor="start">a</text><text x="34" y="24.000" font-size="14" fill="#172D3A" font-weight="700" text-anchor="start">Keep the learner fixed, change the response sources</text><text x="182" y="66.000" font-size="11.4" fill="#3F7FAD" font-weight="600" text-anchor="middle">COSMOtherm</text><rect x="145.0" y="89" width="74.0" height="14" rx="0" fill="#3F7FAD" stroke="none" opacity="1"/><rect x="145.0" y="132" width="74.0" height="14" rx="0" fill="#3F7FAD" stroke="none" opacity="1"/><text x="275" y="66.000" font-size="11.4" fill="#CB8C39" font-weight="600" text-anchor="middle">Abraham</text><rect x="238.0" y="89" width="12.4" height="14" rx="0" fill="#CB8C39" stroke="none" opacity="1"/><rect x="253.4" y="89" width="12.4" height="14" rx="0" fill="#CB8C39" stroke="none" opacity="1"/><rect x="268.8" y="89" width="12.4" height="14" rx="0" fill="#CB8C39" stroke="none" opacity="1"/><rect x="284.2" y="89" width="12.4" height="14" rx="0" fill="#CB8C39" stroke="none" opacity="1"/><rect x="299.6" y="89" width="12.4" height="14" rx="0" fill="#CB8C39" stroke="none" opacity="1"/><text x="275" y="145.000" font-size="11.5" fill="#657782" font-weight="400" text-anchor="middle">Omitted</text><text x="368" y="66.000" font-size="11.4" fill="#599FB0" font-weight="600" text-anchor="middle">OpenFF</text><rect x="331.0" y="89" width="74.0" height="14" rx="0" fill="#599FB0" stroke="none" opacity="1"/><text x="368" y="100.000" font-size="10" fill="white" font-weight="600" text-anchor="middle">physical + δ</text><rect x="331.0" y="132" width="74.0" height="14" rx="0" fill="#599FB0" stroke="none" opacity="1"/><text x="368" y="143.000" font-size="10" fill="white" font-weight="600" text-anchor="middle">physical</text><text x="461" y="66.000" font-size="11.4" fill="#8EAAB7" font-weight="600" text-anchor="middle">GBn2</text><rect x="424.0" y="89" width="74.0" height="14" rx="0" fill="#8EAAB7" stroke="none" opacity="1"/><text x="461" y="100.000" font-size="10" fill="white" font-weight="600" text-anchor="middle">physical + δ</text><rect x="424.0" y="132" width="74.0" height="14" rx="0" fill="#8EAAB7" stroke="none" opacity="1"/><text x="461" y="143.000" font-size="10" fill="white" font-weight="600" text-anchor="middle">physical</text><text x="554" y="66.000" font-size="11.4" fill="#557FBE" font-weight="600" text-anchor="middle">SMD(water)</text><rect x="517.0" y="89" width="74.0" height="14" rx="0" fill="#557FBE" stroke="none" opacity="1"/><rect x="517.0" y="132" width="74.0" height="14" rx="0" fill="#557FBE" stroke="none" opacity="1"/><text x="647" y="66.000" font-size="11.4" fill="#9776AE" font-weight="600" text-anchor="middle">ConfSolv</text><rect x="610.0" y="89" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><rect x="622.8333333333334" y="89" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><rect x="635.6666666666666" y="89" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><rect x="648.5" y="89" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><rect x="661.3333333333334" y="89" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><rect x="674.1666666666666" y="89" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><rect x="610.0" y="132" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><rect x="622.8333333333334" y="132" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><rect x="635.6666666666666" y="132" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><rect x="648.5" y="132" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><rect x="661.3333333333334" y="132" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><rect x="674.1666666666666" y="132" width="9.833333333333334" height="14" rx="0" fill="#9776AE" stroke="none" opacity="1"/><text x="10" y="94.000" font-size="12.5" fill="#078774" font-weight="600" text-anchor="start">Full model</text><text x="10" y="111.000" font-size="11.5" fill="#078774" font-weight="400" text-anchor="start">15 responses</text><text x="10" y="138.000" font-size="12.5" fill="#3F7FAD" font-weight="600" text-anchor="start">Computation-only</text><text x="10" y="155.000" font-size="11.5" fill="#3F7FAD" font-weight="400" text-anchor="start">10 responses</text><text x="10" y="188.000" font-size="11.3" fill="#657782" font-weight="400" text-anchor="start">Remove five Abraham values and two residual corrections (δ). Retain the two physical energies.</text><text x="10" y="208.000" font-size="11.5" fill="#657782" font-weight="400" text-anchor="start">Both models learn hydration from the same experimental labels.</text><path d="M10,226 L710,226" fill="none" stroke="#DCE4E8" stroke-width="1"/><text x="10" y="257.000" font-size="20" fill="#172D3A" font-weight="700" text-anchor="start">b</text><text x="34" y="256.000" font-size="14" fill="#172D3A" font-weight="700" text-anchor="start">Compare absolute errors</text><text x="389" y="257.000" font-size="20" fill="#172D3A" font-weight="700" text-anchor="start">c</text><text x="413" y="256.000" font-size="14" fill="#172D3A" font-weight="700" text-anchor="start">Resolve the change in ordering</text><g transform="translate(10,282) scale(1.411111109089462,1.4111111105103826)"><ns0:metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns2="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:RDF>
+   <ns2:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+    <dc:date>2026-10-06T21:24:02.003358</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <ns2:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </ns2:Agent>
+    </dc:creator>
+   </ns2:Work>
+  </rdf:RDF>
+ </ns0:metadata>
+ <ns0:defs xmlns:ns0="http://www.w3.org/2000/svg">
+  <ns0:style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</ns0:style>
+ </ns0:defs>
+ <ns0:g xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://www.w3.org/1999/xlink" id="absolute_figure_1">
+  <ns0:g id="absolute_patch_1">
+   <ns0:path d="M 0 184.96063  L 247.322835 184.96063  L 247.322835 0  L 0 0  L 0 184.96063  z " style="fill: none" />
+  </ns0:g>
+  <ns0:g id="absolute_axes_1">
+   <ns0:g id="absolute_patch_2">
+    <ns0:path d="M 44.51811 142.419685  L 234.956693 142.419685  L 234.956693 9.248031  L 44.51811 9.248031  L 44.51811 142.419685  z " style="fill: none" />
+   </ns0:g>
+   <ns0:g id="absolute_matplotlib.axis_1">
+    <ns0:g id="absolute_xtick_1">
+     <ns0:g id="absolute_line2d_1">
+      <ns0:defs>
+       <ns0:path id="absolute_m5359e4ce4f" d="M 0 0  L 0 3  " style="stroke: #647581; stroke-width: 0.6" />
+      </ns0:defs>
+      <ns0:g>
+       <ns0:use ns1:href="#absolute_m5359e4ce4f" x="76.257874" y="142.419685" style="fill: #647581; stroke: #647581; stroke-width: 0.6" />
+      </ns0:g>
+     </ns0:g>
+     <ns0:g id="absolute_text_1">
+      <ns0:text style="font-size: 8px; font-family: 'Arial'; fill: #647581" transform="translate(60.925374 155.348044)">ARROW</ns0:text>
+      <ns0:text style="font-size: 8px; font-family: 'Arial'; fill: #647581" transform="translate(71.809124 164.055076)">85</ns0:text>
+     </ns0:g>
+    </ns0:g>
+    <ns0:g id="absolute_xtick_2">
+     <ns0:g id="absolute_line2d_2">
+      <ns0:g>
+       <ns0:use ns1:href="#absolute_m5359e4ce4f" x="139.737402" y="142.419685" style="fill: #647581; stroke: #647581; stroke-width: 0.6" />
+      </ns0:g>
+     </ns0:g>
+     <ns0:g id="absolute_text_2">
+      <ns0:text style="font-size: 8px; font-family: 'Arial'; fill: #647581" transform="translate(125.064277 155.343513)">External</ns0:text>
+      <ns0:text style="font-size: 8px; font-family: 'Arial'; fill: #647581" transform="translate(133.064277 164.050544)">220</ns0:text>
+     </ns0:g>
+    </ns0:g>
+    <ns0:g id="absolute_xtick_3">
+     <ns0:g id="absolute_line2d_3">
+      <ns0:g>
+       <ns0:use ns1:href="#absolute_m5359e4ce4f" x="203.216929" y="142.419685" style="fill: #647581; stroke: #647581; stroke-width: 0.6" />
+      </ns0:g>
+     </ns0:g>
+     <ns0:g id="absolute_text_3">
+      <ns0:text style="font-size: 8px; font-family: 'Arial'; fill: #647581" transform="translate(194.105679 155.343513)">Strict</ns0:text>
+      <ns0:text style="font-size: 8px; font-family: 'Arial'; fill: #647581" transform="translate(198.768179 164.050544)">97</ns0:text>
+     </ns0:g>
+    </ns0:g>
+   </ns0:g>
+   <ns0:g id="absolute_matplotlib.axis_2">
+    <ns0:g id="absolute_ytick_1">
+     <ns0:g id="absolute_line2d_4">
+      <ns0:path d="M 44.51811 142.419685  L 234.956693 142.419685  " clip-path="url(#absolute_paae1e64756)" style="fill: none; stroke: #dce4e8; stroke-width: 0.5; stroke-linecap: square" />
+     </ns0:g>
+     <ns0:g id="absolute_line2d_5">
+      <ns0:defs>
+       <ns0:path id="absolute_mf1b4ad598d" d="M 0 0  L -3 0  " style="stroke: #647581; stroke-width: 0.6" />
+      </ns0:defs>
+      <ns0:g>
+       <ns0:use ns1:href="#absolute_mf1b4ad598d" x="44.51811" y="142.419685" style="fill: #647581; stroke: #647581; stroke-width: 0.6" />
+      </ns0:g>
+     </ns0:g>
+     <ns0:g id="absolute_text_4">
+      <ns0:text style="font-size: 8px; font-family: 'Arial'; text-anchor: end; fill: #647581" x="38.01811" y="145.331794" transform="rotate(-0 38.01811 145.331794)">0.0</ns0:text>
+     </ns0:g>
+    </ns0:g>
+    <ns0:g id="absolute_ytick_2">
+     <ns0:g id="absolute_line2d_6">
+      <ns0:path d="M 44.51811 115.241797  L 234.956693 115.241797  " clip-path="url(#absolute_paae1e64756)" style="fill: none; stroke: #dce4e8; stroke-width: 0.5; stroke-linecap: square" />
+     </ns0:g>
+     <ns0:g id="absolute_line2d_7">
+      <ns0:g>
+       <ns0:use ns1:href="#absolute_mf1b4ad598d" x="44.51811" y="115.241797" style="fill: #647581; stroke: #647581; stroke-width: 0.6" />
+      </ns0:g>
+     </ns0:g>
+     <ns0:g id="absolute_text_5">
+      <ns0:text style="font-size: 8px; font-family: 'Arial'; text-anchor: end; fill: #647581" x="38.01811" y="118.153906" transform="rotate(-0 38.01811 118.153906)">0.5</ns0:text>
+     </ns0:g>
+    </ns0:g>
+    <ns0:g id="absolute_ytick_3">
+     <ns0:g id="absolute_line2d_8">
+      <ns0:path d="M 44.51811 88.063908  L 234.956693 88.063908  " clip-path="url(#absolute_paae1e64756)" style="fill: none; stroke: #dce4e8; stroke-width: 0.5; stroke-linecap: square" />
+     </ns0:g>
+     <ns0:g id="absolute_line2d_9">
+      <ns0:g>
+       <ns0:use ns1:href="#absolute_mf1b4ad598d" x="44.51811" y="88.063908" style="fill: #647581; stroke: #647581; stroke-width: 0.6" />
+      </ns0:g>
+     </ns0:g>
+     <ns0:g id="absolute_text_6">
+      <ns0:text style="font-size: 8px; font-family: 'Arial'; text-anchor: end; fill: #647581" x="38.01811" y="90.976017" transform="rotate(-0 38.01811 90.976017)">1.0</ns0:text>
+     </ns0:g>
+    </ns0:g>
+    <ns0:g id="absolute_ytick_4">
+     <ns0:g id="absolute_line2d_10">
+      <ns0:path d="M 44.51811 60.88602  L 234.956693 60.88602  " clip-path="url(#absolute_paae1e64756)" style="fill: none; stroke: #dce4e8; stroke-width: 0.5; stroke-linecap: square" />
+     </ns0:g>
+     <ns0:g id="absolute_line2d_11">
+      <ns0:g>
+       <ns0:use ns1:href="#absolute_mf1b4ad598d" x="44.51811" y="60.88602" style="fill: #647581; stroke: #647581; stroke-width: 0.6" />
+      </ns0:g>
+     </ns0:g>
+     <ns0:g id="absolute_text_7">
+      <ns0:text style="font-size: 8px; font-family: 'Arial'; text-anchor: end; fill: #647581" x="38.01811" y="63.798129" transform="rotate(-0 38.01811 63.798129)">1.5</ns0:text>
+     </ns0:g>
+    </ns0:g>
+    <ns0:g id="absolute_ytick_5">
+     <ns0:g id="absolute_line2d_12">
+      <ns0:path d="M 44.51811 33.708131  L 234.956693 33.708131  " clip-path="url(#absolute_paae1e64756)" style="fill: none; stroke: #dce4e8; stroke-width: 0.5; stroke-linecap: square" />
+     </ns0:g>
+     <ns0:g id="absolute_line2d_13">
+      <ns0:g>
+       <ns0:use ns1:href="#absolute_mf1b4ad598d" x="44.51811" y="33.708131" style="fill: #647581; stroke: #647581; stroke-width: 0.6" />
+      </ns0:g>
+     </ns0:g>
+     <ns0:g id="absolute_text_8">
+      <ns0:text style="font-size: 8px; font-family: 'Arial'; text-anchor: end; fill: #647581" x="38.01811" y="36.620241" transform="rotate(-0 38.01811 36.620241)">2.0</ns0:text>
+     </ns0:g>
+    </ns0:g>
+    <ns0:g id="absolute_text_9">
+
+     <ns0:g style="fill: #18303c" transform="translate(19.02811 109.196358) rotate(-90)">
+      <ns0:text>
+       <ns0:tspan x="0" y="-0.147312" style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c">M</ns0:tspan>
+       <ns0:tspan x="7.080566" y="-0.147312" style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c">A</ns0:tspan>
+       <ns0:tspan x="12.75" y="-0.147312" style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c">E</ns0:tspan>
+       <ns0:tspan x="18.419434" y="-0.147312" style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c"> </ns0:tspan>
+       <ns0:tspan x="20.781006" y="-0.147312" style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c">(</ns0:tspan>
+       <ns0:tspan x="23.611572" y="-0.147312" style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c">k</ns0:tspan>
+       <ns0:tspan x="27.861572" y="-0.147312" style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c">c</ns0:tspan>
+       <ns0:tspan x="32.111572" y="-0.147312" style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c">a</ns0:tspan>
+       <ns0:tspan x="36.838867" y="-0.147312" style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c">l</ns0:tspan>
+       <ns0:tspan x="38.727295" y="-0.147312" style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c"> </ns0:tspan>
+       <ns0:tspan x="41.088867" y="-0.147312" style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c">m</ns0:tspan>
+       <ns0:tspan x="48.169434" y="-0.147312" style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c">o</ns0:tspan>
+       <ns0:tspan x="52.896729" y="-0.147312" style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c">l</ns0:tspan>
+       <ns0:tspan x="63.869946" y="-0.147312" style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c">)</ns0:tspan>
+       <ns0:tspan x="54.866504" y="-3.657813" style="font-size: 5.95px; font-family: 'DejaVu Sans'; fill: #18303c">−</ns0:tspan>
+       <ns0:tspan x="59.851953" y="-3.657813" style="font-size: 5.95px; font-family: 'DejaVu Sans'; fill: #18303c">1</ns0:tspan>
+      </ns0:text>
+     </ns0:g>
+    </ns0:g>
+   </ns0:g>
+   <ns0:g id="absolute_patch_3">
+    <ns0:path d="M 44.51811 142.419685  L 44.51811 9.248031  " style="fill: none; stroke: #647581; stroke-width: 0.65; stroke-linejoin: miter; stroke-linecap: square" />
+   </ns0:g>
+   <ns0:g id="absolute_patch_4">
+    <ns0:path d="M 44.51811 142.419685  L 234.956693 142.419685  " style="fill: none; stroke: #647581; stroke-width: 0.65; stroke-linejoin: miter; stroke-linecap: square" />
+   </ns0:g>
+   <ns0:g id="absolute_PathCollection_1">
+    <ns0:defs>
+     <ns0:path id="absolute_m027346e3a8" d="M 0 3.041381  C 0.806584 3.041381 1.58024 2.720922 2.150581 2.150581  C 2.720922 1.58024 3.041381 0.806584 3.041381 0  C 3.041381 -0.806584 2.720922 -1.58024 2.150581 -2.150581  C 1.58024 -2.720922 0.806584 -3.041381 0 -3.041381  C -0.806584 -3.041381 -1.58024 -2.720922 -2.150581 -2.150581  C -2.720922 -1.58024 -3.041381 -0.806584 -3.041381 0  C -3.041381 0.806584 -2.720922 1.58024 -2.150581 2.150581  C -1.58024 2.720922 -0.806584 3.041381 0 3.041381  z " style="stroke: #657782" />
+    </ns0:defs>
+    <ns0:g clip-path="url(#absolute_paae1e64756)">
+     <ns0:use ns1:href="#absolute_m027346e3a8" x="66.10115" y="125.930944" style="fill: #657782; stroke: #657782" />
+     <ns0:use ns1:href="#absolute_m027346e3a8" x="129.580677" y="59.165813" style="fill: #657782; stroke: #657782" />
+     <ns0:use ns1:href="#absolute_m027346e3a8" x="193.060205" y="26.190512" style="fill: #657782; stroke: #657782" />
+    </ns0:g>
+   </ns0:g>
+   <ns0:g id="absolute_PathCollection_2">
+    <ns0:defs>
+     <ns0:path id="absolute_m6963b05c8d" d="M 0 3.041381  C 0.806584 3.041381 1.58024 2.720922 2.150581 2.150581  C 2.720922 1.58024 3.041381 0.806584 3.041381 0  C 3.041381 -0.806584 2.720922 -1.58024 2.150581 -2.150581  C 1.58024 -2.720922 0.806584 -3.041381 0 -3.041381  C -0.806584 -3.041381 -1.58024 -2.720922 -2.150581 -2.150581  C -2.720922 -1.58024 -3.041381 -0.806584 -3.041381 0  C -3.041381 0.806584 -2.720922 1.58024 -2.150581 2.150581  C -1.58024 2.720922 -0.806584 3.041381 0 3.041381  z " style="stroke: #078774" />
+    </ns0:defs>
+    <ns0:g clip-path="url(#absolute_paae1e64756)">
+     <ns0:use ns1:href="#absolute_m6963b05c8d" x="76.257874" y="131.427095" style="fill: #078774; stroke: #078774" />
+     <ns0:use ns1:href="#absolute_m6963b05c8d" x="139.737402" y="79.771704" style="fill: #078774; stroke: #078774" />
+     <ns0:use ns1:href="#absolute_m6963b05c8d" x="203.216929" y="58.951215" style="fill: #078774; stroke: #078774" />
+    </ns0:g>
+   </ns0:g>
+   <ns0:g id="absolute_PathCollection_3">
+    <ns0:defs>
+     <ns0:path id="absolute_m2c573f173a" d="M -3.041381 3.041381  L 3.041381 3.041381  L 3.041381 -3.041381  L -3.041381 -3.041381  z " style="stroke: #3f7fad" />
+    </ns0:defs>
+    <ns0:g clip-path="url(#absolute_paae1e64756)">
+     <ns0:use ns1:href="#absolute_m2c573f173a" x="86.414598" y="129.708559" style="fill: #3f7fad; stroke: #3f7fad" />
+     <ns0:use ns1:href="#absolute_m2c573f173a" x="149.894126" y="82.885415" style="fill: #3f7fad; stroke: #3f7fad" />
+     <ns0:use ns1:href="#absolute_m2c573f173a" x="213.373654" y="65.145733" style="fill: #3f7fad; stroke: #3f7fad" />
+    </ns0:g>
+   </ns0:g>
+   <ns0:g id="absolute_legend_1">
+    <ns0:g id="absolute_PathCollection_4">
+     <ns0:g>
+      <ns0:use ns1:href="#absolute_m027346e3a8" x="55.31811" y="20.17225" style="fill: #657782; stroke: #657782" />
+     </ns0:g>
+    </ns0:g>
+    <ns0:g id="absolute_text_10">
+     <ns0:text style="font-size: 8px; font-family: 'Arial'; text-anchor: start; fill: #18303c" x="65.31811" y="22.27225" transform="rotate(-0 65.31811 22.27225)">Structure</ns0:text>
+    </ns0:g>
+    <ns0:g id="absolute_PathCollection_5">
+     <ns0:g>
+      <ns0:use ns1:href="#absolute_m6963b05c8d" x="55.31811" y="30.880063" style="fill: #078774; stroke: #078774" />
+     </ns0:g>
+    </ns0:g>
+    <ns0:g id="absolute_text_11">
+     <ns0:text style="font-size: 8px; font-family: 'Arial'; text-anchor: start; fill: #18303c" x="65.31811" y="32.980063" transform="rotate(-0 65.31811 32.980063)">Full 15</ns0:text>
+    </ns0:g>
+    <ns0:g id="absolute_PathCollection_6">
+     <ns0:g>
+      <ns0:use ns1:href="#absolute_m2c573f173a" x="55.31811" y="41.587875" style="fill: #3f7fad; stroke: #3f7fad" />
+     </ns0:g>
+    </ns0:g>
+    <ns0:g id="absolute_text_12">
+     <ns0:text style="font-size: 8px; font-family: 'Arial'; text-anchor: start; fill: #18303c" x="65.31811" y="43.687875" transform="rotate(-0 65.31811 43.687875)">Computation-only</ns0:text>
+    </ns0:g>
+   </ns0:g>
+  </ns0:g>
+ </ns0:g>
+ <ns0:defs xmlns:ns0="http://www.w3.org/2000/svg">
+  <ns0:clipPath id="absolute_paae1e64756">
+   <ns0:rect x="44.51811" y="9.248031" width="190.438583" height="133.171654" />
+  </ns0:clipPath>
+ </ns0:defs>
+</g><g transform="translate(385,282) scale(1.411111111399682,1.4111111105103826)"><ns0:metadata xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns2="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <rdf:RDF>
+   <ns2:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+    <dc:date>2026-10-06T21:24:02.020753</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <ns2:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </ns2:Agent>
+    </dc:creator>
+   </ns2:Work>
+  </rdf:RDF>
+ </ns0:metadata>
+ <ns0:defs xmlns:ns0="http://www.w3.org/2000/svg">
+  <ns0:style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</ns0:style>
+ </ns0:defs>
+ <ns0:g xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://www.w3.org/1999/xlink" id="composition_figure_1">
+  <ns0:g id="composition_patch_1">
+   <ns0:path d="M 0 184.96063  L 231.023622 184.96063  L 231.023622 0  L 0 0  L 0 184.96063  z " style="fill: none" />
+  </ns0:g>
+  <ns0:g id="composition_axes_1">
+   <ns0:g id="composition_patch_2">
+    <ns0:path d="M 71.617323 142.419685  L 221.782677 142.419685  L 221.782677 9.248031  L 71.617323 9.248031  L 71.617323 142.419685  z " style="fill: none" />
+   </ns0:g>
+   <ns0:g id="composition_matplotlib.axis_1">
+    <ns0:g id="composition_xtick_1">
+     <ns0:g id="composition_line2d_1">
+      <ns0:path d="M 92.329786 142.419685  L 92.329786 9.248031  " clip-path="url(#composition_p39fc879c0c)" style="fill: none; stroke: #dce4e8; stroke-width: 0.5; stroke-linecap: square" />
+     </ns0:g>
+     <ns0:g id="composition_line2d_2">
+      <ns0:defs>
+       <ns0:path id="composition_m5359e4ce4f" d="M 0 0  L 0 3  " style="stroke: #647581; stroke-width: 0.6" />
+      </ns0:defs>
+      <ns0:g>
+       <ns0:use ns1:href="#composition_m5359e4ce4f" x="92.329786" y="142.419685" style="fill: #647581; stroke: #647581; stroke-width: 0.6" />
+      </ns0:g>
+     </ns0:g>
+     <ns0:g id="composition_text_1">
+      <ns0:text style="font-size: 8px; font-family: 'Arial'; text-anchor: middle; fill: #647581" x="92.329786" y="154.743904" transform="rotate(-0 92.329786 154.743904)">−0.05</ns0:text>
+     </ns0:g>
+    </ns0:g>
+    <ns0:g id="composition_xtick_2">
+     <ns0:g id="composition_line2d_3">
+      <ns0:path d="M 118.220364 142.419685  L 118.220364 9.248031  " clip-path="url(#composition_p39fc879c0c)" style="fill: none; stroke: #dce4e8; stroke-width: 0.5; stroke-linecap: square" />
+     </ns0:g>
+     <ns0:g id="composition_line2d_4">
+      <ns0:g>
+       <ns0:use ns1:href="#composition_m5359e4ce4f" x="118.220364" y="142.419685" style="fill: #647581; stroke: #647581; stroke-width: 0.6" />
+      </ns0:g>
+     </ns0:g>
+     <ns0:g id="composition_text_2">
+      <ns0:text style="font-size: 8px; font-family: 'Arial'; text-anchor: middle; fill: #647581" x="118.220364" y="154.743904" transform="rotate(-0 118.220364 154.743904)">0.00</ns0:text>
+     </ns0:g>
+    </ns0:g>
+    <ns0:g id="composition_xtick_3">
+     <ns0:g id="composition_line2d_5">
+      <ns0:path d="M 144.110942 142.419685  L 144.110942 9.248031  " clip-path="url(#composition_p39fc879c0c)" style="fill: none; stroke: #dce4e8; stroke-width: 0.5; stroke-linecap: square" />
+     </ns0:g>
+     <ns0:g id="composition_line2d_6">
+      <ns0:g>
+       <ns0:use ns1:href="#composition_m5359e4ce4f" x="144.110942" y="142.419685" style="fill: #647581; stroke: #647581; stroke-width: 0.6" />
+      </ns0:g>
+     </ns0:g>
+     <ns0:g id="composition_text_3">
+      <ns0:text style="font-size: 8px; font-family: 'Arial'; text-anchor: middle; fill: #647581" x="144.110942" y="154.743904" transform="rotate(-0 144.110942 154.743904)">0.05</ns0:text>
+     </ns0:g>
+    </ns0:g>
+    <ns0:g id="composition_xtick_4">
+     <ns0:g id="composition_line2d_7">
+      <ns0:path d="M 170.00152 142.419685  L 170.00152 9.248031  " clip-path="url(#composition_p39fc879c0c)" style="fill: none; stroke: #dce4e8; stroke-width: 0.5; stroke-linecap: square" />
+     </ns0:g>
+     <ns0:g id="composition_line2d_8">
+      <ns0:g>
+       <ns0:use ns1:href="#composition_m5359e4ce4f" x="170.00152" y="142.419685" style="fill: #647581; stroke: #647581; stroke-width: 0.6" />
+      </ns0:g>
+     </ns0:g>
+     <ns0:g id="composition_text_4">
+      <ns0:text style="font-size: 8px; font-family: 'Arial'; text-anchor: middle; fill: #647581" x="170.00152" y="154.743904" transform="rotate(-0 170.00152 154.743904)">0.10</ns0:text>
+     </ns0:g>
+    </ns0:g>
+    <ns0:g id="composition_xtick_5">
+     <ns0:g id="composition_line2d_9">
+      <ns0:path d="M 195.892099 142.419685  L 195.892099 9.248031  " clip-path="url(#composition_p39fc879c0c)" style="fill: none; stroke: #dce4e8; stroke-width: 0.5; stroke-linecap: square" />
+     </ns0:g>
+     <ns0:g id="composition_line2d_10">
+      <ns0:g>
+       <ns0:use ns1:href="#composition_m5359e4ce4f" x="195.892099" y="142.419685" style="fill: #647581; stroke: #647581; stroke-width: 0.6" />
+      </ns0:g>
+     </ns0:g>
+     <ns0:g id="composition_text_5">
+      <ns0:text style="font-size: 8px; font-family: 'Arial'; text-anchor: middle; fill: #647581" x="195.892099" y="154.743904" transform="rotate(-0 195.892099 154.743904)">0.15</ns0:text>
+     </ns0:g>
+    </ns0:g>
+    <ns0:g id="composition_xtick_6">
+     <ns0:g id="composition_line2d_11">
+      <ns0:path d="M 221.782677 142.419685  L 221.782677 9.248031  " clip-path="url(#composition_p39fc879c0c)" style="fill: none; stroke: #dce4e8; stroke-width: 0.5; stroke-linecap: square" />
+     </ns0:g>
+     <ns0:g id="composition_line2d_12">
+      <ns0:g>
+       <ns0:use ns1:href="#composition_m5359e4ce4f" x="221.782677" y="142.419685" style="fill: #647581; stroke: #647581; stroke-width: 0.6" />
+      </ns0:g>
+     </ns0:g>
+     <ns0:g id="composition_text_6">
+      <ns0:text style="font-size: 8px; font-family: 'Arial'; text-anchor: middle; fill: #647581" x="221.782677" y="154.743904" transform="rotate(-0 221.782677 154.743904)">0.20</ns0:text>
+     </ns0:g>
+    </ns0:g>
+    <ns0:g id="composition_text_7">
+     <ns0:text style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c" transform="translate(96.738594 169.252815)">Full 15 − computation-only</ns0:text>
+
+     <ns0:g style="fill: #18303c" transform="translate(110.49 180.220969)">
+      <ns0:text>
+       <ns0:tspan x="0" y="-0.147312" style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c">Δ</ns0:tspan>
+       <ns0:tspan x="5.677734" y="-0.147312" style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c">M</ns0:tspan>
+       <ns0:tspan x="12.758301" y="-0.147312" style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c">A</ns0:tspan>
+       <ns0:tspan x="18.427734" y="-0.147312" style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c">E</ns0:tspan>
+       <ns0:tspan x="24.097168" y="-0.147312" style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c"> </ns0:tspan>
+       <ns0:tspan x="26.45874" y="-0.147312" style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c">(</ns0:tspan>
+       <ns0:tspan x="29.289307" y="-0.147312" style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c">k</ns0:tspan>
+       <ns0:tspan x="33.539307" y="-0.147312" style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c">c</ns0:tspan>
+       <ns0:tspan x="37.789307" y="-0.147312" style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c">a</ns0:tspan>
+       <ns0:tspan x="42.516602" y="-0.147312" style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c">l</ns0:tspan>
+       <ns0:tspan x="44.405029" y="-0.147312" style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c"> </ns0:tspan>
+       <ns0:tspan x="46.766602" y="-0.147312" style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c">m</ns0:tspan>
+       <ns0:tspan x="53.847168" y="-0.147312" style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c">o</ns0:tspan>
+       <ns0:tspan x="58.574463" y="-0.147312" style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c">l</ns0:tspan>
+       <ns0:tspan x="69.547681" y="-0.147312" style="font-size: 8.5px; font-family: 'Arial'; fill: #18303c">)</ns0:tspan>
+       <ns0:tspan x="60.544238" y="-3.657813" style="font-size: 5.95px; font-family: 'DejaVu Sans'; fill: #18303c">−</ns0:tspan>
+       <ns0:tspan x="65.529688" y="-3.657813" style="font-size: 5.95px; font-family: 'DejaVu Sans'; fill: #18303c">1</ns0:tspan>
+      </ns0:text>
+     </ns0:g>
+    </ns0:g>
+   </ns0:g>
+   <ns0:g id="composition_matplotlib.axis_2">
+    <ns0:g id="composition_ytick_1">
+     <ns0:g id="composition_line2d_13">
+      <ns0:defs>
+       <ns0:path id="composition_mf1b4ad598d" d="M 0 0  L -3 0  " style="stroke: #647581; stroke-width: 0.6" />
+      </ns0:defs>
+      <ns0:g>
+       <ns0:use ns1:href="#composition_mf1b4ad598d" x="71.617323" y="32.500225" style="fill: #647581; stroke: #647581; stroke-width: 0.6" />
+      </ns0:g>
+     </ns0:g>
+     <ns0:g id="composition_text_8">
+      <ns0:text style="font-size: 8px; font-family: 'Arial'; text-anchor: end; fill: #647581" x="65.117323" y="35.4146" transform="rotate(-0 65.117323 35.4146)">ARROW-85</ns0:text>
+     </ns0:g>
+    </ns0:g>
+    <ns0:g id="composition_ytick_2">
+     <ns0:g id="composition_line2d_14">
+      <ns0:g>
+       <ns0:use ns1:href="#composition_mf1b4ad598d" x="71.617323" y="74.77694" style="fill: #647581; stroke: #647581; stroke-width: 0.6" />
+      </ns0:g>
+     </ns0:g>
+     <ns0:g id="composition_text_9">
+      <ns0:text style="font-size: 8px; font-family: 'Arial'; text-anchor: end; fill: #647581" x="65.117323" y="77.68905" transform="rotate(-0 65.117323 77.68905)">External-220</ns0:text>
+     </ns0:g>
+    </ns0:g>
+    <ns0:g id="composition_ytick_3">
+     <ns0:g id="composition_line2d_15">
+      <ns0:g>
+       <ns0:use ns1:href="#composition_mf1b4ad598d" x="71.617323" y="117.053656" style="fill: #647581; stroke: #647581; stroke-width: 0.6" />
+      </ns0:g>
+     </ns0:g>
+     <ns0:g id="composition_text_10">
+      <ns0:text style="font-size: 8px; font-family: 'Arial'; text-anchor: end; fill: #647581" x="65.117323" y="119.965765" transform="rotate(-0 65.117323 119.965765)">Strict-97</ns0:text>
+     </ns0:g>
+    </ns0:g>
+   </ns0:g>
+   <ns0:g id="composition_LineCollection_1">
+    <ns0:path d="M 85.854631 32.500225  L 114.904784 32.500225  " clip-path="url(#composition_p39fc879c0c)" style="fill: none; stroke: #078774; stroke-width: 1.25" />
+   </ns0:g>
+   <ns0:g id="composition_line2d_16">
+    <ns0:defs>
+     <ns0:path id="composition_m2aabbdeade" d="M 0 3  L 0 -3  " style="stroke: #078774" />
+    </ns0:defs>
+    <ns0:g clip-path="url(#composition_p39fc879c0c)">
+     <ns0:use ns1:href="#composition_m2aabbdeade" x="85.854631" y="32.500225" style="fill: #078774; stroke: #078774" />
+    </ns0:g>
+   </ns0:g>
+   <ns0:g id="composition_line2d_17">
+    <ns0:g clip-path="url(#composition_p39fc879c0c)">
+     <ns0:use ns1:href="#composition_m2aabbdeade" x="114.904784" y="32.500225" style="fill: #078774; stroke: #078774" />
+    </ns0:g>
+   </ns0:g>
+   <ns0:g id="composition_LineCollection_2">
+    <ns0:path d="M 130.119582 74.77694  L 166.22351 74.77694  " clip-path="url(#composition_p39fc879c0c)" style="fill: none; stroke: #3f7fad; stroke-width: 1.25" />
+   </ns0:g>
+   <ns0:g id="composition_line2d_18">
+    <ns0:defs>
+     <ns0:path id="composition_m95fa98bdca" d="M 0 3  L 0 -3  " style="stroke: #3f7fad" />
+    </ns0:defs>
+    <ns0:g clip-path="url(#composition_p39fc879c0c)">
+     <ns0:use ns1:href="#composition_m95fa98bdca" x="130.119582" y="74.77694" style="fill: #3f7fad; stroke: #3f7fad" />
+    </ns0:g>
+   </ns0:g>
+   <ns0:g id="composition_line2d_19">
+    <ns0:g clip-path="url(#composition_p39fc879c0c)">
+     <ns0:use ns1:href="#composition_m95fa98bdca" x="166.22351" y="74.77694" style="fill: #3f7fad; stroke: #3f7fad" />
+    </ns0:g>
+   </ns0:g>
+   <ns0:g id="composition_LineCollection_3">
+    <ns0:path d="M 148.46171 117.053656  L 207.474743 117.053656  " clip-path="url(#composition_p39fc879c0c)" style="fill: none; stroke: #3f7fad; stroke-width: 1.25" />
+   </ns0:g>
+   <ns0:g id="composition_line2d_20">
+    <ns0:g clip-path="url(#composition_p39fc879c0c)">
+     <ns0:use ns1:href="#composition_m95fa98bdca" x="148.46171" y="117.053656" style="fill: #3f7fad; stroke: #3f7fad" />
+    </ns0:g>
+   </ns0:g>
+   <ns0:g id="composition_line2d_21">
+    <ns0:g clip-path="url(#composition_p39fc879c0c)">
+     <ns0:use ns1:href="#composition_m95fa98bdca" x="207.474743" y="117.053656" style="fill: #3f7fad; stroke: #3f7fad" />
+    </ns0:g>
+   </ns0:g>
+   <ns0:g id="composition_line2d_22">
+    <ns0:path d="M 118.220364 142.419685  L 118.220364 9.248031  " clip-path="url(#composition_p39fc879c0c)" style="fill: none; stroke: #657782; stroke-width: 0.8; stroke-linecap: square" />
+   </ns0:g>
+   <ns0:g id="composition_line2d_23">
+    <ns0:defs>
+     <ns0:path id="composition_m4e144b7db3" d="M 0 2.5  C 0.663008 2.5 1.29895 2.236584 1.767767 1.767767  C 2.236584 1.29895 2.5 0.663008 2.5 0  C 2.5 -0.663008 2.236584 -1.29895 1.767767 -1.767767  C 1.29895 -2.236584 0.663008 -2.5 0 -2.5  C -0.663008 -2.5 -1.29895 -2.236584 -1.767767 -1.767767  C -2.236584 -1.29895 -2.5 -0.663008 -2.5 0  C -2.5 0.663008 -2.236584 1.29895 -1.767767 1.767767  C -1.29895 2.236584 -0.663008 2.5 0 2.5  z " style="stroke: #078774" />
+    </ns0:defs>
+    <ns0:g clip-path="url(#composition_p39fc879c0c)">
+     <ns0:use ns1:href="#composition_m4e144b7db3" x="101.84901" y="32.500225" style="fill: #078774; stroke: #078774" />
+    </ns0:g>
+   </ns0:g>
+   <ns0:g id="composition_line2d_24">
+    <ns0:defs>
+     <ns0:path id="composition_m92ceebc059" d="M 0 2.5  C 0.663008 2.5 1.29895 2.236584 1.767767 1.767767  C 2.236584 1.29895 2.5 0.663008 2.5 0  C 2.5 -0.663008 2.236584 -1.29895 1.767767 -1.767767  C 1.29895 -2.236584 0.663008 -2.5 0 -2.5  C -0.663008 -2.5 -1.29895 -2.236584 -1.767767 -1.767767  C -2.236584 -1.29895 -2.5 -0.663008 -2.5 0  C -2.5 0.663008 -2.236584 1.29895 -1.767767 1.767767  C -1.29895 2.236584 -0.663008 2.5 0 2.5  z " style="stroke: #3f7fad" />
+    </ns0:defs>
+    <ns0:g clip-path="url(#composition_p39fc879c0c)">
+     <ns0:use ns1:href="#composition_m92ceebc059" x="147.882631" y="74.77694" style="fill: #3f7fad; stroke: #3f7fad" />
+    </ns0:g>
+   </ns0:g>
+   <ns0:g id="composition_line2d_25">
+    <ns0:g clip-path="url(#composition_p39fc879c0c)">
+     <ns0:use ns1:href="#composition_m92ceebc059" x="177.231445" y="117.053656" style="fill: #3f7fad; stroke: #3f7fad" />
+    </ns0:g>
+   </ns0:g>
+   <ns0:g id="composition_patch_3">
+    <ns0:path d="M 71.617323 142.419685  L 71.617323 9.248031  " style="fill: none; stroke: #647581; stroke-width: 0.65; stroke-linejoin: miter; stroke-linecap: square" />
+   </ns0:g>
+   <ns0:g id="composition_patch_4">
+    <ns0:path d="M 71.617323 142.419685  L 221.782677 142.419685  " style="fill: none; stroke: #647581; stroke-width: 0.65; stroke-linejoin: miter; stroke-linecap: square" />
+   </ns0:g>
+   <ns0:g id="composition_text_11">
+    <ns0:text style="font-size: 8.3px; font-family: 'Arial'; text-anchor: middle; fill: #078774" x="101.84901" y="43.069404" transform="rotate(-0 101.84901 43.069404)">−0.032</ns0:text>
+   </ns0:g>
+   <ns0:g id="composition_text_12">
+    <ns0:text style="font-size: 8.3px; font-family: 'Arial'; text-anchor: middle; fill: #3f7fad" x="147.882631" y="85.346119" transform="rotate(-0 147.882631 85.346119)">+0.057</ns0:text>
+   </ns0:g>
+   <ns0:g id="composition_text_13">
+    <ns0:text style="font-size: 8.3px; font-family: 'Arial'; text-anchor: middle; fill: #3f7fad" x="177.231445" y="127.622835" transform="rotate(-0 177.231445 127.622835)">+0.114</ns0:text>
+   </ns0:g>
+  </ns0:g>
+ </ns0:g>
+ <ns0:defs xmlns:ns0="http://www.w3.org/2000/svg">
+  <ns0:clipPath id="composition_p39fc879c0c">
+   <ns0:rect x="71.617323" y="9.248031" width="150.165354" height="133.171654" />
+  </ns0:clipPath>
+ </ns0:defs>
+</g><text x="431" y="561.000" font-size="11.3" fill="#078774" font-weight="400" text-anchor="start">← Full 15 better</text><text x="707" y="561.000" font-size="11.3" fill="#3F7FAD" font-weight="400" text-anchor="end">Computation-only better →</text></g></svg>

@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use SolvAI, please cite the accompanying manuscript."
-title: "Structure-predicted solvent responses enable simulation-free hydration free-energy prediction"
+title: "Learning complementary solvent responses for simulation-free hydration prediction"
 type: software
 version: 1.0.0
 date-released: 2026-08-28
@@ -10,7 +10,7 @@ authors:
     affiliation: Stanford University
   - family-names: Fain
     given-names: Boris
-    affiliation: Freecurve Labs
+    affiliation: Stanford University
   - family-names: Levitt
     given-names: Michael
     affiliation: Stanford University

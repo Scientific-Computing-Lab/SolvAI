@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
   "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1276.062545pt" height="210.582965pt" viewBox="0 0 1276.062545 210.582965" xmlns="http://www.w3.org/2000/svg" version="1.1">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="500.2056pt" height="182.448pt" viewBox="0 0 500.2056 182.448" xmlns="http://www.w3.org/2000/svg" version="1.1">
  <metadata>
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
@@ -20,123 +20,122 @@
  </defs>
  <g id="figure_1">
   <g id="patch_1">
-   <path d="M -0 210.582965
-L 1276.062545 210.582965
-L 1276.062545 0
-L -0 0
+   <path d="M 0 182.448
+L 500.2056 182.448
+L 500.2056 0
+L 0 0
 z
 " style="fill: #ffffff"/>
   </g>
   <g id="axes_1">
    <g id="line2d_1">
-    <path d="M 791.430545 43.454906
-L 1156.666909 43.454906
-" clip-path="url(#pb2bf9d7a94)" style="fill: none; stroke: #d9dee2; stroke-width: 5; stroke-linecap: round"/>
+    <path d="M 9.947484 28.24416
+L 492.733944 28.24416
+" clip-path="url(#pc64055a6cf)" style="fill: none; stroke: #e3e9ec; stroke-width: 0.8; stroke-linecap: square"/>
    </g>
    <g id="line2d_2">
-    <path d="M 791.430545 43.454906
-L 803.118109 43.454906
-" clip-path="url(#pb2bf9d7a94)" style="fill: none; stroke: #b95c50; stroke-width: 5; stroke-linecap: round"/>
+    <path d="M 9.947484 61.95168
+L 492.733944 61.95168
+" clip-path="url(#pc64055a6cf)" style="fill: none; stroke: #e3e9ec; stroke-width: 0.5; stroke-linecap: square"/>
    </g>
    <g id="line2d_3">
-    <path d="M 791.430545 87.974906
-L 1156.666909 87.974906
-" clip-path="url(#pb2bf9d7a94)" style="fill: none; stroke: #d9dee2; stroke-width: 5; stroke-linecap: round"/>
+    <path d="M 9.947484 93.88512
+L 492.733944 93.88512
+" clip-path="url(#pc64055a6cf)" style="fill: none; stroke: #e3e9ec; stroke-width: 0.5; stroke-linecap: square"/>
    </g>
    <g id="line2d_4">
-    <path d="M 791.430545 87.974906
-L 803.118109 87.974906
-" clip-path="url(#pb2bf9d7a94)" style="fill: none; stroke: #b95c50; stroke-width: 5; stroke-linecap: round"/>
+    <path d="M 9.947484 125.81856
+L 492.733944 125.81856
+" clip-path="url(#pc64055a6cf)" style="fill: none; stroke: #e3e9ec; stroke-width: 0.5; stroke-linecap: square"/>
    </g>
    <g id="line2d_5">
-    <path d="M 791.430545 132.494906
-L 1156.666909 132.494906
-" clip-path="url(#pb2bf9d7a94)" style="fill: none; stroke: #d9dee2; stroke-width: 5; stroke-linecap: round"/>
-   </g>
-   <g id="line2d_6">
-    <path d="M 791.430545 132.494906
-L 803.118109 132.494906
-" clip-path="url(#pb2bf9d7a94)" style="fill: none; stroke: #b95c50; stroke-width: 5; stroke-linecap: round"/>
-   </g>
-   <g id="line2d_7">
-    <path d="M 791.430545 177.014906
-L 1156.666909 177.014906
-" clip-path="url(#pb2bf9d7a94)" style="fill: none; stroke: #d9dee2; stroke-width: 5; stroke-linecap: round"/>
-   </g>
-   <g id="line2d_8">
-    <path d="M 791.430545 177.014906
-L 803.118109 177.014906
-" clip-path="url(#pb2bf9d7a94)" style="fill: none; stroke: #b95c50; stroke-width: 5; stroke-linecap: round"/>
+    <path d="M 9.947484 157.752
+L 492.733944 157.752
+" clip-path="url(#pc64055a6cf)" style="fill: none; stroke: #e3e9ec; stroke-width: 0.5; stroke-linecap: square"/>
    </g>
    <g id="text_1">
-    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: start" x="2.52" y="7.838906" transform="rotate(-0 2.52 7.838906)">Source</text>
+    <text style="font-weight: 700; font-size: 9px; font-family: 'Arial'; text-anchor: start; fill: #18303c" x="9.947484" y="16.71264" transform="rotate(-0 9.947484 16.71264)">Source</text>
    </g>
    <g id="text_2">
-    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: start" x="411.584727" y="7.838906" transform="rotate(-0 411.584727 7.838906)">Source-specific unit</text>
+    <text style="font-weight: 700; font-size: 9px; font-family: 'Arial'; text-anchor: start; fill: #18303c" x="146.118024" y="16.71264" transform="rotate(-0 146.118024 16.71264)">Counting unit</text>
    </g>
    <g id="text_3">
-    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: start" x="835.258909" y="7.838906" transform="rotate(-0 835.258909 7.838906)">Standardized-equivalent exclusion</text>
+    <text style="font-weight: 700; font-size: 9px; font-family: 'Arial'; text-anchor: end; fill: #18303c" x="319.425984" y="16.71264" transform="rotate(-0 319.425984 16.71264)">Before</text>
    </g>
    <g id="text_4">
-    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: end" x="1273.542545" y="7.838906" transform="rotate(-0 1273.542545 7.838906)">Retained</text>
+    <text style="font-weight: 700; font-size: 9px; font-family: 'Arial'; text-anchor: end; fill: #18303c" x="398.65248" y="16.71264" transform="rotate(-0 398.65248 16.71264)">Removed</text>
    </g>
    <g id="text_5">
-    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #17212b" x="2.52" y="43.454906" transform="rotate(-0 2.52 43.454906)">CombiSolv-QM</text>
+    <text style="font-weight: 700; font-size: 9px; font-family: 'Arial'; text-anchor: end; fill: #18303c" x="492.733944" y="16.71264" transform="rotate(-0 492.733944 16.71264)">Retained</text>
    </g>
    <g id="text_6">
-    <text style="font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #68737d" x="411.584727" y="43.454906" transform="rotate(-0 411.584727 43.454906)">structures</text>
+    <text style="font-weight: 700; font-size: 9px; font-family: 'Arial'; text-anchor: start; fill: #18303c" x="9.947484" y="52.19424" transform="rotate(-0 9.947484 52.19424)">CombiSolv-QM</text>
    </g>
    <g id="text_7">
-    <text style="font-size: 6.2px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #b95c50" x="974.048727" y="33.437906" transform="rotate(-0 974.048727 33.437906)">2 removed from 3,961</text>
+    <text style="font-size: 8px; font-family: 'Arial'; text-anchor: start; fill: #647581" x="146.118024" y="52.19424" transform="rotate(-0 146.118024 52.19424)">structures</text>
    </g>
    <g id="text_8">
-    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #14927d" x="1273.542545" y="43.454906" transform="rotate(-0 1273.542545 43.454906)">3,959</text>
+    <text style="font-size: 10px; font-family: 'Arial'; text-anchor: end; fill: #18303c" x="319.425984" y="52.19424" transform="rotate(-0 319.425984 52.19424)">3,961</text>
    </g>
    <g id="text_9">
-    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #17212b" x="2.52" y="87.974906" transform="rotate(-0 2.52 87.974906)">MolSolv</text>
+    <text style="font-size: 10px; font-family: 'Arial'; text-anchor: end; fill: #b95c50" x="398.65248" y="52.19424" transform="rotate(-0 398.65248 52.19424)">2</text>
    </g>
    <g id="text_10">
-    <text style="font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #68737d" x="411.584727" y="87.974906" transform="rotate(-0 411.584727 87.974906)">SMD calculations</text>
+    <text style="font-weight: 700; font-size: 10px; font-family: 'Arial'; text-anchor: end; fill: #008c7a" x="492.733944" y="52.19424" transform="rotate(-0 492.733944 52.19424)">3,959</text>
    </g>
    <g id="text_11">
-    <text style="font-size: 6.2px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #b95c50" x="974.048727" y="77.957906" transform="rotate(-0 974.048727 77.957906)">32 removed from 350,391</text>
+    <text style="font-weight: 700; font-size: 9px; font-family: 'Arial'; text-anchor: start; fill: #18303c" x="9.947484" y="84.12768" transform="rotate(-0 9.947484 84.12768)">MolSolv</text>
    </g>
    <g id="text_12">
-    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #14927d" x="1273.542545" y="87.974906" transform="rotate(-0 1273.542545 87.974906)">350,359</text>
+    <text style="font-size: 8px; font-family: 'Arial'; text-anchor: start; fill: #647581" x="146.118024" y="84.12768" transform="rotate(-0 146.118024 84.12768)">unique structures</text>
    </g>
    <g id="text_13">
-    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #17212b" x="2.52" y="132.494906" transform="rotate(-0 2.52 132.494906)">ConfSolv</text>
+    <text style="font-size: 10px; font-family: 'Arial'; text-anchor: end; fill: #18303c" x="319.425984" y="84.12768" transform="rotate(-0 319.425984 84.12768)">350,391</text>
    </g>
    <g id="text_14">
-    <text style="font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #68737d" x="411.584727" y="132.494906" transform="rotate(-0 411.584727 132.494906)">usable connectivities</text>
+    <text style="font-size: 10px; font-family: 'Arial'; text-anchor: end; fill: #b95c50" x="398.65248" y="84.12768" transform="rotate(-0 398.65248 84.12768)">32</text>
    </g>
    <g id="text_15">
-    <text style="font-size: 6.2px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #b95c50" x="974.048727" y="122.477906" transform="rotate(-0 974.048727 122.477906)">22 removed from 17,851</text>
+    <text style="font-weight: 700; font-size: 10px; font-family: 'Arial'; text-anchor: end; fill: #008c7a" x="492.733944" y="84.12768" transform="rotate(-0 492.733944 84.12768)">350,359</text>
    </g>
    <g id="text_16">
-    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #14927d" x="1273.542545" y="132.494906" transform="rotate(-0 1273.542545 132.494906)">17,829</text>
+    <text style="font-weight: 700; font-size: 9px; font-family: 'Arial'; text-anchor: start; fill: #18303c" x="9.947484" y="116.06112" transform="rotate(-0 9.947484 116.06112)">ConfSolv</text>
    </g>
    <g id="text_17">
-    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #17212b" x="2.52" y="177.014906" transform="rotate(-0 2.52 177.014906)">Endpoint labels</text>
+    <text style="font-size: 8px; font-family: 'Arial'; text-anchor: start; fill: #647581" x="146.118024" y="116.06112" transform="rotate(-0 146.118024 116.06112)">usable connectivities</text>
    </g>
    <g id="text_18">
-    <text style="font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #68737d" x="411.584727" y="177.014906" transform="rotate(-0 411.584727 177.014906)">connectivities</text>
+    <text style="font-size: 10px; font-family: 'Arial'; text-anchor: end; fill: #18303c" x="319.425984" y="116.06112" transform="rotate(-0 319.425984 116.06112)">17,851</text>
    </g>
    <g id="text_19">
-    <text style="font-size: 6.2px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #68737d" x="974.048727" y="166.997906" transform="rotate(-0 974.048727 166.997906)">0 removed from 1,280</text>
+    <text style="font-size: 10px; font-family: 'Arial'; text-anchor: end; fill: #b95c50" x="398.65248" y="116.06112" transform="rotate(-0 398.65248 116.06112)">22</text>
    </g>
    <g id="text_20">
-    <text style="font-weight: 700; font-size: 7px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #14927d" x="1273.542545" y="177.014906" transform="rotate(-0 1273.542545 177.014906)">1,280</text>
+    <text style="font-weight: 700; font-size: 10px; font-family: 'Arial'; text-anchor: end; fill: #008c7a" x="492.733944" y="116.06112" transform="rotate(-0 492.733944 116.06112)">17,829</text>
    </g>
    <g id="text_21">
-    <text style="font-size: 6.2px; font-family: 'DejaVu Sans'; fill: #68737d" transform="translate(2.52 198.511211)">Source units are reported separately. Bar lengths are normalized within source,</text>
-    <text style="font-size: 6.2px; font-family: 'DejaVu Sans'; fill: #68737d" transform="translate(2.52 205.952906)">not compared across calculations, structures and connectivities.</text>
+    <text style="font-weight: 700; font-size: 9px; font-family: 'Arial'; text-anchor: start; fill: #18303c" x="9.947484" y="147.99456" transform="rotate(-0 9.947484 147.99456)">Endpoint labels</text>
+   </g>
+   <g id="text_22">
+    <text style="font-size: 8px; font-family: 'Arial'; text-anchor: start; fill: #647581" x="146.118024" y="147.99456" transform="rotate(-0 146.118024 147.99456)">connectivities</text>
+   </g>
+   <g id="text_23">
+    <text style="font-size: 10px; font-family: 'Arial'; text-anchor: end; fill: #18303c" x="319.425984" y="147.99456" transform="rotate(-0 319.425984 147.99456)">1,280</text>
+   </g>
+   <g id="text_24">
+    <text style="font-size: 10px; font-family: 'Arial'; text-anchor: end; fill: #647581" x="398.65248" y="147.99456" transform="rotate(-0 398.65248 147.99456)">0</text>
+   </g>
+   <g id="text_25">
+    <text style="font-weight: 700; font-size: 10px; font-family: 'Arial'; text-anchor: end; fill: #008c7a" x="492.733944" y="147.99456" transform="rotate(-0 492.733944 147.99456)">1,280</text>
+   </g>
+   <g id="text_26">
+    <text style="font-size: 8px; font-family: 'Arial'; text-anchor: start; fill: #647581" x="9.947484" y="174.60576" transform="rotate(-0 9.947484 174.60576)">Counts retain their source-specific units; they are not pooled.</text>
    </g>
   </g>
  </g>
  <defs>
-  <clipPath id="pb2bf9d7a94">
-   <rect x="773.168727" y="36.776906" width="401.76" height="146.916"/>
+  <clipPath id="pc64055a6cf">
+   <rect x="2.52" y="2.52" width="495.1656" height="177.408"/>
   </clipPath>
  </defs>
 </svg>

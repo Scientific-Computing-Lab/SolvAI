@@ -1,0 +1,9 @@
+{
+  "results/journal_20261002/molecules.csv": "ebd1787cabe2326193d795a4fa478cfaf7e1df0b3c2beb2c533c0bb589153c20",
+  "results/journal_20261002/features.npz": "90ac6a5f0f55ba2aabe41a2ac4c82d98721777d0b985f8023d3d2822fc747741",
+  "scripts/run_journal_baselines.py": "ef44ad54a666b865b6ad951ecc508caf6dd8d1912d64d2b81ce37f4bcd3ff676",
+  "results/tier_a_external/evaluation/tier_a_external_predictions.parquet": "aa1caca2781137bec2b25369df93e70b56eb26cb91c10c009265e43c62139ad8",
+  "results/confirmatory/teacher_refits/combisolv_qm/teacher_predictions.parquet": "c63e37268fbd6d557cb66abf6d5dbcbec5deeb31a72403f970ad330560592d52",
+  "results/confirmatory/teacher_refits/molsolv_smd/teacher_predictions.parquet": "e3219006795cbb930db14421365b5d34a947029c986a08e8dec53d8058869533",
+  "results/confirmatory/teacher_refits/confsolv/teacher_predictions.parquet": "a755f999d40bb8ab5db012fd2a598aa19a8162537e395189d5281beff5455825"
+}

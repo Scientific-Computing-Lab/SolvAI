@@ -1,0 +1,50 @@
+{
+  "source_sha256": {
+    "results/paper_metrics.json": "cb8c788234ded4764aad85900fc1e82c7c1840d8140f5c6c7847419809e3d946",
+    "results/confirmatory/standardized_exclusion_endpoint_predictions.parquet": "22c100d39dd540a05513fab918da0007dde3232b11aa3a0e8cd5467bd1507ca0",
+    "results/confirmatory/confirmatory_paired_comparisons.csv": "a9cff7115184908b5fcdba2969d3c45f1f0b360cc7ded21f794b566e212f5251",
+    "results/confirmatory/standardized_exclusion_global_separation_metrics.csv": "965aed346d65e3d8a0b7fd192bc3efccbb13a52386e9c774b1fdd1a4de35a328",
+    "results/endpoint_models_20261006/corrected_original_metrics.csv": "aa8e975822cf034aeed59e4d64065c5a3cae2691c2589590371e79b140a28cde",
+    "results/endpoint_models_20261006/corrected_original_comparisons.csv": "15ea412644dace892bbd9673b9000788b4764235af4b1949455cbb386e1031ae",
+    "results/journal_20261002/similarity_strata.csv": "cd707848330e6d370b2c3370766aed1aad378f5476cfe32bd27e1f73df8008ed",
+    "figures/source/fig1_assets/nma_openbabel.pdb": "cad2bab42492b17cdaf571d1fb40fc350201528e7e35ec97bdcba0ff879dc7bd",
+    "figures/source/fig1_assets/dimethoxyethane_selected_conformers.sdf": "8ce71e4ee04bdbb0506459e31993b2b6b631829470b42fde285c119086e61399",
+    "paper/figures/journal/teaser_components/endpoint.png": "f7ff665bb8ee994998326361fd04addd3ea0e350eb6699fd430fd13516001f9d",
+    "paper/figures/journal/teaser_components/response_bank.png": "b5e66ecbe4495f3bb54b1ff5b14fb8cbc2ccefe2c4d566550aa32ce4cc9f6bb6",
+    "paper/figures/journal/teaser_components/response_core.png": "f3cdf9ff60907dbcf2ea997526b51951842ad05e2adb270544eb6fccdb82e1c0"
+  },
+  "builder_sha256": {
+    "scripts/make_local_journal_figures.py": "74b8b3e728d3f7428a78a4605c0154d8364caff703b9ff02e8a4486a30c2844a",
+    "scripts/journal_vector_art.py": "c2d7a2631703696bbc8cf88b1d0c9dc569cdc47c0e6df5b77aff5634c371dc11",
+    "scripts/journal_teaser.py": "daba4a0dd00d2a3b8615db0e10c893d5c655c3eb0bc2c00c45a323b682703f27",
+    "scripts/journal_style.py": "ee0b6ab2f24a5c1ef59c88403e0a399b7220cc6638bd2a522a1371a17fd2c868"
+  },
+  "build_platform": "Darwin arm64",
+  "source_descriptor_counts": [
+    1,
+    5,
+    1,
+    1,
+    1,
+    6
+  ],
+  "computed_only_descriptor_count": 10,
+  "embedded_raster_images": true,
+  "mixed_figures": [
+    "F1_overview",
+    "F2_learning_and_evaluation"
+  ],
+  "molecular_connectivity_checked": true,
+  "molecular_illustrations": "N-methylacetamide; 1,2-dimethoxyethane conformers",
+  "solvent_shells_and_energy_levels": "Schematic, not simulation results",
+  "main_figures": [
+    "F1_overview",
+    "F2_learning_and_evaluation",
+    "F3_matched_evidence",
+    "F4_modern_comparisons",
+    "F5_generalization",
+    "F6_source_composition",
+    "F7_endpoint_comparison",
+    "F8_size_and_stress"
+  ]
+}

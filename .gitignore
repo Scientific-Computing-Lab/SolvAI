@@ -39,3 +39,45 @@ results/confirmatory/teacher_refits/*/train.log
 
 # Superseded local Figma prototype; Penpot is the release design source.
 figures/source/figma/
+
+# Local-only manuscript development, review, and design-process material.
+/assets/figure1/generated/
+/assets/figure1/paperbanana/
+/audits/claim_red_team.json
+/audits/security_audit.json
+/figures/SolvAI_Figure1_options.zip
+/figures/SolvAI_Figure1_penpot_package.zip
+/figures/alternatives/
+/figures/penpot/FIG1_BUILD_NOTES.md
+/figures/penpot/PENPOT_SETUP_AND_USAGE.md
+/figures/penpot/exports/
+/figures/penpot/previews/
+/figures/source/FIG1_BUILD_NOTES.md
+/infra/penpot/
+/paper/review_combined.pdf
+/paper/neurips_workshop/COMPREHENSION_STRESS_TEST*.md
+/paper/neurips_workshop/SIMBIOCHEM_REVIEW.md
+/paper/neurips_workshop/hebrew_reading/
+/paper/neurips_workshop/assets/*.png
+/reports/GLOBAL_SOLVATION_DATA_REVIEW.md
+/reports/LITERATURE_AND_FORMAT_AUDIT.md
+/reports/MICHAEL_30AUG_WEIGHT_SENSITIVITY.md
+/reports/NATURE_EDITORIAL_CALIBRATION.md
+/reports/PAPER_FREEZE.md
+/reports/PHYSICS_DISTILLATION_FINAL_REPORT.md
+/reports/RELEASE_AUDIT.md
+/reports/REPOSITORY_RECOVERY.md
+/results/confirmatory/INVALID_RUN_20260828.md
+/results/followup_audit/
+/reviews/
+/scripts/analyze_collaborator_followup.py
+/scripts/check_claims.py
+/scripts/make_figure1_overview.py
+/scripts/make_followup_audit_docx.py
+/scripts/security_scan.py
+/submission/
+
+# Reconstructable local training inputs; do not redistribute third-party label tables.
+/results/journal_20261002/molecules.csv
+/results/journal_20261002/features.npz
+/results/journal_20261002/*.npy

@@ -20,6 +20,9 @@ SUPP_DATA = ROOT / "paper/supplementary_data"
 
 def latex_escape(value: object) -> str:
     text = str(value)
+    # Pure signed numbers need a mathematical minus, including in text columns.
+    if re.fullmatch(r'-\d+(?:\.\d+)?', text):
+        return r'\ensuremath{' + text + '}'
     for source, target in (
         ("&", r"\&"),
         ("%", r"\%"),
@@ -39,6 +42,65 @@ def latex_table(frame: pd.DataFrame, path: Path, columns: str) -> None:
         lines.append(" & ".join(latex_escape(value) for value in row) + r" \\")
     lines.extend([r"\bottomrule", r"\end{tabular}"])
     path.write_text("\n".join(lines) + "\n")
+
+
+def comparison_tables(metrics: dict) -> None:
+    """Use publication labels while retaining every frozen comparison value."""
+    method_names = {"A_structure_only": "Structure only", "F_full_solvai": "SolvAI"}
+    repeat_metrics = pd.read_csv(
+        ROOT / "results/confirmatory/standardized_exclusion_endpoint_metrics.csv"
+    )
+    repeat_rows = [
+        (row.repeat, int(row.split_seed), method_names[row.method], f"{row.mae:.5f}")
+        for row in repeat_metrics.loc[
+            repeat_metrics.partition.eq("standardized_exclusion_repeat")
+        ].itertuples()
+    ]
+    latex_table(pd.DataFrame(repeat_rows, columns=["Repeat", "Split seed", "Method", "MAE"]),
+                SI_TABLES / "repeat_values.tex", "rrlr")
+    separation = pd.read_csv(
+        ROOT / "results/confirmatory/standardized_exclusion_global_separation_metrics.csv"
+    )[["regime", "method", "n", "mae"]].copy()
+    regime_names = {
+        "global_family": "Functional family", "global_scaffold": "Scaffold",
+        "global_butina_0_70": "Cluster (similarity 0.70)",
+        **{f"global_nn_{t}": f"NN exclusion {t}" for t in ("0.50", "0.60", "0.70", "0.80")},
+    }
+    separation["regime"] = separation.regime.map(regime_names)
+    separation["method"] = separation.method.map(method_names)
+    assert not separation.isna().any().any()
+    separation["mae"] = separation.mae.map(lambda value: f"{value:.3f}")
+    separation.columns = ["Separation", "Method", "N", "MAE"]
+    latex_table(separation, SI_TABLES / "global_separation.tex", "llrr")
+    family = pd.DataFrame(metrics["chemistry_family"])
+    family["mae_kcal_mol"] = family.mae_kcal_mol.map(lambda value: f"{value:.3f}")
+    family = family.rename(columns={"family": "Family", "n": "N", "mae_kcal_mol": "MAE"})
+    latex_table(family, SI_TABLES / "family_errors.tex", "lrr")
+
+
+def response_descriptor_table(frame: pd.DataFrame, path: Path) -> None:
+    """Keep all source metadata legible without shrinking a nine-column table."""
+    lines = [r"\noindent\begin{tabularx}{\textwidth}{@{}rlX@{}}", r"\toprule",
+             r"Index & Artifact name & Physical meaning \\", r"\midrule"]
+    for _, row in frame.iterrows():
+        meaning = row['physical meaning'].replace('hexadecane-air', 'gas-to-hexadecane').replace('solution conformer', 'water conformer')
+        lines.append(f"{row['prior']} & {latex_escape(row['name'])} & {latex_escape(meaning)}" + r" \\")
+    lines += [r"\bottomrule\end{tabularx}", r"\par\medskip",
+              r"\noindent\begin{tabularx}{\textwidth}{@{}lp{3cm}Xrp{3cm}@{}}", r"\toprule",
+              r"Indices & Source & Surrogate & Training rows & Transformation \\", r"\midrule"]
+    for source, group in frame.groupby('source', sort=False):
+        row = group.iloc[0]
+        first, last = int(group.prior.min()), int(group.prior.max())
+        indices = str(first) if first == last else f"{first}--{last}"
+        for field in ('surrogate', 'training rows', 'transformation'):
+            assert group[field].nunique() == 1
+        lines.append(' & '.join(latex_escape(value) for value in
+                     (indices, source, row['surrogate'].replace('CHEMELEON', 'CheMeleon'), row['training rows'], row['transformation'])) + r" \\")
+    lines += [r"\bottomrule\end{tabularx}", r"\par\smallskip",
+              r"Units are kcal mol$^{-1}$ except for indices 2--6, which use their respective Abraham scales.",
+              r"Every descriptor is inferred from structure by its surrogate; no source simulation is run at inference.",
+              r"ASFE denotes absolute solvation free energy. The six conformer summaries are defined explicitly in Supplementary Methods S15."]
+    path.write_text('\n'.join(lines)+'\n')
 
 
 def workbook(path: Path, sheets: dict[str, pd.DataFrame]) -> None:
@@ -469,6 +531,7 @@ def main() -> None:
         "MatchedMAE": f"{methods['matched_structure_only']['mae_kcal_mol']:.3f}",
         "SolvAIMAE": f"{methods['full_solvai']['mae_kcal_mol']:.3f}",
         "SolvAIDelta": f"{primary_pair.difference:.3f}",
+        "SolvAIReduction": f"{abs(primary_pair.difference):.3f}",
         "SolvAICILow": f"{primary_pair.ci_low_95:.3f}",
         "SolvAICIHigh": f"{primary_pair.ci_high_95:.3f}",
         "RepeatMean": f"{repeats['full_solvai']['mean_kcal_mol']:.3f}",
@@ -514,7 +577,7 @@ def main() -> None:
         "BatchPerMoleculeSeconds": f"{runtime['batch']['median_seconds_per_molecule']:.3f}",
     }
     (TABLES / "metrics_macros.tex").write_text(
-        "".join(f"\\newcommand{{\\{key}}}{{{value}}}\n" for key, value in macros.items())
+        "".join(f"\\newcommand{{\\{key}}}{{{latex_escape(value)}}}\n" for key, value in macros.items())
     )
 
     comparison = pd.DataFrame(
@@ -564,7 +627,7 @@ def main() -> None:
     source_summary = pd.DataFrame(
         [
             ("CombiSolv-QM", "unique structures", 3961, 2, 3959, "COSMOtherm water"),
-            ("MolSolv", "SMD calculations", 350391, 32, 350359, "SMD(water)"),
+            ("MolSolv", "unique structures", 350391, 32, 350359, "SMD(water)"),
             ("ConfSolv", "model-usable connectivities", 17851, 22, 17829, "conformer response"),
             (
                 "Endpoint labels",
@@ -577,34 +640,11 @@ def main() -> None:
         ],
         columns=["source", "unit", "before standardized exclusion", "removed", "retained", "role"],
     )
-    latex_table(priors, SI_TABLES / "response_priors.tex", "rlllllrrl")
+    response_descriptor_table(priors, SI_TABLES / "response_priors.tex")
     latex_table(source_summary, SI_TABLES / "source_provenance.tex", "llrrrp{3.0cm}")
     latex_table(endpoint, SI_TABLES / "endpoint_sources.tex", "lrl")
 
-    repeat_rows = []
-    repeat_metrics = pd.read_csv(
-        ROOT / "results/confirmatory/standardized_exclusion_endpoint_metrics.csv"
-    )
-    for row in repeat_metrics.loc[
-        repeat_metrics.partition.eq("standardized_exclusion_repeat")
-    ].itertuples():
-        repeat_rows.append((row.repeat, int(row.split_seed), row.method, f"{row.mae:.5f}"))
-    repeat_table = pd.DataFrame(repeat_rows, columns=["Repeat", "Split seed", "Method", "MAE"])
-    latex_table(repeat_table, SI_TABLES / "repeat_values.tex", "rrlr")
-
-    separation_table = pd.read_csv(
-        ROOT / "results/confirmatory/standardized_exclusion_global_separation_metrics.csv"
-    )
-    separation_table["mae"] = separation_table.mae.map(lambda value: f"{value:.3f}")
-    latex_table(
-        separation_table[["regime", "method", "n", "mae"]],
-        SI_TABLES / "global_separation.tex",
-        "llrr",
-    )
-
-    family = pd.DataFrame(metrics["chemistry_family"])
-    family["mae_kcal_mol"] = family.mae_kcal_mol.map(lambda value: f"{value:.3f}")
-    latex_table(family, SI_TABLES / "family_errors.tex", "lrr")
+    comparison_tables(metrics)
     manifest = json.loads((ROOT / "models/final/manifest.json").read_text())["model_files"]
     artifacts = pd.DataFrame([{"file": key, **value} for key, value in manifest.items()])
     latex_table(artifacts, SI_TABLES / "artifact_manifest.tex", "lrl")

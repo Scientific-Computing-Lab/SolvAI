@@ -8,6 +8,9 @@ on:
       - "figures/**"
       - "scripts/make_figures.py"
       - "scripts/make_tables.py"
+      - "scripts/*endpoint*.py"
+      - "scripts/*journal*.py"
+      - "tests/test*publication*.py"
       - "results/**"
   pull_request:
     paths:
@@ -15,6 +18,9 @@ on:
       - "figures/**"
       - "scripts/make_figures.py"
       - "scripts/make_tables.py"
+      - "scripts/*endpoint*.py"
+      - "scripts/*journal*.py"
+      - "tests/test*publication*.py"
       - "results/**"
 
 jobs:
@@ -30,13 +36,12 @@ jobs:
       - run: uv sync --extra dev --locked
       - name: Install LaTeX
         run: sudo apt-get update && sudo apt-get install -y latexmk poppler-utils qpdf texlive-latex-extra texlive-fonts-recommended
-      - run: make paper
-      - name: Validate compiled PDFs
+      - name: Compile the canonical source with supplied publication assets
+        run: make journal-paper
+      - name: Validate the complete journal PDF
         run: |
           qpdf --check paper/main.pdf
-          qpdf --check paper/supplementary/supplementary.pdf
-          qpdf --check paper/extended_data/ED_Table1.pdf
-      - name: Require deterministic tables and figures
-        # TeX embeds engine-specific font data in the standalone table PDF;
-        # compilation is checked above and its generated source remains exact.
-        run: git diff --exit-code -- paper/tables paper/figures paper/extended_data paper/supplementary_data figures/ ':(exclude)paper/extended_data/ED_Table1.pdf'
+          uv run pytest -q tests/test_publication_structure.py tests/test_journal_artifacts.py tests/test_publication_presentation.py tests/test_endpoint_publication.py
+      # Reconstruct numerical claims from frozen rows in the tests above. Exact PDF
+      # bytes are not portable across font/TeX installations; editable assets remain
+      # rebuildable with the documented local figure scripts.
