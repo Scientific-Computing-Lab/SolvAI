@@ -129,7 +129,7 @@
   },
   "analysis_sources": {
     "make_figures.py": "1f6fadf8da02b86168f398a4dde3660b4ebd4e7c96fbe16bad3dcdf95c123ec2",
-    "make_endpoint_figures.py": "6dd4de5f5b77d73be8cd57c8f5f9343957e3f07963672500799bdc5dfda2dd8b",
+    "make_endpoint_figures.py": "b3742e82abf38cf0cae0d033ae012671248940345011075145804bef0c71509d",
     "make_endpoint_concepts.py": "b7b93554df0c02ce23d482653dd8e16aa9ff31fd2da1d27df5486fb0d14f6926",
     "make_local_journal_figures.py": "4de1fd0c35507cd4788aa9b865505c0c34af1d962f75e9fcc31d631480ada0ad",
     "journal_vector_art.py": "c2d7a2631703696bbc8cf88b1d0c9dc569cdc47c0e6df5b77aff5634c371dc11",

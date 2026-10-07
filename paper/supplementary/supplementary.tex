@@ -152,7 +152,7 @@ These heterogeneous source checks do not form a common independent fidelity
 benchmark for all 15 coordinates; the endpoint comparisons assess their predictive
 utility rather than presuming uniform recovery accuracy.
 
-\subsection*{S6. Endpoint model}
+\subsection*{S6. Matched ExtraTrees implementation}
 
 The molecular representation comprises a 2,048-bit radius-2 Morgan fingerprint and
 217 RDKit two-dimensional descriptors. The confirmatory endpoint appends the 15 response descriptors,
@@ -458,6 +458,8 @@ tables replace the MoLFormer rows without overwriting the earlier source archive
 
 \clearpage
 \section*{Supplementary Tables}
+Where used, boldface identifies the best displayed point estimate within the
+comparison specified for that table; it does not establish statistical superiority.
 
 \subsection*{Supplementary Table 1 | SolvAI response descriptors}
 \small
@@ -477,6 +479,7 @@ tables replace the MoLFormer rows without overwriting the earlier source archive
 \subsection*{Supplementary Table 4 | Complete repeated-partition values}
 \small
 MAE is in kcal mol$^{-1}$; each repeat is a complete five-fold partition.
+Boldface marks the lower MAE within each repeated partition.
 \par\smallskip\noindent
 \input{supplementary/tables/repeat_values.tex}
 \normalsize
@@ -485,6 +488,7 @@ MAE is in kcal mol$^{-1}$; each repeat is a complete five-fold partition.
 \small
 MAE is in kcal mol$^{-1}$. NN denotes the nearest-neighbor similarity exclusion
 threshold: endpoint-training rows at or above that threshold are removed.
+Boldface marks the lower MAE within each separation regime.
 \par\smallskip\noindent
 \input{supplementary/tables/global_separation.tex}
 \normalsize
@@ -510,6 +514,7 @@ not family-held-out predictions. MAE is in kcal mol$^{-1}$.
 \subsection*{Supplementary Table 9 | Equal-weight ARROW sensitivity}
 \small
 All error measures are in kcal mol$^{-1}$.
+Boldface marks the lower value for each error measure in this matched pair.
 \par\smallskip\noindent
 \input{supplementary/tables/weight_one_sensitivity.tex}
 \normalsize
@@ -517,6 +522,7 @@ All error measures are in kcal mol$^{-1}$.
 \subsection*{Supplementary Table 10 | External validation}
 \small
 All error measures are in kcal mol$^{-1}$; the strict 97 are a subset of the 220.
+Boldface marks the lower error separately for each cohort and measure.
 \par\smallskip\noindent
 \resizebox{\textwidth}{!}{\input{supplementary/tables/tier_a_external.tex}}
 \normalsize
@@ -526,7 +532,8 @@ All error measures are in kcal mol$^{-1}$; the strict 97 are a subset of the 220
 \small
 All error measures are in kcal mol$^{-1}$. For MoLFormer and Uni-Mol, ``+ responses''
 retains the structural descriptors and adds the 15 response descriptors; it does
-not replace the structural input.
+not replace the structural input. Boldface marks the lowest displayed error
+within each cohort and measure among the methods in this table only.
 \input{supplementary/tables/journal_baselines.tex}
 \normalsize
 
@@ -548,6 +555,9 @@ and TabPFN fits and three for the tree controls. The last column recomputes MAE
 using only the three shared seeds. No-response controls inherit selected recipes.
 Count- and width-adaptive rows are selection policies, not additional architectures.
 The three reported cohorts are not independent: Strict-97 is nested within External-220.
+Boldface marks the lowest displayed error within each cohort and measure among
+all rows, including no-response fits and selection policies; it does not imply
+statistical superiority.
 \input{supplementary/tables/endpoint_metrics.tex}
 \normalsize
 
@@ -558,6 +568,8 @@ Within each endpoint, response-minus-no-response MAE and descriptive 95\%
 paired molecule-bootstrap intervals, in kcal mol$^{-1}$; 100,000 resamples
 without multiplicity adjustment. Negative values favor adding responses.
 The candidate always includes responses; ``No response'' is its matched ablation.
+Boldface marks the largest within-endpoint reduction in each cohort, not the
+lowest absolute endpoint error.
 \input{supplementary/tables/endpoint_comparisons.tex}
 \normalsize
 
@@ -570,6 +582,8 @@ is each endpoint's response-minus-no-response MAE, not a cross-endpoint ranking.
 Cross-endpoint paired intervals are in Supplementary Data~6,
 \nolinkurl{size_diagnostic_comparisons.csv}.
 These development labels were available in earlier random-fold evaluation.
+Boldface marks the lowest displayed MAE in each absolute-error column and the
+largest response-associated reduction in the within-endpoint difference column.
 \input{supplementary/tables/endpoint_size.tex}
 \normalsize
 

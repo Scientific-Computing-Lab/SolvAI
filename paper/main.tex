@@ -57,27 +57,26 @@ Gal Oren, Boris Fain and Michael Levitt\\[0.4em]
 
 \section*{Abstract}
 
-Hydration free energy connects molecular structure to partitioning, binding and
-reactivity, but resolving solvent interactions afresh for each molecule is costly.
-We ask whether calculated and measured solvent responses can instead be learned as
-reusable molecular features. SolvAI predicts 15 descriptors from six external
-sources and passes them, with structural features, to an experimentally supervised
-hydration predictor. The response representation is independent of the endpoint
-architecture; inference starts from a SMILES string and requires no new solvent
-calculation. We evaluated tree ensembles, neural networks, graph models, pretrained
-molecular encoders, TabM and TabPFN under matched data partitions. Adding responses
-lowers ARROW-85 and External-220 MAE for ExtraTrees (0.303 to 0.202 and
-1.532 to 1.153 kcal mol$^{-1}$) and a MoLFormer neural endpoint (0.465 to 0.273
-and 1.332 to 1.111 kcal mol$^{-1}$). Message passing and TabM also benefit on
-the external cohort, whereas TabPFN has no resolved response increment there.
-Several response gains extend to the nested 97-molecule subset absent from all six
-supervised response-source tables; membership in pretrained encoder corpora was
-not audited. No endpoint has the lowest error in every evaluation. TabPFN reaches
-0.199 kcal mol$^{-1}$ on ARROW and 1.318 on a separate exploratory size holdout,
-but the latter comparison uses model-specific input recipes. Predictions on
-unlabelled peptide series change with the endpoint but do not establish physical
-accuracy. Solvent-response descriptors can thus be reused across model families,
-while interpolation, external transfer and size generalization remain distinct tests.
+Accurate hydration free energies normally require resolving solvent response anew
+for every molecule, making high-fidelity physical prediction expensive to deploy
+at scale. We introduce SolvAI, a framework that turns existing physical and
+empirical solvent data into reusable molecular supervision. We integrate six
+complementary sources spanning calculated transfer free energies, empirical
+interaction properties and conformational solvent responses, and distill them
+into 15 descriptors that can be predicted directly from molecular structure.
+Once trained, SolvAI requires only a molecular SMILES string and performs no new
+solvent simulation. To separate the value of this learned representation from the
+choice of predictor, we evaluate it across diverse endpoint architectures,
+including tree, neural, graph, pretrained molecular and tabular foundation models.
+In a controlled matched evaluation, response augmentation reduces mean absolute
+error from 0.303 to 0.202 kcal mol$^{-1}$ on ARROW-85---on the same accuracy scale
+as the published PIMD8 value of 0.205 kcal mol$^{-1}$---and from 1.532 to 1.153
+kcal mol$^{-1}$ on an external 220-molecule cohort. Different endpoint families
+reveal complementary strengths in interpolation, external transfer and
+generalization to larger molecules, showing that the learned solvent-response
+representation is not tied to a particular model. SolvAI thus converts costly
+physical calculations from a per-query procedure into reusable scientific
+supervision for molecular prediction.
 
 \section*{Introduction}
 
@@ -103,39 +102,27 @@ Subsequent learned-potential work reproduced ARROW water-pair interactions and
 quantum corrections within simulation, showing that parts of this description are
 learnable while retaining trajectory-based inference.\cite{arrownn2023,nqe2024}
 
-Data-driven solvation models offer a way to reuse information across molecules.
-Direct predictors map a
+Data-driven models can reuse information across molecules. Direct predictors map a
 graph, fingerprint or three-dimensional structure to a free energy, while
-$\Delta$-learning and multi-fidelity models transfer information between calculated
-and experimental targets.\cite{ramakrishnan2015,combisolv2021,rauer2020}
-Graph models can also replace a particular implicit-solvent calculation by learning
-its output directly from molecular structure.\cite{ward2021}
-Physically inspired molecular descriptors can improve hydration prediction when they
-encode electrostatics, polarizability, accessible surface and conformational
-response.\cite{mldescriptors2023,fml2021} Other models retain physical computation at
-prediction time: hybrid alchemical/machine-learning (ML) methods correct a simulated free energy,
-ML-PCM learns from continuum-model components, 3D-RISM outputs have served as
-hydration thermodynamic descriptors, and implicitly perturbed Hamiltonians represent
-a molecule through its response to real or hypothetical solvents.\cite{hybridfepml2020,mlpcm2021,rism2020,imperham2022}
-These studies show the value of solvent-conditioned representations; in these latter approaches, an
-alchemical, continuum, integral-equation or ensemble calculation is still performed
-for a new molecule.
+$\Delta$-learning and multi-fidelity models connect calculated and experimental
+targets.\cite{ramakrishnan2015,combisolv2021,rauer2020,ward2021}
+Physically inspired descriptors can help when they encode electrostatics,
+polarizability, accessible surface or conformational response.\cite{mldescriptors2023,fml2021}
+Hybrid alchemical models, continuum-model features, 3D-RISM descriptors and
+perturbed-Hamiltonian representations also use solvent information, but their
+physical calculation remains part of a new-molecule query.\cite{hybridfepml2020,mlpcm2021,rism2020,imperham2022}
+The question is whether such information can be made reusable without repeating
+the calculation at deployment.
 
-A complementary line of work learns the physical descriptor itself. The ml-QM-GNN
-architecture predicts quantum-chemical atom and bond descriptors before using them in
-a reactivity model.\cite{mlqmgnn2022} Broader evaluations find that such descriptors
-help most when they are relevant to the endpoint and can be recovered accurately,
-and that a surrogate's hidden representation can sometimes be more useful than its
-explicit predicted values.\cite{qmhelp2024,surrogatelatent2025} Most directly for
-hydration, physically inspired solute descriptors have been predicted from molecular
-graphs and passed to a second free-energy model, eliminating their per-query electronic
-structure calculation.\cite{twostagehfe2026} These developments establish the major
-architectural ingredients. Combining predictions from multiple chemical models is
-also well established, as illustrated by the CATMoS consensus models for acute
-toxicity.\cite{catmos2021} Our question concerns the information being transferred:
-do complementary descriptions of solvent response remain useful for hydration
-prediction when each is inferred from structure, and how far does their contribution
-persist outside the chemistry used to fit the final predictor?
+Learning a physical descriptor before fitting a downstream property is an established
+route. Quantum-chemical descriptors have been predicted for reactivity, and a
+two-stage hydration model has predicted solute descriptors instead of calculating
+them for every query.\cite{mlqmgnn2022,twostagehfe2026}
+Broader studies show that descriptor relevance, prediction accuracy and the choice
+between explicit values and hidden surrogate representations all matter.\cite{qmhelp2024,surrogatelatent2025}
+These precedents motivate a more specific test: can several complementary kinds of
+solvent response be inferred from structure, combined with experimental hydration
+labels, and remain useful across predictor families and unfamiliar molecules?
 
 SolvAI is a solvent-response representation coupled to a learned hydration endpoint,
 not a particular endpoint algorithm (Fig.~\ref{fig:concept}). Six sources provide
@@ -180,6 +167,7 @@ transfer or behavior outside the training-size range.
   \label{fig:concept}
 \end{figure}
 
+\FloatBarrier
 \section*{SolvAI: learning solvent response before hydration free energy}
 
 \subsection*{Two learning tasks with different supervision}
@@ -206,8 +194,7 @@ rather than assuming that their sum is a physical free energy. We vary $h$ acros
 the endpoint families in Table~\ref{tab:endpoints}; graph and pretrained-encoder
 variants can also change the structural representation. The same 15 frozen source
 predictions are available to every response-augmented fit. All are predicted at
-deployment, including those whose source targets were experimental. One of the
-evaluated endpoints averages three ExtraTrees regressors.\cite{extratrees2006}
+deployment, including those whose source targets were experimental.
 
 \subsection*{What the response descriptors represent}
 
@@ -229,7 +216,7 @@ gas-to-hexadecane partitioning ($L$). Directed message-passing neural networks
 (D-MPNNs) learn the two continuum-solvent targets; tree models learn the remaining
 targets. Surrogate architectures and training details appear in Methods.
 
-\begin{table}[t]
+\begin{table}[!hb]
 \centering\small
 \caption{\textbf{The 15 response descriptors and the information they provide.}
 Every listed quantity is predicted from molecular structure at inference.
@@ -250,6 +237,15 @@ ConfSolv & 6 & Conformer corrections and water-response distributions & LightGBM
 \bottomrule
 \end{tabularx}
 \end{table}
+
+The source datasets differ in scale and physical resolution. MolSolv contributed
+1,729,545 SMD(water) calculations, of which \MolSolvN{} structures were used
+to train its surrogate after quality and identity filtering.\cite{molsolv2022}
+ConfSolv contributed 5,392,567 water conformer records; aggregation, target
+availability and standardized-identity filtering left \ConfSolvN{} molecular
+connectivities for its response model. These archive counts denote calculations
+and conformer records, whereas the retained training rows are molecule-level
+records (Supplementary Table~1 and Supplementary Fig.~2).
 
 The target is a molecular equilibrium property, which includes conformational
 averaging. A single molecule can have many conformers but does not have a separate
@@ -286,6 +282,7 @@ targets and their relationship to the molecular equilibrium property.
   \label{fig:learning}
 \end{figure}
 
+\FloatBarrier
 \section*{Results}
 
 \subsection*{Separating source supervision from hydration evaluation}
@@ -297,16 +294,6 @@ Henry-law measurements, enabling a larger test outside the endpoint training set
 In both settings we compare predictions against experiment; the published ARROW
 simulation results are a separate accuracy reference and never a SolvAI input.
 
-The source datasets differ in scale and physical resolution. MolSolv
-contributed 1,729,545 SMD(water) calculations, of which \MolSolvN{} structures
-were used to train the confirmatory surrogate after quality and identity filtering.\cite{molsolv2022}
-ConfSolv contributed 5,392,567 water conformer records; aggregation, target
-availability and standardized-identity filtering left \ConfSolvN{} connectivities for
-the response model. The archive counts refer to calculations for MolSolv and
-conformer records for ConfSolv; the retained training rows are molecule-level
-records. Complete definitions appear in
-Supplementary Table~1 and source-specific provenance in Supplementary Fig.~2.
-
 The experimental training pool contains 1,280 public hydration labels, supplemented
 by the available ARROW training folds. Every response-source table excludes exact and
 standardized equivalents of the 85 ARROW test identities. The 220 external molecules
@@ -315,15 +302,21 @@ table. We report the full cohort and this nested subset because a known source r
 label are distinct forms of supervision. The exact exclusions and the three affected
 surrogate refits are documented in Methods, Supplementary Table~2 and Supplementary Data~4.
 
-\input{endpoint_results.tex}
-\FloatBarrier
+In a matched ExtraTrees implementation, adding the predicted responses reduces
+MAE from \MatchedMAE{} to \SolvAIMAE{} kcal mol$^{-1}$ on ARROW-85 and from
+\TierAStructureMAE{} to \TierASolvAIMAE{} kcal mol$^{-1}$ on External-220
+(Figs.~\ref{fig:headline}b and \ref{fig:transfer}d). We first examine what
+supports this representation effect, then ask how it changes with the endpoint
+architecture and evaluation set.
 
-\subsection*{Molecule alignment and matched controls}
+\subsection*{A matched test of reusable response information}
 
-The matched, shuffled, chemical-separation and source-composition experiments below
-use ExtraTrees endpoints. In five-fold out-of-fold (OOF) prediction, each ARROW molecule is evaluated by a
-predictor that did not receive its experimental label. Removing only the predicted
-responses from that predictor gives an MAE of
+We first isolate the response representation in one endpoint: an ExtraTrees ensemble
+of randomized decision trees.\cite{extratrees2006} Its response-augmented and
+structure-only fits use the same labels, folds, structural features and training
+recipe; only the 15 predicted response columns differ. In five-fold out-of-fold
+(OOF) prediction, each ARROW molecule is evaluated by a fit that did not receive
+its experimental label. The structure-only fit gives an MAE of
 \MatchedMAE{} kcal mol$^{-1}$ (Fig.~\ref{fig:headline}b). Adding the eight COSMOtherm,
 Abraham and corrected-solvent descriptors lowers the error to \NarrowMAE{}; adding
 SMD(water) gives \NarrowSMDMAE{}; and adding the six conformer descriptors reaches
@@ -387,6 +380,10 @@ structure only and \WeightOneSolvAIMAE{} kcal mol$^{-1}$ with responses (paired 
   \label{fig:headline}
 \end{figure}
 
+\FloatBarrier
+\input{endpoint_results.tex}
+\FloatBarrier
+
 \subsection*{Responses alongside pretrained molecular features}
 
 An additional fixed-protocol comparison isolates the contribution of responses
@@ -398,6 +395,8 @@ we repeat the same ExtraTrees downstream fit with and without the 15 responses.
 The direct graph fits are separate baselines, not the paired ablation for those
 encoders. All models use the same eligible experimental labels and test
 identities; model-specific training and inner-validation procedures are in Methods.
+Figure~\ref{fig:modern} also shows the ten-descriptor source control, defined and
+compared with the full response set below (Fig.~\ref{fig:composition}).
 
 On ARROW-85, response augmentation lowers the MoLFormer-based predictor's MAE from
 0.348 to 0.234 kcal mol$^{-1}$ and the Uni-Mol-based predictor's error from 0.334
@@ -579,8 +578,8 @@ components. Source targets came from short two-bead path-integral simulations
 (PIMD2) at coupling values $\lambda=0.1$, 0.5 and 0.9. Structure-only predictors
 captured broad response trends, but
 component MAEs ranged from 1.27 to 5.20 kcal mol$^{-1}$
-(Supplementary Fig.~4). Adding the predicted PIMD2 response worsened the matched
-exploratory endpoint from 0.196 to 0.201 kcal mol$^{-1}$; a predicted
+(Supplementary Fig.~4). Adding the predicted PIMD2 response worsened its separate,
+fixed exploratory endpoint baseline from 0.196 to 0.201 kcal mol$^{-1}$; a predicted
 classical--NQE--PIMD hierarchy reached 0.215, and their combination 0.219
 in that screen. Direct integration of the predicted response curve, with fold-local affine calibration, yielded
 1.51 kcal mol$^{-1}$ (Supplementary Fig.~4). No PIMD-derived coordinate is present in
@@ -594,102 +593,86 @@ also differ. The exploratory analyses are reported separately in Supplementary F
 
 \input{endpoint_size_results.tex}
 
+\FloatBarrier
 \section*{Discussion}
 
-SolvAI's response representation can be reused across endpoint architectures, but
-its contribution depends on the learner and evaluation set. Separate surrogates
-learn the source quantities, and an experimentally supervised predictor learns
-how their predicted values combine for hydration. Matched comparisons show
-response benefits for several endpoints on at least one evaluated cohort, including
-ExtraTrees, a MoLFormer neural head, message passing and TabM. TabPFN is competitive on the reference set
-without a resolved response increment there or on the original external cohort.
-No endpoint has the lowest error in every evaluation; endpoint and input-recipe choice change
-the balance among small-molecule accuracy, external transfer and size transfer.
+The central result is that previously calculated and measured solvent responses can
+serve as reusable supervision rather than being recomputed for each new molecule.
+Six source families provide 15 structure-predicted coordinates, and a separate
+endpoint fit learns how they relate to experimental hydration free energy. In the
+matched ExtraTrees implementation, adding these coordinates reduces MAE from
+0.303 to 0.202 kcal mol$^{-1}$ on ARROW-85 and from 1.532 to 1.153 kcal mol$^{-1}$
+on External-220. The first value lies on the accuracy scale of published ARROW/PIMD8
+on the same solutes; it does not mean that the learned predictor reproduces that
+simulation or its physics.
 
-Within ExtraTrees, molecule shuffling shows that the observed benefit requires
-correct alignment between molecule and response prediction. Chemical separation
-and the external cohort show where this benefit persists as the relationship to
-training chemistry changes. These controlled results establish a feature
-contribution for that learner; they do not establish the same effect size for
-every endpoint.
+The representation is not defined by that tree endpoint. Adding the same responses
+reduces external MAE for seven of the nine fixed endpoint configurations, including
+neural, graph and pretrained-encoding models. Yet the model with the lowest absolute
+error changes across ARROW, the external cohorts and the exploratory size holdout.
+TabPFN has the lowest full-model ARROW point estimate without a resolved response
+increment on the original cohorts, while a MoLFormer neural head has the lowest
+full-model external point estimate. These observations separate two questions:
+whether the responses help a given learner, and which complete learner predicts
+most accurately in a particular evaluation. Neither question has a universal
+answer in these data.
 
-A descriptor set that is
-best on reference chemistry can transfer less well than a smaller calculated-source
-set. Adding empirical response information and residual corrections therefore has
-to be assessed in the intended domain, even when the information improves an
-in-domain benchmark. Our comparison establishes this reversal for the two evaluated
-cohorts; choosing sources for a new deployment domain would require validation data
-from that domain. The original 15-descriptor deployment model remains unchanged.
+The controls show why the matched improvement is informative. Within ExtraTrees,
+shuffling the response block among molecules removes the gain, while chemical
+separation and an endpoint-disjoint external cohort retain a response-associated
+reduction in error. The strict external subset further excludes supervised
+response-source identities. These tests support the value of molecule-aligned
+response information for that learner; the cross-architecture paired ablations,
+not the shuffled control, establish where analogous benefits occur for other
+endpoints. Pretrained encoders' original pretraining membership was not audited.
 
-The size-held-out diagnostic makes this endpoint-and-input dependence concrete. The
-selected TabPFN recipe lowers error relative to the selected ExtraTrees recipe and
-gains from the response descriptors on
-that split, although its original external-cohort response increment is unresolved.
-Thus the same representation is not a guarantee of improvement for every learner
-or data regime. The response sources were kept fixed rather than changed to suit
-the outcome of each evaluation.
-
-Architectural flexibility and physical transferability are different properties.
-Removing the narrow tree-output range changes the peptide-series predictions, but
-does not establish the correct free-energy increment per residue. Neither a neural
-head nor in-context prediction supplies conformer-resolved energies, forces,
-new-solvent dependence or exact size additivity without corresponding structure
-and supervision. The size-held-out labels provide a more direct accuracy test than
-unlabelled peptide curves, but remain an exploratory reuse of the development pool.
+Source composition matters as well as endpoint architecture. The complete
+15-descriptor set outperforms a ten-descriptor computed-source control on ARROW,
+but the ten-descriptor set has lower error on the external cohort and its strict
+subset. Thus empirical interaction parameters and learned residual corrections
+need validation in the intended domain; they are not uniformly beneficial merely
+because they improve the reference chemistry. This reversal was observed for two
+fixed configurations, not after selecting a new source set on external labels.
 
 Predicted physical descriptors, $\Delta$-learning and computed-to-experimental
-transfer are important precedents for this design.\cite{mlqmgnn2022,ramakrishnan2015,combisolv2021,twostagehfe2026}
-The contribution here is their application to complementary solvent-response targets
-with explicit tests of what those targets add. In these comparisons, the response
-descriptors can be removed, shuffled, or added
-to a different representation without changing the experimental target.
+transfer precede this work.\cite{mlqmgnn2022,ramakrishnan2015,combisolv2021,twostagehfe2026}
+Here the point is to combine complementary solvent-response targets and test their
+contribution apart from the endpoint predictor. Prior descriptor studies emphasize
+relevance to the target and accurate structure-based recovery, and in some tasks a
+surrogate's hidden representation is more useful than its explicit values.\cite{qmhelp2024,surrogatelatent2025}
+Our exploratory ConfSolv comparison favors compact response summaries over the
+tested latent alternatives, whereas the sparse PIMD2 coupling-response predictions
+did not improve hydration. These outcomes concern the tested sources and fits;
+they do not rank the underlying physical methods by fidelity.
 
-The transfer criteria are also consistent with systematic studies of quantum
-descriptors, which emphasize endpoint relevance and accurate inference.\cite{qmhelp2024}
-The present controls also test complementarity to the deployed molecular
-representation. Recent work found that hidden surrogate
-representations can outperform explicit predicted descriptors in some small-data
-tasks.\cite{surrogatelatent2025} Here, by contrast, compact ConfSolv
-response summaries outperformed graph and feed-forward latent coordinates from the
-same source. The ordering is task-dependent: the useful representation depends on
-which physical information survives structure prediction and remains complementary
-to the endpoint features. The transferable signal is therefore not ``simulation'' in
-the abstract, but an aligned, learnable representation of solvent response.
+Greater architectural freedom is not the same as physical transferability. In the
+205-molecule exploratory size holdout, TabPFN lowers error relative to ExtraTrees
+and benefits from the responses, but model-specific input recipes and fixed
+source surrogates prevent attributing the whole difference to architecture alone.
+Several neural endpoints and TabPFN avoid the narrow ExtraTrees peptide plateau,
+yet no peptide reference free energies are available to judge their accuracy.
+The models do not provide conformer-resolved energies, forces, new-solvent
+dependence or exact size additivity. The native TabPFN intervals also under-cover
+external observations and cannot yet serve as calibrated per-query reliability
+estimates.
 
-On the release host, the packaged ExtraTrees implementation's warm CPU median is
-\WarmSingleSeconds{} s for one molecule and \BatchSeconds{} s for
-a batch of 32 (\BatchPerMoleculeSeconds{} s per molecule). Its computational advantage
-is the removal of per-query physical simulation, a property shared with the direct
-molecular-learning baselines. The added role of SolvAI is to reuse source-response
-supervision through explicit learned descriptors. Comparisons with the published
-15-window PIMD8 workload concern total work on different hardware, not a same-hardware
-kernel benchmark.
+The released ExtraTrees artifact requires only SMILES and no new solvent
+calculation; on its release host the warm CPU median is \WarmSingleSeconds{} s
+for one molecule and \BatchSeconds{} s for a batch of 32
+(\BatchPerMoleculeSeconds{} s per molecule). This removes per-query physical
+simulation but is not a same-hardware speed comparison with PIMD8 or with every
+direct molecular predictor. Current accuracy evidence covers neutral small
+molecules near room temperature. Error rises under scaffold and functional-family
+separation and is substantially larger on the external cohort than on ARROW-85.
+Ions, salts, biomacromolecules, other solvents and temperatures remain unvalidated.
 
-Validation currently covers neutral small molecules near room temperature, with
-method development centered on the 85-solute reference set. The five-partition MAE
-of SolvAI--ExtraTrees is 0.207 kcal mol$^{-1}$, increasing to 0.376 and 0.468 under scaffold and
-functional-family separation. On the external cohort and strict subset, the full
-ExtraTrees model retains a statistically supported reduction in error relative to structural
-descriptors, but has larger errors
-of 1.153 and 1.536 kcal mol$^{-1}$. These errors, and their dependence on chemical
-similarity, motivate domain-specific validation before deployment. Per-query
-reliability remains uncalibrated: the nominal 95\% TabPFN intervals cover only
-80.0\% of the external cohort. Ions, salts, biomacromolecules and other solvents
-remain unvalidated; the unlabelled size series do not expand that validated domain.
-
-The unsuccessful alchemical-response experiment identifies a separate data need.
-Predicting the interaction-energy derivative along a coupling path well enough to
-integrate it requires more accurate component curves than the sparse PIMD2 sources
-provided here. Additional protocol-matched response data would test that route;
-adding more experimental endpoint labels alone would not supply those missing curves.
-
-The broader opportunity is to treat costly computation as scientific supervision
-with a lifetime beyond one query. Once a useful response is represented across enough
-chemistry, its information can be predicted from structure and reused without
-another solvent simulation. Hydration provides a demanding demonstration because the
-accuracy reference includes explicit solvent and nuclear quantum effects. The same
-principle may apply wherever physical computation exposes transferable response
-descriptors that a deployed model can learn.
+Future tests should ask whether richer protocol-matched response sources improve
+the poorly predicted coupling-path coordinates, and should evaluate size and new
+solvents with references that were absent from both endpoint and source supervision.
+The present evidence establishes a narrower but useful principle: information from
+existing solvent calculations can be learned as molecular response coordinates and
+reused by several hydration predictors without repeating the calculation for each
+query.
 
 \FloatBarrier
 \section*{Methods}
@@ -723,6 +706,8 @@ LightGBM models predict six ConfSolv conformer and response-distribution summari
 The latter are derived from the H$_2$O subset of ConfSolv. The final coordinate list,
 target units, source sizes, transformations and inference calculations are given in
 Supplementary Table~1. PIMD-derived targets are absent from this list.
+
+\subsection*{Matched ExtraTrees endpoint}
 
 For the ExtraTrees endpoint, an ensemble of three \texttt{ExtraTreesRegressor} pipelines\cite{extratrees2006} is used, each
 with 360 trees, maximum feature fraction 0.7, minimum leaf size 2, no bootstrap and
@@ -874,7 +859,7 @@ comparisons. The later architecture search uses training-side validation and a
 locked selection policy; its test intervals are descriptive, conditional on fitted
 models and not adjusted for the many architectures compared.
 
-\subsection*{Deployment artifact}
+\subsection*{Released ExtraTrees deployment artifact}
 
 After evaluation was frozen, the response surrogates were fitted with standardized
 benchmark equivalents removed and the endpoint was refitted on the 1,280 public plus

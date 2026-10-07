@@ -53,6 +53,10 @@ def save(fig, name, supplement=False):
 
 def table(path, columns, header, rows):
     lines=[r'\begin{longtable}{@{}'+columns+r'@{}}',r'\toprule',header+r' \\',r'\midrule']
+    if path.stem=='endpoint_metrics':
+        lines += [r'\endfirsthead',
+                  r'\multicolumn{7}{@{}l}{\emph{Supplementary Table 13 (continued)}} \\',
+                  r'\toprule',header+r' \\',r'\midrule']
     if path.stem=='endpoint_comparisons':
         lines += [r'\endfirsthead',
                   r'\multicolumn{5}{@{}l}{\emph{Supplementary Table 14 (continued)}} \\',
@@ -66,6 +70,26 @@ def table(path, columns, header, rows):
         previous=row[0]
     lines += [r'\bottomrule\end{longtable}']
     path.write_text('\n'.join(lines)+'\n')
+
+def emphasize_min(rows, columns, group_column=None):
+    """Bold displayed minima; keep the underlying numeric strings unchanged."""
+    for column in columns:
+        groups={}
+        for index,row in enumerate(rows):
+            value=str(row[column]).strip('$')
+            try: score=float(value)
+            except ValueError: continue  # An unevaluated cell is not a zero.
+            key=row[group_column] if group_column is not None else None
+            groups.setdefault(key,[]).append((index,score))
+        for values in groups.values():
+            minimum=min(score for _,score in values)
+            for index,score in values:
+                if score!=minimum: continue
+                value=str(rows[index][column])
+                rows[index][column]=(r'$\mathbf{'+value[1:-1]+r'}$'
+                                      if value.startswith('$') and value.endswith('$')
+                                      else r'\textbf{'+value+'}')
+    return rows
 
 def paired(a,b):
     d=np.asarray(a)-np.asarray(b);rng=np.random.default_rng(20260828)
@@ -104,6 +128,7 @@ def corrected_original():
     p.to_csv(DATA/'corrected_original_comparisons.csv',index=False)
     from summarize_journal_baselines import LABELS as names
     rows=[[r.cohort,names[r.model],r.n,f'{r.mae:.4f}',f'{r.rmse:.4f}',f'{r.median_ae:.4f}'] for r in m.itertuples()]
+    emphasize_min(rows,[3,4,5],group_column=0)
     table(PAPER/'supplementary/tables/journal_baselines.tex','llrrrr',
           r'Set & Model & $N$ & MAE & RMSE & Median AE',rows)
     rows=[[r.cohort,names[r.candidate]+r' $-$ '+names[r.reference],
@@ -123,6 +148,7 @@ def tables_and_plots():
     for family,idea in zip(FAMILIES,IDEAS):
         rows.append([LABELS[family],idea,*[f'{val(family,c):.3f}' for c in COHORTS],
                      f'{sz(family):.3f}' if sz(family) is not None else '--'])
+    emphasize_min(rows,[2,3,4,5])
     # Main table is a float-compatible tabular, not a longtable inside a float.
     path=PAPER/'tables/endpoint_summary.tex'
     table(path,r'>{\raggedright\arraybackslash}p{3.85cm}>{\raggedright\arraybackslash}p{5.25cm}rrrr',
@@ -137,6 +163,7 @@ def tables_and_plots():
                 r=m.loc[m.model.eq(family+'_'+condition)&m.cohort.eq(cohort)&m.aggregation.eq('prediction')].iloc[0]
                 rows.append([cohort,LABELS[family],label,f'{r.mae:.4f}',f'{r.rmse:.4f}',
                              f'{r.median_ae:.4f}',f'{val(family,cohort,condition,"common3_prediction"):.4f}'])
+    emphasize_min(rows,[3,4,5,6],group_column=0)
     table(PAPER/'supplementary/tables/endpoint_metrics.tex','lp{3.8cm}lrrrr',
           r'Set & Endpoint & Input & MAE & RMSE & Median & 3-seed MAE',rows)
     rows=[]
@@ -151,6 +178,7 @@ def tables_and_plots():
             assert len(q)==1,(cohort,family)
             r=q.iloc[0]
             rows.append([cohort,LABELS[family],f'${r.delta:.4f}$',f'${r.low:.4f}$',f'${r.high:.4f}$'])
+    emphasize_min(rows,[2],group_column=0)
     table(PAPER/'supplementary/tables/endpoint_comparisons.tex','lp{5.3cm}rrr',
           r'Set & Endpoint & $\Delta$MAE & Lower & Upper',rows)
     rows=[]
@@ -158,6 +186,7 @@ def tables_and_plots():
         if sz(family) is None:continue
         response=sz(family);control=sz(family,'structure')
         rows.append([LABELS[family],f'{response:.4f}',f'{control:.4f}',f'${response-control:.4f}$'])
+    emphasize_min(rows,[1,2,3])
     table(PAPER/'supplementary/tables/endpoint_size.tex','p{5.4cm}rrr',
           r'Endpoint & Response MAE & No-response MAE & $\Delta$MAE',rows)
     coverage=read('tabpfn_interval_coverage.csv')

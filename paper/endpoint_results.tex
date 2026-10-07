@@ -1,7 +1,9 @@
 \subsection*{One response representation, different endpoint behaviors}
 
-The 15 frozen response predictions can be combined with different molecular
-representations and endpoint learners. We evaluated ExtraTrees, residual multilayer
+The matched test establishes a response benefit for one endpoint, not for every
+possible predictor. To test whether the representation remains useful across
+learners, we combine the same 15 frozen response predictions with different
+molecular representations and endpoint models. We evaluated ExtraTrees, residual multilayer
 perceptrons (MLPs), separate structure and response branches, a linear predictor
 with a neural residual, message-passing graphs with size-sensitive readouts, frozen
 MoLFormer representations with neural heads, TabM parameter-sharing ensembles,
@@ -34,6 +36,8 @@ fits and are not claims about the other endpoints.
 \centering\small
 \caption{\textbf{Endpoint mechanisms and their measured accuracy.}
 All entries include the 15 response descriptors. MAE is in kcal mol$^{-1}$.
+Boldface marks the lowest displayed MAE in each column among these fixed
+full-response configurations; it does not imply a statistically resolved rank.
 The first three columns use the ARROW and external evaluation identities; Strict-97 is nested
 within External-220. Neural and TabPFN predictions average five seeds, tree
 controls three. The final column is a separate exploratory size-held-out refit on

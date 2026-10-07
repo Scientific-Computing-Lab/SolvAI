@@ -33,13 +33,40 @@ def latex_escape(value: object) -> str:
     return text
 
 
-def latex_table(frame: pd.DataFrame, path: Path, columns: str) -> None:
+def latex_table(
+    frame: pd.DataFrame,
+    path: Path,
+    columns: str,
+    *,
+    best_columns: tuple[str, ...] = (),
+    group_columns: tuple[str, ...] = (),
+) -> None:
+    """Render a table, optionally emphasizing displayed minima within groups."""
     path.parent.mkdir(parents=True, exist_ok=True)
+    frame = frame.reset_index(drop=True)
+    best_cells: set[tuple[int, str]] = set()
+    groups = (
+        frame.groupby(list(group_columns), sort=False, dropna=False)
+        if group_columns else [(None, frame)]
+    )
+    for _, group in groups:
+        for column in best_columns:
+            values = group[column].map(lambda value: float(value))
+            best_cells.update((int(index), column) for index in values.index[values.eq(values.min())])
+
+    def render_cell(index: int, column: str, value: object) -> str:
+        cell = latex_escape(value)
+        if (index, column) not in best_cells:
+            return cell
+        if cell.startswith(r"\ensuremath{") and cell.endswith("}"):
+            return r"\ensuremath{\mathbf{" + cell[len(r"\ensuremath{"):-1] + "}}"
+        return r"\textbf{" + cell + "}"
+
     lines = [rf"\begin{{tabular}}{{{columns}}}", r"\toprule"]
     lines.append(" & ".join(latex_escape(c) for c in frame.columns) + r" \\")
     lines.append(r"\midrule")
-    for row in frame.itertuples(index=False, name=None):
-        lines.append(" & ".join(latex_escape(value) for value in row) + r" \\")
+    for index, row in frame.iterrows():
+        lines.append(" & ".join(render_cell(index, column, row[column]) for column in frame.columns) + r" \\")
     lines.extend([r"\bottomrule", r"\end{tabular}"])
     path.write_text("\n".join(lines) + "\n")
 
@@ -57,7 +84,8 @@ def comparison_tables(metrics: dict) -> None:
         ].itertuples()
     ]
     latex_table(pd.DataFrame(repeat_rows, columns=["Repeat", "Split seed", "Method", "MAE"]),
-                SI_TABLES / "repeat_values.tex", "rrlr")
+                SI_TABLES / "repeat_values.tex", "rrlr",
+                best_columns=("MAE",), group_columns=("Repeat",))
     separation = pd.read_csv(
         ROOT / "results/confirmatory/standardized_exclusion_global_separation_metrics.csv"
     )[["regime", "method", "n", "mae"]].copy()
@@ -71,7 +99,8 @@ def comparison_tables(metrics: dict) -> None:
     assert not separation.isna().any().any()
     separation["mae"] = separation.mae.map(lambda value: f"{value:.3f}")
     separation.columns = ["Separation", "Method", "N", "MAE"]
-    latex_table(separation, SI_TABLES / "global_separation.tex", "llrr")
+    latex_table(separation, SI_TABLES / "global_separation.tex", "llrr",
+                best_columns=("MAE",), group_columns=("Separation",))
     family = pd.DataFrame(metrics["chemistry_family"])
     family["mae_kcal_mol"] = family.mae_kcal_mol.map(lambda value: f"{value:.3f}")
     family = family.rename(columns={"family": "Family", "n": "N", "mae_kcal_mol": "MAE"})
@@ -686,7 +715,8 @@ def main() -> None:
     weight_one_display = weight_one_table.copy()
     for column in ("MAE", "RMSE", "Median absolute error"):
         weight_one_display[column] = weight_one_display[column].map(lambda value: f"{value:.5f}")
-    latex_table(weight_one_display, SI_TABLES / "weight_one_sensitivity.tex", "lrrrr")
+    latex_table(weight_one_display, SI_TABLES / "weight_one_sensitivity.tex", "lrrrr",
+                best_columns=("MAE", "RMSE", "Median absolute error"))
 
     tier_a_table = pd.DataFrame(
         [
@@ -728,7 +758,9 @@ def main() -> None:
     tier_a_display = tier_a_table.copy()
     for column in ("MAE", "RMSE", "Median absolute error"):
         tier_a_display[column] = tier_a_display[column].map(lambda value: f"{value:.5f}")
-    latex_table(tier_a_display, SI_TABLES / "tier_a_external.tex", "llrrrr")
+    latex_table(tier_a_display, SI_TABLES / "tier_a_external.tex", "llrrrr",
+                best_columns=("MAE", "RMSE", "Median absolute error"),
+                group_columns=("Cohort",))
 
     ledger = experiment_ledger(metrics)
     ledger.to_csv(SUPP_DATA / "Supplementary_Data_1_experiment_ledger.csv", index=False)
