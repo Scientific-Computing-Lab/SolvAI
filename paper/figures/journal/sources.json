@@ -9,19 +9,31 @@
     "results/journal_20261002/similarity_strata.csv": "cd707848330e6d370b2c3370766aed1aad378f5476cfe32bd27e1f73df8008ed",
     "figures/source/fig1_assets/nma_openbabel.pdb": "cad2bab42492b17cdaf571d1fb40fc350201528e7e35ec97bdcba0ff879dc7bd",
     "figures/source/fig1_assets/dimethoxyethane_selected_conformers.sdf": "8ce71e4ee04bdbb0506459e31993b2b6b631829470b42fde285c119086e61399",
+    "paper/figures/journal/teaser_components/endpoint_lens_v1.png": "ba9c2aa156f9c2b462d889d4c54958e63c526c3822a2e963325208be40e492b2",
+    "paper/figures/journal/teaser_components/endpoint_lens_white.png": "8b90ee93b95af8ff52445689733ba97a6aa6deadff83dbbcae5ac800ede8ff49",
     "paper/figures/journal/teaser_components/paper_texture_1.png": "ecf8eedd8cfc0a0995ee80d8ad27c9756201cd26fc1943adc94366444bd9957e",
     "paper/figures/journal/teaser_components/paper_texture_2.png": "6ca62db5e80fa4bb4f8b85c3e5ba5c4f544d81d963ddf2d87df8a425b7e77e5f",
     "paper/figures/journal/teaser_components/paper_texture_3.png": "e37806e6cbd91eabae2593aa83d848aaea1f606c28ca0f9a3cf424f6af0476a7",
     "paper/figures/journal/teaser_components/paper_texture_4.png": "5fe5412b4ec29d1eb3bdce27d3db2797f32967bc7db159e7c90c8adad2213da2",
     "paper/figures/journal/teaser_components/paper_texture_5.png": "7b99bba5fdbc5d5844c5f54a7e7580204a7982d42767bd22435e27016e0ea21b",
-    "paper/figures/journal/teaser_components/paper_texture_6.png": "71b627bd785900c2a51a3c3257e2d0b9a69c3ceca57262856bd0dd98bddbbc7e"
+    "paper/figures/journal/teaser_components/paper_texture_6.png": "71b627bd785900c2a51a3c3257e2d0b9a69c3ceca57262856bd0dd98bddbbc7e",
+    "paper/figures/journal/teaser_components/solvent_halo_v1.png": "63a9905c7efe47890150da1f8bda3232c9b7a3e23b5f53224bd55731e3cd54f2",
+    "paper/figures/journal/teaser_components/solvent_halo_white.png": "fa6bc28970929a1bbbf6567dbd90417655457e117a2ae02f99837b68171eb03a",
+    "paper/figures/journal/teaser_components/source_icon_1.png": "66e70db757266555eefbcde09c6a085264060aa1d872a1c8115afd64a7301a68",
+    "paper/figures/journal/teaser_components/source_icon_2.png": "bca4cdf904fb5a9330ceb0ed7891e55706499f614e90f6cbcdc0e24a414abdf8",
+    "paper/figures/journal/teaser_components/source_icon_3.png": "b22001c98b0a472c101c5299ee211922aa134d178463b264603d07d091b1c77c",
+    "paper/figures/journal/teaser_components/source_icon_4.png": "fcf9c596e358612956465d56bc36a7e6e46e6b79edc8a36af9a228d270c3b026",
+    "paper/figures/journal/teaser_components/source_icon_5.png": "3970219044bf75f7bed08556ab459dab2475744178e92bd9ea3bd389f975ee46",
+    "paper/figures/journal/teaser_components/source_icon_6.png": "bdbdcf30a71a2d65c20892800a045adf6218a9e9921904363b0d926107dd81f4",
+    "paper/figures/journal/teaser_components/source_icon_atlas.png": "87548b396b41fb6d2e60b428dafc987c7e4d9b099bf22df9d8568afd73a059f3"
   },
   "builder_sha256": {
-    "scripts/make_local_journal_figures.py": "4de1fd0c35507cd4788aa9b865505c0c34af1d962f75e9fcc31d631480ada0ad",
-    "scripts/journal_vector_art.py": "c2d7a2631703696bbc8cf88b1d0c9dc569cdc47c0e6df5b77aff5634c371dc11",
-    "scripts/journal_teaser.py": "62492496b4010196d645c98759a4546632b1c7115fb96fba0e7c465e294d1837",
-    "scripts/journal_diagram.py": "e80a25b698741c5b19ad7c03065208b6d1d15466e8791c1172511b3b4cacf48a",
-    "scripts/journal_style.py": "93d7ba7737d1e40477388bbf7adc32684b0f22b68cc65efe3e30616fb3181911"
+    "scripts/make_local_journal_figures.py": "16380a67a7dc1f20d49a0fe18fd1fad711b5d9969ccb0b0ef88f275b038ca855",
+    "scripts/journal_vector_art.py": "7b336c0f1f5c50574b8a2409c0ee3c62c9de1ab0411cce4c8afea67f65a7270e",
+    "scripts/journal_teaser.py": "b1e790c137122f8bd083ea2bb6fb50e8c48caf7d51e00843237841ff2b2dbae9",
+    "scripts/journal_diagram.py": "c8d42101eb8d5b9bc54fb07190cc046847b099aee8d49765de15634e860536c2",
+    "scripts/journal_style.py": "841e9f4bfb49a4eafde94a48544a0e966516094bbc102cabd2062f5025142fc1",
+    "scripts/prepare_teaser_components.py": "bc5d089ade4e0d93c427f3f81c2e773b9c5a5694f6f857af1a3b1d483a74c85d"
   },
   "build_platform": "Darwin arm64",
   "source_descriptor_counts": [
@@ -42,7 +54,6 @@
   "solvent_shells_and_energy_levels": "Schematic, not simulation results",
   "main_figures": [
     "F1_overview",
-    "F2_learning_and_evaluation",
     "F3_endpoint_comparison",
     "F4_matched_evidence",
     "F5_modern_comparisons",

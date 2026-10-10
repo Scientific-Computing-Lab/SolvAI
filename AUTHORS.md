@@ -1,8 +1,12 @@
 # Authors
 
 - Gal Oren — Stanford University
-- Boris Fain — Freecurve Labs
+- Boris Fain — Stanford University
 - Michael Levitt — Stanford University
 
-Correspondence designations, departmental details and ORCID identifiers require
-author confirmation before journal submission.
+Gal Oren and Michael Levitt are corresponding authors. Michael Levitt is the
+submitting author for the Communications Chemistry submission.
+
+Author contributions: G.O. and M.L. conceived and designed the study. G.O.
+carried out the computational work. G.O., B.F. and M.L. interpreted the results
+and revised the manuscript.

@@ -35,14 +35,16 @@ plt.rcParams.update({'font.family':'Arial','font.size':8,'axes.labelsize':8,
     'figure.facecolor':'white','axes.facecolor':'white','savefig.facecolor':'white',
     'text.color':'#18303C','axes.labelcolor':'#18303C','svg.hashsalt':'solvai-endpoints'})
 
-from journal_style import apply as apply_style, MODEL_COLORS, LINE_STYLES, normalize_svg
+from journal_style import apply as apply_style, MODEL_COLORS, LINE_STYLES, normalize_svg, polish_figure
 COLORS = MODEL_COLORS
 apply_style(plt)
+PLOTS_ONLY = False
 
 def read(name):return pd.read_csv(DATA/name, float_precision='round_trip')
 
 def save(fig, name, supplement=False):
     directory=PAPER/('supplementary/figures' if supplement else 'figures/journal')
+    polish_figure(fig)
     for ext in ['svg','pdf']:
         fig.savefig(directory/f'{name}.{ext}',facecolor='white')
     normalize_svg(directory/f'{name}.svg')
@@ -52,6 +54,8 @@ def save(fig, name, supplement=False):
     plt.close(fig)
 
 def table(path, columns, header, rows):
+    if PLOTS_ONLY:
+        return
     lines=[r'\begin{longtable}{@{}'+columns+r'@{}}',r'\toprule',header+r' \\',r'\midrule']
     if path.stem=='endpoint_metrics':
         lines += [r'\endfirsthead',
@@ -153,8 +157,9 @@ def tables_and_plots():
     path=PAPER/'tables/endpoint_summary.tex'
     table(path,r'>{\raggedright\arraybackslash}p{3.85cm}>{\raggedright\arraybackslash}p{5.25cm}rrrr',
           r'Endpoint & Mechanism and observed pattern & ARROW & External & Strict & Size',rows)
-    text=path.read_text().replace('longtable','tabular').replace(r'\endhead','')
-    path.write_text(text)
+    if not PLOTS_ONLY:
+        text=path.read_text().replace('longtable','tabular').replace(r'\endhead','')
+        path.write_text(text)
     eligible=FAMILIES+['count_adapted','capacity_adapted']
     rows=[]
     for cohort in COHORTS:
@@ -287,5 +292,11 @@ def tables_and_plots():
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser();parser.add_argument('--preview-dir',type=Path)
-    PREVIEW=parser.parse_args().preview_dir
-    corrected_original();tables_and_plots()
+    parser.add_argument('--plots-only',action='store_true',
+                        help='Restyle the existing plots without rewriting result tables')
+    args=parser.parse_args()
+    PREVIEW=args.preview_dir
+    PLOTS_ONLY=args.plots_only
+    if not PLOTS_ONLY:
+        corrected_original()
+    tables_and_plots()

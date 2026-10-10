@@ -72,14 +72,14 @@ comparison does not estimate each structural-only architecture's best achievable
 \subsection*{S19. Pretrained representations and TabPFN configuration}
 
 The earlier MoLFormer cache used evaluation mode without enabling the model's
-\texttt{deterministic\_eval} option. Stochastic attention projections remained
+\nolinkurl{deterministic_eval} option. Stochastic attention projections remained
 active. All 1,585 study representations and 56 stress-series representations were
 therefore regenerated from the same checkpoint with both settings enabled, and
 all valid MoLFormer endpoint comparisons were refitted. Identical repeated encoding
 gave zero change; changes in query order and batching produced representation
 differences below $3\times10^{-5}$. Fresh encoding through endpoint prediction
 agreed within $4.9\times10^{-6}$ kcal mol$^{-1}$. Corrected fixed-tree results
-replace the earlier cache-based values in Fig.~5 and Supplementary Tables~11--12.
+replace the earlier cache-based values in Fig.~\ref{fig:modern} and Supplementary Tables~11--12.
 Legacy stochastic-cache branches remain labelled in the released diagnostic data
 and are excluded from valid-model selection and the manuscript's performance
 comparisons. Uni-Mol's conformer pipeline and the packaged ExtraTrees endpoint are

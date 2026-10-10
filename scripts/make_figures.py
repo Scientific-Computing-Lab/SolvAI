@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import json
 import subprocess
 import sys
@@ -55,9 +56,9 @@ mpl.rcParams.update(
 )
 
 try:
-    from .journal_style import apply as apply_style, INK, MID, GRID, BLUE, TEAL, AMBER, ROSE
+    from .journal_style import apply as apply_style, polish_figure, INK, MID, GRID, BLUE, TEAL, AMBER, ROSE
 except ImportError:
-    from journal_style import apply as apply_style, INK, MID, GRID, BLUE, TEAL, AMBER, ROSE
+    from journal_style import apply as apply_style, polish_figure, INK, MID, GRID, BLUE, TEAL, AMBER, ROSE
 apply_style(plt)
 LEARNED, DEPLOY, PHYSICS, PIMD = BLUE, TEAL, AMBER, ROSE
 
@@ -82,6 +83,7 @@ def panel(ax: plt.Axes, label: str) -> None:
 
 
 def save(fig: plt.Figure, name: str, *, collection: str = "main") -> None:
+    polish_figure(fig)
     if collection == "main":
         targets = (MAIN, PAPER_MAIN)
     elif collection == "supplementary":
@@ -591,7 +593,7 @@ def supp_fig3_alternatives(metrics: dict) -> None:
     for letter, ax, (title, baseline, frame) in zip("ab", axes, campaigns, strict=True):
         positions = np.arange(len(frame))
         ax.hlines(positions, baseline, frame.values, color=GRID, lw=1)
-        ax.scatter(frame.values, positions, color=LEARNED, s=30, zorder=3,edgecolor='white',linewidth=.5)
+        ax.scatter(frame.values, positions, color=LEARNED, s=30, zorder=3)
         ax.axvline(baseline, color=DEPLOY, lw=1.0, ls=(0, (3, 2)))
         ax.set_yticks(positions, frame.index)
         ax.set_ylim(len(frame) - 0.5, -0.5)
@@ -601,6 +603,7 @@ def supp_fig3_alternatives(metrics: dict) -> None:
                 ha="right", va="bottom", color=DEPLOY, fontsize=8)
         clean(ax, grid="x")
     axes[-1].set_xticks([0.19, 0.20, 0.21, 0.22])
+    axes[0].tick_params(axis='x', labelbottom=True)
     axes[-1].set_xlabel(r"Exploratory OOF MAE (kcal mol$^{-1}$)")
     save(fig, "Supp_Fig3_alternatives", collection="supplementary")
 
@@ -665,7 +668,7 @@ def supp_fig4_lambda(metrics: dict) -> None:
 
 
 
-def supp_fig5_extrapolation(primary: pd.DataFrame, separation: pd.DataFrame) -> None:
+def supp_fig5_extrapolation(primary: pd.DataFrame) -> None:
     full = primary.loc[primary.method.eq("F_full_solvai")].copy()
     family_counts = (
         full.groupby("functional_group_family", sort=True)
@@ -679,7 +682,7 @@ def supp_fig5_extrapolation(primary: pd.DataFrame, separation: pd.DataFrame) -> 
         )
     )
     families = family_counts["functional_group_family"].to_list()
-    fig, axes = plt.subplots(1, 2, figsize=(7.2, 3.35), gridspec_kw={"width_ratios": [1.25, 1.0]})
+    fig, ax = plt.subplots(figsize=(7.2, 5.7))
     rng = np.random.default_rng(20260828)
     for position, family in enumerate(families):
         values = (
@@ -688,56 +691,29 @@ def supp_fig5_extrapolation(primary: pd.DataFrame, separation: pd.DataFrame) -> 
             .to_numpy()
         )
         jitter = rng.uniform(-0.12, 0.12, len(values))
-        axes[0].scatter(values, position + jitter, s=15, color=DEPLOY, alpha=0.85,edgecolor='white',linewidth=.3)
-        axes[0].plot(
+        ax.scatter(values, position + jitter, s=15, color=DEPLOY, alpha=0.85,edgecolor='white',linewidth=.3)
+        ax.plot(
             [values.mean(), values.mean()], [position - 0.18, position + 0.18], color=INK, lw=1
         )
-    axes[0].set_yticks(
+    ax.set_yticks(
         np.arange(len(families)),
         [
             f"{family} (n={len(full.loc[full.functional_group_family.eq(family)])})"
             for family in families
         ],
     )
-    axes[0].invert_yaxis()
-    axes[0].set_xlabel(r"Absolute OOF error (kcal mol$^{-1}$)")
-    clean(axes[0], grid="x")
-    panel(axes[0], "a")
-    regimes = ["global_nn_0.70", "global_butina_0_70", "global_scaffold", "global_family"]
-    labels = ["NN < 0.70", "clusters", "scaffolds", "families"]
-    # The two lowest SolvAI points are close together and close to the x-axis.
-    # Stagger their labels upward so neither label collides with the axis text.
-    label_offsets = [-8, 14, 0, 0]
-    regime_markers = ['o', 's', 'D', '^']
-    for position, (regime, label) in enumerate(zip(regimes, labels, strict=True)):
-        group = separation.loc[separation.regime.eq(regime)].set_index("method")
-        axes[1].plot(
-            [0, 1],
-            [group.loc["A_structure_only", "mae"], group.loc["F_full_solvai", "mae"]],
-            color=GRID,
-            lw=1,
-        )
-        axes[1].scatter([0], [group.loc["A_structure_only", "mae"]], color=MID, s=23, marker=regime_markers[position])
-        axes[1].scatter([1], [group.loc["F_full_solvai", "mae"]], color=DEPLOY, s=23, marker=regime_markers[position])
-        axes[1].annotate(
-            label,
-            (1, group.loc["F_full_solvai", "mae"]),
-            xytext=(15, label_offsets[position]),
-            textcoords="offset points",
-            va="center",
-            fontsize=7.5,
-            arrowprops={"arrowstyle": "-", "color": MID, "lw": 0.6, "shrinkA": 2, "shrinkB": 3},
-            bbox={"facecolor": "white", "edgecolor": "none", "pad": 0.5, "alpha": 0.92},
-        )
-    axes[1].set_xticks([0, 1], ["Structure only", "SolvAI"])
-    axes[1].set_xlim(-0.25, 1.55)
-    axes[1].set_ylabel(r"MAE (kcal mol$^{-1}$)")
-    clean(axes[1])
-    panel(axes[1], "b")
+    ax.invert_yaxis()
+    ax.set_xlabel(r"Absolute OOF error (kcal mol$^{-1}$)")
+    clean(ax, grid="x")
+    fig.tight_layout()
     save(fig, "Supp_Fig5_extrapolation", collection="supplementary")
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--quantitative-supplement-only', action='store_true',
+                        help='Rebuild only the four quantitative legacy SI figures')
+    args = parser.parse_args()
     metrics = json.loads((ROOT / "results/paper_metrics.json").read_text())
     endpoint = pd.read_parquet(
         ROOT / "results/confirmatory/standardized_exclusion_endpoint_predictions.parquet"
@@ -746,16 +722,17 @@ def main() -> None:
     repeats = endpoint.loc[endpoint.partition.eq("standardized_exclusion_repeat")]
     zero = endpoint.loc[endpoint.partition.eq("standardized_exclusion_zero_arrow")]
     paired = pd.read_csv(ROOT / "results/confirmatory/confirmatory_paired_comparisons.csv")
-    separation = pd.read_csv(
-        ROOT / "results/confirmatory/standardized_exclusion_global_separation_metrics.csv"
-    )
-
     # Existing supplementary experiments remain distinct from journal comparisons.
     supp_fig1_residuals(primary)
-    supp_fig2_provenance()
+    if not args.quantitative_supplement_only:
+        supp_fig2_provenance()
     supp_fig3_alternatives(metrics)
     supp_fig4_lambda(metrics)
-    supp_fig5_extrapolation(primary, separation)
+    supp_fig5_extrapolation(primary)
+
+    if args.quantitative_supplement_only:
+        print('Rendered four quantitative legacy supplementary figures locally.')
+        return
 
     # Plot the already validated journal tables; aggregation/model fitting is a
     # separate operation and is not a dependency of a graphical rebuild.

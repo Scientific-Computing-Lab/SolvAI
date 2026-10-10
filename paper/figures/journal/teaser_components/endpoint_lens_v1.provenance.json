@@ -1,0 +1,12 @@
+{
+  "role": "conceptual_illustration_not_scientific_data",
+  "created_utc": "2026-10-09T23:23:02.859388+00:00",
+  "deployment": "gpt-image-2",
+  "api_version": "2024-02-01",
+  "prompt": "Create one isolated conceptual illustration component for a high-end Nature Communications style figure about learning a molecular hydration property from reusable response descriptors.\nA compact, elegant architecture-neutral transformation lens: a horizontally oriented translucent teal glass torus or shallow convex optical element with a luminous empty white center, refined scientific editorial rendering, slight watercolor softness matching blue/cyan solvent illustrations, visually substantial but not sci-fi.\nThe authors will overlay a vector h symbol in the empty center and connect exact vector arrows outside it. Do not draw any arrows, input ribbons, network nodes, decision trees, cubes, screens, molecules, atoms, charts or data; the object should not imply a particular machine-learning architecture.\nRestrained teal, sea-glass and neutral blue palette, high clarity at small print size. The entire unillustrated background and the center opening must be exactly flat pure white RGB 255,255,255, with no off-white tint, gradient backdrop, shadow spanning the canvas, border or vignette.\nNo text, letters, numbers, labels, equations, logos or watermark. Center the object with generous white margins in a wide 1536x1024 landscape composition.",
+  "quality": "high",
+  "requested_size": "1536x1024",
+  "width_px": 1536,
+  "height_px": 1024,
+  "sha256": "ba9c2aa156f9c2b462d889d4c54958e63c526c3822a2e963325208be40e492b2"
+}

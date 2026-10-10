@@ -1,0 +1,17 @@
+{
+  "role": "conceptual_illustration_not_scientific_data",
+  "source": "paper/figures/journal/teaser_components/solvent_halo_v1.png",
+  "source_sha256": "63a9905c7efe47890150da1f8bda3232c9b7a3e23b5f53224bd55731e3cd54f2",
+  "output": "paper/figures/journal/teaser_components/solvent_halo_white.png",
+  "output_sha256": "fa6bc28970929a1bbbf6567dbd90417655457e117a2ae02f99837b68171eb03a",
+  "background_rgb": [
+    255,
+    255,
+    255
+  ],
+  "background_rule": "RGB minimum >= 238 and channel range <= 12",
+  "reset_pixels": 805992,
+  "total_pixels": 1048576,
+  "verified_border_px": 24,
+  "verified_center_px": 100
+}

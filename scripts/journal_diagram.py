@@ -40,14 +40,14 @@ def block(c,x,y,w,h,title,subtitle=None,color=TEAL,symbol=None,frozen=False):
         c.text(x+w-27,y+3,'fixed',9.5,color,500,'middle')
     return b
 
-def concat(c,x,y,w=44,h=45):
+def concat(c,x,y,w=44,h=45,label=True):
     b=Box(x,y,w,h)
     c.path(f'M{x+6},{y} H{x} V{y+h} H{x+6}',INK,1.4)
     c.path(f'M{x+w-6},{y} H{x+w} V{y+h} H{x+w-6}',INK,1.4)
     for row in range(2):
         for j in range(3):
             c.rect(x+6+j*(w-12)/3,y+h*(.27+.36*row),(w-15)/3,5,INK if row==0 else MID,radius=.5)
-    c.text(x+w/2,y+h+18,'join',10.5,MID,400,'middle')
+    if label:c.text(x+w/2,y+h+18,'join',10.5,MID,400,'middle')
     return b
 
 def add(c,x,y,r=11):

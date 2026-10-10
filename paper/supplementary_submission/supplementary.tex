@@ -1,0 +1,781 @@
+% !TEX root = ../main.tex
+% Included by main.tex; compile the root document, not this fragment.
+\section*{Supplementary Information}
+\noindent Supplementary Methods S1--S22; Supplementary Notes S1--S2;
+ Supplementary Tables 1--18; Supplementary Figures 1--12; Supplementary Data 1--6.
+
+\section*{Supplementary Methods}
+
+\subsection*{S1. Reference-set processing}
+
+The ARROW reference table was reconstructed from machine-readable project outputs and
+contains 85 unique neutral solutes in water at 298 K. One molecule--condition row was
+retained for each connectivity. The reference includes experimental hydration free
+energy and, where available in the source, uncertainty, classical ARROW, PIMD4 and
+PIMD8 values. Molecular names were not used for identity. Canonical isomeric SMILES,
+full InChIKey and the first InChIKey block were generated with RDKit 2026.03.5. The
+released benchmark table is \texttt{data/benchmark/arrow\_solvation\_master.parquet}.
+
+The reconstructed ARROW/PIMD8 MAE is 0.204836 kcal mol$^{-1}$ and the classical
+ARROW MAE is 0.784648 kcal mol$^{-1}$. These values are direct errors against the same
+experimental column used for SolvAI evaluation; neither simulation value is an input
+to the final model.
+
+\subsection*{S2. Public endpoint labels}
+
+The endpoint-label catalog initially contained 5,075 benchmark-disjoint
+connectivities. A frozen source-quality rule retained all 1,147 rows from an earlier
+FreeSolv/CombiSolv-Exp merge and 133 additional SoluteML dGsolvDB3 rows supported by
+at least two source measurements, giving 1,280 public labels. Duplicate structures
+were resolved at the connectivity level before this rule was applied. The source
+composition is listed in Supplementary Table~3. The raw merged tables are not
+redistributed where source terms are not explicit; URLs, versions, hashes and
+reconstruction commands are given in \texttt{repro/DATA\_PROVENANCE.md}.
+CombiSolv-Exp originates from the collection of Vermeire and Green;\cite{combisolv2021}
+the version used here was downloaded from the SolvBERT repository mirror.\cite{combisolvexp2022}
+
+For a random outer fold, these 1,280 rows were combined with the available ARROW
+outer-training molecules. Public rows received sample weight 1 and ARROW
+outer-training rows weight 3. The experimental value of an outer-test molecule was
+never used. In the zero-ARROW transfer experiment, only the 1,280 public labels
+were fitted and all 85 ARROW molecules were evaluated.
+
+The weight of 3 was part of the prospective confirmatory protocol rather than a
+post-result choice. A separately prespecified one-factor sensitivity changed only the
+available ARROW outer-training weight to 1. Under this setting, matched structure-only
+and response-augmented ExtraTrees MAEs are 0.30977 and 0.20642 kcal mol$^{-1}$, respectively; the paired
+change is $-0.10335$ kcal mol$^{-1}$ (95\% interval, $-0.21883$ to $-0.01995$).
+
+\subsection*{S3. Response-source processing}
+
+\paragraph{CombiSolv-QM.}
+The water subset was deduplicated by solute connectivity and expressed in kcal
+mol$^{-1}$. After the original exact-connectivity exclusion, 3,961 structures were
+available. Conservative canonical-tautomer comparison found two additional
+benchmark equivalents; the confirmatory surrogate therefore used 3,959 rows.
+
+\paragraph{SoluteML Abraham parameters.}
+Five Abraham solute axes (E, S, A, B and L) were predicted from 8,098
+benchmark-disjoint structures. These coordinates respectively describe excess molar
+refraction, dipolarity/polarizability, hydrogen-bond acidity, hydrogen-bond basicity
+and gas-to-hexadecane partition response. No standardized benchmark equivalent was
+found in the audited source.
+
+\paragraph{OpenFF explicit-water response.}
+The source contains 520 benchmark-disjoint absolute solvation-free-energy records
+from an OpenFF 2.3.0/NAGL/TIP3P protocol with 14 alchemical states. The records
+come from the Open Free Energy (OpenFE) alchemical benchmark resources release,\cite{openffdata2026}
+using version 2.3.0 of the OpenFF Sage force-field family.\cite{openffsage2023} Separate
+ExtraTrees models predicted calculated hydration free energy and its experimental
+residual, defined as experimental hydration free energy minus the original
+calculated hydration free energy, not minus a surrogate prediction. Their sum
+is the retained corrected OpenFF coordinate.
+
+\paragraph{GBn2 implicit response.}
+The source contains 550 benchmark-disjoint GBn2 hydration calculations. GBn2 is the
+generalized Born model of Nguyen, Roe and Simmerling;\cite{gbn22013} the calculation
+records were obtained from the dataset released by Katzberger and Riniker.\cite{gnnis2024} Separate
+ExtraTrees models predicted the calculated value and its experimental residual. The
+sum is the retained corrected implicit-solvent coordinate. Its residual target
+uses the same experiment-minus-original-calculation definition.
+
+\paragraph{MolSolv SMD(water).}
+The source archive contains 1,729,545 M06-2X/6-31G* SMD calculations. The frozen
+selection retained all eligible neutral structures with at most 10 heavy atoms and a
+deterministic one-in-eight sample for structures with 11--18 heavy atoms. After
+deduplication and exact-connectivity filtering, 350,391 rows remained. Canonical
+tautomer standardization identified 32 additional benchmark-equivalent records. The
+confirmatory model used 350,359 rows while keeping every retained molecule in its
+original source split.
+
+\paragraph{ConfSolv H$_2$O.}
+The archive contains 5,392,567 H$_2$O conformer records for 43,693 solutes. We
+converted kJ mol$^{-1}$ to kcal mol$^{-1}$ and aggregated conformers into gas,
+water and hydration conformer corrections together with water-response
+distribution summaries. The broader quality filter produced 39,878 neutral
+connectivities. The selected surrogate target set had 17,851 rows with complete
+features and admissible energy range; fragment-parent, uncharging and tautomer
+standardization removed 22 additional benchmark-equivalent records, leaving 17,829.
+
+\subsection*{S4. The 15 response descriptors}
+
+Supplementary Table~1 defines every retained coordinate. At inference, the table's
+``surrogate'' column is the calculation that runs; the expensive source method does
+not. The final vector contains one CombiSolv-QM response, five Abraham axes, one
+corrected OpenFF response, one corrected GBn2 response, one SMD(water) response and
+six ConfSolv summaries, for 15 coordinates in total.
+
+Richer CombiSolv, OpenFF, GBn2 and ConfSolv targets were
+available and were evaluated during model development. Only the listed coordinates
+belong to the released stack. In particular, no PIMD2, PIMD4, PIMD8,
+$\mathrm{d}H/\mathrm{d}\lambda$ or NQE coordinate is present.
+
+\subsection*{S5. Surrogate models}
+
+The CombiSolv-QM and MolSolv targets were fitted with Chemprop 2.2.4
+directed-message-passing models initialized from CheMeleon. Both used a two-layer
+feed-forward head of width 256, dropout 0.1, initial/maximum/final learning rates of
+$3\times10^{-5}$, $10^{-4}$ and $10^{-5}$, and PyTorch seed 20260826. CombiSolv-QM
+used RDKit two-dimensional descriptors, batch size 64, a 30-epoch cap and patience 7; MolSolv used the
+molecular graph, batch size 256, a 25-epoch cap and patience 6. The original frozen
+train/validation/test memberships were 80/10/10\% for CombiSolv-QM and 90/5/5\% for
+MolSolv. Standardized equivalents were removed from their existing split rather than
+resplitting the remaining source.
+
+Abraham, OpenFF and GBn2 targets used ExtraTrees regressors on the same 2,265
+structure features used by the endpoint. The selected leaf sizes and target-level
+OOF errors are recorded in the source metadata. ConfSolv used 217 RDKit descriptors
+and the 256 highest-variance Morgan bits. Each target was fitted with a LightGBM
+L1-regression model with 450 estimators, learning rate 0.04, 31 leaves, minimum child
+size 20, row subsampling 0.8, column subsampling 0.55 and $L_2$ regularization 0.1.
+Target-specific seeds were 20260826 plus the target index for validation and 1000
+plus that index for the all-retained-source fit.
+
+For OpenFF and GBn2, source records were matched to public endpoint candidates by
+connectivity. Public molecules represented in a source table received predictions
+from five-fold source-level out-of-fold fits for each physical and residual target;
+other public molecules and ARROW molecules received the corresponding full-source
+model predictions. Minimum leaf size was selected from 1, 2 and 3 using those same
+source folds. Thus the recorded source OOF errors are selection scores, not nested
+unbiased validation estimates. These source folds were fixed independently of the
+later endpoint partitions; they were not rebuilt for chemical- or size-held-out
+endpoint fits. Source-OOF feature generation therefore differs from excluding an
+entire downstream holdout from source supervision. The source-preparation scripts
+are archived under \texttt{repro/response\_sources/}.
+
+The recorded OpenFF physical/residual OOF MAEs are 0.617/0.531 kcal mol$^{-1}$;
+the corresponding GBn2 values are 0.669/0.626. These are errors of separate source
+components, not of their corrected sum. The standardized-exclusion ConfSolv
+validation contains 1,785 molecules and gives MAEs of 0.248, 0.267, 0.354, 0.448,
+0.688 and 0.450 kcal mol$^{-1}$ for coordinates 10--15 in Supplementary Table~1.
+These heterogeneous source checks do not form a common independent fidelity
+benchmark for all 15 coordinates; the endpoint comparisons assess their predictive
+utility rather than presuming uniform recovery accuracy.
+
+\subsection*{S6. Matched ExtraTrees implementation}
+
+The molecular representation comprises a 2,048-bit radius-2 Morgan fingerprint and
+217 RDKit two-dimensional descriptors. The confirmatory endpoint appends the 15 response descriptors,
+giving 2,280 columns. A median imputer is fitted on each training partition and adds
+missingness indicators only where required. Each of three
+\texttt{ExtraTreesRegressor} models uses 360 trees, squared-error splitting,
+\texttt{max\_features}=0.7, \texttt{min\_samples\_leaf}=2,
+\texttt{min\_samples\_split}=2, unlimited depth and no bootstrap; seeds are 11, 29
+and 47. Predictions are averaged. The matched structural model removes only the 15
+response columns.
+
+After all evaluation was frozen, the release artifact was refitted on the 1,280
+public labels and all 85 ARROW labels using the same weights and configuration.
+That refit supplies deployment predictions and the endpoint-disjoint external
+evaluation. Reported ARROW held-out scores use only the appropriate fold-specific
+fits.
+
+\subsection*{S7. Validation partitions}
+
+The fixed primary result uses the released \texttt{fold\_random} assignment. Five
+complete repeated five-fold partitions use shuffled K-fold seeds 314159, 271828,
+161803, 141421 and 173205. All comparisons use the same fold, training rows and model
+seeds within a partition.
+
+For functional-family separation, SMARTS rules were applied in the precedence order
+carboxylic acid, amide, ester, aldehyde, ketone, alcohol/phenol, ether, amine, thiol,
+sulfide/disulfide, aromatic heterocycle, carbocyclic aromatic, alkene/diene,
+saturated hydrocarbon and other. A test-fold family was removed from both public and
+ARROW endpoint training rows. Bemis--Murcko scaffold separation used canonical
+isomeric scaffold SMILES; acyclic molecules were keyed by primary family. Molecular
+clusters were constructed once on the combined endpoint pool with Taylor--Butina
+clustering at Morgan Tanimoto similarity 0.70. Nearest-neighbor analyses excluded
+training rows at similarity thresholds 0.50, 0.60, 0.70 and 0.80 to any outer-test
+molecule.
+
+\subsection*{S8. Shuffled-descriptor control}
+
+All 15 response columns were permuted together to preserve their joint distribution.
+For each outer fold, public, ARROW outer-training and ARROW outer-test response rows
+were permuted separately. The experimental target was never used to define a
+permutation. Five base seeds (88001--88005) were used for the fixed partition and
+each repeated partition. This control changes molecule--response alignment while
+retaining feature count, response marginal distributions and inter-descriptor
+correlations.
+
+\subsection*{S9. Statistical analysis}
+
+MAE is primary. RMSE, median absolute error and the fraction of molecules
+improved are secondary. Paired candidate-minus-reference differences were resampled
+at molecule level 100,000 times with seed 20260828. The 2.5th and 97.5th
+percentiles define the reported intervals. For the five repeated partitions, each
+molecule's absolute error was first averaged over partitions before paired
+resampling. The prespecified protocol defined a positive comparison as a complete interval
+below zero. We report all prespecified comparisons without multiplicity adjustment
+and do not treat the panel as a single confirmatory hypothesis test. The protocol
+and its implementation amendments are archived in Git at
+\nolinkurl{release/CONFIRMATORY_FREEZE.md}; the amendments preceded the corrected runs.
+For the additional molecular-model comparisons, the released
+\nolinkurl{results/endpoint_models_20261006/corrected_original_metrics.csv} also provides the coefficient of
+determination ($R^2$) for each model and cohort.
+
+\subsection*{S10. External validation}
+
+The original 221-molecule cohort was frozen for a separate solvation-model validation
+study before that study's model predictions. It was derived from type-M original-measurement
+records in Sander's Henry-law compilation v5.0.0. Intrinsic pure-water
+$H_s^{cp}$ values (aqueous concentration divided by gas partial pressure),
+normalized to 298.15 K, were converted as
+$K_c=H_s^{cp}RT$ and $\Delta G_{\rm hyd}=-RT\ln K_c$, where $K_c$ is the
+dimensionless aqueous-to-gas concentration ratio. This produces the same 1 M
+gas-to-1 M aqueous standard-state convention used for the endpoint. The source values
+are printed to two significant figures.
+
+SolvAI qualification was performed without reading SolvAI predictions or errors. All
+221 rows passed the connected, neutral, supported-element and target-compatibility
+rules. One candidate was excluded because that study's registry audit had documented a
+definite conflict between its registry name/CAS and supplied InChIKey structure. The
+remaining 220 molecules had no exact, fragment-parent, uncharged-parent or
+canonical-tautomer equivalent among the 1,280 public or 85 ARROW endpoint labels.
+Of these, 123 occurred in at least one supervised response-source table and 97 were
+absent from all six. The latter define the strict response-source-disjoint subset.
+The cohort hashes, all exclusions and all response-source matches were recorded in Git before
+endpoint evaluation.
+
+Both endpoint models were then fitted deployment-style on the same 1,280 public
+plus 85 ARROW labels with weights 1 and 3. They used the same descriptors, imputation,
+three 360-tree ensembles and seeds; only the 15 response columns differed. No external-cohort
+label entered fitting or selection. On N=220, structure-only and response-augmented
+ExtraTrees MAEs were
+1.53165 and 1.15255 kcal mol$^{-1}$ (paired change $-0.37909$; 95\% interval,
+$-0.51692$ to $-0.24817$). On strict N=97, the corresponding values were 2.13830 and
+1.53560 kcal mol$^{-1}$ (paired change $-0.60271$; interval, $-0.86277$ to $-0.35858$).
+The absolute errors delimit applicability and are not presented as PIMD8-level
+performance outside ARROW-85.
+
+\subsection*{S11. Lambda-response probes}
+
+Short PIMD2 response fingerprints were available at $\lambda=0.1$, 0.5 and 0.9 for
+72, 74 and 73 molecules, respectively; 72 had complete three-point curves. The
+targets were the total solute--solvent $\mathrm{d}H/\mathrm{d}\lambda$ and its
+electrostatic and van der Waals components. A zero-valued polarization field was not
+interpreted. Structure-only heads were evaluated by OOF prediction, and their
+outputs were added to the fixed SMD(water) plus ConfSolv response baseline for
+this exploratory ablation (MAE 0.1959 kcal mol$^{-1}$). A separate direct-integration experiment used the predicted three-point
+curve with an affine calibration fitted inside each outer training fold. These
+targets were evaluated as candidate supervision and were not retained.
+
+\subsection*{S12. Artifact verification}
+
+The public API accepts one or more SMILES strings. RDKit parses each input and emits
+canonical isomeric SMILES before feature generation. It does not standardize a query
+across tautomers, protonation states or salt forms. The runtime computes descriptors,
+evaluates the two D-MPNNs and four tree-artifact families, and
+passes the resulting 2,280-vector to three endpoint regressors. The artifact audit
+checks file hashes, feature count and names, software versions and two smoke
+predictions. It rejects features containing experimental target, PIMD, trajectory,
+probe, fold or scaffold information. The standardized-exclusion surrogate refit is
+identified in the model card and manifest. The ensemble spread is returned for
+diagnosis but is not a calibrated per-query applicability or reliability score.
+
+\subsection*{S13. Runtime benchmarking}
+
+Runtime was measured end to end from input SMILES to prediction on the released
+artifact. The host used an Intel Core i7-4930K CPU; the installed NVIDIA RTX 3090 was
+not used for inference. Cold single-molecule latency, five warm single-molecule
+runs, three batch-32 runs and peak resident memory were recorded. Chemprop predictor
+startup dominates single-molecule latency. These measurements describe the released
+implementation, not the irreducible model cost. The ARROW/PIMD8 comparison uses the
+published 15-window protocol and is kept separate from same-host inference timing.
+
+\subsection*{S14. Additional molecular-model comparisons}
+
+The additional molecular-model comparison uses the existing 1,280 public endpoint labels,
+85 ARROW labels and 220 external test molecules. The protocol was fixed before the
+new fits, but these are retrospective comparisons on already examined datasets.
+The original fixed five-fold ARROW assignments are retained. For the external test,
+all 1,365 endpoint labels are used; the 97-molecule source-disjoint subset is fixed
+before these comparisons and is not a separate fit. Public labels have weight 1 and
+ARROW training labels weight 3 throughout. The wider optimization study in S18
+is a separate comparison, not a reinterpretation of these fixed 80-epoch fits.
+
+The scratch D-MPNN has message dimension 300, three message-passing steps, mean
+aggregation, a regression head with two hidden layers of 300 units and dropout 0.1. The CheMeleon
+model initializes message passing from the published
+\texttt{chemeleon\_mp.pt} weights, retains their encoder configuration and fine-tunes
+that encoder; it uses the same regression-head dimensions and dropout.
+Both optimize squared error using Adam and batch size 64, with constant learning
+rates $3\times10^{-4}$ and $10^{-4}$, respectively. Target scaling is fitted on the
+training subset only. For each outer partition and model seed, a deterministic 15\%
+of each source is held out internally (split seed $20261002+\text{model seed}$).
+The epoch with lowest unweighted validation MAE is selected, with a cap of 80 epochs
+and patience 12. A model reinitialized from the same random or CheMeleon starting
+weights is then fitted on all outer-training
+labels for that many epochs, using a newly fitted training scaler. This restores
+the inner-validation molecules to the final training pool without exposing the
+outer test labels. Predictions from seeds 11, 29 and 47 are averaged. Every selected
+epoch, validation trace, training identity and held-out identity is retained.
+Supplementary Fig.~6 shows the order of inner selection, fresh refitting and
+held-out scoring.
+
+MoLFormer uses the published
+\nolinkurl{ibm-research/MoLFormer-XL-both-10pct} model at revision
+\nolinkurl{7b12d946c181a37f6012b9dc3b002275de070314}. The 768-dimensional representation
+is the attention-mask mean of the last hidden state, with maximum sequence length
+256. Uni-Mol uses its 512-dimensional molecular representation from the
+\texttt{mol\_pre\_all\_h\_220816} checkpoint, including hydrogens. Its RDKit
+conformer generator uses seed 42. MoLFormer uses the corrected deterministic
+representations described in S19; Uni-Mol reuses its original label-free cache,
+with missing structures encoded by the same pipeline. Three of the 353
+structures absent from the original Uni-Mol embedding cache used the package's two-dimensional fallback after three-dimensional
+embedding failed; they are retained rather than excluded by prediction quality.
+Both pretrained representations are frozen during endpoint fitting. Molecular
+membership in their original pretraining datasets is not audited here.
+
+For each pretrained representation, we fit the same three 360-tree ExtraTrees
+regressors on structural features plus that representation, then repeat with the
+15 SolvAI response descriptors added. Imputation is fitted inside each training
+partition. All families, both feature conditions and all seeds are retained in the
+report. The comparison is limited to these fixed training configurations; it is
+not an exhaustive hyperparameter optimization or a claim to the best achievable
+performance of an architecture. Code and hashed inputs are provided with
+\texttt{scripts/run\_journal\_baselines.py}; independent aggregation is provided
+with \texttt{scripts/summarize\_journal\_baselines.py}.
+
+\subsection*{S15. Conformational meaning of the response targets}
+
+The experimental endpoint is the equilibrium hydration free energy of a molecular
+species. It does not assign a separate target to each geometry of that species.
+The ConfSolv H$_2$O subset supplies conformer-resolved gas, water and solvation free energies,
+which are aggregated before surrogate training. For gas or water conformer
+energies $G_i$, define $g_i=G_i-\min_j G_j$. The conformer correction is
+$C=-RT\ln\sum_i\exp(-g_i/RT)$. Two response descriptors are the gas and water
+corrections. The third is the difference between the ensemble hydration estimate
+and the solvation energy of the lowest-gas-energy conformer. The remaining three
+are the population standard deviation of conformer solvation energies and the
+arithmetic mean and population standard deviation of
+$g_i^{\rm water}-g_i^{\rm gas}$. Source energies are converted from kJ mol$^{-1}$
+to kcal mol$^{-1}$. These six summaries characterize the supplied conformer set;
+they do not establish complete conformational sampling or provide a geometry-specific
+prediction at inference.
+Supplementary Fig.~7 illustrates these six summaries and the distinction between
+individual conformers and the molecular equilibrium endpoint.
+
+\subsection*{S16. Error as a function of chemical similarity}
+
+For each external molecule, we use the maximum Tanimoto similarity of its
+radius-2, 2,048-bit Morgan fingerprint to any of the 1,365 endpoint-training
+molecules. Fixed descriptive bins are $[0,0.3)$, $[0.3,0.5)$, $[0.5,0.7)$ and
+$[0.7,1]$. We report counts, MAEs and paired differences within each occupied bin.
+These are descriptive strata of an existing cohort, not an independently calibrated
+applicability-domain threshold. In particular, similarity to endpoint training and
+membership in a response-source dataset are different quantities. The exact
+molecule-level similarities, predictions and bootstrap intervals are supplied in
+\texttt{results/journal\_20261002/}.
+
+\subsection*{S17. Computation-only response control}
+
+A separate source-composition analysis combines ten descriptors derived
+solely from computed source targets: COSMOtherm water free energy, uncorrected OpenFF
+and GBn2 free energies, SMD(water), and the six ConfSolv summaries. It excludes all
+five empirical Abraham parameters and both experimental residual corrections.
+The ten descriptors are added to the same 2,265 structural features, with unchanged
+five-fold ARROW evaluation, endpoint labels, sample weights, trees and three seeds.
+The comparison was specified before fitting this additional control. It measures
+whether computed-source descriptors alone improve this learner; it is distinct from
+the original three-descriptor computation-core ablation. After the ARROW comparison,
+we specified an extension of the same fixed ten-descriptor model to the external
+cohort. The OpenFF and GBn2 components are recovered directly from the original
+packaged surrogates. Before fitting, their corrected sums must reproduce the frozen
+external response cache to within $10^{-10}$ kcal mol$^{-1}$. All other response
+descriptors come from that cache. The external fit uses all 1,365 endpoint labels
+with the original weights and seeds. Both stages, exact predictions and input hashes
+are retained; the extension is explicitly retrospective.
+
+\input{supplementary_submission/endpoint_methods.tex}
+\input{supplementary/source_architecture_methods.tex}
+
+\section*{Supplementary Notes}
+
+\subsection*{S1. Identity relationship to FreeSolv}
+
+Eighty of the 85 ARROW reference connectivities have a FreeSolv identity. This fact
+does not establish the provenance of every experimental value in the ARROW study.
+It instead determines the leakage rule: those connectivities were removed from all
+external supervised sources before endpoint or surrogate fitting. The frozen SolvAI
+artifact is therefore not evaluated over unfiltered FreeSolv and no generic FreeSolv
+state-of-the-art claim is made.
+
+\subsection*{S2. Interpretation of alternative supervision}
+
+Non-improving features are not interpreted as evidence that their underlying
+physical methods are inaccurate. A response can fail downstream because it is
+poorly predicted from structure, redundant with existing coordinates, mismatched to
+the endpoint or supported by too few labels. Compact ConfSolv summaries outperform
+larger graph and feed-forward latent representations in the matched exploratory
+screen. Sparse PIMD2 response produces physically recognizable trends but not the
+precision required for hydration-free-energy integration. These observations
+motivate the three considerations stated in the main text: relevance, structural
+learnability and non-redundancy. The screens do not isolate their individual causal effects.
+
+\clearpage
+\section*{Supplementary Data}
+
+The first five numbered groups are supplied under \nolinkurl{paper/supplementary_data/}
+in the repository and source-data archive. CSV files are the archival tables;
+XLSX files provide corresponding worksheets. The filenames below are relative to
+that directory.
+
+\begin{description}[style=nextline,leftmargin=0pt,labelindent=0pt,labelwidth=0pt,labelsep=0pt,font=\bfseries]
+\item[Supplementary Data 1: experiment ledger.]
+\nolinkurl{Supplementary_Data_1_experiment_ledger.csv} and the same stem with
+\texttt{.xlsx} record the evaluated scientific experiments, including non-retained branches.
+\item[Supplementary Data 2: molecule-level predictions.]
+\nolinkurl{Supplementary_Data_2_molecule_predictions.csv} and \texttt{.xlsx}
+contain experimental values, ARROW/PIMD8 values and held-out SolvAI predictions.
+\item[Supplementary Data 3: validation assignments.]
+\nolinkurl{Supplementary_Data_3_split_assignments.csv} contains molecular identities,
+family, scaffold and cluster assignments; the \texttt{.xlsx} file additionally
+contains repeated-partition folds. Primary folds are included in Supplementary
+Data~2. Complete chemical-exclusion details are supplied in
+\nolinkurl{results/confirmatory/} alongside the analysis outputs.
+\item[Supplementary Data 4: response and endpoint provenance.]
+\nolinkurl{Supplementary_Data_4_teacher_priors.csv} defines the 15 descriptors;
+\nolinkurl{Supplementary_Data_4_teacher_sources.csv} and
+\nolinkurl{Supplementary_Data_4_endpoint_sources.csv} describe their sources.
+\nolinkurl{Supplementary_Data_4_teacher_manifests.xlsx} collects these tables and
+the identity audit. Source versions, licenses and hashes are documented in
+\nolinkurl{repro/DATA_PROVENANCE.md} and the linked manifests.
+The artifact filenames retain their original identifiers.
+\item[Supplementary Data 5: external-cohort validation.]
+\nolinkurl{Supplementary_Data_5_tier_a_predictions.csv},
+\nolinkurl{Supplementary_Data_5_tier_a_qualification.csv} and
+\nolinkurl{Supplementary_Data_5_tier_a_external_validation.xlsx} provide matched
+predictions, eligibility decisions and response-source exposure.
+\item[Supplementary Data 6: endpoint architectures and size diagnostics.]
+\nolinkurl{results/endpoint_models_20261006/} contains the model/ablation metrics,
+held-out and unlabelled-series predictions, paired comparisons, size aggregates,
+native predictive intervals, selection specification and publication manifest.
+\nolinkurl{repro/endpoint_models/README.md} describes reproduction and restricted
+training-context dependencies. Legacy stochastic-encoding rows are explicitly
+marked and are excluded from valid comparisons. Corrected original-comparison
+tables replace the MoLFormer rows without overwriting the earlier source archive.
+\end{description}
+
+\clearpage
+\section*{Supplementary Tables}
+Where used, boldface identifies the best displayed point estimate within the
+comparison specified for that table; it does not establish statistical superiority.
+
+\subsection*{Supplementary Table 1 | SolvAI response descriptors}
+\small
+\input{supplementary/tables/response_priors.tex}
+\normalsize
+
+\subsection*{Supplementary Table 2 | Source-specific confirmatory filtering}
+\small
+\resizebox{\textwidth}{!}{\input{supplementary/tables/source_provenance.tex}}
+\normalsize
+
+\subsection*{Supplementary Table 3 | Public endpoint-label sources}
+\small
+\input{supplementary/tables/endpoint_sources.tex}
+\normalsize
+
+\subsection*{Supplementary Table 4 | Complete repeated-partition values}
+\small
+MAE is in kcal mol$^{-1}$; each repeat is a complete five-fold partition.
+Boldface marks the lower MAE within each repeated partition.
+\par\smallskip\noindent
+\input{supplementary/tables/repeat_values.tex}
+\normalsize
+
+\subsection*{Supplementary Table 5 | Global chemical-separation results}
+\small
+MAE is in kcal mol$^{-1}$. NN denotes the nearest-neighbor similarity exclusion
+threshold: endpoint-training rows at or above that threshold are removed.
+Boldface marks the lower MAE within each separation regime.
+\par\smallskip\noindent
+\input{supplementary/tables/global_separation.tex}
+\normalsize
+
+\subsection*{Supplementary Table 6 | Diagnostic family errors}
+\small
+Fixed-partition out-of-fold response-augmented ExtraTrees errors, grouped by diagnostic family; these are
+not family-held-out predictions. MAE is in kcal mol$^{-1}$.
+\par\smallskip\noindent
+\input{supplementary/tables/family_errors.tex}
+\normalsize
+
+\subsection*{Supplementary Table 7 | Release-artifact hashes}
+\scriptsize
+\resizebox{\textwidth}{!}{\input{supplementary/tables/artifact_manifest.tex}}
+\normalsize
+
+\subsection*{Supplementary Table 8 | Runtime measurements}
+\small
+\input{supplementary/tables/runtime.tex}
+\normalsize
+
+\subsection*{Supplementary Table 9 | Equal-weight ARROW sensitivity}
+\small
+All error measures are in kcal mol$^{-1}$.
+Boldface marks the lower value for each error measure in this matched pair.
+\par\smallskip\noindent
+\input{supplementary/tables/weight_one_sensitivity.tex}
+\normalsize
+
+\subsection*{Supplementary Table 10 | External validation}
+\small
+All error measures are in kcal mol$^{-1}$; the strict 97 are a subset of the 220.
+Boldface marks the lower error separately for each cohort and measure.
+\par\smallskip\noindent
+\resizebox{\textwidth}{!}{\input{supplementary/tables/tier_a_external.tex}}
+\normalsize
+
+\clearpage
+\subsection*{Supplementary Table 11 | Molecular-model comparisons}
+\small
+All error measures are in kcal mol$^{-1}$. For MoLFormer and Uni-Mol, ``+ responses''
+retains the structural descriptors and adds the 15 response descriptors; it does
+not replace the structural input. Boldface marks the lowest displayed error
+within each cohort and measure among the methods in this table only.
+\input{supplementary/tables/journal_baselines.tex}
+\normalsize
+
+\clearpage
+\subsection*{Supplementary Table 12 | Paired molecular-model comparisons}
+\small
+Differences are candidate minus reference MAE in kcal mol$^{-1}$; negative values
+favor the candidate. Intervals use 100,000 molecule resamples and are descriptive,
+without multiplicity correction. The strict set is a subset of the external set.
+Model labels follow Supplementary Table~11; ``+ responses'' also retains structure.
+\input{supplementary/tables/journal_comparisons.tex}
+\normalsize
+
+\clearpage
+\subsection*{Supplementary Table 13 | Extended endpoint comparisons}
+\small
+All errors are in kcal mol$^{-1}$. Full predictions average five seeds for neural
+and TabPFN fits and three for the tree controls. The last column recomputes MAE
+using only the three shared seeds. No-response controls inherit selected recipes.
+Count- and width-adaptive rows are selection policies, not additional architectures.
+The three reported cohorts are not independent: Strict-97 is nested within External-220.
+Boldface marks the lowest displayed error within each cohort and measure among
+all rows, including no-response fits and selection policies; it does not imply
+statistical superiority.
+\input{supplementary/tables/endpoint_metrics.tex}
+\normalsize
+
+\clearpage
+\subsection*{Supplementary Table 14 | Matched response contrasts across endpoints}
+\small
+Within each endpoint, response-minus-no-response MAE and descriptive 95\%
+paired molecule-bootstrap intervals, in kcal mol$^{-1}$; 100,000 resamples
+without multiplicity adjustment. Negative values favor adding responses.
+The candidate always includes responses; ``No response'' is its matched ablation.
+Boldface marks the largest within-endpoint reduction in each cohort, not the
+lowest absolute endpoint error.
+\input{supplementary/tables/endpoint_comparisons.tex}
+\normalsize
+
+\clearpage
+\subsection*{Supplementary Table 15 | Exploratory size holdout}
+\small
+The same 205 held-out molecules and 1,160 training labels are used for every row.
+All fits average three seeds. Errors are in kcal mol$^{-1}$; the last column
+is each endpoint's response-minus-no-response MAE, not a cross-endpoint ranking.
+Cross-endpoint paired intervals are in Supplementary Data~6,
+\nolinkurl{size_diagnostic_comparisons.csv}.
+These development labels were available in earlier random-fold evaluation.
+Boldface marks the lowest displayed MAE in each absolute-error column and the
+largest response-associated reduction in the within-endpoint difference column.
+\input{supplementary/tables/endpoint_size.tex}
+\normalsize
+
+\subsection*{Supplementary Table 16 | Native TabPFN interval coverage}
+\small
+Intervals are central quantiles of the equal five-model predictive mixture.
+Widths are in kcal mol$^{-1}$; no external calibration was applied.
+\input{supplementary/tables/endpoint_uncertainty.tex}
+\normalsize
+
+\clearpage
+\subsection*{Supplementary Table 17 | Source-surrogate learner challenge}
+\small
+Independent random-source-test scores are MAE divided by each target's training
+standard deviation and averaged equally within each source family. Lower is
+better; scores are not comparable across families or with hydration MAE.
+Boldface marks the lowest displayed \emph{test} point estimate in each row, not
+the selected model. Selection used only source-development folds and retained
+Abraham's tree even though its unselected hybrid is bold here. The two released
+D-MPNN source families were not re-screened.
+\par\smallskip\noindent
+\input{supplementary/tables/source_architecture_screen.tex}
+\normalsize
+
+\subsection*{Supplementary Table 18 | Downstream source-model substitutions}
+\small
+Hydration MAE is in kcal mol$^{-1}$; Strict-97 is nested in External-220.
+The size diagnostic is a separate 205-molecule endpoint refit, not a global
+source-unseen size test. \emph{Tree refit} uses a common cross-fitting protocol
+for the four challenged source families; \emph{selected} substitutes the two
+source-validation-selected OpenFF and GBn2 hybrids. Comparisons between those
+two rows within the same endpoint head hold labels, folds, features and learner
+fixed. \emph{Released} uses the original frozen response matrix and is retained
+as a second reference. Boldface marks the lowest displayed point estimate in
+each column, not a statistically established winner.
+\par\smallskip\noindent
+\input{supplementary/tables/source_architecture_downstream.tex}
+\normalsize
+
+\clearpage
+\section*{Supplementary Figures}
+
+\begin{center}
+\includegraphics[width=\textwidth]{Supp_Fig1_residuals.pdf}
+\end{center}
+\noindent\textbf{Supplementary Figure 1 | Molecule-level prediction and residuals.}
+\textbf{a}, Confirmatory response-augmented ExtraTrees OOF prediction against experiment. \textbf{b}, Signed
+residual (prediction minus experiment) against experimental hydration free energy.
+\textbf{c}, Distribution of the paired absolute-error change, responses minus the
+matched structure-only endpoint; negative values favor responses.
+
+\vspace{1.2em}
+\begin{center}
+\includegraphics[width=\textwidth]{Supp_Fig2_provenance.pdf}
+\end{center}
+\noindent\textbf{Supplementary Figure 2 | Source-specific provenance and standardized
+identity exclusion.} Counts before exclusion, removed counts and retained counts
+are shown in their native source units. The audit removed standardized benchmark equivalents before the
+confirmatory surrogate refits; no endpoint experimental label was removed.
+
+\clearpage
+\begin{center}
+\includegraphics[width=0.88\textwidth]{Supp_Fig3_alternatives.pdf}
+\end{center}
+\noindent\textbf{Supplementary Figure 3 | Alternative physical-supervision routes.}
+Exploratory fixed screens of additional diagnostic, latent and hierarchy features.
+\textbf{a}, Source and representation screens use a one-seed SMD(water) plus ConfSolv
+development base (0.1919 kcal mol$^{-1}$), whereas the final 15-coordinate
+result averages three seeded fits. \textbf{b}, Multi-$\lambda$ ablations use
+a separate fixed SMD(water) plus ConfSolv baseline (0.1959 kcal mol$^{-1}$).
+Each dashed line marks the
+corresponding control; gray segments connect that control to each screened
+alternative. These experiments were not used to select the confirmatory controls.
+OpenFE denotes the Open Free Energy toolkit; MLFF denotes machine-learning force
+field; DES370K denotes the roughly 370,000-geometry intermolecular-interaction
+dataset; FFN denotes feed-forward network.
+
+\vspace{1.2em}
+\begin{center}
+\includegraphics[width=\textwidth]{Supp_Fig4_lambda_response.pdf}
+\end{center}
+\noindent\textbf{Supplementary Figure 4 | Multi-$\lambda$ response experiment.}
+\textbf{a}, OOF response-head error at three coupling states. \textbf{b}, Matched
+endpoint consequences. \textbf{c}, Separately scaled error obtained by direct
+integration of the predicted curve with fold-local affine calibration (diamond).
+
+\clearpage
+\begin{center}
+\includegraphics[width=\textwidth]{Supp_Fig5_extrapolation.pdf}
+\end{center}
+\noindent\textbf{Supplementary Figure 5 | Molecular errors by chemical family.}
+Individual fixed-partition response-augmented ExtraTrees errors are grouped by diagnostic chemical
+family; ticks show family means and labels give sample sizes. Global separation
+results are shown in Fig.~\ref{M-fig:transfer}a,b.
+
+\clearpage
+\begin{center}
+\includegraphics[width=\textwidth]{Supp_Fig6_evaluation_protocol.pdf}
+\end{center}
+\noindent\textbf{Supplementary Figure 6 | Select graph-model duration without using
+held-out labels.} \textbf{a}, Within each outer-training set and seed, a deterministic
+15\% of each label source is reserved for inner validation. The epoch with the lowest
+unweighted validation MAE is selected, subject to an 80-epoch cap and patience 12.
+A model reinitialized from its original random or CheMeleon starting weights is
+then refitted on all outer-training labels for that
+many epochs, with a newly fitted training scaler. \textbf{b}, Selection and refitting
+are repeated for seeds 11, 29 and 47. Their predictions are averaged before comparison
+with held-out labels. The five ARROW folds and one all-training external fit give
+36 seed-level runs across the scratch D-MPNN and fine-tuned CheMeleon models. The
+colored vectors represent predictions for held-out molecules, not new training inputs.
+
+\clearpage
+\begin{center}
+\includegraphics[width=\textwidth]{Supp_Fig7_conformer_targets.pdf}
+\end{center}
+\noindent\textbf{Supplementary Figure 7 | Conformer-resolved sources teach a molecular
+equilibrium response.} \textbf{a}, Three illustrative conformers of
+1,2-dimethoxyethane share one molecular equilibrium hydration target; they do not have
+separate experimental endpoint labels. \textbf{b}, Gas and water conformer energies
+are normalized separately to their phase-specific minima, giving $g_i$. The
+correction $C=-RT\ln\sum_i\exp(-g_i/RT)$ summarizes the supplied ensemble. Energy
+levels and their connecting lines are schematic, not measured ConfSolv energies.
+\textbf{c}, The six predicted summaries are the gas and water corrections, ensemble
+hydration minus the solvation energy of the lowest-gas-energy conformer, the population
+standard deviation of conformer solvation energies, and the arithmetic mean and
+population standard deviation of $\Delta g_i$. All energies are in kcal mol$^{-1}$.
+These summaries do not assert complete conformational sampling, and no conformer
+ensemble is regenerated at deployment.
+
+\clearpage
+\begin{center}
+\includegraphics[width=\textwidth]{Supp_Fig8_endpoint_mechanisms.pdf}
+\end{center}
+\noindent\textbf{Supplementary Figure 8 | Local averaging and neural feature combination.}
+\textbf{a}, ExtraTrees selects a leaf in each randomized tree and averages its
+stored value. \textbf{b}, A residual MLP learns corrections alongside identity
+paths. \textbf{c}, Separate structural and response branches are concatenated
+before a joint head. Illustrations explain mechanisms, not exact layer widths or
+tree counts. Numerical callouts refer to the evaluations in Table~2, not theoretical
+properties of the architectures. All mechanism diagrams use editable vector
+geometry; they are explanatory schematics, not data-derived plots.
+
+\clearpage
+\begin{center}
+\includegraphics[width=\textwidth]{Supp_Fig9_endpoint_mechanisms.pdf}
+\end{center}
+\noindent\textbf{Supplementary Figure 9 | Baselines, graph aggregation and pretrained encodings.}
+\textbf{a}, Ridge predicts a continuous baseline and a network learns the remaining
+target, $y-b(x)$, during training; inference adds the baseline and predicted residual
+without access to the query's target. \textbf{b}, One graph variant combines summed and mean atom states
+with atom-count information; a separate atomic-plus-global variant is also tested.
+The summaries are concatenated, not numerically equated or treated as independent
+free-energy contributions. \textbf{c}, MoLFormer is frozen, while the downstream
+head learns to combine its representation with structural and response information.
+Schematics omit layer detail; all source surrogates remain fixed.
+
+\clearpage
+\begin{center}
+\includegraphics[width=\textwidth]{Supp_Fig10_endpoint_mechanisms.pdf}
+\end{center}
+\noindent\textbf{Supplementary Figure 10 | Shared ensembles, in-context inference and a representation control.}
+\textbf{a}, TabM shares weight matrices while member-specific input/output
+modulations within its layers produce 32 predictions. Three paths are shown for
+clarity; the mean is used. \textbf{b}, TabPFN conditions on labelled training rows
+and an unlabelled query using pretrained weights. No query label is supplied and
+no gradient fine-tuning is done here. Feature recipes vary by partition (S19).
+\textbf{c}, Frozen MoLFormer features are combined with structural and response
+features before an ExtraTrees endpoint, isolating a representation change while
+retaining leaf-value averaging. Three representative trees are shown, not the full ensemble.
+
+\clearpage
+\begin{center}
+\includegraphics[width=\textwidth]{Supp_Fig11_uncertainty.pdf}
+\end{center}
+\noindent\textbf{Supplementary Figure 11 | Native predictive intervals require calibration.}
+\textbf{a}, Empirical versus nominal coverage for the equal five-model TabPFN
+mixture; the dashed diagonal marks nominal coverage. \textbf{b}, Corresponding
+mean interval widths. Strict-97 is nested in External-220. These intervals are
+shown in teal for External-220 and gray for Strict-97 in both panels. They are
+evaluated without external calibration, and their undercoverage is not represented
+by seed dispersion. Connecting lines guide the eye between the two assessed levels.
+
+\clearpage
+\begin{center}
+\includegraphics[width=\textwidth]{Supp_Fig12_optimization.pdf}
+\end{center}
+\noindent\textbf{Supplementary Figure 12 | Training duration and capacity challenges.}
+\textbf{a}, Mean three-split inner-validation changes at seed 47 for the
+1,200-epoch cosine challenge relative to the ordinary schedule, one dot per outer
+partition and family. \textbf{b}, Corresponding changes when width is expanded
+from 256 to 512 for qualifying configurations. Negative favors the challenge;
+the dotted line marks $-0.005$ kcal mol$^{-1}$. Retention also requires improvement
+in at least two of the three pairs. These are inner-validation scores, not test
+results, and the duration challenge also changes the learning-rate schedule.

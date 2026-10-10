@@ -1,0 +1,17 @@
+{
+  "role": "conceptual_illustration_not_scientific_data",
+  "source": "paper/figures/journal/teaser_components/endpoint_lens_v1.png",
+  "source_sha256": "ba9c2aa156f9c2b462d889d4c54958e63c526c3822a2e963325208be40e492b2",
+  "output": "paper/figures/journal/teaser_components/endpoint_lens_white.png",
+  "output_sha256": "8b90ee93b95af8ff52445689733ba97a6aa6deadff83dbbcae5ac800ede8ff49",
+  "background_rgb": [
+    255,
+    255,
+    255
+  ],
+  "background_rule": "RGB minimum >= 238 and channel range <= 12",
+  "reset_pixels": 1153358,
+  "total_pixels": 1572864,
+  "verified_border_px": 24,
+  "verified_center_px": 100
+}

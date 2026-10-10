@@ -1,0 +1,184 @@
+\subsection*{S18. Endpoint architecture and optimization study}
+
+The study reuses the 1,280 public labels, 85 ARROW labels, 220 external identities
+and original five-fold ARROW assignments. Source-surrogate weights, targets and
+experimental labels are unchanged. It is retrospective, with adaptive development
+before a final selection lock; it is not a new prospective validation. Final outer
+predictions are made only after training-side selection is complete. The common
+selection score averages public-source and ARROW-source validation MAE equally.
+Three random inner splits each hold out 15\% of each eligible source, using seeds
+$640601+j$ for $j=0,1,2$. Public training rows have loss weight 1 and ARROW rows
+weight 3. No external label participates in these fits or inner decisions.
+
+The initial 52-candidate list covers residual MLPs, dual-branch networks,
+ridge-plus-neural residuals, pretrained-encoding heads and directed message passing.
+Tabular residual blocks apply layer normalization, two linear transforms with GELU
+activation and dropout, then add an identity skip. The dual architecture keeps a
+separate 32-unit response branch before concatenating it with the structural branch.
+The ridge model fits a training-only linear baseline with regularization 10 to the
+scaled RDKit and response columns, then trains a residual network on the remaining
+target. This is not a ridge model on seven selected responses with a tree residual.
+The graph variants use Chemprop bond message passing with either summed and mean
+atom embeddings plus atom count, or summed learned atomic outputs plus a global
+correction. These readouts carry size information but do not impose exact additivity
+of the full free-energy predictor. Frozen-encoder neural heads use separate
+structure/encoding and response branches.
+
+Candidate configurations vary widths 32--256, depth, dropout 0--0.2, learning rates
+from $3\times10^{-4}$ to $3\times10^{-3}$, weight decay, squared or Huber loss,
+and plateau-reduced or cosine schedules. AdamW and batch size 128 are used.
+Ordinary neural fits have a 600-epoch cap. Median imputation, constant-column
+removal and numerical scaling are fitted inside each training split; response
+columns are retained even if constant. Binary Morgan bits remain unscaled.
+The skewed Ipc descriptor is transformed by $\log(1+\max(\mathrm{Ipc},0))$ or
+removed; BertzCT and Kappa1--3 use signed-log transforms. Physical counts, mass
+and surface descriptors are not clipped to the training range. Count-based
+fingerprints and later raw-count, log-count and no-fingerprint variants test whether
+loss of multiplicity in binary Morgan features limits size response.
+
+Each candidate is screened on split 0 at seed 11. The best two per family proceed
+to three splits and seeds 11/29. The family winner is challenged with a 1,200-epoch
+cosine schedule on the same three splits at seed 47, against its ordinary schedule.
+The longer schedule is retained only if mean validation MAE decreases by more than
+0.005 kcal mol$^{-1}$ and at least two of three pairs improve. A retained long
+schedule is completed at seeds 11/29, giving nine inner fits. Thus this challenge
+changes both duration and learning-rate trajectory, not duration alone. Fresh
+outer fits use the median selected epoch and the inner-derived schedule. A width
+boundary challenge expands selected 256-unit models to 512 units when a family
+selected the upper width in at least four of six partitions; graph message dimension
+is expanded as well. The same paired improvement rule determines retention.
+
+TabM adds 12 configurations spanning three fingerprint treatments and four width,
+depth, dropout and numerical-embedding settings. Each model uses 32 parameter-sharing
+ensemble members; their mean is the prediction.\cite{tabm2025} The study uses TabM
+0.0.3 and rtdl-num-embeddings 0.0.12. Representation refinements and the width
+extension are retained as explicit selection variants, not relabelled as separate
+architectures. Nine of 24 width challenges passed to nine-repeat completion.
+All 81 retained wider-fit optima occur before 95\% of their training horizon.
+Longer schedules were selected in all six corrected-MoLFormer partitions, five
+dual and TabM partitions, three graph partitions, and two residual-MLP and ridge
+partitions. Supplementary Fig.~12 shows the paired duration and width diagnostics.
+
+The search contains 1,812 inner evaluation records, including 174 TabPFN context
+evaluations. Gradient-based runs total 1,018,212 epochs; TabPFN's 2,112 internal
+ensemble passes are not gradient epochs. Summed fitting time is 45.06 hours across
+overlapping workers, not elapsed time or GPU-hours. The defined search and boundary
+checks completed, but do not exhaust all architectures, regularization choices or
+training-data interventions. Full candidate lists and per-partition decisions are
+in Supplementary Data~6. Final comparisons retain every family, not only the global
+selector. Matched no-response models inherit the response model's recipe, so the
+comparison does not estimate each structural-only architecture's best achievable error.
+
+\subsection*{S19. Pretrained representations and TabPFN configuration}
+
+The earlier MoLFormer cache used evaluation mode without enabling the model's
+\nolinkurl{deterministic_eval} option. Stochastic attention projections remained
+active. All 1,585 study representations and 56 stress-series representations were
+therefore regenerated from the same checkpoint with both settings enabled, and
+all valid MoLFormer endpoint comparisons were refitted. Identical repeated encoding
+gave zero change; changes in query order and batching produced representation
+differences below $3\times10^{-5}$. Fresh encoding through endpoint prediction
+agreed within $4.9\times10^{-6}$ kcal mol$^{-1}$. Corrected fixed-tree results
+replace the earlier cache-based values in Fig.~\ref{M-fig:modern} and Supplementary Tables~11--12.
+Legacy stochastic-cache branches remain labelled in the released diagnostic data
+and are excluded from valid-model selection and the manuscript's performance
+comparisons. Uni-Mol's conformer pipeline and the packaged ExtraTrees endpoint are
+unaffected. Original encoder pretraining membership remains unaudited.
+
+TabPFN-3.5 uses \texttt{tabpfn} 9.1.0 and full/Fast checkpoints from revision
+\nolinkurl{06bf2ba35c80a92a3b9abb436b99cf49e7a0365e} of
+\nolinkurl{Prior-Labs/tabpfn_3_5}.\cite{tabpfn35} Checkpoint SHA-256 values are
+recorded in Supplementary Data~6. This specific software release is distinguished
+from the earlier tabular foundation-model paper.\cite{tabpfn2025} We use its
+pretrained weights without fine-tuning. Inputs retain training-fitted native
+preprocessing, including feature subsampling/ranking and target transformations.
+The use of a transformer endpoint therefore does not mean that all preprocessing
+or the six source-surrogate families are neural.
+
+Eight candidates combine full/Fast weights with four recipes: RDKit plus binary
+Morgan bits; RDKit plus raw Morgan counts; RDKit alone; or RDKit plus the corrected
+MoLFormer representation. Each has the 15 responses in its full condition.
+The best two screen candidates receive repeated inner evaluation. Training-side
+challenges compare one versus three copies of each eligible ARROW context row,
+and eight versus 32 ensemble passes, using the same greater-than-0.005 and
+two-of-three improvement rule. Context repetition occurs after splitting and
+does not create new independent observations or equal weighted gradient fitting.
+All selected recipes use the full checkpoint and three ARROW copies. The selected
+ARROW folds 0--4 use respectively raw counts/8 passes, no fingerprint/32,
+no fingerprint/8, raw counts/32, and MoLFormer without fingerprint/8. The external
+fit uses MoLFormer without fingerprint and eight passes. These are a per-partition
+selection policy, not one identical input recipe across folds.
+
+The comprehensive policy selects the eligible option with lowest repeated inner
+score independently in each partition. It selects TabPFN in all six partitions.
+Five-seed final predictions use seeds 11, 29, 47, 71 and 101; controls remove only
+the responses. Common-three-seed means address the unequal ensemble size relative
+to the three-seed ExtraTrees fits. Every fitted-state replay and final identity/label
+audit passed. Licensed TabPFN weights and fitted contexts are retained privately;
+contexts embed training labels and are not public model-weight substitutes.
+
+\subsection*{S20. Size holdout, homologue series and label influence}
+
+The size split ranks molecules by descending heavy-atom count within public and
+ARROW sources, breaking ties by identity. The largest 15\% comprise 192 public
+and 13 ARROW molecules, leaving 1,160 training rows. Training heavy-atom counts
+range from 0 to 17 and holdout counts from 8 to 37; 188 holdout molecules exceed
+the global training maximum. Models use their locked external-fit recipes and
+three fresh seeds. ExtraTrees is refitted on these 1,160 rows rather than evaluated
+using release weights that have seen the held-out labels. No size score affects
+selection. Since the held-out labels participated in earlier random-fold
+development, intervals describe this exploratory split, not prospective selection-free
+performance on new molecules. Supplementary Table~15 gives all valid family results.
+The 13 ARROW molecules retain their original exclusion from supervised source
+tables. No analogous source-disjoint guarantee is made for the 192 public molecules:
+source models and source-OOF features remain fixed, with no size-specific source
+refitting or exposure audit. Accordingly, this is a conditional endpoint comparison,
+not a validation of fully source-unseen size extrapolation.
+
+The unlabelled grid contains linear C1--C30 alkanes and Ac-(Gly)$_n$-NHMe and
+Ac-(Ala)$_n$-NHMe for $n=0,\ldots,12$. The two zero-residue rows represent the
+same N-methylacetamide molecule, so 56 rows are not 56 unique structures. All
+positive-length peptides are absent from endpoint training; N-methylacetamide is
+present. The longest glycine and alanine examples contain 53 and 65 heavy atoms,
+respectively, beyond the maximum 37 in the original training pool. Binary Morgan
+fingerprints are identical across $n=2,\ldots,12$ within either peptide family and
+across C7--C30 alkanes. Count fingerprints, RDKit descriptors and some predicted
+responses still change, so the entire input does not freeze. An initial neural
+failure involved very large Ipc excursions; the present transformed-input study
+avoids that numerical failure without establishing physical accuracy.
+
+For ExtraTrees, each leaf value is an average of eligible training labels and the
+ensemble output is an average of leaf values. Averaging each tree's minimum and
+maximum leaf values gives an outer prediction bound, not necessarily a jointly
+attainable extremum. The released ensemble bound is $[-32.5945,5.7565]$
+kcal mol$^{-1}$. TabPFN's mean is a convex combination of finitely many bin means
+on its fitted raw-target scale; averaging seedwise extrema gives the wider outer
+bound $[-658.4946,649.9221]$. Its edge distributions can have unbounded tails
+without an unbounded mean. Changing this bound is not a proof of size extensivity.
+
+Only C17, C29 and C30 are absent from endpoint training. C14 and C16 labels of
+2.16 and 1.22 kcal mol$^{-1}$ are faithful rounded means of SoluteML's linked
+CompSol records (C14: 68956/68957; C16: 67229/67230). The revised CompSol archive
+retains these binary-mixture records. Critical IUPAC--NIST evaluations identify
+disagreement in the underlying solubility measurements and do not recommend a
+best solubility value (\url{https://srdata.nist.gov/solubility/sol_detail.aspx?sysID=38_354}
+and \url{https://srdata.nist.gov/solubility/sol_detail.aspx?sysID=38_389}).
+We did not convert an extrapolated trend into a replacement label. A same-recipe
+three-seed refit omitting only C14/C16 raises their predictions from 2.858/2.206
+to 4.118/4.204 kcal mol$^{-1}$. This isolates substantial label influence but
+does not establish that the refitted predictions are correct. All principal
+architecture comparisons retain the original labels.
+
+\subsection*{S21. Native predictive intervals}
+
+For the five final external TabPFN fits, each predictive distribution is expressed
+on the same raw kcal mol$^{-1}$ grid. Equal-weight mixture cumulative probabilities
+are inverted to obtain central 80\% and 95\% intervals, rather than averaging
+individual quantiles. Reconstructed means agree with stored predictions within
+$1.4\times10^{-5}$ kcal mol$^{-1}$. The external 220 labels and strict 97 subset
+are used to assess, not calibrate, coverage. At 80\%, 128/220 and 54/97 labels
+are covered; at 95\%, 176/220 and 74/97 are covered. Supplementary Table~16 also
+reports interval widths. These undercoverage rates preclude describing the native
+intervals as calibrated reliability estimates. Seed dispersion and bootstrap
+intervals for mean errors are different quantities. No peptide coverage can be
+measured without reference free energies.

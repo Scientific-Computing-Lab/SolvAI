@@ -210,6 +210,8 @@ class Art:
 
     def embed_plot(self,fig,x,y,w,h,prefix):
         from matplotlib.text import Text
+        from journal_style import polish_figure
+        polish_figure(fig)
         for item in fig.findobj(match=Text):
             text = item.get_text().replace('mol⁻¹', 'mol$^{-1}$')
             item.set_text(re.sub(r'(?<![\w{}$-])-(?=\d)', '−', text))

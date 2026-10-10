@@ -1,4 +1,4 @@
-\documentclass[10pt]{article}
+\documentclass[12pt]{article}
 \usepackage[a4paper,margin=2.0cm]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
@@ -12,6 +12,7 @@
 \usepackage[colorlinks=true,allcolors=blue]{hyperref}
 \usepackage{xurl}
 \usepackage{bookmark}
+\usepackage{lineno}
 \hypersetup{pdftitle={A reusable solvent-response framework for molecular hydration prediction},
   pdfauthor={Gal Oren, Boris Fain, Michael Levitt},bookmarksopen=true}
 \newcommand{\doi}[1]{\href{https://doi.org/#1}{\nolinkurl{https://doi.org/#1}}}
@@ -45,16 +46,20 @@
   \IfBooleanTF{#1}{\journalOriginalSubsection*{#3}\addcontentsline{toc}{subsection}{#3}}%
   {\IfNoValueTF{#2}{\journalOriginalSubsection{#3}}{\journalOriginalSubsection[#2]{#3}}}}
 
-\title{A reusable solvent-response framework for molecular hydration prediction%
-\thanks{Project repository, code and data: \url{https://github.com/Scientific-Computing-Lab/SolvAI}.}}
+\title{A reusable solvent-response framework for molecular hydration prediction}
 \author{%
-Gal Oren, Boris Fain and Michael Levitt\\[0.4em]
+Gal Oren$^{*}$, Boris Fain and Michael Levitt$^{*}$\\[0.4em]
 \small Stanford University, Stanford, California, USA
 }
 \date{}
 
 \begin{document}
 \maketitle
+\begin{center}
+\small $^{*}$Correspondence: \href{mailto:galoren@stanford.edu}{galoren@stanford.edu} (G.O.) and
+\href{mailto:levittm@stanford.edu}{levittm@stanford.edu} (M.L.)
+\end{center}
+\linenumbers
 
 \section*{Abstract}
 
@@ -69,13 +74,17 @@ Once trained, SolvAI requires only a molecular SMILES string and performs no new
 solvent simulation. To separate the value of this learned representation from the
 choice of predictor, we evaluate it across diverse endpoint architectures,
 including tree, neural, graph, pretrained molecular and tabular foundation models.
-In a controlled matched evaluation, response augmentation reduces mean absolute
-error from 0.303 to 0.202 kcal mol$^{-1}$ on ARROW-85---on the same accuracy scale
-as the published PIMD8 value of 0.205 kcal mol$^{-1}$---and from 1.532 to 1.153
-kcal mol$^{-1}$ on an external 220-molecule cohort. Different endpoint families
-reveal complementary strengths in interpolation, external transfer and
-generalization to larger molecules, showing that the learned solvent-response
-representation is not tied to a particular model. SolvAI thus converts costly
+In a matched ExtraTrees evaluation, response augmentation reduces mean absolute
+error from 0.303 to 0.202 kcal mol$^{-1}$ on the small-molecule ARROW-85 set
+and from 1.532 to 1.153
+kcal mol$^{-1}$ on an endpoint-disjoint 220-molecule cohort. The ARROW-85 result
+is on the numerical scale of the published PIMD8 value of 0.205 kcal mol$^{-1}$
+on the same solutes; SolvAI's endpoint is trained on experimental hydration labels,
+whereas PIMD8 is a separate physical simulation. Responses improve several
+endpoint families, though their effects and absolute rankings vary by cohort.
+An exploratory size holdout tests mainly molecules larger than those used to
+fit its endpoint models.
+SolvAI thus converts costly
 physical calculations from a per-query procedure into reusable scientific
 supervision for molecular prediction.
 
@@ -126,14 +135,19 @@ solvent response be inferred from structure, combined with experimental hydratio
 labels, and remain useful across predictor families and unfamiliar molecules?
 
 SolvAI is a solvent-response representation coupled to a learned hydration endpoint,
-not a particular endpoint algorithm (Fig.~\ref{fig:concept}). Six sources provide
+not a particular learning algorithm (Fig.~\ref{fig:concept}). Six sources provide
 15 targets: calculated transfer free energies, empirical solute properties and
 summaries of how water changes conformer energies. Separate molecular surrogates
 predict those targets from structure and are then frozen. We use \emph{response
 descriptor} for one of these predicted quantities; the term does not imply a
 derivative with respect to an applied field.
 
-We evaluate the same response representation with tree ensembles, residual and
+This construction leaves two distinct architectural choices: the surrogate that
+learns each source quantity and the endpoint that uses the predicted quantities.
+The source target is unchanged when its surrogate is changed; the hydration
+endpoint can likewise be changed without redefining the 15 response coordinates.
+
+We first evaluate the same response representation with tree ensembles, residual and
 branched neural networks, message-passing graphs, pretrained molecular encoders,
 TabM and TabPFN. Each fixed configuration has a matched fit without responses,
 holding its data and selected input recipe fixed. These paired comparisons are
@@ -142,33 +156,39 @@ both questions on ARROW-85 and an external 220-molecule cohort, then compare
 eight configurations on a separate size holdout. Additional experiments examine
 chemical separation, source composition, molecule-shuffled responses and repeated
 partitions in the ExtraTrees configuration; they were not run for all endpoints.
-The architecture search is retrospective and is reported separately from the
-prespecified controls. This design asks whether a useful response signal persists
-across learners, and where endpoint choice changes interpolation, external
-transfer or behavior outside the training-size range.
+We separately challenge the four originally tree-based source-surrogate families
+with neural and count-aware alternatives while holding their source targets fixed.
+Both architecture studies are retrospective and are reported separately from the
+prespecified controls. Together they ask where the response signal persists across
+learners, and where either learning stage changes interpolation, external transfer
+or behavior outside the training-size range.
 
 \begin{figure}[!htb]
   \centering
-  \includegraphics[width=\textwidth]{F1_overview.pdf}
-  \caption{\textbf{Solvent-response information can be learned once and reused.}
-  \textbf{a}, Gas-to-water transfer illustrates the physical information required
-  for hydration prediction; explicit sampling incurs a new cost for each molecule.
-  \textbf{b}, Six source families supply complementary targets. Separate surrogates
-  learn to predict these quantities from structure and are frozen before endpoint
-  fitting. Colors connect each source to its predicted descriptors; the counts
-  $1+5+1+1+1+6$ sum to 15. OpenFF and GBn2 each combine a physical-energy prediction
-  with a learned experimental residual, $\delta$. A separate hydration predictor
-  combines the predicted responses with structural descriptors and learns from
-  experimental hydration labels. \textbf{c}, Deployment evaluates the frozen
-  surrogates and predictor from a SMILES string, without a new solvent calculation.
-  Molecular structures and solvent shells are explanatory illustrations, not
-  simulated configurations. The six colored streams depict separate information
-  sources, not calculated response fields. The hydration mapping $h$ is
-  architecture-neutral; the tested implementations are compared in Table~\ref{tab:endpoints}.}
+  \includegraphics[width=0.90\textwidth]{F1_overview.pdf}
+  \caption{\textbf{Existing solvent information becomes reusable molecular
+  supervision.} \textbf{a}, Explicit-solvent hydration calculations sample a water
+  ensemble for each molecule to estimate $\Delta G_{\mathrm{hyd}}$. The molecular
+  drawing and solvent halo are schematic, not simulation output. \textbf{b}, Six
+  source datasets teach separate structure-to-response model groups, frozen before
+  endpoint fitting. Their $1+5+1+1+1+6$ predicted coordinates total 15; a group
+  can contain target-specific fits. OpenFF and GBn2 combine a physical-energy
+  prediction with a learned experimental residual. Icons and colored ribbons
+  distinguish sources; they do not depict measured response fields or magnitudes.
+  \textbf{c}, A separate hydration endpoint learns from predicted responses and
+  SMILES-derived structural features using experimental hydration labels. The
+  molecule, fingerprint and RDKit-feature glyphs show input types, not actual
+  feature values. Inference requires only SMILES, with no new solvent calculation.
+  \textbf{d}, Each tile represents one evaluation molecule: 85 source-disjoint
+  ARROW molecules scored out of fold; 220 endpoint-disjoint external molecules,
+  including 123 source-exposed and 97 source-disjoint. Strict-97 is nested in
+  External-220. Identity checks include standardized equivalents. The diagram is
+  architecture-neutral; source learners and endpoints are compared in Supplementary
+  Table~17 and Table~\ref{tab:endpoints}.}
   \label{fig:concept}
 \end{figure}
 
-\FloatBarrier
+\clearpage
 \section*{SolvAI: learning solvent response before hydration free energy}
 
 \subsection*{Two learning tasks with different supervision}
@@ -194,13 +214,15 @@ The endpoint $h$ learns how the predicted source quantities relate to experiment
 rather than assuming that their sum is a physical free energy. We vary $h$ across
 the endpoint families in Table~\ref{tab:endpoints}; graph and pretrained-encoder
 variants can also change the structural representation. The same 15 frozen source
-predictions are available to every response-augmented fit. All are predicted at
-deployment, including those whose source targets were experimental.
+predictions are available to every response-augmented fit in that endpoint study.
+We later vary four source-surrogate families and refit two endpoints with their
+new predictions. All 15 quantities are predicted at deployment, including those
+whose source targets were experimental.
 
 \subsection*{What the response descriptors represent}
 
 The six sources describe different aspects of solvation
-(Table~\ref{tab:sources}; Fig.~\ref{fig:learning}a).
+(Table~\ref{tab:sources}; Fig.~\ref{fig:concept}b).
 Continuum-solvent calculations summarize the energetic response of a solvent model;
 Abraham parameters describe empirical interaction tendencies; corrected explicit- and
 implicit-solvent estimates combine a physical prediction with a learned experimental
@@ -214,8 +236,10 @@ separately in Supplementary Methods~S3.
 The Abraham descriptors quantify excess molar refraction ($E$),
 dipolarity/polarizability ($S$), hydrogen-bond acidity and basicity ($A,B$), and
 gas-to-hexadecane partitioning ($L$). Directed message-passing neural networks
-(D-MPNNs) learn the two continuum-solvent targets; tree models learn the remaining
-targets. Surrogate architectures and training details appear in Methods.
+(D-MPNNs) learn the two continuum-solvent targets in the released implementation;
+tree models learn the remaining targets. Four tree-based source families were also
+challenged with alternative learners (Supplementary Table~17).
+Surrogate architectures and training details appear in Methods.
 
 \begin{table}[!hb]
 \centering\small
@@ -223,11 +247,13 @@ targets. Surrogate architectures and training details appear in Methods.
 Every listed quantity is predicted from molecular structure at inference.
 CombiSolv-QM supplies COSMOtherm targets, SoluteML supplies Abraham parameters, and
 MolSolv supplies SMD(water) targets.
-Complete definitions, units and source counts are in Supplementary Table~1.}
+The last column describes the released implementation, not an architectural
+requirement of the framework. Complete definitions, units and source counts are
+in Supplementary Table~1.}
 \label{tab:sources}
 \begin{tabularx}{\textwidth}{@{}l c X l@{}}
 \toprule
-Source & Number & Predicted quantity & Surrogate \\
+Source & Number & Predicted quantity & Released surrogate \\
 \midrule
 CombiSolv-QM & 1 & COSMOtherm water transfer free energy & D-MPNN \\
 SoluteML & 5 & Abraham $E,S,A,B,L$ interaction parameters & ExtraTrees \\
@@ -248,40 +274,14 @@ connectivities for its response model. These archive counts denote calculations
 and conformer records, whereas the retained training rows are molecule-level
 records (Supplementary Table~1 and Supplementary Fig.~2).
 
-The target is a molecular equilibrium property, which includes conformational
-averaging. A single molecule can have many conformers but does not have a separate
-experimental equilibrium hydration free energy for each one. Our SMILES-based model
-predicts that molecular property, not the hydration energy of a specified geometry
-or a conformationally constrained state. The six ConfSolv descriptors provide
-learned summaries of conformational effects; they do not reconstruct a molecule's
-conformer ensemble at inference. This distinction also motivates our comparison
-with Uni-Mol, a pretrained representation that uses a generated three-dimensional
-conformer.\cite{unimol2023} Supplementary Fig.~7 illustrates the conformational
-targets and their relationship to the molecular equilibrium property.
-
-\begin{figure}[!htb]
-  \centering
-  \includegraphics[width=\textwidth]{F2_learning_and_evaluation.pdf}
-  \caption{\textbf{Source supervision and endpoint labels play different roles.}
-  \textbf{a}, The six source-specific surrogate families comprise two D-MPNN,
-  three ExtraTrees and one LightGBM family, with target-specific fits within
-  the tree-based families, to predict 15 descriptors. The source
-  targets differ; each mapping is frozen before the hydration predictor is fitted.
-  \textbf{b}, An endpoint model $h$ combines these predictions with structural
-  features and learns from the available experimental hydration labels. The
-  symbol $h$ denotes this learned mapping without specifying its architecture;
-  Table~\ref{tab:endpoints} compares the implementations.
-  \textbf{c}, Identity exclusion distinguishes knowledge of a source
-  response from knowledge of the endpoint. All 85 ARROW identities are excluded
-  from the six supervised source tables; each ARROW endpoint prediction is also
-  out of fold. All 220 external molecules are absent from endpoint training. Of
-  these, 97 are additionally absent from every response-source table, whereas 123
-  occur in at least one. The strict 97 are a nested subset, not an independent
-  cohort or a separately fitted model. Identity checks include standardized
-  equivalents. These exclusions concern supervised sources, not membership in
-  the original pretraining corpora of external encoders.}
-  \label{fig:learning}
-\end{figure}
+Hydration free energy is an equilibrium molecular property, averaged over
+conformers, not a separate experimental value for each geometry. Our SMILES-based
+model predicts this property rather than the solvation energy of a constrained
+conformer. The six ConfSolv descriptors summarize conformational effects but do
+not reconstruct an ensemble at inference. This distinction motivates comparison
+with Uni-Mol, a pretrained representation using a generated three-dimensional
+conformer.\cite{unimol2023} Supplementary Fig.~7 illustrates the source summaries
+and equilibrium target.
 
 \FloatBarrier
 \section*{Results}
@@ -321,9 +321,11 @@ its experimental label. The structure-only fit gives an MAE of
 \MatchedMAE{} kcal mol$^{-1}$ (Fig.~\ref{fig:headline}b). Adding the eight COSMOtherm,
 Abraham and corrected-solvent descriptors lowers the error to \NarrowMAE{}; adding
 SMD(water) gives \NarrowSMDMAE{}; and adding the six conformer descriptors reaches
-\SolvAIMAE{} kcal mol$^{-1}$. The last value lies on the same accuracy scale as
-ARROW/PIMD8 (\PIMDMAE{} kcal mol$^{-1}$), although the paired comparison does not
-establish superiority over PIMD8.
+\SolvAIMAE{} kcal mol$^{-1}$. The last value is numerically close to the
+published ARROW/PIMD8 MAE (\PIMDMAE{} kcal mol$^{-1}$) on the same solutes.
+SolvAI's endpoint is fitted to experimental hydration labels, whereas PIMD8
+is a separate physical-simulation reference. The two error values do not
+establish a like-for-like comparison or superiority over PIMD8.
 
 At the molecule level, the response-augmented ExtraTrees endpoint reduces the
 absolute error for 53 of 85 solutes and reduces MAE by \SolvAIReduction{} kcal mol$^{-1}$
@@ -372,7 +374,8 @@ structure only and \WeightOneSolvAIMAE{} kcal mol$^{-1}$ with responses (paired 
   corrected-solvent descriptors, then SMD(water), then six ConfSolv summaries.
   The dashed magenta line marks ARROW/PIMD8 on the same 85 solutes, as an accuracy
   reference rather than an input or training source. \textbf{c}, Paired absolute errors in
-  kcal mol$^{-1}$ for every molecule. Shading marks lower error with responses.
+  kcal mol$^{-1}$ for every molecule. Points below the diagonal mark lower error
+  with responses (teal); gray points do not improve.
   \textbf{d}, MAE change
   for predeclared response blocks relative to structure only; bars are 95\%
   molecule-bootstrap intervals from 100,000 resamples. \textbf{e}, Paired results for five complete split
@@ -454,8 +457,7 @@ response-augmented endpoint:
 respectively. Every paired 95\%
 bootstrap interval lies below zero. Response descriptors therefore retain value away from
 nearby endpoint labels, even where absolute endpoint accuracy is not yet sufficient.
-Molecule-level family errors and the four global separation regimes are expanded in
-Supplementary Fig.~5 and Table~6.
+Molecule-level family errors are shown in Supplementary Fig.~5 and Table~6.
 
 We next removed all 85 ARROW experimental labels from endpoint training. Using only
 the same 1,280 public training labels, the matched structure model gives
@@ -476,10 +478,12 @@ MAE falls from \TierAStructureMAE{} to \TierASolvAIMAE{} kcal mol$^{-1}$ (paired
 change \TierADelta{}; 95\% interval, \TierACILow{} to \TierACIHigh{};
 Fig.~\ref{fig:transfer}d; Supplementary Table~10). Because some molecules occur in response-source
 tables, we also froze a stricter subset of \TierAStrictN{} molecules absent from all
-six response sources. The advantage remains: \TierAStrictStructureMAE{} to
+six response sources. The primary MAE advantage remains: \TierAStrictStructureMAE{} to
 \TierAStrictSolvAIMAE{} kcal mol$^{-1}$ (paired change \TierAStrictDelta{}; 95\%
-interval, \TierAStrictCILow{} to \TierAStrictCIHigh{}). Thus, the response descriptors
-remain beneficial beyond ARROW-85, although absolute errors are substantially larger
+interval, \TierAStrictCILow{} to \TierAStrictCIHigh{}). On Strict-97, median absolute
+error instead rises from 1.102 to 1.244 kcal mol$^{-1}$ (Supplementary Table~10).
+Thus, the response descriptors improve mean absolute error beyond ARROW-85,
+although absolute errors are substantially larger
 on the external set.
 
 The external cohort also permits a direct view of error against distance from
@@ -562,6 +566,55 @@ reported; external errors were not used to retune either model.
   \label{fig:composition}
 \end{figure}
 
+\subsection*{Changing source surrogates changes the transfer trade-off}
+
+The endpoint comparisons above hold the structure-to-response mappings fixed.
+We also tested whether their architectures matter. For Abraham, OpenFF, GBn2 and
+ConfSolv, we compared the released tree model with a binary-fingerprint MLP, a
+count-aware MLP, count-aware ridge regression and ridge regression with a bounded
+neural residual (Supplementary Table~17). The two already-neural
+D-MPNN source families remained fixed. Source-development folds selected a
+surrogate for each family before a separate 20\% source test was opened; neither
+ARROW nor external hydration errors selected these models (Supplementary Method~S22).
+
+The source-only selection retained the released tree recipes for Abraham and ConfSolv,
+and chose ridge plus a neural residual for OpenFF and GBn2. On the source test,
+their mean target-standardized MAEs decrease from 0.265 to 0.230 and from 0.254
+to 0.239, respectively (Supplementary Table~17). These averages assess the
+separately predicted source targets, not
+the corrected descriptor passed to the endpoint. For OpenFF and GBn2, that
+descriptor is the sum of a calculated-energy prediction and a predicted
+experimental residual. The source-test MAE of the sum changes only from 0.660
+to 0.651 and from 0.718 to 0.683 kcal mol$^{-1}$; both paired intervals include
+zero. The selected OpenFF sum also has a higher MAE point estimate on a separate
+source-size diagnostic, with an interval spanning zero (Supplementary Method~S22).
+Better prediction of individual source targets
+therefore need not improve the corrected coordinate passed to the hydration endpoint.
+
+To test the consequence for hydration, we replaced only the two selected source
+families and refitted the same endpoint heads against a protocol-matched refit
+of the released tree families. With ExtraTrees, ARROW-85 MAE rises from 0.203
+to 0.238 kcal mol$^{-1}$ (a point difference whose paired interval includes
+zero), while External-220 falls from 1.192 to 1.075 and its
+source-disjoint Strict-97 subset from 1.595 to 1.352
+(Supplementary Table~18). The paired
+Strict-97 change is $-0.243$ kcal mol$^{-1}$ (95\% interval, $-0.358$ to $-0.137$).
+Under the ridge-plus-neural-residual endpoint, the corresponding changes are
+small and all three paired intervals span zero. The ExtraTrees endpoint also
+loses accuracy on the exploratory 205-molecule size split. Thus, changing a
+source learner can improve transfer in one matched head without improving
+reference-set accuracy, size transfer or a second head.
+
+This is a challenge of the response layer, not a replacement for the released
+model. The OpenFF and GBn2 residual targets partly use experimental hydration
+values. Exact overlaps between source tables and endpoint molecules received
+source out-of-fold predictions, and all 85 ARROW and 97 strict external
+identities were absent from the supervised source tables. The remaining
+External-220 molecules are not all source-disjoint. Source architecture is
+therefore another design choice in SolvAI, but these retrospective results do
+not establish a universally preferable surrogate or physically correct size
+extrapolation.
+
 \subsection*{When response prediction is insufficient}
 
 The choice of response target affects whether its predicted value improves hydration.
@@ -618,6 +671,16 @@ whether the responses help a given learner, and which complete learner predicts
 most accurately in a particular evaluation. Neither question has a universal
 answer in these data.
 
+The source-learning stage is also open to alternative architectures. A separate,
+source-only selection chose count-aware ridge-plus-neural surrogates for OpenFF and
+GBn2 while retaining trees for Abraham and ConfSolv. Substituting the selected
+pair reduced error on the source-disjoint external subset with one endpoint but
+had a higher ARROW point estimate and worse size-held-out error; the second
+endpoint showed no clear
+error reduction. Architectural modularity is therefore useful for probing where
+information transfers, not a guarantee that replacing a learner improves every
+test. The released source maps and headline estimates remain unchanged.
+
 The controls show why the matched improvement is informative. Within ExtraTrees,
 shuffling the response block among molecules removes the gain, while chemical
 separation and an endpoint-disjoint external cohort retain a response-associated
@@ -627,7 +690,7 @@ response information for that learner; the cross-architecture paired ablations,
 not the shuffled control, establish where analogous benefits occur for other
 endpoints. Pretrained encoders' original pretraining membership was not audited.
 
-Source composition matters as well as endpoint architecture. The complete
+Source composition matters as well as architecture at either learning stage. The complete
 15-descriptor set outperforms a ten-descriptor computed-source control on ARROW,
 but the ten-descriptor set has lower error on the external cohort and its strict
 subset. Thus empirical interaction parameters and learned residual corrections
@@ -648,8 +711,10 @@ they do not rank the underlying physical methods by fidelity.
 
 Greater architectural freedom is not the same as physical transferability. In the
 205-molecule exploratory size holdout, TabPFN lowers error relative to ExtraTrees
-and benefits from the responses, but model-specific input recipes and fixed
-source surrogates prevent attributing the whole difference to architecture alone.
+and benefits from the responses, but the endpoint-only comparison uses
+model-specific input recipes and fixed source surrogates, so it does not isolate
+the effect of endpoint architecture alone. The separate source challenge improves
+some source-level size scores but worsens the ExtraTrees hydration size split.
 Several neural endpoints and TabPFN avoid the narrow ExtraTrees peptide plateau,
 yet no peptide reference free energies are available to judge their accuracy.
 The models do not provide conformer-resolved energies, forces, new-solvent
@@ -667,9 +732,12 @@ molecules near room temperature. Error rises under scaffold and functional-famil
 separation and is substantially larger on the external cohort than on ARROW-85.
 Ions, salts, biomacromolecules, other solvents and temperatures remain unvalidated.
 
-Future tests should ask whether richer protocol-matched response sources improve
-the poorly predicted coupling-path coordinates, and should evaluate size and new
-solvents with references that were absent from both endpoint and source supervision.
+Future tests should ask whether source learners selected for the corrected
+descriptor and downstream transfer, rather than separate targetwise accuracy,
+perform better on independent larger-molecule references. Richer
+protocol-matched response sources could address the poorly predicted coupling-path
+coordinates; new solvents likewise require references absent from both endpoint
+and source supervision.
 The present evidence establishes a narrower but useful principle: information from
 existing solvent calculations can be learned as molecular response coordinates and
 reused by several hydration predictors without repeating the calculation for each
@@ -700,13 +768,43 @@ Non-finite values are handled by a median imputer fitted inside each endpoint fi
 \subsection*{Response surrogates}
 
 Fifteen response descriptors are generated by six surrogate families (Supplementary
-Table~1). CheMeleon-initialized D-MPNNs predict CombiSolv-QM/COSMOtherm and
-MolSolv SMD(water) targets.\cite{chemprop2019,chemeleon2025} ExtraTrees models predict five Abraham
+Table~1). CheMeleon-initialized D-MPNNs predict two source families:
+CombiSolv-QM/COSMOtherm and MolSolv SMD(water).\cite{chemprop2019,chemeleon2025}
+ExtraTrees models predict five Abraham
 axes and the physical and residual components of corrected OpenFF and GBn2 responses.
 LightGBM models predict six ConfSolv conformer and response-distribution summaries.
 The latter are derived from the H$_2$O subset of ConfSolv. The final coordinate list,
 target units, source sizes, transformations and inference calculations are given in
 Supplementary Table~1. PIMD-derived targets are absent from this list.
+
+\subsection*{Retrospective source-surrogate architecture challenge}
+
+We separately compared five fixed learner candidates for each of four
+previously tree-based source families: the released tree recipe, an MLP using
+binary Morgan bits, an MLP using count features, count-aware ridge and
+count-aware ridge plus a bounded neural residual. The two D-MPNN source
+families, all source target definitions and the endpoint labels remained
+unchanged. Candidate choice used three source-development folds and a fixed
+0.005 target-standardized-MAE tie margin favoring the simpler learner.
+A 20\% source test, reserved before fitting, was opened only after choice was
+locked. The source-development choice of Abraham's tree was retained despite
+the lower test point estimate of an unselected hybrid. Full candidates, preprocessing,
+targetwise and summed-source diagnostics appear in Supplementary Method~S22 and
+Table~17.
+
+Endpoint comparisons used three source conditions: the released response
+matrix; a protocol-matched refit of the four tree families; and that refit with
+only the preselected OpenFF and GBn2 hybrids substituted. Every exact endpoint
+molecule appearing in a source table received source out-of-fold predictions;
+none of the ARROW-85 or Strict-97 identities appeared in any supervised source
+table. ExtraTrees and ridge-plus-neural-residual endpoints were refitted with
+their own locked recipes, identical labels, folds and seeds across source
+conditions. External-220 includes source-exposed molecules and is secondary to
+Strict-97 for this source-stage challenge. Its paired intervals use 10,000
+molecule resamples and are descriptive, not adjusted for model exploration.
+The 205-molecule size refit and unlabelled alkane/peptide series are diagnostics,
+not independent validation of extensivity (Supplementary Method~S22 and
+Table~18).
 
 \subsection*{Matched ExtraTrees endpoint}
 
@@ -879,35 +977,47 @@ Supplementary Methods~S12--S13 and Tables~7--8.
 This work was supported in part by US National Institutes of Health award
 R35GM122543 (M.L.).
 
+\section*{Author contributions}
+
+G.O. and M.L. conceived and designed the study. G.O. carried out the
+computational work. G.O., B.F. and M.L. interpreted the results and revised
+the manuscript.
+
 \section*{Competing interests}
 
 The authors declare no competing interests.
 
 \section*{Use of artificial intelligence}
 
-Generative AI tools assisted with code development, manuscript editing and figure
-preparation. The authors take full responsibility for the content of this work.
+Generative AI tools assisted with this research and manuscript preparation, and the authors take full responsibility for the content.
 
 \section*{Data availability}
 
-All benchmark records, held-out predictions, split assignments, audit tables and
-derived source manifests required to reproduce the paper are provided in the SolvAI
-repository (Supplementary Data~1--6). The Supplementary Data directory lists the
-exact filenames and contents of each numbered group. Large third-party datasets are not redistributed where their size or
-license makes that inappropriate; immutable URLs or DOIs, hashes, licenses and exact
-preprocessing instructions are supplied in \texttt{repro/DATA\_PROVENANCE.md}.
+Benchmark records, held-out predictions, split assignments, audit tables and
+derived source manifests for the released model and endpoint-architecture study
+are provided in the SolvAI repository (Supplementary Data~1--6). Aggregate
+results of the retrospective source-surrogate challenge are included in
+Supplementary Tables~17--18 and the aggregate file
+\nolinkurl{paper/supplementary/source_architecture_evidence.json}. Complete
+fit-level and molecule-level records for that challenge are retained for the
+revised data release. Large third-party datasets are not redistributed where
+their size or license makes that inappropriate; URLs or DOIs, hashes, licenses
+and preprocessing instructions are supplied in \texttt{repro/DATA\_PROVENANCE.md}.
 
 \section*{Code availability}
 
-Source code, the packaged inference artifacts, confirmatory analysis scripts, figure
-generation, manuscript source and a locked environment are available at
+Source code for the released model, its packaged inference artifacts,
+confirmatory and endpoint-architecture analyses, figure generation, manuscript
+source and a locked environment are available at
 \url{https://github.com/Scientific-Computing-Lab/SolvAI}. A frozen-artifact path
 reproduces predictions, metrics, figures and PDFs without rerunning physical
-calculations. The endpoint-comparison directory additionally provides predictions,
+calculations for the released analyses. The endpoint-comparison directory additionally provides predictions,
 selection specifications and analysis code. TabPFN weights require the provider's
 license; fitted contexts that contain non-redistributable training labels are not
 published. The packaged public inference command uses the ExtraTrees endpoint,
-and its runtime measurements do not describe the alternative endpoints.
+and its runtime measurements do not describe the alternative endpoints. The
+source-surrogate challenge code and its full fit records are not part of the
+current public release and will accompany the revised data deposit.
 
 \bibliographystyle{unsrtnat}
 \bibliography{references}
@@ -915,6 +1025,7 @@ and its runtime measurements do not describe the alternative endpoints.
 % The journal reading copy always includes the supplement, with the same
 % typography, margins and continuous page numbering.
 \clearpage
+\nolinenumbers
 \begingroup
 \graphicspath{{supplementary/figures/}}
 \input{supplementary/supplementary.tex}

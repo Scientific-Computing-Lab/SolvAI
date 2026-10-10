@@ -1,0 +1,12 @@
+{
+  "role": "conceptual_illustration_not_scientific_data",
+  "created_utc": "2026-10-09T23:04:00.330109+00:00",
+  "deployment": "gpt-image-2",
+  "api_version": "2024-02-01",
+  "prompt": "Create one isolated conceptual illustration component for the opening figure of a rigorous physical chemistry journal article. Show only a spacious, asymmetrical halo of translucent blue water-like solvent currents and a few soft individual water droplets surrounding a completely empty, pure-white central opening. The empty center will later receive an exact vector molecular structure supplied by the authors; do not draw any solute or chemical bonds yourself. Sophisticated editorial scientific illustration: delicate watercolor and glass-like optical depth, crisp outer silhouette, subdued cool blue/cyan palette, fine but restrained light and shadow. This is not a simulated solvent density field, not a plot, and not a literal molecular configuration. The entire unillustrated background and the central opening must be exactly flat pure white RGB 255,255,255. No off-white paper, no gradient backdrop, no vignette, no frame. No text, letters, numbers, labels, arrows, legends, logos, grids or equations. Center the halo with generous white margins so it can be cropped as a cutout. Square 1024x1024 composition.",
+  "quality": "high",
+  "requested_size": "1024x1024",
+  "width_px": 1024,
+  "height_px": 1024,
+  "sha256": "63a9905c7efe47890150da1f8bda3232c9b7a3e23b5f53224bd55731e3cd54f2"
+}

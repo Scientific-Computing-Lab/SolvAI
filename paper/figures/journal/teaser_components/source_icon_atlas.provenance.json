@@ -1,0 +1,15 @@
+{
+  "role": "conceptual_illustration_not_scientific_data",
+  "created_utc": "2026-10-09T20:43:06.431628+00:00",
+  "deployment": "gpt-image-2",
+  "api_version": "2024-02-01",
+  "prompt": "Create a single polished scientific-editorial icon atlas for a Nature Communications-style figure. Exactly six isolated pictograms in a rigid 3-column by 2-row grid, equal cells, each icon centered with generous empty margins and wide blank white gutters. The entire unillustrated background and all gutters must be exactly pure white #FFFFFF (RGB 255,255,255), with no shadows or gray/off-white backdrop. No borders, no panels, no tile edges.\n\nVisual style: finely rendered, restrained blue/teal/aqua scientific illustration with small warm amber accents, elegant soft-glass and watercolor depth, crisp silhouette and excellent legibility at small print size. These are conceptual information-source icons, not measured scientific images. They must contain no text, letters, numerals, logos, equations, axes, graphs, charts, data points, molecular structures, bonds, or ball-and-stick atoms.\n\nGrid content, left to right then top to bottom:\n1. A continuum-water calculation: one simple neutral pebble-like solute silhouette inside a luminous smooth aqueous envelope, a subtle energetic contour around it.\n2. Empirical interaction properties: one simple central neutral shape with five distinct small abstract interaction petals or rays, balanced and symmetric.\n3. Explicit-solvent calculation: one neutral pebble surrounded by a few clearly separate translucent water droplets, conveying individual water configurations.\n4. Implicit-solvent calculation: one neutral pebble surrounded by one continuous smooth cavity boundary and a soft solvent field, no individual droplets.\n5. Continuum quantum-chemical solvent response: one neutral pebble in a delicate blue continuous field with a fine luminous contour, visually distinct from item 1 by a narrower ripple pattern.\n6. Conformational solvent responses: three different curved flexible neutral ribbons or poses grouped together near a few blue water ripples, conveying an ensemble, not a specific molecule.\n\nKeep the six icons fully inside their cells without crossing gutters. All scientific meaning will be supplied later by editable vector labels and arrows; the icons only help distinguish the six information sources.",
+  "quality": "high",
+  "requested_size": "1536x1024",
+  "width_px": 1536,
+  "height_px": 1024,
+  "sha256": "4bb4060d57918593942648bf8044f63d0abceda9e1d8a083a8b9b12615b254f0",
+  "delivered_asset": "source_icon_atlas.png",
+  "delivered_asset_sha256": "87548b396b41fb6d2e60b428dafc987c7e4d9b099bf22df9d8568afd73a059f3",
+  "delivered_background": "#FFFFFF; neutral near-white generated background was corrected before use"
+}

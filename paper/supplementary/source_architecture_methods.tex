@@ -1,0 +1,108 @@
+\subsection*{S22. Retrospective source-surrogate architecture challenge}
+
+This analysis asks whether the learner used to predict a fixed source target
+changes source recovery and downstream hydration performance. It was designed
+after the released-model and endpoint-architecture evaluations and is
+exploratory, not a second prospective validation. The four challenged families
+are SoluteML Abraham (8,098 source molecules), OpenFF (520), GBn2 (550) and
+ConfSolv (17,829). CombiSolv-QM/COSMOtherm and MolSolv/SMD(water) retain their
+released D-MPNN surrogates. Source target definitions, source rows, original
+ARROW partitions, experimental endpoint labels and the 15-coordinate ordering
+were fixed. OpenFF and GBn2 each have a calculated-energy target and an
+experiment-minus-original-calculation residual target; the coordinate supplied
+to the endpoint is the sum of the two predictions, not either target alone.
+
+For each challenged family, a deterministic random 20\% source test was reserved
+with seed 20261009. The remaining 80\% were divided into three shuffled
+development folds with seed 20261010. Five candidates were specified before
+source-test access: the released ExtraTrees or LightGBM architecture refitted
+under the development splits; a residual MLP using the 217 RDKit descriptors
+and binary Morgan bits; the same MLP using count-aware Morgan features;
+count-aware ridge regression; and that ridge fit plus a bounded neural residual.
+Neural fits used two width-128 residual blocks, dropout 0.1, AdamW at learning
+rate 0.001, batch size 128, a 400-epoch ceiling and patience 35. A deterministic
+10\% subset of each training fold selected the stopping epoch; the outer
+source-development fold did not. Median imputation and feature scaling were
+fitted on training rows only. Ridge used $\alpha=100$ on scaled RDKit and
+log-count features. Neural targets were scaled within the training fold and
+missing targets were masked in a Huber loss. Final source fits used the median
+chosen development-fold epoch. The tree comparator preserved its released
+target-specific leaf settings, and ConfSolv's variance-filtered bits were
+chosen within each training fold.
+
+Selection minimized the equal-target average of validation MAE divided by the
+training standard deviation of each target, averaged over the three folds.
+A precommitted difference smaller than 0.005 in this normalized score favored
+the simpler candidate in the listed order. Thus selection used neither the
+independent source test nor hydration test labels. An initial OpenFF development
+screen used an incorrect tree comparator leaf size; it was invalidated before
+source-test access, preserved in the experiment archive and rerun with the
+released target-specific settings. The corrected screen is the one reported.
+The selected models were the released tree for Abraham, ridge plus neural
+residual for OpenFF and GBn2, and the released LightGBM tree for ConfSolv.
+Supplementary Table~17 reports every independent source-test score. These
+normalized errors compare candidate learners \emph{within} a family; different
+source targets and units make a ranking across families inappropriate.
+
+The selected hybrid's target-averaged source-test score was lower than the tree
+score for OpenFF (0.2295 versus 0.2645) and GBn2 (0.2387 versus 0.2544).
+Abraham's unselected hybrid happened to have the lowest source-test point
+estimate (0.0948 versus 0.0973 for the selected tree), but the test did not
+reverse the development-fold choice. ConfSolv's selected LightGBM tree also
+had the lowest source-test point estimate (0.4930). A separate diagnostic held
+out the largest 15\% by heavy-atom count within each source. The normalized
+target-average score changed from 0.9002 to 0.7538 for OpenFF and from 1.0682
+to 0.7118 for GBn2. Those scores again average separate targets. On the
+independent random source test, the \emph{summed} corrected coordinate instead
+changed from 0.660 to 0.651 kcal mol$^{-1}$ for OpenFF (selected-minus-tree
+95\% paired interval, $-0.142$ to $0.128$) and from 0.718 to 0.683 for GBn2
+($-0.204$ to $0.117$). On the size-separated source test, the corrected OpenFF
+coordinate worsened from 1.896 to 2.282 kcal mol$^{-1}$ (interval, $-0.059$
+to $0.847$), while GBn2 changed from 2.100 to 2.063 (interval, $-0.503$
+to $0.441$). These intervals include zero. Component gains need not add when
+errors in the two predicted terms are combined.
+
+Source--endpoint identity overlap was audited by exact standardized molecule.
+Every endpoint molecule appearing in a source table received source out-of-fold
+predictions under that source condition. The cross-fit counts were 1,281 for
+Abraham (1,189 public and 92 external), 520 for OpenFF (all public), 550 for
+GBn2 (all public) and 151 for ConfSolv (139 public and 12 external). No ARROW-85
+or Strict-97 molecule overlapped a supervised source table. This distinction is
+especially important for the OpenFF and GBn2 experimental-residual targets:
+they are not independent simulation-only supervision. External-220 has 123
+source-exposed identities and is secondary to the strict source-disjoint 97
+for the source-stage question.
+
+Three response conditions were compared downstream: the original released
+response matrix; \emph{source-tree-refit}, with all four challenged families
+refitted using their released tree recipes and the same cross-fitting protocol;
+and \emph{selected-all}, which substitutes only the validation-selected OpenFF
+and GBn2 hybrids into that refit. The two unchanged D-MPNN families were checked
+for exact equality across conditions. Each endpoint used identical labels,
+outer folds, structural inputs, seed set and locked learner recipe between
+source-tree-refit and selected-all. This produced 162 matched ExtraTrees fits
+and 54 ridge-plus-neural-residual fits. Original-response flexible predictions
+and released ExtraTrees results replayed their earlier values. Supplementary
+Table~18 gives the six full condition--head results, rather than only favorable
+substitutions. Paired differences use 10,000 molecule-level bootstrap resamples;
+they are descriptive and not adjusted for the architecture search. For the
+ExtraTrees head, selected-all minus source-tree-refit gives ARROW-85 $+0.0348$
+(95\% interval, $-0.0009$ to $0.0771$), External-220 $-0.1175$
+($-0.1765$ to $-0.0603$) and Strict-97 $-0.2428$
+($-0.3585$ to $-0.1371$) kcal mol$^{-1}$. For the flexible head, the changes
+are $+0.0038$, $-0.0041$ and $-0.0233$; all three intervals include zero.
+
+The separate endpoint-size diagnostic holds out 192 public and 13 ARROW labels
+under the earlier within-source size rule (Supplementary Method~S20). It is not
+a strict global heavy-atom cutoff. Selected-all versus source-tree-refit changes
+ExtraTrees MAE by $+0.1233$ kcal mol$^{-1}$ (interval, $0.0551$ to $0.1945$)
+and the flexible endpoint by $-0.0141$ ($-0.0419$ to $0.0128$). Unlabelled
+n-alkanes C2--C20 and Ac-(Gly/Ala)$_{0\text{--}6}$-NHMe were also scored. The
+selected source hybrids continue changing on the alkane series beyond C10,
+unlike the corresponding source trees, but the ExtraTrees endpoint remains
+bounded and nearly plateaus on the peptide series. The flexible endpoint's
+peptide predictions continue changing; no experimental peptide free energies
+are available to establish which shape is accurate. Neither diagnostic proves
+physical extensivity or conformational sensitivity. The released source
+representation and public deployment artifact were not replaced as a result of
+this retrospective comparison.

@@ -1,8 +1,8 @@
 % !TEX root = ../main.tex
 % Included by main.tex; compile the root document, not this fragment.
 \section*{Supplementary Information}
-\noindent Supplementary Methods S1--S21; Supplementary Notes S1--S2;
-Supplementary Tables 1--16; Supplementary Figures 1--12; Supplementary Data 1--6.
+\noindent Supplementary Methods S1--S22; Supplementary Notes S1--S2;
+ Supplementary Tables 1--18; Supplementary Figures 1--12; Supplementary Data 1--6.
 
 \section*{Supplementary Methods}
 
@@ -255,8 +255,8 @@ Short PIMD2 response fingerprints were available at $\lambda=0.1$, 0.5 and 0.9 f
 targets were the total solute--solvent $\mathrm{d}H/\mathrm{d}\lambda$ and its
 electrostatic and van der Waals components. A zero-valued polarization field was not
 interpreted. Structure-only heads were evaluated by OOF prediction, and their
-outputs were added to the same matched endpoint used for the corresponding exploratory
-ablation. A separate direct-integration experiment used the predicted three-point
+outputs were added to the fixed SMD(water) plus ConfSolv response baseline for
+this exploratory ablation (MAE 0.1959 kcal mol$^{-1}$). A separate direct-integration experiment used the predicted three-point
 curve with an affine calibration fitted inside each outer training fold. These
 targets were evaluated as candidate supervision and were not retained.
 
@@ -388,6 +388,7 @@ with the original weights and seeds. Both stages, exact predictions and input ha
 are retained; the extension is explicitly retrospective.
 
 \input{supplementary/endpoint_methods.tex}
+\input{supplementary/source_architecture_methods.tex}
 
 \section*{Supplementary Notes}
 
@@ -595,6 +596,35 @@ Widths are in kcal mol$^{-1}$; no external calibration was applied.
 \normalsize
 
 \clearpage
+\subsection*{Supplementary Table 17 | Source-surrogate learner challenge}
+\small
+Independent random-source-test scores are MAE divided by each target's training
+standard deviation and averaged equally within each source family. Lower is
+better; scores are not comparable across families or with hydration MAE.
+Boldface marks the lowest displayed \emph{test} point estimate in each row, not
+the selected model. Selection used only source-development folds and retained
+Abraham's tree even though its unselected hybrid is bold here. The two released
+D-MPNN source families were not re-screened.
+\par\smallskip\noindent
+\input{supplementary/tables/source_architecture_screen.tex}
+\normalsize
+
+\subsection*{Supplementary Table 18 | Downstream source-model substitutions}
+\small
+Hydration MAE is in kcal mol$^{-1}$; Strict-97 is nested in External-220.
+The size diagnostic is a separate 205-molecule endpoint refit, not a global
+source-unseen size test. \emph{Tree refit} uses a common cross-fitting protocol
+for the four challenged source families; \emph{selected} substitutes the two
+source-validation-selected OpenFF and GBn2 hybrids. Comparisons between those
+two rows within the same endpoint head hold labels, folds, features and learner
+fixed. \emph{Released} uses the original frozen response matrix and is retained
+as a second reference. Boldface marks the lowest displayed point estimate in
+each column, not a statistically established winner.
+\par\smallskip\noindent
+\input{supplementary/tables/source_architecture_downstream.tex}
+\normalsize
+
+\clearpage
 \section*{Supplementary Figures}
 
 \begin{center}
@@ -621,9 +651,11 @@ confirmatory surrogate refits; no endpoint experimental label was removed.
 \end{center}
 \noindent\textbf{Supplementary Figure 3 | Alternative physical-supervision routes.}
 Exploratory fixed screens of additional diagnostic, latent and hierarchy features.
-\textbf{a}, Source and representation screens use the SMD(water) plus ConfSolv
-response base (0.1919 kcal mol$^{-1}$). \textbf{b}, Multi-$\lambda$ ablations use
-their own fixed baseline (0.1959 kcal mol$^{-1}$). Each dashed line marks the
+\textbf{a}, Source and representation screens use a one-seed SMD(water) plus ConfSolv
+development base (0.1919 kcal mol$^{-1}$), whereas the final 15-coordinate
+result averages three seeded fits. \textbf{b}, Multi-$\lambda$ ablations use
+a separate fixed SMD(water) plus ConfSolv baseline (0.1959 kcal mol$^{-1}$).
+Each dashed line marks the
 corresponding control; gray segments connect that control to each screened
 alternative. These experiments were not used to select the confirmatory controls.
 OpenFE denotes the Open Free Energy toolkit; MLFF denotes machine-learning force
@@ -643,10 +675,10 @@ integration of the predicted curve with fold-local affine calibration (diamond).
 \begin{center}
 \includegraphics[width=\textwidth]{Supp_Fig5_extrapolation.pdf}
 \end{center}
-\noindent\textbf{Supplementary Figure 5 | Molecular and chemical-separation errors.}
-\textbf{a}, Individual fixed-partition response-augmented ExtraTrees errors grouped by diagnostic chemical
-family; ticks show family means and labels give sample sizes. \textbf{b}, Matched
-structure-only and response-augmented ExtraTrees errors under four global separation regimes.
+\noindent\textbf{Supplementary Figure 5 | Molecular errors by chemical family.}
+Individual fixed-partition response-augmented ExtraTrees errors are grouped by diagnostic chemical
+family; ticks show family means and labels give sample sizes. Global separation
+results are shown in Fig.~\ref{fig:transfer}a,b.
 
 \clearpage
 \begin{center}
@@ -731,6 +763,7 @@ retaining leaf-value averaging. Three representative trees are shown, not the fu
 \textbf{a}, Empirical versus nominal coverage for the equal five-model TabPFN
 mixture; the dashed diagonal marks nominal coverage. \textbf{b}, Corresponding
 mean interval widths. Strict-97 is nested in External-220. These intervals are
+shown in teal for External-220 and gray for Strict-97 in both panels. They are
 evaluated without external calibration, and their undercoverage is not represented
 by seed dispersion. Connecting lines guide the eye between the two assessed levels.
 

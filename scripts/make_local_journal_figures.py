@@ -85,11 +85,6 @@ def overview(data,preview):
     return draw(data,preview)
 
 
-def learning(data,preview):
-    from journal_teaser import learning as draw
-    return draw(data,preview)
-
-
 def matched(data,preview):
     c=Art(720,'Matched tests of molecule-aligned solvent-response information')
     c.title(10,25,'a','Change only the response information')
@@ -119,7 +114,7 @@ def matched(data,preview):
     values=[methods[k]['mae_kcal_mol'] for k in keys]
     ax.plot(range(4),values,color=BLUE,lw=1.3)
     for i,v in enumerate(values):
-        ax.scatter(i,v,s=35,color=MID if i==0 else TEAL if i==3 else BLUE,zorder=3)
+        ax.scatter(i,v,s=25,color=MID if i==0 else TEAL if i==3 else BLUE,zorder=3)
         ax.text(i,v+.008,f'{v:.3f}',ha='center',fontsize=8.2,color=INK)
     pimd=methods['arrow_pimd8']['mae_kcal_mol'];ax.axhline(pimd,color=ROSE,lw=.9,ls='--')
     ax.text(.04,pimd-.012,'PIMD8',transform=ax.get_yaxis_transform(),
@@ -131,9 +126,8 @@ def matched(data,preview):
     p=data['primary'];a=p.loc[p.method.eq('A_structure_only')].sort_values('molecule_id');b=p.loc[p.method.eq('F_full_solvai')].sort_values('molecule_id')
     assert list(a.molecule_id)==list(b.molecule_id)
     aa,bb=a.absolute_error.to_numpy(),b.absolute_error.to_numpy();limit=max(aa.max(),bb.max())*1.05
-    ax.fill_between([0,limit],[0,limit],color=TEAL,alpha=.065)
     ax.plot([0,limit],[0,limit],ls='--',color=MID,lw=.7)
-    ax.scatter(aa,bb,s=17,color=np.where(bb<aa,TEAL,MID),edgecolors='white',lw=.35,zorder=3)
+    ax.scatter(aa,bb,s=12,color=np.where(bb<aa,TEAL,MID),zorder=3)
     ax.text(.97,.06,f'{int((bb<aa).sum())}/85 improved',transform=ax.transAxes,ha='right',fontsize=8,color=TEAL)
     ax.set(xlim=(0,limit),ylim=(0,limit),xlabel='Structure-only error (kcal mol$^{-1}$)',ylabel='SolvAI error (kcal mol$^{-1}$)')
     ax.set_aspect('equal',adjustable='box')
@@ -152,7 +146,7 @@ def matched(data,preview):
     for offset,(_,row) in zip(offsets,r.iterrows()):
         ax.plot([offset,1+offset],[row.A_structure_only,row.F_full_solvai],color=GRID,lw=1.1)
     for x,key,color in [(0,'A_structure_only',MID),(1,'F_full_solvai',TEAL)]:
-        ax.scatter(x+offsets,r[key],s=26,color=color,edgecolors='white',lw=.5,zorder=3)
+        ax.scatter(x+offsets,r[key],s=19,color=color,zorder=3)
         ax.errorbar(x,r[key].mean(),yerr=r[key].std(ddof=1),fmt='_',ms=10,capsize=3,color=INK,zorder=4)
     ax.axhline(pimd,color=ROSE,lw=.8,ls='--')
     ax.text(.04,pimd-.012,'PIMD8',transform=ax.get_yaxis_transform(),
@@ -194,9 +188,8 @@ def modern(data,preview):
         for i,(model,v) in enumerate(zip(order,vals)):
             color=TEAL if i in (1,6,8) else BLUE if i==2 else MID
             marker='s' if i==2 else 'o'
-            ax.plot([0,v],[i,i],color=GRID,lw=1.1)
-            ax.scatter(v,i,s=20,color=color,marker=marker,zorder=3)
-            ax.text(v+maxx*.04,i,f'{v:.3f}',va='center',fontsize=7.6,color=color)
+            ax.plot([0,v],[i,i],color=GRID,lw=.8)
+            ax.scatter(v,i,s=18,color=color,marker=marker,zorder=3)
         ax.set(ylim=(8.5,-.5),xlim=(0,maxx),yticks=[],xticks=[0,.3,.6] if k==0 else [0,1,2],xlabel='MAE (kcal mol$^{-1}$)')
         ax.spines['left'].set_visible(False);grid(ax)
         c.embed_plot(fig,x,197,156,265,f'scores{k}');plt.close(fig)
@@ -227,8 +220,8 @@ def transfer(data,preview):
     for i,regime in enumerate(['global_butina_0_70','global_scaffold','global_family']):
         v=sep.loc[sep.regime.eq(regime)].set_index('method').mae
         a,b=v.A_structure_only,v.F_full_solvai
-        ax.plot([a,b],[i,i],color='#BBCBD3',lw=1.5)
-        ax.scatter(a,i,s=31,color=MID);ax.scatter(b,i,s=31,color=TEAL)
+        ax.plot([a,b],[i,i],color='#B8C2C8',lw=1)
+        ax.scatter(a,i,s=21,color=MID);ax.scatter(b,i,s=21,color=TEAL)
     ax.set(yticks=range(3),yticklabels=['Clusters','Scaffolds','Families'],ylim=(2.5,-.5),xlim=(0,1.4),xticks=[0,.5,1],xlabel='MAE (kcal mol$^{-1}$)');grid(ax)
     c.embed_plot(fig,4,77,242,224,'groups');plt.close(fig)
     fig,ax=base_plot(240,224,(.24,.24,.70,.70))
@@ -253,10 +246,8 @@ def transfer(data,preview):
     fig,ax=base_plot(346,199,(.22,.22,.74,.69))
     for i,cohort in enumerate(['External-220','Strict-97']):
         a,b=mae(data,'structure',cohort),mae(data,'solvai',cohort)
-        ax.plot([b,a],[i,i],color=GRID,lw=2)
-        ax.scatter(a,i,color=MID,s=38);ax.scatter(b,i,color=TEAL,s=38)
-        ax.text(a,i-.18,f'{a:.3f}',ha='center',fontsize=8.1,color=MID)
-        ax.text(b,i+.24,f'{b:.3f}',ha='center',fontsize=8.1,color=TEAL)
+        ax.plot([b,a],[i,i],color='#B8C2C8',lw=1)
+        ax.scatter(a,i,color=MID,s=24);ax.scatter(b,i,color=TEAL,s=24)
     ax.set(yticks=[0,1],yticklabels=['220','97'],ylim=(1.5,-.5),xlim=(.9,2.35),xlabel='MAE (kcal mol$^{-1}$)');grid(ax)
     c.embed_plot(fig,10,384,346,199,'external');plt.close(fig)
     for i,key in enumerate(['endpoint_disjoint','strict_response_source_disjoint']):
@@ -265,8 +256,8 @@ def transfer(data,preview):
     fig,ax=base_plot(326,224,(.19,.25,.78,.69));s=data['strata'];xx=np.arange(4)
     for x,a,b in zip(xx,s.structure_mae,s.solvai_mae):
         ax.plot([x-.13,x+.13],[a,b],color='#BBCBD3',lw=1.1)
-    ax.scatter(xx-.13,s.structure_mae,color=MID,s=28,zorder=3)
-    ax.scatter(xx+.13,s.solvai_mae,color=TEAL,s=28,zorder=3)
+    ax.scatter(xx-.13,s.structure_mae,color=MID,s=19,zorder=3)
+    ax.scatter(xx+.13,s.solvai_mae,color=TEAL,s=19,zorder=3)
     ax.set(xticks=xx,xticklabels=[f'{a:.1f}–{b:.1f}\nn={n}' for a,b,n in zip(s.lower,s.upper,s.n)],ylim=(0,4.6),ylabel='MAE (kcal mol$^{-1}$)');grid(ax,'y')
     c.embed_plot(fig,385,384,326,224,'similarity');plt.close(fig)
     c.text(552,630,'Nearest-training Morgan similarity',11.4,MID,400,'middle')
@@ -299,7 +290,7 @@ def composition(data,preview):
     fig,ax=base_plot(349,261,(.18,.23,.77,.72));xx=np.arange(3)
     for shift,model,color,label,marker in [(-.16,'structure',MID,'Structure','o'),(0,'solvai',TEAL,'Full 15','o'),(.16,'computed_only',BLUE,'Computation-only','s')]:
         vals=[mae(data,model,cohort) for cohort in COHORTS]
-        ax.scatter(xx+shift,vals,color=color,s=37,marker=marker,label=label,zorder=3)
+        ax.scatter(xx+shift,vals,color=color,s=22,marker=marker,label=label,zorder=3)
     ax.set(xticks=xx,xticklabels=['ARROW\n85','External\n220','Strict\n97'],ylim=(0,2.45),xlim=(-.5,2.5),ylabel='MAE (kcal mol$^{-1}$)');grid(ax,'y')
     ax.legend(loc='upper left',fontsize=8,frameon=False,handlelength=.9,labelspacing=.4)
     c.embed_plot(fig,10,282,349,261,'absolute');plt.close(fig)
@@ -307,13 +298,11 @@ def composition(data,preview):
     for i,cohort in enumerate(COHORTS):
         f=data['pairs'];r=f.loc[f.cohort.eq(cohort)&f.candidate.eq('solvai')&f.reference.eq('computed_only')].iloc[0]
         color=TEAL if r.delta<0 else BLUE
-        ax.errorbar(r.delta,i,xerr=[[r.delta-r.low],[r.high-r.delta]],fmt='o',color=color,ms=5,capsize=3,lw=1.25)
-        ax.text(r.delta,i+.25,f'{r.delta:+.3f}',ha='center',color=color,fontsize=8.3)
+        ax.errorbar(r.delta,i,xerr=[[r.delta-r.low],[r.high-r.delta]],fmt='o',color=color,ms=4,capsize=2.5,lw=1)
     ax.axvline(0,color=MID,lw=.8)
     ax.set(yticks=range(3),yticklabels=COHORTS,ylim=(2.6,-.55),xlim=(-.09,.20),xticks=[-.05,0,.05,.1,.15,.2],xlabel='Full 15 − computation-only\nΔMAE (kcal mol$^{-1}$)');grid(ax)
     c.embed_plot(fig,385,282,326,261,'composition');plt.close(fig)
-    c.text(431,561,'← Full 15 better',11.3,TEAL)
-    c.text(707,561,'Computation-only better →',11.3,BLUE,400,'end')
+    c.text(558,561,'Negative favors full 15; positive favors computation-only',10.5,MID,400,'middle')
     return c.save(OUT/'F7_source_composition',preview/'F7_source_composition.png' if preview else None)
 
 
@@ -397,7 +386,7 @@ def conformers(data,preview):
 def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--preview-dir',type=Path)
-    functions=[overview,learning,matched,modern,transfer,composition,protocol,conformers]
+    functions=[overview,matched,modern,transfer,composition,protocol,conformers]
     parser.add_argument('--only',nargs='+',choices=[f.__name__ for f in functions])
     args=parser.parse_args()
     data=load_data()
@@ -415,7 +404,9 @@ def main():
         'figures/source/fig1_assets/nma_openbabel.pdb',
         'figures/source/fig1_assets/dimethoxyethane_selected_conformers.sdf']
     inputs += [str(p.relative_to(ROOT)) for p in sorted((OUT/'teaser_components').glob('*.png'))]
-    scripts=['scripts/make_local_journal_figures.py','scripts/journal_vector_art.py','scripts/journal_teaser.py','scripts/journal_diagram.py','scripts/journal_style.py']
+    scripts=['scripts/make_local_journal_figures.py','scripts/journal_vector_art.py',
+             'scripts/journal_teaser.py','scripts/journal_diagram.py',
+             'scripts/journal_style.py','scripts/prepare_teaser_components.py']
     manifest=dict(source_sha256={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in inputs},
         builder_sha256={p:hashlib.sha256((ROOT/p).read_bytes()).hexdigest() for p in scripts},
         build_platform=f'{platform.system()} {platform.machine()}',

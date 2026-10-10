@@ -1,0 +1,62 @@
+{
+  "role": "conceptual source-category icons; not molecular structures, model outputs or data",
+  "source_atlas": "source_icon_atlas.png",
+  "source_atlas_sha256": "87548b396b41fb6d2e60b428dafc987c7e4d9b099bf22df9d8568afd73a059f3",
+  "background": "unillustrated background and cell edges #FFFFFF",
+  "outputs": [
+    {
+      "path": "source_icon_1.png",
+      "sha256": "66e70db757266555eefbcde09c6a085264060aa1d872a1c8115afd64a7301a68",
+      "corner_rgb": [
+        255,
+        255,
+        255
+      ]
+    },
+    {
+      "path": "source_icon_2.png",
+      "sha256": "bca4cdf904fb5a9330ceb0ed7891e55706499f614e90f6cbcdc0e24a414abdf8",
+      "corner_rgb": [
+        255,
+        255,
+        255
+      ]
+    },
+    {
+      "path": "source_icon_3.png",
+      "sha256": "b22001c98b0a472c101c5299ee211922aa134d178463b264603d07d091b1c77c",
+      "corner_rgb": [
+        255,
+        255,
+        255
+      ]
+    },
+    {
+      "path": "source_icon_4.png",
+      "sha256": "fcf9c596e358612956465d56bc36a7e6e46e6b79edc8a36af9a228d270c3b026",
+      "corner_rgb": [
+        255,
+        255,
+        255
+      ]
+    },
+    {
+      "path": "source_icon_5.png",
+      "sha256": "3970219044bf75f7bed08556ab459dab2475744178e92bd9ea3bd389f975ee46",
+      "corner_rgb": [
+        255,
+        255,
+        255
+      ]
+    },
+    {
+      "path": "source_icon_6.png",
+      "sha256": "bdbdcf30a71a2d65c20892800a045adf6218a9e9921904363b0d926107dd81f4",
+      "corner_rgb": [
+        255,
+        255,
+        255
+      ]
+    }
+  ]
+}
