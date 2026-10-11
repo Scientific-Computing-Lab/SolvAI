@@ -1,39 +1,29 @@
 \subsection*{Testing transfer to larger molecules}
 
-To test accuracy beyond the endpoint's training-size range, we held out the largest 15\% of
-molecules within each endpoint source and refitted eight of the nine fixed endpoint
-configurations on the remaining 1,160 labels. The MoLFormer--ExtraTrees
-combination was not included in this diagnostic. The 205 held-out molecules contain
-8--37 heavy atoms; 188 exceed the largest training molecule, which has 17.
-The overlapping lower end results from applying the rule within each source.
-These labels were available during earlier random-fold development, so this is
-an exploratory size diagnostic, not an untouched prospective test. The response
-surrogates remain fixed: this comparison tests endpoint transfer conditional on
-their predictions, not size extrapolation with all response-source exposure removed.
 
-TabPFN reduces the size-held-out MAE from 1.772 for ExtraTrees to 1.318
+
+We separate accuracy on labelled larger molecules from the shape of predictions
+for still larger, unlabelled series. For the first test, we held out the largest
+15\% within each endpoint-label source and refitted eight fixed configurations on
+1,160 remaining labels. Of the 205 held-out molecules, 188 exceed the largest
+training molecule's 17 heavy atoms. Their labels had been available in earlier
+random-fold development, so this is an exploratory test of endpoint size transfer
+with the source surrogates held fixed, not an independent test of the whole
+pipeline beyond all prior source exposure.
+
+On this held-out split, TabPFN lowers MAE from 1.772 for ExtraTrees to 1.318
 kcal mol$^{-1}$ (paired difference $-0.453$; 95\% interval, $-0.648$ to $-0.281$;
-Fig.~\ref{fig:size}a). Here its response descriptors also help: without them the
-error is 1.959 (response-minus-control difference $-0.640$; interval, $-0.847$ to
-$-0.451$). The refits use separately locked input recipes, so the cross-endpoint
-contrast does not isolate architecture from representation or preprocessing.
-TabM, the linear-plus-neural model and the dual-branch model also reduce
-error relative to ExtraTrees, with paired intervals below zero. These results
-identify useful alternatives for this size split; they do not imply the same ordering
-for every new chemical family (Supplementary Table~15; Supplementary Data~6,
-\nolinkurl{size_diagnostic_comparisons.csv}).
+Fig.~\ref{fig:size}a). The responses also help TabPFN itself: its matched error
+without them is 1.959 (response-minus-control interval, $-0.847$ to $-0.451$).
+Several other neural endpoints improve on ExtraTrees here as well.
+They are useful alternatives for this split, although their separately
+selected input recipes mean the cross-endpoint difference is not solely an
+architecture effect (Supplementary Table~15 and Data~6).
 
-Capped glycine and alanine series ask a complementary question about prediction
-shape. ExtraTrees approaches plateaus near $-23$ and $-25$ kcal mol$^{-1}$, whereas
-several neural endpoints and TabPFN continue to change over the tested range
-(Fig.~\ref{fig:size}b,c). For Ac-(Gly)$_n$-NHMe, TabPFN predicts $-40.802$ at
-$n=6$ and $-67.194$ at $n=12$, compared with $-23.005$ and $-23.440$ for
-ExtraTrees. No experimental peptide values are available here: these are predictions,
-not errors, and a more negative or more linear curve is not evidence of greater
-physical accuracy. The finite outer bound on the mean prediction is approximately
-$[-32.595,5.757]$ for the released trees and $[-658.495,649.922]$ for the fitted
-TabPFN ensemble. The latter is much wider but still finite; neither architecture
-guarantees asymptotic extensivity.
+\Needspace{5\baselineskip}
+Figure~\ref{fig:size} also follows capped glycine and alanine series without
+experimental peptide reference values. Those panels test how predictions change
+with chain length, not whether they are physically accurate.
 
 \begin{figure}[!htbp]
 \centering
@@ -51,18 +41,18 @@ N-methylacetamide. Colors identify the same families in both panels.}
 \label{fig:size}
 \end{figure}
 
-Linear alkanes expose an additional limitation. TabPFN remains non-monotonic between
-C10 and C14 (3.348 and 3.046 kcal mol$^{-1}$), despite its changed peptide behavior.
-Moreover, 27 of the 30 tested alkanes occur in endpoint training, so this series is
-not an independent extrapolation benchmark. A source audit confirmed that the
-low C14 and C16 training values were copied faithfully from their source; removing
-these two labels raises the corresponding tree predictions. We retain the original
-labels and report the sensitivity rather than substitute an assumed linear trend
-(Supplementary Methods~S20).
+In those unlabelled series, ExtraTrees predictions approach a
+plateau, while several neural endpoints and TabPFN keep changing as residues
+are added (Fig.~\ref{fig:size}b,c). That shape is less constrained by the fitted
+range, but it cannot be scored as more accurate without reference values.
+An alkane series makes the point from another direction: TabPFN is non-monotonic
+between C10 and C14, and most tested alkanes already occur in endpoint training.
+The individual predictions, source-label audit and sensitivity to two alkane
+labels are in Supplementary Methods~S20 and Data~6.
 
-Finally, the native TabPFN predictive distributions do not yet provide calibrated
-reliability. Equal mixtures of the five fitted distributions give nominal 80\%
-and 95\% intervals with only 58.2\% and 80.0\% empirical coverage on External-220;
-the corresponding Strict-97 coverages are 55.7\% and 76.3\%. These are predictive
-intervals, not the spread across seeds. No calibration or model reselection was
-performed on these outcomes (Supplementary Fig.~11 and Table~16).
+Predictive uncertainty adds a final check on using this endpoint for new
+molecules. TabPFN's nominal 80\% and 95\% predictive intervals cover only
+58.2\% and 80.0\% of External-220, respectively, with similar undercoverage
+on Strict-97 (Supplementary Fig.~11 and Table~16). These native intervals have
+not been calibrated on the external labels; their widths should not yet be
+read as reliable per-molecule error guarantees.

@@ -1,38 +1,19 @@
-\subsection*{One response representation, different endpoint behaviors}
+\Needspace{19\baselineskip}
+\subsection*{Does the response help beyond one endpoint?}
 
-The matched test establishes a response benefit for one endpoint, not for every
-possible predictor. To test whether the representation remains useful across
-learners, we combine the same 15 frozen response predictions with different
-molecular representations and endpoint models. We evaluated ExtraTrees, residual multilayer
-perceptrons (MLPs), separate structure and response branches, a linear predictor
-with a neural residual, message-passing graphs with size-sensitive readouts, frozen
-MoLFormer representations with neural heads, TabM parameter-sharing ensembles,
-and TabPFN-3.5 in-context prediction (Table~\ref{tab:endpoints}). TabM shares
-most weights across multiple neural predictions; TabPFN uses a pretrained
-transformer conditioned on labelled training rows.\cite{tabm2025,tabpfn2025,tabpfn35}
-A MoLFormer--ExtraTrees fit changes the representation while retaining a tree
-endpoint. Supplementary Figs.~8--10 depict the mechanisms. We ask separately
-which endpoints predict most accurately and whether adding the responses helps
-each one; these need not have the same answer.
+The matched test raises a second question: does the information in the 15 frozen
+descriptors remain useful when the hydration learner changes? We tested nine
+fixed endpoint configurations, from trees and neural networks to molecular
+graphs and pretrained encodings (Table~\ref{tab:endpoints}). For each one, a
+paired fit removes only the response columns while retaining its selected
+structural inputs and training recipe. Thus the comparison asks both how accurate
+the complete learners are and what the responses contribute within each learner.
+TabM uses a shared-parameter neural ensemble, and TabPFN predicts from a
+pretrained transformer conditioned on labelled training rows.\cite{tabm2025,tabpfn2025,tabpfn35}
+The study is retrospective; configurations were selected using training-side
+validation, with the full protocol in Methods and Supplementary Methods~S18.
 
-This architecture comparison is retrospective: the evaluation sets were already
-known during method development. Within each outer partition, configuration and
-training duration were chosen using only training-side validation data. We
-completed longer-training, representation and width challenges, locked the
-selection policy, and then fitted the final models. The policy selected TabPFN
-in all five ARROW folds and the external fit. Input recipes can differ by
-partition; the external TabPFN fit uses RDKit descriptors, a frozen MoLFormer
-encoding and the responses. No-response controls inherit each selected recipe;
-they are paired ablations, not separately optimized structural baselines.
-The common comparison for all nine fixed configurations uses the same ARROW-85,
-External-220 and nested
-Strict-97 evaluation identities, with a paired no-response fit for each
-configuration. Eight configurations were also refitted for the separate
-size-held-out diagnostic; the MoLFormer--ExtraTrees combination was not.
-Shuffled-response and chemical-separation results below concern the ExtraTrees
-fits and are not claims about the other endpoints.
-
-\begin{table}[t]
+\begin{table}[!ht]
 \centering\small
 \caption{\textbf{Endpoint mechanisms and their measured accuracy.}
 All entries include the 15 response descriptors. MAE is in kcal mol$^{-1}$.
@@ -48,39 +29,25 @@ matched no-response controls and common-three-seed results.}
 \input{tables/endpoint_summary.tex}
 \end{table}
 
-The lowest full-model point estimate changes with the evaluation: TabPFN has
-0.199 kcal mol$^{-1}$ on ARROW-85, a MoLFormer neural head has 1.111 on
-External-220, ridge plus a neural residual has 1.429 on Strict-97, and TabPFN
-has 1.318 in the exploratory size refit (Table~\ref{tab:endpoints}). ExtraTrees
-also fits the small reference set closely at 0.202 but is less accurate on the
-size holdout. These ranks are descriptive, not a statistically established
-ordering of all endpoint pairs.
+The lowest full-model point estimate changes with the cohort: TabPFN reaches
+0.199 kcal mol$^{-1}$ on ARROW-85, a MoLFormer neural head 1.111 on External-220,
+and ridge plus a neural residual 1.429 on Strict-97 (Table~\ref{tab:endpoints}).
+These are descriptive rankings of complete predictors. They cannot tell us
+whether the same predictor needed the response descriptors.
 
-Within-family response effects tell a different story (Fig.~\ref{fig:endpoints}).
-On External-220 and its nested Strict-97 subset, seven of the nine fixed
-endpoint configurations have descriptive paired intervals below zero when the
-responses are added. These include ExtraTrees, the residual MLP, dual branches,
-message passing, a MoLFormer neural head, TabM, and MoLFormer with a tree head.
-On ARROW-85, the intervals are below zero for ExtraTrees and the two MoLFormer
-endpoints. The neural MoLFormer fit changes from 0.465 to 0.273 on ARROW,
-1.332 to 1.111 externally, and 1.685 to 1.450 on Strict-97. The residual
-MLP's external response gain does not compensate for its higher absolute error.
-Ridge plus a neural residual gives the lowest full-model Strict-97 point estimate,
-but removing responses lowers its error further, from 1.429 to 1.294. TabPFN
-has the lowest ARROW point estimate, yet its response-minus-no-response intervals
-include zero on all three original cohorts.
-
-The mechanisms therefore illuminate different trade-offs rather than a single
-winner: separate input branches and the shared-parameter TabM ensemble improve
-the size-holdout estimate; message passing makes molecular size available to its
-readout without imposing additivity; and the MoLFormer--ExtraTrees pair changes
-the molecular representation while retaining a bounded endpoint. A
-width-adaptive selection variant reaches 1.090 externally, but its difference
-from ExtraTrees is unresolved ($-0.062$; 95\% interval, $-0.157$ to $0.027$).
-This variant is a training-side selection rule that can choose different
-configurations across partitions, not another architecture. Complete variants,
-unsuccessful choices and paired intervals appear in Supplementary Tables~13--15
-and Data~6.
+The paired fits answer that question (Fig.~\ref{fig:endpoints}). On External-220
+and its nested Strict-97 subset, seven of nine configurations have below-zero
+descriptive intervals for the response-minus-no-response MAE difference. The
+neural MoLFormer endpoint, for example, changes from 1.332 to 1.111 externally;
+ExtraTrees, message passing and several other learners also benefit. On ARROW-85,
+the intervals are below zero for ExtraTrees and the two MoLFormer endpoints.
+The contrast has exceptions that make the distinction useful: TabPFN has the
+lowest ARROW point estimate without a resolved response increment, while the
+lowest full-model Strict-97 configuration, ridge plus a neural residual, has
+lower error when its responses are removed. The representation can therefore
+help across architectures without defining a single best complete model.
+Complete paired results, mechanism diagrams and selection variants are in
+Supplementary Tables~13--15, Figs.~8--10 and Data~6.
 
 \begin{figure}[!htbp]
 \centering
